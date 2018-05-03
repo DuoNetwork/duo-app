@@ -1,0 +1,17 @@
+{
+	"presets": [
+		[
+			"@babel/preset-env",
+			{
+				"targets": {
+					"browsers": ["last 2 versions ", "safari >= 7"]
+				}
+			}
+		],
+		"@babel/preset-typescript",
+        "@babel/preset-react"
+	],
+	"plugins": [
+		["extensible-destructuring", {"mode": "optout", "impl": "immutable"}]
+	]
+}
