@@ -1,14 +1,24 @@
 import {IData} from "./D3Chart";
 
-type ISMAOutData = Array<{
+export type ISMAOutData = Array<{
 	date: string;
 	SMA: number;
 }>;
 
-type IEMAOutData = Array<{
+export type IEMAOutData = Array<{
 	date: string;
 	EMA: number;
 }>;
+
+export type ISMAOutDatum = {
+	date: string;
+	SMA: number;
+};
+
+export type IEMAOutDatum = {
+	date: string;
+	EMA: number;
+};
 
 const getSubset = (data: IData, range: number, i: number): IData => {
 	let subSet: IData;
@@ -55,7 +65,7 @@ const calSMA = (data: IData, range: number, source: string): ISMAOutData => {
 const calEMA = (data: IData, range: number, source: string): IEMAOutData => {
 	let outData: IEMAOutData = [];
 	let i: number;
-	function EMA(i:number):number {
+	function EMA(i: number): number {
 		let data_value: number;
 		let window = i < range ? i : range;
 		switch (source) {

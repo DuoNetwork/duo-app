@@ -13,7 +13,7 @@ type IDatum = {
 	high: number;
 	low: number;
 	close: number;
-	volume: number;
+	volumn: number;
 };
 
 interface IState {
@@ -221,7 +221,14 @@ class Root extends React.PureComponent<{}, IState> {
 					/>
 					<span style={{color: "white", fontSize: 12}}>Mountain</span>
 				</div>
-				<div className="d3chart-container">此处应该有Chart</div>
+				<div className="d3chart-container">
+					<D3Chart
+						data={data}
+						pickedDatum={this.pickedDatum}
+						zoomState={zoom}
+						settings={settings}
+					/>
+				</div>
 				<div style={{position: "absolute", top: "650px", left: "20px", color: "white"}}>
 					<span>Current Datum: </span>
 					<span>

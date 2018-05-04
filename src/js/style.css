@@ -1,87 +1,192 @@
-.axis text {
-    font: 10px sans-serif;
-    color: rgba(255, 255, 255, 0.6);
+.change-button {
+	margin-left: 20px;
 }
 
-.axis path,
-.axis line {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.6);
-    shape-rendering: crispEdges;
+.x-axis text, .y-axis text, .y-axis-v text{
+	font: 10px sans-serif;
+	color: rgba(255, 255, 255, 0.4);
+	pointer-events: none;
+}
+
+.x-axis path,
+.x-axis line,
+.y-axis path,
+.y-axis line,
+.y-axis-v path,
+.y-axis-v line,
+.y-axis-p path,
+.y-axis-p line{
+	fill: none;
+	stroke: rgba(255, 255, 255, 0.4);
+	shape-rendering: crispEdges;
+	pointer-events: none;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background: #000;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: rgba(0, 0, 0, 1);
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
 }
 
+.change-button {
+  height: 24px;
+}
+
+.line-settings {
+  color: white;
+  font-size: 12px;
+  line-height: 24px;
+  list-style-type: none;
+  padding-left: 5px;
+  margin: 0;
+  margin-right: 10px;
+}
 .d3chart-container {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	position: fixed;
+	top: 60px;
+	left: 0px;
 }
 
 #chart {
-    height: 500px;
-    width: 960px;
-    background-color: #000;
+	background-color: #000;
+	cursor: crosshair;
 }
 
 #chart div {
-    background: white;
-    text-align: left;
+	background: white;
+	text-align: left;
 }
 
 #chart text {
-    fill: white;
-    font: 10px sans-serif;
-    text-anchor: end;
+	fill: rgba(150, 150, 150, 1);
+	font: 10px sans-serif;
+	text-anchor: end;
 }
 .bar-rect {
-    z-index: 2;
+	z-index: 2;
 }
 .bar-background {
-    fill: rgba(255,255,255,0.00);
-    stroke: none;
-    z-index: 1;
+	fill: rgba(255, 255, 255, 0);
+	stroke: none;
+	z-index: 1;
 }
 
 .single-bar {
-    z-index: 5;
+	z-index: 5;
 }
 .single-bar:hover .bar-background {
-    fill: rgba(30,30,30,1);
+	fill: rgba(50, 50, 50, 0.6);
 }
 
 .bar-tooltip-hide {
-    fill: transparent !important;
-    text-anchor: start !important;
-    font-size: 8px !important;
+	fill: transparent !important;
+	text-anchor: start !important;
+	font-size: 8px !important;
 }
 
 .bar-tooltip-show {
-    fill: white !important;
-    text-anchor: start !important;
-    font-size: 8px !important;
+	fill: white !important;
+	text-anchor: start !important;
+	font-size: 8px !important;
 }
 
 .tooltip {
-    position: absolute;
-    background: rgba(15,15,15,0.6);
-    border: 1px solid rgba(40,40,40, 1);
-    padding: 5px;
-    text-align: left;
-    font-size: 8px;
-    color: white;
+	position: absolute;
+	background: rgba(15, 15, 15, 0.6);
+	border: 1px solid rgba(40, 40, 40, 1);
+	padding: 5px;
+	text-align: left;
+	font-size: 8px;
+	color: white;
+}
+
+.x-axis-tip {
+	position: absolute;
+	background: rgba(50, 50, 50, 0.95);
+	border: 1px solid rgba(60, 60, 60, 1);
+	padding: 2px;
+	text-align: center;
+	font-size: 10px;
+	color: white;
+	width: 40px;
+}
+
+.y-axis-tip {
+	position: absolute;
+	background: rgba(50, 50, 50, 0.95);
+	border: 1px solid rgba(60, 60, 60, 1);
+	padding: 2px;
+	text-align: center;
+	font-size: 10px;
+	color: white;
+	width: 32px;
+	height: 14px;
+}
+
+.y-axis-tip-v, .y-axis-tip-v-percentage {
+	position: absolute;
+	background: rgba(50, 50, 50, 0.95);
+	border: 1px solid rgba(60, 60, 60, 1);
+	padding: 2px;
+	text-align: center;
+	font-size: 10px;
+	color: white;
+	width: 40px;
+	height: 14px;
+}
+
+.track-line {
+	position: absolute;
+	border-top: 1px dashed rgba(80, 80, 80, 1);
+	height: 1px;
+	pointer-events: none;
 }
 
 .grid line {
-    stroke: rgba(55,55,55,1);
-    stroke-opacity: 0.7;
-    shape-rendering: crispEdges;
-    z-index: 0;
+	stroke: rgba(40, 40, 40, 1);
+	stroke-opacity: 0.7;
+	shape-rendering: crispEdges;
+	z-index: 0;
+	pointer-events: none;
+}
+
+.info-bar {
+	position: absolute;
+	top: 0px;
+	left: 20px;
+	color: rgba(250, 250, 250, 1);
+	display: flex;
+	font-size: 12px;
+}
+
+.upday-column {
+	color: rgba(136, 208, 64, 1);
+}
+
+.downday-column {
+	color: rgba(214, 48, 48, 1);
+}
+
+.info-column {
+	width: 42px;
+	text-align: left;
+	margin-left: 5px;
+}
+
+.line-sma,
+.line-sma,
+.line-mountain {
+	pointer-events: none;
+}
+
+.line-mountain-area {
+  pointer-events: none;
 }
