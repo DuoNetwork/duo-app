@@ -1,12 +1,13 @@
 import * as React from "react";
 import * as d3 from "d3";
 
-type IData = Array<{
+export type IData = Array<{
     date: string
     open: number
     high: number
     low: number
     close: number
+    volume: number
 }>
 
 let colorIncreaseFill = "rgba(94,137,50,1)",
@@ -20,33 +21,6 @@ let width = 960 - margin.left - margin.right,
     barH = 20;
 let tooltipLineHeight = 10;
 let chart, chartdata, bars;
-
-let drawTable = () => {
-    var matrix = [
-        [11975, 5871, 8916, 2868],
-        [1951, 10048, 2060, 6171],
-        [8010, 16145, 8090, 8045],
-        [1013, 990, 940, 6907]
-    ];
-
-    var tr = d3
-        .select(".test-table")
-        .append("table")
-        .selectAll("tr")
-        .data(matrix)
-        .enter()
-        .append("tr");
-    var td = tr
-        .selectAll("td")
-        .data(function(d) {
-            return d;
-        })
-        .enter()
-        .append("td")
-        .text(function(d) {
-            return d;
-        });
-};
 
 let drawMainChart = (props: {data: IData}) => {
     const data = props.data;
@@ -147,7 +121,7 @@ let drawMainChart = (props: {data: IData}) => {
         .call(
             makeXGrid()
                 .tickSize(-height)
-                .tickFormat('' as null)
+                .tickFormat(() => "")
         );
     chart
         .append("g")
@@ -155,7 +129,7 @@ let drawMainChart = (props: {data: IData}) => {
         .call(
             makeYGrid()
                 .tickSize(-width)
-                .tickFormat('' as null)
+                .tickFormat(() => "")
         );
     //Chart Axis
     chart
@@ -329,9 +303,8 @@ let updateMainChart = props => {
         });
 };
 
-export default class D3Chart extends React.Component<{data: IData}> {
+export class D3Chart extends React.Component<{data: IData}> {
     componentDidMount() {
-        drawTable();
         drawMainChart(this.props);
     }
 

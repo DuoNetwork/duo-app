@@ -12,6 +12,7 @@
         "@babel/preset-react"
 	],
 	"plugins": [
-		["extensible-destructuring", {"mode": "optout", "impl": "immutable"}]
+		["extensible-destructuring", {"mode": "optout", "impl": "immutable"}],
+		["@babel/plugin-proposal-class-properties", { "loose": true }]
 	]
 }
