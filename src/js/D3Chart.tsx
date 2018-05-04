@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as d3 from "d3";
 import {ISMAOutData, IEMAOutData, ISMAOutDatum, IEMAOutDatum, calSMA, calEMA} from "./LineCal";
-import * as moment from "moment";
+let moment = require("moment");
 
 export type IData = Array<{
 	date: string;
