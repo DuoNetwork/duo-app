@@ -54,7 +54,7 @@ module.exports = {
     },
     plugins: [
         new HTMLPlugin({
-            title: 'Hello',
+            title: 'D3-React-Test/TypeScript',
             template: path.resolve(__dirname, 'src/index.ejs')
         })
     ],
