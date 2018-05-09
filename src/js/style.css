@@ -2,20 +2,29 @@
 	margin-left: 20px;
 }
 
-.x-axis text, .y-axis text, .y-axis-v text{
-	font: 10px sans-serif;
-	color: rgba(255, 255, 255, 0.4);
+.x-axis-pricechart text, 
+.ly-axis-pricechart text, 
+.ry-axis-pricechart text,
+.x-axis-mvchart text, 
+.ly-axis-mvchart text, 
+.ry-axis-mvchart text{
+	font: 8px sans-serif;
+	fill: rgba(255, 255, 255, 0.4);
 	pointer-events: none;
 }
 
-.x-axis path,
-.x-axis line,
-.y-axis path,
-.y-axis line,
-.y-axis-v path,
-.y-axis-v line,
-.y-axis-p path,
-.y-axis-p line{
+.x-axis-pricechart path,
+.x-axis-pricechart line,
+.ly-axis-pricechart path,
+.ly-axis-pricechart line,
+.ry-axis-pricechart path,
+.ry-axis-pricechart line,
+.x-axis-mvchart path,
+.x-axis-mvchart line,
+.ly-axis-mvchart path,
+.ly-axis-mvchart line,
+.ry-axis-mvchart path,
+.ry-axis-mvchart line{
 	fill: none;
 	stroke: rgba(255, 255, 255, 0.4);
 	shape-rendering: crispEdges;
@@ -50,13 +59,27 @@ body {
   margin-right: 10px;
 }
 .d3chart-container {
-	position: fixed;
-	top: 60px;
-	left: 0px;
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
-#chart {
-	background-color: #000;
+.d3chart-row {
+	display: flex;
+	justify-content: space-between;
+}
+
+#trade-chart-pricechart, #trade-chart-mvchart {
+	position: relative;
+}
+#trade-chart-pricechart {
+	margin-right: 10px;
+}
+#trade-chart-mvchart {
+	margin-left: 10px;
+}
+#chart-pricechart, #chart-mvchart {
+	background-color: #222;
 	cursor: crosshair;
 }
 
@@ -79,10 +102,10 @@ body {
 	z-index: 1;
 }
 
-.single-bar {
+.single-bar-pricechart,  .single-bar-mvchart{
 	z-index: 5;
 }
-.single-bar:hover .bar-background {
+.single-bar-pricechart:hover .bar-background, .single-bar-mvchart:hover .bar-background {
 	fill: rgba(50, 50, 50, 0.6);
 }
 
@@ -144,6 +167,7 @@ body {
 }
 
 .track-line {
+	top: 0px;
 	position: absolute;
 	border-top: 1px dashed rgba(80, 80, 80, 1);
 	height: 1px;
@@ -158,13 +182,14 @@ body {
 	pointer-events: none;
 }
 
-.info-bar {
+.info-bar-pricechart, .info-bar-mvchart {
 	position: absolute;
-	top: 0px;
+	top: 5px;
 	left: 20px;
-	color: rgba(250, 250, 250, 1);
+	color: rgba(250, 250, 250, 0.6);
 	display: flex;
-	font-size: 12px;
+	align-items: center;
+	font-size: 10px;
 }
 
 .upday-column {
@@ -176,17 +201,65 @@ body {
 }
 
 .info-column {
-	width: 42px;
+	color: rgba(250, 250, 250, 0.9);
+	width: 44px;
 	text-align: left;
 	margin-left: 5px;
 }
 
-.line-sma,
-.line-sma,
-.line-mountain {
+.ClassA-price, .ClassB-price {
+	width: 28px;
+}
+.reset-text {
+	color: rgba(214,48,48,1);
+}
+
+.line-ETH,
+.line-ClassA,
+.line-ClassB {
 	pointer-events: none;
 }
 
-.line-mountain-area {
-  pointer-events: none;
+.legend-ETH, .legend-ClassA, .legend-ClassB {
+	width: 6px;
+	height: 6px;
+	margin-right: 5px;
+}
+.legend-ETH {
+	background: white;
+}
+.legend-ClassA {
+	background: rgba(0,186,255,0.7);
+}
+.legend-ClassB {
+	background: rgba(255,129,0,0.7);
+}
+.asset {
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+.asset > tbody > tr > td {
+	border: 1px solid rgba(250,250,250,.7);
+	padding: 5px;
+	width: 80px;
+}
+
+.transaction {
+	border-collapse: collapse;
+}
+.transaction > tbody > tr > td {
+	border: 1px solid rgba(250,250,250,.7);
+	padding: 5px 15px 5px 15px;
+	height: 30px;
+}
+
+.trans-input {
+	margin-left: 5px;
+	width: 50px;
+}
+.trans-input-wrapper {
+	width: 160px;
+	height: 30px;
+	font-size: 10px;
+	text-align: right;
 }

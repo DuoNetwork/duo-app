@@ -2,248 +2,226 @@ import "@babel/polyfill";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as d3 from "d3";
-import {D3Chart, IData} from "./D3Chart";
+import {PriceChart, IPriceData, IPriceDatum, IMVData, IMVDatum} from "./Chart";
 import "./style.css";
-const mockdata: IData = require("./Data/MockData.json");
-const mockdata1: IData = require("./Data/MockData1.json");
-
-type IDatum = {
-	date: string;
-	open: number;
-	high: number;
-	low: number;
-	close: number;
-	volumn: number;
-};
+const mockdata: IPriceData = require("./Data/ETH_A_B.json");
 
 interface IState {
-	zoom: number;
-	data: IData;
-	currentdata: IDatum;
-	showSMA: boolean;
-	showEMA: boolean;
-	showVolumn: boolean;
-	mainLineType: string;
-	rangeSMA: number;
-	sourceSMA: string;
-	rangeEMA: number;
-	sourceEMA: string;
+	dataPrice: IPriceData;
+	dataMV: IMVData;
+	currentmvdata: IMVDatum;
+	currentDayCounter: number;
+	currentPriceData: IPriceData;
+	assets: Assets;
 }
 
-class Root extends React.PureComponent<{}, IState> {
-	private InputrangeSMA: HTMLInputElement;
-	private InputsourceSMA: HTMLInputElement;
-	private InputrangeEMA: HTMLInputElement;
-	private InputsourceEMA: HTMLInputElement;
+type Assets = {
+	USD: number;
+	ETH: number;
+	ClassA: number;
+	ClassB: number;
+};
 
+class Root extends React.PureComponent<{}, IState> {
 	constructor(props) {
 		super(props);
-		this.pickedDatum = this.pickedDatum.bind(this);
+		this.pickedPriceDatum = this.pickedPriceDatum.bind(this);
 		this.state = {
-			//zoom 0:day, 1:hour
-			zoom: 0,
-			data: mockdata,
-			currentdata: null,
-			showSMA: false,
-			showEMA: false,
-			showVolumn: true,
-			mainLineType: "candlestick",
-			rangeSMA: 5,
-			sourceSMA: "close",
-			rangeEMA: 5,
-			sourceEMA: "close"
+			dataPrice: mockdata,
+			dataMV: null,
+			currentmvdata: null,
+			currentDayCounter: 1,
+			currentPriceData: mockdata.slice(0, 1),
+			assets: {
+				USD: 10000,
+				ETH: 10,
+				ClassA: 1500,
+				ClassB: 500
+			}
 		};
 	}
 
-	pickedDatum = (d: IDatum) => {
+	handleNextDay = () => {
+		const i = this.state.currentDayCounter;
+		const dataSet = mockdata.slice(0, i + 1);
 		this.setState({
-			currentdata: d
+			currentDayCounter: i + 1,
+			currentPriceData: dataSet
 		});
 	};
 
-	handleClick1 = () => {
+	handleNextFiveDay = () => {
+		const i = this.state.currentDayCounter;
+		const dataSet = mockdata.slice(0, i + 5);
 		this.setState({
-			zoom: 0,
-			data: mockdata,
-			currentdata: null
+			currentDayCounter: i + 5,
+			currentPriceData: dataSet
 		});
 	};
 
-	handleClick2 = () => {
+	handleRefresh = () => {
 		this.setState({
-			zoom: 1,
-			data: mockdata1,
-			currentdata: null
+			currentDayCounter: 1,
+			currentPriceData: mockdata.slice(0, 1)
 		});
 	};
 
-	handleLine = () => {
-		this.setState({
-			rangeSMA: Number(this.InputrangeSMA.value) || 5,
-			sourceSMA: this.InputsourceSMA.value || "close",
-			rangeEMA: Number(this.InputrangeEMA.value) || 5,
-			sourceEMA: this.InputsourceEMA.value || "close"
-		});
+	pickedPriceDatum = (d: IPriceDatum) => {
+		this.setState({});
 	};
 
-	handleShowSMA = () => {
-		let newShowSMA = !this.state.showSMA;
-		this.setState({
-			showSMA: newShowSMA
-		});
+	pickerMVDatum = (d: IMVDatum) => {
+		this.setState({});
 	};
 
-	handleShowEMA = () => {
-		let newShowEMA = !this.state.showEMA;
-		this.setState({
-			showEMA: newShowEMA
-		});
-	};
-
-	handleShowVolumn = () => {
-		let newShowVolumn = !this.state.showVolumn;
-		this.setState({
-			showVolumn: newShowVolumn
-		});
-	};
-
-	handleMainLineType = (type: string) => {
-		this.setState({
-			mainLineType: type
-		});
-	};
 	render() {
-		const {
-			data,
-			currentdata,
-			zoom,
-			showSMA,
-			showEMA,
-			showVolumn,
-			mainLineType,
-			rangeSMA,
-			sourceSMA,
-			rangeEMA,
-			sourceEMA
-		} = this.state;
-		let date: string;
-		let format = d3.timeFormat("%Y %b %d %H:%M");
-		let linePara = {
-			rangeSMA: rangeSMA,
-			sourceSMA: sourceSMA,
-			rangeEMA: rangeEMA,
-			sourceEMA: sourceEMA
-		};
-		let settings = {
-			showSMA: showSMA,
-			showEMA: showEMA,
-			showVolumn: showVolumn,
-			mainLineType: mainLineType,
-			linePara: linePara
-		};
-		date = currentdata ? format(new Date(Date.parse(currentdata.date))) : undefined;
-
+		const {dataPrice, currentPriceData, assets} = this.state;
+		const format = d3.timeFormat("%Y %b %d %H:%M");
+		const currentPrice = currentPriceData[currentPriceData.length - 1];
+		const marketValue =
+			assets.USD +
+			assets.ETH * currentPrice.ETH +
+			assets.ClassA * currentPrice.ClassA +
+			assets.ClassB * currentPrice.ClassB;
 		return (
 			<div className="App">
-				<div style={{display: "flex", flexDirection: "row"}}>
-					<button className="change-button" onClick={this.handleClick1}>
-						Data 1 (Daily)
-					</button>
-					<button className="change-button" onClick={this.handleClick2}>
-						Data 2 (Hourly)
-					</button>
-					<input name="showSMA" type="checkbox" checked={showVolumn} onChange={this.handleShowVolumn} />
-					<span style={{color: "white", fontSize: 12}}>Volumn</span>
-					<input name="showSMA" type="checkbox" checked={showSMA} onChange={this.handleShowSMA} />
-					<span style={{color: "white", fontSize: 12}}>SMA</span>
-					<ul className="line-settings">
-						<li>
-							<span>range</span>
-							<input
-								ref={i => {
-									this.InputrangeSMA = i;
-								}}
-								placeholder={rangeSMA.toString()}
-								style={{width: 50, marginLeft: 5}}
-							/>
-						</li>
-						<li>
-							<span>source</span>
-							<input
-								ref={i => {
-									this.InputsourceSMA = i;
-								}}
-								placeholder={sourceSMA}
-								style={{width: 50, marginLeft: 5}}
-							/>
-						</li>
-					</ul>
-					<input name="showEMA" type="checkbox" checked={showEMA} onChange={this.handleShowEMA} />
-					<span style={{color: "white", fontSize: 12}}>EMA</span>
-					<ul className="line-settings">
-						<li>
-							<span>range</span>
-							<input
-								ref={i => {
-									this.InputrangeEMA = i;
-								}}
-								placeholder={rangeEMA.toString()}
-								style={{width: 50, marginLeft: 5}}
-							/>
-						</li>
-						<li>
-							<span>source</span>
-							<input
-								ref={i => {
-									this.InputsourceEMA = i;
-								}}
-								placeholder={sourceEMA}
-								style={{width: 50, marginLeft: 5}}
-							/>
-						</li>
-					</ul>
-					<button className="change-button" onClick={this.handleLine}>
-						Update Lines
-					</button>
-					<span style={{color: "white", fontSize: 12, marginLeft: 10}}>Graph Type:</span>
-					<input
-						name="mainLineType"
-						type="checkbox"
-						checked={mainLineType === "candlestick"}
-						onChange={() => this.handleMainLineType("candlestick")}
-					/>
-					<span style={{color: "white", fontSize: 12}}>Candlestick</span>
-					<input
-						name="mainLineType"
-						type="checkbox"
-						checked={mainLineType === "mountain"}
-						onChange={() => this.handleMainLineType("mountain")}
-					/>
-					<span style={{color: "white", fontSize: 12}}>Mountain</span>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						flexDirection: "row",
+						height: "60px",
+						color: "white"
+					}}>
+					DUO Demo
 				</div>
 				<div className="d3chart-container">
-					<D3Chart
-						data={data}
-						pickedDatum={this.pickedDatum}
-						zoomState={zoom}
-						settings={settings}
-					/>
+					<div className="d3chart-row">
+						<PriceChart
+							name="pricechart"
+							data={currentPriceData}
+							pickedPriceDatum={this.pickedPriceDatum}
+						/>
+						<PriceChart name="mvchart" data={dataPrice} pickedPriceDatum={this.pickedPriceDatum} />
+					</div>
 				</div>
-				<div style={{position: "absolute", top: "650px", left: "20px", color: "white"}}>
-					<span>Current Datum: </span>
-					<span>
-						{currentdata
-							? date +
-							  " O:" +
-							  currentdata.open.toFixed(2) +
-							  " H:" +
-							  currentdata.high.toFixed(2) +
-							  " L:" +
-							  currentdata.low.toFixed(2) +
-							  " C:" +
-							  currentdata.close.toFixed(2)
-							: "No datum picked"}
-					</span>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						flexDirection: "row",
+						height: "60px",
+						color: "white"
+					}}>
+					<button onClick={this.handleNextDay}>next day</button>
+					<button onClick={this.handleNextFiveDay}>next 5 days</button>
+					<button onClick={this.handleRefresh}>Refresh</button>
+				</div>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						flexDirection: "row",
+						color: "white"
+					}}>
+					<table className="asset">
+						<tbody>
+							<tr>
+								<td>USD($)</td>
+								<td>ETH</td>
+								<td>ClassA</td>
+								<td>ClassB</td>
+								<td>MV</td>
+							</tr>
+							<tr>
+								<td>{d3.formatPrefix(",.0", 1)(assets.USD)}</td>
+								<td>{d3.formatPrefix(",.0", 1)(assets.ETH)}</td>
+								<td>{d3.formatPrefix(",.0", 1)(assets.ClassA)}</td>
+								<td>{d3.formatPrefix(",.0", 1)(assets.ClassB)}</td>
+								<td>{d3.formatPrefix(",.0", 1)(marketValue)}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div
+					style={{
+						display: "flex",
+						justifyContent: "center",
+						alignItems: "center",
+						flexDirection: "row",
+						color: "white"
+					}}>
+					<table className="transaction">
+						<tbody>
+							<tr style={{textAlign: "center"}}>
+								<td>Transaction</td>
+								<td>Input</td>
+								<td>Action</td>
+								<td>Currently Own</td>
+							</tr>
+							<tr>
+								<td>ETH</td>
+								<td className="trans-input-wrapper">
+									Number of ETH
+									<input className="trans-input" />
+								</td>
+								<td>
+									<button onClick={() => window.alert("You dont have enough money!")}>Buy</button>
+									<button>Sell</button>
+								</td>
+								<td style={{textAlign: "right"}}>{assets.ETH.toFixed(2)}</td>
+							</tr>
+							<tr>
+								<td>Creation</td>
+								<td className="trans-input-wrapper">
+									Number of ETH
+									<input className="trans-input" />
+								</td>
+								<td>
+									<button>Create</button>
+								</td>
+								<td style={{textAlign: "right"}}>{assets.ETH.toFixed(2)}</td>
+							</tr>
+							<tr>
+								<td>Redemption</td>
+								<td className="trans-input-wrapper">
+									Number of ClassA/B
+									<input className="trans-input" />
+								</td>
+								<td>
+									<button>Redeem</button>
+								</td>
+								<td style={{textAlign: "right"}}>{d3.min([assets.ClassA, assets.ClassB]).toFixed(2)}</td>
+							</tr>
+							<tr>
+								<td>ClassA</td>
+								<td className="trans-input-wrapper">
+									Number of ClassA
+									<input className="trans-input" />
+								</td>
+								<td>
+									<button>Buy</button>
+									<button>Sell</button>
+								</td>
+								<td style={{textAlign: "right"}}>{assets.ClassA.toFixed(2)}</td>
+							</tr>
+							<tr>
+								<td>ClassB</td>
+								<td className="trans-input-wrapper">
+									Number of ClassB
+									<input className="trans-input" />
+								</td>
+								<td>
+									<button>Buy</button>
+									<button>Sell</button>
+								</td>
+								<td style={{textAlign: "right"}}>{assets.ClassB.toFixed(2)}</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		);

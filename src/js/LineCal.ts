@@ -1,4 +1,4 @@
-import {IData} from "./D3Chart";
+import {IData} from "./D3ChartBackup";
 
 export type ISMAOutData = Array<{
 	date: string;

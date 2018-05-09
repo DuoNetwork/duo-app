@@ -27,7 +27,12 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: ['style-loader', 'css-loader']
-            }
+            },
+            {
+				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
+				exclude: /node_modules/,
+				use: 'file-loader?name=[name].[ext]'
+			}
         ]
     },
     resolve: {
@@ -55,7 +60,8 @@ module.exports = {
     plugins: [
         new HTMLPlugin({
             title: 'D3-React-Test/TypeScript',
-            template: path.resolve(__dirname, 'src/index.ejs')
+            template: path.resolve(__dirname, 'src/index.ejs'),
+            favicon: path.join(__dirname, 'src/favicon.ico')
         })
     ],
     optimization: {
