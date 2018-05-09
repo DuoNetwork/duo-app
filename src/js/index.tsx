@@ -76,7 +76,7 @@ class Root extends React.PureComponent<{}, IState> {
 
 	render() {
 		const {dataPrice, currentPriceData, assets} = this.state;
-		const format = d3.timeFormat("%Y %b %d %H:%M");
+		const format = d3.timeFormat("%Y %b %d");
 		const currentPrice = currentPriceData[currentPriceData.length - 1];
 		const marketValue =
 			assets.USD +
@@ -115,113 +115,141 @@ class Root extends React.PureComponent<{}, IState> {
 						height: "60px",
 						color: "white"
 					}}>
-					<button onClick={this.handleNextDay}>next day</button>
-					<button onClick={this.handleNextFiveDay}>next 5 days</button>
-					<button onClick={this.handleRefresh}>Refresh</button>
+					<div style={{marginRight: "5px", width: "138px"}}>{"Date: " + format(new Date(Date.parse(currentPrice.date)))}</div>
+					<button className="day-button" onClick={this.handleNextDay}>Next Day</button>
+					<button className="day-button" onClick={this.handleNextFiveDay}>Next 5 Days</button>
+					<button className="day-button" onClick={this.handleRefresh}>Refresh</button>
 				</div>
 				<div
 					style={{
 						display: "flex",
 						justifyContent: "center",
-						alignItems: "center",
-						flexDirection: "row",
-						color: "white"
+						flexDirection: "row"
 					}}>
-					<table className="asset">
-						<tbody>
-							<tr>
-								<td>USD($)</td>
-								<td>ETH</td>
-								<td>ClassA</td>
-								<td>ClassB</td>
-								<td>MV</td>
-							</tr>
-							<tr>
-								<td>{d3.formatPrefix(",.0", 1)(assets.USD)}</td>
-								<td>{d3.formatPrefix(",.0", 1)(assets.ETH)}</td>
-								<td>{d3.formatPrefix(",.0", 1)(assets.ClassA)}</td>
-								<td>{d3.formatPrefix(",.0", 1)(assets.ClassB)}</td>
-								<td>{d3.formatPrefix(",.0", 1)(marketValue)}</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div
-					style={{
-						display: "flex",
-						justifyContent: "center",
-						alignItems: "center",
-						flexDirection: "row",
-						color: "white"
-					}}>
-					<table className="transaction">
-						<tbody>
-							<tr style={{textAlign: "center"}}>
-								<td>Transaction</td>
-								<td>Input</td>
-								<td>Action</td>
-								<td>Currently Own</td>
-							</tr>
-							<tr>
-								<td>ETH</td>
-								<td className="trans-input-wrapper">
-									Number of ETH
-									<input className="trans-input" />
-								</td>
-								<td>
-									<button onClick={() => window.alert("You dont have enough money!")}>Buy</button>
-									<button>Sell</button>
-								</td>
-								<td style={{textAlign: "right"}}>{assets.ETH.toFixed(2)}</td>
-							</tr>
-							<tr>
-								<td>Creation</td>
-								<td className="trans-input-wrapper">
-									Number of ETH
-									<input className="trans-input" />
-								</td>
-								<td>
-									<button>Create</button>
-								</td>
-								<td style={{textAlign: "right"}}>{assets.ETH.toFixed(2)}</td>
-							</tr>
-							<tr>
-								<td>Redemption</td>
-								<td className="trans-input-wrapper">
-									Number of ClassA/B
-									<input className="trans-input" />
-								</td>
-								<td>
-									<button>Redeem</button>
-								</td>
-								<td style={{textAlign: "right"}}>{d3.min([assets.ClassA, assets.ClassB]).toFixed(2)}</td>
-							</tr>
-							<tr>
-								<td>ClassA</td>
-								<td className="trans-input-wrapper">
-									Number of ClassA
-									<input className="trans-input" />
-								</td>
-								<td>
-									<button>Buy</button>
-									<button>Sell</button>
-								</td>
-								<td style={{textAlign: "right"}}>{assets.ClassA.toFixed(2)}</td>
-							</tr>
-							<tr>
-								<td>ClassB</td>
-								<td className="trans-input-wrapper">
-									Number of ClassB
-									<input className="trans-input" />
-								</td>
-								<td>
-									<button>Buy</button>
-									<button>Sell</button>
-								</td>
-								<td style={{textAlign: "right"}}>{assets.ClassB.toFixed(2)}</td>
-							</tr>
-						</tbody>
-					</table>
+					<div style={{width: "500px"}}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								flexDirection: "row",
+								color: "white"
+							}}>
+							<table className="asset">
+								<tbody>
+									<tr>
+										<td>USD($)</td>
+										<td>ETH</td>
+										<td>ClassA</td>
+										<td>ClassB</td>
+										<td>MV</td>
+									</tr>
+									<tr>
+										<td>{d3.formatPrefix(",.0", 1)(assets.USD)}</td>
+										<td>{d3.formatPrefix(",.0", 1)(assets.ETH)}</td>
+										<td>{d3.formatPrefix(",.0", 1)(assets.ClassA)}</td>
+										<td>{d3.formatPrefix(",.0", 1)(assets.ClassB)}</td>
+										<td>{d3.formatPrefix(",.0", 1)(marketValue)}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								flexDirection: "row",
+								color: "white"
+							}}>
+							<table className="transaction">
+								<tbody>
+									<tr style={{textAlign: "center"}}>
+										<td>Transaction</td>
+										<td>Input</td>
+										<td>Action</td>
+										<td>Currently Own</td>
+									</tr>
+									<tr>
+										<td>ETH</td>
+										<td className="trans-input-wrapper">
+											Number of ETH
+											<input className="trans-input" />
+										</td>
+										<td>
+											<button onClick={() => window.alert("You dont have enough money!")}>Buy</button>
+											<button>Sell</button>
+										</td>
+										<td style={{textAlign: "right"}}>{assets.ETH.toFixed(2)}</td>
+									</tr>
+									<tr>
+										<td>Creation</td>
+										<td className="trans-input-wrapper">
+											Number of ETH
+											<input className="trans-input" />
+										</td>
+										<td>
+											<button>Create</button>
+										</td>
+										<td style={{textAlign: "right"}}>{assets.ETH.toFixed(2)}</td>
+									</tr>
+									<tr>
+										<td>Redemption</td>
+										<td className="trans-input-wrapper">
+											Number of ClassA/B
+											<input className="trans-input" />
+										</td>
+										<td>
+											<button>Redeem</button>
+										</td>
+										<td style={{textAlign: "right"}}>{d3.min([assets.ClassA, assets.ClassB]).toFixed(2)}</td>
+									</tr>
+									<tr>
+										<td>ClassA</td>
+										<td className="trans-input-wrapper">
+											Number of ClassA
+											<input className="trans-input" />
+										</td>
+										<td>
+											<button>Buy</button>
+											<button>Sell</button>
+										</td>
+										<td style={{textAlign: "right"}}>{assets.ClassA.toFixed(2)}</td>
+									</tr>
+									<tr>
+										<td>ClassB</td>
+										<td className="trans-input-wrapper">
+											Number of ClassB
+											<input className="trans-input" />
+										</td>
+										<td>
+											<button>Buy</button>
+											<button>Sell</button>
+										</td>
+										<td style={{textAlign: "right"}}>{assets.ClassB.toFixed(2)}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div style={{width: "400px", marginLeft: "20px"}}>
+						<div
+							style={{
+								display: "flex",
+								justifyContent: "center",
+								alignItems: "center",
+								flexDirection: "row",
+								height: "58px",
+								width: "398px",
+								color: "white",
+								border: "1px solid rgba(250,250,250,.7)"
+							}}>
+						History
+						</div>
+						<div style={{width: "378px", height: "308px", border: "1px solid rgba(250,250,250,.7)", padding: "10px", color: "white"}}>
+						No transaction
+						</div>
+					</div>
 				</div>
 			</div>
 		);

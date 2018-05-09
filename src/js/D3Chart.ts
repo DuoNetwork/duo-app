@@ -29,16 +29,14 @@ type MVChartStates = {
 	pickedMVDatum?: (d: IMVDatum) => void;
 };
 
-type CreatePirce = (el: Element, props: {windowWidth: number; windowHeight: number}, state: PriceChartStates) => void;
-type UpdatePirce = (el: Element, props: {width: number; height: number}, state: PriceChartStates) => void;
-type DestroyPirce = (el: Element) => void;
+type Create<T> = (el: Element, props: {windowWidth: number; windowHeight: number}, state: T) => void;
+type Update<T> = (el: Element, props: {width: number; height: number}, state: T) => void;
+type Destroy = (el: Element) => void;
 
-type CreateMV = (el: Element, props: {windowWidth: number; windowHeight: number}, state: MVChartStates) => void;
-type UpdateMV = (el: Element, props: {width: number; height: number}, state: MVChartStates) => void;
-type DestroyMV = (el: Element) => void;
+
 
 export class d3PriceChart {
-	public create: CreatePirce = (el, props, state) => {
+	public create: Create<PriceChartStates> = (el, props, state) => {
 		const {name, data, pickedPriceDatum} = state;
 		const {windowWidth, windowHeight} = props;
 
@@ -381,13 +379,25 @@ export class d3PriceChart {
 				});
 		}
 	};
-	public update: UpdatePirce = (el, props, state) => {
+	public update: Update<PriceChartStates> = (el, props, state) => {
 		const {name, data, pickedPriceDatum} = state;
 		const {width, height} = props;
 	};
-	public destroy: DestroyPirce = el => {
+	public destroy: Destroy = el => {
 		d3.select(el).remove();
 	};
 }
 
-export class d3MVChart {}
+export class d3MVChart {
+	public create: Create<MVChartStates> = (el, props, state) => {
+
+	}
+
+	public update: Update<MVChartStates> = (el, props, state) => {
+
+	}
+
+	public destroy: Destroy = el => {
+		d3.select(el).remove();
+	}
+}

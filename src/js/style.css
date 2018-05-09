@@ -263,3 +263,9 @@ body {
 	font-size: 10px;
 	text-align: right;
 }
+
+.day-button {
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 5px 10px;
+}
