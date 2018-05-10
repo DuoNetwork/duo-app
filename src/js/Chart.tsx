@@ -13,6 +13,9 @@ export type IPriceDatum = {
 	ETH: number;
 	ClassA: number;
 	ClassB: number;
+	ClassAbeforeReset? : number;
+	ClassBbeforeReset? : number;
+	ResetType? : string;
 	InterestCount: number;
 };
 

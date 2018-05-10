@@ -39,7 +39,6 @@ export class d3PriceChart {
 	public create: Create<PriceChartStates> = (el, props, state) => {
 		const {name, data, pickedPriceDatum} = state;
 		const {windowWidth, windowHeight} = props;
-
 		let width: number, height: number;
 
 		if (windowWidth >= 1440) {

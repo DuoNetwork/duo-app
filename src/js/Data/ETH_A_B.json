@@ -382,6 +382,9 @@
     "ETH": 470.43,
     "ClassA": 1,
     "ClassB": 1,
+    "ClassAbeforeReset" : 1.0108,
+	  "ClassBbeforeReset" : 2.084643329,
+  	"ResetType" : "upward",
     "InterestCount": 0
   },
   {
@@ -543,6 +546,9 @@
     "ETH": 717.71,
     "ClassA": 1,
     "ClassB": 1,
+    "ClassAbeforeReset" : 1.0046,
+	  "ClassBbeforeReset" : 2.046693497,
+  	"ResetType" : "upward",
     "InterestCount": 0
   },
   {
@@ -690,6 +696,9 @@
     "ETH": 1117.75,
     "ClassA": 1,
     "ClassB": 1,
+    "ClassAbeforeReset" : 1.0042,
+	  "ClassBbeforeReset" : 2.110567803,
+  	"ResetType" : "upward",
     "InterestCount": 0
   },
   {
@@ -893,6 +902,9 @@
     "ETH": 695.08,
     "ClassA": 1,
     "ClassB": 1,
+    "ClassAbeforeReset" : 1.0058,
+	  "ClassBbeforeReset" : 0.237912816,
+  	"ResetType" : "downward",
     "InterestCount": 0
   },
   {
