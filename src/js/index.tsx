@@ -21,6 +21,7 @@ interface IState {
 	ClassAIn: string;
 	ClassBIn: string;
 	ETH: number;
+	lastResetETHPrice: number;
 	Creation: number;
 	Redemption: number;
 	ClassA: number;
@@ -47,7 +48,7 @@ class Root extends React.PureComponent<{}, IState> {
 			dataMV: {} as IMVData,
 			currentmvdata: null,
 			currentDayCounter: 1,
-			currentPriceData: mockdata.slice(0, 1),
+			currentPriceData: mockdata.slice(0, 2),
 			assets: {
 				USD: 50000,
 				ETH: 0,
@@ -55,6 +56,7 @@ class Root extends React.PureComponent<{}, IState> {
 				ClassB: 0
 			},
 			ETHIn: "",
+			lastResetETHPrice: mockdata[0].ETH,
 			CreationIn: "",
 			RedemptionIn: "",
 			ClassAIn: "",
@@ -75,17 +77,65 @@ class Root extends React.PureComponent<{}, IState> {
 		console.log("Welcome to DUO Demo!");
 	}
 
-	round = (num) => {    
-		return +(Math.round(num + "e+2" as any)  + "e-2");
-	}
+	round = num => {
+		return +(Math.round((num + "e+2") as any) + "e-2");
+	};
 
 	handleNextDay = () => {
+		const {USD, ETH, ClassA, ClassB} = this.state.assets;
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
+		const nextPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
 		const i = this.state.currentDayCounter;
-		const dataSet = mockdata.slice(0, i + 1);
-		this.setState({
-			currentDayCounter: i + 1,
-			currentPriceData: dataSet
-		});
+		const dataSet = mockdata.slice(0, i + 2);
+		const mvBeforeReset = USD + ETH * nextPrice.ETH + ClassA * nextPrice.ClassAbeforeReset + ClassB * nextPrice.ClassBbeforeReset;
+		let newAssets;
+		if (nextPrice.ResetType) {
+			switch (nextPrice.ResetType) {
+				case "upward": {					
+					console.log(mvBeforeReset);
+					const resetETHAmount =
+						((nextPrice.ClassAbeforeReset - 1) * ClassA + (nextPrice.ClassBbeforeReset - 1) * ClassB) /
+						nextPrice.ETH;
+					const rETH = ETH + resetETHAmount;
+					newAssets = {
+						USD: USD,
+						ETH: rETH,
+						ClassA: ClassA,
+						ClassB: ClassB,
+					};
+					break;
+				}
+				default: {
+					console.log(mvBeforeReset);
+					const resetETHAmount = (nextPrice.ClassAbeforeReset - nextPrice.ClassBbeforeReset) * ClassA / nextPrice.ETH,
+						resetClassAAmount = ClassA * nextPrice.ClassBbeforeReset,
+						resetClassBAmount = ClassB * nextPrice.ClassBbeforeReset;
+					const rETH = ETH + resetETHAmount;
+					newAssets = {
+						USD: USD,
+						ETH: rETH,
+						ClassA: resetClassAAmount,
+						ClassB: resetClassBAmount
+					}
+					break;
+				}
+			}
+			this.setState({
+				currentDayCounter: i + 1,
+				currentPriceData: dataSet,
+				assets: newAssets,
+				lastResetETHPrice: nextPrice.ETH,
+				msgType: "<div style='color: rgba(0,186,255,0.7)'>Information</div>",
+				msgContent:
+					"<div style='color: rgba(255,255,255, .8)'>Reset (" + nextPrice.ResetType + ") triggered.</div>",
+				msgShow: 1
+			});
+		} else {
+			this.setState({
+				currentDayCounter: i + 1,
+				currentPriceData: dataSet
+			});
+		}
 	};
 
 	/*
@@ -104,7 +154,7 @@ class Root extends React.PureComponent<{}, IState> {
 			dataMV: {} as IMVData,
 			currentmvdata: null,
 			currentDayCounter: 1,
-			currentPriceData: mockdata.slice(0, 1),
+			currentPriceData: mockdata.slice(0, 2),
 			assets: {
 				USD: 50000,
 				ETH: 0,
@@ -112,6 +162,7 @@ class Root extends React.PureComponent<{}, IState> {
 				ClassB: 0
 			},
 			ETH: 0,
+			lastResetETHPrice: mockdata[0].ETH,
 			Creation: 0,
 			Redemption: 0,
 			ClassA: 0,
@@ -132,10 +183,10 @@ class Root extends React.PureComponent<{}, IState> {
 	};
 
 	handleBuyETH = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const {assets, ETH, history} = this.state;
 		const valueETH = this.state.ETH * currentPrice.ETH;
-		if (ETH) {
+		if (ETH && ETH > 0) {
 			if (valueETH <= assets.USD) {
 				const rUSD = assets.USD - valueETH;
 				const newAssets: Assets = {
@@ -181,19 +232,21 @@ class Root extends React.PureComponent<{}, IState> {
 			}
 		} else {
 			this.setState({
+				ETH: 0,
+				ETHIn: "",
 				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero)</span> value.</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
 			return;
 		}
 	};
 	handleSellETH = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const {assets, ETH, history} = this.state;
 		const valueETH = this.state.ETH * currentPrice.ETH;
-		if (ETH) {
+		if (ETH && ETH > 0) {
 			if (ETH <= assets.ETH) {
 				const rETH = assets.ETH - ETH;
 				const newAssets: Assets = {
@@ -238,19 +291,21 @@ class Root extends React.PureComponent<{}, IState> {
 			}
 		} else {
 			this.setState({
+				ETH: 0,
+				ETHIn: "",
 				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>non-zero</span> value.</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
 			return;
 		}
 	};
 	handleBuyClassA = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const {assets, ClassA, history} = this.state;
 		const valueClassA = this.state.ClassA * currentPrice.ClassA;
-		if (ClassA) {
+		if (ClassA && ClassA > 0) {
 			if (valueClassA <= assets.USD) {
 				const rUSD = assets.USD - valueClassA;
 				const newAssets: Assets = {
@@ -296,19 +351,21 @@ class Root extends React.PureComponent<{}, IState> {
 			}
 		} else {
 			this.setState({
+				ClassA: 0,
+				ClassAIn: "",
 				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero)</span> value.</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
 			return;
 		}
 	};
 	handleSellClassA = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const {assets, ClassA, history} = this.state;
 		const valueClassA = this.state.ClassA * currentPrice.ClassA;
-		if (ClassA) {
+		if (ClassA && ClassA > 0) {
 			if (ClassA <= assets.ClassA) {
 				const rClassA = assets.ClassA - ClassA;
 				const newAssets: Assets = {
@@ -354,19 +411,21 @@ class Root extends React.PureComponent<{}, IState> {
 			}
 		} else {
 			this.setState({
+				ClassA: 0,
+				ClassAIn: "",
 				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero)</span> value.</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
 			return;
 		}
 	};
 	handleBuyClassB = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const {assets, ClassB, history} = this.state;
 		const valueClassB = this.state.ClassB * currentPrice.ClassB;
-		if (ClassB) {
+		if (ClassB && ClassB > 0) {
 			if (valueClassB <= assets.USD) {
 				const rUSD = assets.USD - valueClassB;
 				const newAssets: Assets = {
@@ -412,19 +471,21 @@ class Root extends React.PureComponent<{}, IState> {
 			}
 		} else {
 			this.setState({
+				ClassB: 0,
+				ClassBIn: "",
 				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero)</span> value.</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
 			return;
 		}
 	};
 	handleSellClassB = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const {assets, ClassB, history} = this.state;
 		const valueClassB = this.state.ClassB * currentPrice.ClassB;
-		if (ClassB) {
+		if (ClassB && ClassB > 0) {
 			if (ClassB <= assets.ClassB) {
 				const rClassB = assets.ClassB - ClassB;
 				const newAssets: Assets = {
@@ -470,16 +531,139 @@ class Root extends React.PureComponent<{}, IState> {
 			}
 		} else {
 			this.setState({
+				ClassB: 0,
+				ClassBIn: "",
 				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero)</span> value.</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
 			return;
 		}
 	};
-	handleCreation = () => {};
-	handleRedemption = () => {};
+	handleCreation = () => {
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
+		const {assets, ETH, lastResetETHPrice, Creation, history} = this.state;
+		const valuelastResetETHPrice = this.state.Creation * lastResetETHPrice;
+		if (Creation && Creation > 0) {
+			if (Creation <= assets.ETH) {
+				const rETH = assets.ETH - Creation;
+				const splitOutcome = valuelastResetETHPrice / 2;
+				const rClassA = assets.ClassA + splitOutcome,
+					rClassB = assets.ClassB + splitOutcome;
+				const newAssets: Assets = {
+					USD: assets.USD,
+					ETH: rETH,
+					ClassA: rClassA,
+					ClassB: rClassB
+				};
+				let newHistory = history;
+				newHistory.push(
+					format(new Date(Date.parse(currentPrice.date))) +
+						": Split " +
+						d3.formatPrefix(",.2", 1)(Creation) +
+						" ETH into " +
+						d3.formatPrefix(",.2", 1)(splitOutcome) +
+						" ClassA/B."
+				);
+				this.setState({
+					Creation: 0,
+					CreationIn: "",
+					assets: newAssets,
+					//set message
+					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgContent:
+						"<div style='color: rgba(255,255,255, .6)'>Split <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(",.2", 1)(Creation) +
+						" ETH</span> into <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(",.2", 1)(splitOutcome) +
+						" ClassA/B</span>",
+					msgShow: 1
+				});
+				return;
+			} else {
+				this.setState({
+					Creation: 0,
+					CreationIn: "",
+					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgContent: "<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
+					msgShow: 1
+				});
+				return;
+			}
+		} else {
+			this.setState({
+				Creation: 0,
+				CreationIn: "",
+				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgContent:
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
+				msgShow: 1
+			});
+			return;
+		}
+	};
+	handleRedemption = () => {
+		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
+		const {assets, ETH, lastResetETHPrice, Redemption, history} = this.state;
+		if (Redemption && Redemption > 0) {
+			if (Redemption <= d3.min([assets.ClassA, assets.ClassB])) {
+				const rClassA = assets.ClassA - Redemption,
+					rClassB = assets.ClassB - Redemption;
+				const combineOutcome = Redemption * 2;
+				const rETH = assets.ETH + combineOutcome / lastResetETHPrice;
+				const newAssets: Assets = {
+					USD: assets.USD,
+					ETH: rETH,
+					ClassA: rClassA,
+					ClassB: rClassB
+				};
+				let newHistory = history;
+				newHistory.push(
+					format(new Date(Date.parse(currentPrice.date))) +
+						": Combine " +
+						d3.formatPrefix(",.2", 1)(Redemption) +
+						" ClassA/B into " +
+						d3.formatPrefix(",.2", 1)(combineOutcome / lastResetETHPrice) +
+						" ETH."
+				);
+				this.setState({
+					Redemption: 0,
+					RedemptionIn: "",
+					assets: newAssets,
+					//set message
+					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgContent:
+						"<div style='color: rgba(255,255,255, .6)'>Combine <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(",.2", 1)(Redemption) +
+						" ClassA/B</span> into <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(",.2", 1)(combineOutcome / lastResetETHPrice) +
+						" ETH</span>",
+					msgShow: 1
+				});
+				return;
+			} else {
+				this.setState({
+					Redemption: 0,
+					RedemptionIn: "",
+					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgContent: "<div style='color: rgba(255,255,255, .8)'>Insufficient ClassA/B balance.</div>",
+					msgShow: 1
+				});
+				return;
+			}
+		} else {
+			this.setState({
+				Redemption: 0,
+				RedemptionIn: "",
+				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgContent:
+					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
+				msgShow: 1
+			});
+			return;
+		}
+	};
 
 	closeMSG = (e: number) => {
 		this.setState({
@@ -489,7 +673,8 @@ class Root extends React.PureComponent<{}, IState> {
 
 	render() {
 		const {dataPrice, currentPriceData, assets, ETH, Creation, Redemption, ClassA, ClassB, history} = this.state;
-		const currentPrice = currentPriceData[currentPriceData.length - 1];
+		const showData = currentPriceData.slice(0, currentPriceData.length - 1);
+		const currentPrice = currentPriceData[currentPriceData.length - 2];
 		const marketValue =
 			assets.USD +
 			assets.ETH * currentPrice.ETH +
@@ -524,11 +709,7 @@ class Root extends React.PureComponent<{}, IState> {
 					</div>
 					<div className="d3chart-container">
 						<div className="d3chart-row">
-							<PriceChart
-								name="pricechart"
-								data={currentPriceData}
-								pickedPriceDatum={this.pickedPriceDatum}
-							/>
+							<PriceChart name="pricechart" data={showData} pickedPriceDatum={this.pickedPriceDatum} />
 							<PriceChart name="mvchart" data={dataPrice} pickedPriceDatum={this.pickedPriceDatum} />
 						</div>
 					</div>
@@ -640,7 +821,7 @@ class Root extends React.PureComponent<{}, IState> {
 												/>
 											</td>
 											<td>
-												<button>Create</button>
+												<button onClick={this.handleCreation}>Create</button>
 											</td>
 											<td style={{textAlign: "right"}}>{assets.ETH.toFixed(2)}</td>
 										</tr>
@@ -660,7 +841,7 @@ class Root extends React.PureComponent<{}, IState> {
 												/>
 											</td>
 											<td>
-												<button>Redeem</button>
+												<button onClick={this.handleRedemption}>Redeem</button>
 											</td>
 											<td style={{textAlign: "right"}}>
 												{d3.min([assets.ClassA, assets.ClassB]).toFixed(2)}
@@ -674,7 +855,7 @@ class Root extends React.PureComponent<{}, IState> {
 													onChange={e =>
 														this.setState({
 															ClassAIn: e.target.value,
-															ClassA: this.round((Number(e.target.value)))
+															ClassA: this.round(Number(e.target.value))
 														})
 													}
 													value={this.state.ClassAIn}
@@ -682,7 +863,9 @@ class Root extends React.PureComponent<{}, IState> {
 												/>
 											</td>
 											<td>
-												<button onClick={this.handleBuyClassA} style={{marginBottom: "2px"}}>Buy</button>
+												<button onClick={this.handleBuyClassA} style={{marginBottom: "2px"}}>
+													Buy
+												</button>
 												<button onClick={this.handleSellClassA}>Sell</button>
 											</td>
 											<td style={{textAlign: "right"}}>{assets.ClassA.toFixed(2)}</td>
@@ -703,7 +886,9 @@ class Root extends React.PureComponent<{}, IState> {
 												/>
 											</td>
 											<td>
-												<button onClick={this.handleBuyClassB} style={{marginBottom: "2px"}}>Buy</button>
+												<button onClick={this.handleBuyClassB} style={{marginBottom: "2px"}}>
+													Buy
+												</button>
 												<button onClick={this.handleSellClassB}>Sell</button>
 											</td>
 											<td style={{textAlign: "right"}}>{assets.ClassB.toFixed(2)}</td>

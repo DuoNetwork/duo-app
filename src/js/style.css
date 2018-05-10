@@ -294,3 +294,11 @@ body {
 	margin-right: 5px;
 	padding: 5px 10px;
 }
+
+.msg-content {
+	font-size: 12px;
+}
+
+ul {
+	padding-left: 20px;
+}
