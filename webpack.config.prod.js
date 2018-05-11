@@ -8,7 +8,7 @@ const path = require('path');
 module.exports = {
 	mode: 'production',
 	entry: {
-		app: path.resolve(__dirname, 'src/js/web/app.tsx')
+		app: path.resolve(__dirname, 'src/js/app.tsx')
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
@@ -23,8 +23,8 @@ module.exports = {
 		new MiniCssExtractPlugin({ filename: 'styles.[chunkhash].css' }),
 		new HtmlWebpackPlugin({
 			title: 'DUO',
-            template: path.resolve(__dirname, 'src/index.ejs'),
-            favicon: path.join(__dirname, 'src/images/favicon.ico')
+			template: path.resolve(__dirname, 'src/index.ejs'),
+			favicon: path.join(__dirname, 'src/images/favicon.ico')
 		})
 	],
 	optimization: {
@@ -83,6 +83,6 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: ['js', 'jsx', '.ts', '.tsx']
+		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	}
 };

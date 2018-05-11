@@ -7,6 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "test": "jest",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "prebuild": "rimraf dist",
     "build": "webpack --config webpack.config.prod.js --json | webpack-bundle-size-analyzer"
@@ -60,6 +61,7 @@
     "ts-loader": "^4.3.0",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
+    "tslint-react": "^3.6.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "url-loader": "^1.0.1",
     "webpack": "^4.8.1",

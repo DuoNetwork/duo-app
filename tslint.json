@@ -1,15 +1,11 @@
 {
-    "extends": ["tslint:recommended", "tslint-react", ],
+    "extends": ["tslint:recommended", "tslint-react"],
     "rules": {
         "indent": [
             true,
             "tabs"
         ],
-        "quotemark": [
-            true,
-            "single",
-            "avoid-escape"
-        ],
+        "quotemark": false,
         "no-null-keyword": true,
         "trailing-comma": false,
         "object-literal-shorthand": false,

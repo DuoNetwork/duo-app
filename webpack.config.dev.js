@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
 	mode: 'development',
 	entry: {
-		app: path.resolve(__dirname, 'src/js/web/app.tsx')
+		app: path.resolve(__dirname, 'src/js/app.tsx')
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
@@ -30,8 +30,8 @@ module.exports = {
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
 			title: 'DUO',
-            template: path.resolve(__dirname, 'src/index.ejs'),
-            favicon: path.join(__dirname, 'src/images/favicon.ico')
+			template: path.resolve(__dirname, 'src/index.ejs'),
+			favicon: path.join(__dirname, 'src/images/favicon.ico')
 		})
 	],
 	module: {
@@ -78,6 +78,6 @@ module.exports = {
 		]
 	},
 	resolve: {
-		extensions: ['js', 'jsx', '.ts', '.tsx']
+		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	}
 };
