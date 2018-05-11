@@ -1,0 +1,9 @@
+{
+	"printWidth": 100,
+	"tabWidth": 4,
+	"singleQuote": true,
+	"useTabs": true,
+	"jsxBracketSameLine": true,
+	"eslintIntegration": true,
+	"bracketSpacing": true
+}

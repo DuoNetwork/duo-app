@@ -1,0 +1,22 @@
+{
+    "extends": ["tslint:recommended", "tslint-react", ],
+    "rules": {
+        "indent": [
+            true,
+            "tabs"
+        ],
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape"
+        ],
+        "no-null-keyword": true,
+        "trailing-comma": false,
+        "object-literal-shorthand": false,
+        "object-literal-sort-keys": false,
+        "no-console": false,
+        "no-var-requires": false,
+        "arrow-parens": false,
+        "no-string-literal": false
+    }
+}
