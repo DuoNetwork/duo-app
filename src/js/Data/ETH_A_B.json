@@ -1,379 +1,1071 @@
 [
-  {
-    "date": "2018/1/7",
-    "ETH": 1117.75,
-    "ClassA": 1,
-    "ClassB": 1,
-    "ClassAbeforeReset" : 1.0042,
-	  "ClassBbeforeReset" : 2.110567803,
-  	"ResetType" : "upward",
-    "InterestCount": 0
-  },
-  {
-    "date": "2018/1/8",
-    "ETH": 1136.11,
-    "ClassA": 1.0002,
-    "ClassB": 1.032651711,
-    "InterestCount": 1
-  },
-  {
-    "date": "2018/1/9",
-    "ETH": 1289.24,
-    "ClassA": 1.0004,
-    "ClassB": 1.30644858,
-    "InterestCount": 2
-  },
-  {
-    "date": "2018/1/10",
-    "ETH": 1248.99,
-    "ClassA": 1.0006,
-    "ClassB": 1.234228897,
-    "InterestCount": 3
-  },
-  {
-    "date": "2018/1/11",
-    "ETH": 1139.32,
-    "ClassA": 1.0008,
-    "ClassB": 1.037795393,
-    "InterestCount": 4
-  },
-  {
-    "date": "2018/1/12",
-    "ETH": 1261.03,
-    "ClassA": 1.001,
-    "ClassB": 1.255372176,
-    "InterestCount": 5
-  },
-  {
-    "date": "2018/1/13",
-    "ETH": 1385.02,
-    "ClassA": 1.0012,
-    "ClassB": 1.477028584,
-    "InterestCount": 6
-  },
-  {
-    "date": "2018/1/14",
-    "ETH": 1359.48,
-    "ClassA": 1.0014,
-    "ClassB": 1.431129635,
-    "InterestCount": 7
-  },
-  {
-    "date": "2018/1/15",
-    "ETH": 1278.69,
-    "ClassA": 1.0016,
-    "ClassB": 1.286371371,
-    "InterestCount": 8
-  },
-  {
-    "date": "2018/1/16",
-    "ETH": 1050.26,
-    "ClassA": 1.0018,
-    "ClassB": 0.877439544,
-    "InterestCount": 9
-  },
-  {
-    "date": "2018/1/17",
-    "ETH": 1024.69,
-    "ClassA": 1.002,
-    "ClassB": 0.831486916,
-    "InterestCount": 10
-  },
-  {
-    "date": "2018/1/18",
-    "ETH": 1012.97,
-    "ClassA": 1.0022,
-    "ClassB": 0.810316216,
-    "InterestCount": 11
-  },
-  {
-    "date": "2018/1/19",
-    "ETH": 1037.36,
-    "ClassA": 1.0024,
-    "ClassB": 0.853757459,
-    "InterestCount": 12
-  },
-  {
-    "date": "2018/1/20",
-    "ETH": 1150.5,
-    "ClassA": 1.0026,
-    "ClassB": 1.055999866,
-    "InterestCount": 13
-  },
-  {
-    "date": "2018/1/21",
-    "ETH": 1049.09,
-    "ClassA": 1.0028,
-    "ClassB": 0.874346052,
-    "InterestCount": 14
-  },
-  {
-    "date": "2018/1/22",
-    "ETH": 999.64,
-    "ClassA": 1.003,
-    "ClassB": 0.785664728,
-    "InterestCount": 15
-  },
-  {
-    "date": "2018/1/23",
-    "ETH": 984.47,
-    "ClassA": 1.0032,
-    "ClassB": 0.758320913,
-    "InterestCount": 16
-  },
-  {
-    "date": "2018/1/24",
-    "ETH": 1061.78,
-    "ClassA": 1.0034,
-    "ClassB": 0.896452382,
-    "InterestCount": 17
-  },
-  {
-    "date": "2018/1/25",
-    "ETH": 1046.37,
-    "ClassA": 1.0036,
-    "ClassB": 0.868679132,
-    "InterestCount": 18
-  },
-  {
-    "date": "2018/1/26",
-    "ETH": 1048.58,
-    "ClassA": 1.0038,
-    "ClassB": 0.872433505,
-    "InterestCount": 19
-  },
-  {
-    "date": "2018/1/27",
-    "ETH": 1109.08,
-    "ClassA": 1.004,
-    "ClassB": 0.980486692,
-    "InterestCount": 20
-  },
-  {
-    "date": "2018/1/28",
-    "ETH": 1231.58,
-    "ClassA": 1.0042,
-    "ClassB": 1.19947703,
-    "InterestCount": 21
-  },
-  {
-    "date": "2018/1/29",
-    "ETH": 1169.96,
-    "ClassA": 1.0044,
-    "ClassB": 1.089019817,
-    "InterestCount": 22
-  },
-  {
-    "date": "2018/1/30",
-    "ETH": 1063.75,
-    "ClassA": 1.0046,
-    "ClassB": 0.898777321,
-    "InterestCount": 23
-  },
-  {
-    "date": "2018/1/31",
-    "ETH": 1111.31,
-    "ClassA": 1.0048,
-    "ClassB": 0.983676851,
-    "InterestCount": 24
-  },
-  {
-    "date": "2018/2/1",
-    "ETH": 1026.19,
-    "ClassA": 1.005,
-    "ClassB": 0.831170879,
-    "InterestCount": 25
-  },
-  {
-    "date": "2018/2/2",
-    "ETH": 917.47,
-    "ClassA": 1.0052,
-    "ClassB": 0.636437218,
-    "InterestCount": 26
-  },
-  {
-    "date": "2018/2/3",
-    "ETH": 970.87,
-    "ClassA": 1.0054,
-    "ClassB": 0.731786312,
-    "InterestCount": 27
-  },
-  {
-    "date": "2018/2/4",
-    "ETH": 827.59,
-    "ClassA": 1.0056,
-    "ClassB": 0.475214136,
-    "InterestCount": 28
-  },
-  {
-    "date": "2018/2/5",
-    "ETH": 695.08,
-    "ClassA": 1,
-    "ClassB": 1,
-    "ClassAbeforeReset" : 1.0058,
-	  "ClassBbeforeReset" : 0.237912816,
-  	"ResetType" : "downward",
-    "InterestCount": 0
-  },
-  {
-    "date": "2018/2/6",
-    "ETH": 785.01,
-    "ClassA": 1.0002,
-    "ClassB": 1.258561581,
-    "InterestCount": 1
-  },
-  {
-    "date": "2018/2/7",
-    "ETH": 751.81,
-    "ClassA": 1.0004,
-    "ClassB": 1.162833009,
-    "InterestCount": 2
-  },
-  {
-    "date": "2018/2/8",
-    "ETH": 813.55,
-    "ClassA": 1.0006,
-    "ClassB": 1.340281625,
-    "InterestCount": 3
-  },
-  {
-    "date": "2018/2/9",
-    "ETH": 877.88,
-    "ClassA": 1.0008,
-    "ClassB": 1.525182621,
-    "InterestCount": 4
-  },
-  {
-    "date": "2018/2/10",
-    "ETH": 850.75,
-    "ClassA": 1.001,
-    "ClassB": 1.446919664,
-    "InterestCount": 5
-  },
-  {
-    "date": "2018/2/11",
-    "ETH": 811.24,
-    "ClassA": 1.0012,
-    "ClassB": 1.333034908,
-    "InterestCount": 6
-  },
-  {
-    "date": "2018/2/12",
-    "ETH": 865.27,
-    "ClassA": 1.0014,
-    "ClassB": 1.488299027,
-    "InterestCount": 7
-  },
-  {
-    "date": "2018/2/13",
-    "ETH": 840.98,
-    "ClassA": 1.0016,
-    "ClassB": 1.418207792,
-    "InterestCount": 8
-  },
-  {
-    "date": "2018/2/14",
-    "ETH": 920.11,
-    "ClassA": 1.0018,
-    "ClassB": 1.645693814,
-    "InterestCount": 9
-  },
-  {
-    "date": "2018/2/15",
-    "ETH": 927.95,
-    "ClassA": 1.002,
-    "ClassB": 1.668052368,
-    "InterestCount": 10
-  },
-  {
-    "date": "2018/2/16",
-    "ETH": 938.02,
-    "ClassA": 1.0022,
-    "ClassB": 1.69682745,
-    "InterestCount": 11
-  },
-  {
-    "date": "2018/2/17",
-    "ETH": 974.77,
-    "ClassA": 1.0024,
-    "ClassB": 1.802370674,
-    "InterestCount": 12
-  },
-  {
-    "date": "2018/2/18",
-    "ETH": 913.9,
-    "ClassA": 1.0026,
-    "ClassB": 1.627025367,
-    "InterestCount": 13
-  },
-  {
-    "date": "2018/2/19",
-    "ETH": 939.79,
-    "ClassA": 1.0028,
-    "ClassB": 1.701320389,
-    "InterestCount": 14
-  },
-  {
-    "date": "2018/2/20",
-    "ETH": 885.52,
-    "ClassA": 1.003,
-    "ClassB": 1.544965702,
-    "InterestCount": 15
-  },
-  {
-    "date": "2018/2/21",
-    "ETH": 840.1,
-    "ClassA": 1.0032,
-    "ClassB": 1.414075709,
-    "InterestCount": 16
-  },
-  {
-    "date": "2018/2/22",
-    "ETH": 804.63,
-    "ClassA": 1.0034,
-    "ClassB": 1.311815515,
-    "InterestCount": 17
-  },
-  {
-    "date": "2018/2/23",
-    "ETH": 854.7,
-    "ClassA": 1.0036,
-    "ClassB": 1.455685262,
-    "InterestCount": 18
-  },
-  {
-    "date": "2018/2/24",
-    "ETH": 833.49,
-    "ClassA": 1.0038,
-    "ClassB": 1.394456316,
-    "InterestCount": 19
-  },
-  {
-    "date": "2018/2/25",
-    "ETH": 840.28,
-    "ClassA": 1.004,
-    "ClassB": 1.413793635,
-    "InterestCount": 20
-  },
-  {
-    "date": "2018/2/26",
-    "ETH": 867.62,
-    "ClassA": 1.0042,
-    "ClassB": 1.492260839,
-    "InterestCount": 21
-  },
-  {
-    "date": "2018/2/27",
-    "ETH": 871.58,
-    "ClassA": 1.0044,
-    "ClassB": 1.503455211,
-    "InterestCount": 22
-  },
-  {
-    "date": "2018/2/28",
-    "ETH": 851.5,
-    "ClassA": 1.0046,
-    "ClassB": 1.445477689,
-    "InterestCount": 23
-  }
+	{
+		"date": "2017/10/1",
+		"ETH": 303.95,
+		"ClassA": 1,
+		"ClassB": 1,
+		"InterestCount": 0
+	},
+	{
+		"date": "2017/10/2",
+		"ETH": 296.81,
+		"ClassA": 1.0002,
+		"ClassB": 0.952818589,
+		"InterestCount": 1
+	},
+	{
+		"date": "2017/10/3",
+		"ETH": 291.81,
+		"ClassA": 1.0004,
+		"ClassB": 0.919718441,
+		"InterestCount": 2
+	},
+	{
+		"date": "2017/10/4",
+		"ETH": 291.68,
+		"ClassA": 1.0006,
+		"ClassB": 0.918663037,
+		"InterestCount": 3
+	},
+	{
+		"date": "2017/10/5",
+		"ETH": 294.99,
+		"ClassA": 1.0008,
+		"ClassB": 0.940242935,
+		"InterestCount": 4
+	},
+	{
+		"date": "2017/10/6",
+		"ETH": 308.33,
+		"ClassA": 1.001,
+		"ClassB": 1.02782053,
+		"InterestCount": 5
+	},
+	{
+		"date": "2017/10/7",
+		"ETH": 311.26,
+		"ClassA": 1.0012,
+		"ClassB": 1.046900016,
+		"InterestCount": 6
+	},
+	{
+		"date": "2017/10/8",
+		"ETH": 309.49,
+		"ClassA": 1.0014,
+		"ClassB": 1.035053364,
+		"InterestCount": 7
+	},
+	{
+		"date": "2017/10/9",
+		"ETH": 296.95,
+		"ClassA": 1.0016,
+		"ClassB": 0.952339793,
+		"InterestCount": 8
+	},
+	{
+		"date": "2017/10/10",
+		"ETH": 298.46,
+		"ClassA": 1.0018,
+		"ClassB": 0.962075637,
+		"InterestCount": 9
+	},
+	{
+		"date": "2017/10/11",
+		"ETH": 302.86,
+		"ClassA": 1.002,
+		"ClassB": 0.990827768,
+		"InterestCount": 10
+	},
+	{
+		"date": "2017/10/12",
+		"ETH": 302.89,
+		"ClassA": 1.0022,
+		"ClassB": 0.990825169,
+		"InterestCount": 11
+	},
+	{
+		"date": "2017/10/13",
+		"ETH": 336.83,
+		"ClassA": 1.0024,
+		"ClassB": 1.213951374,
+		"InterestCount": 12
+	},
+	{
+		"date": "2017/10/14",
+		"ETH": 338.81,
+		"ClassA": 1.0026,
+		"ClassB": 1.226779832,
+		"InterestCount": 13
+	},
+	{
+		"date": "2017/10/15",
+		"ETH": 336.58,
+		"ClassA": 1.0028,
+		"ClassB": 1.211906366,
+		"InterestCount": 14
+	},
+	{
+		"date": "2017/10/16",
+		"ETH": 334.23,
+		"ClassA": 1.003,
+		"ClassB": 1.196243297,
+		"InterestCount": 15
+	},
+	{
+		"date": "2017/10/17",
+		"ETH": 316.14,
+		"ClassA": 1.0032,
+		"ClassB": 1.077010561,
+		"InterestCount": 16
+	},
+	{
+		"date": "2017/10/18",
+		"ETH": 313.54,
+		"ClassA": 1.0034,
+		"ClassB": 1.059702484,
+		"InterestCount": 17
+	},
+	{
+		"date": "2017/10/19",
+		"ETH": 307.41,
+		"ClassA": 1.0036,
+		"ClassB": 1.019166902,
+		"InterestCount": 18
+	},
+	{
+		"date": "2017/10/20",
+		"ETH": 303.08,
+		"ClassA": 1.0038,
+		"ClassB": 0.990475374,
+		"InterestCount": 19
+	},
+	{
+		"date": "2017/10/21",
+		"ETH": 299.55,
+		"ClassA": 1.004,
+		"ClassB": 0.96704787,
+		"InterestCount": 20
+	},
+	{
+		"date": "2017/10/22",
+		"ETH": 294.03,
+		"ClassA": 1.0042,
+		"ClassB": 0.930526106,
+		"InterestCount": 21
+	},
+	{
+		"date": "2017/10/23",
+		"ETH": 285.27,
+		"ClassA": 1.0044,
+		"ClassB": 0.872685047,
+		"InterestCount": 22
+	},
+	{
+		"date": "2017/10/24",
+		"ETH": 296.5,
+		"ClassA": 1.0046,
+		"ClassB": 0.946378779,
+		"InterestCount": 23
+	},
+	{
+		"date": "2017/10/25",
+		"ETH": 296.35,
+		"ClassA": 1.0048,
+		"ClassB": 0.945191775,
+		"InterestCount": 24
+	},
+	{
+		"date": "2017/10/26",
+		"ETH": 295.54,
+		"ClassA": 1.005,
+		"ClassB": 0.939661951,
+		"InterestCount": 25
+	},
+	{
+		"date": "2017/10/27",
+		"ETH": 296.36,
+		"ClassA": 1.0052,
+		"ClassB": 0.944857575,
+		"InterestCount": 26
+	},
+	{
+		"date": "2017/10/28",
+		"ETH": 293.35,
+		"ClassA": 1.0054,
+		"ClassB": 0.924851686,
+		"InterestCount": 27
+	},
+	{
+		"date": "2017/10/29",
+		"ETH": 304.04,
+		"ClassA": 1.0056,
+		"ClassB": 0.994992203,
+		"InterestCount": 28
+	},
+	{
+		"date": "2017/10/30",
+		"ETH": 306.8,
+		"ClassA": 1.0058,
+		"ClassB": 1.012953084,
+		"InterestCount": 29
+	},
+	{
+		"date": "2017/10/31",
+		"ETH": 303.64,
+		"ClassA": 1.006,
+		"ClassB": 0.991960191,
+		"InterestCount": 30
+	},
+	{
+		"date": "2017/11/1",
+		"ETH": 289.42,
+		"ClassA": 1.0062,
+		"ClassB": 0.89819217,
+		"InterestCount": 31
+	},
+	{
+		"date": "2017/11/2",
+		"ETH": 284.92,
+		"ClassA": 1.0064,
+		"ClassB": 0.868382037,
+		"InterestCount": 32
+	},
+	{
+		"date": "2017/11/3",
+		"ETH": 304.51,
+		"ClassA": 1.0066,
+		"ClassB": 0.997084817,
+		"InterestCount": 33
+	},
+	{
+		"date": "2017/11/4",
+		"ETH": 300.04,
+		"ClassA": 1.0068,
+		"ClassB": 0.967472084,
+		"InterestCount": 34
+	},
+	{
+		"date": "2017/11/5",
+		"ETH": 296.23,
+		"ClassA": 1.007,
+		"ClassB": 0.942202171,
+		"InterestCount": 35
+	},
+	{
+		"date": "2017/11/6",
+		"ETH": 296.82,
+		"ClassA": 1.0072,
+		"ClassB": 0.945884389,
+		"InterestCount": 36
+	},
+	{
+		"date": "2017/11/7",
+		"ETH": 291.84,
+		"ClassA": 1.0074,
+		"ClassB": 0.912915841,
+		"InterestCount": 37
+	},
+	{
+		"date": "2017/11/8",
+		"ETH": 307.35,
+		"ClassA": 1.0076,
+		"ClassB": 1.014772101,
+		"InterestCount": 38
+	},
+	{
+		"date": "2017/11/9",
+		"ETH": 319.66,
+		"ClassA": 1.0078,
+		"ClassB": 1.095572265,
+		"InterestCount": 39
+	},
+	{
+		"date": "2017/11/10",
+		"ETH": 296.86,
+		"ClassA": 1.008,
+		"ClassB": 0.94534759,
+		"InterestCount": 40
+	},
+	{
+		"date": "2017/11/11",
+		"ETH": 314.23,
+		"ClassA": 1.0082,
+		"ClassB": 1.059442704,
+		"InterestCount": 41
+	},
+	{
+		"date": "2017/11/12",
+		"ETH": 306.02,
+		"ClassA": 1.0084,
+		"ClassB": 1.005220661,
+		"InterestCount": 42
+	},
+	{
+		"date": "2017/11/13",
+		"ETH": 314.6,
+		"ClassA": 1.0086,
+		"ClassB": 1.061477315,
+		"InterestCount": 43
+	},
+	{
+		"date": "2017/11/14",
+		"ETH": 334.72,
+		"ClassA": 1.0088,
+		"ClassB": 1.193667511,
+		"InterestCount": 44
+	},
+	{
+		"date": "2017/11/15",
+		"ETH": 331.2,
+		"ClassA": 1.009,
+		"ClassB": 1.170305807,
+		"InterestCount": 45
+	},
+	{
+		"date": "2017/11/16",
+		"ETH": 330.32,
+		"ClassA": 1.0092,
+		"ClassB": 1.164315381,
+		"InterestCount": 46
+	},
+	{
+		"date": "2017/11/17",
+		"ETH": 331.72,
+		"ClassA": 1.0094,
+		"ClassB": 1.173327422,
+		"InterestCount": 47
+	},
+	{
+		"date": "2017/11/18",
+		"ETH": 346.65,
+		"ClassA": 1.0096,
+		"ClassB": 1.271367264,
+		"InterestCount": 48
+	},
+	{
+		"date": "2017/11/19",
+		"ETH": 354.6,
+		"ClassA": 1.0098,
+		"ClassB": 1.3234785,
+		"InterestCount": 49
+	},
+	{
+		"date": "2017/11/20",
+		"ETH": 367.71,
+		"ClassA": 1.01,
+		"ClassB": 1.409542688,
+		"InterestCount": 50
+	},
+	{
+		"date": "2017/11/21",
+		"ETH": 360.52,
+		"ClassA": 1.0102,
+		"ClassB": 1.362032275,
+		"InterestCount": 51
+	},
+	{
+		"date": "2017/11/22",
+		"ETH": 380.84,
+		"ClassA": 1.0104,
+		"ClassB": 1.495538477,
+		"InterestCount": 52
+	},
+	{
+		"date": "2017/11/23",
+		"ETH": 406.57,
+		"ClassA": 1.0106,
+		"ClassB": 1.664642639,
+		"InterestCount": 53
+	},
+	{
+		"date": "2017/11/24",
+		"ETH": 470.43,
+		"ClassA": 1,
+		"ClassB": 1,
+		"ClassAbeforeReset": 1.0108,
+		"ClassBbeforeReset": 2.084643329,
+		"ResetType": "upward",
+		"InterestCount": 0
+	},
+	{
+		"date": "2017/11/25",
+		"ETH": 464.61,
+		"ClassA": 1.0002,
+		"ClassB": 0.97505668,
+		"InterestCount": 1
+	},
+	{
+		"date": "2017/11/26",
+		"ETH": 470.54,
+		"ClassA": 1.0004,
+		"ClassB": 1.000067657,
+		"InterestCount": 2
+	},
+	{
+		"date": "2017/11/27",
+		"ETH": 475.24,
+		"ClassA": 1.0006,
+		"ClassB": 1.019849376,
+		"InterestCount": 3
+	},
+	{
+		"date": "2017/11/28",
+		"ETH": 466.27,
+		"ClassA": 1.0008,
+		"ClassB": 0.981514053,
+		"InterestCount": 4
+	},
+	{
+		"date": "2017/11/29",
+		"ETH": 427.42,
+		"ClassA": 1.001,
+		"ClassB": 0.816146015,
+		"InterestCount": 5
+	},
+	{
+		"date": "2017/11/30",
+		"ETH": 434.85,
+		"ClassA": 1.0012,
+		"ClassB": 0.847534137,
+		"InterestCount": 6
+	},
+	{
+		"date": "2017/12/1",
+		"ETH": 461.58,
+		"ClassA": 1.0014,
+		"ClassB": 0.960974849,
+		"InterestCount": 7
+	},
+	{
+		"date": "2017/12/2",
+		"ETH": 457.96,
+		"ClassA": 1.0016,
+		"ClassB": 0.945384674,
+		"InterestCount": 8
+	},
+	{
+		"date": "2017/12/3",
+		"ETH": 462.81,
+		"ClassA": 1.0018,
+		"ClassB": 0.965804107,
+		"InterestCount": 9
+	},
+	{
+		"date": "2017/12/4",
+		"ETH": 466.93,
+		"ClassA": 1.002,
+		"ClassB": 0.983119997,
+		"InterestCount": 10
+	},
+	{
+		"date": "2017/12/5",
+		"ETH": 453.96,
+		"ClassA": 1.0022,
+		"ClassB": 0.927778955,
+		"InterestCount": 11
+	},
+	{
+		"date": "2017/12/6",
+		"ETH": 422.48,
+		"ClassA": 1.0024,
+		"ClassB": 0.793743953,
+		"InterestCount": 12
+	},
+	{
+		"date": "2017/12/7",
+		"ETH": 421.15,
+		"ClassA": 1.0026,
+		"ClassB": 0.787889552,
+		"InterestCount": 13
+	},
+	{
+		"date": "2017/12/8",
+		"ETH": 451.74,
+		"ClassA": 1.0028,
+		"ClassB": 0.917740782,
+		"InterestCount": 14
+	},
+	{
+		"date": "2017/12/9",
+		"ETH": 472.86,
+		"ClassA": 1.003,
+		"ClassB": 1.007330974,
+		"InterestCount": 15
+	},
+	{
+		"date": "2017/12/10",
+		"ETH": 436.49,
+		"ClassA": 1.0032,
+		"ClassB": 0.852506481,
+		"InterestCount": 16
+	},
+	{
+		"date": "2017/12/11",
+		"ETH": 513.29,
+		"ClassA": 1.0034,
+		"ClassB": 1.17881627,
+		"InterestCount": 17
+	},
+	{
+		"date": "2017/12/12",
+		"ETH": 656.52,
+		"ClassA": 1.0036,
+		"ClassB": 1.787548524,
+		"InterestCount": 18
+	},
+	{
+		"date": "2017/12/13",
+		"ETH": 699.09,
+		"ClassA": 1.0038,
+		"ClassB": 1.968331879,
+		"InterestCount": 19
+	},
+	{
+		"date": "2017/12/14",
+		"ETH": 693.58,
+		"ClassA": 1.004,
+		"ClassB": 1.944706503,
+		"InterestCount": 20
+	},
+	{
+		"date": "2017/12/15",
+		"ETH": 684.27,
+		"ClassA": 1.0042,
+		"ClassB": 1.904925694,
+		"InterestCount": 21
+	},
+	{
+		"date": "2017/12/16",
+		"ETH": 692.83,
+		"ClassA": 1.0044,
+		"ClassB": 1.94111793,
+		"InterestCount": 22
+	},
+	{
+		"date": "2017/12/17",
+		"ETH": 717.71,
+		"ClassA": 1,
+		"ClassB": 1,
+		"ClassAbeforeReset": 1.0046,
+		"ClassBbeforeReset": 2.046693497,
+		"ResetType": "upward",
+		"InterestCount": 0
+	},
+	{
+		"date": "2017/12/18",
+		"ETH": 785.99,
+		"ClassA": 1.0002,
+		"ClassB": 1.190071837,
+		"InterestCount": 1
+	},
+	{
+		"date": "2017/12/19",
+		"ETH": 812.5,
+		"ClassA": 1.0004,
+		"ClassB": 1.263745686,
+		"InterestCount": 2
+	},
+	{
+		"date": "2017/12/20",
+		"ETH": 799.17,
+		"ClassA": 1.0006,
+		"ClassB": 1.226399763,
+		"InterestCount": 3
+	},
+	{
+		"date": "2017/12/21",
+		"ETH": 789.39,
+		"ClassA": 1.0008,
+		"ClassB": 1.198946416,
+		"InterestCount": 4
+	},
+	{
+		"date": "2017/12/22",
+		"ETH": 657.83,
+		"ClassA": 1.001,
+		"ClassB": 0.832135946,
+		"InterestCount": 5
+	},
+	{
+		"date": "2017/12/23",
+		"ETH": 700.44,
+		"ClassA": 1.0012,
+		"ClassB": 0.950674713,
+		"InterestCount": 6
+	},
+	{
+		"date": "2017/12/24",
+		"ETH": 675.91,
+		"ClassA": 1.0014,
+		"ClassB": 0.882118413,
+		"InterestCount": 7
+	},
+	{
+		"date": "2017/12/25",
+		"ETH": 723.14,
+		"ClassA": 1.0016,
+		"ClassB": 1.01353146,
+		"InterestCount": 8
+	},
+	{
+		"date": "2017/12/26",
+		"ETH": 753.4,
+		"ClassA": 1.0018,
+		"ClassB": 1.097655212,
+		"InterestCount": 9
+	},
+	{
+		"date": "2017/12/27",
+		"ETH": 739.94,
+		"ClassA": 1.002,
+		"ClassB": 1.059947026,
+		"InterestCount": 10
+	},
+	{
+		"date": "2017/12/28",
+		"ETH": 716.69,
+		"ClassA": 1.0022,
+		"ClassB": 0.994957626,
+		"InterestCount": 11
+	},
+	{
+		"date": "2017/12/29",
+		"ETH": 739.6,
+		"ClassA": 1.0024,
+		"ClassB": 1.058599568,
+		"InterestCount": 12
+	},
+	{
+		"date": "2017/12/30",
+		"ETH": 692.99,
+		"ClassA": 1.0026,
+		"ClassB": 0.928514238,
+		"InterestCount": 13
+	},
+	{
+		"date": "2017/12/31",
+		"ETH": 741.13,
+		"ClassA": 1.0028,
+		"ClassB": 1.062463129,
+		"InterestCount": 14
+	},
+	{
+		"date": "2018/1/1",
+		"ETH": 756.2,
+		"ClassA": 1.003,
+		"ClassB": 1.104257806,
+		"InterestCount": 15
+	},
+	{
+		"date": "2018/1/2",
+		"ETH": 861.97,
+		"ClassA": 1.0032,
+		"ClassB": 1.398800808,
+		"InterestCount": 16
+	},
+	{
+		"date": "2018/1/3",
+		"ETH": 941.1,
+		"ClassA": 1.0034,
+		"ClassB": 1.619107698,
+		"InterestCount": 17
+	},
+	{
+		"date": "2018/1/4",
+		"ETH": 944.83,
+		"ClassA": 1.0036,
+		"ClassB": 1.629301868,
+		"InterestCount": 18
+	},
+	{
+		"date": "2018/1/5",
+		"ETH": 967.13,
+		"ClassA": 1.0038,
+		"ClassB": 1.691243959,
+		"InterestCount": 19
+	},
+	{
+		"date": "2018/1/6",
+		"ETH": 1006.41,
+		"ClassA": 1.004,
+		"ClassB": 1.800503212,
+		"InterestCount": 20
+	},
+	{
+		"date": "2018/1/7",
+		"ETH": 1117.75,
+		"ClassA": 1,
+		"ClassB": 1,
+		"ClassAbeforeReset": 1.0042,
+		"ClassBbeforeReset": 2.110567803,
+		"ResetType": "upward",
+		"InterestCount": 0
+	},
+	{
+		"date": "2018/1/8",
+		"ETH": 1136.11,
+		"ClassA": 1.0002,
+		"ClassB": 1.032651711,
+		"InterestCount": 1
+	},
+	{
+		"date": "2018/1/9",
+		"ETH": 1289.24,
+		"ClassA": 1.0004,
+		"ClassB": 1.30644858,
+		"InterestCount": 2
+	},
+	{
+		"date": "2018/1/10",
+		"ETH": 1248.99,
+		"ClassA": 1.0006,
+		"ClassB": 1.234228897,
+		"InterestCount": 3
+	},
+	{
+		"date": "2018/1/11",
+		"ETH": 1139.32,
+		"ClassA": 1.0008,
+		"ClassB": 1.037795393,
+		"InterestCount": 4
+	},
+	{
+		"date": "2018/1/12",
+		"ETH": 1261.03,
+		"ClassA": 1.001,
+		"ClassB": 1.255372176,
+		"InterestCount": 5
+	},
+	{
+		"date": "2018/1/13",
+		"ETH": 1385.02,
+		"ClassA": 1.0012,
+		"ClassB": 1.477028584,
+		"InterestCount": 6
+	},
+	{
+		"date": "2018/1/14",
+		"ETH": 1359.48,
+		"ClassA": 1.0014,
+		"ClassB": 1.431129635,
+		"InterestCount": 7
+	},
+	{
+		"date": "2018/1/15",
+		"ETH": 1278.69,
+		"ClassA": 1.0016,
+		"ClassB": 1.286371371,
+		"InterestCount": 8
+	},
+	{
+		"date": "2018/1/16",
+		"ETH": 1050.26,
+		"ClassA": 1.0018,
+		"ClassB": 0.877439544,
+		"InterestCount": 9
+	},
+	{
+		"date": "2018/1/17",
+		"ETH": 1024.69,
+		"ClassA": 1.002,
+		"ClassB": 0.831486916,
+		"InterestCount": 10
+	},
+	{
+		"date": "2018/1/18",
+		"ETH": 1012.97,
+		"ClassA": 1.0022,
+		"ClassB": 0.810316216,
+		"InterestCount": 11
+	},
+	{
+		"date": "2018/1/19",
+		"ETH": 1037.36,
+		"ClassA": 1.0024,
+		"ClassB": 0.853757459,
+		"InterestCount": 12
+	},
+	{
+		"date": "2018/1/20",
+		"ETH": 1150.5,
+		"ClassA": 1.0026,
+		"ClassB": 1.055999866,
+		"InterestCount": 13
+	},
+	{
+		"date": "2018/1/21",
+		"ETH": 1049.09,
+		"ClassA": 1.0028,
+		"ClassB": 0.874346052,
+		"InterestCount": 14
+	},
+	{
+		"date": "2018/1/22",
+		"ETH": 999.64,
+		"ClassA": 1.003,
+		"ClassB": 0.785664728,
+		"InterestCount": 15
+	},
+	{
+		"date": "2018/1/23",
+		"ETH": 984.47,
+		"ClassA": 1.0032,
+		"ClassB": 0.758320913,
+		"InterestCount": 16
+	},
+	{
+		"date": "2018/1/24",
+		"ETH": 1061.78,
+		"ClassA": 1.0034,
+		"ClassB": 0.896452382,
+		"InterestCount": 17
+	},
+	{
+		"date": "2018/1/25",
+		"ETH": 1046.37,
+		"ClassA": 1.0036,
+		"ClassB": 0.868679132,
+		"InterestCount": 18
+	},
+	{
+		"date": "2018/1/26",
+		"ETH": 1048.58,
+		"ClassA": 1.0038,
+		"ClassB": 0.872433505,
+		"InterestCount": 19
+	},
+	{
+		"date": "2018/1/27",
+		"ETH": 1109.08,
+		"ClassA": 1.004,
+		"ClassB": 0.980486692,
+		"InterestCount": 20
+	},
+	{
+		"date": "2018/1/28",
+		"ETH": 1231.58,
+		"ClassA": 1.0042,
+		"ClassB": 1.19947703,
+		"InterestCount": 21
+	},
+	{
+		"date": "2018/1/29",
+		"ETH": 1169.96,
+		"ClassA": 1.0044,
+		"ClassB": 1.089019817,
+		"InterestCount": 22
+	},
+	{
+		"date": "2018/1/30",
+		"ETH": 1063.75,
+		"ClassA": 1.0046,
+		"ClassB": 0.898777321,
+		"InterestCount": 23
+	},
+	{
+		"date": "2018/1/31",
+		"ETH": 1111.31,
+		"ClassA": 1.0048,
+		"ClassB": 0.983676851,
+		"InterestCount": 24
+	},
+	{
+		"date": "2018/2/1",
+		"ETH": 1026.19,
+		"ClassA": 1.005,
+		"ClassB": 0.831170879,
+		"InterestCount": 25
+	},
+	{
+		"date": "2018/2/2",
+		"ETH": 917.47,
+		"ClassA": 1.0052,
+		"ClassB": 0.636437218,
+		"InterestCount": 26
+	},
+	{
+		"date": "2018/2/3",
+		"ETH": 970.87,
+		"ClassA": 1.0054,
+		"ClassB": 0.731786312,
+		"InterestCount": 27
+	},
+	{
+		"date": "2018/2/4",
+		"ETH": 827.59,
+		"ClassA": 1.0056,
+		"ClassB": 0.475214136,
+		"InterestCount": 28
+	},
+	{
+		"date": "2018/2/5",
+		"ETH": 695.08,
+		"ClassA": 1,
+		"ClassB": 1,
+		"ClassAbeforeReset": 1.0058,
+		"ClassBbeforeReset": 0.237912816,
+		"ResetType": "downward",
+		"InterestCount": 0
+	},
+	{
+		"date": "2018/2/6",
+		"ETH": 785.01,
+		"ClassA": 1.0002,
+		"ClassB": 1.258561581,
+		"InterestCount": 1
+	},
+	{
+		"date": "2018/2/7",
+		"ETH": 751.81,
+		"ClassA": 1.0004,
+		"ClassB": 1.162833009,
+		"InterestCount": 2
+	},
+	{
+		"date": "2018/2/8",
+		"ETH": 813.55,
+		"ClassA": 1.0006,
+		"ClassB": 1.340281625,
+		"InterestCount": 3
+	},
+	{
+		"date": "2018/2/9",
+		"ETH": 877.88,
+		"ClassA": 1.0008,
+		"ClassB": 1.525182621,
+		"InterestCount": 4
+	},
+	{
+		"date": "2018/2/10",
+		"ETH": 850.75,
+		"ClassA": 1.001,
+		"ClassB": 1.446919664,
+		"InterestCount": 5
+	},
+	{
+		"date": "2018/2/11",
+		"ETH": 811.24,
+		"ClassA": 1.0012,
+		"ClassB": 1.333034908,
+		"InterestCount": 6
+	},
+	{
+		"date": "2018/2/12",
+		"ETH": 865.27,
+		"ClassA": 1.0014,
+		"ClassB": 1.488299027,
+		"InterestCount": 7
+	},
+	{
+		"date": "2018/2/13",
+		"ETH": 840.98,
+		"ClassA": 1.0016,
+		"ClassB": 1.418207792,
+		"InterestCount": 8
+	},
+	{
+		"date": "2018/2/14",
+		"ETH": 920.11,
+		"ClassA": 1.0018,
+		"ClassB": 1.645693814,
+		"InterestCount": 9
+	},
+	{
+		"date": "2018/2/15",
+		"ETH": 927.95,
+		"ClassA": 1.002,
+		"ClassB": 1.668052368,
+		"InterestCount": 10
+	},
+	{
+		"date": "2018/2/16",
+		"ETH": 938.02,
+		"ClassA": 1.0022,
+		"ClassB": 1.69682745,
+		"InterestCount": 11
+	},
+	{
+		"date": "2018/2/17",
+		"ETH": 974.77,
+		"ClassA": 1.0024,
+		"ClassB": 1.802370674,
+		"InterestCount": 12
+	},
+	{
+		"date": "2018/2/18",
+		"ETH": 913.9,
+		"ClassA": 1.0026,
+		"ClassB": 1.627025367,
+		"InterestCount": 13
+	},
+	{
+		"date": "2018/2/19",
+		"ETH": 939.79,
+		"ClassA": 1.0028,
+		"ClassB": 1.701320389,
+		"InterestCount": 14
+	},
+	{
+		"date": "2018/2/20",
+		"ETH": 885.52,
+		"ClassA": 1.003,
+		"ClassB": 1.544965702,
+		"InterestCount": 15
+	},
+	{
+		"date": "2018/2/21",
+		"ETH": 840.1,
+		"ClassA": 1.0032,
+		"ClassB": 1.414075709,
+		"InterestCount": 16
+	},
+	{
+		"date": "2018/2/22",
+		"ETH": 804.63,
+		"ClassA": 1.0034,
+		"ClassB": 1.311815515,
+		"InterestCount": 17
+	},
+	{
+		"date": "2018/2/23",
+		"ETH": 854.7,
+		"ClassA": 1.0036,
+		"ClassB": 1.455685262,
+		"InterestCount": 18
+	},
+	{
+		"date": "2018/2/24",
+		"ETH": 833.49,
+		"ClassA": 1.0038,
+		"ClassB": 1.394456316,
+		"InterestCount": 19
+	},
+	{
+		"date": "2018/2/25",
+		"ETH": 840.28,
+		"ClassA": 1.004,
+		"ClassB": 1.413793635,
+		"InterestCount": 20
+	},
+	{
+		"date": "2018/2/26",
+		"ETH": 867.62,
+		"ClassA": 1.0042,
+		"ClassB": 1.492260839,
+		"InterestCount": 21
+	},
+	{
+		"date": "2018/2/27",
+		"ETH": 871.58,
+		"ClassA": 1.0044,
+		"ClassB": 1.503455211,
+		"InterestCount": 22
+	},
+	{
+		"date": "2018/2/28",
+		"ETH": 851.5,
+		"ClassA": 1.0046,
+		"ClassB": 1.445477689,
+		"InterestCount": 23
+	}
 ]

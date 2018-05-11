@@ -2,7 +2,7 @@ import "@babel/polyfill";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as d3 from "d3";
-import {PriceChart, IPriceData, IPriceDatum, IMVData, IMVDatum} from "./Chart";
+import {PriceChart, MVChart, IPriceData, IPriceDatum, IMVData, IMVDatum} from "./Chart";
 import Message from "./Message";
 import "./style.css";
 const mockdata: IPriceData = require("./Data/ETH_A_B.json");
@@ -44,8 +44,8 @@ class Root extends React.PureComponent<{}, IState> {
 		super(props);
 		this.pickedPriceDatum = this.pickedPriceDatum.bind(this);
 		this.state = {
-			dataPrice: mockdata,
-			dataMV: {} as IMVData,
+			dataPrice: mockdata.slice(0, mockdata.length - 1),
+			dataMV: [{date: "2017/10/1", MV: 50000}],
 			currentmvdata: null,
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
@@ -87,11 +87,15 @@ class Root extends React.PureComponent<{}, IState> {
 		const nextPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
 		const i = this.state.currentDayCounter;
 		const dataSet = mockdata.slice(0, i + 2);
-		const mvBeforeReset = USD + ETH * nextPrice.ETH + ClassA * nextPrice.ClassAbeforeReset + ClassB * nextPrice.ClassBbeforeReset;
+		const mvBeforeReset =
+			USD + ETH * nextPrice.ETH + ClassA * nextPrice.ClassAbeforeReset + ClassB * nextPrice.ClassBbeforeReset;
 		let newAssets;
+		let mvData = this.state.dataMV;
+		const marketValue = USD + ETH * nextPrice.ETH + ClassA * nextPrice.ClassA + ClassB * nextPrice.ClassB;
+		
 		if (nextPrice.ResetType) {
 			switch (nextPrice.ResetType) {
-				case "upward": {					
+				case "upward": {
 					console.log(mvBeforeReset);
 					const resetETHAmount =
 						((nextPrice.ClassAbeforeReset - 1) * ClassA + (nextPrice.ClassBbeforeReset - 1) * ClassB) /
@@ -101,13 +105,14 @@ class Root extends React.PureComponent<{}, IState> {
 						USD: USD,
 						ETH: rETH,
 						ClassA: ClassA,
-						ClassB: ClassB,
+						ClassB: ClassB
 					};
 					break;
 				}
 				default: {
 					console.log(mvBeforeReset);
-					const resetETHAmount = (nextPrice.ClassAbeforeReset - nextPrice.ClassBbeforeReset) * ClassA / nextPrice.ETH,
+					const resetETHAmount =
+							(nextPrice.ClassAbeforeReset - nextPrice.ClassBbeforeReset) * ClassA / nextPrice.ETH,
 						resetClassAAmount = ClassA * nextPrice.ClassBbeforeReset,
 						resetClassBAmount = ClassB * nextPrice.ClassBbeforeReset;
 					const rETH = ETH + resetETHAmount;
@@ -116,13 +121,15 @@ class Root extends React.PureComponent<{}, IState> {
 						ETH: rETH,
 						ClassA: resetClassAAmount,
 						ClassB: resetClassBAmount
-					}
+					};
 					break;
 				}
 			}
+			mvData.push({date: nextPrice.date, MV: mvBeforeReset});
 			this.setState({
 				currentDayCounter: i + 1,
 				currentPriceData: dataSet,
+				dataMV: mvData,
 				assets: newAssets,
 				lastResetETHPrice: nextPrice.ETH,
 				msgType: "<div style='color: rgba(0,186,255,0.7)'>Information</div>",
@@ -131,9 +138,11 @@ class Root extends React.PureComponent<{}, IState> {
 				msgShow: 1
 			});
 		} else {
+			mvData.push({date: nextPrice.date, MV: marketValue});
 			this.setState({
 				currentDayCounter: i + 1,
-				currentPriceData: dataSet
+				currentPriceData: dataSet,
+				dataMV: mvData
 			});
 		}
 	};
@@ -151,8 +160,8 @@ class Root extends React.PureComponent<{}, IState> {
 
 	handleRefresh = () => {
 		this.setState({
-			dataMV: {} as IMVData,
-			currentmvdata: null,
+			dataMV: [{date: "2017/10/1", MV: 50000}],
+			currentmvdata: {} as IMVDatum,
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
 			assets: {
@@ -178,7 +187,7 @@ class Root extends React.PureComponent<{}, IState> {
 		this.setState({});
 	};
 
-	pickerMVDatum = (d: IMVDatum) => {
+	pickedMVDatum = (d: IMVDatum) => {
 		this.setState({});
 	};
 
@@ -672,7 +681,18 @@ class Root extends React.PureComponent<{}, IState> {
 	};
 
 	render() {
-		const {dataPrice, currentPriceData, assets, ETH, Creation, Redemption, ClassA, ClassB, history} = this.state;
+		const {
+			dataPrice,
+			dataMV,
+			currentPriceData,
+			assets,
+			ETH,
+			Creation,
+			Redemption,
+			ClassA,
+			ClassB,
+			history
+		} = this.state;
 		const showData = currentPriceData.slice(0, currentPriceData.length - 1);
 		const currentPrice = currentPriceData[currentPriceData.length - 2];
 		const marketValue =
@@ -709,8 +729,13 @@ class Root extends React.PureComponent<{}, IState> {
 					</div>
 					<div className="d3chart-container">
 						<div className="d3chart-row">
-							<PriceChart name="pricechart" data={showData} pickedPriceDatum={this.pickedPriceDatum} />
-							<PriceChart name="mvchart" data={dataPrice} pickedPriceDatum={this.pickedPriceDatum} />
+							<PriceChart
+								name="pricechart"
+								data={dataPrice}
+								movedata={showData}
+								pickedPriceDatum={this.pickedPriceDatum}
+							/>
+							<MVChart name="mvchart" data={dataMV} pickedMVDatum={this.pickedMVDatum} />
 						</div>
 					</div>
 					<div
