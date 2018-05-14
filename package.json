@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "test": "jest",
-    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "tslint": "tslint -c tslint.json -p tsconfig.json 'src/**/*.ts{,x}'",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "prebuild": "rimraf dist",
     "build": "webpack --config webpack.config.prod.js --json | webpack-bundle-size-analyzer"
@@ -54,7 +54,6 @@
     "optimize-css-assets-webpack-plugin": "^4.0.1",
     "prop-types": "^15.6.1",
     "react-test-renderer": "^16.3.2",
-    "redux-mock-store": "^1.5.1",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
     "ts-jest": "^22.4.4",

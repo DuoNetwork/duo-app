@@ -3,7 +3,6 @@
 	"tabWidth": 4,
 	"singleQuote": true,
 	"useTabs": true,
-	"jsxBracketSameLine": true,
 	"eslintIntegration": true,
 	"bracketSpacing": true
 }
