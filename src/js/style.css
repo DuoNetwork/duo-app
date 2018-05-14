@@ -239,7 +239,8 @@ body {
 .line-ETH,
 .line-ClassA,
 .line-ClassB,
-.line-MV {
+.line-MV,
+.line-MV-area {
 	pointer-events: none;
 }
 

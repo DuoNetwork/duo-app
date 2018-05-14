@@ -266,7 +266,7 @@ export class d3PriceChart {
 			.datum(data)
 			.attr("d", lineETH)
 			.attr("fill", "none")
-			.attr("stroke", "rgba(255,255,255,0.2)")
+			.attr("stroke", "rgba(255,255,255,0.15)")
 			.attr("stroke-linejoin", "round")
 			.attr("stroke-linecap", "round")
 			.attr("stroke-width", 1.5);
