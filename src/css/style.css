@@ -238,18 +238,16 @@ body {
 
 .line-ETH,
 .line-ClassA,
-.line-ClassB,
-.line-MV,
-.line-MV-area {
+.line-ClassB {
 	pointer-events: none;
 }
 
-.legend-ETH, .legend-ClassA, .legend-ClassB, .legend-MV {
+.legend-ETH, .legend-ClassA, .legend-ClassB {
 	width: 6px;
 	height: 6px;
 	margin-right: 5px;
 }
-.legend-ETH, .legend-MV {
+.legend-ETH {
 	background: white;
 }
 .legend-ClassA {
@@ -258,7 +256,6 @@ body {
 .legend-ClassB {
 	background: rgba(255,129,0,0.7);
 }
-
 .asset {
 	border-collapse: collapse;
 	margin-bottom: 20px;
