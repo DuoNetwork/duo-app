@@ -103,9 +103,15 @@ class Root extends React.PureComponent<{}, IState> {
 				case 'upward': {
 					console.log(mvBeforeReset);
 					const resetETHAmount =
-						((nextPrice.ClassAbeforeReset || 0 - 1) * ClassA +
-							(nextPrice.ClassBbeforeReset || 0 - 1) * ClassB) /
+						(((nextPrice.ClassAbeforeReset || 0) - 1) * ClassA +
+							((nextPrice.ClassBbeforeReset || 0) - 1) * ClassB) /
 						nextPrice.ETH;
+					console.log(ClassA);
+					console.log(ClassB);
+					console.log(nextPrice.ClassAbeforeReset);
+					console.log(nextPrice.ClassBbeforeReset);
+					console.log((((nextPrice.ClassAbeforeReset || 0) - 1) * ClassA + ((nextPrice.ClassBbeforeReset || 0) - 1) * ClassB))
+					console.log(resetETHAmount);
 					const rETH = ETH + resetETHAmount;
 					newAssets = {
 						ETH: rETH,
