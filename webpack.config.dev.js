@@ -31,7 +31,7 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
-			favicon: path.join(__dirname, "src/images/favicon.ico"),
+			favicon: path.resolve(__dirname, "src/images/favicon.ico"),
 		}),
 	],
 	module: {

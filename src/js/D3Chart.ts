@@ -38,11 +38,11 @@ export class D3PriceChart {
 		let width: number, height: number;
 
 		if (windowWidth >= 1440) {
-			width = 518.4 - marginP.left - marginP.right;
+			width = 475.2 - marginP.left - marginP.right;
 		} else if (windowWidth <= 960) {
-			width = 345.6 - marginP.left - marginP.right;
+			width = 316.8 - marginP.left - marginP.right;
 		} else {
-			width = windowWidth * 0.36 - marginP.left - marginP.right;
+			width = windowWidth * 0.33 - marginP.left - marginP.right;
 		}
 
 		height = windowHeight - marginP.top - marginP.bottom;
@@ -449,11 +449,11 @@ export class D3MVChart {
 		let width: number, height: number;
 
 		if (windowWidth >= 1440) {
-			width = 518.4 - marginM.left - marginM.right;
+			width = 475.2 - marginP.left - marginP.right;
 		} else if (windowWidth <= 960) {
-			width = 345.6 - marginM.left - marginM.right;
+			width = 316.8 - marginP.left - marginP.right;
 		} else {
-			width = windowWidth * 0.36 - marginM.left - marginM.right;
+			width = windowWidth * 0.33 - marginP.left - marginP.right;
 		}
 
 		height = windowHeight - marginM.top - marginM.bottom;

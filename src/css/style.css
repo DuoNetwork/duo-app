@@ -1,35 +1,356 @@
-.change-button {
-	margin-left: 20px;
+/*
+	APP
+*/
+.App {
+	width: 100vw;
+	height: 100vh;
+}
+button:focus {
+	outline: 0;
+}
+.play-button {
+	position: fixed;
+	top: 88vh;
+	left: 70vw;
+}
+.day-button {
+	margin-left: 10px;
+	margin-right: 10px;
+	border: none;
+	width: 50px;
+	height: 50px;
+}
+.day-button:hover {
+	background-color: transparent;
+}
+.next-day {
+	background: url("../images/nextDay.png");
+	background-size: cover;
+}
+.refresh {
+	background: url("../images/refresh.png");
+	background-size: cover;
+}
+/*
+	Header
+*/
+.header-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	height: 60px;
+	color: white;
+	margin-bottom: 20px;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+.header {
+	width: 80%;
+	height: 100%;
+	max-width: 960px;
+	min-width: 720px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.icon-wrapper {
+	height: 100%;
+}
+.icon-wrapper>img {
+	height: 100%;
+	width: 75.6px;
+}
+.nav-button-wrapper {
+	height: 100%;
+	width: 80px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	font-family: "Montserrat";
+	font-weight: bold;
+	font-size: 13px;
+	letter-spacing: 1px;
+}
+.nav-button-wrapper > a {
+	color: rgba(250,250,250,0.65);
+	text-decoration: none;
+}
+.nav-button-wrapper:hover > a {
+	color: rgba(250,250,250,1);
+}
+.nav-button-wrapper>a:visited {
+	color: rgba(250,250,250,0.65);
 }
 
-button:focus {outline:0;}
+/*
+	Body
+*/
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: rgba(0, 0, 0, 1);
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* Internet Explorer/Edge */
+	user-select: none;
+	/* Non-prefixed version, currently supported by Chrome and Opera */
+}
+/* Info Bar */
+.info-bar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.info-bar-row {
+	height: 140px;
+	width: 960px;
+	margin-bottom: 20px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+.price-tag-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 120px;
+	width:480px;
+	background-color: #181614;
+	padding: 10px 20px;
+}
+.price-tag {
+	height: 120px;
+	width: 160px;
+	position: relative;
+	margin-top: 35px;
+}
+.price-tag-date {
+	width: 440px;
+	position: absolute;
+	color: rgba(250,250,250,0.8);
+	font-family: "Montserrat";
+	font-weight: 600;
+	letter-spacing: 2px;
+	font-size: 16px;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: -moz-linear-gradient(left, rgba(40,41,42,0.9) 0%, rgba(24,22,20,0.2) 100%);
+	background: -webkit-linear-gradient(left, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+	background: linear-gradient(to right, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+}
+.bg-logo {
+	height: 100px;
+	width: 100px;
+	position: absolute;
+	left: -35px;
+}
+.bg-logo > img {
+	height: 100%;
+	width: 100%;
+	opacity: 0.1;
+}
+.tag-title {
+	width: 90px;
+	border-bottom: 1.5px solid rgba(250,250,250,0.6);
+	margin-left: 20px;
+}
+.tag-title > h3 {	
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 14px;
+	color: rgba(250,250,250,0.6);
+	margin: 0;
+}
+.tag-content {
+	width: 120px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+.tag-price {
+	color: white;
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 24px;
+}
+.tag-unit {
+	margin-left: 2px;
+	color: rgba(250,250,250,0.6);
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 12px;
+	margin-top: 11px;
+}
+.tag-price-1 {
+	color: #69BCFF;
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+.tag-price-2 {
+	color: #F9AE32;
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+.tag-price-3 {
+	color: white;
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 12px;
+	margin-bottom: 5px;
+	margin-left: 6px;
+	width: 60px;
+	text-align: right;
+}
+.tag-unit-1, .tag-unit-2 {
+	margin-left: 2px;
+	color: rgba(250,250,250,0.6);
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 10px;
+	margin-top: 6px;
+}
+.tag-unit-3 {
+	color: rgba(250,250,250,0.6);
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 10px;
+	width: 44px;
+}
+.usdL {
+	width: 86px;
+}
+.usd {
+	width: 62px;
+}
+.eth {
+	width: 84px;
+}
+.asset-tag-wrapper {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	height: 120px;
+	width:420px;
+	background-color: #181614;
+	padding: 10px 20px 10px 0px;
+}
+.asset-tag {
+	height: 120px;
+	width: 200px;
+	position: relative;
+	margin-top: 35px;
+}
+.asset-tag-name{
+	width: 300px;
+	position: absolute;
+	color: rgba(250,250,250,0.8);
+	font-family: "Montserrat";
+	font-weight: 600;
+	letter-spacing: 2px;
+	font-size: 16px;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: -moz-linear-gradient(left, rgba(40,41,42,0.9) 0%, rgba(24,22,20,0.2) 100%);
+	background: -webkit-linear-gradient(left, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+	background: linear-gradient(to right, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+}
+.asset-tag-title {
+	width: 120px;
+	border-bottom: 1.5px solid rgba(250,250,250,0.6);
+	margin-left: 20px;
+}
+.asset-tag-title > h3 {	
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 1px;
+	font-size: 14px;
+	color: rgba(250,250,250,0.6);
+	margin: 0;
+}
+.asset-tag-content {
+	width: 140px;
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+/* Chart */
+.d3chart-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+.d3chart-row {
+	display: flex;
+	justify-content: space-between;
+	background-color: #181614;
+	width: 960px;
+}
+.d3chart-wrapper {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;	
+}
+.d3chart-wrapper > h3 {
+	font-family: Montserrat;
+	font-size: 14px;
+	font-weight: 400;
+	color:white;
+	margin: 8px 0px;
+}
+#chart-pricechart,
+#chart-mvchart {
+	background-color: #181614;
+	cursor: crosshair;
+}
 
 button {
-	border: 1px solid rgba(250,250,250,.6);
+	border: 1px solid rgba(250, 250, 250, .6);
 	padding: 2px 8px;
 	background: transparent;
 	color: white;
 }
 
 button:active {
-	background: rgba(250,250,250,.3);
+	background: rgba(250, 250, 250, .3);
 	border-color: white;
 }
 
 input {
-	border: 1px solid rgba(250,250,250,.6);
+	border: 1px solid rgba(250, 250, 250, .6);
 	padding: 2px 2px;
-	background: rgba(250,250,250,.1);
+	background: rgba(250, 250, 250, .1);
 	color: white;
 	text-align: right;
 }
 
-.x-axis-pricechart text, 
-.ly-axis-pricechart text, 
+.x-axis-pricechart text,
+.ly-axis-pricechart text,
 .ry-axis-pricechart text,
-.x-axis-mvchart text, 
-.ly-axis-mvchart text, 
-.ry-axis-mvchart text{
+.x-axis-mvchart text,
+.ly-axis-mvchart text,
+.ry-axis-mvchart text {
 	font: 8px sans-serif;
 	fill: rgba(255, 255, 255, 0.4);
 	pointer-events: none;
@@ -46,64 +367,32 @@ input {
 .ly-axis-mvchart path,
 .ly-axis-mvchart line,
 .ry-axis-mvchart path,
-.ry-axis-mvchart line{
+.ry-axis-mvchart line {
 	fill: none;
 	stroke: rgba(255, 255, 255, 0.4);
 	shape-rendering: crispEdges;
 	pointer-events: none;
 }
 
-body {
-	margin: 0;
-	padding: 0;
-	font-family: sans-serif;
-	background: rgba(0, 0, 0, 1);
-	-webkit-touch-callout: none; /* iOS Safari */
-	-webkit-user-select: none; /* Safari */
-	-khtml-user-select: none; /* Konqueror HTML */
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* Internet Explorer/Edge */
-	user-select: none; /* Non-prefixed version, currently
-                                supported by Chrome and Opera */
-}
-
 .change-button {
-  height: 24px;
+	height: 24px;
 }
 
 .line-settings {
-  color: white;
-  font-size: 12px;
-  line-height: 24px;
-  list-style-type: none;
-  padding-left: 5px;
-  margin: 0;
-  margin-right: 10px;
-}
-.d3chart-container {
-	width: 100%;
-	display: flex;
-	justify-content: center;
-}
-
-.d3chart-row {
-	display: flex;
-	justify-content: space-between;
-}
-
-#trade-chart-pricechart, #trade-chart-mvchart {
-	position: relative;
-}
-#trade-chart-pricechart {
+	color: white;
+	font-size: 12px;
+	line-height: 24px;
+	list-style-type: none;
+	padding-left: 5px;
+	margin: 0;
 	margin-right: 10px;
 }
+
+#trade-chart-pricechart,
 #trade-chart-mvchart {
-	margin-left: 10px;
+	position: relative;
 }
-#chart-pricechart, #chart-mvchart {
-	background-color: #222;
-	cursor: crosshair;
-}
+
 
 #chart div {
 	background: white;
@@ -115,19 +404,24 @@ body {
 	font: 10px sans-serif;
 	text-anchor: end;
 }
+
 .bar-rect {
 	z-index: 2;
 }
+
 .bar-background {
 	fill: rgba(255, 255, 255, 0);
 	stroke: none;
 	z-index: 1;
 }
 
-.single-bar-pricechart,  .single-bar-mvchart{
+.single-bar-pricechart,
+.single-bar-mvchart {
 	z-index: 5;
 }
-.single-bar-pricechart:hover .bar-background, .single-bar-mvchart:hover .bar-background {
+
+.single-bar-pricechart:hover .bar-background,
+.single-bar-mvchart:hover .bar-background {
 	fill: rgba(50, 50, 50, 0.6);
 }
 
@@ -176,7 +470,8 @@ body {
 	height: 14px;
 }
 
-.y-axis-tip-v, .y-axis-tip-v-percentage {
+.y-axis-tip-v,
+.y-axis-tip-v-percentage {
 	position: absolute;
 	background: rgba(50, 50, 50, 0.95);
 	border: 1px solid rgba(60, 60, 60, 1);
@@ -204,7 +499,8 @@ body {
 	pointer-events: none;
 }
 
-.info-bar-pricechart, .info-bar-mvchart {
+.info-bar-pricechart,
+.info-bar-mvchart {
 	position: absolute;
 	top: 5px;
 	left: 20px;
@@ -229,40 +525,51 @@ body {
 	margin-left: 5px;
 }
 
-.ClassA-price, .ClassB-price {
+.ClassA-price,
+.ClassB-price {
 	width: 28px;
 }
+
 .reset-text {
-	color: rgba(214,48,48,1);
+	color: rgba(214, 48, 48, 1);
 }
 
 .line-ETH,
 .line-ClassA,
-.line-ClassB {
+.line-ClassB,
+.line-MV,
+.line-MV-area {
 	pointer-events: none;
 }
 
-.legend-ETH, .legend-ClassA, .legend-ClassB {
+.legend-ETH,
+.legend-ClassA,
+.legend-ClassB {
 	width: 6px;
 	height: 6px;
 	margin-right: 5px;
 }
+
 .legend-ETH {
 	background: white;
 }
+
 .legend-ClassA {
-	background: rgba(0,186,255,0.7);
+	background: rgba(0, 186, 255, 0.7);
 }
+
 .legend-ClassB {
-	background: rgba(255,129,0,0.7);
+	background: rgba(255, 129, 0, 0.7);
 }
+
 .asset {
 	border-collapse: collapse;
 	margin-bottom: 20px;
 	width: 500px;
 }
-.asset > tbody > tr > td {
-	border: 1px solid rgba(250,250,250,.7);
+
+.asset>tbody>tr>td {
+	border: 1px solid rgba(250, 250, 250, .7);
 	padding: 5px;
 	width: 80px;
 	line-height: 33px;
@@ -272,8 +579,9 @@ body {
 	border-collapse: collapse;
 	font-size: 12px
 }
-.transaction > tbody > tr > td {
-	border: 1px solid rgba(250,250,250,.7);
+
+.transaction>tbody>tr>td {
+	border: 1px solid rgba(250, 250, 250, .7);
 	padding: 5px 15px 5px 15px;
 	height: 30px;
 }
@@ -282,6 +590,7 @@ body {
 	margin-left: 5px;
 	width: 44px;
 }
+
 .trans-input-wrapper {
 	width: 160px;
 	height: 30px;
@@ -289,11 +598,7 @@ body {
 	text-align: right;
 }
 
-.day-button {
-	margin-left: 5px;
-	margin-right: 5px;
-	padding: 5px 10px;
-}
+
 
 .msg-content {
 	font-size: 12px;

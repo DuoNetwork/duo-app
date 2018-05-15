@@ -5,6 +5,10 @@ import * as ReactDOM from 'react-dom';
 import '../css/style.css';
 import { IMVData, IMVDatum, IPriceData, MVChart, PriceChart } from './Chart';
 import Message from './Message';
+const duoIcon = require('../images/DUO_icon.png');
+const ethIcon = require('../images/ethIcon.png');
+const classAIcon = require('../images/ClassA_white.png');
+const classBIcon = require('../images/ClassB_white.png');
 const mockdata: IPriceData = require('./Data/ETH_A_B.json');
 const format = d3.timeFormat('%Y %b %d');
 
@@ -33,7 +37,6 @@ interface IState {
 }
 
 interface IAssets {
-	USD: number;
 	ETH: number;
 	ClassA: number;
 	ClassB: number;
@@ -50,8 +53,7 @@ class Root extends React.PureComponent<{}, IState> {
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
 			assets: {
-				USD: 50000,
-				ETH: 0,
+				ETH: 100,
 				ClassA: 0,
 				ClassB: 0
 			},
@@ -82,20 +84,19 @@ class Root extends React.PureComponent<{}, IState> {
 	};
 
 	public handleNextDay = () => {
-		const { USD, ETH, ClassA, ClassB } = this.state.assets;
+		const { ETH, ClassA, ClassB } = this.state.assets;
 		//const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const nextPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
 		const i = this.state.currentDayCounter;
 		const dataSet = mockdata.slice(0, i + 2);
 		const mvBeforeReset =
-			USD +
 			ETH * nextPrice.ETH +
 			ClassA * (nextPrice.ClassAbeforeReset || 0) +
 			ClassB * (nextPrice.ClassBbeforeReset || 0);
 		let newAssets;
 		const mvData = this.state.dataMV;
 		const marketValue =
-			USD + ETH * nextPrice.ETH + ClassA * nextPrice.ClassA + ClassB * nextPrice.ClassB;
+			ETH * nextPrice.ETH + ClassA * nextPrice.ClassA + ClassB * nextPrice.ClassB;
 
 		if (nextPrice.ResetType) {
 			switch (nextPrice.ResetType) {
@@ -107,7 +108,6 @@ class Root extends React.PureComponent<{}, IState> {
 						nextPrice.ETH;
 					const rETH = ETH + resetETHAmount;
 					newAssets = {
-						USD: USD,
 						ETH: rETH,
 						ClassA: ClassA,
 						ClassB: ClassB
@@ -125,7 +125,6 @@ class Root extends React.PureComponent<{}, IState> {
 						resetClassBAmount = ClassB * (nextPrice.ClassBbeforeReset || 0);
 					const rETH = ETH + resetETHAmount;
 					newAssets = {
-						USD: USD,
 						ETH: rETH,
 						ClassA: resetClassAAmount,
 						ClassB: resetClassBAmount
@@ -157,17 +156,6 @@ class Root extends React.PureComponent<{}, IState> {
 		}
 	};
 
-	/*
-	handleNextFiveDay = () => {
-		const i = this.state.currentDayCounter;
-		const dataSet = mockdata.slice(0, i + 5);
-		this.setState({
-			currentDayCounter: i + 5,
-			currentPriceData: dataSet
-		});
-	};
-	*/
-
 	public handleRefresh = () => {
 		this.setState({
 			dataMV: [{ date: '2017/10/1', MV: 50000 }],
@@ -175,8 +163,7 @@ class Root extends React.PureComponent<{}, IState> {
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
 			assets: {
-				USD: 50000,
-				ETH: 0,
+				ETH: 100,
 				ClassA: 0,
 				ClassB: 0
 			},
@@ -196,142 +183,19 @@ class Root extends React.PureComponent<{}, IState> {
 	public pickedPriceDatum = () => {
 		this.setState({});
 	};
-
 	public pickedMVDatum = () => {
 		this.setState({});
-	};
-
-	public handleBuyETH = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
-		const { assets, ETH, history } = this.state;
-		const valueETH = this.state.ETH * currentPrice.ETH;
-		if (ETH && ETH > 0) {
-			if (valueETH <= assets.USD) {
-				const rUSD = assets.USD - valueETH;
-				const newAssets: IAssets = {
-					USD: rUSD,
-					ETH: assets.ETH + ETH,
-					ClassA: assets.ClassA,
-					ClassB: assets.ClassB
-				};
-				const newHistory = history;
-				newHistory.push(
-					format(new Date(Date.parse(currentPrice.date))) +
-						': Bought ' +
-						d3.formatPrefix(',.2', 1)(ETH) +
-						' ETH with $' +
-						d3.formatPrefix(',.2', 1)(ETH * currentPrice.ETH) +
-						' USD.'
-				);
-				this.setState({
-					ETH: 0,
-					ETHIn: '',
-					assets: newAssets,
-					history: newHistory,
-					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
-						d3.formatPrefix(',.2', 1)(ETH) +
-						" ETH</span> with <span style='color: rgba(255,255,255, 1)'>$" +
-						d3.formatPrefix(',.2', 1)(ETH * currentPrice.ETH) +
-						' USD</span>.</div>',
-					msgShow: 1
-				});
-				return;
-			} else {
-				this.setState({
-					ETH: 0,
-					ETHIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient USD balance.</div>",
-					msgShow: 1
-				});
-				return;
-			}
-		} else {
-			this.setState({
-				ETH: 0,
-				ETHIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
-				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
-				msgShow: 1
-			});
-			return;
-		}
-	};
-	public handleSellETH = () => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
-		const { assets, ETH, history } = this.state;
-		const valueETH = this.state.ETH * currentPrice.ETH;
-		if (ETH && ETH > 0) {
-			if (ETH <= assets.ETH) {
-				//const rETH = assets.ETH - ETH;
-				const newAssets: IAssets = {
-					USD: assets.USD + valueETH,
-					ETH: assets.ETH - ETH,
-					ClassA: assets.ClassA,
-					ClassB: assets.ClassB
-				};
-				const newHistory = history;
-				newHistory.push(
-					format(new Date(Date.parse(currentPrice.date))) +
-						': Sold ' +
-						d3.formatPrefix(',.2', 1)(ETH) +
-						' ETH for $' +
-						d3.formatPrefix(',.2', 1)(ETH * currentPrice.ETH) +
-						' USD.'
-				);
-				this.setState({
-					ETH: 0,
-					ETHIn: '',
-					assets: newAssets,
-					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .6)'>You sold <span style='color: rgba(255,255,255, 1)'>" +
-						d3.formatPrefix(',.2', 1)(ETH) +
-						" ETH</span> for <span style='color: rgba(255,255,255, 1)'>$" +
-						d3.formatPrefix(',.2', 1)(ETH * currentPrice.ETH) +
-						' USD</span>.</div>',
-					msgShow: 1
-				});
-				return;
-			} else {
-				this.setState({
-					ETH: 0,
-					ETHIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
-					msgShow: 1
-				});
-				return;
-			}
-		} else {
-			this.setState({
-				ETH: 0,
-				ETHIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
-				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
-				msgShow: 1
-			});
-			return;
-		}
 	};
 	public handleBuyClassA = () => {
 		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const { assets, ClassA, history } = this.state;
 		const valueClassA = this.state.ClassA * currentPrice.ClassA;
+		const valueETH = assets.ETH * currentPrice.ETH;
 		if (ClassA && ClassA > 0) {
-			if (valueClassA <= assets.USD) {
-				const rUSD = assets.USD - valueClassA;
+			if (valueClassA <= valueETH) {
+				const rETH = (valueETH - valueClassA) / currentPrice.ETH;
 				const newAssets: IAssets = {
-					USD: rUSD,
-					ETH: assets.ETH,
+					ETH: rETH,
 					ClassA: assets.ClassA + ClassA,
 					ClassB: assets.ClassB
 				};
@@ -340,9 +204,9 @@ class Root extends React.PureComponent<{}, IState> {
 					format(new Date(Date.parse(currentPrice.date))) +
 						': Bought ' +
 						d3.formatPrefix(',.2', 1)(ClassA) +
-						' ClassA with $' +
-						d3.formatPrefix(',.2', 1)(ClassA * currentPrice.ClassA) +
-						' USD.'
+						' ClassA with ' +
+						d3.formatPrefix(',.6', 1)(valueClassA / currentPrice.ETH) +
+						' ETH.'
 				);
 				this.setState({
 					ClassA: 0,
@@ -354,9 +218,9 @@ class Root extends React.PureComponent<{}, IState> {
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassA) +
-						" ClassA</span> with <span style='color: rgba(255,255,255, 1)'>$" +
-						d3.formatPrefix(',.2', 1)(ClassA * currentPrice.ClassA) +
-						' USD</span>.</div>',
+						" ClassA</span> with <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(',.6', 1)(valueClassA / currentPrice.ETH) +
+						' ETH</span>.</div>',
 					msgShow: 1
 				});
 				return;
@@ -366,7 +230,7 @@ class Root extends React.PureComponent<{}, IState> {
 					ClassAIn: '',
 					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient USD balance.</div>",
+						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
 					msgShow: 1
 				});
 				return;
@@ -389,10 +253,8 @@ class Root extends React.PureComponent<{}, IState> {
 		const valueClassA = this.state.ClassA * currentPrice.ClassA;
 		if (ClassA && ClassA > 0) {
 			if (ClassA <= assets.ClassA) {
-				//const rClassA = assets.ClassA - ClassA;
 				const newAssets: IAssets = {
-					USD: assets.USD + valueClassA,
-					ETH: assets.ETH,
+					ETH: assets.ETH + valueClassA / currentPrice.ETH,
 					ClassA: assets.ClassA - ClassA,
 					ClassB: assets.ClassB
 				};
@@ -401,9 +263,9 @@ class Root extends React.PureComponent<{}, IState> {
 					format(new Date(Date.parse(currentPrice.date))) +
 						': Sold ' +
 						d3.formatPrefix(',.2', 1)(ClassA) +
-						' ClassA for $' +
-						d3.formatPrefix(',.2', 1)(ClassA * currentPrice.ClassA) +
-						' USD.'
+						' ClassA for ' +
+						d3.formatPrefix(',.6', 1)(valueClassA / currentPrice.ETH) +
+						' ETH.'
 				);
 				this.setState({
 					ClassA: 0,
@@ -415,9 +277,9 @@ class Root extends React.PureComponent<{}, IState> {
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassA) +
-						" ClassA</span> with <span style='color: rgba(255,255,255, 1)'>$" +
-						d3.formatPrefix(',.2', 1)(ClassA * currentPrice.ClassA) +
-						' USD</span>.</div>',
+						" ClassA</span> with <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(',.6', 1)(valueClassA / currentPrice.ETH) +
+						' ETH</span>.</div>',
 					msgShow: 1
 				});
 				return;
@@ -448,12 +310,12 @@ class Root extends React.PureComponent<{}, IState> {
 		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const { assets, ClassB, history } = this.state;
 		const valueClassB = this.state.ClassB * currentPrice.ClassB;
+		const valueETH = assets.ETH * currentPrice.ETH;
 		if (ClassB && ClassB > 0) {
-			if (valueClassB <= assets.USD) {
-				const rUSD = assets.USD - valueClassB;
+			if (valueClassB <= valueETH) {
+				const rETH = (valueETH - valueClassB) / currentPrice.ETH;
 				const newAssets: IAssets = {
-					USD: rUSD,
-					ETH: assets.ETH,
+					ETH: rETH,
 					ClassA: assets.ClassA,
 					ClassB: assets.ClassB + ClassB
 				};
@@ -462,9 +324,9 @@ class Root extends React.PureComponent<{}, IState> {
 					format(new Date(Date.parse(currentPrice.date))) +
 						': Bought ' +
 						d3.formatPrefix(',.2', 1)(ClassB) +
-						' ClassB with $' +
-						d3.formatPrefix(',.2', 1)(ClassB * currentPrice.ClassB) +
-						' USD.'
+						' ClassB with ' +
+						d3.formatPrefix(',.6', 1)(valueClassB / currentPrice.ETH) +
+						' ETH.'
 				);
 				this.setState({
 					ClassB: 0,
@@ -476,9 +338,9 @@ class Root extends React.PureComponent<{}, IState> {
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassB) +
-						" ClassB</span> with <span style='color: rgba(255,255,255, 1)'>$" +
-						d3.formatPrefix(',.2', 1)(ClassB * currentPrice.ClassB) +
-						' USD</span>.</div>',
+						" ClassB</span> with <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(',.6', 1)(valueClassB / currentPrice.ETH) +
+						' ETH</span>.</div>',
 					msgShow: 1
 				});
 				return;
@@ -488,7 +350,7 @@ class Root extends React.PureComponent<{}, IState> {
 					ClassBIn: '',
 					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
 					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient USD balance.</div>",
+						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
 					msgShow: 1
 				});
 				return;
@@ -513,8 +375,7 @@ class Root extends React.PureComponent<{}, IState> {
 			if (ClassB <= assets.ClassB) {
 				//const rClassB = assets.ClassB - ClassB;
 				const newAssets: IAssets = {
-					USD: assets.USD + valueClassB,
-					ETH: assets.ETH,
+					ETH: assets.ETH + valueClassB / currentPrice.ETH,
 					ClassA: assets.ClassA,
 					ClassB: assets.ClassB - ClassB
 				};
@@ -523,9 +384,9 @@ class Root extends React.PureComponent<{}, IState> {
 					format(new Date(Date.parse(currentPrice.date))) +
 						': Sold ' +
 						d3.formatPrefix(',.2', 1)(ClassB) +
-						' ClassB for $' +
-						d3.formatPrefix(',.2', 1)(ClassB * currentPrice.ClassB) +
-						' USD.'
+						' ClassB for ' +
+						d3.formatPrefix(',.6', 1)(valueClassB / currentPrice.ETH) +
+						' ETH.'
 				);
 				this.setState({
 					ClassB: 0,
@@ -537,9 +398,9 @@ class Root extends React.PureComponent<{}, IState> {
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassB) +
-						" ClassB</span> with <span style='color: rgba(255,255,255, 1)'>$" +
-						d3.formatPrefix(',.2', 1)(ClassB * currentPrice.ClassB) +
-						' USD</span>.</div>',
+						" ClassB</span> with <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(',.6', 1)(valueClassB / currentPrice.ETH) +
+						' ETH</span>.</div>',
 					msgShow: 1
 				});
 				return;
@@ -577,7 +438,6 @@ class Root extends React.PureComponent<{}, IState> {
 				const rClassA = assets.ClassA + splitOutcome,
 					rClassB = assets.ClassB + splitOutcome;
 				const newAssets: IAssets = {
-					USD: assets.USD,
 					ETH: rETH,
 					ClassA: rClassA,
 					ClassB: rClassB
@@ -639,7 +499,6 @@ class Root extends React.PureComponent<{}, IState> {
 				const combineOutcome = Redemption * 2;
 				const rETH = assets.ETH + combineOutcome / lastResetETHPrice;
 				const newAssets: IAssets = {
-					USD: assets.USD,
 					ETH: rETH,
 					ClassA: rClassA,
 					ClassB: rClassB
@@ -650,7 +509,7 @@ class Root extends React.PureComponent<{}, IState> {
 						': Combine ' +
 						d3.formatPrefix(',.2', 1)(Redemption) +
 						' ClassA/B into ' +
-						d3.formatPrefix(',.2', 1)(combineOutcome / lastResetETHPrice) +
+						d3.formatPrefix(',.6', 1)(combineOutcome / lastResetETHPrice) +
 						' ETH.'
 				);
 				this.setState({
@@ -663,7 +522,7 @@ class Root extends React.PureComponent<{}, IState> {
 						"<div style='color: rgba(255,255,255, .6)'>Combine <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(Redemption) +
 						" ClassA/B</span> into <span style='color: rgba(255,255,255, 1)'>" +
-						d3.formatPrefix(',.2', 1)(combineOutcome / lastResetETHPrice) +
+						d3.formatPrefix(',.6', 1)(combineOutcome / lastResetETHPrice) +
 						' ETH</span>',
 					msgShow: 1
 				});
@@ -691,19 +550,16 @@ class Root extends React.PureComponent<{}, IState> {
 			return;
 		}
 	};
-
 	public closeMSG = (e: number) => {
 		this.setState({
 			msgShow: e
 		});
 	};
-
 	public render() {
 		const { dataPrice, dataMV, currentPriceData, assets, history } = this.state;
 		const showData = currentPriceData.slice(0, currentPriceData.length - 1);
 		const currentPrice = currentPriceData[currentPriceData.length - 2];
 		const marketValue =
-			assets.USD +
 			assets.ETH * currentPrice.ETH +
 			assets.ClassA * currentPrice.ClassA +
 			assets.ClassB * currentPrice.ClassB;
@@ -723,52 +579,180 @@ class Root extends React.PureComponent<{}, IState> {
 					close={this.closeMSG}
 				/>
 				<div style={{ zIndex: 10 }}>
-					<div
-						style={{
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							flexDirection: 'row',
-							height: '60px',
-							color: 'white'
-						}}
-					>
-						DUO Demo
+					<div className="play-button">
+						<button className="day-button next-day" onClick={this.handleNextDay} />
+						<button className="day-button refresh" onClick={this.handleRefresh} />
+					</div>
+					<div className="header-wrapper">
+						<div className="header">
+							<div className="icon-wrapper">
+								<img src={duoIcon} />
+							</div>
+							<div className="nav-button-wrapper">
+								<a href="https://duo.network">HOME</a>
+							</div>
+						</div>
+					</div>
+					<div className="info-bar">
+						<div className="info-bar-row">
+							<div className="price-tag-wrapper">
+								<div className="price-tag-date">
+									<span>
+										{'Date  ' + format(new Date(Date.parse(currentPrice.date)))}
+									</span>
+								</div>
+								<div className="price-tag">
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-title">
+										<h3>ETH</h3>
+									</div>
+									<div className="tag-content">
+										<div style={{ display: 'flex', flexDirection: 'row' }}>
+											<div className="tag-price usdL">
+												{d3.formatPrefix(',.2', 1)(currentPrice.ETH)}
+											</div>
+											<div className="tag-unit">USD</div>
+										</div>
+									</div>
+								</div>
+								<div className="price-tag">
+									<div className="bg-logo">
+										<img src={classAIcon} />
+									</div>
+									<div className="tag-title">
+										<h3>Class A</h3>
+									</div>
+									<div className="tag-content">
+										<div>
+											<div style={{ display: 'flex', flexDirection: 'row' }}>
+												<div className="tag-price-1 usd">
+													{d3.formatPrefix(',.4', 1)(currentPrice.ClassA)}
+												</div>
+												<div className="tag-unit-1">USD</div>
+											</div>
+											<div style={{ display: 'flex', flexDirection: 'row' }}>
+												<div className="tag-price-1 eth">
+													{d3.formatPrefix(',.6', 1)(
+														currentPrice.ClassA / currentPrice.ETH
+													)}
+												</div>
+												<div className="tag-unit-1">ETH</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="price-tag">
+									<div className="bg-logo">
+										<img src={classBIcon} />
+									</div>
+									<div className="tag-title">
+										<h3>Class B</h3>
+									</div>
+									<div className="tag-content">
+										<div>
+											<div style={{ display: 'flex', flexDirection: 'row' }}>
+												<div className="tag-price-2 usd">
+													{d3.formatPrefix(',.4', 1)(currentPrice.ClassB)}
+												</div>
+												<div className="tag-unit-2">USD</div>
+											</div>
+											<div style={{ display: 'flex', flexDirection: 'row' }}>
+												<div className="tag-price-2 eth">
+													{d3.formatPrefix(',.6', 1)(
+														currentPrice.ClassB / currentPrice.ETH
+													)}
+												</div>
+												<div className="tag-unit-2">ETH</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="asset-tag-wrapper">
+								<div className="asset-tag-name">
+									<span>Assets</span>
+								</div>
+								<div className="asset-tag">
+									<div className="asset-tag-title">
+										<h3>Market Value</h3>
+									</div>
+									<div className="asset-tag-content">
+										<div style={{ display: 'flex', flexDirection: 'row' }}>
+											<div className="tag-price mv-usd">
+												{d3.formatPrefix(',.2', 1)(marketValue)}
+											</div>
+											<div className="tag-unit">USD</div>
+										</div>
+									</div>
+								</div>
+								<div className="asset-tag">
+									<div className="asset-tag-title">
+										<h3>Holdings</h3>
+									</div>
+									<div className="asset-tag-content">
+										<div
+											style={{
+												display: 'flex',
+												flexDirection: 'row',
+												justifyContent: 'space-between'
+											}}
+										>
+											<div className="tag-unit-3">ETH</div>
+											<div className="tag-price-3">
+												{d3.formatPrefix(',.2', 1)(assets.ETH)}
+											</div>
+										</div>
+										<div
+											style={{
+												display: 'flex',
+												flexDirection: 'row',
+												justifyContent: 'space-between'
+											}}
+										>
+											<div className="tag-unit-3">Class A</div>
+											<div className="tag-price-3">
+												{d3.formatPrefix(',.2', 1)(assets.ClassA)}
+											</div>
+										</div>
+										<div
+											style={{
+												display: 'flex',
+												flexDirection: 'row',
+												justifyContent: 'space-between'
+											}}
+										>
+											<div className="tag-unit-3">Class B</div>
+											<div className="tag-price-3">
+												{d3.formatPrefix(',.2', 1)(assets.ClassB)}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div className="d3chart-container">
 						<div className="d3chart-row">
-							<PriceChart
-								name="pricechart"
-								data={dataPrice}
-								movedata={showData}
-								pickedPriceDatum={this.pickedPriceDatum}
-							/>
-							<MVChart
-								name="mvchart"
-								data={dataMV}
-								pickedMVDatum={this.pickedMVDatum}
-							/>
+							<div className="d3chart-wrapper">
+								<h3>Price Chart</h3>
+								<PriceChart
+									name="pricechart"
+									data={dataPrice}
+									movedata={showData}
+									pickedPriceDatum={this.pickedPriceDatum}
+								/>
+							</div>
+							<div className="d3chart-wrapper">
+								<h3>Market Value Chart</h3>
+								<MVChart
+									name="mvchart"
+									data={dataMV}
+									pickedMVDatum={this.pickedMVDatum}
+								/>
+							</div>
 						</div>
-					</div>
-					<div
-						style={{
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							flexDirection: 'row',
-							height: '60px',
-							color: 'white'
-						}}
-					>
-						<div style={{ marginRight: '5px', width: '138px' }}>
-							{'Date: ' + format(new Date(Date.parse(currentPrice.date)))}
-						</div>
-						<button className="day-button" onClick={this.handleNextDay}>
-							Next Day
-						</button>
-						<button className="day-button" onClick={this.handleRefresh}>
-							Restart
-						</button>
 					</div>
 					<div
 						style={{
@@ -790,14 +774,12 @@ class Root extends React.PureComponent<{}, IState> {
 								<table className="asset">
 									<tbody>
 										<tr>
-											<td>USD($)</td>
 											<td>ETH</td>
 											<td>ClassA</td>
 											<td>ClassB</td>
 											<td>MV</td>
 										</tr>
 										<tr>
-											<td>{d3.formatPrefix(',.2', 1)(assets.USD)}</td>
 											<td>
 												{d3.formatPrefix(',.2', 1)(
 													assets.ETH * currentPrice.ETH
@@ -834,34 +816,6 @@ class Root extends React.PureComponent<{}, IState> {
 											<td>Input</td>
 											<td>Action</td>
 											<td>Currently Own</td>
-										</tr>
-										<tr>
-											<td>ETH</td>
-											<td className="trans-input-wrapper">
-												Number of ETH
-												<input
-													onChange={e =>
-														this.setState({
-															ETHIn: e.target.value,
-															ETH: this.round(Number(e.target.value))
-														})
-													}
-													value={this.state.ETHIn}
-													className="trans-input"
-												/>
-											</td>
-											<td>
-												<button
-													onClick={this.handleBuyETH}
-													style={{ marginBottom: '2px' }}
-												>
-													Buy
-												</button>
-												<button onClick={this.handleSellETH}>Sell</button>
-											</td>
-											<td style={{ textAlign: 'right' }}>
-												{assets.ETH.toFixed(2)}
-											</td>
 										</tr>
 										<tr>
 											<td>Creation</td>

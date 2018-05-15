@@ -81,7 +81,7 @@ export class PriceChart extends React.Component<IPriceProps, IPriceState> {
 			el,
 			{
 				windowWidth: this.state.windowWidth,
-				windowHeight: 400
+				windowHeight: 300
 			},
 			this.getChartStates()
 		);
@@ -109,7 +109,7 @@ export class PriceChart extends React.Component<IPriceProps, IPriceState> {
 				el,
 				{
 					windowWidth: this.state.windowWidth,
-					windowHeight: 400
+					windowHeight: 300
 				},
 				{
 					name: nextProps.name,
@@ -159,7 +159,7 @@ export class MVChart extends React.Component<IMVProps, IMVState> {
 			el,
 			{
 				windowWidth: this.state.windowWidth,
-				windowHeight: 400
+				windowHeight: 300
 			},
 			this.getChartStates()
 		);
@@ -184,7 +184,7 @@ export class MVChart extends React.Component<IMVProps, IMVState> {
 				el,
 				{
 					windowWidth: this.state.windowWidth,
-					windowHeight: 400
+					windowHeight: 300
 				},
 				{
 					name: nextProps.name,
