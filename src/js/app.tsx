@@ -4,7 +4,9 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import '../css/style.css';
 import { IMVData, IMVDatum, IPriceData, MVChart, PriceChart } from './Chart';
+import HistroyCard from './HistoryCard';
 import Message from './Message';
+
 const duoIcon = require('../images/DUO_icon.png');
 const ethIcon = require('../images/ethIcon.png');
 const classAIcon = require('../images/ClassA_white.png');
@@ -74,15 +76,12 @@ class Root extends React.PureComponent<{}, IState> {
 			history: []
 		};
 	}
-
 	public componentDidMount() {
 		console.log('Welcome to DUO Demo!');
 	}
-
 	public round = num => {
 		return +(Math.round((num + 'e+2') as any) + 'e-2');
 	};
-
 	public handleNextDay = () => {
 		const { ETH, ClassA, ClassB } = this.state.assets;
 		//const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
@@ -155,7 +154,6 @@ class Root extends React.PureComponent<{}, IState> {
 			});
 		}
 	};
-
 	public handleRefresh = () => {
 		this.setState({
 			dataMV: [{ date: '2017/10/1', MV: 50000 }],
@@ -179,7 +177,6 @@ class Root extends React.PureComponent<{}, IState> {
 			history: []
 		});
 	};
-
 	public pickedPriceDatum = () => {
 		this.setState({});
 	};
@@ -563,13 +560,6 @@ class Root extends React.PureComponent<{}, IState> {
 			assets.ETH * currentPrice.ETH +
 			assets.ClassA * currentPrice.ClassA +
 			assets.ClassB * currentPrice.ClassB;
-		const historyList = history.length ? (
-			history.map((d, i) => {
-				return <li key={i}>{d}</li>;
-			})
-		) : (
-			<li>No transaction</li>
-		);
 		return (
 			<div className="App">
 				<Message
@@ -762,179 +752,159 @@ class Root extends React.PureComponent<{}, IState> {
 					<div
 						style={{
 							display: 'flex',
-							justifyContent: 'center',
-							flexDirection: 'row'
+							justifyContent: 'center'
 						}}
 					>
-						<div style={{ width: '500px' }}>
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									flexDirection: 'row',
-									color: 'white'
-								}}
-							>
-								<table className="transaction">
-									<tbody>
-										<tr style={{ textAlign: 'center' }}>
-											<td>Transaction</td>
-											<td>Input</td>
-											<td>Action</td>
-											<td>Currently Own</td>
-										</tr>
-										<tr>
-											<td>Creation</td>
-											<td className="trans-input-wrapper">
-												Number of ETH
-												<input
-													onChange={e =>
-														this.setState({
-															CreationIn: e.target.value,
-															Creation: this.round(
-																Number(e.target.value)
-															)
-														})
-													}
-													value={this.state.CreationIn}
-													className="trans-input"
-												/>
-											</td>
-											<td>
-												<button onClick={this.handleCreation}>
-													Create
-												</button>
-											</td>
-											<td style={{ textAlign: 'right' }}>
-												{assets.ETH.toFixed(2)}
-											</td>
-										</tr>
-										<tr>
-											<td>Redemption</td>
-											<td className="trans-input-wrapper">
-												Number of ClassA/B
-												<input
-													onChange={e =>
-														this.setState({
-															RedemptionIn: e.target.value,
-															Redemption: this.round(
-																Number(e.target.value)
-															)
-														})
-													}
-													value={this.state.RedemptionIn}
-													className="trans-input"
-												/>
-											</td>
-											<td>
-												<button onClick={this.handleRedemption}>
-													Redeem
-												</button>
-											</td>
-											<td style={{ textAlign: 'right' }}>
-												{(
-													d3.min([assets.ClassA, assets.ClassB]) || 0
-												).toFixed(2)}
-											</td>
-										</tr>
-										<tr>
-											<td>ClassA</td>
-											<td className="trans-input-wrapper">
-												Number of ClassA
-												<input
-													onChange={e =>
-														this.setState({
-															ClassAIn: e.target.value,
-															ClassA: this.round(
-																Number(e.target.value)
-															)
-														})
-													}
-													value={this.state.ClassAIn}
-													className="trans-input"
-												/>
-											</td>
-											<td>
-												<button
-													onClick={this.handleBuyClassA}
-													style={{ marginBottom: '2px' }}
-												>
-													Buy
-												</button>
-												<button onClick={this.handleSellClassA}>
-													Sell
-												</button>
-											</td>
-											<td style={{ textAlign: 'right' }}>
-												{assets.ClassA.toFixed(2)}
-											</td>
-										</tr>
-										<tr>
-											<td>ClassB</td>
-											<td className="trans-input-wrapper">
-												Number of ClassB
-												<input
-													onChange={e =>
-														this.setState({
-															ClassBIn: e.target.value,
-															ClassB: this.round(
-																Number(e.target.value)
-															)
-														})
-													}
-													value={this.state.ClassBIn}
-													className="trans-input"
-												/>
-											</td>
-											<td>
-												<button
-													onClick={this.handleBuyClassB}
-													style={{ marginBottom: '2px' }}
-												>
-													Buy
-												</button>
-												<button onClick={this.handleSellClassB}>
-													Sell
-												</button>
-											</td>
-											<td style={{ textAlign: 'right' }}>
-												{assets.ClassB.toFixed(2)}
-											</td>
-										</tr>
-									</tbody>
-								</table>
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'space-between',
+								flexDirection: 'row',
+								width: '960px'
+							}}
+						>
+							<div style={{ width: '600px' }}>
+								<HistroyCard history={history} />
 							</div>
-						</div>
-						<div style={{ width: '400px', marginLeft: '20px' }}>
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									flexDirection: 'row',
-									height: '58px',
-									width: '398px',
-									color: 'white',
-									border: '1px solid rgba(250,250,250,.7)'
-								}}
-							>
-								History
-							</div>
-							<div
-								style={{
-									width: '378px',
-									height: '308px',
-									maxHeight: '308px',
-									overflow: 'auto',
-									border: '1px solid rgba(250,250,250,.7)',
-									padding: '10px',
-									color: 'white'
-								}}
-							>
-								<ul style={{ fontSize: '12px', color: 'rgba(255,255,255,.9)' }}>
-									{historyList}
-								</ul>
+							<div style={{ width: '360px' }}>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'center',
+										alignItems: 'center',
+										flexDirection: 'row',
+										color: 'white'
+									}}
+								>
+									<table className="transaction">
+										<tbody>
+											<tr style={{ textAlign: 'center' }}>
+												<td>Transaction</td>
+												<td>Input</td>
+												<td>Action</td>
+												<td>Currently Own</td>
+											</tr>
+											<tr>
+												<td>Creation</td>
+												<td className="trans-input-wrapper">
+													Number of ETH
+													<input
+														onChange={e =>
+															this.setState({
+																CreationIn: e.target.value,
+																Creation: this.round(
+																	Number(e.target.value)
+																)
+															})
+														}
+														value={this.state.CreationIn}
+														className="trans-input"
+													/>
+												</td>
+												<td>
+													<button onClick={this.handleCreation}>
+														Create
+													</button>
+												</td>
+												<td style={{ textAlign: 'right' }}>
+													{assets.ETH.toFixed(2)}
+												</td>
+											</tr>
+											<tr>
+												<td>Redemption</td>
+												<td className="trans-input-wrapper">
+													Number of ClassA/B
+													<input
+														onChange={e =>
+															this.setState({
+																RedemptionIn: e.target.value,
+																Redemption: this.round(
+																	Number(e.target.value)
+																)
+															})
+														}
+														value={this.state.RedemptionIn}
+														className="trans-input"
+													/>
+												</td>
+												<td>
+													<button onClick={this.handleRedemption}>
+														Redeem
+													</button>
+												</td>
+												<td style={{ textAlign: 'right' }}>
+													{(
+														d3.min([assets.ClassA, assets.ClassB]) || 0
+													).toFixed(2)}
+												</td>
+											</tr>
+											<tr>
+												<td>ClassA</td>
+												<td className="trans-input-wrapper">
+													Number of ClassA
+													<input
+														onChange={e =>
+															this.setState({
+																ClassAIn: e.target.value,
+																ClassA: this.round(
+																	Number(e.target.value)
+																)
+															})
+														}
+														value={this.state.ClassAIn}
+														className="trans-input"
+													/>
+												</td>
+												<td>
+													<button
+														onClick={this.handleBuyClassA}
+														style={{ marginBottom: '2px' }}
+													>
+														Buy
+													</button>
+													<button onClick={this.handleSellClassA}>
+														Sell
+													</button>
+												</td>
+												<td style={{ textAlign: 'right' }}>
+													{assets.ClassA.toFixed(2)}
+												</td>
+											</tr>
+											<tr>
+												<td>ClassB</td>
+												<td className="trans-input-wrapper">
+													Number of ClassB
+													<input
+														onChange={e =>
+															this.setState({
+																ClassBIn: e.target.value,
+																ClassB: this.round(
+																	Number(e.target.value)
+																)
+															})
+														}
+														value={this.state.ClassBIn}
+														className="trans-input"
+													/>
+												</td>
+												<td>
+													<button
+														onClick={this.handleBuyClassB}
+														style={{ marginBottom: '2px' }}
+													>
+														Buy
+													</button>
+													<button onClick={this.handleSellClassB}>
+														Sell
+													</button>
+												</td>
+												<td style={{ textAlign: 'right' }}>
+													{assets.ClassB.toFixed(2)}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
 							</div>
 						</div>
 					</div>

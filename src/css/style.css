@@ -11,7 +11,7 @@ button:focus {
 }
 .play-button {
 	position: fixed;
-	top: 88vh;
+	top: 89vh;
 	left: 70vw;
 }
 .day-button {
@@ -147,6 +147,51 @@ button:focus {
 	opacity: 0.85;
 }
 .msg-button:active::after{
+	height:500%;
+	opacity: 0.7;
+}
+td > button {
+	border: none;
+
+	padding: 2px 10px;
+	background-color: rgba(40,41,42,1);
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 2px;
+	position: relative;
+	width: 100px;
+	height: 24px;
+	overflow: hidden;
+	font-size: 12px;
+	line-height: 20px;
+	text-align: center;
+	color: #fafafa;
+	margin: 0;
+	opacity: 0.8;
+	transition: .3s;
+}
+td > button::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 0%;
+	top: 50%;
+	left: 50%;
+	background: #eeeeee8f;
+	opacity: 0;
+	transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	transition: .3s;
+}
+td > button:hover {
+	color:#000;
+	opacity: 0.9;
+}
+td > button:hover::after{
+	height:260%;
+	opacity: 0.85;
+}
+td > button:active::after{
 	height:500%;
 	opacity: 0.7;
 }
@@ -419,6 +464,7 @@ body {
 	width: 100%;
 	display: flex;
 	justify-content: center;
+	margin-bottom: 20px;
 }
 .d3chart-row {
 	display: flex;
@@ -548,6 +594,80 @@ body {
 }
 
 /* History Card */
+.history-card {
+	height: 320px;
+	width:560px;
+	background-color: #181614;
+	padding: 10px 20px;
+}
+.history-card-title {
+	width: 500px;
+	height: 20px;
+	color: rgba(250,250,250,0.8);
+	font-family: "Montserrat";
+	font-weight: 600;
+	letter-spacing: 2px;
+	font-size: 16px;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: -moz-linear-gradient(left, rgba(40,41,42,0.9) 0%, rgba(24,22,20,0.2) 100%);
+	background: -webkit-linear-gradient(left, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+	background: linear-gradient(to right, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+}
+.history-card-body {
+	width: 540px;
+	height: 240px;
+	padding: 0px 10px 10px 10px;
+}
+.history-card-body > ul {
+	padding-left: 0px;
+	font-size: 12px; 
+	list-style-type: none;
+}
+.history-card-body > ul > li {
+	color: rgba(255,255,255,.8);
+	padding-left: 10px;
+	height: 24px;
+	line-height: 24px;
+}
+.history-card-body > ul > li:nth-child(odd) {
+	background-color: rgba(40,41,42,0.7)
+}
+.history-card-bottom {
+	width: 540px;
+	height: 20px;
+	padding: 5px 10px;
+	color: white;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.history-card-bottom > button {
+	cursor: pointer;
+	width: 30px;
+	height: 22px;
+	margin-left: 4px;
+	margin-right: 4px;
+	border: none;
+	text-align: center;
+	font-weight: 700;
+	color: rgba(255,255,255,.6);
+	background-color: rgba(40,41,42,1);
+}
+.history-card-bottom > button:disabled {
+	cursor: auto;
+	color: rgba(255,255,255,.3);
+	opacity: 0.3;
+}
+.history-card-bottom > div {
+	width: 70px;
+	text-align: center;
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
 
 input {
 	border: 1px solid rgba(250, 250, 250, .6);
@@ -605,6 +725,3 @@ input {
 
 
 
-ul {
-	padding-left: 20px;
-}

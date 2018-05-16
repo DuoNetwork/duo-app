@@ -20,6 +20,8 @@
         "comment-format": false,
         "jsx-no-multiline-js": false,
         "semicolon":false,
-        "jsx-no-lambda": false
+        "jsx-no-lambda": false,
+        "member-ordering": false,
+        "prefer-const": false
     }
 }
