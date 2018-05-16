@@ -139,7 +139,7 @@ class Root extends React.PureComponent<{}, IState> {
 				dataMV: mvData,
 				assets: newAssets,
 				lastResetETHPrice: nextPrice.ETH,
-				msgType: "<div style='color: rgba(0,186,255,0.7)'>Information</div>",
+				msgType: "<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>",
 				msgContent:
 					"<div style='color: rgba(255,255,255, .8)'>Reset (" +
 					nextPrice.ResetType +
@@ -214,7 +214,7 @@ class Root extends React.PureComponent<{}, IState> {
 					assets: newAssets,
 					history: newHistory,
 					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassA) +
@@ -228,7 +228,7 @@ class Root extends React.PureComponent<{}, IState> {
 				this.setState({
 					ClassA: 0,
 					ClassAIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
 					msgShow: 1
@@ -239,7 +239,7 @@ class Root extends React.PureComponent<{}, IState> {
 			this.setState({
 				ClassA: 0,
 				ClassAIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
@@ -273,7 +273,7 @@ class Root extends React.PureComponent<{}, IState> {
 					assets: newAssets,
 					history: newHistory,
 					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassA) +
@@ -287,7 +287,7 @@ class Root extends React.PureComponent<{}, IState> {
 				this.setState({
 					ClassA: 0,
 					ClassAIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ClassA balance.</div>",
 					msgShow: 1
@@ -298,7 +298,7 @@ class Root extends React.PureComponent<{}, IState> {
 			this.setState({
 				ClassA: 0,
 				ClassAIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
@@ -334,7 +334,7 @@ class Root extends React.PureComponent<{}, IState> {
 					assets: newAssets,
 					history: newHistory,
 					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassB) +
@@ -348,7 +348,7 @@ class Root extends React.PureComponent<{}, IState> {
 				this.setState({
 					ClassB: 0,
 					ClassBIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
 					msgShow: 1
@@ -359,7 +359,7 @@ class Root extends React.PureComponent<{}, IState> {
 			this.setState({
 				ClassB: 0,
 				ClassBIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
@@ -394,7 +394,7 @@ class Root extends React.PureComponent<{}, IState> {
 					assets: newAssets,
 					history: newHistory,
 					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(ClassB) +
@@ -408,7 +408,7 @@ class Root extends React.PureComponent<{}, IState> {
 				this.setState({
 					ClassB: 0,
 					ClassBIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ClassB balance.</div>",
 					msgShow: 1
@@ -419,7 +419,7 @@ class Root extends React.PureComponent<{}, IState> {
 			this.setState({
 				ClassB: 0,
 				ClassBIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
@@ -456,7 +456,7 @@ class Root extends React.PureComponent<{}, IState> {
 					CreationIn: '',
 					assets: newAssets,
 					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>Split <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(Creation) +
@@ -470,7 +470,7 @@ class Root extends React.PureComponent<{}, IState> {
 				this.setState({
 					Creation: 0,
 					CreationIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
 					msgShow: 1
@@ -481,7 +481,7 @@ class Root extends React.PureComponent<{}, IState> {
 			this.setState({
 				Creation: 0,
 				CreationIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
@@ -517,7 +517,7 @@ class Root extends React.PureComponent<{}, IState> {
 					RedemptionIn: '',
 					assets: newAssets,
 					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>Success</div>",
+					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .6)'>Combine <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(Redemption) +
@@ -531,7 +531,7 @@ class Root extends React.PureComponent<{}, IState> {
 				this.setState({
 					Redemption: 0,
 					RedemptionIn: '',
-					msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 					msgContent:
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ClassA/B balance.</div>",
 					msgShow: 1
@@ -542,7 +542,7 @@ class Root extends React.PureComponent<{}, IState> {
 			this.setState({
 				Redemption: 0,
 				RedemptionIn: '',
-				msgType: "<div style='color: rgba(214,48,48,1)'>Error</div>",
+				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
@@ -579,10 +579,12 @@ class Root extends React.PureComponent<{}, IState> {
 					close={this.closeMSG}
 				/>
 				<div style={{ zIndex: 10 }}>
+					{/* Next Day, Refresh button */}
 					<div className="play-button">
 						<button className="day-button next-day" onClick={this.handleNextDay} />
 						<button className="day-button refresh" onClick={this.handleRefresh} />
 					</div>
+					{/* Navigation Bar */}
 					<div className="header-wrapper">
 						<div className="header">
 							<div className="icon-wrapper">
@@ -593,6 +595,7 @@ class Root extends React.PureComponent<{}, IState> {
 							</div>
 						</div>
 					</div>
+					{/* Current Price, Asset Information Bar */}
 					<div className="info-bar">
 						<div className="info-bar-row">
 							<div className="price-tag-wrapper">
@@ -733,6 +736,7 @@ class Root extends React.PureComponent<{}, IState> {
 							</div>
 						</div>
 					</div>
+					{/* D3 Price Chart and Market Value Chart */}
 					<div className="d3chart-container">
 						<div className="d3chart-row">
 							<div className="d3chart-wrapper">
@@ -754,6 +758,7 @@ class Root extends React.PureComponent<{}, IState> {
 							</div>
 						</div>
 					</div>
+					{/* Transaction History Card */}
 					<div
 						style={{
 							display: 'flex',
@@ -762,44 +767,6 @@ class Root extends React.PureComponent<{}, IState> {
 						}}
 					>
 						<div style={{ width: '500px' }}>
-							<div
-								style={{
-									display: 'flex',
-									justifyContent: 'center',
-									alignItems: 'center',
-									flexDirection: 'row',
-									color: 'white'
-								}}
-							>
-								<table className="asset">
-									<tbody>
-										<tr>
-											<td>ETH</td>
-											<td>ClassA</td>
-											<td>ClassB</td>
-											<td>MV</td>
-										</tr>
-										<tr>
-											<td>
-												{d3.formatPrefix(',.2', 1)(
-													assets.ETH * currentPrice.ETH
-												)}
-											</td>
-											<td>
-												{d3.formatPrefix(',.2', 1)(
-													assets.ClassA * currentPrice.ClassA
-												)}
-											</td>
-											<td>
-												{d3.formatPrefix(',.2', 1)(
-													assets.ClassB * currentPrice.ClassB
-												)}
-											</td>
-											<td>{d3.formatPrefix(',.2', 1)(marketValue)}</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
 							<div
 								style={{
 									display: 'flex',

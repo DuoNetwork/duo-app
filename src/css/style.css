@@ -4,6 +4,7 @@
 .App {
 	width: 100vw;
 	height: 100vh;
+	font-family: "Montserrat";
 }
 button:focus {
 	outline: 0;
@@ -19,9 +20,13 @@ button:focus {
 	border: none;
 	width: 50px;
 	height: 50px;
+	opacity: 0.7;
 }
 .day-button:hover {
-	background-color: transparent;
+	opacity: 0.85;
+}
+.day-button:active {
+	opacity: 1;
 }
 .next-day {
 	background: url("../images/nextDay.png");
@@ -31,6 +36,121 @@ button:focus {
 	background: url("../images/refresh.png");
 	background-size: cover;
 }
+/*
+	Message
+*/
+.msg-bg {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: rgba(100, 100, 100, .35);
+}
+.msg-card {
+	width: 400px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgb(20, 20, 20);
+	box-shadow: 0px 0px 10px 2px rgba(0,0,0,.35);
+	overflow: hidden;
+}
+.msg-img {
+	position: absolute;
+	top: 40px;
+	left: -15px;
+	opacity: 0.04;
+	height: 120px;
+	width: 120px;
+}
+.msg-header {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	height: 20px;
+	width: 380px;
+	color: white;
+	padding: 10px;
+}
+.msg-title {
+	padding: 4px 0px 4px 15px;
+	font-size: 14px;
+	width: 300px;
+	background: -moz-linear-gradient(left, rgba(40,41,42,0.9) 0%, rgba(24,22,20,0.2) 100%);
+	background: -webkit-linear-gradient(left, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+	background: linear-gradient(to right, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+}
+.msg-body {
+	width: 380px;
+	height: 40px;
+	padding: 10px;
+	color: white;
+}
+.msg-content {
+	padding: 5px 15px;
+}
+.msg-bottom {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	height: 24px;
+	width: 380px;
+	color: white;
+	padding: 10px;
+}
+.msg-content {
+	font-size: 12px;
+}
+ /* msg button */
+ .msg-button {
+	border: none;
+
+	padding: 2px 10px;
+	background-color: rgba(40,41,42,1);
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 2px;
+	position: relative;
+	width: 100px;
+	height: 24px;
+	overflow: hidden;
+	font-size: 12px;
+	line-height: 20px;
+	text-align: center;
+	color: #fafafa;
+	margin: 0;
+	opacity: 0.8;
+	transition: .3s;
+}
+.msg-button::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 0%;
+	top: 50%;
+	left: 50%;
+	background: #eeeeee8f;
+	opacity: 0;
+	transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	transition: .3s;
+}
+.msg-button:hover {
+	color:#000;
+	opacity: 0.9;
+}
+.msg-button:hover::after{
+	height:260%;
+	opacity: 0.85;
+}
+.msg-button:active::after{
+	height:500%;
+	opacity: 0.7;
+}
+
 /*
 	Header
 */
@@ -156,7 +276,7 @@ body {
 .bg-logo > img {
 	height: 100%;
 	width: 100%;
-	opacity: 0.1;
+	opacity: 0.05;
 }
 .tag-title {
 	width: 90px;
@@ -324,27 +444,6 @@ body {
 	background-color: #181614;
 	cursor: crosshair;
 }
-
-button {
-	border: 1px solid rgba(250, 250, 250, .6);
-	padding: 2px 8px;
-	background: transparent;
-	color: white;
-}
-
-button:active {
-	background: rgba(250, 250, 250, .3);
-	border-color: white;
-}
-
-input {
-	border: 1px solid rgba(250, 250, 250, .6);
-	padding: 2px 2px;
-	background: rgba(250, 250, 250, .1);
-	color: white;
-	text-align: right;
-}
-
 .x-axis-pricechart text,
 .ly-axis-pricechart text,
 .ry-axis-pricechart text,
@@ -355,7 +454,6 @@ input {
 	fill: rgba(255, 255, 255, 0.4);
 	pointer-events: none;
 }
-
 .x-axis-pricechart path,
 .x-axis-pricechart line,
 .ly-axis-pricechart path,
@@ -373,132 +471,35 @@ input {
 	shape-rendering: crispEdges;
 	pointer-events: none;
 }
-
-.change-button {
-	height: 24px;
-}
-
-.line-settings {
-	color: white;
-	font-size: 12px;
-	line-height: 24px;
-	list-style-type: none;
-	padding-left: 5px;
-	margin: 0;
-	margin-right: 10px;
-}
-
 #trade-chart-pricechart,
 #trade-chart-mvchart {
 	position: relative;
 }
-
-
 #chart div {
 	background: white;
 	text-align: left;
 }
-
 #chart text {
 	fill: rgba(150, 150, 150, 1);
 	font: 10px sans-serif;
 	text-anchor: end;
 }
-
 .bar-rect {
 	z-index: 2;
 }
-
 .bar-background {
 	fill: rgba(255, 255, 255, 0);
 	stroke: none;
 	z-index: 1;
 }
-
 .single-bar-pricechart,
 .single-bar-mvchart {
 	z-index: 5;
 }
-
 .single-bar-pricechart:hover .bar-background,
 .single-bar-mvchart:hover .bar-background {
 	fill: rgba(50, 50, 50, 0.6);
 }
-
-.bar-tooltip-hide {
-	fill: transparent !important;
-	text-anchor: start !important;
-	font-size: 8px !important;
-}
-
-.bar-tooltip-show {
-	fill: white !important;
-	text-anchor: start !important;
-	font-size: 8px !important;
-}
-
-.tooltip {
-	position: absolute;
-	background: rgba(15, 15, 15, 0.6);
-	border: 1px solid rgba(40, 40, 40, 1);
-	padding: 5px;
-	text-align: left;
-	font-size: 8px;
-	color: white;
-}
-
-.x-axis-tip {
-	position: absolute;
-	background: rgba(50, 50, 50, 0.95);
-	border: 1px solid rgba(60, 60, 60, 1);
-	padding: 2px;
-	text-align: center;
-	font-size: 10px;
-	color: white;
-	width: 40px;
-}
-
-.y-axis-tip {
-	position: absolute;
-	background: rgba(50, 50, 50, 0.95);
-	border: 1px solid rgba(60, 60, 60, 1);
-	padding: 2px;
-	text-align: center;
-	font-size: 10px;
-	color: white;
-	width: 32px;
-	height: 14px;
-}
-
-.y-axis-tip-v,
-.y-axis-tip-v-percentage {
-	position: absolute;
-	background: rgba(50, 50, 50, 0.95);
-	border: 1px solid rgba(60, 60, 60, 1);
-	padding: 2px;
-	text-align: center;
-	font-size: 10px;
-	color: white;
-	width: 40px;
-	height: 14px;
-}
-
-.track-line {
-	top: 0px;
-	position: absolute;
-	border-top: 1px dashed rgba(80, 80, 80, 1);
-	height: 1px;
-	pointer-events: none;
-}
-
-.grid line {
-	stroke: rgba(40, 40, 40, 1);
-	stroke-opacity: 0.7;
-	shape-rendering: crispEdges;
-	z-index: 0;
-	pointer-events: none;
-}
-
 .info-bar-pricechart,
 .info-bar-mvchart {
 	position: absolute;
@@ -509,31 +510,19 @@ input {
 	align-items: center;
 	font-size: 10px;
 }
-
-.upday-column {
-	color: rgba(136, 208, 64, 1);
-}
-
-.downday-column {
-	color: rgba(214, 48, 48, 1);
-}
-
 .info-column {
 	color: rgba(250, 250, 250, 0.9);
 	width: 44px;
 	text-align: left;
 	margin-left: 5px;
 }
-
 .ClassA-price,
 .ClassB-price {
 	width: 28px;
 }
-
 .reset-text {
 	color: rgba(214, 48, 48, 1);
 }
-
 .line-ETH,
 .line-ClassA,
 .line-ClassB,
@@ -541,7 +530,6 @@ input {
 .line-MV-area {
 	pointer-events: none;
 }
-
 .legend-ETH,
 .legend-ClassA,
 .legend-ClassB {
@@ -549,18 +537,34 @@ input {
 	height: 6px;
 	margin-right: 5px;
 }
-
 .legend-ETH {
 	background: white;
 }
-
 .legend-ClassA {
 	background: rgba(0, 186, 255, 0.7);
 }
-
 .legend-ClassB {
 	background: rgba(255, 129, 0, 0.7);
 }
+
+/* History Card */
+
+input {
+	border: 1px solid rgba(250, 250, 250, .6);
+	padding: 2px 2px;
+	background: rgba(250, 250, 250, .1);
+	color: white;
+	text-align: right;
+}
+
+
+
+.change-button {
+	height: 24px;
+}
+
+
+
 
 .asset {
 	border-collapse: collapse;
@@ -600,9 +604,6 @@ input {
 
 
 
-.msg-content {
-	font-size: 12px;
-}
 
 ul {
 	padding-left: 20px;
