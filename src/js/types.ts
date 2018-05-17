@@ -46,3 +46,12 @@ export interface IAssets {
 	ClassA: number;
 	ClassB: number;
 }
+
+export type Create<T> = (
+	el: Element,
+	props: { windowWidth: number; windowHeight: number },
+	state: T
+) => void;
+export type Update<T> = (el: Element, props: { width: number; height: number }, state: T) => void;
+
+export type Destroy = (el: Element) => void;

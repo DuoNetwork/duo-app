@@ -15,7 +15,6 @@
         "arrow-parens": false,
         "no-string-literal": false,
         "one-variable-per-declaration":false,
-        "max-classes-per-file": false,
         "max-line-length": false,
         "comment-format": false,
         "jsx-no-multiline-js": false,
