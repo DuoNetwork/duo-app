@@ -1,17 +1,15 @@
-// import "@babel/polyfill";
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import '../css/style.css';
-import { IMVData, IMVDatum, IPriceData, MVChart, PriceChart } from './Chart';
-import HistroyCard from './HistoryCard';
-import Message from './Message';
-
-const duoIcon = require('../images/DUO_icon.png');
-const ethIcon = require('../images/ethIcon.png');
-const classAIcon = require('../images/ClassA_white.png');
-const classBIcon = require('../images/ClassB_white.png');
-const mockdata: IPriceData = require('./Data/ETH_A_B.json');
+import classAIcon from '../images/ClassA_white.png';
+import classBIcon from '../images/ClassB_white.png';
+import duoIcon from '../images/DUO_icon.png';
+import ethIcon from '../images/ethIcon.png';
+import { IMVData, IMVDatum, IPriceData, MVChart, PriceChart } from './components/Chart';
+import HistroyCard from './components/HistoryCard';
+import Message from './components/Message';
+const mockdata: IPriceData = require('../static/ETH_A_B.json');
 const format = d3.timeFormat('%Y %b %d');
 
 interface IState {

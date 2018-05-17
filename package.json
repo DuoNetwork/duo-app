@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "test": "jest",
-    "tslint": "tslint -c tslint.json -p tsconfig.json 'src/**/*.ts{,x}'",
+    "tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
     "start": "webpack-dev-server --config webpack.config.dev.js",
     "prebuild": "rimraf dist",
     "build": "webpack --config webpack.config.prod.js --json | webpack-bundle-size-analyzer"
@@ -70,8 +70,6 @@
   },
   "dependencies": {
     "d3": "^5.0.1",
-    "file-loader": "^1.1.11",
-    "immutable": "^3.8.2",
     "moment": "^2.22.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
