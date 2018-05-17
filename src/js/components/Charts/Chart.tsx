@@ -1,54 +1,12 @@
 // import * as d3 from 'd3';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { IMVProps, IMVState, IPriceProps, IPriceState } from '../../types';
 import { D3MVChart, D3PriceChart } from './D3Chart';
 // const moment = require('moment');
 
 const priceChart = new D3PriceChart();
 const mvChart = new D3MVChart();
-
-export type IPriceData = IPriceDatum[];
-
-export interface IPriceDatum {
-	date: string;
-	ETH: number;
-	ClassA: number;
-	ClassB: number;
-	ClassAbeforeReset?: number;
-	ClassBbeforeReset?: number;
-	ResetType?: string;
-	InterestCount: number;
-}
-
-export type IMVData = IMVDatum[];
-
-export interface IMVDatum {
-	date: string;
-	MV: number;
-}
-
-interface IPriceProps {
-	name: string;
-	data: IPriceData;
-	movedata: IPriceData;
-	pickedPriceDatum: (d: IPriceDatum) => void;
-}
-
-interface IPriceState {
-	windowWidth: number;
-	windowHeight: number;
-}
-
-interface IMVProps {
-	name: string;
-	data: IMVData;
-	pickedMVDatum: (d: IMVDatum) => void;
-}
-
-interface IMVState {
-	windowWidth: number;
-	windowHeight: number;
-}
 
 export class PriceChart extends React.Component<IPriceProps, IPriceState> {
 	constructor(props) {

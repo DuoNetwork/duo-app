@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { IMVData, IMVDatum, IPriceData, IPriceDatum } from './Chart';
+import { IMVData, IMVDatum, IPriceData, IPriceDatum } from '../../types';
 // const moment = require("moment");
 
 const colorClassA = 'rgba(0,186,255,0.7)';
