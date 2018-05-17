@@ -6,12 +6,7 @@ import { ITimeSeries, ITimeSeriesData } from '../../types';
 
 const marginP = { top: 40, right: 26, bottom: 25, left: 36 };
 
-const create = (
-	el: Element,
-	windowHeight: number,
-	name: string,
-	timeseries: ITimeSeries[]
-) => {
+const create = (el: Element, windowHeight: number, name: string, timeseries: ITimeSeries[]) => {
 	if (!timeseries.length) return;
 
 	const width = 475.2 - marginP.left - marginP.right;
@@ -253,7 +248,7 @@ export default class PriceChart extends React.Component<IProps, IState> {
 
 	public shouldComponentUpdate(nextProps: IProps) {
 		if (JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)) {
-			const { name, timeseries } = this.props;
+			const { name, timeseries } = nextProps;
 			// redraw when data is changed
 			// const el = ReactDOM.findDOMNode(this) as Element;
 			create(this.chartRef.current as Element, 300, name, timeseries);
@@ -264,6 +259,6 @@ export default class PriceChart extends React.Component<IProps, IState> {
 
 	public render() {
 		const { name } = this.props;
-		return <div id={'trade-chart-' + name} ref={this.chartRef}/>;
+		return <div id={'trade-chart-' + name} ref={this.chartRef} />;
 	}
 }

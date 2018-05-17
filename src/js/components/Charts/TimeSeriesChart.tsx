@@ -274,8 +274,6 @@ export default class MVChart extends React.Component<IProps, IState> {
 	// }
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		console.log(nextProps.data);
-		console.log(this.props.data);
 		if (JSON.stringify(nextProps.data) !== JSON.stringify(this.props.data)) {
 			// redraw when data is changed
 			// const el = ReactDOM.findDOMNode(this) as Element;
