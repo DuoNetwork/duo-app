@@ -6,7 +6,6 @@
             "tabs"
         ],
         "quotemark": false,
-        "no-null-keyword": true,
         "trailing-comma": false,
         "object-literal-shorthand": false,
         "object-literal-sort-keys": false,
