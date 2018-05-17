@@ -1,4 +1,5 @@
 import * as d3 from 'd3';
+import moment from 'moment';
 import * as React from 'react';
 import { IAssets, IPriceData, ITimeSeriesData } from '../types';
 import AssetCard from './Cards/AssetCard';
@@ -30,7 +31,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 		super(props);
 		this.state = {
 			dataPrice: mockdata.slice(0, mockdata.length - 1),
-			dataMV: [{ datetime: '2017/10/1', value: 50000 }],
+			dataMV: [{ datetime: moment('2017-10-01').valueOf(), value: 30395 }],
 			currentmvdata: {} as ITimeSeriesData,
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
@@ -100,11 +101,13 @@ export default class Duo extends React.PureComponent<{}, IState> {
 					break;
 				}
 			}
-			mvData.push({ datetime: nextPrice.date, value: mvBeforeReset });
 			this.setState({
 				currentDayCounter: i + 1,
 				currentPriceData: dataSet,
-				dataMV: mvData,
+				dataMV: [
+					...mvData,
+					{ datetime: moment(nextPrice.date, 'YYYY/M/D').valueOf(), value: mvBeforeReset }
+				],
 				assets: newAssets,
 				lastResetETHPrice: nextPrice.ETH,
 				msgType: "<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>",
@@ -114,19 +117,20 @@ export default class Duo extends React.PureComponent<{}, IState> {
 					') triggered.</div>',
 				msgShow: 1
 			});
-		} else {
-			mvData.push({ datetime: nextPrice.date, value: marketValue });
+		} else
 			this.setState({
 				currentDayCounter: i + 1,
 				currentPriceData: dataSet,
-				dataMV: mvData
+				dataMV: [
+					...mvData,
+					{ datetime: moment(nextPrice.date, 'YYYY/M/D').valueOf(), value: marketValue }
+				]
 			});
-		}
 	};
 
 	public handleRefresh = () => {
 		this.setState({
-			dataMV: [{ datetime: '2017/10/1', value: 50000 }],
+			dataMV: [{ datetime: moment('2017-10-01').valueOf(), value: 30395 }],
 			currentmvdata: {} as ITimeSeriesData,
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
@@ -156,7 +160,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 		const { assets } = this.state;
 		const valueClassAB = amount * (isA ? currentPrice.ClassA : currentPrice.ClassB);
 		const valueETH = assets.ETH * currentPrice.ETH;
-		if (amount > 0) {
+		if (amount > 0)
 			if (valueClassAB <= valueETH) {
 				const rETH = (valueETH - valueClassAB) / currentPrice.ETH;
 				const newAssets: IAssets = {
@@ -183,7 +187,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 					': Bought ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' Class ' +
-						(isA ? 'A' : 'B') +
+					(isA ? 'A' : 'B') +
 					' with ' +
 					d3.formatPrefix(',.6', 1)(valueClassAB / currentPrice.ETH) +
 					' ETH.'
@@ -197,7 +201,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 				});
 				return '';
 			}
-		} else if (amount < 0) {
+		else if (amount < 0)
 			if (amount <= assets.ClassA) {
 				const newAssets: IAssets = {
 					ETH: assets.ETH + valueClassAB / currentPrice.ETH,
@@ -212,7 +216,8 @@ export default class Duo extends React.PureComponent<{}, IState> {
 						"<div style='color: rgba(255,255,255, .6)'>You sold <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(-amount) +
 						' Class ' +
-						(isA ? 'A' : 'B') + "</span> with <span style='color: rgba(255,255,255, 1)'>" +
+						(isA ? 'A' : 'B') +
+						"</span> with <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.6', 1)(valueClassAB / currentPrice.ETH) +
 						' ETH</span>.</div>',
 					msgShow: 1
@@ -222,7 +227,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 					': Sold ' +
 					d3.formatPrefix(',.2', 1)(-amount) +
 					' Class ' +
-						(isA ? 'A' : 'B') +
+					(isA ? 'A' : 'B') +
 					' with ' +
 					d3.formatPrefix(',.6', 1)(valueClassAB / currentPrice.ETH) +
 					' ETH.'
@@ -236,7 +241,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 				});
 				return '';
 			}
-		} else {
+		else {
 			this.setState({
 				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
@@ -251,7 +256,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const { assets, lastResetETHPrice } = this.state;
 		const valuelastResetETHPrice = amount * lastResetETHPrice;
-		if (amount && amount > 0) {
+		if (amount && amount > 0)
 			if (amount <= assets.ETH) {
 				const rETH = assets.ETH - amount;
 				const splitOutcome = valuelastResetETHPrice / 2;
@@ -291,7 +296,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 				});
 				return '';
 			}
-		} else {
+		else {
 			this.setState({
 				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
@@ -305,7 +310,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 	public handleRedemption = (amount: number) => {
 		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
 		const { assets, lastResetETHPrice } = this.state;
-		if (amount && amount > 0) {
+		if (amount && amount > 0)
 			if (amount <= (d3.min([assets.ClassA, assets.ClassB]) || 0)) {
 				const rClassA = assets.ClassA - amount,
 					rClassB = assets.ClassB - amount;
@@ -345,7 +350,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 				});
 				return '';
 			}
-		} else {
+		else {
 			this.setState({
 				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
 				msgContent:
@@ -364,8 +369,62 @@ export default class Duo extends React.PureComponent<{}, IState> {
 
 	public render() {
 		const { dataPrice, dataMV, currentPriceData, assets, resetToggle } = this.state;
-		const showData = currentPriceData.slice(0, currentPriceData.length - 1);
 		const currentPrice = currentPriceData[currentPriceData.length - 2];
+		const eth: ITimeSeriesData[] = [],
+			classA: ITimeSeriesData[] = [],
+			classB: ITimeSeriesData[] = [],
+			reset: ITimeSeriesData[] = [];
+		dataPrice.forEach((d, i) => {
+			eth.push({
+				datetime: moment(d.date, 'YYYY/M/D').valueOf(),
+				value: d.ETH
+			});
+			classA.push({
+				datetime: moment(d.date, 'YYYY/M/D').valueOf(),
+				value: d.ClassA
+			});
+			classB.push({
+				datetime: moment(d.date, 'YYYY/M/D').valueOf(),
+				value: d.ClassB
+			});
+
+			if (d.ResetType || i === 0)
+				reset.push({
+					datetime: moment(d.date, 'YYYY/M/D').valueOf(),
+					value: 1
+				});
+		});
+		const timeseries = [
+			{
+				name: 'ETH',
+				data: eth,
+				highlight: Math.max(currentPriceData.length - 2, 0),
+				color: '255,255,255',
+				width: 1.5
+			},
+			{
+				name: 'ClassA',
+				data: classA,
+				highlight: Math.max(currentPriceData.length - 2, 0),
+				rightAxis: true,
+				color: '0,186,255'
+			},
+			{
+				name: 'ClassB',
+				data: classB,
+				highlight: Math.max(currentPriceData.length - 2, 0),
+				rightAxis: true,
+				color: '255,129,0'
+			},
+			{
+				name: 'reset',
+				data: reset,
+				dotOnly: true,
+				highlight: -1,
+				rightAxis: true,
+				color: 'rgba(214,48,48,0.6)'
+			}
+		];
 		return (
 			<div className="App">
 				<Message
@@ -394,20 +453,11 @@ export default class Duo extends React.PureComponent<{}, IState> {
 						<div className="d3chart-row">
 							<div className="d3chart-wrapper">
 								<h3>Price Chart</h3>
-								<PriceChart
-									name="pricechart"
-									data={dataPrice}
-									movedata={showData}
-									pickedPriceDatum={this.pickedPriceDatum}
-								/>
+								<PriceChart name="pricechart" timeseries={timeseries} />
 							</div>
 							<div className="d3chart-wrapper">
 								<h3>Market Value Chart</h3>
-								<TimeSeriesChart
-									name="mvchart"
-									data={dataMV}
-									pickedMVDatum={this.pickedMVDatum}
-								/>
+								<TimeSeriesChart name="mvchart" data={dataMV} />
 							</div>
 						</div>
 					</div>

@@ -20,6 +20,7 @@
         "semicolon":false,
         "jsx-no-lambda": false,
         "member-ordering": false,
-        "prefer-const": false
+        "prefer-const": false,
+        "curly": [true, "as-needed"]
     }
 }

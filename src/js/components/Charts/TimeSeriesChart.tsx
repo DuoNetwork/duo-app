@@ -1,6 +1,5 @@
 import * as d3 from 'd3';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { ITimeSeriesData } from '../../types';
 // const moment = require('moment');
 
@@ -38,12 +37,8 @@ function create(
 	//const pickFormat = '%b %d';
 
 	// Date range
-	const minDate = d3.min(data, d => {
-		return Date.parse(d.datetime);
-	});
-	const maxDate = d3.max(data, d => {
-		return Date.parse(d.datetime);
-	});
+	const minDate = d3.min(data, d => d.datetime);
+	const maxDate = d3.max(data, d => d.datetime);
 
 	//const extentStart = new Date(minDate || 0 - zoomStep * 2);
 	//const extentEnd = new Date(maxDate || 0 + zoomStep * 7);
@@ -79,7 +74,7 @@ function create(
 	const lineMV = d3
 		.line<ITimeSeriesData>()
 		.x(d => {
-			return x(new Date(Date.parse(d.datetime)));
+			return x(new Date(d.datetime));
 		})
 		.y(d => {
 			return ly(d.value);
@@ -87,7 +82,7 @@ function create(
 	const lineMVArea = d3
 		.area<ITimeSeriesData>()
 		.x(d => {
-			return x(new Date(Date.parse(d.datetime)));
+			return x(new Date(d.datetime));
 		})
 		.y0(height)
 		.y1(d => {
@@ -97,7 +92,7 @@ function create(
 	const showColumndata = (d: ITimeSeriesData): void => {
 		infoBar.html(
 			"Date: <div class = 'Date info-column'>" +
-				d3.timeFormat('%b %d')(new Date(Date.parse(d.datetime))) +
+				d3.timeFormat('%b %d')(new Date(d.datetime)) +
 				"</div><div class='legend-MV'></div> Market Value: <div class = 'MV-price info-column'>" +
 				d.value.toFixed(2) +
 				'</div>'
@@ -196,7 +191,7 @@ function create(
 		.append('rect')
 		.attr('class', 'bar-background')
 		.attr('x', (d: {}) => {
-			return x(new Date(Date.parse((d as ITimeSeriesData).datetime))) - backrectWidth / 2;
+			return x(new Date((d as ITimeSeriesData).datetime)) - backrectWidth / 2;
 		})
 		.attr('y', 0)
 		.attr('width', backrectWidth)
@@ -229,7 +224,6 @@ function create(
 interface IProps {
 	name: string;
 	data: ITimeSeriesData[];
-	pickedMVDatum: (d: ITimeSeriesData) => void;
 }
 
 interface IState {
@@ -238,58 +232,55 @@ interface IState {
 }
 
 export default class MVChart extends React.Component<IProps, IState> {
+	private chartRef: any;
 	constructor(props) {
 		super(props);
 		this.state = {
 			windowWidth: window.innerWidth,
 			windowHeight: window.innerHeight
 		};
+		this.chartRef = React.createRef();
 	}
 
 	public getChartStates() {
 		return {
 			name: this.props.name,
 			data: this.props.data,
-			pickedMVDatum: this.props.pickedMVDatum
 		};
 	}
 
-	public updateDimensions() {
-		this.setState({
-			windowWidth: window.innerWidth,
-			windowHeight: window.innerHeight
-		});
-	}
+	// public updateDimensions() {
+	// 	this.setState({
+	// 		windowWidth: window.innerWidth,
+	// 		windowHeight: window.innerHeight
+	// 	});
+	// }
 
 	public componentDidMount() {
-		const el = ReactDOM.findDOMNode(this) as Element;
+		// const el = ReactDOM.findDOMNode(this) as Element;
 		create(
-			el,
+			this.chartRef.current as Element,
 			{
 				windowWidth: this.state.windowWidth,
 				windowHeight: 300
 			},
 			this.getChartStates()
 		);
-		window.addEventListener('resize', this.updateDimensions.bind(this));
+		// window.addEventListener('resize', this.updateDimensions.bind(this));
 	}
 
-	public componentWillUnmount() {
-		window.removeEventListener('resize', this.updateDimensions.bind(this));
-	}
+	// public componentWillUnmount() {
+	// 	window.removeEventListener('resize', this.updateDimensions.bind(this));
+	// }
 
-	public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
-		if (
-			nextState.windowHeight !== this.state.windowHeight ||
-			nextState.windowWidth !== this.state.windowWidth
-		) {
-			return false;
-		}
-		if (nextProps.data) {
+	public shouldComponentUpdate(nextProps: IProps) {
+		console.log(nextProps.data);
+		console.log(this.props.data);
+		if (JSON.stringify(nextProps.data) !== JSON.stringify(this.props.data)) {
 			// redraw when data is changed
-			const el = ReactDOM.findDOMNode(this) as Element;
+			// const el = ReactDOM.findDOMNode(this) as Element;
 			create(
-				el,
+				this.chartRef.current as Element,
 				{
 					windowWidth: this.state.windowWidth,
 					windowHeight: 300
@@ -297,7 +288,6 @@ export default class MVChart extends React.Component<IProps, IState> {
 				{
 					name: nextProps.name,
 					data: nextProps.data,
-					pickedMVDatum: nextProps.pickedMVDatum
 				}
 			);
 			return false;
@@ -307,6 +297,6 @@ export default class MVChart extends React.Component<IProps, IState> {
 
 	public render() {
 		const { name } = this.props;
-		return <div id={'trade-chart-' + name} />;
+		return <div id={'trade-chart-' + name} ref={this.chartRef}/>;
 	}
 }

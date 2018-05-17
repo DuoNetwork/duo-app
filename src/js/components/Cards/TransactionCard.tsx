@@ -8,7 +8,7 @@ interface IProps {
 	handleCreation: (amount: number) => string;
 	handleRedemption: (amount: number) => string;
 	assets: IAssets;
-	resetToggle: boolean
+	resetToggle: boolean;
 }
 
 interface IState {
@@ -42,7 +42,7 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 	}
 
 	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-		if (nextProps.resetToggle !== prevState.resetToggle) {
+		if (nextProps.resetToggle !== prevState.resetToggle)
 			return {
 				history: [],
 				CreationIn: '',
@@ -55,7 +55,6 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 				ClassB: 0,
 				resetToggle: nextProps.resetToggle
 			};
-		}
 
 		return null;
 	}
@@ -65,12 +64,7 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 	};
 
 	public render() {
-		const {
-			assets,
-			handleBuySell,
-			handleCreation,
-			handleRedemption
-		} = this.props;
+		const { assets, handleBuySell, handleCreation, handleRedemption } = this.props;
 		const {
 			history,
 			CreationIn,
@@ -140,7 +134,9 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 													this.setState({
 														CreationIn: '',
 														Creation: 0,
-														history: result ? [...history, result] : history
+														history: result
+															? [...history, result]
+															: history
 													});
 												}}
 											>
@@ -175,7 +171,9 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 													this.setState({
 														RedemptionIn: '',
 														Redemption: 0,
-														history: result ? [...history, result] : history
+														history: result
+															? [...history, result]
+															: history
 													});
 												}}
 											>
@@ -210,7 +208,9 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 													this.setState({
 														ClassAIn: '',
 														ClassA: 0,
-														history: result ? [...history, result] : history
+														history: result
+															? [...history, result]
+															: history
 													});
 												}}
 												style={{ marginBottom: '2px' }}
@@ -223,7 +223,9 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 													this.setState({
 														ClassAIn: '',
 														ClassA: 0,
-														history: result ? [...history, result] : history
+														history: result
+															? [...history, result]
+															: history
 													});
 												}}
 											>
@@ -256,7 +258,9 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 													this.setState({
 														ClassBIn: '',
 														ClassB: 0,
-														history: result ? [...history, result] : history
+														history: result
+															? [...history, result]
+															: history
 													});
 												}}
 												style={{ marginBottom: '2px' }}
@@ -269,7 +273,9 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 													this.setState({
 														ClassBIn: '',
 														ClassB: 0,
-														history: result ? [...history, result] : history
+														history: result
+															? [...history, result]
+															: history
 													});
 												}}
 											>

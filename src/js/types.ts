@@ -1,6 +1,16 @@
 export interface ITimeSeriesData {
-	datetime: string;
+	datetime: number;
 	value: number;
+}
+
+export interface ITimeSeries {
+	name: string,
+	data: ITimeSeriesData[];
+	dotOnly?: boolean;
+	highlight: number;
+	rightAxis?: boolean;
+	color?: string,
+	width?: number
 }
 
 export interface IPriceData {
