@@ -1,5 +1,5 @@
 import * as d3 from 'd3';
-import { Create, Destroy, IPriceData, IPriceDatum } from '../../types';
+import { IPriceData } from '../../types';
 
 const colorClassA = 'rgba(0,186,255,0.7)';
 const colorClassB = 'rgba(255,129,0,0.7)';
@@ -8,28 +8,21 @@ const colorClassBAlpha = 'rgba(255,129,0,0.15)';
 const colorResetDot = 'rgba(214,48,48,0.6)';
 const marginP = { top: 40, right: 26, bottom: 25, left: 36 };
 
-interface IPriceChartStates {
-	name: string;
-	data: IPriceData;
-	movedata: IPriceData;
-	pickedPriceDatum?: (d: IPriceDatum) => void;
-}
-
 export default class D3PriceChart {
-	public create: Create<IPriceChartStates> = (el, props, state) => {
-		const { name, data, movedata } = state;
-		const { windowWidth, windowHeight } = props;
-		let width: number, height: number;
-
-		if (windowWidth >= 1440) {
-			width = 475.2 - marginP.left - marginP.right;
-		} else if (windowWidth <= 960) {
-			width = 316.8 - marginP.left - marginP.right;
-		} else {
-			width = windowWidth * 0.33 - marginP.left - marginP.right;
+	public create = (
+		el: Element,
+		props: { windowWidth: number; windowHeight: number },
+		state: {
+			name: string;
+			data: IPriceData[];
+			movedata: IPriceData[];
+			pickedPriceDatum?: (d: IPriceData) => void;
 		}
-
-		height = windowHeight - marginP.top - marginP.bottom;
+	) => {
+		const { name, data, movedata } = state;
+		const { windowHeight } = props;
+		const width = 475.2 - marginP.left - marginP.right;
+		const height = windowHeight - marginP.top - marginP.bottom;
 
 		d3.selectAll('#chart-' + name).remove();
 		d3.selectAll('.info-bar-' + name).remove();
@@ -103,7 +96,7 @@ export default class D3PriceChart {
 			nslyRange = lyRange * 2;
 		// Line
 		const lineETH = d3
-			.line<IPriceDatum>()
+			.line<IPriceData>()
 			.x(d => {
 				return x(new Date(Date.parse(d.date)));
 			})
@@ -111,7 +104,7 @@ export default class D3PriceChart {
 				return ly(d.ETH);
 			});
 		const lineClassA = d3
-			.line<IPriceDatum>()
+			.line<IPriceData>()
 			.x(d => {
 				return x(new Date(Date.parse(d.date)));
 			})
@@ -119,7 +112,7 @@ export default class D3PriceChart {
 				return ry(d.ClassA);
 			});
 		const lineClassB = d3
-			.line<IPriceDatum>()
+			.line<IPriceData>()
 			.x(d => {
 				return x(new Date(Date.parse(d.date)));
 			})
@@ -127,7 +120,7 @@ export default class D3PriceChart {
 				return ry(d.ClassB);
 			});
 
-		const showColumndata = (d: IPriceDatum): void => {
+		const showColumndata = (d: IPriceData): void => {
 			const resetText = +d.InterestCount === 0 ? 'Reset Day' : '';
 			infoBar.html(
 				"Date: <div class = 'Date info-column'>" +
@@ -239,13 +232,13 @@ export default class D3PriceChart {
 			.append('rect')
 			.attr('class', 'bar-background')
 			.attr('x', (d: {}) => {
-				return x(new Date(Date.parse((d as IPriceDatum).date))) - backrectWidth / 2;
+				return x(new Date(Date.parse((d as IPriceData).date))) - backrectWidth / 2;
 			})
 			.attr('y', 0)
 			.attr('width', backrectWidth)
 			.attr('height', height)
 			.on('mousemove', (d: {}) => {
-				showColumndata(d as IPriceDatum);
+				showColumndata(d as IPriceData);
 			});
 		// Lines
 		//const graphLineETH =
@@ -321,13 +314,13 @@ export default class D3PriceChart {
 			.append('circle')
 			.attr('class', 'reset-dot')
 			.attr('cx', (d: {}) => {
-				return x(new Date(Date.parse((d as IPriceDatum).date)));
+				return x(new Date(Date.parse((d as IPriceData).date)));
 			})
 			.attr('cy', (d: {}) => {
-				return ry((d as IPriceDatum).ClassB);
+				return ry((d as IPriceData).ClassB);
 			})
 			.attr('r', (d: {}) => {
-				return (d as IPriceDatum).InterestCount === 0 ? 2 : 0;
+				return (d as IPriceData).InterestCount === 0 ? 2 : 0;
 			})
 			.attr('stroke', 'none')
 			.attr('fill', colorResetDot);
@@ -375,7 +368,7 @@ export default class D3PriceChart {
 			d3.select(".ly-axis-" + name).call(d3.axisLeft(ly).ticks(5));
 			d3.select(".ry-axis-" + name).call(d3.axisRight(ry).ticks(5));
 			const lineETH = d3
-				.line<IPriceDatum>()
+				.line<IPriceData>()
 				.x(d => {
 					return new_x(new Date(Date.parse(d.date)));
 				})
@@ -383,7 +376,7 @@ export default class D3PriceChart {
 					return ly(d.ETH);
 				});
 			const lineClassA = d3
-				.line<IPriceDatum>()
+				.line<IPriceData>()
 				.x(d => {
 					return new_x(new Date(Date.parse(d.date)));
 				})
@@ -391,14 +384,14 @@ export default class D3PriceChart {
 					return ry(d.ClassA);
 				});
 			const lineClassB = d3
-				.line<IPriceDatum>()
+				.line<IPriceData>()
 				.x(d => {
 					return new_x(new Date(Date.parse(d.date)));
 				})
 				.y(d => {
 					return ry(d.ClassB);
 				});
-			barBackground.data(data).attr("x", (d: IPriceDatum) => {
+			barBackground.data(data).attr("x", (d: IPriceData) => {
 				return new_x(new Date(Date.parse(d.date))) - backrectWidth / 2;
 			});
 			graphLineETH.datum(data).attr("d", lineETH);
@@ -406,10 +399,10 @@ export default class D3PriceChart {
 			graphLineClassB.datum(data).attr("d", lineClassB);
 			resetDots
 				.data(data)
-				.attr("cx", (d: IPriceDatum) => {
+				.attr("cx", (d: IPriceData) => {
 					return new_x(new Date(Date.parse(d.date)));
 				})
-				.attr("cy", (d: IPriceDatum) => {
+				.attr("cy", (d: IPriceData) => {
 					return ry(d.ClassB);
 				});
 		}
@@ -421,7 +414,7 @@ export default class D3PriceChart {
 		const { width, height } = props;
 	};
 	*/
-	public destroy: Destroy = el => {
+	public destroy = (el: Element) => {
 		d3.select(el).remove();
 	};
 }

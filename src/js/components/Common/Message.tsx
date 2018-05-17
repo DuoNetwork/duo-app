@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
 import * as React from 'react';
-import errorImg from '../../images/error_img.png';
-import infoImg from '../../images/info_img.png';
-import successImg from '../../images/suc_img.png';
+import errorImg from '../../../images/error_img.png';
+import infoImg from '../../../images/info_img.png';
+import successImg from '../../../images/suc_img.png';
 
 interface IProps {
 	type: string;

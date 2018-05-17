@@ -1,13 +1,25 @@
 // import * as d3 from 'd3';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { IPriceProps, IPriceState } from '../../types';
+import { IPriceData } from '../../types';
 import D3PriceChart from './D3PriceChart';
 // const moment = require('moment');
 
 const priceChart = new D3PriceChart();
 
-export default class PriceChart extends React.Component<IPriceProps, IPriceState> {
+interface IProps {
+	name: string;
+	data: IPriceData[];
+	movedata: IPriceData[];
+	pickedPriceDatum: (d: IPriceData) => void;
+}
+
+interface IState {
+	windowWidth: number;
+	windowHeight: number;
+}
+
+export default class PriceChart extends React.Component<IProps, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -49,7 +61,7 @@ export default class PriceChart extends React.Component<IPriceProps, IPriceState
 		window.removeEventListener('resize', this.updateDimensions.bind(this));
 	}
 
-	public shouldComponentUpdate(nextProps: IPriceProps, nextState: IPriceState) {
+	public shouldComponentUpdate(nextProps: IProps, nextState: IState) {
 		if (
 			nextState.windowHeight !== this.state.windowHeight ||
 			nextState.windowWidth !== this.state.windowWidth

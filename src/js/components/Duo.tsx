@@ -1,24 +1,23 @@
 import * as d3 from 'd3';
 import * as React from 'react';
-import '../css/style.css';
-import classAIcon from '../images/ClassA_white.png';
-import classBIcon from '../images/ClassB_white.png';
-import duoIcon from '../images/DUO_icon.png';
-import ethIcon from '../images/ethIcon.png';
-import {IAssets, IMVData, IMVDatum, IPriceData} from '../types';
+import classAIcon from '../../images/ClassA_white.png';
+import classBIcon from '../../images/ClassB_white.png';
+import duoIcon from '../../images/DUO_icon.png';
+import ethIcon from '../../images/ethIcon.png';
+import {IAssets, IPriceData, ITimeSeriesData} from '../types';
 import HistroyCard from './Cards/HistoryCard';
-import MVChart from './Charts/MVChart';
 import PriceChart from './Charts/PriceChart';
+import TimeSeriesChart from './Charts/TimeSeriesChart';
 import Message from './Common/Message';
-const mockdata: IPriceData = require('../static/ETH_A_B.json');
+const mockdata: IPriceData[] = require('../../static/ETH_A_B.json');
 const format = d3.timeFormat('%Y %b %d');
 
 interface IState {
-	dataPrice: IPriceData;
-	dataMV: IMVData;
-	currentmvdata: IMVDatum;
+	dataPrice: IPriceData[];
+	dataMV: ITimeSeriesData[];
+	currentmvdata: ITimeSeriesData;
 	currentDayCounter: number;
-	currentPriceData: IPriceData;
+	currentPriceData: IPriceData[];
 	assets: IAssets;
 	ETHIn: string;
 	CreationIn: string;
@@ -43,8 +42,8 @@ export default class Duo extends React.PureComponent<{}, IState> {
 		this.pickedPriceDatum = this.pickedPriceDatum.bind(this);
 		this.state = {
 			dataPrice: mockdata.slice(0, mockdata.length - 1),
-			dataMV: [{ date: '2017/10/1', MV: 50000 }],
-			currentmvdata: {} as IMVDatum,
+			dataMV: [{ datetime: '2017/10/1', value: 50000 }],
+			currentmvdata: {} as ITimeSeriesData,
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
 			assets: {
@@ -124,7 +123,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 					break;
 				}
 			}
-			mvData.push({ date: nextPrice.date, MV: mvBeforeReset });
+			mvData.push({ datetime: nextPrice.date, value: mvBeforeReset });
 			this.setState({
 				currentDayCounter: i + 1,
 				currentPriceData: dataSet,
@@ -139,7 +138,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 				msgShow: 1
 			});
 		} else {
-			mvData.push({ date: nextPrice.date, MV: marketValue });
+			mvData.push({ datetime: nextPrice.date, value: marketValue });
 			this.setState({
 				currentDayCounter: i + 1,
 				currentPriceData: dataSet,
@@ -149,8 +148,8 @@ export default class Duo extends React.PureComponent<{}, IState> {
 	};
 	public handleRefresh = () => {
 		this.setState({
-			dataMV: [{ date: '2017/10/1', MV: 50000 }],
-			currentmvdata: {} as IMVDatum,
+			dataMV: [{ datetime: '2017/10/1', value: 50000 }],
+			currentmvdata: {} as ITimeSeriesData,
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
 			assets: {
@@ -733,7 +732,7 @@ export default class Duo extends React.PureComponent<{}, IState> {
 							</div>
 							<div className="d3chart-wrapper">
 								<h3>Market Value Chart</h3>
-								<MVChart
+								<TimeSeriesChart
 									name="mvchart"
 									data={dataMV}
 									pickedMVDatum={this.pickedMVDatum}
