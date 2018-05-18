@@ -48,7 +48,7 @@ export default class PriceCard extends React.PureComponent<IProps> {
 		return (
 			<div className="price-tag-wrapper">
 				<div className="price-tag-date">
-					<span>{'Date  ' + format(new Date(Date.parse(price.date)))}</span>
+					<span>{'Date  ' + format(new Date(price.Date))}</span>
 				</div>
 				<PriceInfo
 					icon={ethIcon}

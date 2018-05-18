@@ -15,14 +15,10 @@ export interface ITimeSeries {
 }
 
 export interface IPriceData {
-	date: string;
+	Date: number,
 	ETH: number;
 	ClassA: number;
 	ClassB: number;
-	ClassAbeforeReset?: number;
-	ClassBbeforeReset?: number;
-	ResetType?: string;
-	InterestCount: number;
 }
 
 export interface IRawData {

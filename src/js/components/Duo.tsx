@@ -1,33 +1,36 @@
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
-import { IAssets, IPriceData, ITimeSeriesData } from '../types';
+import calculator from '../calculator';
+import { IAssets, ITimeSeriesData } from '../types';
 import AssetCard from './Cards/AssetCard';
 import PriceCard from './Cards/PriceCard';
 import TransactionCard from './Cards/TransactionCard';
 import TimeSeriesChart from './Charts/TimeSeriesChart';
 import Message from './Common/Message';
 import Header from './Header';
-const mockdata: IPriceData[] = require('../../static/ETH_A_B.json');
 const format = d3.timeFormat('%Y %b %d');
 
 interface IProp {
-	eth: ITimeSeriesData[],
-	classA: ITimeSeriesData[],
-	classB: ITimeSeriesData[],
-	reset: ITimeSeriesData[],
+	eth: ITimeSeriesData[];
+	classA: ITimeSeriesData[];
+	classB: ITimeSeriesData[];
+	reset: ITimeSeriesData[];
 }
 
 interface IState {
 	dataMV: ITimeSeriesData[];
-	currentDayCounter: number;
-	currentPriceData: IPriceData[];
+	dayCount: number;
 	assets: IAssets;
-	lastResetETHPrice: number;
+	lastResetPrice: number;
+	beta: number;
 	msgType: string;
 	msgContent: string;
 	msgShow: number;
 	resetToggle: boolean;
+	upwardResetCount: number;
+	downwardResetCount: number;
+	periodicResetCount: number;
 }
 
 const INITIAL_ASSETS = {
@@ -44,115 +47,132 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 		super(props);
 		this.state = {
 			dataMV: [{ datetime: INITIAL_DATETIME, value: INITIAL_MV }],
-			currentDayCounter: 1,
-			currentPriceData: mockdata.slice(0, 2),
+			dayCount: 0,
 			assets: INITIAL_ASSETS,
-			lastResetETHPrice: mockdata[0].ETH,
+			lastResetPrice: this.props.eth[0].value,
+			beta: 1,
 			msgType: 'msg type',
 			msgContent: 'msg content',
 			msgShow: 0,
-			resetToggle: false
+			resetToggle: false,
+			upwardResetCount: 0,
+			downwardResetCount: 0,
+			periodicResetCount: 0
 		};
 	}
 
 	public handleNextDay = () => {
-		const { ETH, ClassA, ClassB } = this.state.assets;
-		//const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
-		const nextPrice = this.state.currentPriceData[this.state.currentPriceData.length - 1];
-		const i = this.state.currentDayCounter;
-		const dataSet = mockdata.slice(0, i + 2);
-		const mvBeforeReset =
-			ETH * nextPrice.ETH +
-			ClassA * (nextPrice.ClassAbeforeReset || 0) +
-			ClassB * (nextPrice.ClassBbeforeReset || 0);
-		let newAssets;
-		const mvData = this.state.dataMV;
-		const marketValue =
-			ETH * nextPrice.ETH + ClassA * nextPrice.ClassA + ClassB * nextPrice.ClassB;
+		const { eth, classA, classB } = this.props;
+		const {
+			dayCount,
+			upwardResetCount,
+			downwardResetCount,
+			periodicResetCount,
+			assets,
+			dataMV,
+			beta,
+			lastResetPrice
+		} = this.state;
 
-		if (nextPrice.ResetType) {
-			switch (nextPrice.ResetType) {
-				case 'upward': {
-					console.log(mvBeforeReset);
-					const resetETHAmount =
-						(((nextPrice.ClassAbeforeReset || 0) - 1) * ClassA +
-							((nextPrice.ClassBbeforeReset || 0) - 1) * ClassB) /
-						nextPrice.ETH;
-					const rETH = ETH + resetETHAmount;
-					newAssets = {
-						ETH: rETH,
-						ClassA: ClassA,
-						ClassB: ClassB
-					};
-					break;
-				}
-				default: {
-					console.log(mvBeforeReset);
-					const resetETHAmount =
-							(nextPrice.ClassAbeforeReset ||
-								0 - (nextPrice.ClassBbeforeReset || 0)) *
-							ClassA /
-							nextPrice.ETH,
-						resetClassAAmount = ClassA * (nextPrice.ClassBbeforeReset || 0),
-						resetClassBAmount = ClassB * (nextPrice.ClassBbeforeReset || 0);
-					const rETH = ETH + resetETHAmount;
-					newAssets = {
-						ETH: rETH,
-						ClassA: resetClassAAmount,
-						ClassB: resetClassBAmount
-					};
-					break;
-				}
-			}
-			this.setState({
-				currentDayCounter: i + 1,
-				currentPriceData: dataSet,
-				dataMV: [
-					...mvData,
-					{ datetime: moment(nextPrice.date, 'YYYY/M/D').valueOf(), value: mvBeforeReset }
-				],
-				assets: newAssets,
-				lastResetETHPrice: nextPrice.ETH,
-				msgType: "<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>",
-				msgContent:
-					"<div style='color: rgba(255,255,255, .8)'>Reset (" +
-					nextPrice.ResetType +
-					') triggered.</div>',
-				msgShow: 1
-			});
-		} else
-			this.setState({
-				currentDayCounter: i + 1,
-				currentPriceData: dataSet,
-				dataMV: [
-					...mvData,
-					{ datetime: moment(nextPrice.date, 'YYYY/M/D').valueOf(), value: marketValue }
-				]
-			});
+		const newDayCount = dayCount + 1;
+		const newEthPx = eth[newDayCount].value;
+		const newNavA =
+			classA[newDayCount + upwardResetCount + downwardResetCount + periodicResetCount].value;
+		const newNavB = classB[newDayCount + upwardResetCount + downwardResetCount].value;
+
+		const mv = assets.ETH * newEthPx + assets.ClassA * newNavA + assets.ClassB * newNavB;
+		let newAssets: IAssets;
+		let newBeta = beta;
+		let newResetPrice = lastResetPrice;
+		let msg = '';
+		let newUpwardCount = upwardResetCount;
+		let newDownwardCount = downwardResetCount;
+		let newPeriodicCount = periodicResetCount;
+		if (newNavB >= 2) {
+			newAssets = {
+				ETH:
+					assets.ETH +
+					((newNavA - 1) * assets.ClassA + (newNavB - 1) * assets.ClassB) / newEthPx,
+				ClassA: assets.ClassA,
+				ClassB: assets.ClassB
+			};
+			newBeta = 1;
+			newResetPrice = newEthPx;
+			msg = "<div style='color: rgba(255,255,255, .8)'>Reset (upward) triggered.</div>";
+			newUpwardCount++;
+		} else if (newNavB <= 0.25) {
+			newAssets = {
+				ETH: assets.ETH + (newNavA - newNavB) * assets.ClassA / newEthPx,
+				ClassA: assets.ClassA * newNavB,
+				ClassB: assets.ClassB * newNavB
+			};
+			newBeta = 1;
+			newResetPrice = newEthPx;
+			msg = "<div style='color: rgba(255,255,255, .8)'>Reset (downward) triggered.</div>";
+			newDownwardCount++;
+		} else if (newNavA >= 1.02) {
+			newAssets = {
+				ETH: assets.ETH + (newNavA - 1) * assets.ClassA / newEthPx,
+				ClassA: assets.ClassA,
+				ClassB: assets.ClassB
+			};
+			newBeta = calculator.updateBeta(beta, newEthPx, lastResetPrice, newNavA, 1);
+			newResetPrice = newEthPx;
+			msg = "<div style='color: rgba(255,255,255, .8)'>Reset (periodic) triggered.</div>";
+			newPeriodicCount++;
+		} else newAssets = assets;
+
+		this.setState({
+			dayCount: newDayCount,
+			dataMV: [...dataMV, { datetime: eth[newDayCount].datetime, value: mv }],
+			assets: newAssets,
+			lastResetPrice: newResetPrice,
+			beta: newBeta,
+			msgType: msg ? "<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>" : '',
+			msgContent: msg,
+			msgShow: msg ? 1 : 0,
+			upwardResetCount: newUpwardCount,
+			downwardResetCount: newDownwardCount,
+			periodicResetCount: newPeriodicCount
+		});
 	};
 
 	public handleRefresh = () => {
 		this.setState({
 			dataMV: [{ datetime: INITIAL_DATETIME, value: INITIAL_MV }],
-			currentDayCounter: 1,
-			currentPriceData: mockdata.slice(0, 2),
+			dayCount: 0,
 			assets: INITIAL_ASSETS,
-			lastResetETHPrice: mockdata[0].ETH,
+			lastResetPrice: this.props.eth[0].value,
+			beta: 1,
 			msgType: 'msg type',
 			msgContent: 'msg content',
 			msgShow: 0,
-			resetToggle: !this.state.resetToggle
+			resetToggle: !this.state.resetToggle,
+			upwardResetCount: 0,
+			downwardResetCount: 0,
+			periodicResetCount: 0
 		});
 	};
 
 	public handleBuySell = (amount: number, isA: boolean): string => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
-		const { assets } = this.state;
-		const valueClassAB = amount * (isA ? currentPrice.ClassA : currentPrice.ClassB);
-		const valueETH = assets.ETH * currentPrice.ETH;
+		const { eth, classA, classB } = this.props;
+		const {
+			dayCount,
+			upwardResetCount,
+			downwardResetCount,
+			periodicResetCount,
+			assets
+		} = this.state;
+
+		const ethPx = eth[dayCount].value;
+		const navA =
+			classA[dayCount + upwardResetCount + downwardResetCount + periodicResetCount].value;
+		const navB = classB[dayCount + upwardResetCount + downwardResetCount].value;
+		const valueClassAB = amount * (isA ? navA : navB);
+		const valueETH = assets.ETH * ethPx;
 		if (amount > 0)
 			if (valueClassAB <= valueETH) {
-				const rETH = (valueETH - valueClassAB) / currentPrice.ETH;
+				const rETH = (valueETH - valueClassAB) / ethPx;
 				const newAssets: IAssets = {
 					ETH: rETH,
 					ClassA: assets.ClassA + (isA ? amount : 0),
@@ -168,18 +188,18 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						' Class ' +
 						(isA ? 'A' : 'B') +
 						"</span> with <span style='color: rgba(255,255,255, 1)'>" +
-						d3.formatPrefix(',.6', 1)(valueClassAB / currentPrice.ETH) +
+						d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
 						' ETH</span>.</div>',
 					msgShow: 1
 				});
 				return (
-					format(new Date(Date.parse(currentPrice.date))) +
+					format(new Date(eth[dayCount].datetime)) +
 					': Bought ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' Class ' +
 					(isA ? 'A' : 'B') +
 					' with ' +
-					d3.formatPrefix(',.6', 1)(valueClassAB / currentPrice.ETH) +
+					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
 					' ETH.'
 				);
 			} else {
@@ -194,7 +214,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 		else if (amount < 0)
 			if (amount <= assets.ClassA) {
 				const newAssets: IAssets = {
-					ETH: assets.ETH + valueClassAB / currentPrice.ETH,
+					ETH: assets.ETH - valueClassAB / ethPx,
 					ClassA: assets.ClassA + (isA ? amount : 0),
 					ClassB: assets.ClassB + (isA ? 0 : amount)
 				};
@@ -207,19 +227,19 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						d3.formatPrefix(',.2', 1)(-amount) +
 						' Class ' +
 						(isA ? 'A' : 'B') +
-						"</span> with <span style='color: rgba(255,255,255, 1)'>" +
-						d3.formatPrefix(',.6', 1)(valueClassAB / currentPrice.ETH) +
+						"</span> for <span style='color: rgba(255,255,255, 1)'>" +
+						d3.formatPrefix(',.6', 1)(Math.abs(valueClassAB) / ethPx) +
 						' ETH</span>.</div>',
 					msgShow: 1
 				});
 				return (
-					format(new Date(Date.parse(currentPrice.date))) +
+					format(new Date(eth[dayCount].datetime)) +
 					': Sold ' +
 					d3.formatPrefix(',.2', 1)(-amount) +
 					' Class ' +
 					(isA ? 'A' : 'B') +
 					' with ' +
-					d3.formatPrefix(',.6', 1)(valueClassAB / currentPrice.ETH) +
+					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
 					' ETH.'
 				);
 			} else {
@@ -242,10 +262,11 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 		}
 	};
 
-	public handleCreation = (amount: number) => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
-		const { assets, lastResetETHPrice } = this.state;
-		const valuelastResetETHPrice = amount * lastResetETHPrice;
+	public handleCreation = (amount: number): string => {
+		const { eth } = this.props;
+		const { dayCount, assets, beta, lastResetPrice } = this.state;
+
+		const valuelastResetETHPrice = amount * lastResetPrice * beta;
 		if (amount && amount > 0)
 			if (amount <= assets.ETH) {
 				const rETH = assets.ETH - amount;
@@ -270,7 +291,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					msgShow: 1
 				});
 				return (
-					format(new Date(Date.parse(currentPrice.date))) +
+					format(new Date(eth[dayCount].datetime)) +
 					': Split ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' ETH into ' +
@@ -297,15 +318,15 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 		}
 	};
 
-	public handleRedemption = (amount: number) => {
-		const currentPrice = this.state.currentPriceData[this.state.currentPriceData.length - 2];
-		const { assets, lastResetETHPrice } = this.state;
+	public handleRedemption = (amount: number): string => {
+		const { eth } = this.props;
+		const { dayCount, assets, beta, lastResetPrice } = this.state;
 		if (amount && amount > 0)
 			if (amount <= (d3.min([assets.ClassA, assets.ClassB]) || 0)) {
 				const rClassA = assets.ClassA - amount,
 					rClassB = assets.ClassB - amount;
 				const combineOutcome = amount * 2;
-				const rETH = assets.ETH + combineOutcome / lastResetETHPrice;
+				const rETH = assets.ETH + combineOutcome / lastResetPrice / beta;
 				const newAssets: IAssets = {
 					ETH: rETH,
 					ClassA: rClassA,
@@ -319,16 +340,16 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						"<div style='color: rgba(255,255,255, .6)'>Combine <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(amount) +
 						" ClassA/B</span> into <span style='color: rgba(255,255,255, 1)'>" +
-						d3.formatPrefix(',.6', 1)(combineOutcome / lastResetETHPrice) +
+						d3.formatPrefix(',.6', 1)(combineOutcome / lastResetPrice) +
 						' ETH</span>',
 					msgShow: 1
 				});
 				return (
-					format(new Date(Date.parse(currentPrice.date))) +
+					format(new Date(eth[dayCount].datetime)) +
 					': Combine ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' ClassA/B into ' +
-					d3.formatPrefix(',.6', 1)(combineOutcome / lastResetETHPrice) +
+					d3.formatPrefix(',.6', 1)(combineOutcome / lastResetPrice) +
 					' ETH.'
 				);
 			} else {
@@ -359,34 +380,39 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 
 	public render() {
 		const {
-			//dataPrice,
 			dataMV,
-			currentPriceData,
 			assets,
 			resetToggle,
-			lastResetETHPrice
+			dayCount,
+			lastResetPrice,
+			upwardResetCount,
+			downwardResetCount,
+			periodicResetCount
 		} = this.state;
-		const currentPrice = currentPriceData[currentPriceData.length - 2];
-		const {eth, classA, classB, reset} = this.props;
+		const { eth, classA, classB, reset } = this.props;
+		const ethPx = eth[dayCount].value;
+		const navA =
+			classA[dayCount + upwardResetCount + downwardResetCount + periodicResetCount].value;
+		const navB = classB[dayCount + upwardResetCount + downwardResetCount].value;
 		const timeseries = [
 			{
 				name: 'ETH',
 				data: eth,
-				highlight: Math.max(currentPriceData.length - 2, 0),
+				highlight: dayCount,
 				color: '255,255,255',
 				width: 1.5
 			},
 			{
 				name: 'ClassA',
 				data: classA,
-				highlight: Math.max(currentPriceData.length - 2, 0),
+				highlight: dayCount + upwardResetCount + downwardResetCount + periodicResetCount,
 				rightAxis: true,
 				color: '0,186,255'
 			},
 			{
 				name: 'ClassB',
 				data: classB,
-				highlight: Math.max(currentPriceData.length - 2, 0),
+				highlight: dayCount + upwardResetCount + downwardResetCount,
 				rightAxis: true,
 				color: '255,129,0'
 			},
@@ -418,8 +444,23 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					{/* Current Price, Asset Information Bar */}
 					<div className="info-bar">
 						<div className="info-bar-row">
-							<PriceCard price={currentPrice} />
-							<AssetCard assets={assets} price={currentPrice} />
+							<PriceCard
+								price={{
+									Date: eth[dayCount].datetime,
+									ETH: ethPx,
+									ClassA: navA,
+									ClassB: navB,
+								}}
+							/>
+							<AssetCard
+								assets={assets}
+								price={{
+									Date: eth[dayCount].datetime,
+									ETH: ethPx,
+									ClassA: navA,
+									ClassB: navB,
+								}}
+							/>
 						</div>
 					</div>
 					{/* D3 Price Chart and Market Value Chart */}
@@ -450,8 +491,13 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					</div>
 					<TransactionCard
 						assets={assets}
-						currentPrice={currentPrice}
-						lastResetETHPrice={lastResetETHPrice}
+						currentPrice={{
+							Date: eth[dayCount].datetime,
+							ETH: ethPx,
+							ClassA: navA,
+							ClassB: navB,
+						}}
+						lastResetETHPrice={lastResetPrice}
 						handleBuySell={this.handleBuySell}
 						handleCreation={this.handleCreation}
 						handleRedemption={this.handleRedemption}
