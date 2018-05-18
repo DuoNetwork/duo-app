@@ -21,6 +21,7 @@
         "jsx-no-lambda": false,
         "member-ordering": false,
         "prefer-const": false,
-        "curly": [true, "as-needed"]
+        "curly": [true, "as-needed"],
+        "jsx-boolean-value": false
     }
 }

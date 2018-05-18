@@ -5,7 +5,6 @@ import { IAssets, IPriceData, ITimeSeriesData } from '../types';
 import AssetCard from './Cards/AssetCard';
 import PriceCard from './Cards/PriceCard';
 import TransactionCard from './Cards/TransactionCard';
-import PriceChart from './Charts/PriceChart';
 import TimeSeriesChart from './Charts/TimeSeriesChart';
 import Message from './Common/Message';
 import Header from './Header';
@@ -453,11 +452,24 @@ export default class Duo extends React.PureComponent<{}, IState> {
 						<div className="d3chart-row">
 							<div className="d3chart-wrapper">
 								<h3>Price Chart</h3>
-								<PriceChart name="pricechart" timeseries={timeseries} />
+								<TimeSeriesChart name="pricechart" timeseries={timeseries} />
 							</div>
 							<div className="d3chart-wrapper">
 								<h3>Market Value Chart</h3>
-								<TimeSeriesChart name="mvchart" data={dataMV} />
+								<TimeSeriesChart
+									name="mvchart"
+									timeseries={[
+										{
+											name: 'MV',
+											data: dataMV,
+											highlight: -1,
+											color: '255,255,255',
+											areaColor: '0, 178, 255',
+											width: 1.5
+										}
+									]}
+									showArea
+								/>
 							</div>
 						</div>
 					</div>

@@ -10,7 +10,8 @@ export interface ITimeSeries {
 	highlight: number;
 	rightAxis?: boolean;
 	color?: string,
-	width?: number
+	width?: number,
+	areaColor?: string
 }
 
 export interface IPriceData {
