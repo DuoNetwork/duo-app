@@ -16,6 +16,7 @@ input:focus {
 	position: fixed;
 	top: 89vh;
 	left: 70vw;
+	z-index: 20;
 }
 .day-button {
 	margin-left: 10px;
