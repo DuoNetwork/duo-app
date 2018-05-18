@@ -11,10 +11,15 @@ import Header from './Header';
 const mockdata: IPriceData[] = require('../../static/ETH_A_B.json');
 const format = d3.timeFormat('%Y %b %d');
 
+interface IProp {
+	eth: ITimeSeriesData[],
+	classA: ITimeSeriesData[],
+	classB: ITimeSeriesData[],
+	reset: ITimeSeriesData[],
+}
+
 interface IState {
-	dataPrice: IPriceData[];
 	dataMV: ITimeSeriesData[];
-	currentmvdata: ITimeSeriesData;
 	currentDayCounter: number;
 	currentPriceData: IPriceData[];
 	assets: IAssets;
@@ -25,30 +30,29 @@ interface IState {
 	resetToggle: boolean;
 }
 
-export default class Duo extends React.PureComponent<{}, IState> {
+const INITIAL_ASSETS = {
+	ETH: 100,
+	ClassA: 0,
+	ClassB: 0
+};
+
+const INITIAL_DATETIME = moment('2017-10-01').valueOf();
+const INITIAL_MV = INITIAL_ASSETS.ETH * 303.95;
+
+export default class Duo extends React.PureComponent<IProp, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			dataPrice: mockdata.slice(0, mockdata.length - 1),
-			dataMV: [{ datetime: moment('2017-10-01').valueOf(), value: 30395 }],
-			currentmvdata: {} as ITimeSeriesData,
+			dataMV: [{ datetime: INITIAL_DATETIME, value: INITIAL_MV }],
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
-			assets: {
-				ETH: 100,
-				ClassA: 0,
-				ClassB: 0
-			},
+			assets: INITIAL_ASSETS,
 			lastResetETHPrice: mockdata[0].ETH,
 			msgType: 'msg type',
 			msgContent: 'msg content',
 			msgShow: 0,
 			resetToggle: false
 		};
-	}
-
-	public componentDidMount() {
-		console.log('Welcome to DUO Demo!');
 	}
 
 	public handleNextDay = () => {
@@ -129,29 +133,16 @@ export default class Duo extends React.PureComponent<{}, IState> {
 
 	public handleRefresh = () => {
 		this.setState({
-			dataMV: [{ datetime: moment('2017-10-01').valueOf(), value: 30395 }],
-			currentmvdata: {} as ITimeSeriesData,
+			dataMV: [{ datetime: INITIAL_DATETIME, value: INITIAL_MV }],
 			currentDayCounter: 1,
 			currentPriceData: mockdata.slice(0, 2),
-			assets: {
-				ETH: 100,
-				ClassA: 0,
-				ClassB: 0
-			},
+			assets: INITIAL_ASSETS,
 			lastResetETHPrice: mockdata[0].ETH,
 			msgType: 'msg type',
 			msgContent: 'msg content',
 			msgShow: 0,
 			resetToggle: !this.state.resetToggle
 		});
-	};
-
-	public pickedPriceDatum = () => {
-		this.setState({});
-	};
-
-	public pickedMVDatum = () => {
-		this.setState({});
 	};
 
 	public handleBuySell = (amount: number, isA: boolean): string => {
@@ -367,32 +358,9 @@ export default class Duo extends React.PureComponent<{}, IState> {
 	};
 
 	public render() {
-		const { dataPrice, dataMV, currentPriceData, assets, resetToggle } = this.state;
+		const { dataMV, currentPriceData, assets, resetToggle } = this.state;
 		const currentPrice = currentPriceData[currentPriceData.length - 2];
-		const eth: ITimeSeriesData[] = [],
-			classA: ITimeSeriesData[] = [],
-			classB: ITimeSeriesData[] = [],
-			reset: ITimeSeriesData[] = [];
-		dataPrice.forEach((d, i) => {
-			eth.push({
-				datetime: moment(d.date, 'YYYY/M/D').valueOf(),
-				value: d.ETH
-			});
-			classA.push({
-				datetime: moment(d.date, 'YYYY/M/D').valueOf(),
-				value: d.ClassA
-			});
-			classB.push({
-				datetime: moment(d.date, 'YYYY/M/D').valueOf(),
-				value: d.ClassB
-			});
-
-			if (d.ResetType || i === 0)
-				reset.push({
-					datetime: moment(d.date, 'YYYY/M/D').valueOf(),
-					value: 1
-				});
-		});
+		const {eth, classA, classB, reset} = this.props;
 		const timeseries = [
 			{
 				name: 'ETH',

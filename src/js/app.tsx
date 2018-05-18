@@ -1,6 +1,15 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import '../css/style.css';
-import Duo from './components/Duo'
+import calculator from './calculator';
+import Duo from './components/Duo';
+import { IRawData } from './types';
 
-ReactDOM.render(<Duo />, document.getElementById('app'));
+const rawData: IRawData[] = require('../static/ETH.json');
+
+const [eth, classA, classB, reset] = calculator.getAllTimeSeriesFromEth(rawData);
+
+ReactDOM.render(
+	<Duo eth={eth} classA={classA} classB={classB} reset={reset} />,
+	document.getElementById('app')
+);

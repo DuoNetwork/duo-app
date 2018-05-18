@@ -25,6 +25,11 @@ export interface IPriceData {
 	InterestCount: number;
 }
 
+export interface IRawData {
+	Date: string;
+	Price: number;
+}
+
 export interface IAssets {
 	ETH: number;
 	ClassA: number;
