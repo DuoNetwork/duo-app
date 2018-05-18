@@ -358,7 +358,14 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 	};
 
 	public render() {
-		const { dataMV, currentPriceData, assets, resetToggle } = this.state;
+		const {
+			//dataPrice,
+			dataMV,
+			currentPriceData,
+			assets,
+			resetToggle,
+			lastResetETHPrice
+		} = this.state;
 		const currentPrice = currentPriceData[currentPriceData.length - 2];
 		const {eth, classA, classB, reset} = this.props;
 		const timeseries = [
@@ -443,6 +450,8 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					</div>
 					<TransactionCard
 						assets={assets}
+						currentPrice={currentPrice}
+						lastResetETHPrice={lastResetETHPrice}
 						handleBuySell={this.handleBuySell}
 						handleCreation={this.handleCreation}
 						handleRedemption={this.handleRedemption}

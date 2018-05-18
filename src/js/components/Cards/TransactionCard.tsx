@@ -1,6 +1,7 @@
 import * as d3 from 'd3';
 import * as React from 'react';
-import { IAssets } from '../../types';
+import { IAssets, IPriceData } from '../../types';
+import TransactionForm from '../Forms/TransactionForm';
 import HistroyCard from './HistoryCard';
 
 interface IProps {
@@ -8,7 +9,9 @@ interface IProps {
 	handleCreation: (amount: number) => string;
 	handleRedemption: (amount: number) => string;
 	assets: IAssets;
+	currentPrice: IPriceData;
 	resetToggle: boolean;
+	lastResetETHPrice: number;
 }
 
 interface IState {
@@ -22,9 +25,10 @@ interface IState {
 	ClassA: number;
 	ClassB: number;
 	resetToggle: boolean;
+	showTF: boolean;
 }
 
-export default class Duo extends React.PureComponent<IProps, IState> {
+export default class TransactionCard extends React.PureComponent<IProps, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -37,7 +41,8 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 			Redemption: 0,
 			ClassA: 0,
 			ClassB: 0,
-			resetToggle: false
+			resetToggle: false,
+			showTF: false
 		};
 	}
 
@@ -63,8 +68,22 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 		return +(Math.round((num + 'e+2') as any) + 'e-2');
 	};
 
+	public toggleShown = () => {
+		const newShow = !this.state.showTF;
+		this.setState({
+			showTF: newShow
+		});
+	};
+
 	public render() {
-		const { assets, handleBuySell, handleCreation, handleRedemption } = this.props;
+		const {
+			assets,
+			currentPrice,
+			lastResetETHPrice,
+			handleBuySell,
+			handleCreation,
+			handleRedemption
+		} = this.props;
 		const {
 			history,
 			CreationIn,
@@ -74,7 +93,8 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 			Creation,
 			Redemption,
 			ClassA,
-			ClassB
+			ClassB,
+			showTF
 		} = this.state;
 		return (
 			<div
@@ -88,11 +108,30 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 						display: 'flex',
 						justifyContent: 'space-between',
 						flexDirection: 'row',
-						width: '960px'
+						width: '960px',
+						position: 'relative'
 					}}
 				>
-					<div style={{ width: '600px' }}>
+					<button
+						style={{
+							position: 'absolute',
+							left: '610px',
+							top: '10px',
+							padding: '5px 15px'
+						}}
+						onClick={this.toggleShown}
+					>
+						open
+					</button>
+					<div className="history-transaction-card-wrapper">
 						<HistroyCard history={history} />
+						<TransactionForm
+							isShown={showTF}
+							type="Redemption"
+							assets={assets}
+							currentPrice={currentPrice}
+							lastResetETHPrice={lastResetETHPrice}
+						/>
 					</div>
 					<div style={{ width: '360px' }}>
 						<div

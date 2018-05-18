@@ -9,6 +9,9 @@
 button:focus {
 	outline: 0;
 }
+input:focus {
+	outline: 0;
+}
 .play-button {
 	position: fixed;
 	top: 89vh;
@@ -133,7 +136,7 @@ button:focus {
 	height: 0%;
 	top: 50%;
 	left: 50%;
-	background: #eeeeee8f;
+	background: #eeeeee;
 	opacity: 0;
 	transform: translateX(-50%) translateY(-50%) rotate(45deg);
 	transition: .3s;
@@ -178,7 +181,7 @@ td > button::after {
 	height: 0%;
 	top: 50%;
 	left: 50%;
-	background: #eeeeee8f;
+	background: #eeeeee;
 	opacity: 0;
 	transform: translateX(-50%) translateY(-50%) rotate(45deg);
 	transition: .3s;
@@ -256,17 +259,11 @@ body {
 	font-family: sans-serif;
 	background: rgba(0, 0, 0, 1);
 	-webkit-touch-callout: none;
-	/* iOS Safari */
 	-webkit-user-select: none;
-	/* Safari */
 	-khtml-user-select: none;
-	/* Konqueror HTML */
 	-moz-user-select: none;
-	/* Firefox */
 	-ms-user-select: none;
-	/* Internet Explorer/Edge */
 	user-select: none;
-	/* Non-prefixed version, currently supported by Chrome and Opera */
 }
 /* Info Bar */
 .info-bar {
@@ -589,7 +586,178 @@ body {
 .legend-ClassB {
 	background: rgba(255, 129, 0, 0.7);
 }
+/* Tansaction History Card Wrapper */
+.history-transaction-card-wrapper {
+	position: relative;
+	overflow: hidden;
+	width: 600px;
+	height: 340px;
+}
+/* Transction Popup */
+.transaction-form {
+	position: absolute;	
+	top: 0px;
+	transition: left 0.5s ease-in-out, opacity 0.5s ease-in-out;
+	background-color: #181614;
+	width: 560px;
+	height: 320px;
+	padding: 10px 20px;
+}
+.tf-true {
+	left: 0;
+	opacity: 1;
+}
+.tf-false {
+	left: -100%;
+	opacity: 0.5;
+}
+.transaction-form-title {
+	width: 500px;
+	height: 20px;
+	color: rgba(250,250,250,0.8);
+	font-family: "Montserrat";
+	font-weight: 600;
+	letter-spacing: 2px;
+	font-size: 16px;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	background: -moz-linear-gradient(left, rgba(40,41,42,0.9) 0%, rgba(24,22,20,0.2) 100%);
+	background: -webkit-linear-gradient(left, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+	background: linear-gradient(to right, rgba(40,41,42,0.9) 0%,rgba(24,22,20,0.2) 100%);
+}
+.transaction-form-body {
+	color: white;
 
+	width: 540px;
+	height: 230px;
+	padding: 0px 10px 10px 10px;
+	display: flex;
+	flex-direction: row;
+}
+.tfbody-left, .tfbody-right {
+	height: 210px;
+}
+.tfbody-left {
+	width: 248.5px;
+	margin: 10px 0px 0px 10px;
+	padding: 0px 10px 0px 0px;
+	border-right: 1.5px solid rgba(40,41,42,0.7);
+}
+.tfbody-right {
+	margin: 10px 10px 0px 0px;
+	padding: 0px 0px 0px 30px;
+	width: 230px;
+}
+.tfbody-title {
+	width: 120px;
+	font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 14px;
+	color: rgba(250,250,250,0.6);
+	border-bottom: 1.5px solid rgba(250,250,250,0.6);
+}
+.tfbody-body {
+	padding-top: 10px;
+}
+.tf-contents-item {
+	color: rgba(250,250,250,0.6);
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+.tf-contents-item > span {
+	color: white;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+.pb-wrapper {
+	width: 230px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 40px;
+	margin-bottom: 10px;
+}
+.pb-wrapper > button {
+	width: 48px;
+	text-align: center;
+	padding: 5px 8px;
+	background: transparent;
+	color:rgba(250,250,250,1);
+	border: 1px solid rgba(250, 250, 250, .6);
+	opacity: 0.6;
+}
+.pb-wrapper > button:hover {
+	opacity: 0.8;
+	background: rgba(250,250,250,0.2)
+}
+.pb-wrapper > button:active {
+	opacity: 1;
+	background: rgba(250,250,250,0.2)
+}
+.tf-input {
+	width: 218px;
+	height: 24px;
+	border: 1px solid rgba(250, 250, 250, .15);
+	padding: 2px 5px;
+	background: rgba(250, 250, 250, .1);
+	color: rgba(250,250,250,.8);
+	text-align: right;
+}
+.transaction-form-bottom {
+	width: 400px;
+	height: 40px;
+	padding: 5px 80px;
+	color: white;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.transaction-form-bottom > button {
+	border: none;
+
+	padding: 2px 10px;
+	background-color: rgba(40,41,42,1);
+	font-family: "Montserrat";
+	font-weight: 500;
+	letter-spacing: 2px;
+	position: relative;
+	width: 100px;
+	height: 24px;
+	overflow: hidden;
+	font-size: 12px;
+	line-height: 20px;
+	text-align: center;
+	color: #fafafa;
+	margin: 0;
+	opacity: 0.8;
+	transition: .3s;
+}
+.transaction-form-bottom > button::after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 0%;
+	top: 50%;
+	left: 50%;
+	background: #eeeeee;
+	opacity: 0;
+	transform: translateX(-50%) translateY(-50%) rotate(45deg);
+	transition: .3s;
+}
+.transaction-form-bottom > button:hover {
+	color:#000;
+	opacity: 0.9;
+}
+.transaction-form-bottom > button:hover::after{
+	height:260%;
+	opacity: 0.85;
+}
+.transaction-form-bottom > button:active::after{
+	height:500%;
+	opacity: 0.7;
+}
 /* History Card */
 .history-card {
 	height: 320px;
@@ -642,7 +810,6 @@ body {
 	justify-content: center;
 }
 .history-card-bottom > button {
-	cursor: pointer;
 	width: 30px;
 	height: 22px;
 	margin-left: 4px;
@@ -664,16 +831,6 @@ body {
 	margin-left: 6px;
 	margin-right: 6px;
 }
-
-
-input {
-	border: 1px solid rgba(250, 250, 250, .6);
-	padding: 2px 2px;
-	background: rgba(250, 250, 250, .1);
-	color: white;
-	text-align: right;
-}
-
 
 
 .change-button {
