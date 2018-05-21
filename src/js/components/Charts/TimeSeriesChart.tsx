@@ -10,6 +10,7 @@ function create(
 	windowHeight: number,
 	name: string,
 	timeseries: ITimeSeries[],
+	onMouseMove: (datetime: number) => void,
 	showArea: boolean = false
 ) {
 	if (!timeseries.length) return;
@@ -27,9 +28,7 @@ function create(
 		.attr('height', height + margin.top + margin.bottom);
 	// Zoom step
 	const zoomStep = 8.64e7;
-	const zoomFormat = date => {
-		return d3.timeFormat('%b %d')(date);
-	};
+	const zoomFormat = date => moment(date).format('DDMMM');
 
 	// Date range
 	let minDate = timeseries[0].data[0].datetime;
@@ -49,15 +48,15 @@ function create(
 		currentDate.add(1, 'd');
 	} while (currentDate.valueOf() <= maxDate);
 
-	const start = new Date(minDate || 0 - zoomStep * 2);
-	const end = new Date(maxDate || 0 + zoomStep * 2);
+	const start = minDate || 0 - zoomStep * 2;
+	const end = maxDate || 0 + zoomStep * 2;
 
 	// Scales
 	const xScale = d3
 		.scaleTime()
 		.domain([start, end])
 		.range([0, width]);
-	const backrectWidth = xScale(new Date('2000-01-02')) - xScale(new Date('2000-01-01'));
+	const backrectWidth = xScale(moment('2000-01-02').valueOf()) - xScale(moment('2000-01-01').valueOf());
 
 	let lyMin = Number.MAX_SAFE_INTEGER;
 	let lyMax = Number.MIN_SAFE_INTEGER;
@@ -86,20 +85,20 @@ function create(
 	// Line
 	const lineLeft = d3
 		.line<ITimeSeriesData>()
-		.x(d => xScale(new Date(d.datetime)))
+		.x(d => xScale(d.datetime))
 		.y(d => ly(d.value));
 	const lineRight = d3
 		.line<ITimeSeriesData>()
-		.x(d => xScale(new Date(d.datetime)))
+		.x(d => xScale(d.datetime))
 		.y(d => ry(d.value));
 
 	const ly = d3
 		.scaleLinear()
 		.domain(
 			//hasRightAxis
-				//? [Math.max(nslyMin - 0.2 * nslyRange, 0), nslyMax + 0.2 * nslyRange]
-				//:
-				[lyMin - 0.2 * lyRange > 0 ? lyMin - 0.2 * lyRange : 0, lyMax + 0.2 * lyRange]
+			//? [Math.max(nslyMin - 0.2 * nslyRange, 0), nslyMax + 0.2 * nslyRange]
+			//:
+			[lyMin - 0.2 * lyRange > 0 ? lyMin - 0.2 * lyRange : 0, lyMax + 0.2 * lyRange]
 		)
 		.range([height, 0]);
 	const ry = d3
@@ -165,6 +164,7 @@ function create(
 		.attr('y', 0)
 		.attr('width', backrectWidth)
 		.attr('height', height)
+		.on('mousemove', d => onMouseMove(d as number));
 
 	timeseries.forEach((ts, index) => {
 		if (index && showArea) return;
@@ -188,7 +188,7 @@ function create(
 			if (showArea) {
 				const area = d3
 					.area<ITimeSeriesData>()
-					.x(d => xScale(new Date(d.datetime)))
+					.x(d => xScale(d.datetime))
 					.y0(height)
 					.y1(d => ly(d.value));
 
@@ -250,7 +250,7 @@ function create(
 			dotBars
 				.append('circle')
 				.attr('class', 'dot-' + ts.name)
-				.attr('cx', d => xScale(new Date((d as ITimeSeriesData).datetime)))
+				.attr('cx', d => xScale((d as ITimeSeriesData).datetime))
 				.attr('cy', () => ry(1))
 				.attr('r', ts.width || 2)
 				.attr('stroke', 'none')
@@ -262,6 +262,7 @@ function create(
 interface IProps {
 	name: string;
 	timeseries: ITimeSeries[];
+	onMouseMove: (datetime: number) => void;
 	showArea?: boolean;
 }
 
@@ -289,8 +290,8 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 	// }
 
 	public componentDidMount() {
-		const { name, timeseries, showArea } = this.props;
-		create(this.chartRef.current as Element, 300, name, timeseries, !!showArea);
+		const { name, timeseries, onMouseMove, showArea } = this.props;
+		create(this.chartRef.current as Element, 300, name, timeseries, onMouseMove, !!showArea);
 		// window.addEventListener('resize', this.updateDimensions.bind(this));
 	}
 
@@ -300,9 +301,9 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 
 	public shouldComponentUpdate(nextProps: IProps) {
 		if (JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)) {
-			const { name, timeseries, showArea } = nextProps;
+			const { name, timeseries, onMouseMove, showArea } = nextProps;
 			// redraw when data is changed
-			create(this.chartRef.current as Element, 300, name, timeseries, !!showArea);
+			create(this.chartRef.current as Element, 300, name, timeseries, onMouseMove, !!showArea);
 		}
 		return false;
 	}

@@ -5,11 +5,10 @@ import calculator from '../calculator';
 import { IAssets, ITimeSeriesData } from '../types';
 import AssetCard from './Cards/AssetCard';
 import PriceCard from './Cards/PriceCard';
+import TimeSeriesCard from './Cards/TimeSeriesCard';
 import TransactionCard from './Cards/TransactionCard';
-import TimeSeriesChart from './Charts/TimeSeriesChart';
 import Message from './Common/Message';
 import Header from './Header';
-const format = d3.timeFormat('%Y %b %d');
 
 interface IProp {
 	eth: ITimeSeriesData[];
@@ -193,7 +192,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					msgShow: 1
 				});
 				return (
-					format(new Date(eth[dayCount].datetime)) +
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Bought ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' Class ' +
@@ -233,7 +232,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					msgShow: 1
 				});
 				return (
-					format(new Date(eth[dayCount].datetime)) +
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Sold ' +
 					d3.formatPrefix(',.2', 1)(-amount) +
 					' Class ' +
@@ -291,7 +290,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					msgShow: 1
 				});
 				return (
-					format(new Date(eth[dayCount].datetime)) +
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Split ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' ETH into ' +
@@ -345,7 +344,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					msgShow: 1
 				});
 				return (
-					format(new Date(eth[dayCount].datetime)) +
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Combine ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' ClassA/B into ' +
@@ -417,7 +416,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				color: '255,129,0'
 			},
 			{
-				name: 'reset',
+				name: 'Reset',
 				data: reset,
 				dotOnly: true,
 				highlight: -1,
@@ -449,7 +448,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 									Date: eth[dayCount].datetime,
 									ETH: ethPx,
 									ClassA: navA,
-									ClassB: navB,
+									ClassB: navB
 								}}
 							/>
 							<AssetCard
@@ -458,7 +457,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 									Date: eth[dayCount].datetime,
 									ETH: ethPx,
 									ClassA: navA,
-									ClassB: navB,
+									ClassB: navB
 								}}
 							/>
 						</div>
@@ -466,27 +465,26 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					{/* D3 Price Chart and Market Value Chart */}
 					<div className="d3chart-container">
 						<div className="d3chart-row">
-							<div className="d3chart-wrapper">
-								<h3>Price Chart</h3>
-								<TimeSeriesChart name="pricechart" timeseries={timeseries} />
-							</div>
-							<div className="d3chart-wrapper">
-								<h3>Market Value Chart</h3>
-								<TimeSeriesChart
-									name="mvchart"
-									timeseries={[
-										{
-											name: 'MV',
-											data: dataMV,
-											highlight: -1,
-											color: '255,255,255',
-											areaColor: '0, 178, 255',
-											width: 1.5
-										}
-									]}
-									showArea
-								/>
-							</div>
+							<TimeSeriesCard
+								name="pricechart"
+								title="Price Chart"
+								timeseries={timeseries}
+							/>
+							<TimeSeriesCard
+								name="mvchart"
+								title="Market Value Chart"
+								timeseries={[
+									{
+										name: 'MV',
+										data: dataMV,
+										highlight: -1,
+										color: '255,255,255',
+										areaColor: '0, 178, 255',
+										width: 1.5
+									}
+								]}
+								showArea
+							/>
 						</div>
 					</div>
 					<TransactionCard
@@ -495,7 +493,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 							Date: eth[dayCount].datetime,
 							ETH: ethPx,
 							ClassA: navA,
-							ClassB: navB,
+							ClassB: navB
 						}}
 						lastResetETHPrice={lastResetPrice}
 						handleBuySell={this.handleBuySell}
