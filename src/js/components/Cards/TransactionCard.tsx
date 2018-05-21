@@ -5,9 +5,9 @@ import TransactionForm from '../Forms/TransactionForm';
 import HistroyCard from './HistoryCard';
 
 interface IProps {
-	handleBuySell: (amount: number, isA: boolean) => string;
-	handleCreation: (amount: number) => string;
-	handleRedemption: (amount: number) => string;
+	handleBuySell: (amount: number, isA: boolean) => void;
+	handleCreation: (amount: number) => void;
+	handleRedemption: (amount: number) => void;
 	assets: IAssets;
 	currentPrice: IPriceData;
 	resetToggle: boolean;
@@ -15,10 +15,10 @@ interface IProps {
 	showTFGlobal: boolean;
 	typeTF: string;
 	openTF: (e: boolean, type?: string) => void;
+	history: string[];
 }
 
 interface IState {
-	history: string[];
 	resetToggle: boolean;
 	tfType: string;
 }
@@ -27,7 +27,6 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 	constructor(props) {
 		super(props);
 		this.state = {
-			history: [],
 			resetToggle: false,
 			tfType: ''
 		};
@@ -36,16 +35,8 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
 		if (nextProps.resetToggle !== prevState.resetToggle)
 			return {
-				history: [],
-				CreationIn: '',
-				RedemptionIn: '',
-				ClassAIn: '',
-				ClassBIn: '',
-				Creation: 0,
-				Redemption: 0,
-				ClassA: 0,
-				ClassB: 0,
-				resetToggle: nextProps.resetToggle
+				resetToggle: nextProps.resetToggle,
+				tfType: nextProps.typeTF
 			};
 
 		return null;
@@ -65,9 +56,9 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 			handleRedemption,
 			showTFGlobal,
 			typeTF,
-			openTF
+			openTF,
+			history
 		} = this.props;
-		const { history} = this.state;
 		return (
 			<div
 				style={{

@@ -32,6 +32,7 @@ interface IState {
 	periodicResetCount: number;
 	showTFGlobal: boolean;
 	typeTF: string;
+	history: string[];
 }
 
 const INITIAL_ASSETS = {
@@ -60,7 +61,8 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 			downwardResetCount: 0,
 			periodicResetCount: 0,
 			showTFGlobal: false,
-			typeTF: ''
+			typeTF: '',
+			history: []
 		};
 	}
 
@@ -153,18 +155,20 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 			resetToggle: !this.state.resetToggle,
 			upwardResetCount: 0,
 			downwardResetCount: 0,
-			periodicResetCount: 0
+			periodicResetCount: 0,
+			showTFGlobal: false
 		});
 	};
 
-	public handleBuySell = (amount: number, isA: boolean): string => {
+	public handleBuySell = (amount: number, isA: boolean): void => {
 		const { eth, classA, classB } = this.props;
 		const {
 			dayCount,
 			upwardResetCount,
 			downwardResetCount,
 			periodicResetCount,
-			assets
+			assets,
+			history
 		} = this.state;
 
 		const ethPx = eth[dayCount].value;
@@ -181,8 +185,19 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: assets.ClassA + (isA ? amount : 0),
 					ClassB: assets.ClassB + (isA ? 0 : amount)
 				};
+				const historyEntry =
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
+					': Bought ' +
+					d3.formatPrefix(',.2', 1)(amount) +
+					' Class ' +
+					(isA ? 'A' : 'B') +
+					' with ' +
+					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
+					' ETH.';
 				this.setState({
 					assets: newAssets,
+					showTFGlobal: false,
+					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -195,16 +210,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						' ETH</span>.</div>',
 					msgShow: 1
 				});
-				return (
-					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Bought ' +
-					d3.formatPrefix(',.2', 1)(amount) +
-					' Class ' +
-					(isA ? 'A' : 'B') +
-					' with ' +
-					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
-					' ETH.'
-				);
+				return;
 			} else {
 				this.setState({
 					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
@@ -212,7 +218,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
 					msgShow: 1
 				});
-				return '';
+				return;
 			}
 		else if (amount < 0)
 			if (amount <= assets.ClassA) {
@@ -221,9 +227,19 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: assets.ClassA + (isA ? amount : 0),
 					ClassB: assets.ClassB + (isA ? 0 : amount)
 				};
+				const historyEntry =
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
+					': Sold ' +
+					d3.formatPrefix(',.2', 1)(-amount) +
+					' Class ' +
+					(isA ? 'A' : 'B') +
+					' for ' +
+					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
+					' ETH.';
 				this.setState({
 					assets: newAssets,
 					showTFGlobal: false,
+					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -236,16 +252,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						' ETH</span>.</div>',
 					msgShow: 1
 				});
-				return (
-					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Sold ' +
-					d3.formatPrefix(',.2', 1)(-amount) +
-					' Class ' +
-					(isA ? 'A' : 'B') +
-					' with ' +
-					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
-					' ETH.'
-				);
+				return;
 			} else {
 				this.setState({
 					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
@@ -253,7 +260,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ClassA balance.</div>",
 					msgShow: 1
 				});
-				return '';
+				return;
 			}
 		else {
 			this.setState({
@@ -262,13 +269,13 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
-			return '';
+			return;
 		}
 	};
 
-	public handleCreation = (amount: number): string => {
+	public handleCreation = (amount: number): void => {
 		const { eth } = this.props;
-		const { dayCount, assets, beta, lastResetPrice } = this.state;
+		const { dayCount, assets, beta, lastResetPrice, history } = this.state;
 
 		const valuelastResetETHPrice = amount * lastResetPrice * beta;
 		if (amount && amount > 0)
@@ -282,9 +289,17 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: rClassA,
 					ClassB: rClassB
 				};
+				const historyEntry =
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
+					': Split ' +
+					d3.formatPrefix(',.2', 1)(amount) +
+					' ETH into ' +
+					d3.formatPrefix(',.2', 1)(splitOutcome) +
+					' ClassA/B.';
 				this.setState({
 					assets: newAssets,
 					showTFGlobal: false,
+					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -295,14 +310,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						' ClassA/B</span>',
 					msgShow: 1
 				});
-				return (
-					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Split ' +
-					d3.formatPrefix(',.2', 1)(amount) +
-					' ETH into ' +
-					d3.formatPrefix(',.2', 1)(splitOutcome) +
-					' ClassA/B.'
-				);
+				return;
 			} else {
 				this.setState({
 					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
@@ -310,7 +318,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
 					msgShow: 1
 				});
-				return '';
+				return;
 			}
 		else {
 			this.setState({
@@ -319,13 +327,13 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
-			return '';
+			return;
 		}
 	};
 
-	public handleRedemption = (amount: number): string => {
+	public handleRedemption = (amount: number): void => {
 		const { eth } = this.props;
-		const { dayCount, assets, beta, lastResetPrice } = this.state;
+		const { dayCount, assets, beta, lastResetPrice, history } = this.state;
 		if (amount && amount > 0)
 			if (amount <= (d3.min([assets.ClassA, assets.ClassB]) || 0)) {
 				const rClassA = assets.ClassA - amount,
@@ -337,9 +345,17 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: rClassA,
 					ClassB: rClassB
 				};
+				const historyEntry =
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
+					': Combine ' +
+					d3.formatPrefix(',.2', 1)(amount) +
+					' ClassA/B into ' +
+					d3.formatPrefix(',.6', 1)(combineOutcome / lastResetPrice) +
+					' ETH.';
 				this.setState({
 					assets: newAssets,
 					showTFGlobal: false,
+					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -350,14 +366,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						' ETH</span>',
 					msgShow: 1
 				});
-				return (
-					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Combine ' +
-					d3.formatPrefix(',.2', 1)(amount) +
-					' ClassA/B into ' +
-					d3.formatPrefix(',.6', 1)(combineOutcome / lastResetPrice) +
-					' ETH.'
-				);
+				return;
 			} else {
 				this.setState({
 					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
@@ -365,7 +374,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						"<div style='color: rgba(255,255,255, .8)'>Insufficient ClassA/B balance.</div>",
 					msgShow: 1
 				});
-				return '';
+				return;
 			}
 		else {
 			this.setState({
@@ -374,7 +383,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
 				msgShow: 1
 			});
-			return '';
+			return;
 		}
 	};
 
@@ -402,7 +411,8 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 			downwardResetCount,
 			periodicResetCount,
 			showTFGlobal,
-			typeTF
+			typeTF,
+			history
 		} = this.state;
 		const openTF = this.openTF;
 		const { eth, classA, classB, reset } = this.props;
@@ -522,6 +532,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						showTFGlobal={showTFGlobal}
 						openTF={openTF}
 						typeTF={typeTF}
+						history={history}
 					/>
 				</div>
 			</div>
