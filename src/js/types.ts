@@ -11,7 +11,8 @@ export interface ITimeSeries {
 	rightAxis?: boolean;
 	color?: string,
 	width?: number,
-	areaColor?: string
+	areaColor?: string,
+	flagLegend?: boolean
 }
 
 export interface IPriceData {

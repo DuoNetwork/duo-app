@@ -1,4 +1,4 @@
-//import * as d3 from 'd3';
+import * as d3 from 'd3';
 import { findLast } from 'lodash';
 import moment from 'moment';
 import * as React from 'react';
@@ -44,14 +44,30 @@ export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 		return (
 			<div className="d3chart-wrapper">
 				<h3>{title}</h3>
-				<div style={{ color: 'white' }}>
-					<span>{'Date: ' + (datetime ? moment(datetime).format('YYYY-MM-DD') : '')}</span>
-					{values.map(
-						(v, i) =>
-							v ? (
-								<span key={timeseries[i].name}>{timeseries[i].name + ': ' + v}</span>
-							) : null
-					)}
+				<div className="info-bar-chart">
+					<div style={{ width: '88px' }}>
+						{'Date: ' + (datetime ? moment(datetime).format('YYYY-MM-DD') : '')}
+					</div>
+					{values.map((v, i) => (
+						<div
+							key={timeseries[i].name}
+							style={{ display: 'flex', alignItems: 'center' }}
+						>
+							<div className={'legend-' + timeseries[i].name} />
+							<div className={'name-' + timeseries[i].name}>
+								{timeseries[i].flagLegend
+									? v
+										? timeseries[i].name
+										: null
+									: timeseries[i].name + ':'}
+							</div>
+							{timeseries[i].flagLegend ? null : (
+								<div className={'value-' + timeseries[i].name}>
+									{v ? d3.formatPrefix(',.2', 1)(v) : null}
+								</div>
+							)}
+						</div>
+					))}
 				</div>
 				<TimeSeriesChart
 					name={name}

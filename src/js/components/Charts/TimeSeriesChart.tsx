@@ -56,7 +56,8 @@ function create(
 		.scaleTime()
 		.domain([start, end])
 		.range([0, width]);
-	const backrectWidth = xScale(moment('2000-01-02').valueOf()) - xScale(moment('2000-01-01').valueOf());
+	const backrectWidth =
+		xScale(moment('2000-01-02').valueOf()) - xScale(moment('2000-01-01').valueOf());
 
 	let lyMin = Number.MAX_SAFE_INTEGER;
 	let lyMax = Number.MIN_SAFE_INTEGER;
@@ -114,6 +115,7 @@ function create(
 	const lyAxis = d3.axisLeft(ly).ticks(5);
 
 	// Chart
+
 	const chart = d3
 		.select(el)
 		.select('#chart-' + name)
@@ -140,8 +142,20 @@ function create(
 			.call(ryAxis as any);
 		raY.selectAll('text').style('text-anchor', 'start');
 	}
+	chart
+		.append('defs')
+		.append('clipPath')
+		.attr('id', 'clip')
+		.append('rect')
+		.attr('x', 1)
+		.attr('y', 0)
+		.attr('width', width - 1)
+		.attr('height', height);
 	// Chart Data
-	const chartdata = chart.append('g').attr('class', 'chart-data');
+	const chartdata = chart
+		.append('g')
+		.attr('class', 'chart-data')
+		.attr('clip-path', 'url(#clip)');
 
 	chartdata
 		.selectAll('g')
@@ -164,7 +178,8 @@ function create(
 		.attr('y', 0)
 		.attr('width', backrectWidth)
 		.attr('height', height)
-		.on('mousemove', d => onMouseMove(d as number));
+		.on('mousemove', d => onMouseMove(d as number))
+		.on('mouseout', () => onMouseMove(0));
 
 	timeseries.forEach((ts, index) => {
 		if (index && showArea) return;
@@ -303,7 +318,14 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 		if (JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)) {
 			const { name, timeseries, onMouseMove, showArea } = nextProps;
 			// redraw when data is changed
-			create(this.chartRef.current as Element, 300, name, timeseries, onMouseMove, !!showArea);
+			create(
+				this.chartRef.current as Element,
+				300,
+				name,
+				timeseries,
+				onMouseMove,
+				!!showArea
+			);
 		}
 		return false;
 	}

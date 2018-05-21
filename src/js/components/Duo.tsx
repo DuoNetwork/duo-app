@@ -421,7 +421,8 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				dotOnly: true,
 				highlight: -1,
 				rightAxis: true,
-				color: 'rgba(214,48,48,0.6)'
+				color: 'rgba(214,48,48,0.6)',
+				flagLegend: true
 			}
 		];
 		return (
