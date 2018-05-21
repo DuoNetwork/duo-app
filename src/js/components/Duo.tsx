@@ -234,7 +234,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					' Class ' +
 					(isA ? 'A' : 'B') +
 					' for ' +
-					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
+					d3.formatPrefix(',.6', 1)(Math.abs(valueClassAB) / ethPx) +
 					' ETH.';
 				this.setState({
 					assets: newAssets,
