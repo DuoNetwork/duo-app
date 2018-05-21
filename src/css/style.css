@@ -24,10 +24,10 @@ input:focus {
 	border: none;
 	width: 50px;
 	height: 50px;
-	opacity: 0.7;
+	opacity: 0.5;
 }
 .day-button:hover {
-	opacity: 0.85;
+	opacity: 0.8;
 }
 .day-button:active {
 	opacity: 1;
@@ -951,6 +951,10 @@ body {
 .tc-buttons-body > button:active::after{
 	height:550%;
 	opacity: 0.7;
+}
+.tc-buttons-body > button:disabled {
+	opacity: 0.4;
+	pointer-events: none;
 }
 
 .change-button {

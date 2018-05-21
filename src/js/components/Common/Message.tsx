@@ -63,7 +63,12 @@ export default class Message extends React.Component<IProps> {
 						<div className="msg-content" />
 					</div>
 					<div className="msg-bottom">
-						<button className="msg-button" onClick={() => this.props.close(0)}>
+						<button
+							className="msg-button"
+							onClick={() => {
+								this.props.close(0);
+							}}
+						>
 							OK
 						</button>
 					</div>

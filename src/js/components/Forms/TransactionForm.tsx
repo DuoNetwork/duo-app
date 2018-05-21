@@ -11,11 +11,17 @@ interface IProps {
 	assets: IAssets;
 	currentPrice: IPriceData;
 	lastResetETHPrice: number;
+	openTF: (e: boolean, type?: string) => void;
+	handleBuySell: (amount: number, isA: boolean) => string;
+	handleCreation: (amount: number) => string;
+	handleRedemption: (amount: number) => string;
 }
 
 interface IState {
 	valueIn: string;
 	value: number;
+	isShown: boolean;
+	type: string;
 }
 
 const Asset = (props: { name: string; value: number; src: string }) => (
@@ -35,24 +41,52 @@ const Asset = (props: { name: string; value: number; src: string }) => (
 	</div>
 );
 
-const ButtonGroup = (type: string) => {
+const ButtonGroup = (
+	value: number,
+	type: string,
+	openTF: (e: boolean, type?: string) => void,
+	handleBuySell: (amount: number, isA: boolean) => string,
+	handleCreation: (amount: number) => string,
+	handleRedemption: (amount: number) => string
+) => {
 	const buttons: JSX.Element[] = [];
+	const isA = type === 'Class A' ? true : false;
 	switch (type) {
 		case 'Creation': {
-			buttons.push(<button key="1">CREATE</button>);
+			buttons.push(
+				<button key="1" onClick={() => handleCreation(value)}>
+					CREATE
+				</button>
+			);
 			break;
 		}
 		case 'Redemption': {
-			buttons.push(<button key="1">REDEEM</button>);
+			buttons.push(
+				<button key="1" onClick={() => handleRedemption(value)}>
+					REDEEM
+				</button>
+			);
 			break;
 		}
 		default: {
-			buttons.push(<button key="1">BUY</button>);
-			buttons.push(<button key="2">SELL</button>);
+			buttons.push(
+				<button key="1" onClick={() => handleBuySell(value, isA)}>
+					BUY
+				</button>
+			);
+			buttons.push(
+				<button key="2" onClick={() => handleBuySell(value, isA)}>
+					SELL
+				</button>
+			);
 			break;
 		}
 	}
-	buttons.push(<button key="3">CANCEL</button>);
+	buttons.push(
+		<button key="3" onClick={() => openTF(false)}>
+			CANCEL
+		</button>
+	);
 	return buttons;
 };
 
@@ -117,7 +151,7 @@ const Description = (
 			);
 			break;
 		}
-		default: {
+		case 'Class B': {
 			contents.push(
 				<div key="1" className="tf-contents-item">
 					Buy/Sell
@@ -136,16 +170,22 @@ const Description = (
 			);
 			break;
 		}
+		default: {
+			contents.push(<div key="1" className="tf-contents-item"/>);
+			break;
+		}
 	}
 	return contents;
 };
 
 export default class TransactionForm extends React.Component<IProps, IState> {
-	constructor(props) {
+	constructor(props: IProps) {
 		super(props);
 		this.state = {
 			valueIn: '',
-			value: 0
+			value: 0,
+			isShown: props.isShown,
+			type: props.type
 		};
 	}
 	public round = num => {
@@ -184,8 +224,35 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 		});
 	};
 
+	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+		if (nextProps.isShown)
+			return {
+				valueIn: '',
+				value: 0,
+				isShown: nextProps.isShown,
+				type: nextProps.type
+			};
+		else
+			return {
+				valueIn: prevState.valueIn,
+				value: prevState.value,
+				isShown: nextProps.isShown,
+				type: prevState.type
+			};
+	}
+
 	public render() {
-		const { isShown, type, assets, currentPrice, lastResetETHPrice } = this.props;
+		const {
+			isShown,
+			type,
+			assets,
+			currentPrice,
+			lastResetETHPrice,
+			openTF,
+			handleBuySell,
+			handleCreation,
+			handleRedemption
+		} = this.props;
 		const { valueIn, value } = this.state;
 		let limit = 0;
 		switch (type) {
@@ -221,7 +288,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 					<div className="tfbody-right">
 						<div className="tfbody-title">Transaction</div>
 						<div className="tfbody-body">
-							<div>{Description(type, value, currentPrice, lastResetETHPrice)}</div>
+							<div>{Description(this.state.type, value, currentPrice, lastResetETHPrice)}</div>
 							<div
 								style={{
 									display: 'flex',
@@ -252,7 +319,16 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 						</div>
 					</div>
 				</div>
-				<div className="transaction-form-bottom">{ButtonGroup(type)}</div>
+				<div className="transaction-form-bottom">
+					{ButtonGroup(
+						value,
+						type,
+						openTF,
+						handleBuySell,
+						handleCreation,
+						handleRedemption
+					)}
+				</div>
 			</div>
 		);
 	}

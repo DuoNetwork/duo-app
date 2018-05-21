@@ -30,6 +30,8 @@ interface IState {
 	upwardResetCount: number;
 	downwardResetCount: number;
 	periodicResetCount: number;
+	showTFGlobal: boolean;
+	typeTF: string;
 }
 
 const INITIAL_ASSETS = {
@@ -56,7 +58,9 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 			resetToggle: false,
 			upwardResetCount: 0,
 			downwardResetCount: 0,
-			periodicResetCount: 0
+			periodicResetCount: 0,
+			showTFGlobal: false,
+			typeTF: ''
 		};
 	}
 
@@ -219,6 +223,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				};
 				this.setState({
 					assets: newAssets,
+					showTFGlobal: false,
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -279,6 +284,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				};
 				this.setState({
 					assets: newAssets,
+					showTFGlobal: false,
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -333,6 +339,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				};
 				this.setState({
 					assets: newAssets,
+					showTFGlobal: false,
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -377,6 +384,13 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 		});
 	};
 
+	public openTF = (e: boolean, type?: string) => {
+		this.setState({
+			showTFGlobal: e,
+			typeTF: type ? type : ''
+		});
+	};
+
 	public render() {
 		const {
 			dataMV,
@@ -386,8 +400,11 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 			lastResetPrice,
 			upwardResetCount,
 			downwardResetCount,
-			periodicResetCount
+			periodicResetCount,
+			showTFGlobal,
+			typeTF
 		} = this.state;
+		const openTF = this.openTF;
 		const { eth, classA, classB, reset } = this.props;
 		const ethPx = eth[dayCount].value;
 		const navA =
@@ -502,6 +519,9 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 						handleCreation={this.handleCreation}
 						handleRedemption={this.handleRedemption}
 						resetToggle={resetToggle}
+						showTFGlobal={showTFGlobal}
+						openTF={openTF}
+						typeTF={typeTF}
 					/>
 				</div>
 			</div>

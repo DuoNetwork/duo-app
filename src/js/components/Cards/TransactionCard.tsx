@@ -12,12 +12,15 @@ interface IProps {
 	currentPrice: IPriceData;
 	resetToggle: boolean;
 	lastResetETHPrice: number;
+	showTFGlobal: boolean;
+	typeTF: string;
+	openTF: (e: boolean, type?: string) => void;
 }
 
 interface IState {
 	history: string[];
 	resetToggle: boolean;
-	showTF: boolean;
+	tfType: string;
 }
 
 export default class TransactionCard extends React.PureComponent<IProps, IState> {
@@ -26,7 +29,7 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 		this.state = {
 			history: [],
 			resetToggle: false,
-			showTF: false
+			tfType: ''
 		};
 	}
 
@@ -52,23 +55,19 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 		return +(Math.round((num + 'e+2') as any) + 'e-2');
 	};
 
-	public toggleShown = () => {
-		const newShow = !this.state.showTF;
-		this.setState({
-			showTF: newShow
-		});
-	};
-
 	public render() {
 		const {
 			assets,
 			currentPrice,
 			lastResetETHPrice,
+			handleBuySell,
+			handleCreation,
+			handleRedemption,
+			showTFGlobal,
+			typeTF,
+			openTF
 		} = this.props;
-		const {
-			history,
-			showTF
-		} = this.state;
+		const { history} = this.state;
 		return (
 			<div
 				style={{
@@ -88,21 +87,33 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 					<div className="history-transaction-card-wrapper">
 						<HistroyCard history={history} />
 						<TransactionForm
-							isShown={showTF}
-							type="Creation"
+							isShown={showTFGlobal}
+							type={typeTF}
 							assets={assets}
 							currentPrice={currentPrice}
 							lastResetETHPrice={lastResetETHPrice}
+							openTF={openTF}
+							handleBuySell={handleBuySell}
+							handleCreation={handleCreation}
+							handleRedemption={handleRedemption}
 						/>
 					</div>
 					<div style={{ width: '360px' }}>
 						<div className="tc-buttons-wrapper">
 							<div className="tc-buttons-title">Transaction</div>
 							<div className="tc-buttons-body">
-								<button>CREATION</button>
-								<button>REDEMPTION</button>
-								<button>ETH &#60;-&#62; ClassA</button>
-								<button>ETH &#60;-&#62; ClassB</button>
+								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Creation')}>
+									CREATION
+								</button>
+								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Redemption')}>
+									REDEMPTION
+								</button>
+								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Class A')}>
+									ETH &#60; &#62; ClassA
+								</button>
+								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Class B')}>
+									ETH &#60; &#62; ClassB
+								</button>
 							</div>
 						</div>
 					</div>
