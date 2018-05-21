@@ -1,5 +1,8 @@
 import * as d3 from 'd3';
 import * as React from 'react';
+import classAIcon from '../../../images/ClassA_white.png';
+import classBIcon from '../../../images/ClassB_white.png';
+import ethIcon from '../../../images/ethIcon.png';
 import { IAssets, IPriceData } from '../../types';
 
 interface IProps {
@@ -10,7 +13,12 @@ interface IProps {
 	lastResetETHPrice: number;
 }
 
-const Asset = (props: { name: string; value: number }) => (
+interface IState {
+	valueIn: string;
+	value: number;
+}
+
+const Asset = (props: { name: string; value: number; src: string }) => (
 	<div
 		style={{
 			display: 'flex',
@@ -19,7 +27,10 @@ const Asset = (props: { name: string; value: number }) => (
 			marginBottom: '10px'
 		}}
 	>
-		<div className="tag-unit-3">{props.name}</div>
+		<div className="tag-icon">
+			<img src={props.src} />
+			<div className="tag-unit-3">{props.name}</div>
+		</div>
 		<div className="tag-price-3">{d3.formatPrefix(',.2', 1)(props.value)}</div>
 	</div>
 );
@@ -129,22 +140,72 @@ const Description = (
 	return contents;
 };
 
-const PercentageButtons = () => (
-	<div className="pb-wrapper">
-		<button>25%</button>
-		<button>50%</button>
-		<button>75%</button>
-		<button>100%</button>
-	</div>
-);
-
-export default class TransactionForm extends React.Component<IProps> {
+export default class TransactionForm extends React.Component<IProps, IState> {
 	constructor(props) {
 		super(props);
+		this.state = {
+			valueIn: '',
+			value: 0
+		};
 	}
+	public round = num => {
+		return +(Math.round((num + 'e+2') as any) + 'e-2');
+	};
+
+	public handle25 = (value: number) => {
+		const result = value / 4;
+		this.setState({
+			valueIn: this.round(result).toString(),
+			value: result
+		});
+	};
+
+	public handle50 = (value: number) => {
+		const result = value / 2;
+		this.setState({
+			valueIn: this.round(result).toString(),
+			value: result
+		});
+	};
+
+	public handle75 = (value: number) => {
+		const result = value / 4 * 3;
+		this.setState({
+			valueIn: this.round(result).toString(),
+			value: result
+		});
+	};
+
+	public handle100 = (value: number) => {
+		const result = value;
+		this.setState({
+			valueIn: this.round(result).toString(),
+			value: result
+		});
+	};
 
 	public render() {
 		const { isShown, type, assets, currentPrice, lastResetETHPrice } = this.props;
+		const { valueIn, value } = this.state;
+		let limit = 0;
+		switch (type) {
+			case 'Creation': {
+				limit = assets.ETH;
+				break;
+			}
+			case 'Redemption': {
+				limit = d3.min([assets.ClassA, assets.ClassB]) || 0;
+				break;
+			}
+			case 'Class A': {
+				limit = assets.ClassA;
+				break;
+			}
+			default: {
+				limit = assets.ClassB;
+				break;
+			}
+		}
 		return (
 			<div className={'tf-' + isShown + ' transaction-form'}>
 				<div className="transaction-form-title">{type}</div>
@@ -152,15 +213,15 @@ export default class TransactionForm extends React.Component<IProps> {
 					<div className="tfbody-left">
 						<div className="tfbody-title">Holdings</div>
 						<div className="tfbody-body">
-							<Asset name="ETH" value={assets.ETH} />
-							<Asset name="Class A" value={assets.ClassA} />
-							<Asset name="Class B" value={assets.ClassB} />
+							<Asset name="ETH" value={assets.ETH} src={ethIcon} />
+							<Asset name="Class A" value={assets.ClassA} src={classAIcon} />
+							<Asset name="Class B" value={assets.ClassB} src={classBIcon} />
 						</div>
 					</div>
 					<div className="tfbody-right">
 						<div className="tfbody-title">Transaction</div>
 						<div className="tfbody-body">
-							<div>{Description(type, 10, currentPrice, lastResetETHPrice)}</div>
+							<div>{Description(type, value, currentPrice, lastResetETHPrice)}</div>
 							<div
 								style={{
 									display: 'flex',
@@ -168,8 +229,25 @@ export default class TransactionForm extends React.Component<IProps> {
 									alignItems: 'center'
 								}}
 							>
-								<PercentageButtons />
-								<input className="tf-input" />
+								<div className="pb-wrapper">
+									<button onClick={() => this.handle25(limit)}>25%</button>
+									<button onClick={() => this.handle50(limit)}>50%</button>
+									<button onClick={() => this.handle75(limit)}>75%</button>
+									<button onClick={() => this.handle100(limit)}>100%</button>
+								</div>
+								<input
+									onChange={e =>
+										this.setState({
+											valueIn: e.target.value,
+											value:
+												this.round(Number(e.target.value)) < limit
+													? this.round(Number(e.target.value))
+													: limit
+										})
+									}
+									value={valueIn}
+									className="tf-input"
+								/>
 							</div>
 						</div>
 					</div>

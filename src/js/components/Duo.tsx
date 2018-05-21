@@ -435,6 +435,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				<div style={{ zIndex: 10 }}>
 					{/* Next Day, Refresh button */}
 					<div className="play-button">
+						<button className="day-button settings" />
 						<button className="day-button next-day" onClick={this.handleNextDay} />
 						<button className="day-button refresh" onClick={this.handleRefresh} />
 					</div>
