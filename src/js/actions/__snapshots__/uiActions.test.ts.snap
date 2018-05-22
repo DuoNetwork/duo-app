@@ -7,6 +7,16 @@ Object {
 }
 `;
 
+exports[`actions form 1`] = `
+Object {
+  "type": "form",
+  "value": Object {
+    "type": "type",
+    "visible": true,
+  },
+}
+`;
+
 exports[`actions messsage 1`] = `
 Object {
   "type": "message",
@@ -18,8 +28,25 @@ Object {
 }
 `;
 
+exports[`actions next 1`] = `
+Object {
+  "type": "next",
+}
+`;
+
 exports[`actions refresh 1`] = `
 Object {
   "type": "refresh",
+}
+`;
+
+exports[`actions updateAssets 1`] = `
+Object {
+  "type": "assets",
+  "value": Object {
+    "ClassA": 234,
+    "ClassB": 345,
+    "ETH": 123,
+  },
 }
 `;

@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
-import calculator from '../common/calculator';
+//import calculator from '../common/calculator';
 import { IAssets, ITimeSeriesData } from '../common/types';
 import Message from '../containers/Common/MessageContainer';
 import AssetCard from './Cards/AssetCard';
@@ -21,106 +21,17 @@ interface IProp {
 	refresh: () => void;
 	addHistory: (tx: string) => void;
 	message: (type: string, content: string) => void;
-	addMV: (mv: ITimeSeriesData) => void;
 	updateAssets: (assets: IAssets) => void;
 	resetPrice: number;
 	beta: number;
-	updateResetPrice: (px: number) => void;
-	updateBeta: (beta: number) => void;
 	dayCount: number;
 	upwardResetCount: number;
 	downwardResetCount: number;
 	periodicResetCount: number;
-	updateDayCount: (count: number) => void;
-	updateUpwardResetCount: (count: number) => void;
-	updateDownwardResetCount: (count: number) => void;
-	updatePeriodicResetCount: (count: number) => void;
+	next: () => void;
 }
 
 export default class Duo extends React.PureComponent<IProp> {
-	public handleNextDay = () => {
-		const {
-			eth,
-			classA,
-			classB,
-			message,
-			addMV,
-			assets,
-			updateAssets,
-			resetPrice,
-			beta,
-			updateResetPrice,
-			updateBeta,
-			dayCount,
-			upwardResetCount,
-			downwardResetCount,
-			periodicResetCount,
-			updateDayCount,
-			updateUpwardResetCount,
-			updateDownwardResetCount,
-			updatePeriodicResetCount
-		} = this.props;
-
-		const newDayCount = dayCount + 1;
-		const newEthPx = eth[newDayCount].value;
-		const newNavA =
-			classA[newDayCount + upwardResetCount + downwardResetCount + periodicResetCount].value;
-		const newNavB = classB[newDayCount + upwardResetCount + downwardResetCount].value;
-
-		const mv = assets.ETH * newEthPx + assets.ClassA * newNavA + assets.ClassB * newNavB;
-		let newAssets: IAssets;
-		let newBeta = beta;
-		let newResetPrice = resetPrice;
-		let msg = '';
-		let newUpwardCount = upwardResetCount;
-		let newDownwardCount = downwardResetCount;
-		let newPeriodicCount = periodicResetCount;
-		if (newNavB >= 2) {
-			newAssets = {
-				ETH:
-					assets.ETH +
-					((newNavA - 1) * assets.ClassA + (newNavB - 1) * assets.ClassB) / newEthPx,
-				ClassA: assets.ClassA,
-				ClassB: assets.ClassB
-			};
-			newBeta = 1;
-			newResetPrice = newEthPx;
-			msg = "<div style='color: rgba(255,255,255, .8)'>Reset (upward) triggered.</div>";
-			newUpwardCount++;
-		} else if (newNavB <= 0.25) {
-			newAssets = {
-				ETH: assets.ETH + (newNavA - newNavB) * assets.ClassA / newEthPx,
-				ClassA: assets.ClassA * newNavB,
-				ClassB: assets.ClassB * newNavB
-			};
-			newBeta = 1;
-			newResetPrice = newEthPx;
-			msg = "<div style='color: rgba(255,255,255, .8)'>Reset (downward) triggered.</div>";
-			newDownwardCount++;
-		} else if (newNavA >= 1.02) {
-			newAssets = {
-				ETH: assets.ETH + (newNavA - 1) * assets.ClassA / newEthPx,
-				ClassA: assets.ClassA,
-				ClassB: assets.ClassB
-			};
-			newBeta = calculator.updateBeta(beta, newEthPx, resetPrice, newNavA, 1);
-			newResetPrice = newEthPx;
-			msg = "<div style='color: rgba(255,255,255, .8)'>Reset (periodic) triggered.</div>";
-			newPeriodicCount++;
-		} else newAssets = assets;
-
-		if (msg) message("<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>", msg);
-
-		addMV({ datetime: eth[newDayCount].datetime, value: mv });
-		updateAssets(newAssets);
-		updateResetPrice(newResetPrice);
-		updateBeta(newBeta);
-		updateDayCount(newDayCount);
-		updateUpwardResetCount(newUpwardCount);
-		updateDownwardResetCount(newDownwardCount);
-		updatePeriodicResetCount(newPeriodicCount);
-	};
-
 	public handleBuySell = (amount: number, isA: boolean): boolean => {
 		const {
 			eth,
@@ -341,7 +252,8 @@ export default class Duo extends React.PureComponent<IProp> {
 			dayCount,
 			upwardResetCount,
 			downwardResetCount,
-			periodicResetCount
+			periodicResetCount,
+			next
 		} = this.props;
 		const ethPx = eth[dayCount].value;
 		const navA =
@@ -386,7 +298,7 @@ export default class Duo extends React.PureComponent<IProp> {
 					{/* Next Day, Refresh button */}
 					<div className="play-button">
 						<button disabled={true} className="day-button settings" />
-						<button className="day-button next-day" onClick={this.handleNextDay} />
+						<button className="day-button next-day" onClick={next} />
 						<button className="day-button refresh" onClick={refresh} />
 					</div>
 					{/* Navigation Bar */}

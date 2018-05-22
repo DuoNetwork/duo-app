@@ -1,8 +1,8 @@
 import * as CST from '../common/constants';
 import * as reduxTypes from '../common/reduxTypes';
-import {IAssets, ITimeSeriesData} from '../common/types';
+import { IAssets } from '../common/types';
 
-export function refresh(): reduxTypes.Action {
+export function refresh(): reduxTypes.IBaseAction {
 	return {
 		type: CST.AC_REFRESH
 	};
@@ -19,72 +19,37 @@ export function messsage(
 	type: string,
 	content: string,
 	visible: boolean
-): reduxTypes.Action {
+): reduxTypes.IObjectAction {
 	return {
 		type: CST.AC_MESSAGE,
 		value: { type, content, visible }
 	};
 }
 
-export function form(type: string, visible: boolean): reduxTypes.Action {
+export function form(type: string, visible: boolean): reduxTypes.IObjectAction {
 	return {
 		type: CST.AC_FORM,
-		value: {type, visible}
-	}
+		value: { type, visible }
+	};
 }
 
-export function addMV(mv: ITimeSeriesData): reduxTypes.Action {
-	return {
-		type: CST.AC_MV,
-		value: mv
-	}
-}
-
-export function updateAssets(assets: IAssets): reduxTypes.Action {
+export function updateAssets(assets: IAssets): reduxTypes.IObjectAction {
 	return {
 		type: CST.AC_ASSETS,
 		value: assets
-	}
+	};
 }
 
-export function updateResetPrice(px: number): reduxTypes.Action {
+export function next(): reduxTypes.IBaseAction {
 	return {
-		type: CST.AC_RESET_PRICE,
-		value: px
-	}
+		type: CST.AC_NEXT
+	};
 }
 
-export function updateBeta(beta: number): reduxTypes.Action {
+export function trade(amount: number, isA: boolean): reduxTypes.ITradeAction {
 	return {
-		type: CST.AC_BETA,
-		value: beta
-	}
-}
-
-export function updateDayCount(count: number): reduxTypes.Action {
-	return {
-		type: CST.AC_DAY,
-		value: count
-	}
-}
-
-export function updateUpwardResetCount(count: number): reduxTypes.Action {
-	return {
-		type: CST.AC_UPWARD,
-		value: count
-	}
-}
-
-export function updateDownwardResetCount(count: number): reduxTypes.Action {
-	return {
-		type: CST.AC_DOWNWARD,
-		value: count
-	}
-}
-
-export function updatePeriodicResetCount(count: number): reduxTypes.Action {
-	return {
-		type: CST.AC_PERIODIC,
-		value: count
-	}
+		type: CST.AC_TRADE,
+		value: amount,
+		isA: isA
+	};
 }

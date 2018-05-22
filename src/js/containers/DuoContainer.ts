@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import * as uiActions from '../actions/uiActions';
 import * as reduxTypes from '../common/reduxTypes';
-import { IAssets, ITimeSeriesData } from '../common/types';
+import { IAssets } from '../common/types';
 import Duo from '../components/Duo';
 
 function mapStateToProps(state: reduxTypes.IState) {
@@ -28,14 +28,8 @@ function mapDispatchToProps(dispatch: reduxTypes.Dispatch) {
 		addHistory: (tx: string) => dispatch(uiActions.addHistory(tx)),
 		message: (type: string, content: string) =>
 			dispatch(uiActions.messsage(type, content, true)),
-		addMV: (mv: ITimeSeriesData) => dispatch(uiActions.addMV(mv)),
 		updateAssets: (assets: IAssets) => dispatch(uiActions.updateAssets(assets)),
-		updateResetPrice: (px: number) => dispatch(uiActions.updateResetPrice(px)),
-		updateBeta: (beta: number) => dispatch(uiActions.updateBeta(beta)),
-		updateDayCount: (count: number) => dispatch(uiActions.updateDayCount(count)),
-		updateUpwardResetCount: (count: number) => dispatch(uiActions.updateUpwardResetCount(count)),
-		updateDownwardResetCount: (count: number) => dispatch(uiActions.updateDownwardResetCount(count)),
-		updatePeriodicResetCount: (count: number) => dispatch(uiActions.updatePeriodicResetCount(count)),
+		next: () => dispatch(uiActions.next())
 	};
 }
 

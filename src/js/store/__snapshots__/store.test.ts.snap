@@ -3,12 +3,1901 @@
 exports[`store actions 1`] = `
 Object {
   "ui": Object {
+    "assets": Object {
+      "ClassA": 0,
+      "ClassB": 0,
+      "ETH": 100,
+    },
+    "beta": 1,
+    "classA": Array [
+      Object {
+        "datetime": 1506787200000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1506873600000,
+        "value": 1.0002,
+      },
+      Object {
+        "datetime": 1506960000000,
+        "value": 1.0004,
+      },
+      Object {
+        "datetime": 1507046400000,
+        "value": 1.0006,
+      },
+      Object {
+        "datetime": 1507132800000,
+        "value": 1.0008,
+      },
+      Object {
+        "datetime": 1507219200000,
+        "value": 1.001,
+      },
+      Object {
+        "datetime": 1507305600000,
+        "value": 1.0012,
+      },
+      Object {
+        "datetime": 1507392000000,
+        "value": 1.0014,
+      },
+      Object {
+        "datetime": 1507478400000,
+        "value": 1.0016,
+      },
+      Object {
+        "datetime": 1507564800000,
+        "value": 1.0018,
+      },
+      Object {
+        "datetime": 1507651200000,
+        "value": 1.002,
+      },
+      Object {
+        "datetime": 1507737600000,
+        "value": 1.0022,
+      },
+      Object {
+        "datetime": 1507824000000,
+        "value": 1.0024,
+      },
+      Object {
+        "datetime": 1507910400000,
+        "value": 1.0026,
+      },
+      Object {
+        "datetime": 1507996800000,
+        "value": 1.0028,
+      },
+      Object {
+        "datetime": 1508083200000,
+        "value": 1.003,
+      },
+      Object {
+        "datetime": 1508169600000,
+        "value": 1.0032,
+      },
+      Object {
+        "datetime": 1508256000000,
+        "value": 1.0034,
+      },
+      Object {
+        "datetime": 1508342400000,
+        "value": 1.0036,
+      },
+      Object {
+        "datetime": 1508428800000,
+        "value": 1.0038,
+      },
+      Object {
+        "datetime": 1508515200000,
+        "value": 1.004,
+      },
+      Object {
+        "datetime": 1508601600000,
+        "value": 1.0042,
+      },
+      Object {
+        "datetime": 1508688000000,
+        "value": 1.0044,
+      },
+      Object {
+        "datetime": 1508774400000,
+        "value": 1.0046,
+      },
+      Object {
+        "datetime": 1508860800000,
+        "value": 1.0048,
+      },
+      Object {
+        "datetime": 1508947200000,
+        "value": 1.005,
+      },
+      Object {
+        "datetime": 1509033600000,
+        "value": 1.0052,
+      },
+      Object {
+        "datetime": 1509120000000,
+        "value": 1.0054,
+      },
+      Object {
+        "datetime": 1509206400000,
+        "value": 1.0056,
+      },
+      Object {
+        "datetime": 1509292800000,
+        "value": 1.0058,
+      },
+      Object {
+        "datetime": 1509379200000,
+        "value": 1.006,
+      },
+      Object {
+        "datetime": 1509465600000,
+        "value": 1.0062,
+      },
+      Object {
+        "datetime": 1509552000000,
+        "value": 1.0064,
+      },
+      Object {
+        "datetime": 1509638400000,
+        "value": 1.0066,
+      },
+      Object {
+        "datetime": 1509724800000,
+        "value": 1.0068,
+      },
+      Object {
+        "datetime": 1509811200000,
+        "value": 1.007,
+      },
+      Object {
+        "datetime": 1509897600000,
+        "value": 1.0072,
+      },
+      Object {
+        "datetime": 1509984000000,
+        "value": 1.0074,
+      },
+      Object {
+        "datetime": 1510070400000,
+        "value": 1.0076,
+      },
+      Object {
+        "datetime": 1510156800000,
+        "value": 1.0078,
+      },
+      Object {
+        "datetime": 1510243200000,
+        "value": 1.008,
+      },
+      Object {
+        "datetime": 1510329600000,
+        "value": 1.0082,
+      },
+      Object {
+        "datetime": 1510416000000,
+        "value": 1.0084,
+      },
+      Object {
+        "datetime": 1510502400000,
+        "value": 1.0086,
+      },
+      Object {
+        "datetime": 1510588800000,
+        "value": 1.0088,
+      },
+      Object {
+        "datetime": 1510675200000,
+        "value": 1.009,
+      },
+      Object {
+        "datetime": 1510761600000,
+        "value": 1.0092,
+      },
+      Object {
+        "datetime": 1510848000000,
+        "value": 1.0094,
+      },
+      Object {
+        "datetime": 1510934400000,
+        "value": 1.0096,
+      },
+      Object {
+        "datetime": 1511020800000,
+        "value": 1.0098,
+      },
+      Object {
+        "datetime": 1511107200000,
+        "value": 1.01,
+      },
+      Object {
+        "datetime": 1511193600000,
+        "value": 1.0102,
+      },
+      Object {
+        "datetime": 1511280000000,
+        "value": 1.0104,
+      },
+      Object {
+        "datetime": 1511366400000,
+        "value": 1.0106,
+      },
+      Object {
+        "datetime": 1511452800000,
+        "value": 1.0108,
+      },
+      Object {
+        "datetime": 1511452800000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1511539200000,
+        "value": 1.0002,
+      },
+      Object {
+        "datetime": 1511625600000,
+        "value": 1.0004,
+      },
+      Object {
+        "datetime": 1511712000000,
+        "value": 1.0006,
+      },
+      Object {
+        "datetime": 1511798400000,
+        "value": 1.0008,
+      },
+      Object {
+        "datetime": 1511884800000,
+        "value": 1.001,
+      },
+      Object {
+        "datetime": 1511971200000,
+        "value": 1.0012,
+      },
+      Object {
+        "datetime": 1512057600000,
+        "value": 1.0014,
+      },
+      Object {
+        "datetime": 1512144000000,
+        "value": 1.0016,
+      },
+      Object {
+        "datetime": 1512230400000,
+        "value": 1.0018,
+      },
+      Object {
+        "datetime": 1512316800000,
+        "value": 1.002,
+      },
+      Object {
+        "datetime": 1512403200000,
+        "value": 1.0022,
+      },
+      Object {
+        "datetime": 1512489600000,
+        "value": 1.0024,
+      },
+      Object {
+        "datetime": 1512576000000,
+        "value": 1.0026,
+      },
+      Object {
+        "datetime": 1512662400000,
+        "value": 1.0028,
+      },
+      Object {
+        "datetime": 1512748800000,
+        "value": 1.003,
+      },
+      Object {
+        "datetime": 1512835200000,
+        "value": 1.0032,
+      },
+      Object {
+        "datetime": 1512921600000,
+        "value": 1.0034,
+      },
+      Object {
+        "datetime": 1513008000000,
+        "value": 1.0036,
+      },
+      Object {
+        "datetime": 1513094400000,
+        "value": 1.0038,
+      },
+      Object {
+        "datetime": 1513180800000,
+        "value": 1.004,
+      },
+      Object {
+        "datetime": 1513267200000,
+        "value": 1.0042,
+      },
+      Object {
+        "datetime": 1513353600000,
+        "value": 1.0044,
+      },
+      Object {
+        "datetime": 1513440000000,
+        "value": 1.0046,
+      },
+      Object {
+        "datetime": 1513440000000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1513526400000,
+        "value": 1.0002,
+      },
+      Object {
+        "datetime": 1513612800000,
+        "value": 1.0004,
+      },
+      Object {
+        "datetime": 1513699200000,
+        "value": 1.0006,
+      },
+      Object {
+        "datetime": 1513785600000,
+        "value": 1.0008,
+      },
+      Object {
+        "datetime": 1513872000000,
+        "value": 1.001,
+      },
+      Object {
+        "datetime": 1513958400000,
+        "value": 1.0012,
+      },
+      Object {
+        "datetime": 1514044800000,
+        "value": 1.0014,
+      },
+      Object {
+        "datetime": 1514131200000,
+        "value": 1.0016,
+      },
+      Object {
+        "datetime": 1514217600000,
+        "value": 1.0018,
+      },
+      Object {
+        "datetime": 1514304000000,
+        "value": 1.002,
+      },
+      Object {
+        "datetime": 1514390400000,
+        "value": 1.0022,
+      },
+      Object {
+        "datetime": 1514476800000,
+        "value": 1.0024,
+      },
+      Object {
+        "datetime": 1514563200000,
+        "value": 1.0026,
+      },
+      Object {
+        "datetime": 1514649600000,
+        "value": 1.0028,
+      },
+      Object {
+        "datetime": 1514736000000,
+        "value": 1.003,
+      },
+      Object {
+        "datetime": 1514822400000,
+        "value": 1.0032,
+      },
+      Object {
+        "datetime": 1514908800000,
+        "value": 1.0034,
+      },
+      Object {
+        "datetime": 1514995200000,
+        "value": 1.0036,
+      },
+      Object {
+        "datetime": 1515081600000,
+        "value": 1.0038,
+      },
+      Object {
+        "datetime": 1515168000000,
+        "value": 1.004,
+      },
+      Object {
+        "datetime": 1515254400000,
+        "value": 1.0042,
+      },
+      Object {
+        "datetime": 1515254400000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1515340800000,
+        "value": 1.0002,
+      },
+      Object {
+        "datetime": 1515427200000,
+        "value": 1.0004,
+      },
+      Object {
+        "datetime": 1515513600000,
+        "value": 1.0006,
+      },
+      Object {
+        "datetime": 1515600000000,
+        "value": 1.0008,
+      },
+      Object {
+        "datetime": 1515686400000,
+        "value": 1.001,
+      },
+      Object {
+        "datetime": 1515772800000,
+        "value": 1.0012,
+      },
+      Object {
+        "datetime": 1515859200000,
+        "value": 1.0014,
+      },
+      Object {
+        "datetime": 1515945600000,
+        "value": 1.0016,
+      },
+      Object {
+        "datetime": 1516032000000,
+        "value": 1.0018,
+      },
+      Object {
+        "datetime": 1516118400000,
+        "value": 1.002,
+      },
+      Object {
+        "datetime": 1516204800000,
+        "value": 1.0022,
+      },
+      Object {
+        "datetime": 1516291200000,
+        "value": 1.0024,
+      },
+      Object {
+        "datetime": 1516377600000,
+        "value": 1.0026,
+      },
+      Object {
+        "datetime": 1516464000000,
+        "value": 1.0028,
+      },
+      Object {
+        "datetime": 1516550400000,
+        "value": 1.003,
+      },
+      Object {
+        "datetime": 1516636800000,
+        "value": 1.0032,
+      },
+      Object {
+        "datetime": 1516723200000,
+        "value": 1.0034,
+      },
+      Object {
+        "datetime": 1516809600000,
+        "value": 1.0036,
+      },
+      Object {
+        "datetime": 1516896000000,
+        "value": 1.0038,
+      },
+      Object {
+        "datetime": 1516982400000,
+        "value": 1.004,
+      },
+      Object {
+        "datetime": 1517068800000,
+        "value": 1.0042,
+      },
+      Object {
+        "datetime": 1517155200000,
+        "value": 1.0044,
+      },
+      Object {
+        "datetime": 1517241600000,
+        "value": 1.0046,
+      },
+      Object {
+        "datetime": 1517328000000,
+        "value": 1.0048,
+      },
+      Object {
+        "datetime": 1517414400000,
+        "value": 1.005,
+      },
+      Object {
+        "datetime": 1517500800000,
+        "value": 1.0052,
+      },
+      Object {
+        "datetime": 1517587200000,
+        "value": 1.0054,
+      },
+      Object {
+        "datetime": 1517673600000,
+        "value": 1.0056,
+      },
+      Object {
+        "datetime": 1517760000000,
+        "value": 1.0058,
+      },
+      Object {
+        "datetime": 1517760000000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1517846400000,
+        "value": 1.0002,
+      },
+      Object {
+        "datetime": 1517932800000,
+        "value": 1.0004,
+      },
+      Object {
+        "datetime": 1518019200000,
+        "value": 1.0006,
+      },
+      Object {
+        "datetime": 1518105600000,
+        "value": 1.0008,
+      },
+      Object {
+        "datetime": 1518192000000,
+        "value": 1.001,
+      },
+      Object {
+        "datetime": 1518278400000,
+        "value": 1.0012,
+      },
+      Object {
+        "datetime": 1518364800000,
+        "value": 1.0014,
+      },
+      Object {
+        "datetime": 1518451200000,
+        "value": 1.0016,
+      },
+      Object {
+        "datetime": 1518537600000,
+        "value": 1.0018,
+      },
+      Object {
+        "datetime": 1518624000000,
+        "value": 1.002,
+      },
+      Object {
+        "datetime": 1518710400000,
+        "value": 1.0022,
+      },
+      Object {
+        "datetime": 1518796800000,
+        "value": 1.0024,
+      },
+      Object {
+        "datetime": 1518883200000,
+        "value": 1.0026,
+      },
+      Object {
+        "datetime": 1518969600000,
+        "value": 1.0028,
+      },
+      Object {
+        "datetime": 1519056000000,
+        "value": 1.003,
+      },
+      Object {
+        "datetime": 1519142400000,
+        "value": 1.0032,
+      },
+      Object {
+        "datetime": 1519228800000,
+        "value": 1.0034,
+      },
+      Object {
+        "datetime": 1519315200000,
+        "value": 1.0036,
+      },
+      Object {
+        "datetime": 1519401600000,
+        "value": 1.0038,
+      },
+      Object {
+        "datetime": 1519488000000,
+        "value": 1.004,
+      },
+      Object {
+        "datetime": 1519574400000,
+        "value": 1.0042,
+      },
+      Object {
+        "datetime": 1519660800000,
+        "value": 1.0044,
+      },
+      Object {
+        "datetime": 1519747200000,
+        "value": 1.0046,
+      },
+    ],
+    "classB": Array [
+      Object {
+        "datetime": 1506787200000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1506873600000,
+        "value": 0.9528185885836487,
+      },
+      Object {
+        "datetime": 1506960000000,
+        "value": 0.9197184405329826,
+      },
+      Object {
+        "datetime": 1507046400000,
+        "value": 0.9186630366836652,
+      },
+      Object {
+        "datetime": 1507132800000,
+        "value": 0.9402429346932064,
+      },
+      Object {
+        "datetime": 1507219200000,
+        "value": 1.027820529692384,
+      },
+      Object {
+        "datetime": 1507305600000,
+        "value": 1.046900016450074,
+      },
+      Object {
+        "datetime": 1507392000000,
+        "value": 1.0350533640401383,
+      },
+      Object {
+        "datetime": 1507478400000,
+        "value": 0.9523397927290673,
+      },
+      Object {
+        "datetime": 1507564800000,
+        "value": 0.9620756374403685,
+      },
+      Object {
+        "datetime": 1507651200000,
+        "value": 0.9908277677249548,
+      },
+      Object {
+        "datetime": 1507737600000,
+        "value": 0.9908251686132588,
+      },
+      Object {
+        "datetime": 1507824000000,
+        "value": 1.213951373581181,
+      },
+      Object {
+        "datetime": 1507910400000,
+        "value": 1.226779832209245,
+      },
+      Object {
+        "datetime": 1507996800000,
+        "value": 1.211906366178648,
+      },
+      Object {
+        "datetime": 1508083200000,
+        "value": 1.196243296594835,
+      },
+      Object {
+        "datetime": 1508169600000,
+        "value": 1.077010560947524,
+      },
+      Object {
+        "datetime": 1508256000000,
+        "value": 1.059702483961178,
+      },
+      Object {
+        "datetime": 1508342400000,
+        "value": 1.0191669024510612,
+      },
+      Object {
+        "datetime": 1508428800000,
+        "value": 0.9904753742391841,
+      },
+      Object {
+        "datetime": 1508515200000,
+        "value": 0.9670478697154139,
+      },
+      Object {
+        "datetime": 1508601600000,
+        "value": 0.9305261062674781,
+      },
+      Object {
+        "datetime": 1508688000000,
+        "value": 0.872685046882711,
+      },
+      Object {
+        "datetime": 1508774400000,
+        "value": 0.9463787794045075,
+      },
+      Object {
+        "datetime": 1508860800000,
+        "value": 0.9451917749629877,
+      },
+      Object {
+        "datetime": 1508947200000,
+        "value": 0.9396619509787798,
+      },
+      Object {
+        "datetime": 1509033600000,
+        "value": 0.9448575752590886,
+      },
+      Object {
+        "datetime": 1509120000000,
+        "value": 0.9248516861325877,
+      },
+      Object {
+        "datetime": 1509206400000,
+        "value": 0.9949922026649121,
+      },
+      Object {
+        "datetime": 1509292800000,
+        "value": 1.0129530843888797,
+      },
+      Object {
+        "datetime": 1509379200000,
+        "value": 0.9919601908208586,
+      },
+      Object {
+        "datetime": 1509465600000,
+        "value": 0.8981921697647641,
+      },
+      Object {
+        "datetime": 1509552000000,
+        "value": 0.8683820365191646,
+      },
+      Object {
+        "datetime": 1509638400000,
+        "value": 0.9970848165816746,
+      },
+      Object {
+        "datetime": 1509724800000,
+        "value": 0.9674720842243794,
+      },
+      Object {
+        "datetime": 1509811200000,
+        "value": 0.9422021714097717,
+      },
+      Object {
+        "datetime": 1509897600000,
+        "value": 0.9458843888797499,
+      },
+      Object {
+        "datetime": 1509984000000,
+        "value": 0.9129158414212861,
+      },
+      Object {
+        "datetime": 1510070400000,
+        "value": 1.014772100674453,
+      },
+      Object {
+        "datetime": 1510156800000,
+        "value": 1.0955722651751936,
+      },
+      Object {
+        "datetime": 1510243200000,
+        "value": 0.9453475900641555,
+      },
+      Object {
+        "datetime": 1510329600000,
+        "value": 1.0594427043921701,
+      },
+      Object {
+        "datetime": 1510416000000,
+        "value": 1.005220661292976,
+      },
+      Object {
+        "datetime": 1510502400000,
+        "value": 1.0614773153479193,
+      },
+      Object {
+        "datetime": 1510588800000,
+        "value": 1.1936675111038002,
+      },
+      Object {
+        "datetime": 1510675200000,
+        "value": 1.1703058068761312,
+      },
+      Object {
+        "datetime": 1510761600000,
+        "value": 1.1643153808192135,
+      },
+      Object {
+        "datetime": 1510848000000,
+        "value": 1.1733274222734005,
+      },
+      Object {
+        "datetime": 1510934400000,
+        "value": 1.2713672643526894,
+      },
+      Object {
+        "datetime": 1511020800000,
+        "value": 1.323478499753249,
+      },
+      Object {
+        "datetime": 1511107200000,
+        "value": 1.4095426879420956,
+      },
+      Object {
+        "datetime": 1511193600000,
+        "value": 1.3620322750452376,
+      },
+      Object {
+        "datetime": 1511280000000,
+        "value": 1.4955384767231454,
+      },
+      Object {
+        "datetime": 1511366400000,
+        "value": 1.6646426385918736,
+      },
+      Object {
+        "datetime": 1511452800000,
+        "value": 2.084643329494983,
+      },
+      Object {
+        "datetime": 1511452800000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1511539200000,
+        "value": 0.9750566800586697,
+      },
+      Object {
+        "datetime": 1511625600000,
+        "value": 1.0000676572497502,
+      },
+      Object {
+        "datetime": 1511712000000,
+        "value": 1.0198493761027145,
+      },
+      Object {
+        "datetime": 1511798400000,
+        "value": 0.981514053100355,
+      },
+      Object {
+        "datetime": 1511884800000,
+        "value": 0.8161460153476607,
+      },
+      Object {
+        "datetime": 1511971200000,
+        "value": 0.847534136853517,
+      },
+      Object {
+        "datetime": 1512057600000,
+        "value": 0.9609748485428224,
+      },
+      Object {
+        "datetime": 1512144000000,
+        "value": 0.9453846735964966,
+      },
+      Object {
+        "datetime": 1512230400000,
+        "value": 0.9658041068809387,
+      },
+      Object {
+        "datetime": 1512316800000,
+        "value": 0.9831199965988564,
+      },
+      Object {
+        "datetime": 1512403200000,
+        "value": 0.9277789554237612,
+      },
+      Object {
+        "datetime": 1512489600000,
+        "value": 0.7937439534043322,
+      },
+      Object {
+        "datetime": 1512576000000,
+        "value": 0.7878895521118976,
+      },
+      Object {
+        "datetime": 1512662400000,
+        "value": 0.9177407818378931,
+      },
+      Object {
+        "datetime": 1512748800000,
+        "value": 1.007330973789937,
+      },
+      Object {
+        "datetime": 1512835200000,
+        "value": 0.8525064813043386,
+      },
+      Object {
+        "datetime": 1512921600000,
+        "value": 1.1788162702208616,
+      },
+      Object {
+        "datetime": 1513008000000,
+        "value": 1.787548523691091,
+      },
+      Object {
+        "datetime": 1513094400000,
+        "value": 1.9683318793444298,
+      },
+      Object {
+        "datetime": 1513180800000,
+        "value": 1.9447065025614862,
+      },
+      Object {
+        "datetime": 1513267200000,
+        "value": 1.904925693514444,
+      },
+      Object {
+        "datetime": 1513353600000,
+        "value": 1.9411179304040984,
+      },
+      Object {
+        "datetime": 1513440000000,
+        "value": 2.046693497438514,
+      },
+      Object {
+        "datetime": 1513440000000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1513526400000,
+        "value": 1.1900718368143122,
+      },
+      Object {
+        "datetime": 1513612800000,
+        "value": 1.2637456855833133,
+      },
+      Object {
+        "datetime": 1513699200000,
+        "value": 1.226399763135528,
+      },
+      Object {
+        "datetime": 1513785600000,
+        "value": 1.1989464156832148,
+      },
+      Object {
+        "datetime": 1513872000000,
+        "value": 0.8321359462735647,
+      },
+      Object {
+        "datetime": 1513958400000,
+        "value": 0.9506747126276629,
+      },
+      Object {
+        "datetime": 1514044800000,
+        "value": 0.8821184127293751,
+      },
+      Object {
+        "datetime": 1514131200000,
+        "value": 1.0135314597818057,
+      },
+      Object {
+        "datetime": 1514217600000,
+        "value": 1.0976552117150378,
+      },
+      Object {
+        "datetime": 1514304000000,
+        "value": 1.0599470259575596,
+      },
+      Object {
+        "datetime": 1514390400000,
+        "value": 0.9949576263393294,
+      },
+      Object {
+        "datetime": 1514476800000,
+        "value": 1.058599568070669,
+      },
+      Object {
+        "datetime": 1514563200000,
+        "value": 0.9285142383413914,
+      },
+      Object {
+        "datetime": 1514649600000,
+        "value": 1.0624631285616755,
+      },
+      Object {
+        "datetime": 1514736000000,
+        "value": 1.104257806077664,
+      },
+      Object {
+        "datetime": 1514822400000,
+        "value": 1.3988008081258445,
+      },
+      Object {
+        "datetime": 1514908800000,
+        "value": 1.619107698095331,
+      },
+      Object {
+        "datetime": 1514995200000,
+        "value": 1.6293018684426857,
+      },
+      Object {
+        "datetime": 1515081600000,
+        "value": 1.6912439592593107,
+      },
+      Object {
+        "datetime": 1515168000000,
+        "value": 1.8005032116035724,
+      },
+      Object {
+        "datetime": 1515254400000,
+        "value": 2.1105678031516906,
+      },
+      Object {
+        "datetime": 1515254400000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1515340800000,
+        "value": 1.0326517110266158,
+      },
+      Object {
+        "datetime": 1515427200000,
+        "value": 1.306448579736077,
+      },
+      Object {
+        "datetime": 1515513600000,
+        "value": 1.234228897338403,
+      },
+      Object {
+        "datetime": 1515600000000,
+        "value": 1.0377953925296355,
+      },
+      Object {
+        "datetime": 1515686400000,
+        "value": 1.2553721762469245,
+      },
+      Object {
+        "datetime": 1515772800000,
+        "value": 1.477028584209349,
+      },
+      Object {
+        "datetime": 1515859200000,
+        "value": 1.4311296354283158,
+      },
+      Object {
+        "datetime": 1515945600000,
+        "value": 1.286371371057929,
+      },
+      Object {
+        "datetime": 1516032000000,
+        "value": 0.8774395437262357,
+      },
+      Object {
+        "datetime": 1516118400000,
+        "value": 0.8314869156788192,
+      },
+      Object {
+        "datetime": 1516204800000,
+        "value": 0.8103162156117201,
+      },
+      Object {
+        "datetime": 1516291200000,
+        "value": 0.853757459181391,
+      },
+      Object {
+        "datetime": 1516377600000,
+        "value": 1.055999865801834,
+      },
+      Object {
+        "datetime": 1516464000000,
+        "value": 0.8743460523372846,
+      },
+      Object {
+        "datetime": 1516550400000,
+        "value": 0.7856647282487139,
+      },
+      Object {
+        "datetime": 1516636800000,
+        "value": 0.7583209125475285,
+      },
+      Object {
+        "datetime": 1516723200000,
+        "value": 0.8964523820174457,
+      },
+      Object {
+        "datetime": 1516809600000,
+        "value": 0.8686791321851932,
+      },
+      Object {
+        "datetime": 1516896000000,
+        "value": 0.8724335048087675,
+      },
+      Object {
+        "datetime": 1516982400000,
+        "value": 0.9804866920152089,
+      },
+      Object {
+        "datetime": 1517068800000,
+        "value": 1.1994770297472601,
+      },
+      Object {
+        "datetime": 1517155200000,
+        "value": 1.0890198165958398,
+      },
+      Object {
+        "datetime": 1517241600000,
+        "value": 0.8987773205099532,
+      },
+      Object {
+        "datetime": 1517328000000,
+        "value": 0.9836768508163722,
+      },
+      Object {
+        "datetime": 1517414400000,
+        "value": 0.8311708789979873,
+      },
+      Object {
+        "datetime": 1517500800000,
+        "value": 0.6364372176246924,
+      },
+      Object {
+        "datetime": 1517587200000,
+        "value": 0.7317863117870722,
+      },
+      Object {
+        "datetime": 1517673600000,
+        "value": 0.4752141355401476,
+      },
+      Object {
+        "datetime": 1517760000000,
+        "value": 0.23791281592484914,
+      },
+      Object {
+        "datetime": 1517760000000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1517846400000,
+        "value": 1.258561581400702,
+      },
+      Object {
+        "datetime": 1517932800000,
+        "value": 1.1628330091500256,
+      },
+      Object {
+        "datetime": 1518019200000,
+        "value": 1.340281625136675,
+      },
+      Object {
+        "datetime": 1518105600000,
+        "value": 1.5251826207055301,
+      },
+      Object {
+        "datetime": 1518192000000,
+        "value": 1.4469196639235773,
+      },
+      Object {
+        "datetime": 1518278400000,
+        "value": 1.333034908212004,
+      },
+      Object {
+        "datetime": 1518364800000,
+        "value": 1.4882990274500776,
+      },
+      Object {
+        "datetime": 1518451200000,
+        "value": 1.4182077919088447,
+      },
+      Object {
+        "datetime": 1518537600000,
+        "value": 1.6456938136617365,
+      },
+      Object {
+        "datetime": 1518624000000,
+        "value": 1.66805236807274,
+      },
+      Object {
+        "datetime": 1518710400000,
+        "value": 1.6968274500776885,
+      },
+      Object {
+        "datetime": 1518796800000,
+        "value": 1.8023706738792653,
+      },
+      Object {
+        "datetime": 1518883200000,
+        "value": 1.6270253668642456,
+      },
+      Object {
+        "datetime": 1518969600000,
+        "value": 1.7013203890199688,
+      },
+      Object {
+        "datetime": 1519056000000,
+        "value": 1.544965701789722,
+      },
+      Object {
+        "datetime": 1519142400000,
+        "value": 1.4140757092708753,
+      },
+      Object {
+        "datetime": 1519228800000,
+        "value": 1.3118155147608905,
+      },
+      Object {
+        "datetime": 1519315200000,
+        "value": 1.4556852621281005,
+      },
+      Object {
+        "datetime": 1519401600000,
+        "value": 1.3944563158197618,
+      },
+      Object {
+        "datetime": 1519488000000,
+        "value": 1.4137936352650051,
+      },
+      Object {
+        "datetime": 1519574400000,
+        "value": 1.4922608390401102,
+      },
+      Object {
+        "datetime": 1519660800000,
+        "value": 1.5034552109109742,
+      },
+      Object {
+        "datetime": 1519747200000,
+        "value": 1.4454776888991194,
+      },
+    ],
+    "day": 0,
+    "downward": 0,
+    "eth": Array [
+      Object {
+        "datetime": 1506787200000,
+        "value": 303.95,
+      },
+      Object {
+        "datetime": 1506873600000,
+        "value": 296.81,
+      },
+      Object {
+        "datetime": 1506960000000,
+        "value": 291.81,
+      },
+      Object {
+        "datetime": 1507046400000,
+        "value": 291.68,
+      },
+      Object {
+        "datetime": 1507132800000,
+        "value": 294.99,
+      },
+      Object {
+        "datetime": 1507219200000,
+        "value": 308.33,
+      },
+      Object {
+        "datetime": 1507305600000,
+        "value": 311.26,
+      },
+      Object {
+        "datetime": 1507392000000,
+        "value": 309.49,
+      },
+      Object {
+        "datetime": 1507478400000,
+        "value": 296.95,
+      },
+      Object {
+        "datetime": 1507564800000,
+        "value": 298.46,
+      },
+      Object {
+        "datetime": 1507651200000,
+        "value": 302.86,
+      },
+      Object {
+        "datetime": 1507737600000,
+        "value": 302.89,
+      },
+      Object {
+        "datetime": 1507824000000,
+        "value": 336.83,
+      },
+      Object {
+        "datetime": 1507910400000,
+        "value": 338.81,
+      },
+      Object {
+        "datetime": 1507996800000,
+        "value": 336.58,
+      },
+      Object {
+        "datetime": 1508083200000,
+        "value": 334.23,
+      },
+      Object {
+        "datetime": 1508169600000,
+        "value": 316.14,
+      },
+      Object {
+        "datetime": 1508256000000,
+        "value": 313.54,
+      },
+      Object {
+        "datetime": 1508342400000,
+        "value": 307.41,
+      },
+      Object {
+        "datetime": 1508428800000,
+        "value": 303.08,
+      },
+      Object {
+        "datetime": 1508515200000,
+        "value": 299.55,
+      },
+      Object {
+        "datetime": 1508601600000,
+        "value": 294.03,
+      },
+      Object {
+        "datetime": 1508688000000,
+        "value": 285.27,
+      },
+      Object {
+        "datetime": 1508774400000,
+        "value": 296.5,
+      },
+      Object {
+        "datetime": 1508860800000,
+        "value": 296.35,
+      },
+      Object {
+        "datetime": 1508947200000,
+        "value": 295.54,
+      },
+      Object {
+        "datetime": 1509033600000,
+        "value": 296.36,
+      },
+      Object {
+        "datetime": 1509120000000,
+        "value": 293.35,
+      },
+      Object {
+        "datetime": 1509206400000,
+        "value": 304.04,
+      },
+      Object {
+        "datetime": 1509292800000,
+        "value": 306.8,
+      },
+      Object {
+        "datetime": 1509379200000,
+        "value": 303.64,
+      },
+      Object {
+        "datetime": 1509465600000,
+        "value": 289.42,
+      },
+      Object {
+        "datetime": 1509552000000,
+        "value": 284.92,
+      },
+      Object {
+        "datetime": 1509638400000,
+        "value": 304.51,
+      },
+      Object {
+        "datetime": 1509724800000,
+        "value": 300.04,
+      },
+      Object {
+        "datetime": 1509811200000,
+        "value": 296.23,
+      },
+      Object {
+        "datetime": 1509897600000,
+        "value": 296.82,
+      },
+      Object {
+        "datetime": 1509984000000,
+        "value": 291.84,
+      },
+      Object {
+        "datetime": 1510070400000,
+        "value": 307.35,
+      },
+      Object {
+        "datetime": 1510156800000,
+        "value": 319.66,
+      },
+      Object {
+        "datetime": 1510243200000,
+        "value": 296.86,
+      },
+      Object {
+        "datetime": 1510329600000,
+        "value": 314.23,
+      },
+      Object {
+        "datetime": 1510416000000,
+        "value": 306.02,
+      },
+      Object {
+        "datetime": 1510502400000,
+        "value": 314.6,
+      },
+      Object {
+        "datetime": 1510588800000,
+        "value": 334.72,
+      },
+      Object {
+        "datetime": 1510675200000,
+        "value": 331.2,
+      },
+      Object {
+        "datetime": 1510761600000,
+        "value": 330.32,
+      },
+      Object {
+        "datetime": 1510848000000,
+        "value": 331.72,
+      },
+      Object {
+        "datetime": 1510934400000,
+        "value": 346.65,
+      },
+      Object {
+        "datetime": 1511020800000,
+        "value": 354.6,
+      },
+      Object {
+        "datetime": 1511107200000,
+        "value": 367.71,
+      },
+      Object {
+        "datetime": 1511193600000,
+        "value": 360.52,
+      },
+      Object {
+        "datetime": 1511280000000,
+        "value": 380.84,
+      },
+      Object {
+        "datetime": 1511366400000,
+        "value": 406.57,
+      },
+      Object {
+        "datetime": 1511452800000,
+        "value": 470.43,
+      },
+      Object {
+        "datetime": 1511539200000,
+        "value": 464.61,
+      },
+      Object {
+        "datetime": 1511625600000,
+        "value": 470.54,
+      },
+      Object {
+        "datetime": 1511712000000,
+        "value": 475.24,
+      },
+      Object {
+        "datetime": 1511798400000,
+        "value": 466.27,
+      },
+      Object {
+        "datetime": 1511884800000,
+        "value": 427.42,
+      },
+      Object {
+        "datetime": 1511971200000,
+        "value": 434.85,
+      },
+      Object {
+        "datetime": 1512057600000,
+        "value": 461.58,
+      },
+      Object {
+        "datetime": 1512144000000,
+        "value": 457.96,
+      },
+      Object {
+        "datetime": 1512230400000,
+        "value": 462.81,
+      },
+      Object {
+        "datetime": 1512316800000,
+        "value": 466.93,
+      },
+      Object {
+        "datetime": 1512403200000,
+        "value": 453.96,
+      },
+      Object {
+        "datetime": 1512489600000,
+        "value": 422.48,
+      },
+      Object {
+        "datetime": 1512576000000,
+        "value": 421.15,
+      },
+      Object {
+        "datetime": 1512662400000,
+        "value": 451.74,
+      },
+      Object {
+        "datetime": 1512748800000,
+        "value": 472.86,
+      },
+      Object {
+        "datetime": 1512835200000,
+        "value": 436.49,
+      },
+      Object {
+        "datetime": 1512921600000,
+        "value": 513.29,
+      },
+      Object {
+        "datetime": 1513008000000,
+        "value": 656.52,
+      },
+      Object {
+        "datetime": 1513094400000,
+        "value": 699.09,
+      },
+      Object {
+        "datetime": 1513180800000,
+        "value": 693.58,
+      },
+      Object {
+        "datetime": 1513267200000,
+        "value": 684.27,
+      },
+      Object {
+        "datetime": 1513353600000,
+        "value": 692.83,
+      },
+      Object {
+        "datetime": 1513440000000,
+        "value": 717.71,
+      },
+      Object {
+        "datetime": 1513526400000,
+        "value": 785.99,
+      },
+      Object {
+        "datetime": 1513612800000,
+        "value": 812.5,
+      },
+      Object {
+        "datetime": 1513699200000,
+        "value": 799.17,
+      },
+      Object {
+        "datetime": 1513785600000,
+        "value": 789.39,
+      },
+      Object {
+        "datetime": 1513872000000,
+        "value": 657.83,
+      },
+      Object {
+        "datetime": 1513958400000,
+        "value": 700.44,
+      },
+      Object {
+        "datetime": 1514044800000,
+        "value": 675.91,
+      },
+      Object {
+        "datetime": 1514131200000,
+        "value": 723.14,
+      },
+      Object {
+        "datetime": 1514217600000,
+        "value": 753.4,
+      },
+      Object {
+        "datetime": 1514304000000,
+        "value": 739.94,
+      },
+      Object {
+        "datetime": 1514390400000,
+        "value": 716.69,
+      },
+      Object {
+        "datetime": 1514476800000,
+        "value": 739.6,
+      },
+      Object {
+        "datetime": 1514563200000,
+        "value": 692.99,
+      },
+      Object {
+        "datetime": 1514649600000,
+        "value": 741.13,
+      },
+      Object {
+        "datetime": 1514736000000,
+        "value": 756.2,
+      },
+      Object {
+        "datetime": 1514822400000,
+        "value": 861.97,
+      },
+      Object {
+        "datetime": 1514908800000,
+        "value": 941.1,
+      },
+      Object {
+        "datetime": 1514995200000,
+        "value": 944.83,
+      },
+      Object {
+        "datetime": 1515081600000,
+        "value": 967.13,
+      },
+      Object {
+        "datetime": 1515168000000,
+        "value": 1006.41,
+      },
+      Object {
+        "datetime": 1515254400000,
+        "value": 1117.75,
+      },
+      Object {
+        "datetime": 1515340800000,
+        "value": 1136.11,
+      },
+      Object {
+        "datetime": 1515427200000,
+        "value": 1289.24,
+      },
+      Object {
+        "datetime": 1515513600000,
+        "value": 1248.99,
+      },
+      Object {
+        "datetime": 1515600000000,
+        "value": 1139.32,
+      },
+      Object {
+        "datetime": 1515686400000,
+        "value": 1261.03,
+      },
+      Object {
+        "datetime": 1515772800000,
+        "value": 1385.02,
+      },
+      Object {
+        "datetime": 1515859200000,
+        "value": 1359.48,
+      },
+      Object {
+        "datetime": 1515945600000,
+        "value": 1278.69,
+      },
+      Object {
+        "datetime": 1516032000000,
+        "value": 1050.26,
+      },
+      Object {
+        "datetime": 1516118400000,
+        "value": 1024.69,
+      },
+      Object {
+        "datetime": 1516204800000,
+        "value": 1012.97,
+      },
+      Object {
+        "datetime": 1516291200000,
+        "value": 1037.36,
+      },
+      Object {
+        "datetime": 1516377600000,
+        "value": 1150.5,
+      },
+      Object {
+        "datetime": 1516464000000,
+        "value": 1049.09,
+      },
+      Object {
+        "datetime": 1516550400000,
+        "value": 999.64,
+      },
+      Object {
+        "datetime": 1516636800000,
+        "value": 984.47,
+      },
+      Object {
+        "datetime": 1516723200000,
+        "value": 1061.78,
+      },
+      Object {
+        "datetime": 1516809600000,
+        "value": 1046.37,
+      },
+      Object {
+        "datetime": 1516896000000,
+        "value": 1048.58,
+      },
+      Object {
+        "datetime": 1516982400000,
+        "value": 1109.08,
+      },
+      Object {
+        "datetime": 1517068800000,
+        "value": 1231.58,
+      },
+      Object {
+        "datetime": 1517155200000,
+        "value": 1169.96,
+      },
+      Object {
+        "datetime": 1517241600000,
+        "value": 1063.75,
+      },
+      Object {
+        "datetime": 1517328000000,
+        "value": 1111.31,
+      },
+      Object {
+        "datetime": 1517414400000,
+        "value": 1026.19,
+      },
+      Object {
+        "datetime": 1517500800000,
+        "value": 917.47,
+      },
+      Object {
+        "datetime": 1517587200000,
+        "value": 970.87,
+      },
+      Object {
+        "datetime": 1517673600000,
+        "value": 827.59,
+      },
+      Object {
+        "datetime": 1517760000000,
+        "value": 695.08,
+      },
+      Object {
+        "datetime": 1517846400000,
+        "value": 785.01,
+      },
+      Object {
+        "datetime": 1517932800000,
+        "value": 751.81,
+      },
+      Object {
+        "datetime": 1518019200000,
+        "value": 813.55,
+      },
+      Object {
+        "datetime": 1518105600000,
+        "value": 877.88,
+      },
+      Object {
+        "datetime": 1518192000000,
+        "value": 850.75,
+      },
+      Object {
+        "datetime": 1518278400000,
+        "value": 811.24,
+      },
+      Object {
+        "datetime": 1518364800000,
+        "value": 865.27,
+      },
+      Object {
+        "datetime": 1518451200000,
+        "value": 840.98,
+      },
+      Object {
+        "datetime": 1518537600000,
+        "value": 920.11,
+      },
+      Object {
+        "datetime": 1518624000000,
+        "value": 927.95,
+      },
+      Object {
+        "datetime": 1518710400000,
+        "value": 938.02,
+      },
+      Object {
+        "datetime": 1518796800000,
+        "value": 974.77,
+      },
+      Object {
+        "datetime": 1518883200000,
+        "value": 913.9,
+      },
+      Object {
+        "datetime": 1518969600000,
+        "value": 939.79,
+      },
+      Object {
+        "datetime": 1519056000000,
+        "value": 885.52,
+      },
+      Object {
+        "datetime": 1519142400000,
+        "value": 840.1,
+      },
+      Object {
+        "datetime": 1519228800000,
+        "value": 804.63,
+      },
+      Object {
+        "datetime": 1519315200000,
+        "value": 854.7,
+      },
+      Object {
+        "datetime": 1519401600000,
+        "value": 833.49,
+      },
+      Object {
+        "datetime": 1519488000000,
+        "value": 840.28,
+      },
+      Object {
+        "datetime": 1519574400000,
+        "value": 867.62,
+      },
+      Object {
+        "datetime": 1519660800000,
+        "value": 871.58,
+      },
+      Object {
+        "datetime": 1519747200000,
+        "value": 851.5,
+      },
+    ],
+    "form": Object {
+      "type": "",
+      "visible": false,
+    },
     "history": Array [],
     "message": Object {
       "content": "",
       "type": "",
       "visible": false,
     },
+    "mv": Array [
+      Object {
+        "datetime": 1506787200000,
+        "value": 30395,
+      },
+    ],
+    "periodic": 0,
+    "reset": Array [
+      Object {
+        "datetime": 1511452800000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1513440000000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1515254400000,
+        "value": 1,
+      },
+      Object {
+        "datetime": 1517760000000,
+        "value": 1,
+      },
+    ],
+    "resetPrice": 303.95,
+    "upward": 0,
   },
 }
 `;

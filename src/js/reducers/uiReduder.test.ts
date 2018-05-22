@@ -40,7 +40,14 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('reset', () => {
+	test('next', () => {
+		state = uiReducer(state, {
+			type: CST.AC_NEXT
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('refresh', () => {
 		state = uiReducer(state, {
 			type: CST.AC_REFRESH
 		});
