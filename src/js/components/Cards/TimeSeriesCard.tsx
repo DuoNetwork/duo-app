@@ -2,7 +2,7 @@ import * as d3 from 'd3';
 import { findLast } from 'lodash';
 import moment from 'moment';
 import * as React from 'react';
-import { ITimeSeries, ITimeSeriesData } from '../../types';
+import { ITimeSeries, ITimeSeriesData } from '../../common/types';
 import TimeSeriesChart from '../Charts/TimeSeriesChart';
 
 interface IProp {

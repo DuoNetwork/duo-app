@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
-import calculator from '../calculator';
-import { IAssets, ITimeSeriesData } from '../types';
+import calculator from '../common/calculator';
+import { IAssets, ITimeSeriesData } from '../common/types';
 import AssetCard from './Cards/AssetCard';
 import PriceCard from './Cards/PriceCard';
 import TimeSeriesCard from './Cards/TimeSeriesCard';
@@ -11,28 +11,30 @@ import Message from './Common/Message';
 import Header from './Header';
 
 interface IProp {
-	eth: ITimeSeriesData[];
-	classA: ITimeSeriesData[];
-	classB: ITimeSeriesData[];
-	reset: ITimeSeriesData[];
+	eth: ITimeSeriesData[],
+	classA: ITimeSeriesData[],
+	classB: ITimeSeriesData[],
+	reset: ITimeSeriesData[],
+	history: string[],
+	refresh: () => void,
+	addHistory: (tx: string) => void
 }
 
 interface IState {
-	dataMV: ITimeSeriesData[];
-	dayCount: number;
-	assets: IAssets;
-	lastResetPrice: number;
-	beta: number;
-	msgType: string;
-	msgContent: string;
-	msgShow: number;
-	resetToggle: boolean;
-	upwardResetCount: number;
-	downwardResetCount: number;
-	periodicResetCount: number;
-	showTFGlobal: boolean;
-	typeTF: string;
-	history: string[];
+	dataMV: ITimeSeriesData[],
+	dayCount: number,
+	assets: IAssets,
+	lastResetPrice: number,
+	beta: number,
+	msgType: string,
+	msgContent: string,
+	msgShow: number,
+	resetToggle: boolean,
+	upwardResetCount: number,
+	downwardResetCount: number,
+	periodicResetCount: number,
+	showTFGlobal: boolean,
+	typeTF: string,
 }
 
 const INITIAL_ASSETS = {
@@ -61,8 +63,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 			downwardResetCount: 0,
 			periodicResetCount: 0,
 			showTFGlobal: false,
-			typeTF: '',
-			history: []
+			typeTF: ''
 		};
 	}
 
@@ -143,6 +144,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 	};
 
 	public handleRefresh = () => {
+		this.props.refresh();
 		this.setState({
 			dataMV: [{ datetime: INITIAL_DATETIME, value: INITIAL_MV }],
 			dayCount: 0,
@@ -161,14 +163,13 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 	};
 
 	public handleBuySell = (amount: number, isA: boolean): void => {
-		const { eth, classA, classB } = this.props;
+		const { eth, classA, classB, addHistory } = this.props;
 		const {
 			dayCount,
 			upwardResetCount,
 			downwardResetCount,
 			periodicResetCount,
-			assets,
-			history
+			assets
 		} = this.state;
 
 		const ethPx = eth[dayCount].value;
@@ -185,7 +186,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: assets.ClassA + (isA ? amount : 0),
 					ClassB: assets.ClassB + (isA ? 0 : amount)
 				};
-				const historyEntry =
+				addHistory(
 					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Bought ' +
 					d3.formatPrefix(',.2', 1)(amount) +
@@ -193,11 +194,10 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					(isA ? 'A' : 'B') +
 					' with ' +
 					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
-					' ETH.';
+					' ETH.');
 				this.setState({
 					assets: newAssets,
 					showTFGlobal: false,
-					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -227,7 +227,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: assets.ClassA + (isA ? amount : 0),
 					ClassB: assets.ClassB + (isA ? 0 : amount)
 				};
-				const historyEntry =
+				addHistory(
 					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Sold ' +
 					d3.formatPrefix(',.2', 1)(-amount) +
@@ -235,11 +235,10 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					(isA ? 'A' : 'B') +
 					' for ' +
 					d3.formatPrefix(',.6', 1)(Math.abs(valueClassAB) / ethPx) +
-					' ETH.';
+					' ETH.');
 				this.setState({
 					assets: newAssets,
 					showTFGlobal: false,
-					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -274,8 +273,8 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 	};
 
 	public handleCreation = (amount: number): void => {
-		const { eth } = this.props;
-		const { dayCount, assets, beta, lastResetPrice, history } = this.state;
+		const { eth, addHistory } = this.props;
+		const { dayCount, assets, beta, lastResetPrice } = this.state;
 
 		const valuelastResetETHPrice = amount * lastResetPrice * beta;
 		if (amount && amount > 0)
@@ -289,17 +288,16 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: rClassA,
 					ClassB: rClassB
 				};
-				const historyEntry =
+				addHistory(
 					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Split ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' ETH into ' +
 					d3.formatPrefix(',.2', 1)(splitOutcome) +
-					' ClassA/B.';
+					' ClassA/B.');
 				this.setState({
 					assets: newAssets,
 					showTFGlobal: false,
-					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -332,8 +330,8 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 	};
 
 	public handleRedemption = (amount: number): void => {
-		const { eth } = this.props;
-		const { dayCount, assets, beta, lastResetPrice, history } = this.state;
+		const { eth, addHistory } = this.props;
+		const { dayCount, assets, beta, lastResetPrice } = this.state;
 		if (amount && amount > 0)
 			if (amount <= (d3.min([assets.ClassA, assets.ClassB]) || 0)) {
 				const rClassA = assets.ClassA - amount,
@@ -345,17 +343,15 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 					ClassA: rClassA,
 					ClassB: rClassB
 				};
-				const historyEntry =
-					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
+				addHistory(moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
 					': Combine ' +
 					d3.formatPrefix(',.2', 1)(amount) +
 					' ClassA/B into ' +
 					d3.formatPrefix(',.6', 1)(combineOutcome / lastResetPrice) +
-					' ETH.';
+					' ETH.');
 				this.setState({
 					assets: newAssets,
 					showTFGlobal: false,
-					history: [...history, historyEntry],
 					// set message
 					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
 					msgContent:
@@ -411,11 +407,10 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 			downwardResetCount,
 			periodicResetCount,
 			showTFGlobal,
-			typeTF,
-			history
+			typeTF
 		} = this.state;
 		const openTF = this.openTF;
-		const { eth, classA, classB, reset } = this.props;
+		const { eth, classA, classB, reset, history } = this.props;
 		const ethPx = eth[dayCount].value;
 		const navA =
 			classA[dayCount + upwardResetCount + downwardResetCount + periodicResetCount].value;

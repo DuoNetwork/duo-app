@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions addHistory 1`] = `
+Object {
+  "type": "history",
+  "value": "test",
+}
+`;
+
+exports[`actions refresh 1`] = `
+Object {
+  "type": "refresh",
+}
+`;

@@ -3,7 +3,7 @@ import * as React from 'react';
 import classAIcon from '../../../images/ClassA_white.png';
 import classBIcon from '../../../images/ClassB_white.png';
 import ethIcon from '../../../images/ethIcon.png';
-import { IAssets, IPriceData } from '../../types';
+import { IAssets, IPriceData } from '../../common/types';
 
 interface IProps {
 	isShown: boolean;

@@ -1,6 +1,6 @@
 import * as d3 from 'd3';
 import * as React from 'react';
-import { IAssets, IPriceData } from '../../types';
+import { IAssets, IPriceData } from '../../common/types';
 
 interface IProps {
 	assets: IAssets;

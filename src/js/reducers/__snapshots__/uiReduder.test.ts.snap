@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui reducer addHistory 1`] = `
+Object {
+  "history": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`ui reducer default 1`] = `
+Object {
+  "history": Array [],
+}
+`;
+
+exports[`ui reducer reset 1`] = `
+Object {
+  "history": Array [],
+}
+`;

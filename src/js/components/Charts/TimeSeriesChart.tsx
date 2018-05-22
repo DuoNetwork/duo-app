@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
-import { ITimeSeries, ITimeSeriesData } from '../../types';
+import { ITimeSeries, ITimeSeriesData } from '../../common/types';
 
 const margin = { top: 40, right: 26, bottom: 25, left: 36 };
 
