@@ -8,7 +8,7 @@ const path = require("path");
 module.exports = {
 	mode: "production",
 	entry: {
-		app: path.resolve(__dirname, "src/js/app.tsx"),
+		app: path.resolve(__dirname, "src/ts/app.tsx"),
 	},
 	output: {
 		path: path.join(__dirname, "dist"),
