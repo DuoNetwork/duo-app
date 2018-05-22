@@ -5,17 +5,45 @@ Object {
   "history": Array [
     "test",
   ],
+  "message": Object {
+    "content": "",
+    "type": "",
+    "visible": false,
+  },
 }
 `;
 
 exports[`ui reducer default 1`] = `
 Object {
   "history": Array [],
+  "message": Object {
+    "content": "",
+    "type": "",
+    "visible": false,
+  },
+}
+`;
+
+exports[`ui reducer message 1`] = `
+Object {
+  "history": Array [
+    "test",
+  ],
+  "message": Object {
+    "content": "content",
+    "type": "type",
+    "visible": true,
+  },
 }
 `;
 
 exports[`ui reducer reset 1`] = `
 Object {
   "history": Array [],
+  "message": Object {
+    "content": "",
+    "type": "",
+    "visible": false,
+  },
 }
 `;

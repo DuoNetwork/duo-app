@@ -7,16 +7,17 @@ import successImg from '../../../images/suc_img.png';
 interface IProps {
 	type: string;
 	content: string;
-	show: number;
-	close: (e: number) => void;
+	visible: boolean;
+	close: () => void;
 }
 
 export default class Message extends React.Component<IProps> {
-	constructor(props) {
+	constructor(props: IProps) {
 		super(props);
+		this.state = {};
 	}
 
-	public componentWillReceiveProps(nextProps: IProps) {
+	public static getDerivedStateFromProps(nextProps: IProps) {
 		let imgSrc;
 		switch (nextProps.type) {
 			case "<div style='color: rgba(214,48,48,1)'>ERROR</div>":
@@ -32,16 +33,22 @@ export default class Message extends React.Component<IProps> {
 		d3.select('.msg-content').html(nextProps.content);
 		d3.select('.msg-title').html(nextProps.type);
 		d3.select('.msg-img').attr('src', imgSrc);
+
+		return null;
 	}
 
 	public render() {
 		let zIndex: number, event: string;
-		zIndex = this.props.show === 0 ? -11 : 11;
-		event = this.props.show === 0 ? 'none' : 'auto';
+		zIndex = this.props.visible ? 11 : -11;
+		event = this.props.visible ? 'auto' : 'none';
 		return (
 			<div
 				className="msg"
-				style={{ opacity: this.props.show, zIndex: zIndex, pointerEvents: event as any }}
+				style={{
+					opacity: this.props.visible ? 1 : 0,
+					zIndex: zIndex,
+					pointerEvents: event as any
+				}}
 			>
 				<div
 					className="msg-bg"
@@ -63,12 +70,7 @@ export default class Message extends React.Component<IProps> {
 						<div className="msg-content" />
 					</div>
 					<div className="msg-bottom">
-						<button
-							className="msg-button"
-							onClick={() => {
-								this.props.close(0);
-							}}
-						>
+						<button className="msg-button" onClick={this.props.close}>
 							OK
 						</button>
 					</div>

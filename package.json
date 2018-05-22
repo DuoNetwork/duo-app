@@ -45,6 +45,7 @@
     "@types/react": "^16.3.11",
     "@types/react-dom": "^16.0.5",
     "@types/react-redux": "^6.0.0",
+    "@types/redux-logger": "^3.0.6",
     "@types/redux-mock-store": "0.0.13",
     "css-loader": "^0.28.11",
     "enzyme": "^3.3.0",

@@ -5,60 +5,48 @@ import TransactionForm from '../Forms/TransactionForm';
 import HistroyCard from './HistoryCard';
 
 interface IProps {
-	handleBuySell: (amount: number, isA: boolean) => void;
-	handleCreation: (amount: number) => void;
-	handleRedemption: (amount: number) => void;
+	handleBuySell: (amount: number, isA: boolean) => boolean;
+	handleCreation: (amount: number) => boolean;
+	handleRedemption: (amount: number) => boolean;
 	assets: IAssets;
 	currentPrice: IPriceData;
-	resetToggle: boolean;
-	lastResetETHPrice: number;
-	showTFGlobal: boolean;
-	typeTF: string;
-	openTF: (e: boolean, type?: string) => void;
+	resetPrice: number;
+	beta: number
 	history: string[];
 }
 
 interface IState {
-	resetToggle: boolean;
-	tfType: string;
+	type: string;
 }
 
 export default class TransactionCard extends React.PureComponent<IProps, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			resetToggle: false,
-			tfType: ''
+			type: ''
 		};
-	}
-
-	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-		if (nextProps.resetToggle !== prevState.resetToggle)
-			return {
-				resetToggle: nextProps.resetToggle,
-				tfType: nextProps.typeTF
-			};
-
-		return null;
 	}
 
 	public round = num => {
 		return +(Math.round((num + 'e+2') as any) + 'e-2');
 	};
 
+	public handleOpen = (type: string) => this.setState({ type });
+
+	public handleClose = () => this.setState({type: ''});
+
 	public render() {
 		const {
 			assets,
 			currentPrice,
-			lastResetETHPrice,
+			resetPrice,
+			beta,
 			handleBuySell,
 			handleCreation,
 			handleRedemption,
-			showTFGlobal,
-			typeTF,
-			openTF,
 			history
 		} = this.props;
+		const { type } = this.state;
 		return (
 			<div
 				style={{
@@ -78,12 +66,13 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 					<div className="history-transaction-card-wrapper">
 						<HistroyCard history={history} />
 						<TransactionForm
-							isShown={showTFGlobal}
-							type={typeTF}
+							visible={!!type}
+							type={type}
+							onClose={this.handleClose}
 							assets={assets}
 							currentPrice={currentPrice}
-							lastResetETHPrice={lastResetETHPrice}
-							openTF={openTF}
+							resetPrice={resetPrice}
+							beta={beta}
 							handleBuySell={handleBuySell}
 							handleCreation={handleCreation}
 							handleRedemption={handleRedemption}
@@ -93,16 +82,19 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 						<div className="tc-buttons-wrapper">
 							<div className="tc-buttons-title">Transaction</div>
 							<div className="tc-buttons-body">
-								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Creation')}>
+								<button disabled={!!type} onClick={() => this.handleOpen('Creation')}>
 									CREATION
 								</button>
-								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Redemption')}>
+								<button
+									disabled={!!type}
+									onClick={() => this.handleOpen('Redemption')}
+								>
 									REDEMPTION
 								</button>
-								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Class A')}>
+								<button disabled={!!type} onClick={() => this.handleOpen('Class A')}>
 									ETH &#60; &#62; ClassA
 								</button>
-								<button disabled={showTFGlobal} onClick={() => openTF(true, 'Class B')}>
+								<button disabled={!!type} onClick={() => this.handleOpen('Class B')}>
 									ETH &#60; &#62; ClassB
 								</button>
 							</div>

@@ -17,6 +17,29 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
+	test('message', () => {
+		state = uiReducer(state, {
+			type: CST.AC_MESSAGE,
+			value: {
+				type: 'type',
+				content: 'content',
+				visible: true
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('form', () => {
+		state = uiReducer(state, {
+			type: CST.AC_FORM,
+			value: {
+				type: 'type',
+				visible: true
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
+
 	test('reset', () => {
 		state = uiReducer(state, {
 			type: CST.AC_REFRESH

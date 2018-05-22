@@ -7,6 +7,17 @@ Object {
 }
 `;
 
+exports[`actions messsage 1`] = `
+Object {
+  "type": "message",
+  "value": Object {
+    "content": "content",
+    "type": "type",
+    "visible": true,
+  },
+}
+`;
+
 exports[`actions refresh 1`] = `
 Object {
   "type": "refresh",

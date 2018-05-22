@@ -4,6 +4,11 @@ exports[`store actions 1`] = `
 Object {
   "ui": Object {
     "history": Array [],
+    "message": Object {
+      "content": "",
+      "type": "",
+      "visible": false,
+    },
   },
 }
 `;

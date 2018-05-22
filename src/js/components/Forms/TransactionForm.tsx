@@ -6,23 +6,23 @@ import ethIcon from '../../../images/ethIcon.png';
 import { IAssets, IPriceData } from '../../common/types';
 
 interface IProps {
-	isShown: boolean;
-	type: string;
-	assets: IAssets;
-	currentPrice: IPriceData;
-	lastResetETHPrice: number;
-	openTF: (e: boolean, type?: string) => void;
-	handleBuySell: (amount: number, isA: boolean) => void;
-	handleCreation: (amount: number) => void;
-	handleRedemption: (amount: number) => void;
+	visible: boolean,
+	type: string,
+	assets: IAssets,
+	currentPrice: IPriceData,
+	resetPrice: number,
+	beta: number
+	onClose: () => void,
+	handleBuySell: (amount: number, isA: boolean) => boolean,
+	handleCreation: (amount: number) => boolean,
+	handleRedemption: (amount: number) => boolean
 }
 
 interface IState {
-	valueIn: string;
-	value: number;
-	isShown: boolean;
-	type: string;
-	isETH: boolean;
+	valueIn: string,
+	value: number,
+	type: string,
+	isETH: boolean
 }
 
 const Asset = (props: { name: string; value: number; src: string }) => (
@@ -45,10 +45,10 @@ const Asset = (props: { name: string; value: number; src: string }) => (
 const ButtonGroup = (
 	value: number,
 	type: string,
-	openTF: (e: boolean, type?: string) => void,
-	handleBuySell: (amount: number, isA: boolean) => void,
-	handleCreation: (amount: number) => void,
-	handleRedemption: (amount: number) => void,
+	onClose: () => void,
+	handleBuySell: (amount: number, isA: boolean) => boolean,
+	handleCreation: (amount: number) => boolean,
+	handleRedemption: (amount: number) => boolean,
 	isETH?: boolean
 ) => {
 	const buttons: JSX.Element[] = [];
@@ -56,7 +56,7 @@ const ButtonGroup = (
 	switch (type) {
 		case 'Creation': {
 			buttons.push(
-				<button key="1" onClick={() => handleCreation(value)}>
+				<button key="1" onClick={() => handleCreation(value) && onClose()}>
 					CREATE
 				</button>
 			);
@@ -64,7 +64,7 @@ const ButtonGroup = (
 		}
 		case 'Redemption': {
 			buttons.push(
-				<button key="1" onClick={() => handleRedemption(value)}>
+				<button key="1" onClick={() => handleRedemption(value) && onClose()}>
 					REDEEM
 				</button>
 			);
@@ -72,7 +72,7 @@ const ButtonGroup = (
 		}
 		default: {
 			buttons.push(
-				<button key="1" onClick={() => handleBuySell(isETH ? value : -value, isA)}>
+				<button key="1" onClick={() => handleBuySell(isETH ? value : -value, isA) && onClose()}>
 					COMFIRM
 				</button>
 			);
@@ -80,7 +80,7 @@ const ButtonGroup = (
 		}
 	}
 	buttons.push(
-		<button key="3" onClick={() => openTF(false)}>
+		<button key="3" onClick={onClose}>
 			CANCEL
 		</button>
 	);
@@ -91,7 +91,8 @@ const Description = (
 	type: string,
 	value: number,
 	currentPrice: IPriceData,
-	lastResetETHPrice: number,
+	resetPrice: number,
+	beta: number,
 	isETH?: boolean
 ) => {
 	const contents: JSX.Element[] = [];
@@ -107,7 +108,7 @@ const Description = (
 			contents.push(
 				<div key="2" className="tf-contents-item">
 					into
-					<span>{d3.formatPrefix(',.2', 1)(value * currentPrice.ETH / 2)}</span>
+					<span>{d3.formatPrefix(',.2', 1)(value * resetPrice / 2)}</span>
 					Class A/B
 				</div>
 			);
@@ -124,7 +125,7 @@ const Description = (
 			contents.push(
 				<div key="2" className="tf-contents-item">
 					into
-					<span>{d3.formatPrefix(',.6', 1)(value * 2 / lastResetETHPrice)}</span>
+					<span>{d3.formatPrefix(',.6', 1)(value * 2 / resetPrice / beta)}</span>
 					ETH
 				</div>
 			);
@@ -182,7 +183,6 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 		this.state = {
 			valueIn: '',
 			value: 0,
-			isShown: props.isShown,
 			type: props.type,
 			isETH: true
 		};
@@ -223,31 +223,26 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 		});
 	};
 
-	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-		if (nextProps.isShown)
+	public static getDerivedStateFromProps(nextProps: IProps) {
+		if (nextProps.visible)
 			return {
 				valueIn: '',
 				value: 0,
-				isShown: nextProps.isShown,
 				type: nextProps.type
 			};
-		else
-			return {
-				valueIn: prevState.valueIn,
-				value: prevState.value,
-				isShown: nextProps.isShown,
-				type: prevState.type
-			};
+
+		return null;
 	}
 
 	public render() {
 		const {
-			isShown,
+			visible,
 			type,
 			assets,
 			currentPrice,
-			lastResetETHPrice,
-			openTF,
+			resetPrice,
+			beta,
+			onClose,
 			handleBuySell,
 			handleCreation,
 			handleRedemption
@@ -284,7 +279,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 				: limit1
 			: limit;
 		return (
-			<div className={'tf-' + isShown + ' transaction-form'}>
+			<div className={'tf-' + visible + ' transaction-form'}>
 				<div className="transaction-form-title">{type}</div>
 				<div className="transaction-form-body">
 					<div className="tfbody-left">
@@ -303,7 +298,8 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 									this.state.type,
 									value,
 									currentPrice,
-									lastResetETHPrice,
+									resetPrice,
+									beta,
 									isETH
 								)}
 							</div>
@@ -400,7 +396,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 					{ButtonGroup(
 						value,
 						type,
-						openTF,
+						onClose,
 						handleBuySell,
 						handleCreation,
 						handleRedemption,

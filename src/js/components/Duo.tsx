@@ -3,82 +3,63 @@ import moment from 'moment';
 import * as React from 'react';
 import calculator from '../common/calculator';
 import { IAssets, ITimeSeriesData } from '../common/types';
+import Message from '../containers/Common/MessageContainer';
 import AssetCard from './Cards/AssetCard';
 import PriceCard from './Cards/PriceCard';
 import TimeSeriesCard from './Cards/TimeSeriesCard';
 import TransactionCard from './Cards/TransactionCard';
-import Message from './Common/Message';
 import Header from './Header';
 
 interface IProp {
-	eth: ITimeSeriesData[],
-	classA: ITimeSeriesData[],
-	classB: ITimeSeriesData[],
-	reset: ITimeSeriesData[],
-	history: string[],
-	refresh: () => void,
-	addHistory: (tx: string) => void
+	eth: ITimeSeriesData[];
+	classA: ITimeSeriesData[];
+	classB: ITimeSeriesData[];
+	reset: ITimeSeriesData[];
+	mv: ITimeSeriesData[];
+	assets: IAssets;
+	history: string[];
+	refresh: () => void;
+	addHistory: (tx: string) => void;
+	message: (type: string, content: string) => void;
+	addMV: (mv: ITimeSeriesData) => void;
+	updateAssets: (assets: IAssets) => void;
+	resetPrice: number;
+	beta: number;
+	updateResetPrice: (px: number) => void;
+	updateBeta: (beta: number) => void;
+	dayCount: number;
+	upwardResetCount: number;
+	downwardResetCount: number;
+	periodicResetCount: number;
+	updateDayCount: (count: number) => void;
+	updateUpwardResetCount: (count: number) => void;
+	updateDownwardResetCount: (count: number) => void;
+	updatePeriodicResetCount: (count: number) => void;
 }
 
-interface IState {
-	dataMV: ITimeSeriesData[],
-	dayCount: number,
-	assets: IAssets,
-	lastResetPrice: number,
-	beta: number,
-	msgType: string,
-	msgContent: string,
-	msgShow: number,
-	resetToggle: boolean,
-	upwardResetCount: number,
-	downwardResetCount: number,
-	periodicResetCount: number,
-	showTFGlobal: boolean,
-	typeTF: string,
-}
-
-const INITIAL_ASSETS = {
-	ETH: 100,
-	ClassA: 0,
-	ClassB: 0
-};
-
-const INITIAL_DATETIME = moment('2017-10-01').valueOf();
-const INITIAL_MV = INITIAL_ASSETS.ETH * 303.95;
-
-export default class Duo extends React.PureComponent<IProp, IState> {
-	constructor(props) {
-		super(props);
-		this.state = {
-			dataMV: [{ datetime: INITIAL_DATETIME, value: INITIAL_MV }],
-			dayCount: 0,
-			assets: INITIAL_ASSETS,
-			lastResetPrice: this.props.eth[0].value,
-			beta: 1,
-			msgType: 'msg type',
-			msgContent: 'msg content',
-			msgShow: 0,
-			resetToggle: false,
-			upwardResetCount: 0,
-			downwardResetCount: 0,
-			periodicResetCount: 0,
-			showTFGlobal: false,
-			typeTF: ''
-		};
-	}
-
+export default class Duo extends React.PureComponent<IProp> {
 	public handleNextDay = () => {
-		const { eth, classA, classB } = this.props;
 		const {
+			eth,
+			classA,
+			classB,
+			message,
+			addMV,
+			assets,
+			updateAssets,
+			resetPrice,
+			beta,
+			updateResetPrice,
+			updateBeta,
 			dayCount,
 			upwardResetCount,
 			downwardResetCount,
 			periodicResetCount,
-			assets,
-			dataMV,
-			beta,
-			lastResetPrice
-		} = this.state;
+			updateDayCount,
+			updateUpwardResetCount,
+			updateDownwardResetCount,
+			updatePeriodicResetCount
+		} = this.props;
 
 		const newDayCount = dayCount + 1;
 		const newEthPx = eth[newDayCount].value;
@@ -89,7 +70,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 		const mv = assets.ETH * newEthPx + assets.ClassA * newNavA + assets.ClassB * newNavB;
 		let newAssets: IAssets;
 		let newBeta = beta;
-		let newResetPrice = lastResetPrice;
+		let newResetPrice = resetPrice;
 		let msg = '';
 		let newUpwardCount = upwardResetCount;
 		let newDownwardCount = downwardResetCount;
@@ -122,55 +103,38 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				ClassA: assets.ClassA,
 				ClassB: assets.ClassB
 			};
-			newBeta = calculator.updateBeta(beta, newEthPx, lastResetPrice, newNavA, 1);
+			newBeta = calculator.updateBeta(beta, newEthPx, resetPrice, newNavA, 1);
 			newResetPrice = newEthPx;
 			msg = "<div style='color: rgba(255,255,255, .8)'>Reset (periodic) triggered.</div>";
 			newPeriodicCount++;
 		} else newAssets = assets;
 
-		this.setState({
-			dayCount: newDayCount,
-			dataMV: [...dataMV, { datetime: eth[newDayCount].datetime, value: mv }],
-			assets: newAssets,
-			lastResetPrice: newResetPrice,
-			beta: newBeta,
-			msgType: msg ? "<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>" : '',
-			msgContent: msg,
-			msgShow: msg ? 1 : 0,
-			upwardResetCount: newUpwardCount,
-			downwardResetCount: newDownwardCount,
-			periodicResetCount: newPeriodicCount
-		});
+		if (msg) message("<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>", msg);
+
+		addMV({ datetime: eth[newDayCount].datetime, value: mv });
+		updateAssets(newAssets);
+		updateResetPrice(newResetPrice);
+		updateBeta(newBeta);
+		updateDayCount(newDayCount);
+		updateUpwardResetCount(newUpwardCount);
+		updateDownwardResetCount(newDownwardCount);
+		updatePeriodicResetCount(newPeriodicCount);
 	};
 
-	public handleRefresh = () => {
-		this.props.refresh();
-		this.setState({
-			dataMV: [{ datetime: INITIAL_DATETIME, value: INITIAL_MV }],
-			dayCount: 0,
-			assets: INITIAL_ASSETS,
-			lastResetPrice: this.props.eth[0].value,
-			beta: 1,
-			msgType: 'msg type',
-			msgContent: 'msg content',
-			msgShow: 0,
-			resetToggle: !this.state.resetToggle,
-			upwardResetCount: 0,
-			downwardResetCount: 0,
-			periodicResetCount: 0,
-			showTFGlobal: false
-		});
-	};
-
-	public handleBuySell = (amount: number, isA: boolean): void => {
-		const { eth, classA, classB, addHistory } = this.props;
+	public handleBuySell = (amount: number, isA: boolean): boolean => {
 		const {
+			eth,
+			classA,
+			classB,
+			addHistory,
+			message,
+			assets,
+			updateAssets,
 			dayCount,
 			upwardResetCount,
 			downwardResetCount,
 			periodicResetCount,
-			assets
-		} = this.state;
+		} = this.props;
 
 		const ethPx = eth[dayCount].value;
 		const navA =
@@ -188,37 +152,32 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				};
 				addHistory(
 					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Bought ' +
-					d3.formatPrefix(',.2', 1)(amount) +
-					' Class ' +
-					(isA ? 'A' : 'B') +
-					' with ' +
-					d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
-					' ETH.');
-				this.setState({
-					assets: newAssets,
-					showTFGlobal: false,
-					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
+						': Bought ' +
+						d3.formatPrefix(',.2', 1)(amount) +
+						' Class ' +
+						(isA ? 'A' : 'B') +
+						' with ' +
+						d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
+						' ETH.'
+				);
+				message(
+					"<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
+					"<div style='color: rgba(255,255,255, .6)'>You bought <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(amount) +
 						' Class ' +
 						(isA ? 'A' : 'B') +
 						"</span> with <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.6', 1)(valueClassAB / ethPx) +
-						' ETH</span>.</div>',
-					msgShow: 1
-				});
-				return;
+						' ETH</span>.</div>'
+				);
+				updateAssets(newAssets);
+				return true;
 			} else {
-				this.setState({
-					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
-					msgShow: 1
-				});
-				return;
+				message(
+					"<div style='color: rgba(214,48,48,1)'>ERROR</div>",
+					"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>"
+				);
+				return false;
 			}
 		else if (amount < 0)
 			if (amount <= assets.ClassA) {
@@ -229,54 +188,48 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				};
 				addHistory(
 					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Sold ' +
-					d3.formatPrefix(',.2', 1)(-amount) +
-					' Class ' +
-					(isA ? 'A' : 'B') +
-					' for ' +
-					d3.formatPrefix(',.6', 1)(Math.abs(valueClassAB) / ethPx) +
-					' ETH.');
-				this.setState({
-					assets: newAssets,
-					showTFGlobal: false,
-					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .6)'>You sold <span style='color: rgba(255,255,255, 1)'>" +
+						': Sold ' +
+						d3.formatPrefix(',.2', 1)(-amount) +
+						' Class ' +
+						(isA ? 'A' : 'B') +
+						' for ' +
+						d3.formatPrefix(',.6', 1)(Math.abs(valueClassAB) / ethPx) +
+						' ETH.'
+				);
+				message(
+					"<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
+					"<div style='color: rgba(255,255,255, .6)'>You sold <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(-amount) +
 						' Class ' +
 						(isA ? 'A' : 'B') +
 						"</span> for <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.6', 1)(Math.abs(valueClassAB) / ethPx) +
-						' ETH</span>.</div>',
-					msgShow: 1
-				});
-				return;
+						' ETH</span>.</div>'
+				);
+				updateAssets(newAssets);
+				return true;
 			} else {
-				this.setState({
-					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient ClassA balance.</div>",
-					msgShow: 1
-				});
-				return;
+				message(
+					"<div style='color: rgba(214,48,48,1)'>ERROR</div>",
+					"<div style='color: rgba(255,255,255, .8)'>Insufficient Class " +
+						(isA ? 'A' : 'B') +
+						' balance.</div>'
+				);
+				return false;
 			}
 		else {
-			this.setState({
-				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
-				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
-				msgShow: 1
-			});
-			return;
+			message(
+				"<div style='color: rgba(214,48,48,1)'>ERROR</div>",
+				"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>"
+			);
+			return false;
 		}
 	};
 
-	public handleCreation = (amount: number): void => {
-		const { eth, addHistory } = this.props;
-		const { dayCount, assets, beta, lastResetPrice } = this.state;
+	public handleCreation = (amount: number): boolean => {
+		const { eth, addHistory, message, assets, updateAssets, resetPrice, beta, dayCount } = this.props;
 
-		const valuelastResetETHPrice = amount * lastResetPrice * beta;
+		const valuelastResetETHPrice = amount * resetPrice * beta;
 		if (amount && amount > 0)
 			if (amount <= assets.ETH) {
 				const rETH = assets.ETH - amount;
@@ -290,127 +243,106 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 				};
 				addHistory(
 					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Split ' +
-					d3.formatPrefix(',.2', 1)(amount) +
-					' ETH into ' +
-					d3.formatPrefix(',.2', 1)(splitOutcome) +
-					' ClassA/B.');
-				this.setState({
-					assets: newAssets,
-					showTFGlobal: false,
-					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .6)'>Split <span style='color: rgba(255,255,255, 1)'>" +
+						': Split ' +
+						d3.formatPrefix(',.2', 1)(amount) +
+						' ETH into ' +
+						d3.formatPrefix(',.2', 1)(splitOutcome) +
+						' ClassA/B.'
+				);
+				message(
+					"<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Split <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(amount) +
 						" ETH</span> into <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(splitOutcome) +
-						' ClassA/B</span>',
-					msgShow: 1
-				});
-				return;
+						' ClassA/B</span>'
+				);
+				updateAssets(newAssets);
+				return true;
 			} else {
-				this.setState({
-					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>",
-					msgShow: 1
-				});
-				return;
+				message(
+					"<div style='color: rgba(214,48,48,1)'>ERROR</div>",
+					"<div style='color: rgba(255,255,255, .8)'>Insufficient ETH balance.</div>"
+				);
+
+				return false;
 			}
 		else {
-			this.setState({
-				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
-				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
-				msgShow: 1
-			});
-			return;
+			message(
+				"<div style='color: rgba(214,48,48,1)'>ERROR</div>",
+				"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>"
+			);
+
+			return false;
 		}
 	};
 
-	public handleRedemption = (amount: number): void => {
-		const { eth, addHistory } = this.props;
-		const { dayCount, assets, beta, lastResetPrice } = this.state;
+	public handleRedemption = (amount: number): boolean => {
+		const { eth, addHistory, message, assets, updateAssets, resetPrice, beta, dayCount } = this.props;
 		if (amount && amount > 0)
 			if (amount <= (d3.min([assets.ClassA, assets.ClassB]) || 0)) {
 				const rClassA = assets.ClassA - amount,
 					rClassB = assets.ClassB - amount;
 				const combineOutcome = amount * 2;
-				const rETH = assets.ETH + combineOutcome / lastResetPrice / beta;
+				const rETH = assets.ETH + combineOutcome / resetPrice / beta;
 				const newAssets: IAssets = {
 					ETH: rETH,
 					ClassA: rClassA,
 					ClassB: rClassB
 				};
-				addHistory(moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
-					': Combine ' +
-					d3.formatPrefix(',.2', 1)(amount) +
-					' ClassA/B into ' +
-					d3.formatPrefix(',.6', 1)(combineOutcome / lastResetPrice) +
-					' ETH.');
-				this.setState({
-					assets: newAssets,
-					showTFGlobal: false,
-					// set message
-					msgType: "<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .6)'>Combine <span style='color: rgba(255,255,255, 1)'>" +
+				addHistory(
+					moment(eth[dayCount].datetime).format('YYYY-MM-DD') +
+						': Combine ' +
+						d3.formatPrefix(',.2', 1)(amount) +
+						' ClassA/B into ' +
+						d3.formatPrefix(',.6', 1)(combineOutcome / resetPrice) +
+						' ETH.'
+				);
+				message(
+					"<div style='color: rgba(136,208,64,1)'>SUCCESS</div>",
+					"<div style='color: rgba(255,255,255, .6)'>Combine <span style='color: rgba(255,255,255, 1)'>" +
 						d3.formatPrefix(',.2', 1)(amount) +
 						" ClassA/B</span> into <span style='color: rgba(255,255,255, 1)'>" +
-						d3.formatPrefix(',.6', 1)(combineOutcome / lastResetPrice) +
-						' ETH</span>',
-					msgShow: 1
-				});
-				return;
+						d3.formatPrefix(',.6', 1)(combineOutcome / resetPrice) +
+						' ETH</span>'
+				);
+				updateAssets(newAssets);
+				return true;
 			} else {
-				this.setState({
-					msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
-					msgContent:
-						"<div style='color: rgba(255,255,255, .8)'>Insufficient ClassA/B balance.</div>",
-					msgShow: 1
-				});
-				return;
+				message(
+					"<div style='color: rgba(214,48,48,1)'>ERROR</div>",
+					"<div style='color: rgba(255,255,255, .8)'>Insufficient Class A/B balance.</div>"
+				);
+
+				return false;
 			}
 		else {
-			this.setState({
-				msgType: "<div style='color: rgba(214,48,48,1)'>ERROR</div>",
-				msgContent:
-					"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>",
-				msgShow: 1
-			});
-			return;
+			message(
+				"<div style='color: rgba(214,48,48,1)'>ERROR</div>",
+				"<div style='color: rgba(255,255,255, .6)'>Please input a <span style='color: rgba(255,255,255, 1)'>valid(non-zero positive)</span> value.</div>"
+			);
+
+			return false;
 		}
-	};
-
-	public closeMSG = (e: number) => {
-		this.setState({
-			msgShow: e
-		});
-	};
-
-	public openTF = (e: boolean, type?: string) => {
-		this.setState({
-			showTFGlobal: e,
-			typeTF: type ? type : ''
-		});
 	};
 
 	public render() {
 		const {
-			dataMV,
+			eth,
+			classA,
+			classB,
+			reset,
+			history,
+			mv,
 			assets,
-			resetToggle,
+			resetPrice,
+			beta,
+			refresh,
 			dayCount,
-			lastResetPrice,
 			upwardResetCount,
 			downwardResetCount,
-			periodicResetCount,
-			showTFGlobal,
-			typeTF
-		} = this.state;
-		const openTF = this.openTF;
-		const { eth, classA, classB, reset, history } = this.props;
+			periodicResetCount
+		} = this.props;
 		const ethPx = eth[dayCount].value;
 		const navA =
 			classA[dayCount + upwardResetCount + downwardResetCount + periodicResetCount].value;
@@ -449,18 +381,13 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 		];
 		return (
 			<div className="App">
-				<Message
-					type={this.state.msgType}
-					content={this.state.msgContent}
-					show={this.state.msgShow}
-					close={this.closeMSG}
-				/>
+				<Message />
 				<div style={{ zIndex: 10 }}>
 					{/* Next Day, Refresh button */}
 					<div className="play-button">
 						<button disabled={true} className="day-button settings" />
 						<button className="day-button next-day" onClick={this.handleNextDay} />
-						<button className="day-button refresh" onClick={this.handleRefresh} />
+						<button className="day-button refresh" onClick={refresh} />
 					</div>
 					{/* Navigation Bar */}
 					<Header />
@@ -500,7 +427,7 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 								timeseries={[
 									{
 										name: 'MV',
-										data: dataMV,
+										data: mv,
 										highlight: -1,
 										color: '255,255,255',
 										areaColor: '0, 178, 255',
@@ -519,14 +446,11 @@ export default class Duo extends React.PureComponent<IProp, IState> {
 							ClassA: navA,
 							ClassB: navB
 						}}
-						lastResetETHPrice={lastResetPrice}
+						resetPrice={resetPrice}
+						beta={beta}
 						handleBuySell={this.handleBuySell}
 						handleCreation={this.handleCreation}
 						handleRedemption={this.handleRedemption}
-						resetToggle={resetToggle}
-						showTFGlobal={showTFGlobal}
-						openTF={openTF}
-						typeTF={typeTF}
 						history={history}
 					/>
 				</div>
