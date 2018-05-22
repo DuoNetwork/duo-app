@@ -32,7 +32,13 @@ export const initialState: reduxTypes.IUIState = {
 	day: 0,
 	upward: 0,
 	downward: 0,
-	periodic: 0
+	periodic: 0,
+	price: {
+		Date: e[0].datetime,
+		ETH: e[0].value,
+		ClassA: a[0].value,
+		ClassB: b[0].value
+	}
 };
 
 export function uiReducer(
@@ -55,10 +61,6 @@ export function uiReducer(
 	switch (action.type) {
 		case CST.AC_REFRESH:
 			return initialState;
-		case CST.AC_HISTORY:
-			return Object.assign({}, state, {
-				[CST.AC_HISTORY]: [...state.history, (action as reduxTypes.IStringAction).value]
-			});
 		case CST.AC_MESSAGE:
 			return Object.assign({}, state, {
 				[CST.AC_MESSAGE]: (action as reduxTypes.IObjectAction).value
@@ -67,9 +69,10 @@ export function uiReducer(
 			return Object.assign({}, state, {
 				[CST.AC_FORM]: (action as reduxTypes.IObjectAction).value
 			});
-		case CST.AC_ASSETS:
+		case CST.AC_TRADE:
 			return Object.assign({}, state, {
-				[CST.AC_ASSETS]: (action as reduxTypes.IObjectAction).value
+				[CST.AC_HISTORY]: [...state.history, (action as reduxTypes.ITradeAction).history],
+				[CST.AC_ASSETS]: (action as reduxTypes.ITradeAction).assets
 			});
 		case CST.AC_NEXT:
 			const newDayCount = day + 1;
@@ -138,7 +141,16 @@ export function uiReducer(
 					[CST.AC_DAY]: newDayCount,
 					[CST.AC_UPWARD]: newUpwardCount,
 					[CST.AC_DOWNWARD]: newDownwardCount,
-					[CST.AC_PERIODIC]: newPeriodicCount
+					[CST.AC_PERIODIC]: newPeriodicCount,
+					[CST.AC_PRICE]: {
+						Date: eth[newDayCount].datetime,
+						ETH: newEthPx,
+						ClassA:
+							classA[
+								newDayCount + newUpwardCount + newDownwardCount + newPeriodicCount
+							].value,
+						ClassB: classB[newDayCount + newUpwardCount + newDownwardCount].value
+					}
 				},
 				msg
 					? {

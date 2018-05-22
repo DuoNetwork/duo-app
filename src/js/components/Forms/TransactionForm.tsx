@@ -9,7 +9,7 @@ interface IProps {
 	visible: boolean,
 	type: string,
 	assets: IAssets,
-	currentPrice: IPriceData,
+	price: IPriceData,
 	resetPrice: number,
 	beta: number
 	onClose: () => void,
@@ -90,7 +90,7 @@ const ButtonGroup = (
 const Description = (
 	type: string,
 	value: number,
-	currentPrice: IPriceData,
+	price: IPriceData,
 	resetPrice: number,
 	beta: number,
 	isETH?: boolean
@@ -143,7 +143,7 @@ const Description = (
 				<div key="2" className="tf-contents-item">
 					{isETH ? 'with' : 'for'}
 					<span>
-						{d3.formatPrefix(',.6', 1)(value * currentPrice.ClassA / currentPrice.ETH)}
+						{d3.formatPrefix(',.6', 1)(value * price.ClassA / price.ETH)}
 					</span>
 					ETH
 				</div>
@@ -162,7 +162,7 @@ const Description = (
 				<div key="2" className="tf-contents-item">
 					{isETH ? 'with' : 'for'}
 					<span>
-						{d3.formatPrefix(',.6', 1)(value * currentPrice.ClassB / currentPrice.ETH)}
+						{d3.formatPrefix(',.6', 1)(value * price.ClassB / price.ETH)}
 					</span>
 					ETH
 				</div>
@@ -239,7 +239,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 			visible,
 			type,
 			assets,
-			currentPrice,
+			price,
 			resetPrice,
 			beta,
 			onClose,
@@ -274,8 +274,8 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 		limit = isBuySell
 			? isETH
 				? limit *
-				currentPrice.ETH /
-				(this.state.type === 'Class A' ? currentPrice.ClassA : currentPrice.ClassB)
+				price.ETH /
+				(this.state.type === 'Class A' ? price.ClassA : price.ClassB)
 				: limit1
 			: limit;
 		return (
@@ -297,7 +297,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 								{Description(
 									this.state.type,
 									value,
-									currentPrice,
+									price,
 									resetPrice,
 									beta,
 									isETH

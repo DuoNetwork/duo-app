@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import * as uiActions from '../actions/uiActions';
 import * as reduxTypes from '../common/reduxTypes';
-import { IAssets } from '../common/types';
 import Duo from '../components/Duo';
 
 function mapStateToProps(state: reduxTypes.IState) {
@@ -12,9 +11,7 @@ function mapStateToProps(state: reduxTypes.IState) {
 		reset: state.ui.reset,
 		mv: state.ui.mv,
 		assets: state.ui.assets,
-		history: state.ui.history,
-		resetPrice: state.ui.resetPrice,
-		beta: state.ui.beta,
+		price: state.ui.price,
 		dayCount: state.ui.day,
 		upwardResetCount: state.ui.upward,
 		downwardResetCount: state.ui.downward,
@@ -25,10 +22,6 @@ function mapStateToProps(state: reduxTypes.IState) {
 function mapDispatchToProps(dispatch: reduxTypes.Dispatch) {
 	return {
 		refresh: () => dispatch(uiActions.refresh()),
-		addHistory: (tx: string) => dispatch(uiActions.addHistory(tx)),
-		message: (type: string, content: string) =>
-			dispatch(uiActions.messsage(type, content, true)),
-		updateAssets: (assets: IAssets) => dispatch(uiActions.updateAssets(assets)),
 		next: () => dispatch(uiActions.next())
 	};
 }

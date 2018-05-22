@@ -10,10 +10,6 @@ describe('actions', () => {
 		expect(uiActions.refresh()).toMatchSnapshot();
 	});
 
-	test('addHistory', () => {
-		expect(uiActions.addHistory('test')).toMatchSnapshot();
-	});
-
 	test('messsage', () => {
 		expect(uiActions.messsage('type', 'content', true)).toMatchSnapshot();
 	});
@@ -22,11 +18,11 @@ describe('actions', () => {
 		expect(uiActions.form('type', true)).toMatchSnapshot();
 	});
 
-	test('updateAssets', () => {
-		expect(uiActions.updateAssets({ETH: 123, ClassA: 234, ClassB: 345})).toMatchSnapshot();
-	});
-
 	test('next', () => {
 		expect(uiActions.next()).toMatchSnapshot();
+	});
+
+	test('trade', () => {
+		expect(uiActions.trade('test', {ETH: 123, ClassA: 234, ClassB: 345})).toMatchSnapshot();
 	});
 });

@@ -8,13 +8,6 @@ export function refresh(): reduxTypes.IBaseAction {
 	};
 }
 
-export function addHistory(tx: string): reduxTypes.IStringAction {
-	return {
-		type: CST.AC_HISTORY,
-		value: tx
-	};
-}
-
 export function messsage(
 	type: string,
 	content: string,
@@ -33,23 +26,16 @@ export function form(type: string, visible: boolean): reduxTypes.IObjectAction {
 	};
 }
 
-export function updateAssets(assets: IAssets): reduxTypes.IObjectAction {
-	return {
-		type: CST.AC_ASSETS,
-		value: assets
-	};
-}
-
 export function next(): reduxTypes.IBaseAction {
 	return {
 		type: CST.AC_NEXT
 	};
 }
 
-export function trade(amount: number, isA: boolean): reduxTypes.ITradeAction {
+export function trade(history: string, assets: IAssets): reduxTypes.ITradeAction {
 	return {
 		type: CST.AC_TRADE,
-		value: amount,
-		isA: isA
+		history,
+		assets
 	};
 }

@@ -1878,6 +1878,12 @@ Object {
       },
     ],
     "periodic": 0,
+    "price": Object {
+      "ClassA": 1,
+      "ClassB": 1,
+      "Date": 1506787200000,
+      "ETH": 303.95,
+    },
     "reset": Array [
       Object {
         "datetime": 1511452800000,

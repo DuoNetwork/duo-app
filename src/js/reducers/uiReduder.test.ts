@@ -9,10 +9,11 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('addHistory', () => {
+	test('trade', () => {
 		state = uiReducer(state, {
-			type: CST.AC_HISTORY,
-			value: 'test'
+			type: CST.AC_TRADE,
+			history: 'test',
+			assets: {ETH: 123, ClassA: 234, ClassB: 345}
 		});
 		expect(state).toMatchSnapshot();
 	});

@@ -1,4 +1,4 @@
-import { IAssets, ITimeSeriesData } from './types';
+import { IAssets, IPriceData, ITimeSeriesData } from './types';
 export interface IState {
 	ui: IUIState;
 }
@@ -26,6 +26,7 @@ export interface IUIState {
 	upward: number;
 	downward: number;
 	periodic: number;
+	price: IPriceData;
 }
 
 export type Action =
@@ -51,6 +52,7 @@ export interface IStringAction {
 	type: string;
 	value: string;
 }
+
 export interface IObjectAction {
 	type: string;
 	value: object;
@@ -63,8 +65,8 @@ export interface INumberAction {
 
 export interface ITradeAction {
 	type: string;
-	value: number;
-	isA: boolean;
+	history: string;
+	assets: IAssets;
 }
 
 export type ThunkAction = (dispatch: Dispatch) => any;

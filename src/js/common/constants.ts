@@ -13,4 +13,5 @@ export const AC_DAY = 'day';
 export const AC_UPWARD = 'upward';
 export const AC_DOWNWARD = 'downward';
 export const AC_PERIODIC = 'periodic';
+export const AC_PRICE = 'price';
 export const AC_NEXT = 'next';

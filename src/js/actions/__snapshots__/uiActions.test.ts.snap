@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`actions addHistory 1`] = `
-Object {
-  "type": "history",
-  "value": "test",
-}
-`;
-
 exports[`actions form 1`] = `
 Object {
   "type": "form",
@@ -40,13 +33,14 @@ Object {
 }
 `;
 
-exports[`actions updateAssets 1`] = `
+exports[`actions trade 1`] = `
 Object {
-  "type": "assets",
-  "value": Object {
+  "assets": Object {
     "ClassA": 234,
     "ClassB": 345,
     "ETH": 123,
   },
+  "history": "test",
+  "type": "trade",
 }
 `;
