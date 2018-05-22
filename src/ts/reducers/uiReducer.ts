@@ -76,6 +76,8 @@ export function uiReducer(
 			});
 		case CST.AC_NEXT:
 			const newDayCount = day + 1;
+			if (newDayCount >= eth.length)
+				return state;
 			const newEthPx = eth[newDayCount].value;
 			const newNavA = classA[newDayCount + upward + downward + periodic].value;
 			const newNavB = classB[newDayCount + upward + downward].value;
