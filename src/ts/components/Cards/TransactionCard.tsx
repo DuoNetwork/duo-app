@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
@@ -273,9 +274,9 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 						<div className="tc-buttons-wrapper">
 							<div className="tc-buttons-title">Transaction</div>
 							<div className="tc-buttons-body">
-								<button disabled={!!type} onClick={() => this.handleOpen('Creation')}>
+								<Button type='primary' disabled={!!type} onClick={() => this.handleOpen('Creation')}>
 									CREATION
-								</button>
+								</Button>
 								<button
 									disabled={!!type}
 									onClick={() => this.handleOpen('Redemption')}
