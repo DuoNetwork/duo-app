@@ -640,7 +640,7 @@ body {
 }
 .single-bar-pricechart:hover .bar-background,
 .single-bar-mvchart:hover .bar-background {
-	fill: rgba(50, 50, 50, 0.6);
+	fill: rgba(50, 50, 50, 0.3);
 }
 .info-bar-chart {
 	position: absolute;

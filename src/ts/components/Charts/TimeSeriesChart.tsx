@@ -159,21 +159,6 @@ function create(
 		.attr('class', 'chart-data')
 		.attr('clip-path', 'url(#clip)');
 
-	chartdata
-		.selectAll('g')
-		.data(allDates)
-		.enter()
-		.append('g')
-		.attr('class', 'single-bar-' + name);
-	const bars = chartdata.selectAll('g');
-	bars
-		.data(allDates)
-		.exit()
-		.remove();
-
-	// Bar Backgrounds
-	//const barBackground =
-
 	timeseries.forEach((ts, index) => {
 		if (index && showArea) return;
 
@@ -265,6 +250,19 @@ function create(
 				.attr('fill', ts.color || 'white');
 		}
 	});
+	// Bar Backgrounds
+	chartdata
+		.selectAll('g')
+		.data(allDates)
+		.enter()
+		.append('g')
+		.attr('class', 'single-bar-' + name);
+	const bars = chartdata.selectAll('g');
+	bars
+		.data(allDates)
+		.exit()
+		.remove();
+	//const barBackground =
 	bars
 		.append('rect')
 		.attr('class', 'bar-background')
