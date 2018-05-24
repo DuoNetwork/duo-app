@@ -30,7 +30,7 @@ function create(
 		.attr('height', height + margin.top + margin.bottom);
 	// Zoom step
 	const zoomStep = 8.64e7;
-	const zoomFormat = date => moment(date).format('DDMMM');
+	const zoomFormat = date => moment(date).format('DD MMM');
 
 	// Date range
 	let minDate = timeseries[0].data[0].datetime;
@@ -173,15 +173,6 @@ function create(
 
 	// Bar Backgrounds
 	//const barBackground =
-	bars
-		.append('rect')
-		.attr('class', 'bar-background')
-		.attr('x', d => xScale(d as number) - backrectWidth / 2)
-		.attr('y', 0)
-		.attr('width', backrectWidth)
-		.attr('height', height)
-		.on('mousemove', d => onMouseMove(d as number))
-		.on('mouseout', () => onMouseMove(0));
 
 	timeseries.forEach((ts, index) => {
 		if (index && showArea) return;
@@ -274,6 +265,15 @@ function create(
 				.attr('fill', ts.color || 'white');
 		}
 	});
+	bars
+		.append('rect')
+		.attr('class', 'bar-background')
+		.attr('x', d => xScale(d as number) - backrectWidth / 2)
+		.attr('y', 0)
+		.attr('width', backrectWidth)
+		.attr('height', height)
+		.on('mousemove', d => onMouseMove(d as number))
+		.on('mouseout', () => onMouseMove(0));
 }
 
 interface IProps {

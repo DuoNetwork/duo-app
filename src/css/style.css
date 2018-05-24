@@ -16,7 +16,7 @@ input:focus {
 .play-button {
 	position: fixed;
 	top: 860px;
-	left: 66vw;
+	left: 57%;
 	z-index: 6;
 }
 .day-button {
@@ -46,7 +46,7 @@ input:focus {
 	background-size: cover;
 }
 .forward {
-	background: url('../images/nextDay.png');
+	background: url('../images/forward.png');
 	background-size: cover;
 }
 .refresh {
@@ -634,17 +634,9 @@ body {
 	font: 10px sans-serif;
 	text-anchor: end;
 }
-.bar-rect {
-	z-index: 2;
-}
 .bar-background {
 	fill: rgba(255, 255, 255, 0);
 	stroke: none;
-	z-index: 1;
-}
-.single-bar-pricechart,
-.single-bar-mvchart {
-	z-index: 5;
 }
 .single-bar-pricechart:hover .bar-background,
 .single-bar-mvchart:hover .bar-background {
@@ -677,8 +669,12 @@ body {
 	opacity: 0;
 }
 .line-ETH,
+.line-ETH_move,
 .line-ClassA,
+.line-CLassA_move,
 .line-ClassB,
+.line-ClassB_move,
+.dot-Reset,
 .line-MV,
 .line-MV-area {
 	pointer-events: none;
@@ -728,6 +724,26 @@ body {
 .legend-ClassB {
 	background: rgba(255, 129, 0, 0.7);
 }
+.zoom-button {
+	position: absolute;
+	z-index: 4;
+	top: 27px;
+	left: 400px;
+	font-size: 10px;
+	text-align: center;
+	padding: 2px 5px;
+	background: transparent;
+	color: rgba(250, 250, 250, 1);
+	border: 1px solid rgba(250, 250, 250, 0.6);
+	opacity: 0.6;
+}
+.zoom-button:hover {
+	opacity: 0.8;
+}
+.zoom-button:active {
+	opacity: 1;
+}
+
 /* Tansaction History Card Wrapper */
 .history-transaction-card-wrapper {
 	position: relative;
