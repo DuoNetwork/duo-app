@@ -39,3 +39,15 @@ export function trade(history: string, assets: IAssets): reduxTypes.ITradeAction
 		assets
 	};
 }
+
+export function setting(
+	couponRate: number,
+	upwardResetLimit: number,
+	downwardResetLimit: number,
+	periodicResetLimit: number
+): reduxTypes.IObjectAction {
+	return {
+		type: CST.AC_SETTING,
+		value: { couponRate, upwardResetLimit, downwardResetLimit, periodicResetLimit }
+	};
+}

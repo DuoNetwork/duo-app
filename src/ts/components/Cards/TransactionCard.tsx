@@ -1,4 +1,3 @@
-import { Button } from 'antd';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
@@ -10,7 +9,7 @@ interface IProps {
 	assets: IAssets;
 	price: IPriceData;
 	resetPrice: number;
-	beta: number
+	beta: number;
 	history: string[];
 	trade: (history: string, assets: IAssets) => void;
 	message: (type: string, content: string) => void;
@@ -34,15 +33,10 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 
 	public handleOpen = (type: string) => this.setState({ type });
 
-	public handleClose = () => this.setState({type: ''});
+	public handleClose = () => this.setState({ type: '' });
 
 	public handleBuySell = (amount: number, isA: boolean): boolean => {
-		const {
-			trade,
-			message,
-			assets,
-			price,
-		} = this.props;
+		const { trade, message, assets, price } = this.props;
 
 		const ethPx = price.ETH;
 		const navA = price.ClassA;
@@ -231,13 +225,7 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 	};
 
 	public render() {
-		const {
-			assets,
-			price,
-			resetPrice,
-			beta,
-			history
-		} = this.props;
+		const { assets, price, resetPrice, beta, history } = this.props;
 		const { type } = this.state;
 		return (
 			<div
@@ -274,19 +262,28 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 						<div className="tc-buttons-wrapper">
 							<div className="tc-buttons-title">Transaction</div>
 							<div className="tc-buttons-body">
-								<Button type='primary' disabled={!!type} onClick={() => this.handleOpen('Creation')}>
+								<button
+									disabled={!!type}
+									onClick={() => this.handleOpen('Creation')}
+								>
 									CREATION
-								</Button>
+								</button>
 								<button
 									disabled={!!type}
 									onClick={() => this.handleOpen('Redemption')}
 								>
 									REDEMPTION
 								</button>
-								<button disabled={!!type} onClick={() => this.handleOpen('Class A')}>
+								<button
+									disabled={!!type}
+									onClick={() => this.handleOpen('Class A')}
+								>
 									ETH &#60; &#62; ClassA
 								</button>
-								<button disabled={!!type} onClick={() => this.handleOpen('Class B')}>
+								<button
+									disabled={!!type}
+									onClick={() => this.handleOpen('Class B')}
+								>
 									ETH &#60; &#62; ClassB
 								</button>
 							</div>

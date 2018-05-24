@@ -17,6 +17,12 @@ export const initialState: reduxTypes.IUIState = {
 		content: '',
 		visible: false
 	},
+	setting: {
+		couponRate: 0.0002,
+		upwardResetLimit: 2,
+		downwardResetLimit: 0.25,
+		periodicResetLimit: 1.02
+	},
 	form: {
 		type: '',
 		visible: false
@@ -60,10 +66,33 @@ export function uiReducer(
 	} = state;
 	switch (action.type) {
 		case CST.AC_REFRESH:
-			return initialState;
+			return Object.assign({}, initialState, {
+				[CST.AC_SETTING]: state.setting,
+				eth: state.eth,
+				classA: state.classA,
+				classB: state.classB,
+				reset: state.reset
+			});
 		case CST.AC_MESSAGE:
 			return Object.assign({}, state, {
 				[CST.AC_MESSAGE]: (action as reduxTypes.IObjectAction).value
+			});
+		case CST.AC_SETTING:
+			const newSetting: any = (action as reduxTypes.IObjectAction).value;
+			const [ne, na, nb, nr] = calculator.getAllTimeSeriesFromEth(
+				rawData,
+				1,
+				newSetting.couponRate,
+				newSetting.upwardResetLimit,
+				newSetting.downwardResetLimit,
+				newSetting.periodicResetLimit
+			);
+			return Object.assign({}, initialState, {
+				[CST.AC_SETTING]: newSetting,
+				eth: ne,
+				classA: na,
+				classB: nb,
+				reset: nr
 			});
 		case CST.AC_FORM:
 			return Object.assign({}, state, {
@@ -76,8 +105,7 @@ export function uiReducer(
 			});
 		case CST.AC_NEXT:
 			const newDayCount = day + 1;
-			if (newDayCount >= eth.length)
-				return state;
+			if (newDayCount >= eth.length) return state;
 			const newEthPx = eth[newDayCount].value;
 			const newNavA = classA[newDayCount + upward + downward + periodic].value;
 			const newNavB = classB[newDayCount + upward + downward].value;
@@ -89,7 +117,7 @@ export function uiReducer(
 			let newUpwardCount = upward;
 			let newDownwardCount = downward;
 			let newPeriodicCount = periodic;
-			if (newNavB >= 2) {
+			if (newNavB >= state.setting.upwardResetLimit) {
 				newAssets = {
 					ETH:
 						assets.ETH +
@@ -101,7 +129,7 @@ export function uiReducer(
 				newResetPrice = newEthPx;
 				msg = "<div style='color: rgba(255,255,255, .8)'>Reset (upward) triggered.</div>";
 				newUpwardCount++;
-			} else if (newNavB <= 0.25) {
+			} else if (newNavB <= state.setting.downwardResetLimit) {
 				newAssets = {
 					ETH: assets.ETH + (newNavA - newNavB) * assets.ClassA / newEthPx,
 					ClassA: assets.ClassA * newNavB,
@@ -111,7 +139,7 @@ export function uiReducer(
 				newResetPrice = newEthPx;
 				msg = "<div style='color: rgba(255,255,255, .8)'>Reset (downward) triggered.</div>";
 				newDownwardCount++;
-			} else if (newNavA >= 1.02) {
+			} else if (newNavA >= state.setting.periodicResetLimit) {
 				newAssets = {
 					ETH: assets.ETH + (newNavA - 1) * assets.ClassA / newEthPx,
 					ClassA: assets.ClassA,

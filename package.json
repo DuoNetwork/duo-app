@@ -74,6 +74,7 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "@types/antd": "^1.0.0",
     "antd": "^3.5.3",
     "d3": "^5.0.1",
     "lodash": "^4.17.10",

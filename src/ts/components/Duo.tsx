@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 //import calculator from '../common/calculator';
 import { IAssets, IPriceData, ITimeSeriesData } from '../common/types';
@@ -7,9 +6,10 @@ import Message from '../containers/Common/MessageContainer';
 import AssetCard from './Cards/AssetCard';
 import PriceCard from './Cards/PriceCard';
 import TimeSeriesCard from './Cards/TimeSeriesCard';
+import Settings from './Common/Settings';
 import Header from './Header';
 
-interface IProp {
+interface IProps {
 	eth: ITimeSeriesData[];
 	classA: ITimeSeriesData[];
 	classB: ITimeSeriesData[];
@@ -21,11 +21,29 @@ interface IProp {
 	upwardResetCount: number;
 	downwardResetCount: number;
 	periodicResetCount: number;
+	couponRate: number;
+	upwardResetLimit: number;
+	downwardResetLimit: number;
+	periodicResetLimit: number;
 	refresh: () => void;
 	next: () => void;
+	setting: (c: number, u: number, d: number, p: number) => void;
 }
 
-export default class Duo extends React.PureComponent<IProp> {
+interface IState {
+	visible: boolean;
+}
+
+export default class Duo extends React.PureComponent<IProps, IState> {
+	constructor(props: IProps) {
+		super(props);
+		this.state = {
+			visible: false
+		};
+	}
+
+	public toggleSetting = () => this.setState({ visible: !this.state.visible });
+
 	public render() {
 		const {
 			eth,
@@ -40,7 +58,12 @@ export default class Duo extends React.PureComponent<IProp> {
 			upwardResetCount,
 			downwardResetCount,
 			periodicResetCount,
-			next
+			next,
+			setting,
+			couponRate,
+			upwardResetLimit,
+			downwardResetLimit,
+			periodicResetLimit
 		} = this.props;
 		const timeseries = [
 			{
@@ -77,10 +100,19 @@ export default class Duo extends React.PureComponent<IProp> {
 		return (
 			<div className="App">
 				<Message />
+				<Settings
+					visible={this.state.visible}
+					onCancel={this.toggleSetting}
+					onConfirm={setting}
+					couponRate={couponRate}
+					upwardResetLimit={upwardResetLimit}
+					downwardResetLimit={downwardResetLimit}
+					periodicResetLimit={periodicResetLimit}
+				/>
 				<div style={{ zIndex: 10 }}>
 					{/* Next Day, Refresh button */}
 					<div className="play-button">
-						<button disabled={true} className="day-button settings" />
+						<button className="day-button settings" onClick={this.toggleSetting} />
 						<button className="day-button next-day" onClick={next} />
 						<button className="day-button refresh" onClick={refresh} />
 					</div>
@@ -89,13 +121,8 @@ export default class Duo extends React.PureComponent<IProp> {
 					{/* Current Price, Asset Information Bar */}
 					<div className="info-bar">
 						<div className="info-bar-row">
-							<PriceCard
-								price={price}
-							/>
-							<AssetCard
-								assets={assets}
-								price={price}
-							/>
+							<PriceCard price={price} />
+							<AssetCard assets={assets} price={price} />
 						</div>
 					</div>
 					{/* D3 Price Chart and Market Value Chart */}

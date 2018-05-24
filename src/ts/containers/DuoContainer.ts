@@ -15,14 +15,19 @@ function mapStateToProps(state: reduxTypes.IState) {
 		dayCount: state.ui.day,
 		upwardResetCount: state.ui.upward,
 		downwardResetCount: state.ui.downward,
-		periodicResetCount: state.ui.periodic
+		periodicResetCount: state.ui.periodic,
+		couponRate: state.ui.setting.couponRate,
+		upwardResetLimit: state.ui.setting.upwardResetLimit,
+		downwardResetLimit: state.ui.setting.downwardResetLimit,
+		periodicResetLimit: state.ui.setting.periodicResetLimit
 	};
 }
 
 function mapDispatchToProps(dispatch: reduxTypes.Dispatch) {
 	return {
 		refresh: () => dispatch(uiActions.refresh()),
-		next: () => dispatch(uiActions.next())
+		next: () => dispatch(uiActions.next()),
+		setting: (c: number, u: number, d: number, p: number) => dispatch(uiActions.setting( c, u, d, p))
 	};
 }
 

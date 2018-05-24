@@ -14,6 +14,12 @@ export interface IUIState {
 		content: string;
 		visible: boolean;
 	};
+	setting: {
+		couponRate: number;
+		upwardResetLimit: number;
+		downwardResetLimit: number;
+		periodicResetLimit: number;
+	};
 	form: {
 		type: string;
 		visible: boolean;
