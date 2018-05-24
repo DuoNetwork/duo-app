@@ -13,6 +13,7 @@ interface IProp {
 	start?: number;
 	end?: number;
 	zoomable?: boolean;
+	datetime?: number;
 }
 
 interface IState {
@@ -24,7 +25,7 @@ export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			datetime: 0,
+			datetime: props.datetime || 0,
 			zoom: false
 		};
 	}
@@ -32,6 +33,11 @@ export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 	private handleMouseMove = (datetime: number) =>
 		this.setState({
 			datetime: datetime
+		});
+
+	private handleMouseOut = () =>
+		this.setState({
+			datetime: this.props.datetime || 0
 		});
 
 	private handleZoom = () => this.setState({ zoom: !this.state.zoom });
@@ -80,6 +86,7 @@ export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 					name={name}
 					timeseries={timeseries}
 					onMouseMove={this.handleMouseMove}
+					onMouseOut={this.handleMouseOut}
 					showArea={showArea}
 					start={zoomable && zoom ? start : undefined}
 					end={zoomable && zoom ? end : undefined}

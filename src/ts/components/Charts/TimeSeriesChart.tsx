@@ -11,6 +11,7 @@ function create(
 	name: string,
 	timeseries: ITimeSeries[],
 	onMouseMove: (datetime: number) => void,
+	onMouseOut: () => void,
 	showArea: boolean = false,
 	start: number = Number.MIN_SAFE_INTEGER,
 	end: number = Number.MAX_SAFE_INTEGER
@@ -271,13 +272,14 @@ function create(
 		.attr('width', backrectWidth)
 		.attr('height', height)
 		.on('mousemove', d => onMouseMove(d as number))
-		.on('mouseout', () => onMouseMove(0));
+		.on('mouseout', () => onMouseOut());
 }
 
 interface IProps {
 	name: string;
 	timeseries: ITimeSeries[];
 	onMouseMove: (datetime: number) => void;
+	onMouseOut: () => void;
 	showArea?: boolean;
 	start?: number;
 	end?: number;
@@ -307,13 +309,14 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 	// }
 
 	public componentDidMount() {
-		const { name, timeseries, onMouseMove, showArea, start, end } = this.props;
+		const { name, timeseries, onMouseMove, onMouseOut, showArea, start, end } = this.props;
 		create(
 			this.chartRef.current as Element,
 			300,
 			name,
 			timeseries,
 			onMouseMove,
+			onMouseOut,
 			!!showArea,
 			start,
 			end
@@ -331,7 +334,7 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 			nextProps.end !== this.props.end ||
 			JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)
 		) {
-			const { name, timeseries, onMouseMove, showArea, start, end } = nextProps;
+			const { name, timeseries, onMouseMove, onMouseOut, showArea, start, end } = nextProps;
 			// redraw when data is changed
 			create(
 				this.chartRef.current as Element,
@@ -339,6 +342,7 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 				name,
 				timeseries,
 				onMouseMove,
+				onMouseOut,
 				!!showArea,
 				start,
 				end

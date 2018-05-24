@@ -146,6 +146,7 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 								timeseries={timeseries}
 								start={start}
 								end={end}
+								datetime={datetime}
 								zoomable
 							/>
 							<TimeSeriesCard
@@ -161,6 +162,7 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 										width: 1.5
 									}
 								]}
+								datetime={datetime}
 								showArea
 							/>
 						</div>
