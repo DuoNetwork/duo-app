@@ -134,7 +134,7 @@ export default class Settings extends React.Component<IProps, IState> {
 							</div>
 							<div className="settings-slider-wrapper">
 								<span>
-									{'Periodic Reset Limit Days (' +
+									{'Periodic Reset Days (' +
 										d3.formatPrefix(',.0', 1)(periodicResetLimitValue) +
 										')'}
 								</span>

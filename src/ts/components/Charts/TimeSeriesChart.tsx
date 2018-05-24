@@ -11,7 +11,9 @@ function create(
 	name: string,
 	timeseries: ITimeSeries[],
 	onMouseMove: (datetime: number) => void,
-	showArea: boolean = false
+	showArea: boolean = false,
+	start: number = Number.MIN_SAFE_INTEGER,
+	end: number = Number.MAX_SAFE_INTEGER
 ) {
 	if (!timeseries.length) return;
 
@@ -48,13 +50,13 @@ function create(
 		currentDate.add(1, 'd');
 	} while (currentDate.valueOf() <= maxDate);
 
-	const start = minDate || 0 - zoomStep * 2;
-	const end = maxDate || 0 + zoomStep * 2;
+	const xStart = Math.max(minDate || 0, start) - zoomStep;
+	const xEnd = Math.min(maxDate || 0, end) + zoomStep;
 
 	// Scales
 	const xScale = d3
 		.scaleTime()
-		.domain([start, end])
+		.domain([xStart, xEnd])
 		.range([0, width]);
 	const backrectWidth =
 		xScale(moment('2000-01-02').valueOf()) - xScale(moment('2000-01-01').valueOf());
@@ -109,6 +111,7 @@ function create(
 
 	const xAxis = d3
 		.axisBottom(xScale)
+		.ticks(6)
 		.tickFormat(zoomFormat);
 
 	const lyAxis = d3.axisLeft(ly).ticks(5);
@@ -278,6 +281,8 @@ interface IProps {
 	timeseries: ITimeSeries[];
 	onMouseMove: (datetime: number) => void;
 	showArea?: boolean;
+	start?: number;
+	end?: number;
 }
 
 interface IState {
@@ -304,8 +309,17 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 	// }
 
 	public componentDidMount() {
-		const { name, timeseries, onMouseMove, showArea } = this.props;
-		create(this.chartRef.current as Element, 300, name, timeseries, onMouseMove, !!showArea);
+		const { name, timeseries, onMouseMove, showArea, start, end } = this.props;
+		create(
+			this.chartRef.current as Element,
+			300,
+			name,
+			timeseries,
+			onMouseMove,
+			!!showArea,
+			start,
+			end
+		);
 		// window.addEventListener('resize', this.updateDimensions.bind(this));
 	}
 
@@ -314,8 +328,12 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 	// }
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		if (JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)) {
-			const { name, timeseries, onMouseMove, showArea } = nextProps;
+		if (
+			nextProps.start !== this.props.start ||
+			nextProps.end !== this.props.end ||
+			JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)
+		) {
+			const { name, timeseries, onMouseMove, showArea, start, end } = nextProps;
 			// redraw when data is changed
 			create(
 				this.chartRef.current as Element,
@@ -323,7 +341,9 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 				name,
 				timeseries,
 				onMouseMove,
-				!!showArea
+				!!showArea,
+				start,
+				end
 			);
 		}
 		return false;

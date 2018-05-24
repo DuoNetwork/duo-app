@@ -32,6 +32,12 @@ export function next(): reduxTypes.IBaseAction {
 	};
 }
 
+export function forward(): reduxTypes.IBaseAction {
+	return {
+		type: CST.AC_FWD
+	};
+}
+
 export function trade(tradeString: string, assets: IAssets): reduxTypes.ITradeAction {
 	return {
 		type: CST.AC_TRADE,

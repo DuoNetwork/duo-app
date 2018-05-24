@@ -10,29 +10,35 @@ interface IProp {
 	title: string;
 	timeseries: ITimeSeries[];
 	showArea?: boolean;
+	start?: number;
+	end?: number;
+	zoomable?: boolean;
 }
 
 interface IState {
 	datetime: number;
+	zoom: boolean;
 }
 
 export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 	constructor(props) {
 		super(props);
 		this.state = {
-			datetime: 0
+			datetime: 0,
+			zoom: false
 		};
 	}
 
-	private handleMouseMove = (datetime: number) => {
+	private handleMouseMove = (datetime: number) =>
 		this.setState({
 			datetime: datetime
 		});
-	};
+
+	private handleZoom = () => this.setState({ zoom: !this.state.zoom });
 
 	public render() {
-		const { datetime } = this.state;
-		const { name, title, timeseries, showArea } = this.props;
+		const { datetime, zoom } = this.state;
+		const { name, title, timeseries, showArea, start, end, zoomable } = this.props;
 		const values = timeseries.map(ts => {
 			if (!datetime || !ts.data.length) return null;
 			const foundItem = findLast(
@@ -44,6 +50,7 @@ export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 		return (
 			<div className="d3chart-wrapper">
 				<h3>{title}</h3>
+				{zoomable ? <button onClick={this.handleZoom}>Zoom</button> : null}
 				<div className="info-bar-chart">
 					<div style={{ width: '88px' }}>
 						{'Date: ' + (datetime ? moment(datetime).format('YYYY-MM-DD') : '')}
@@ -74,6 +81,8 @@ export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 					timeseries={timeseries}
 					onMouseMove={this.handleMouseMove}
 					showArea={showArea}
+					start={zoomable && zoom ? start : undefined}
+					end={zoomable && zoom ? end : undefined}
 				/>
 			</div>
 		);

@@ -45,6 +45,10 @@ input:focus {
 	background: url('../images/nextDay.png');
 	background-size: cover;
 }
+.forward {
+	background: url('../images/nextDay.png');
+	background-size: cover;
+}
 .refresh {
 	background: url('../images/refresh.png');
 	background-size: cover;

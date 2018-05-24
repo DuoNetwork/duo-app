@@ -16,6 +16,7 @@ interface IProps {
 	upward: ITimeSeriesData[];
 	downward: ITimeSeriesData[];
 	periodic: ITimeSeriesData[];
+	resetPrice: ITimeSeriesData[];
 	mv: ITimeSeriesData[];
 	assets: IAssets;
 	price: IPriceData;
@@ -26,6 +27,7 @@ interface IProps {
 	periodicResetLimit: number;
 	refresh: () => void;
 	next: () => void;
+	forward: () => void;
 	setting: (c: number, u: number, d: number, p: number) => void;
 }
 
@@ -51,12 +53,14 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 			upward,
 			downward,
 			periodic,
+			resetPrice,
 			mv,
 			assets,
 			price,
 			refresh,
 			dayCount,
 			next,
+			forward,
 			setting,
 			couponRate,
 			upwardResetLimit,
@@ -67,6 +71,11 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 		const upwardCount = upward.filter(d => d.datetime <= datetime).length;
 		const downwardCount = downward.filter(d => d.datetime <= datetime).length;
 		const periodicCount = periodic.filter(d => d.datetime <= datetime).length;
+		const allResets = [...upward, ...downward, ...periodic];
+		allResets.sort((a, b) => a.datetime - b.datetime);
+		const nextReset = allResets.find(d => d.datetime > datetime);
+		const start = resetPrice[dayCount].datetime;
+		const end = nextReset ? nextReset.datetime : eth[eth.length - 1].datetime;
 		const timeseries = [
 			{
 				name: 'ETH',
@@ -91,7 +100,7 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 			},
 			{
 				name: 'Reset',
-				data: [...upward, ...downward, ...periodic],
+				data: allResets,
 				dotOnly: true,
 				highlight: -1,
 				rightAxis: true,
@@ -116,6 +125,7 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 					<div className="play-button">
 						<button className="day-button settings" onClick={this.toggleSetting} />
 						<button className="day-button next-day" onClick={next} />
+						<button className="day-button forward" onClick={forward} />
 						<button className="day-button refresh" onClick={refresh} />
 					</div>
 					{/* Navigation Bar */}
@@ -134,6 +144,9 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 								name="pricechart"
 								title="Price Chart"
 								timeseries={timeseries}
+								start={start}
+								end={end}
+								zoomable
 							/>
 							<TimeSeriesCard
 								name="mvchart"

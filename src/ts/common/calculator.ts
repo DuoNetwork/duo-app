@@ -1,4 +1,6 @@
 import moment from 'moment';
+import * as CST from './constants';
+import { IUIState } from './reduxTypes';
 import { IAssets, IRawData, ITimeSeriesData } from './types';
 
 class Calculator {
@@ -132,9 +134,7 @@ class Calculator {
 
 	public assetUpwardReset(assets: IAssets, eth: number, navA: number, navB: number): IAssets {
 		return {
-			ETH:
-				assets.ETH +
-				((navA - 1) * assets.ClassA + (navB - 1) * assets.ClassB) / eth,
+			ETH: assets.ETH + ((navA - 1) * assets.ClassA + (navB - 1) * assets.ClassB) / eth,
 			ClassA: assets.ClassA,
 			ClassB: assets.ClassB
 		};
@@ -153,6 +153,136 @@ class Calculator {
 			ETH: assets.ETH + (navA - 1) * assets.ClassA / eth,
 			ClassA: assets.ClassA,
 			ClassB: assets.ClassB
+		};
+	}
+
+	public calculateNextDayState(state: IUIState): object {
+		const { eth, classA, classB, assets, day, upward, downward, periodic, mv } = state;
+		const newDayCount = day + 1;
+		if (newDayCount >= eth.length) return {};
+		else {
+			const newDatetime = eth[newDayCount].datetime;
+			const newEthPx = eth[newDayCount].value;
+			const upwardSoFar = upward.filter(d => d.datetime <= newDatetime);
+			const downwardSoFar = downward.filter(d => d.datetime <= newDatetime);
+			const periodicSoFar = periodic.filter(d => d.datetime <= newDatetime);
+			const isUpward =
+				upwardSoFar.length && upwardSoFar[upwardSoFar.length - 1].datetime === newDatetime;
+			const isDownward =
+				downwardSoFar.length &&
+				downwardSoFar[downwardSoFar.length - 1].datetime === newDatetime;
+			const isPeriodic =
+				periodicSoFar.length &&
+				periodicSoFar[periodicSoFar.length - 1].datetime === newDatetime;
+			const upwardCount = upwardSoFar.length - (isUpward ? 1 : 0);
+			const downwardCount = downwardSoFar.length - (isDownward ? 1 : 0);
+			const periodicCount = periodicSoFar.length - (isPeriodic ? 1 : 0);
+			const newNavA = classA[newDayCount + upwardCount + downwardCount + periodicCount].value;
+			const newNavB = classB[newDayCount + upwardCount + downwardCount].value;
+
+			let newAssets: IAssets;
+			let msg = '';
+			if (isUpward) {
+				newAssets = calculator.assetUpwardReset(assets, newEthPx, newNavA, newNavB);
+				msg = "<div style='color: rgba(255,255,255, .8)'>Reset (upward) triggered.</div>";
+			} else if (isDownward) {
+				newAssets = calculator.assetDownwardReset(assets, newEthPx, newNavA, newNavB);
+				msg = "<div style='color: rgba(255,255,255, .8)'>Reset (downward) triggered.</div>";
+			} else if (isPeriodic) {
+				newAssets = calculator.assetPeriodicReset(assets, newEthPx, newNavA);
+				msg = "<div style='color: rgba(255,255,255, .8)'>Reset (periodic) triggered.</div>";
+			} else newAssets = assets;
+
+			return Object.assign(
+				{
+					[CST.AC_MV]: [
+						...mv,
+						{
+							datetime: newDatetime,
+							value:
+								assets.ETH * newEthPx +
+								assets.ClassA * newNavA +
+								assets.ClassB * newNavB
+						}
+					],
+					[CST.AC_ASSETS]: newAssets,
+					[CST.AC_DAY]: newDayCount,
+					[CST.AC_PRICE]: {
+						Date: newDatetime,
+						ETH: newEthPx,
+						ClassA:
+							classA[
+								newDayCount +
+									upwardSoFar.length +
+									downwardSoFar.length +
+									periodicSoFar.length
+							].value,
+						ClassB:
+							classB[newDayCount + upwardSoFar.length + downwardSoFar.length].value
+					}
+				},
+				msg
+					? {
+							[CST.AC_MESSAGE]: {
+								type: "<div style='color: rgba(0,186,255,0.7)'>INFORMATION</div>",
+								content: msg,
+								visible: true
+							}
+					}
+					: {}
+			);
+		}
+	}
+
+	public calculateForwardState(state: IUIState): object {
+		const { eth, classA, classB, assets, day, upward, downward, periodic, mv } = state;
+		const currentDatetime = eth[day].datetime;
+		const endDatetime = eth[eth.length - 1].datetime;
+		const upwardSoFar = upward.filter(d => d.datetime <= currentDatetime);
+		const downwardSoFar = downward.filter(d => d.datetime <= currentDatetime);
+		const periodicSoFar = periodic.filter(d => d.datetime <= currentDatetime);
+		const nextUpward = upward[upwardSoFar.length]
+			? upward[upwardSoFar.length].datetime
+			: endDatetime;
+		const nextDownward = downward[downwardSoFar.length]
+			? downward[downwardSoFar.length].datetime
+			: endDatetime;
+		const nextPeriodic = periodic[periodicSoFar.length]
+			? periodic[periodicSoFar.length].datetime
+			: endDatetime;
+		const nextResetDate = Math.min(nextUpward, nextDownward, nextPeriodic);
+		let curDate = day + 1;
+		let newMV = [...mv];
+		let newDatetime = eth[curDate].datetime;
+		if (newDatetime === nextResetDate) return this.calculateNextDayState(state);
+
+		let newEthPx, newNavA, newNavB;
+		while (curDate < eth.length && eth[curDate].datetime < nextResetDate) {
+			newDatetime = eth[curDate].datetime;
+			newEthPx = eth[curDate].value;
+			newNavA =
+				classA[curDate + upwardSoFar.length + downwardSoFar.length + periodicSoFar.length]
+					.value;
+			newNavB = classB[curDate + upwardSoFar.length + downwardSoFar.length].value;
+			newMV.push({
+				datetime: newDatetime,
+				value: assets.ETH * newEthPx + assets.ClassA * newNavA + assets.ClassB * newNavB
+			});
+			curDate++;
+		}
+		curDate--;
+		return {
+			[CST.AC_MV]: newMV,
+			[CST.AC_DAY]: curDate,
+			[CST.AC_PRICE]: {
+				Date: newDatetime,
+				ETH: newEthPx,
+				ClassA:
+					classA[
+						curDate + upwardSoFar.length + downwardSoFar.length + periodicSoFar.length
+					].value,
+				ClassB: classB[curDate + upwardSoFar.length + downwardSoFar.length].value
+			}
 		};
 	}
 }

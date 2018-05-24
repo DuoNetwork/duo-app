@@ -15,4 +15,5 @@ export const AC_DOWNWARD = 'downward';
 export const AC_PERIODIC = 'periodic';
 export const AC_PRICE = 'price';
 export const AC_NEXT = 'next';
+export const AC_FWD = 'forward';
 export const AC_SETTING = 'setting';

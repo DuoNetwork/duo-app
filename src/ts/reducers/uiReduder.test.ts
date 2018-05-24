@@ -48,6 +48,13 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
+	test('forward', () => {
+		state = uiReducer(state, {
+			type: CST.AC_FWD
+		});
+		expect(state).toMatchSnapshot();
+	});
+
 	test('refresh', () => {
 		state = uiReducer(state, {
 			type: CST.AC_REFRESH

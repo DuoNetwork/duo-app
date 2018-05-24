@@ -11,6 +11,7 @@ function mapStateToProps(state: reduxTypes.IState) {
 		upward: state.ui.upward,
 		downward: state.ui.downward,
 		periodic: state.ui.periodic,
+		resetPrice: state.ui.resetPrice,
 		mv: state.ui.mv,
 		assets: state.ui.assets,
 		price: state.ui.price,
@@ -26,6 +27,7 @@ function mapDispatchToProps(dispatch: reduxTypes.Dispatch) {
 	return {
 		refresh: () => dispatch(uiActions.refresh()),
 		next: () => dispatch(uiActions.next()),
+		forward: () => dispatch(uiActions.forward()),
 		setting: (c: number, u: number, d: number, p: number) => dispatch(uiActions.setting( c, u, d, p))
 	};
 }
