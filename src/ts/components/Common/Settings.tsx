@@ -71,14 +71,14 @@ export default class Settings extends React.Component<IProps, IState> {
 						<div className="settings-content">
 							<div className="settings-slider-wrapper">
 								<span>
-									{'Coupon Rate (' +
+									{'Daily Coupon (' +
 										d3.formatPrefix(',.4', 1)(couponRateValue) +
 										')'}
 								</span>
 								<div style={{ width: '150px' }}>
 									<Slider
 										min={1}
-										max={50}
+										max={25}
 										defaultValue={couponRate * 10000}
 										value={couponRateValue * 10000}
 										tipFormatter={d => (d as number) / 10000 + ''}

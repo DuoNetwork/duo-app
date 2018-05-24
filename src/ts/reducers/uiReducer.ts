@@ -70,7 +70,7 @@ export function uiReducer(
 			});
 		case CST.AC_SETTING:
 			const newSetting: any = (action as reduxTypes.IObjectAction).value;
-			const [ne, na, nb, nr] = calculator.getAllTimeSeriesFromEth(
+			const [ne, na, nb, nrp, nbt, nup, ndown, nperiod] = calculator.getAllTimeSeriesFromEth(
 				rawData,
 				1,
 				newSetting.couponRate,
@@ -83,7 +83,11 @@ export function uiReducer(
 				eth: ne,
 				classA: na,
 				classB: nb,
-				reset: nr
+				resetPrice: nrp,
+				beta: nbt,
+				upward: nup,
+				downward: ndown,
+				periodic: nperiod
 			});
 		case CST.AC_FORM:
 			return Object.assign({}, state, {
