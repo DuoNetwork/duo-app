@@ -17,28 +17,29 @@ interface IState {
 	upwardResetLimitValue: number;
 	downwardResetLimitValue: number;
 	periodicResetLimitValue: number;
-	couponRateIn: string;
-	upwardResetLimitIn: string;
-	downwardResetLimitIn: string;
-	periodicResetLimitIn: string;
 }
 
 export default class Settings extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			couponRateValue: 1,
-			upwardResetLimitValue: 1,
-			downwardResetLimitValue: 1,
-			periodicResetLimitValue: 1,
-			couponRateIn: '',
-			upwardResetLimitIn: '',
-			downwardResetLimitIn: '',
-			periodicResetLimitIn: ''
+			couponRateValue: this.props.couponRate,
+			upwardResetLimitValue: this.props.upwardResetLimit,
+			downwardResetLimitValue: this.props.downwardResetLimit,
+			periodicResetLimitValue: (this.props.periodicResetLimit - 1) / this.props.couponRate
 		};
 	}
 
 	public render() {
+		const { couponRate, upwardResetLimit, downwardResetLimit, periodicResetLimit } = this.props;
+		const {
+			couponRateValue,
+			upwardResetLimitValue,
+			downwardResetLimitValue,
+			periodicResetLimitValue
+		} = this.state;
+		const prlDayCount = (periodicResetLimit - 1) / couponRate;
+		const prlInput = periodicResetLimitValue * couponRateValue + 1;
 		let zIndex: number, event: string;
 		zIndex = this.props.visible ? 7 : -7;
 		event = this.props.visible ? 'auto' : 'none';
@@ -68,23 +69,117 @@ export default class Settings extends React.Component<IProps, IState> {
 					</div>
 					<div className="settings-body">
 						<div className="settings-content">
-							<Slider
-								min={1}
-								max={50}
-								defaultValue={0}
-								tipFormatter={d => (d as number) / 10000 + ''}
-							/>
-							<Slider min={0} max={4} defaultValue={0} tipFormatter={d => d3.formatPrefix(',.2', 1)(d / 4 + 1.5)}/>
-							<Slider min={0} max={4} defaultValue={0} tipFormatter={d => d3.formatPrefix(',.2', 1)(d / 10 + 0.1)}/>
-							<Slider min={0} max={8} defaultValue={0} tipFormatter={d => d3.formatPrefix(',.2', 1)(d * 10 + 20)}/>
+							<div className="settings-slider-wrapper">
+								<span>
+									{'Coupon Rate (' +
+										d3.formatPrefix(',.4', 1)(couponRateValue) +
+										')'}
+								</span>
+								<div style={{ width: '150px' }}>
+									<Slider
+										min={1}
+										max={50}
+										defaultValue={couponRate * 10000}
+										value={couponRateValue * 10000}
+										tipFormatter={d => (d as number) / 10000 + ''}
+										onChange={d =>
+											this.setState({
+												couponRateValue: (d as number) / 10000
+											})
+										}
+									/>
+								</div>
+							</div>
+							<div className="settings-slider-wrapper">
+								<span>
+									{'Upward Reset Limit (' +
+										d3.formatPrefix(',.2', 1)(upwardResetLimitValue) +
+										')'}
+								</span>
+								<div style={{ width: '150px' }}>
+									<Slider
+										min={0}
+										max={4}
+										defaultValue={(upwardResetLimit - 1.5) * 4}
+										value={(upwardResetLimitValue - 1.5) * 4}
+										tipFormatter={d => d3.formatPrefix(',.2', 1)(d / 4 + 1.5)}
+										onChange={d =>
+											this.setState({
+												upwardResetLimitValue: (d as number) / 4 + 1.5
+											})
+										}
+									/>
+								</div>
+							</div>
+							<div className="settings-slider-wrapper">
+								<span>
+									{'Downward Reset Limit (' +
+										d3.formatPrefix(',.2', 1)(downwardResetLimitValue) +
+										')'}
+								</span>
+								<div style={{ width: '150px' }}>
+									<Slider
+										min={0}
+										max={8}
+										defaultValue={(downwardResetLimit - 0.1) * 20}
+										value={(downwardResetLimitValue - 0.1) * 20}
+										tipFormatter={d => d3.formatPrefix(',.2', 1)(d / 20 + 0.1)}
+										onChange={d =>
+											this.setState({
+												downwardResetLimitValue: (d as number) / 20 + 0.1
+											})
+										}
+									/>
+								</div>
+							</div>
+							<div className="settings-slider-wrapper">
+								<span>
+									{'Periodic Reset Limit Days (' +
+										d3.formatPrefix(',.0', 1)(periodicResetLimitValue) +
+										')'}
+								</span>
+								<div style={{ width: '150px' }}>
+									<Slider
+										min={0}
+										max={8}
+										defaultValue={(prlDayCount - 20) / 10}
+										value={(periodicResetLimitValue - 20) / 10}
+										tipFormatter={d => d3.formatPrefix(',.0', 1)(d * 10 + 20)}
+										onChange={d =>
+											this.setState({
+												periodicResetLimitValue: (d as number) * 10 + 20
+											})
+										}
+									/>
+								</div>
+							</div>
+							<div style={{ display: 'flex', justifyContent: 'center' }}>
+								<button
+									className="default-button"
+									onClick={() =>
+										this.setState({
+											couponRateValue: 0.0002,
+											upwardResetLimitValue: 2,
+											downwardResetLimitValue: 0.25,
+											periodicResetLimitValue: 100
+										})
+									}
+								>
+									Default Settings
+								</button>
+							</div>
 						</div>
 					</div>
 					<div className="settings-bottom">
 						<button
 							className="settings-button"
 							onClick={() =>
-								this.props.onConfirm(0.0005, 1.5, 0.5, 1.05) &&
-								this.props.onCancel()
+								this.props.onConfirm(
+									couponRateValue,
+									upwardResetLimit,
+									downwardResetLimit,
+									prlInput
+								) && this.props.onCancel()
 							}
 						>
 							COMFIRM
