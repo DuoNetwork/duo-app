@@ -3,16 +3,16 @@ import * as React from 'react';
 
 // const moment = require('moment');
 
-interface IHCProps {
-	history: string[];
+interface IProps {
+	trades: string[];
 }
 
-interface IHCStates {
+interface IStates {
 	page: number;
 	enableLButton: boolean;
 }
 
-export default class HistoryCard extends React.Component<IHCProps, IHCStates> {
+export default class HistoryCard extends React.Component<IProps, IStates> {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -49,8 +49,8 @@ export default class HistoryCard extends React.Component<IHCProps, IHCStates> {
 	public handleNext = () => {
 		console.log(this.state.page);
 		const { page } = this.state;
-		if (page < Math.floor((this.props.history.length - 1) / 10))
-			if (page === Math.floor((this.props.history.length - 1) / 10 - 1))
+		if (page < Math.floor((this.props.trades.length - 1) / 10))
+			if (page === Math.floor((this.props.trades.length - 1) / 10 - 1))
 				this.setState({
 					page: page + 1,
 					enableLButton: true
@@ -69,14 +69,14 @@ export default class HistoryCard extends React.Component<IHCProps, IHCStates> {
 	};
 	public handleEnd = () => {
 		this.setState({
-			page: Math.floor((this.props.history.length - 1) / 10),
+			page: Math.floor((this.props.trades.length - 1) / 10),
 			enableLButton: true
 		});
 	};
 	public render() {
-		const { history } = this.props;
+		const { trades } = this.props;
 		const { page, enableLButton } = this.state;
-		const groupedHistory = this.group(history);
+		const groupedHistory = this.group(trades);
 		const maxPage = Math.floor(((history.length || 1) - 1) / 10);
 		const historyList = groupedHistory.length ? (
 			groupedHistory[page].map((d, i) => (d ? <li key={i}>{d}</li> : null))

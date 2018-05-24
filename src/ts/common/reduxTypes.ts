@@ -7,8 +7,12 @@ export interface IUIState {
 	eth: ITimeSeriesData[];
 	classA: ITimeSeriesData[];
 	classB: ITimeSeriesData[];
-	reset: ITimeSeriesData[];
-	history: string[];
+	resetPrice: ITimeSeriesData[];
+	beta: ITimeSeriesData[];
+	upward: ITimeSeriesData[];
+	downward: ITimeSeriesData[];
+	periodic: ITimeSeriesData[];
+	trades: string[];
 	message: {
 		type: string;
 		content: string;
@@ -26,12 +30,7 @@ export interface IUIState {
 	};
 	mv: ITimeSeriesData[];
 	assets: IAssets;
-	resetPrice: number;
-	beta: number;
 	day: number;
-	upward: number;
-	downward: number;
-	periodic: number;
 	price: IPriceData;
 }
 
@@ -71,7 +70,7 @@ export interface INumberAction {
 
 export interface ITradeAction {
 	type: string;
-	history: string;
+	trade: string;
 	assets: IAssets;
 }
 

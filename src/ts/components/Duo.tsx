@@ -13,14 +13,13 @@ interface IProps {
 	eth: ITimeSeriesData[];
 	classA: ITimeSeriesData[];
 	classB: ITimeSeriesData[];
-	reset: ITimeSeriesData[];
+	upward: ITimeSeriesData[];
+	downward: ITimeSeriesData[];
+	periodic: ITimeSeriesData[];
 	mv: ITimeSeriesData[];
 	assets: IAssets;
 	price: IPriceData;
 	dayCount: number;
-	upwardResetCount: number;
-	downwardResetCount: number;
-	periodicResetCount: number;
 	couponRate: number;
 	upwardResetLimit: number;
 	downwardResetLimit: number;
@@ -49,15 +48,14 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 			eth,
 			classA,
 			classB,
-			reset,
+			upward,
+			downward,
+			periodic,
 			mv,
 			assets,
 			price,
 			refresh,
 			dayCount,
-			upwardResetCount,
-			downwardResetCount,
-			periodicResetCount,
 			next,
 			setting,
 			couponRate,
@@ -65,6 +63,10 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 			downwardResetLimit,
 			periodicResetLimit
 		} = this.props;
+		const datetime = eth[dayCount].datetime;
+		const upwardCount = upward.filter(d => d.datetime <= datetime).length;
+		const downwardCount = downward.filter(d => d.datetime <= datetime).length;
+		const periodicCount = periodic.filter(d => d.datetime <= datetime).length;
 		const timeseries = [
 			{
 				name: 'ETH',
@@ -76,20 +78,20 @@ export default class Duo extends React.PureComponent<IProps, IState> {
 			{
 				name: 'ClassA',
 				data: classA,
-				highlight: dayCount + upwardResetCount + downwardResetCount + periodicResetCount,
+				highlight: dayCount + upwardCount + downwardCount + periodicCount,
 				rightAxis: true,
 				color: '0,186,255'
 			},
 			{
 				name: 'ClassB',
 				data: classB,
-				highlight: dayCount + upwardResetCount + downwardResetCount,
+				highlight: dayCount + upwardCount + downwardCount,
 				rightAxis: true,
 				color: '255,129,0'
 			},
 			{
 				name: 'Reset',
-				data: reset,
+				data: [...upward, ...downward, ...periodic],
 				dotOnly: true,
 				highlight: -1,
 				rightAxis: true,

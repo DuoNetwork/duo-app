@@ -32,10 +32,10 @@ export function next(): reduxTypes.IBaseAction {
 	};
 }
 
-export function trade(history: string, assets: IAssets): reduxTypes.ITradeAction {
+export function trade(tradeString: string, assets: IAssets): reduxTypes.ITradeAction {
 	return {
 		type: CST.AC_TRADE,
-		history,
+		trade: tradeString,
 		assets
 	};
 }

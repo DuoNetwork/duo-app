@@ -109,7 +109,6 @@ function create(
 
 	const xAxis = d3
 		.axisBottom(xScale)
-		.ticks(5)
 		.tickFormat(zoomFormat);
 
 	const lyAxis = d3.axisLeft(ly).ticks(5);

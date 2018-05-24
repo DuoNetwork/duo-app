@@ -10,8 +10,8 @@ interface IProps {
 	price: IPriceData;
 	resetPrice: number;
 	beta: number;
-	history: string[];
-	trade: (history: string, assets: IAssets) => void;
+	trades: string[];
+	trade: (tradeString: string, assets: IAssets) => void;
 	message: (type: string, content: string) => void;
 }
 
@@ -225,7 +225,7 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 	};
 
 	public render() {
-		const { assets, price, resetPrice, beta, history } = this.props;
+		const { assets, price, resetPrice, beta, trades } = this.props;
 		const { type } = this.state;
 		return (
 			<div
@@ -244,7 +244,7 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 					}}
 				>
 					<div className="history-transaction-card-wrapper">
-						<HistroyCard history={history} />
+						<HistroyCard trades={trades} />
 						<TransactionForm
 							visible={!!type}
 							type={type}
