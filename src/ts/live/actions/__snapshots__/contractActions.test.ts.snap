@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions readContractState 1`] = `
+Array [
+  Object {
+    "type": "contractState",
+    "value": "Unknown",
+  },
+]
+`;
+
+exports[`actions state 1`] = `
+Object {
+  "type": "contractState",
+  "value": "state",
+}
+`;

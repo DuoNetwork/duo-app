@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui reducer default 1`] = `
+Object {
+  "state": "UNKNOWN",
+}
+`;
+
+exports[`ui reducer state 1`] = `
+Object {
+  "state": "state",
+}
+`;
