@@ -58,7 +58,7 @@ export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
 				<h3>{title}</h3>
 				{zoomable ? <button className='zoom-button' onClick={this.handleZoom}>Zoom</button> : null}
 				<div className="info-bar-chart">
-					<div style={{ width: '88px' }}>
+					<div style={{ width: '105px' }}>
 						{'Date: ' + (datetime ? moment(datetime).format('YYYY-MM-DD') : '')}
 					</div>
 					{values.map((v, i) => (
