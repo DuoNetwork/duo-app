@@ -6,23 +6,23 @@ import ethIcon from '../../../images/ethIcon.png';
 import { IAssets, IPriceData } from '../../common/types';
 
 interface IProps {
-	visible: boolean,
-	type: string,
-	assets: IAssets,
-	price: IPriceData,
-	resetPrice: number,
-	beta: number
-	onClose: () => void,
-	handleBuySell: (amount: number, isA: boolean) => boolean,
-	handleCreation: (amount: number) => boolean,
-	handleRedemption: (amount: number) => boolean
+	visible: boolean;
+	type: string;
+	assets: IAssets;
+	price: IPriceData;
+	resetPrice: number;
+	beta: number;
+	onClose: () => void;
+	handleBuySell: (amount: number, isA: boolean) => boolean;
+	handleCreation: (amount: number) => boolean;
+	handleRedemption: (amount: number) => boolean;
 }
 
 interface IState {
-	valueIn: string,
-	value: number,
-	type: string,
-	isETH: boolean
+	valueIn: string;
+	value: number;
+	type: string;
+	isETH: boolean;
 }
 
 const Asset = (props: { name: string; value: number; src: string }) => (
@@ -72,7 +72,10 @@ const ButtonGroup = (
 		}
 		default: {
 			buttons.push(
-				<button key="1" onClick={() => handleBuySell(isETH ? value : -value, isA) && onClose()}>
+				<button
+					key="1"
+					onClick={() => handleBuySell(isETH ? value : -value, isA) && onClose()}
+				>
 					COMFIRM
 				</button>
 			);
@@ -142,9 +145,7 @@ const Description = (
 			contents.push(
 				<div key="2" className="tf-contents-item">
 					{isETH ? 'with' : 'for'}
-					<span>
-						{d3.formatPrefix(',.6', 1)(value * price.ClassA / price.ETH)}
-					</span>
+					<span>{d3.formatPrefix(',.6', 1)(value * price.ClassA / price.ETH)}</span>
 					ETH
 				</div>
 			);
@@ -161,9 +162,7 @@ const Description = (
 			contents.push(
 				<div key="2" className="tf-contents-item">
 					{isETH ? 'with' : 'for'}
-					<span>
-						{d3.formatPrefix(',.6', 1)(value * price.ClassB / price.ETH)}
-					</span>
+					<span>{d3.formatPrefix(',.6', 1)(value * price.ClassB / price.ETH)}</span>
 					ETH
 				</div>
 			);
@@ -273,9 +272,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 		}
 		limit = isBuySell
 			? isETH
-				? limit *
-				price.ETH /
-				(this.state.type === 'Class A' ? price.ClassA : price.ClassB)
+				? limit * price.ETH / (this.state.type === 'Class A' ? price.ClassA : price.ClassB)
 				: limit1
 			: limit;
 		return (
@@ -322,20 +319,21 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 											}}
 										>
 											<div
+												onClick={() => {
+													this.setState({
+														isETH: true,
+														valueIn: '',
+														value: 0
+													});
+												}}
 												style={{
 													display: 'flex',
 													alignItems: 'center',
-													marginRight: 20
+													marginRight: 20,
+													cursor: 'pointer'
 												}}
 											>
 												<div
-													onClick={() => {
-														this.setState({
-															isETH: true,
-															valueIn: '',
-															value: 0
-														});
-													}}
 													className={
 														'input-radio ' +
 														(isETH ? 'selected' : 'unselected')
@@ -344,19 +342,20 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 												<span>BUY</span>
 											</div>
 											<div
+												onClick={() => {
+													this.setState({
+														isETH: false,
+														valueIn: '',
+														value: 0
+													});
+												}}
 												style={{
 													display: 'flex',
-													alignItems: 'center'
+													alignItems: 'center',
+													cursor: 'pointer'
 												}}
 											>
 												<div
-													onClick={() => {
-														this.setState({
-															isETH: false,
-															valueIn: '',
-															value: 0
-														});
-													}}
 													className={
 														'input-radio ' +
 														(isETH ? 'unselected' : 'selected')
