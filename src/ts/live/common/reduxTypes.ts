@@ -1,9 +1,11 @@
+import {ICustodianStates} from './types';
+
 export interface IState {
 	contract: IContractState;
 }
 
 export interface IContractState {
-	state: string;
+	custodianStates: ICustodianStates;
 }
 
 export type Action = IBaseAction | IBooleanAction | IStringAction | IObjectAction | INumberAction;

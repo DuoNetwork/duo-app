@@ -5,8 +5,10 @@ import store from './store';
 
 describe('store', () => {
 	test('actions', () => {
-		contractUtil.read = jest.fn(() => Promise.resolve(1));
-		store.dispatch(contractActions.readContractState());
+		contractUtil.getSystemStates = jest.fn(() => Promise.resolve({
+			test: 'test'
+		}));
+		store.dispatch(contractActions.getCustodianStates());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

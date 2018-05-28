@@ -6,7 +6,7 @@ import * as contractActions from './actions/contractActions';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
 
-store.dispatch(contractActions.readContractState());
+store.dispatch(contractActions.getCustodianStates());
 
 ReactDOM.render(
 	<Provider store={store}>

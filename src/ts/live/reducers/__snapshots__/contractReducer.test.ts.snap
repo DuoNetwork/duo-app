@@ -1,13 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ui reducer default 1`] = `
+exports[`ui reducer custodianStates 1`] = `
 Object {
-  "state": "UNKNOWN",
+  "custodianStates": Object {
+    "test": "test",
+  },
 }
 `;
 
-exports[`ui reducer state 1`] = `
+exports[`ui reducer default 1`] = `
 Object {
-  "state": "state",
+  "custodianStates": Object {
+    "alpha": 0,
+    "beta": 0,
+    "commissionRate": 0,
+    "ethDuoFeeRatio": 0,
+    "limitLower": 0,
+    "limitPeriodic": 0,
+    "limitUpper": 0,
+    "navA": 0,
+    "navB": 0,
+    "nextResetAddrIndex": 0,
+    "period": 0,
+    "periodCoupon": 0,
+    "preResetWaitingBlocks": 0,
+    "state": "Unknown",
+    "totalSupplyA": 0,
+    "totalSupplyB": 0,
+    "usersLength": 0,
+  },
 }
 `;

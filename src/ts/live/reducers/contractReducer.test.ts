@@ -9,10 +9,12 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('state', () => {
+	test('custodianStates', () => {
 		state = contractReducer(state, {
-			type: CST.AC_CT_STATE,
-			value: 'state'
+			type: CST.AC_CTD_STATES,
+			value: {
+				test: 'test'
+			}
 		});
 		expect(state).toMatchSnapshot();
 	});

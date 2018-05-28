@@ -7,14 +7,16 @@ import * as contractActions from './contractActions';
 const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
-	test('state', () => {
-		expect(contractActions.contractStateUpdate('state')).toMatchSnapshot();
+	test('custodianStatesUpdate', () => {
+		expect(contractActions.custodianStatesUpdate({test: 'test'} as any)).toMatchSnapshot();
 	});
 
-	test('readContractState', () => {
+	test('getCustodianStates', () => {
 		const store = mockStore({});
-		contractUtil.read = jest.fn(() => Promise.resolve(1));
-		store.dispatch(contractActions.readContractState() as any);
+		contractUtil.getSystemStates = jest.fn(() => Promise.resolve({
+			test: 'test'
+		}));
+		store.dispatch(contractActions.getCustodianStates() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

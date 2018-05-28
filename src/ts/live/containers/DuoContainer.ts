@@ -4,7 +4,7 @@ import Duo from '../components/Duo';
 
 function mapStateToProps(state: reduxTypes.IState) {
 	return {
-		state: state.contract.state
+		custodianStates: state.contract.custodianStates
 	};
 }
 

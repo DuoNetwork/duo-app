@@ -1,41 +1,18 @@
 import * as CST from '../common/constants';
 import contractUtil from '../common/contractUtil';
 import * as reduxTypes from '../common/reduxTypes';
+import { ICustodianStates } from '../common/types';
 
-export function contractStateUpdate(state: string): reduxTypes.Action {
+export function custodianStatesUpdate(states: ICustodianStates): reduxTypes.Action {
 	return {
-		type: CST.AC_CT_STATE,
-		value: state
+		type: CST.AC_CTD_STATES,
+		value: states
 	};
 }
 
-export function readContractState(): reduxTypes.ThunkAction {
+export function getCustodianStates(): reduxTypes.ThunkAction {
 	return async dispatch => {
-		const state = await contractUtil.read(CST.CT_STATE);
-		let stateString = '';
-		switch (state) {
-			case '0':
-				stateString = 'Inception';
-				break;
-			case '1':
-				stateString = 'Trading';
-				break;
-			case '2':
-				stateString = 'PreReset';
-				break;
-			case '3':
-				stateString = 'UpwardReset';
-				break;
-			case '4':
-				stateString = 'DownwardReset';
-				break;
-			case '5':
-				stateString = 'PeriodicReset';
-				break;
-			default:
-				stateString = 'Unknown';
-				break;
-		}
-		dispatch(contractStateUpdate(stateString));
+		const states = await contractUtil.getSystemStates();
+		dispatch(custodianStatesUpdate(states));
 	};
 }
