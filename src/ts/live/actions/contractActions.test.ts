@@ -8,15 +8,33 @@ const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
 	test('custodianStatesUpdate', () => {
-		expect(contractActions.custodianStatesUpdate({test: 'test'} as any)).toMatchSnapshot();
+		expect(contractActions.custodianStatesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
 
 	test('getCustodianStates', () => {
 		const store = mockStore({});
-		contractUtil.getSystemStates = jest.fn(() => Promise.resolve({
-			test: 'test'
-		}));
+		contractUtil.getSystemStates = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
 		store.dispatch(contractActions.getCustodianStates() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
+
+	test('custodianPricesUpdate', () => {
+		expect(contractActions.custodianPricesUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	});
+
+	test('getCustodianPrices', () => {
+		const store = mockStore({});
+		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
+		store.dispatch(contractActions.getCustodianPrices() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

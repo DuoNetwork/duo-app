@@ -18,4 +18,15 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('custodianPrices', () => {
+		state = contractReducer(state, {
+			type: CST.AC_CTD_PRICES,
+			value: {
+				reset: 'reset',
+				last: 'last'
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
 });

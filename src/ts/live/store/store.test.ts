@@ -5,10 +5,14 @@ import store from './store';
 
 describe('store', () => {
 	test('actions', () => {
-		contractUtil.getSystemStates = jest.fn(() => Promise.resolve({
-			test: 'test'
-		}));
+		contractUtil.getSystemStates = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
+		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
 		store.dispatch(contractActions.getCustodianStates());
+		store.dispatch(contractActions.getCustodianPrices());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

@@ -30,7 +30,18 @@ export const initialState: reduxTypes.IContractState = {
 		// adminCoolDown: 0,
 		usersLength: 0
 		// addrPoolLength: 0
-	}
+	},
+	custodianPrices: {
+		reset: { address: '0x0', price: 0, timestamp: 0 },
+		last: { address: '0x0', price: 0, timestamp: 0 }
+		// first: { address: '0x0', price: 0, timestamp: 0 },
+		// second: { address: '0x0', price: 0, timestamp: 0 }
+	},
+	ethBalance: 0,
+	duoBalance: 0,
+	duoAllowance: 0,
+	aBalance: 0,
+	bBalance: 0
 };
 
 export function contractReducer(
@@ -39,6 +50,7 @@ export function contractReducer(
 ): reduxTypes.IContractState {
 	switch (action.type) {
 		case CST.AC_CTD_STATES:
+		case CST.AC_CTD_PRICES:
 			return Object.assign({}, state, {
 				[action.type]: (action as reduxTypes.IObjectAction).value
 			});

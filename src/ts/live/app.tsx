@@ -7,6 +7,7 @@ import Duo from './containers/DuoContainer';
 import store from './store/store';
 
 store.dispatch(contractActions.getCustodianStates());
+store.dispatch(contractActions.getCustodianPrices());
 
 ReactDOM.render(
 	<Provider store={store}>

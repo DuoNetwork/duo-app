@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`actions custodianPricesUpdate 1`] = `
+Object {
+  "type": "custodianPrices",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
 exports[`actions custodianStatesUpdate 1`] = `
 Object {
   "type": "custodianStates",
@@ -7,6 +16,18 @@ Object {
     "test": "test",
   },
 }
+`;
+
+exports[`actions getCustodianPrices 1`] = `
+Array [
+  Object {
+    "type": "custodianPrices",
+    "value": Object {
+      "last": "last",
+      "reset": "reset",
+    },
+  },
+]
 `;
 
 exports[`actions getCustodianStates 1`] = `
