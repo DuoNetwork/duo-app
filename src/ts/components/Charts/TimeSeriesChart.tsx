@@ -11,7 +11,10 @@ function create(
 	name: string,
 	timeseries: ITimeSeries[],
 	onMouseMove: (datetime: number) => void,
-	showArea: boolean = false
+	onMouseOut: () => void,
+	showArea: boolean = false,
+	start: number = Number.MIN_SAFE_INTEGER,
+	end: number = Number.MAX_SAFE_INTEGER
 ) {
 	if (!timeseries.length) return;
 
@@ -28,7 +31,7 @@ function create(
 		.attr('height', height + margin.top + margin.bottom);
 	// Zoom step
 	const zoomStep = 8.64e7;
-	const zoomFormat = date => moment(date).format('DDMMM');
+	const zoomFormat = date => moment(date).format('DD MMM');
 
 	// Date range
 	let minDate = timeseries[0].data[0].datetime;
@@ -48,13 +51,13 @@ function create(
 		currentDate.add(1, 'd');
 	} while (currentDate.valueOf() <= maxDate);
 
-	const start = minDate || 0 - zoomStep * 2;
-	const end = maxDate || 0 + zoomStep * 2;
+	const xStart = Math.max(minDate || 0, start) - zoomStep;
+	const xEnd = Math.min(maxDate || 0, end) + zoomStep;
 
 	// Scales
 	const xScale = d3
 		.scaleTime()
-		.domain([start, end])
+		.domain([xStart, xEnd])
 		.range([0, width]);
 	const backrectWidth =
 		xScale(moment('2000-01-02').valueOf()) - xScale(moment('2000-01-01').valueOf());
@@ -109,7 +112,7 @@ function create(
 
 	const xAxis = d3
 		.axisBottom(xScale)
-		.ticks(5)
+		.ticks(6)
 		.tickFormat(zoomFormat);
 
 	const lyAxis = d3.axisLeft(ly).ticks(5);
@@ -156,30 +159,6 @@ function create(
 		.append('g')
 		.attr('class', 'chart-data')
 		.attr('clip-path', 'url(#clip)');
-
-	chartdata
-		.selectAll('g')
-		.data(allDates)
-		.enter()
-		.append('g')
-		.attr('class', 'single-bar-' + name);
-	const bars = chartdata.selectAll('g');
-	bars
-		.data(allDates)
-		.exit()
-		.remove();
-
-	// Bar Backgrounds
-	//const barBackground =
-	bars
-		.append('rect')
-		.attr('class', 'bar-background')
-		.attr('x', d => xScale(d as number) - backrectWidth / 2)
-		.attr('y', 0)
-		.attr('width', backrectWidth)
-		.attr('height', height)
-		.on('mousemove', d => onMouseMove(d as number))
-		.on('mouseout', () => onMouseMove(0));
 
 	timeseries.forEach((ts, index) => {
 		if (index && showArea) return;
@@ -272,13 +251,38 @@ function create(
 				.attr('fill', ts.color || 'white');
 		}
 	});
+	// Bar Backgrounds
+	chartdata
+		.selectAll('g')
+		.data(allDates)
+		.enter()
+		.append('g')
+		.attr('class', 'single-bar-' + name);
+	const bars = chartdata.selectAll('g');
+	bars
+		.data(allDates)
+		.exit()
+		.remove();
+	//const barBackground =
+	bars
+		.append('rect')
+		.attr('class', 'bar-background')
+		.attr('x', d => xScale(d as number) - backrectWidth / 2)
+		.attr('y', 0)
+		.attr('width', backrectWidth)
+		.attr('height', height)
+		.on('mousemove', d => onMouseMove(d as number))
+		.on('mouseout', () => onMouseOut());
 }
 
 interface IProps {
 	name: string;
 	timeseries: ITimeSeries[];
 	onMouseMove: (datetime: number) => void;
+	onMouseOut: () => void;
 	showArea?: boolean;
+	start?: number;
+	end?: number;
 }
 
 interface IState {
@@ -305,8 +309,18 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 	// }
 
 	public componentDidMount() {
-		const { name, timeseries, onMouseMove, showArea } = this.props;
-		create(this.chartRef.current as Element, 300, name, timeseries, onMouseMove, !!showArea);
+		const { name, timeseries, onMouseMove, onMouseOut, showArea, start, end } = this.props;
+		create(
+			this.chartRef.current as Element,
+			300,
+			name,
+			timeseries,
+			onMouseMove,
+			onMouseOut,
+			!!showArea,
+			start,
+			end
+		);
 		// window.addEventListener('resize', this.updateDimensions.bind(this));
 	}
 
@@ -315,8 +329,12 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 	// }
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		if (JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)) {
-			const { name, timeseries, onMouseMove, showArea } = nextProps;
+		if (
+			nextProps.start !== this.props.start ||
+			nextProps.end !== this.props.end ||
+			JSON.stringify(nextProps.timeseries) !== JSON.stringify(this.props.timeseries)
+		) {
+			const { name, timeseries, onMouseMove, onMouseOut, showArea, start, end } = nextProps;
 			// redraw when data is changed
 			create(
 				this.chartRef.current as Element,
@@ -324,7 +342,10 @@ export default class TimeSeriesChart extends React.Component<IProps, IState> {
 				name,
 				timeseries,
 				onMouseMove,
-				!!showArea
+				onMouseOut,
+				!!showArea,
+				start,
+				end
 			);
 		}
 		return false;

@@ -12,7 +12,7 @@ describe('ui reducer', () => {
 	test('trade', () => {
 		state = uiReducer(state, {
 			type: CST.AC_TRADE,
-			history: 'test',
+			trade: 'test',
 			assets: {ETH: 123, ClassA: 234, ClassB: 345}
 		});
 		expect(state).toMatchSnapshot();
@@ -44,6 +44,13 @@ describe('ui reducer', () => {
 	test('next', () => {
 		state = uiReducer(state, {
 			type: CST.AC_NEXT
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('forward', () => {
+		state = uiReducer(state, {
+			type: CST.AC_FWD
 		});
 		expect(state).toMatchSnapshot();
 	});

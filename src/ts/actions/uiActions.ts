@@ -32,10 +32,28 @@ export function next(): reduxTypes.IBaseAction {
 	};
 }
 
-export function trade(history: string, assets: IAssets): reduxTypes.ITradeAction {
+export function forward(): reduxTypes.IBaseAction {
+	return {
+		type: CST.AC_FWD
+	};
+}
+
+export function trade(tradeString: string, assets: IAssets): reduxTypes.ITradeAction {
 	return {
 		type: CST.AC_TRADE,
-		history,
+		trade: tradeString,
 		assets
+	};
+}
+
+export function setting(
+	couponRate: number,
+	upwardResetLimit: number,
+	downwardResetLimit: number,
+	periodicResetLimit: number
+): reduxTypes.IObjectAction {
+	return {
+		type: CST.AC_SETTING,
+		value: { couponRate, upwardResetLimit, downwardResetLimit, periodicResetLimit }
 	};
 }

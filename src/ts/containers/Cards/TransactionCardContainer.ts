@@ -8,9 +8,9 @@ function mapStateToProps(state: reduxTypes.IState) {
 	return {
 		price: state.ui.price,
 		assets: state.ui.assets,
-		history: state.ui.history,
-		resetPrice: state.ui.resetPrice,
-		beta: state.ui.beta,
+		trades: state.ui.trades,
+		resetPrice: state.ui.resetPrice[state.ui.day].value,
+		beta: state.ui.beta[state.ui.day].value,
 	};
 }
 

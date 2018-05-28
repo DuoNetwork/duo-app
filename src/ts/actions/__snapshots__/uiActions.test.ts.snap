@@ -10,6 +10,12 @@ Object {
 }
 `;
 
+exports[`actions forward 1`] = `
+Object {
+  "type": "forward",
+}
+`;
+
 exports[`actions messsage 1`] = `
 Object {
   "type": "message",
@@ -33,6 +39,18 @@ Object {
 }
 `;
 
+exports[`actions setting 1`] = `
+Object {
+  "type": "setting",
+  "value": Object {
+    "couponRate": 1,
+    "downwardResetLimit": 3,
+    "periodicResetLimit": 4,
+    "upwardResetLimit": 2,
+  },
+}
+`;
+
 exports[`actions trade 1`] = `
 Object {
   "assets": Object {
@@ -40,7 +58,7 @@ Object {
     "ClassB": 345,
     "ETH": 123,
   },
-  "history": "test",
+  "trade": "test",
   "type": "trade",
 }
 `;

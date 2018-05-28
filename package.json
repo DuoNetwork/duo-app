@@ -74,6 +74,8 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "@types/antd": "^1.0.0",
+    "antd": "^3.5.3",
     "d3": "^5.0.1",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
@@ -83,6 +85,7 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "styled-components": "^3.2.6",
     "typescript": "^2.8.1"
   }
 }

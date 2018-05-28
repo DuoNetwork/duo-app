@@ -22,7 +22,15 @@ describe('actions', () => {
 		expect(uiActions.next()).toMatchSnapshot();
 	});
 
+	test('forward', () => {
+		expect(uiActions.forward()).toMatchSnapshot();
+	});
+
 	test('trade', () => {
 		expect(uiActions.trade('test', {ETH: 123, ClassA: 234, ClassB: 345})).toMatchSnapshot();
+	});
+
+	test('setting', () => {
+		expect(uiActions.setting(1, 2, 3, 4)).toMatchSnapshot();
 	});
 });

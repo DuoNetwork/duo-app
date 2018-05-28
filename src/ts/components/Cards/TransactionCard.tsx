@@ -9,9 +9,9 @@ interface IProps {
 	assets: IAssets;
 	price: IPriceData;
 	resetPrice: number;
-	beta: number
-	history: string[];
-	trade: (history: string, assets: IAssets) => void;
+	beta: number;
+	trades: string[];
+	trade: (tradeString: string, assets: IAssets) => void;
 	message: (type: string, content: string) => void;
 }
 
@@ -33,15 +33,10 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 
 	public handleOpen = (type: string) => this.setState({ type });
 
-	public handleClose = () => this.setState({type: ''});
+	public handleClose = () => this.setState({ type: '' });
 
 	public handleBuySell = (amount: number, isA: boolean): boolean => {
-		const {
-			trade,
-			message,
-			assets,
-			price,
-		} = this.props;
+		const { trade, message, assets, price } = this.props;
 
 		const ethPx = price.ETH;
 		const navA = price.ClassA;
@@ -230,13 +225,7 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 	};
 
 	public render() {
-		const {
-			assets,
-			price,
-			resetPrice,
-			beta,
-			history
-		} = this.props;
+		const { assets, price, resetPrice, beta, trades } = this.props;
 		const { type } = this.state;
 		return (
 			<div
@@ -255,7 +244,7 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 					}}
 				>
 					<div className="history-transaction-card-wrapper">
-						<HistroyCard history={history} />
+						<HistroyCard trades={trades} />
 						<TransactionForm
 							visible={!!type}
 							type={type}
@@ -273,7 +262,10 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 						<div className="tc-buttons-wrapper">
 							<div className="tc-buttons-title">Transaction</div>
 							<div className="tc-buttons-body">
-								<button disabled={!!type} onClick={() => this.handleOpen('Creation')}>
+								<button
+									disabled={!!type}
+									onClick={() => this.handleOpen('Creation')}
+								>
 									CREATION
 								</button>
 								<button
@@ -282,10 +274,16 @@ export default class TransactionCard extends React.PureComponent<IProps, IState>
 								>
 									REDEMPTION
 								</button>
-								<button disabled={!!type} onClick={() => this.handleOpen('Class A')}>
+								<button
+									disabled={!!type}
+									onClick={() => this.handleOpen('Class A')}
+								>
 									ETH &#60; &#62; ClassA
 								</button>
-								<button disabled={!!type} onClick={() => this.handleOpen('Class B')}>
+								<button
+									disabled={!!type}
+									onClick={() => this.handleOpen('Class B')}
+								>
 									ETH &#60; &#62; ClassB
 								</button>
 							</div>

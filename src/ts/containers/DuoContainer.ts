@@ -8,21 +8,27 @@ function mapStateToProps(state: reduxTypes.IState) {
 		eth: state.ui.eth,
 		classA: state.ui.classA,
 		classB: state.ui.classB,
-		reset: state.ui.reset,
+		upward: state.ui.upward,
+		downward: state.ui.downward,
+		periodic: state.ui.periodic,
+		resetPrice: state.ui.resetPrice,
 		mv: state.ui.mv,
 		assets: state.ui.assets,
 		price: state.ui.price,
 		dayCount: state.ui.day,
-		upwardResetCount: state.ui.upward,
-		downwardResetCount: state.ui.downward,
-		periodicResetCount: state.ui.periodic
+		couponRate: state.ui.setting.couponRate,
+		upwardResetLimit: state.ui.setting.upwardResetLimit,
+		downwardResetLimit: state.ui.setting.downwardResetLimit,
+		periodicResetLimit: state.ui.setting.periodicResetLimit
 	};
 }
 
 function mapDispatchToProps(dispatch: reduxTypes.Dispatch) {
 	return {
 		refresh: () => dispatch(uiActions.refresh()),
-		next: () => dispatch(uiActions.next())
+		next: () => dispatch(uiActions.next()),
+		forward: () => dispatch(uiActions.forward()),
+		setting: (c: number, u: number, d: number, p: number) => dispatch(uiActions.setting( c, u, d, p))
 	};
 }
 
