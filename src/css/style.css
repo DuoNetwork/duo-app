@@ -684,7 +684,7 @@ body {
 }
 .name-ClassA,
 .name-ClassB {
-	width: 36px;
+	width: 42px;
 	margin-right: 2px;
 }
 .name-MV {
@@ -727,7 +727,7 @@ body {
 	position: absolute;
 	z-index: 4;
 	top: 27px;
-	left: 400px;
+	left: 425px;
 	font-size: 10px;
 	text-align: center;
 	padding: 2px 5px;
