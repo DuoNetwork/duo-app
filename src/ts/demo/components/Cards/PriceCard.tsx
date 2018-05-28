@@ -1,8 +1,8 @@
 import * as d3 from 'd3';
 import * as React from 'react';
-import classAIcon from '../../../images/ClassA_white.png';
-import classBIcon from '../../../images/ClassB_white.png';
-import ethIcon from '../../../images/ethIcon.png';
+import classAIcon from '../../../../images/ClassA_white.png';
+import classBIcon from '../../../../images/ClassB_white.png';
+import ethIcon from '../../../../images/ethIcon.png';
 import { IPriceData } from '../../common/types';
 const format = d3.timeFormat('%Y %b %d');
 

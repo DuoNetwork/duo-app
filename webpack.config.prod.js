@@ -8,7 +8,8 @@ const path = require("path");
 module.exports = {
 	mode: "production",
 	entry: {
-		app: path.resolve(__dirname, "src/ts/app.tsx"),
+		demo: path.resolve(__dirname, "src/ts/demo/app.tsx"),
+		live: path.resolve(__dirname, "src/ts/live/app.tsx"),
 	},
 	output: {
 		path: path.join(__dirname, "dist"),
@@ -22,10 +23,19 @@ module.exports = {
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({ filename: "styles.[chunkhash].css" }),
 		new HtmlWebpackPlugin({
+			excludeChunks: ['live'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
+			filename: 'demo.html'
 		}),
+		new HtmlWebpackPlugin({
+			excludeChunks: ['demo'],
+			title: "DUO",
+			template: path.resolve(__dirname, "src/index.ejs"),
+			favicon: path.join(__dirname, "src/images/favicon.ico"),
+			filename: 'live.html'
+		})
 	],
 	optimization: {
 		minimizer: [new UglifyJsPlugin({}), new OptimizeCssAssetsPlugin({})],

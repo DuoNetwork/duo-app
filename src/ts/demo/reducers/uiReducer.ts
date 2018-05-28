@@ -2,7 +2,7 @@ import calculator from '../common/calculator';
 import * as CST from '../common/constants';
 import * as reduxTypes from '../common/reduxTypes';
 import { IRawData } from '../common/types';
-const rawData: IRawData[] = require('../../static/ETH.json');
+const rawData: IRawData[] = require('../../../static/ETH.json');
 
 const [e, a, b, rp, bt, up, down, period] = calculator.getAllTimeSeriesFromEth(rawData);
 

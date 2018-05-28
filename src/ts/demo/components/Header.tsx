@@ -1,5 +1,5 @@
 import * as React from 'react';
-import duoIcon from '../../images/DUO_icon.png';
+import duoIcon from '../../../images/DUO_icon.png';
 
 export default class Header extends React.PureComponent {
 	public render() {
