@@ -1,7 +1,7 @@
 import Web3 from 'web3';
 import { Contract } from 'web3/types';
-import custodianAbi from '../../../static/Custodian.json';
-import duoAbi from '../../../static/Duo.json';
+import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
+import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
 import { ICustodianPrice, ICustodianStates } from '../common/types';
 import * as CST from './constants';
 //import util from './util';

@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "C:\\Users\\YizhouCao\\DevApps\\duo-admin"
+		},
+		{
+			"path": "C:\\Users\\YizhouCao\\DevApps\\duo-contract"
+		}
+	],
+	"settings": {
+		"vsicons.presets.angular": false,
+		"javascript.validate.enable": false
+	}
+}

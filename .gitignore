@@ -1,10 +1,14 @@
-.DS_Store
+# npm debugging logs
+*.log
+# project dependencies
 node_modules
+# OSX folder attributes
+.DS_Store
+# temporary files
+*.tmp
+*~
 dist
-yarn*
-.flowconfig
-.vscode/*
-.idea/*
-workspace.iml
-.awcache
-*.code-workspace
+prices
+coverage
+*.txt
+keys

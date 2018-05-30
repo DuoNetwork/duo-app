@@ -1,0 +1,10 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+	// The number of spaces a tab is equal to. This setting is overriden based on the file contents when `editor.detectIndentation` is on.
+	"editor.tabSize": 4,
+	// Insert spaces when pressing Tab.
+	"editor.insertSpaces": false,
+	"vsicons.presets.angular": false,
+	//"eslint.run": "onSave"
+	"javascript.validate.enable": false
+}
