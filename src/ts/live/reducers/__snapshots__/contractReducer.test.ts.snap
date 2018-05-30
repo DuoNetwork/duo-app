@@ -1,9 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ui reducer custodianPrices 1`] = `
+exports[`ui reducer balances 1`] = `
 Object {
-  "aBalance": 0,
-  "bBalance": 0,
+  "balances": Object {
+    "test": "test",
+  },
   "custodianPrices": Object {
     "last": "last",
     "reset": "reset",
@@ -11,16 +12,37 @@ Object {
   "custodianStates": Object {
     "test": "test",
   },
-  "duoAllowance": 0,
-  "duoBalance": 0,
-  "ethBalance": 0,
+}
+`;
+
+exports[`ui reducer custodianPrices 1`] = `
+Object {
+  "balances": Object {
+    "allowance": 0,
+    "duo": 0,
+    "eth": 0,
+    "tokenA": 0,
+    "tokenB": 0,
+  },
+  "custodianPrices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "custodianStates": Object {
+    "test": "test",
+  },
 }
 `;
 
 exports[`ui reducer custodianStates 1`] = `
 Object {
-  "aBalance": 0,
-  "bBalance": 0,
+  "balances": Object {
+    "allowance": 0,
+    "duo": 0,
+    "eth": 0,
+    "tokenA": 0,
+    "tokenB": 0,
+  },
   "custodianPrices": Object {
     "last": Object {
       "address": "0x0",
@@ -36,16 +58,18 @@ Object {
   "custodianStates": Object {
     "test": "test",
   },
-  "duoAllowance": 0,
-  "duoBalance": 0,
-  "ethBalance": 0,
 }
 `;
 
 exports[`ui reducer default 1`] = `
 Object {
-  "aBalance": 0,
-  "bBalance": 0,
+  "balances": Object {
+    "allowance": 0,
+    "duo": 0,
+    "eth": 0,
+    "tokenA": 0,
+    "tokenB": 0,
+  },
   "custodianPrices": Object {
     "last": Object {
       "address": "0x0",
@@ -77,8 +101,5 @@ Object {
     "totalSupplyB": 0,
     "usersLength": 0,
   },
-  "duoAllowance": 0,
-  "duoBalance": 0,
-  "ethBalance": 0,
 }
 `;

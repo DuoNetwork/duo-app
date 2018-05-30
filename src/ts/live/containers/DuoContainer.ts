@@ -6,7 +6,8 @@ function mapStateToProps(state: reduxTypes.IState) {
 	return {
 		custodianStates: state.contract.custodianStates,
 		resetPrice: state.contract.custodianPrices.reset,
-		lastPrice: state.contract.custodianPrices.last
+		lastPrice: state.contract.custodianPrices.last,
+		balances: state.contract.balances
 	};
 }
 

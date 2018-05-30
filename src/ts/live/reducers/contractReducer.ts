@@ -37,11 +37,13 @@ export const initialState: reduxTypes.IContractState = {
 		// first: { address: '0x0', price: 0, timestamp: 0 },
 		// second: { address: '0x0', price: 0, timestamp: 0 }
 	},
-	ethBalance: 0,
-	duoBalance: 0,
-	duoAllowance: 0,
-	aBalance: 0,
-	bBalance: 0
+	balances: {
+		eth: 0,
+		duo: 0,
+		allowance: 0,
+		tokenA: 0,
+		tokenB: 0
+	}
 };
 
 export function contractReducer(
@@ -51,6 +53,7 @@ export function contractReducer(
 	switch (action.type) {
 		case CST.AC_CTD_STATES:
 		case CST.AC_CTD_PRICES:
+		case CST.AC_BALANCES:
 			return Object.assign({}, state, {
 				[action.type]: (action as reduxTypes.IObjectAction).value
 			});

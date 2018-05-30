@@ -42,4 +42,20 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('balancesUpdate', () => {
+		expect(contractActions.balancesUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	});
+
+	test('getBalances', () => {
+		const store = mockStore({});
+		contractUtil.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(contractActions.getBalances() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

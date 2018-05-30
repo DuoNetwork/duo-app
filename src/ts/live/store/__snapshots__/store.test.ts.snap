@@ -3,8 +3,9 @@
 exports[`store actions 1`] = `
 Object {
   "contract": Object {
-    "aBalance": 0,
-    "bBalance": 0,
+    "balances": Object {
+      "test": "test",
+    },
     "custodianPrices": Object {
       "last": "last",
       "reset": "reset",
@@ -12,9 +13,6 @@ Object {
     "custodianStates": Object {
       "test": "test",
     },
-    "duoAllowance": 0,
-    "duoBalance": 0,
-    "ethBalance": 0,
   },
 }
 `;

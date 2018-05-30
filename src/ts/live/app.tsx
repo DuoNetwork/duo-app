@@ -8,6 +8,7 @@ import store from './store/store';
 
 store.dispatch(contractActions.getCustodianStates());
 store.dispatch(contractActions.getCustodianPrices());
+store.dispatch(contractActions.getBalances());
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import { Contract } from 'web3/types';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
-import { ICustodianPrice, ICustodianStates } from '../common/types';
+import { IBalances, ICustodianPrice, ICustodianStates } from '../common/types';
 import * as CST from './constants';
 //import util from './util';
 //const Tx = require('ethereumjs-tx');
@@ -21,7 +21,7 @@ class ContractUtil {
 		} else {
 			this.web3 = new Web3(
 				new Web3.providers.HttpProvider(
-					__DEV__ ? CST.PROVIDER_INFURA_LIVE : CST.PROVIDER_INFURA_DEV
+					__DEV__ ? CST.PROVIDER_INFURA_DEV : CST.PROVIDER_INFURA_LIVE
 				)
 			);
 			this.isReadOnly = true;
@@ -36,17 +36,17 @@ class ContractUtil {
 
 	public convertCustodianState(rawState: string) {
 		switch (rawState) {
-			case '0':
+			case CST.STATE_INCEPTION:
 				return 'Inception';
-			case '1':
+			case CST.STATE_TRADING:
 				return 'Trading';
-			case '2':
+			case CST.STATE_PRERESET:
 				return 'PreReset';
-			case '3':
+			case CST.STATE_UP_RESET:
 				return 'UpwardReset';
-			case '4':
+			case CST.STATE_DOWN_RESET:
 				return 'DownwardReset';
-			case '5':
+			case CST.STATE_PERIOD_RESET:
 				return 'PeriodicReset';
 			default:
 				return 'Unknown';
@@ -95,27 +95,46 @@ class ContractUtil {
 		}));
 	}
 
+	public async getBalances(): Promise<IBalances> {
+		const address = await this.getCurrentAddress();
+		const balances = await Promise.all([
+			this.getEthBalance(address),
+			this.getDuoBalance(address),
+			this.getDuoAllowance(address),
+			this.getTokenBalance(address, true),
+			this.getTokenBalance(address, false)
+		]);
+
+		return {
+			eth: balances[0],
+			duo: balances[1],
+			allowance: balances[2],
+			tokenA: balances[3],
+			tokenB: balances[4]
+		};
+	}
+
 	public async getGasPrice(): Promise<number> {
 		return await this.web3.eth.getGasPrice();
 	}
 
-	public async getCurrentAddress(): Promise<string> {
+	private async getCurrentAddress(): Promise<string> {
 		return (await this.web3.eth.getAccounts())[0];
 	}
 
-	public async getEthBalance(address: string): Promise<number> {
+	private async getEthBalance(address: string): Promise<number> {
 		return this.fromWei(await this.web3.eth.getBalance(address));
 	}
 
-	public async getDuoBalance(address: string): Promise<number> {
+	private async getDuoBalance(address: string): Promise<number> {
 		return this.fromWei(await this.duo.methods.balanceOf(address).call());
 	}
 
-	public async getDuoAllowance(address: string): Promise<number> {
+	private async getDuoAllowance(address: string): Promise<number> {
 		return this.fromWei(await this.duo.methods.allowance(address, CST.CUSTODIAN_ADDR).call());
 	}
 
-	public async getTokenBalance(address: string, isA: boolean): Promise<number> {
+	private async getTokenBalance(address: string, isA: boolean): Promise<number> {
 		return this.fromWei(await this.custodian.methods.balancesOf(isA ? 0 : 1, address).call());
 	}
 

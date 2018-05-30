@@ -33,3 +33,11 @@ export interface ICustodianStates {
 	usersLength: number;
 	// addrPoolLength: number;
 }
+
+export interface IBalances {
+	eth: number,
+	duo: number,
+	allowance: number,
+	tokenA: number,
+	tokenB: number
+}

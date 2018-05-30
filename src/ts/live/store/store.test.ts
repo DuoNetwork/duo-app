@@ -11,8 +11,14 @@ describe('store', () => {
 			})
 		);
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
+		contractUtil.getBalances = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
 		store.dispatch(contractActions.getCustodianStates());
 		store.dispatch(contractActions.getCustodianPrices());
+		store.dispatch(contractActions.getBalances());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

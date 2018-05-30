@@ -29,4 +29,14 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('balances', () => {
+		state = contractReducer(state, {
+			type: CST.AC_BALANCES,
+			value: {
+				test: 'test'
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
 });
