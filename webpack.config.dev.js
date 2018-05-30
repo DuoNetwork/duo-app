@@ -41,7 +41,7 @@ module.exports = {
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
-			filename: 'live.html'
+			filename: 'index.html'
 		})
 	],
 	optimization: {
