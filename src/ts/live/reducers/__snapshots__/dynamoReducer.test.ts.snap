@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui reducer default 1`] = `
+Object {
+  "status": Object {},
+}
+`;
+
+exports[`ui reducer dynamoStatus 1`] = `
+Object {
+  "status": Object {
+    "test": "test",
+  },
+}
+`;

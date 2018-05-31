@@ -2,13 +2,18 @@ import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from './typ
 
 export interface IState {
 	contract: IContractState;
+	dynamo: IDynamoState;
 }
 
 export interface IContractState {
-	custodianStates: ICustodianStates;
-	custodianPrices: ICustodianPrices;
+	states: ICustodianStates;
+	prices: ICustodianPrices;
 	balances: IBalances;
 	addresses: IAddresses;
+}
+
+export interface IDynamoState {
+	status: object;
 }
 
 export type Action = IBaseAction | IBooleanAction | IStringAction | IObjectAction | INumberAction;

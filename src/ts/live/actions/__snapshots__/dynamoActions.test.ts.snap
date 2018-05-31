@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions scanStatus 1`] = `
+Array [
+  Object {
+    "type": "dynamoStatus",
+    "value": Object {
+      "test": "test",
+    },
+  },
+]
+`;
+
+exports[`actions statusUpdate 1`] = `
+Object {
+  "type": "dynamoStatus",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;

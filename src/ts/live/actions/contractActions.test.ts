@@ -33,7 +33,12 @@ describe('actions', () => {
 
 	test('getCustodianPrices', () => {
 		const store = mockStore({});
-		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
+		contractUtil.getSystemPrices = jest.fn(() =>
+			Promise.resolve({
+				last: 'last',
+				reset: 'reset'
+			})
+		);
 		store.dispatch(contractActions.getCustodianPrices() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {

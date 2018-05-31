@@ -1,6 +1,8 @@
 //import * as CST from '../common/constants';
 import * as contractActions from '../actions/contractActions';
+import * as dynamoActions from '../actions/dynamoActions';
 import contractUtil from '../common/contractUtil';
+import dynamoUtil from '../common/dynamoUtil';
 import store from './store';
 
 describe('store', () => {
@@ -21,10 +23,16 @@ describe('store', () => {
 				test: 'test'
 			})
 		);
+		dynamoUtil.scanStatus = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
 		store.dispatch(contractActions.getCustodianStates());
 		store.dispatch(contractActions.getCustodianPrices());
 		store.dispatch(contractActions.getBalances());
 		store.dispatch(contractActions.getAddresses());
+		store.dispatch(dynamoActions.scanStatus());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

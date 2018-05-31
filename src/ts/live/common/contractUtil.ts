@@ -155,7 +155,7 @@ class ContractUtil {
 	}
 
 	private async getTokenBalance(address: string, isA: boolean): Promise<number> {
-		return this.fromWei(await this.custodian.methods.balancesOf(isA ? 0 : 1, address).call());
+		return this.fromWei(await this.custodian.methods.balanceOf(isA ? 0 : 1, address).call());
 	}
 
 	public fromWei(value: string | number) {

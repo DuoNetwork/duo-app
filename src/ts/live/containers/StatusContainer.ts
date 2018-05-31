@@ -4,7 +4,8 @@ import Status from '../components/Status';
 
 function mapStateToProps(state: reduxTypes.IState) {
 	return {
-		addresses: state.contract.addresses
+		addresses: state.contract.addresses,
+		status: state.dynamo.status
 	};
 }
 

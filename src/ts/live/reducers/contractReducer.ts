@@ -2,7 +2,7 @@ import * as CST from '../common/constants';
 import * as reduxTypes from '../common/reduxTypes';
 
 export const initialState: reduxTypes.IContractState = {
-	custodianStates: {
+	states: {
 		state: 'Unknown',
 		navA: 0,
 		navB: 0,
@@ -31,7 +31,7 @@ export const initialState: reduxTypes.IContractState = {
 		usersLength: 0,
 		addrPoolLength: 0
 	},
-	custodianPrices: {
+	prices: {
 		first: { address: '0x0', price: 0, timestamp: 0 },
 		second: { address: '0x0', price: 0, timestamp: 0 },
 		reset: { address: '0x0', price: 0, timestamp: 0 },
@@ -60,7 +60,13 @@ export function contractReducer(
 ): reduxTypes.IContractState {
 	switch (action.type) {
 		case CST.AC_CTD_STATES:
+			return Object.assign({}, state, {
+				states: (action as reduxTypes.IObjectAction).value
+			});
 		case CST.AC_CTD_PRICES:
+			return Object.assign({}, state, {
+				prices: (action as reduxTypes.IObjectAction).value
+			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
 			return Object.assign({}, state, {
