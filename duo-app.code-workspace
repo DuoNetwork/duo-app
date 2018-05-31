@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "..\\duo-contract"
+		},
+		{
+			"path": "..\\duo-test"
 		}
 	],
 	"settings": {
