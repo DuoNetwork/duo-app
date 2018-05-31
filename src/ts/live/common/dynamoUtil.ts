@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk';
-import devConfig from '../../../keys/aws.ui.dev.json';
-import liveConfig from '../../../keys/aws.ui.live.json';
+import devConfig from '../../../static/keys/aws.ui.dev.json';
+import liveConfig from '../../../static/keys/aws.ui.live.json';
 import * as CST from './constants';
 
 export class DynamoUtil {
