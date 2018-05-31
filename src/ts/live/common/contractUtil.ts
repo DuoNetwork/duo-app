@@ -2,7 +2,7 @@ import Web3 from 'web3';
 import { Contract } from 'web3/types';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
-import { IBalances, ICustodianPrice, ICustodianStates } from '../common/types';
+import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import * as CST from './constants';
 //import util from './util';
 //const Tx = require('ethereumjs-tx');
@@ -63,36 +63,56 @@ class ContractUtil {
 			totalSupplyB: this.fromWei(states[4]),
 			alpha: states[5].valueOf() / 10000,
 			beta: this.fromWei(states[6]),
-			// feeAccumulated: this.fromWei(states[7]),
+			feeAccumulated: this.fromWei(states[7]),
 			periodCoupon: this.fromWei(states[8]),
 			limitPeriodic: this.fromWei(states[9]),
 			limitUpper: this.fromWei(states[10]),
 			limitLower: this.fromWei(states[11]),
 			commissionRate: states[12] / 10000,
 			period: states[13].valueOf(),
-			// iterationGasThreshold: states[14].valueOf(),
+			iterationGasThreshold: states[14].valueOf(),
 			ethDuoFeeRatio: states[15].valueOf(),
 			preResetWaitingBlocks: states[16].valueOf(),
-			// priceTol: states[17].valueOf() / 10000,
-			// priceFeedTol: states[18].valueOf() / 10000,
-			// priceFeedTimeTol: states[19].valueOf(),
-			// priceUpdateCoolDown: states[20].valueOf(),
-			// numOfPrices: states[21].valueOf(),
+			priceTol: states[17].valueOf() / 10000,
+			priceFeedTol: states[18].valueOf() / 10000,
+			priceFeedTimeTol: states[19].valueOf(),
+			priceUpdateCoolDown: states[20].valueOf(),
+			numOfPrices: states[21].valueOf(),
 			nextResetAddrIndex: states[22].valueOf(),
-			// lastAdminTime: states[23].valueOf(),
-			// adminCoolDown: states[24],
-			usersLength: states[25].valueOf()
-			// addrPoolLength: states[26].valueOf()
+			lastAdminTime: states[23].valueOf(),
+			adminCoolDown: states[24],
+			usersLength: states[25].valueOf(),
+			addrPoolLength: states[26].valueOf()
 		};
 	}
 
-	public async getSystemPrices(): Promise<ICustodianPrice[]> {
+	public async getSystemAddresses(): Promise<IAddresses> {
+		console.log('getSystemAddresses');
+		const addr = await this.custodian.methods.getSystemAddresses().call();
+		return {
+			admin: addr[0],
+			feeCollector: addr[1],
+			priceFeed1: addr[2],
+			priceFeed2: addr[3],
+			priceFeed3: addr[4],
+			poolManager: addr[5]
+		};
+	}
+
+	public async getSystemPrices(): Promise<ICustodianPrices> {
 		const prices = await this.custodian.methods.getSystemPrices().call();
-		return [0, 1].map(i => ({
-			address: prices[6 + i * 3].valueOf(),
-			price: this.fromWei(prices[7 + i * 3]),
-			timestamp: prices[8 + i * 3].valueOf()
+		const custodianPrices =  [0, 1, 2, 3].map(i => ({
+			address: prices[i * 3].valueOf(),
+			price: this.fromWei(prices[1 + i * 3]),
+			timestamp: prices[2 + i * 3].valueOf()
 		}));
+
+		return {
+			first: custodianPrices[0],
+			second: custodianPrices[1],
+			reset: custodianPrices[2],
+			last: custodianPrices[3]
+		};
 	}
 
 	public async getBalances(): Promise<IBalances> {

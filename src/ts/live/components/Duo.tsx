@@ -1,21 +1,19 @@
 import * as React from 'react';
-import { IBalances, ICustodianPrice, ICustodianStates } from '../common/types';
+import { IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 
 interface IProps {
 	custodianStates: ICustodianStates;
-	resetPrice: ICustodianPrice;
-	lastPrice: ICustodianPrice;
+	custodianPrices: ICustodianPrices;
 	balances: IBalances;
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { custodianStates, resetPrice, lastPrice, balances } = this.props;
+		const { custodianStates, custodianPrices, balances } = this.props;
 		return (
 			<div>
 				<pre>{JSON.stringify(custodianStates, null, 4)}</pre>
-				<pre>{JSON.stringify(resetPrice, null, 4)}</pre>
-				<pre>{JSON.stringify(lastPrice, null, 4)}</pre>
+				<pre>{JSON.stringify(custodianPrices, null, 4)}</pre>
 				<pre>{JSON.stringify(balances, null, 4)}</pre>
 			</div>
 		);

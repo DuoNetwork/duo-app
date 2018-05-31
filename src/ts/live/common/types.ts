@@ -12,32 +12,48 @@ export interface ICustodianStates {
 	totalSupplyB: number;
 	alpha: number;
 	beta: number;
-	// feeAccumulated: number;
+	feeAccumulated: number;
 	periodCoupon: number;
 	limitPeriodic: number;
 	limitUpper: number;
 	limitLower: number;
 	commissionRate: number;
 	period: number;
-	// iterationGasThreshold: number;
+	iterationGasThreshold: number;
 	ethDuoFeeRatio: number;
 	preResetWaitingBlocks: number;
-	// priceTol: number;
-	// priceFeedTol: number;
-	// priceFeedTimeTol: number;
-	// priceUpdateCoolDown: number;
-	// numOfPrices: number;
+	priceTol: number;
+	priceFeedTol: number;
+	priceFeedTimeTol: number;
+	priceUpdateCoolDown: number;
+	numOfPrices: number;
 	nextResetAddrIndex: number;
-	// lastAdminTime: number;
-	// adminCoolDown: number;
+	lastAdminTime: number;
+	adminCoolDown: number;
 	usersLength: number;
-	// addrPoolLength: number;
+	addrPoolLength: number;
+}
+
+export interface ICustodianPrices {
+	first: ICustodianPrice;
+	second: ICustodianPrice;
+	reset: ICustodianPrice;
+	last: ICustodianPrice;
 }
 
 export interface IBalances {
-	eth: number,
-	duo: number,
-	allowance: number,
-	tokenA: number,
-	tokenB: number
+	eth: number;
+	duo: number;
+	allowance: number;
+	tokenA: number;
+	tokenB: number;
+}
+
+export interface IAddresses {
+	admin: string;
+	feeCollector: string;
+	priceFeed1: string;
+	priceFeed2: string;
+	priceFeed3: string;
+	poolManager: string;
 }

@@ -58,4 +58,20 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('addressesUpdate', () => {
+		expect(contractActions.addressesUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	});
+
+	test('getAddresses', () => {
+		const store = mockStore({});
+		contractUtil.getSystemAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(contractActions.getAddresses() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

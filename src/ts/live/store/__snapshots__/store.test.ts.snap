@@ -3,6 +3,17 @@
 exports[`store actions 1`] = `
 Object {
   "contract": Object {
+    "address": Object {
+      "admin": "0x0",
+      "feeCollector": "0x0",
+      "poolManager": "0x0",
+      "priceFeed1": "0x0",
+      "priceFeed2": "0x0",
+      "priceFeed3": "0x0",
+    },
+    "addresses": Object {
+      "test": "test",
+    },
     "balances": Object {
       "test": "test",
     },

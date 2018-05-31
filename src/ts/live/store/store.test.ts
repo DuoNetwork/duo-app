@@ -16,9 +16,15 @@ describe('store', () => {
 				test: 'test'
 			})
 		);
+		contractUtil.getSystemAddresses = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
 		store.dispatch(contractActions.getCustodianStates());
 		store.dispatch(contractActions.getCustodianPrices());
 		store.dispatch(contractActions.getBalances());
+		store.dispatch(contractActions.getAddresses());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

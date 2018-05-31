@@ -1,7 +1,7 @@
 import * as CST from '../common/constants';
 import contractUtil from '../common/contractUtil';
 import * as reduxTypes from '../common/reduxTypes';
-import { IBalances, ICustodianPrice, ICustodianStates } from '../common/types';
+import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 
 export function custodianStatesUpdate(states: ICustodianStates): reduxTypes.Action {
 	return {
@@ -17,9 +17,7 @@ export function getCustodianStates(): reduxTypes.ThunkAction {
 	};
 }
 
-export function custodianPricesUpdate(prices: {
-	[name: string]: ICustodianPrice;
-}): reduxTypes.Action {
+export function custodianPricesUpdate(prices: ICustodianPrices): reduxTypes.Action {
 	return {
 		type: CST.AC_CTD_PRICES,
 		value: prices
@@ -27,15 +25,7 @@ export function custodianPricesUpdate(prices: {
 }
 
 export function getCustodianPrices(): reduxTypes.ThunkAction {
-	return async dispatch => {
-		const prices = await contractUtil.getSystemPrices();
-		dispatch(
-			custodianPricesUpdate({
-				reset: prices[0],
-				last: prices[1]
-			})
-		);
-	};
+	return async dispatch => dispatch(custodianPricesUpdate(await contractUtil.getSystemPrices()));
 }
 
 export function balancesUpdate(balance: IBalances): reduxTypes.Action {
@@ -46,8 +36,16 @@ export function balancesUpdate(balance: IBalances): reduxTypes.Action {
 }
 
 export function getBalances(): reduxTypes.ThunkAction {
-	return async dispatch => {
-		const balances = await contractUtil.getBalances();
-		dispatch(balancesUpdate(balances));
+	return async dispatch => dispatch(balancesUpdate(await contractUtil.getBalances()));
+}
+
+export function addressesUpdate(addr: IAddresses): reduxTypes.Action {
+	return {
+		type: CST.AC_ADDRESSES,
+		value: addr
 	};
+}
+
+export function getAddresses(): reduxTypes.ThunkAction {
+	return async dispatch => dispatch(addressesUpdate(await contractUtil.getSystemAddresses()));
 }

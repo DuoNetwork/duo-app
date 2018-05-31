@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`actions addressesUpdate 1`] = `
+Object {
+  "type": "addresses",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
 exports[`actions balancesUpdate 1`] = `
 Object {
   "type": "balances",
@@ -25,6 +34,17 @@ Object {
     "test": "test",
   },
 }
+`;
+
+exports[`actions getAddresses 1`] = `
+Array [
+  Object {
+    "type": "addresses",
+    "value": Object {
+      "test": "test",
+    },
+  },
+]
 `;
 
 exports[`actions getBalances 1`] = `

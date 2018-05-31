@@ -1,7 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ui reducer addresses 1`] = `
+Object {
+  "address": Object {
+    "admin": "0x0",
+    "feeCollector": "0x0",
+    "poolManager": "0x0",
+    "priceFeed1": "0x0",
+    "priceFeed2": "0x0",
+    "priceFeed3": "0x0",
+  },
+  "addresses": Object {
+    "test": "test",
+  },
+  "balances": Object {
+    "test": "test",
+  },
+  "custodianPrices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "custodianStates": Object {
+    "test": "test",
+  },
+}
+`;
+
 exports[`ui reducer balances 1`] = `
 Object {
+  "address": Object {
+    "admin": "0x0",
+    "feeCollector": "0x0",
+    "poolManager": "0x0",
+    "priceFeed1": "0x0",
+    "priceFeed2": "0x0",
+    "priceFeed3": "0x0",
+  },
   "balances": Object {
     "test": "test",
   },
@@ -17,6 +51,14 @@ Object {
 
 exports[`ui reducer custodianPrices 1`] = `
 Object {
+  "address": Object {
+    "admin": "0x0",
+    "feeCollector": "0x0",
+    "poolManager": "0x0",
+    "priceFeed1": "0x0",
+    "priceFeed2": "0x0",
+    "priceFeed3": "0x0",
+  },
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -36,6 +78,14 @@ Object {
 
 exports[`ui reducer custodianStates 1`] = `
 Object {
+  "address": Object {
+    "admin": "0x0",
+    "feeCollector": "0x0",
+    "poolManager": "0x0",
+    "priceFeed1": "0x0",
+    "priceFeed2": "0x0",
+    "priceFeed3": "0x0",
+  },
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -63,6 +113,14 @@ Object {
 
 exports[`ui reducer default 1`] = `
 Object {
+  "address": Object {
+    "admin": "0x0",
+    "feeCollector": "0x0",
+    "poolManager": "0x0",
+    "priceFeed1": "0x0",
+    "priceFeed2": "0x0",
+    "priceFeed3": "0x0",
+  },
   "balances": Object {
     "allowance": 0,
     "duo": 0,
