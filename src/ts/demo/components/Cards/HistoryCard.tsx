@@ -22,7 +22,7 @@ export default class HistoryCard extends React.Component<IProps, IStates> {
 	}
 
 	private group(historyList: string[]): string[][] {
-		let groupedHistory: string[][] = [];
+		const groupedHistory: string[][] = [];
 		if (historyList.length)
 			for (let i = 0; i <= Math.floor(historyList.length / 10); i++) {
 				groupedHistory[i] = [];

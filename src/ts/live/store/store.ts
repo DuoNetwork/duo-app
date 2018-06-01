@@ -3,7 +3,7 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducers from '../reducers';
 
-let middleWares: any[] = [thunk];
+const middleWares: any[] = [thunk];
 if (__DEV__) middleWares.push(createLogger());
 
 const store = createStore(reducers, {}, applyMiddleware(...middleWares));

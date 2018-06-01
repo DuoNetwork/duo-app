@@ -112,10 +112,10 @@ class Calculator {
 		periodCount: number,
 		coupon: number
 	) {
-		let navParent = price / resetPrice / beta * (1 + alpha);
+		const navParent = price / resetPrice / beta * (1 + alpha);
 
-		let navA = 1 + periodCount * coupon;
-		let navAAdj = navA * alpha;
+		const navA = 1 + periodCount * coupon;
+		const navAAdj = navA * alpha;
 		if (navParent <= navAAdj) return [navParent / alpha, 0];
 		else return [navA, navParent - navAAdj];
 	}
@@ -252,7 +252,7 @@ class Calculator {
 			: endDatetime;
 		const nextResetDate = Math.min(nextUpward, nextDownward, nextPeriodic);
 		let curDate = day + 1;
-		let newMV = [...mv];
+		const newMV = [...mv];
 		let newDatetime = eth[curDate].datetime;
 		if (newDatetime === nextResetDate) return this.calculateNextDayState(state);
 
