@@ -45,3 +45,31 @@ export function fetchHourly(): reduxTypes.ThunkAction {
 		dispatch(hourlyUpdate(hourly));
 	};
 }
+
+export function minutelyUpdate(minutely: IPriceBars): reduxTypes.Action {
+	return {
+		type: CST.AC_DMN_MINUTELY,
+		value: minutely
+	};
+}
+
+export function fetchMinutely(): reduxTypes.ThunkAction {
+	return async dispatch => {
+		const dates: string[] = [];
+		const date = moment.utc();
+		for (let i = 0; i < 2; i++) {
+			dates.push(date.format('YYYY-MM-DD-HH'))
+			date.subtract(1, 'hour');
+		}
+		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
+		const results = await Promise.all(promistList);
+		const minutely: IPriceBars = {
+			bitfinex: [],
+			gemini: [],
+			kraken: [],
+			gdax: []
+		};
+		results.forEach((r, i) => (minutely[CST.EXCHANGES[i].toLowerCase()] = r));
+		dispatch(minutelyUpdate(minutely));
+	};
+}

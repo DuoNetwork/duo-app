@@ -8,6 +8,12 @@ Object {
     "gemini": Array [],
     "kraken": Array [],
   },
+  "minutely": Object {
+    "bitfinex": Array [],
+    "gdax": Array [],
+    "gemini": Array [],
+    "kraken": Array [],
+  },
   "status": Array [],
 }
 `;
@@ -15,6 +21,26 @@ Object {
 exports[`ui reducer dynamoHourly 1`] = `
 Object {
   "hourly": Object {
+    "test": "test",
+  },
+  "minutely": Object {
+    "bitfinex": Array [],
+    "gdax": Array [],
+    "gemini": Array [],
+    "kraken": Array [],
+  },
+  "status": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`ui reducer dynamoMinutely 1`] = `
+Object {
+  "hourly": Object {
+    "test": "test",
+  },
+  "minutely": Object {
     "test": "test",
   },
   "status": Object {
@@ -26,6 +52,12 @@ Object {
 exports[`ui reducer dynamoStatus 1`] = `
 Object {
   "hourly": Object {
+    "bitfinex": Array [],
+    "gdax": Array [],
+    "gemini": Array [],
+    "kraken": Array [],
+  },
+  "minutely": Object {
     "bitfinex": Array [],
     "gdax": Array [],
     "gemini": Array [],

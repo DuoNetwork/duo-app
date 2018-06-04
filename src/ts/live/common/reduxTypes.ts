@@ -16,6 +16,7 @@ export interface IContractState {
 export interface IDynamoState {
 	status: IStatus[];
 	hourly: IPriceBars;
+	minutely: IPriceBars;
 }
 
 export interface IUIState {

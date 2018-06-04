@@ -28,4 +28,14 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('dynamoMinutely', () => {
+		state = dynamoReducer(state, {
+			type: CST.AC_DMN_MINUTELY,
+			value: {
+				test: 'test'
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
 });

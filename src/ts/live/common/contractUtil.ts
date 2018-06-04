@@ -101,7 +101,7 @@ class ContractUtil {
 
 	public async getSystemPrices(): Promise<ICustodianPrices> {
 		const prices = await this.custodian.methods.getSystemPrices().call();
-		const custodianPrices =  [0, 1, 2, 3].map(i => ({
+		const custodianPrices = [0, 1, 2, 3].map(i => ({
 			address: prices[i * 3].valueOf(),
 			price: this.fromWei(prices[1 + i * 3]),
 			timestamp: prices[2 + i * 3].valueOf()
@@ -117,6 +117,15 @@ class ContractUtil {
 
 	public async getBalances(): Promise<IBalances> {
 		const address = await this.getCurrentAddress();
+		if (!address)
+			return {
+				eth: 0,
+				duo: 0,
+				allowance: 0,
+				tokenA: 0,
+				tokenB: 0
+			};
+
 		const balances = await Promise.all([
 			this.getEthBalance(address),
 			this.getDuoBalance(address),

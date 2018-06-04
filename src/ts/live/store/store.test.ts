@@ -35,6 +35,11 @@ describe('store', () => {
 				test: 'test'
 			})
 		);
+		dynamoUtil.queryMinutelyOHLC = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
 		util.getNowTimestamp = jest.fn(() => 1234567890);
 		store.dispatch(contractActions.getAddresses());
 		store.dispatch(dynamoActions.scanStatus());

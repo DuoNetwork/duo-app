@@ -32,6 +32,20 @@ Object {
         "test": "test",
       },
     },
+    "minutely": Object {
+      "bitfinex": Object {
+        "test": "test",
+      },
+      "gdax": Object {
+        "test": "test",
+      },
+      "gemini": Object {
+        "test": "test",
+      },
+      "kraken": Object {
+        "test": "test",
+      },
+    },
     "status": Object {
       "test": "test",
     },

@@ -26,18 +26,58 @@ export class DynamoUtil {
 	}
 
 	public async queryHourlyOHLC(source: string, dates: string[]) {
-		const promiseList = dates.map(date => this.queryData({
+		const promiseList = dates.map(date =>
+			this.queryData({
 				TableName: __DEV__ ? CST.DB_AWS_HOURLY_DEV : CST.DB_AWS_HOURLY_LIVE,
 				KeyConditionExpression: CST.DB_HR_SRC_DATE + ' = :' + CST.DB_HR_SRC_DATE,
 				ExpressionAttributeValues: {
 					[':' + CST.DB_HR_SRC_DATE]: { S: source + '|' + date }
 				}
-			}));
+			})
+		);
 
 		const allData: IPriceBar[] = [];
 		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertHourly(r)));
 		allData.sort((a, b) => a.timestamp - b.timestamp);
 		return allData;
+	}
+
+	public async queryMinutelyOHLC(source: string, datetimes: string[]) {
+		const promiseList = datetimes.map(datetime =>
+			this.queryData({
+				TableName: __DEV__ ? CST.DB_AWS_MINUTELY_DEV : CST.DB_AWS_MINUTELY_LIVE,
+				KeyConditionExpression: CST.DB_MN_SRC_DATE_HOUR + ' = :' + CST.DB_MN_SRC_DATE_HOUR,
+				ExpressionAttributeValues: {
+					[':' + CST.DB_MN_SRC_DATE_HOUR]: { S: source + '|' + datetime }
+				}
+			})
+		);
+
+		const allData: IPriceBar[] = [];
+		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertMinutely(r)));
+		allData.sort((a, b) => a.timestamp - b.timestamp);
+		return allData;
+	}
+
+	private convertOHLC(
+		source: string,
+		date: string,
+		hour: string,
+		minite: number,
+		ohlc: object
+	): IPriceBar {
+		return {
+			source: source,
+			date: date,
+			hour: hour,
+			minute: minite,
+			open: Number(ohlc[CST.DB_OHLC_OPEN].N),
+			high: Number(ohlc[CST.DB_OHLC_HIGH].N),
+			low: Number(ohlc[CST.DB_OHLC_LOW].N),
+			close: Number(ohlc[CST.DB_OHLC_CLOSE].N),
+			volume: Number(ohlc[CST.DB_OHLC_VOLUME].N),
+			timestamp: Number(ohlc[CST.DB_OHLC_TS].N)
+		};
 	}
 
 	public convertHourly(hourly: QueryOutput): IPriceBar[] {
@@ -46,19 +86,23 @@ export class DynamoUtil {
 		const [source, date] = sourceDate.split('|');
 		return hourly.Items.map(h => {
 			const hour = h[CST.DB_HR_HOUR].N || '';
-			return {
-				source: source,
-				date: date,
-				hour: hour.length < 2 ? '0' + hour : hour,
-				minute: 0,
-				open: Number(h[CST.DB_OHLC_OPEN].N),
-				high: Number(h[CST.DB_OHLC_HIGH].N),
-				low: Number(h[CST.DB_OHLC_LOW].N),
-				close: Number(h[CST.DB_OHLC_CLOSE].N),
-				volume: Number(h[CST.DB_OHLC_VOLUME].N),
-				timestamp: Number(h[CST.DB_OHLC_TS].N)
-			};
+			return this.convertOHLC(source, date, hour.length < 2 ? '0' + hour : hour, 0, h);
 		});
+	}
+
+	public convertMinutely(minutely: QueryOutput): IPriceBar[] {
+		if (!minutely.Items || !minutely.Items.length) return [];
+		const sourceDatetime = minutely.Items[0][CST.DB_MN_SRC_DATE_HOUR].S || '';
+		const [source, datetime] = sourceDatetime.split('|');
+		return minutely.Items.map(m =>
+			this.convertOHLC(
+				source,
+				datetime.substring(0, 10),
+				datetime.substring(11, 13),
+				Number(m[CST.DB_MN_MINUTE].N),
+				m
+			)
+		);
 	}
 
 	public async scanStatus() {

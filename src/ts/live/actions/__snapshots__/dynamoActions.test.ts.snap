@@ -1,26 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`actions hourlyUpdate 1`] = `
-Object {
-  "type": "dynamoHourly",
-  "value": Object {
-    "test": "test",
-  },
-}
-`;
-
-exports[`actions scanStatus 1`] = `
-Array [
-  Object {
-    "type": "dynamoStatus",
-    "value": Object {
-      "test": "test",
-    },
-  },
-]
-`;
-
-exports[`actions scanStatus 2`] = `
+exports[`actions fetchHourly 1`] = `
 Array [
   Object {
     "type": "dynamoHourly",
@@ -37,6 +17,57 @@ Array [
       "kraken": Object {
         "test": "test",
       },
+    },
+  },
+]
+`;
+
+exports[`actions fetchMinutely 1`] = `
+Array [
+  Object {
+    "type": "dynamoMinutely",
+    "value": Object {
+      "bitfinex": Object {
+        "test": "test",
+      },
+      "gdax": Object {
+        "test": "test",
+      },
+      "gemini": Object {
+        "test": "test",
+      },
+      "kraken": Object {
+        "test": "test",
+      },
+    },
+  },
+]
+`;
+
+exports[`actions hourlyUpdate 1`] = `
+Object {
+  "type": "dynamoHourly",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`actions minutelyUpdate 1`] = `
+Object {
+  "type": "dynamoMinutely",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`actions scanStatus 1`] = `
+Array [
+  Object {
+    "type": "dynamoStatus",
+    "value": Object {
+      "test": "test",
     },
   },
 ]

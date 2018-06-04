@@ -31,7 +31,7 @@ describe('actions', () => {
 		expect(dynamoActions.hourlyUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
 
-	test('scanStatus', () => {
+	test('fetchHourly', () => {
 		const store = mockStore({});
 		dynamoUtil.queryHourlyOHLC = jest.fn(() =>
 			Promise.resolve({
@@ -39,6 +39,26 @@ describe('actions', () => {
 			})
 		);
 		store.dispatch(dynamoActions.fetchHourly() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
+
+	test('minutelyUpdate', () => {
+		expect(dynamoActions.minutelyUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	});
+
+	test('fetchMinutely', () => {
+		const store = mockStore({});
+		dynamoUtil.queryMinutelyOHLC = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
+		store.dispatch(dynamoActions.fetchMinutely() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

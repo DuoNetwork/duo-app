@@ -17,6 +17,23 @@ Array [
 ]
 `;
 
+exports[`convertMinutely 1`] = `
+Array [
+  Object {
+    "close": 582.89,
+    "date": "2018-06-01",
+    "high": 582.89,
+    "hour": "07",
+    "low": 582.88,
+    "minute": 53,
+    "open": 582.88,
+    "source": "GDAX",
+    "timestamp": 1527839720962,
+    "volume": 12.117600000000001,
+  },
+]
+`;
+
 exports[`convertStatus 1`] = `
 Array [
   Object {

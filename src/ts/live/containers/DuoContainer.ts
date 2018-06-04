@@ -8,7 +8,8 @@ function mapStateToProps(state: reduxTypes.IState) {
 		states: state.contract.states,
 		prices: state.contract.prices,
 		balances: state.contract.balances,
-		hourly: state.dynamo.hourly
+		hourly: state.dynamo.hourly,
+		minutely: state.dynamo.minutely
 	};
 }
 

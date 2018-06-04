@@ -8,11 +8,12 @@ interface IProps {
 	prices: ICustodianPrices;
 	balances: IBalances;
 	hourly: IPriceBars;
+	minutely: IPriceBars;
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { refresh, states, prices, balances, hourly } = this.props;
+		const { refresh, states, prices, balances, hourly, minutely } = this.props;
 		return (
 			<div>
 				<div>{'Updated at ' + moment(refresh).format()}</div>
@@ -20,6 +21,7 @@ export default class Duo extends React.PureComponent<IProps> {
 				<pre>{JSON.stringify(prices, null, 4)}</pre>
 				<pre>{JSON.stringify(balances, null, 4)}</pre>
 				<pre>{JSON.stringify(hourly, null, 4)}</pre>
+				<pre>{JSON.stringify(minutely, null, 4)}</pre>
 			</div>
 		);
 	}

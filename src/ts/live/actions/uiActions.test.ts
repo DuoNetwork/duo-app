@@ -36,6 +36,11 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
+		dynamoUtil.queryMinutelyOHLC = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
 		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
