@@ -1,7 +1,9 @@
+import moment from 'moment';
 import * as React from 'react';
 import { IBalances, ICustodianPrices, ICustodianStates, IPriceBars } from '../common/types';
 
 interface IProps {
+	refresh: number;
 	states: ICustodianStates;
 	prices: ICustodianPrices;
 	balances: IBalances;
@@ -10,9 +12,10 @@ interface IProps {
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { states, prices, balances, hourly } = this.props;
+		const { refresh, states, prices, balances, hourly } = this.props;
 		return (
 			<div>
+				<div>{'Updated at ' + moment(refresh).format()}</div>
 				<pre>{JSON.stringify(states, null, 4)}</pre>
 				<pre>{JSON.stringify(prices, null, 4)}</pre>
 				<pre>{JSON.stringify(balances, null, 4)}</pre>

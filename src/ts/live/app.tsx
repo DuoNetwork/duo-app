@@ -2,15 +2,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 //import contractUtil from './common/contractUtil';
-import * as contractActions from './actions/contractActions';
-import * as dynamoActions from './actions/dynamoActions';
+import * as uiActions from './actions/uiActions';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
 
-store.dispatch(contractActions.getCustodianStates());
-store.dispatch(contractActions.getCustodianPrices());
-store.dispatch(contractActions.getBalances());
-store.dispatch(dynamoActions.fetchHourly());
+store.dispatch(uiActions.refresh());
+setInterval(() => store.dispatch(uiActions.refresh()), 60000);
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -3,6 +3,7 @@ import { IAddresses, IBalances, ICustodianPrices, ICustodianStates, IPriceBars, 
 export interface IState {
 	contract: IContractState;
 	dynamo: IDynamoState;
+	ui: IUIState;
 }
 
 export interface IContractState {
@@ -15,6 +16,10 @@ export interface IContractState {
 export interface IDynamoState {
 	status: IStatus[];
 	hourly: IPriceBars;
+}
+
+export interface IUIState {
+	refresh: number;
 }
 
 export type Action = IBaseAction | IBooleanAction | IStringAction | IObjectAction | INumberAction;

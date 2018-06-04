@@ -1,14 +1,15 @@
+import configureMockStore from 'redux-mock-store';
+import thunk from 'redux-thunk';
 //import * as CST from '../common/constants';
-import * as contractActions from '../actions/contractActions';
-import * as dynamoActions from '../actions/dynamoActions';
-import * as uiActions from '../actions/uiActions';
 import contractUtil from '../common/contractUtil';
 import dynamoUtil from '../common/dynamoUtil';
-import util from '../common/util';
-import store from './store';
+import * as uiActions from './uiActions';
 
-describe('store', () => {
-	test('actions', () => {
+const mockStore = configureMockStore([thunk]);
+
+describe('actions', () => {
+	test('refresh', () => {
+		const store = mockStore({});
 		contractUtil.getSystemStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
@@ -35,13 +36,10 @@ describe('store', () => {
 				test: 'test'
 			})
 		);
-		util.getNowTimestamp = jest.fn(() => 1234567890);
-		store.dispatch(contractActions.getAddresses());
-		store.dispatch(dynamoActions.scanStatus());
-		store.dispatch(uiActions.refresh());
+		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
-				expect(store.getState()).toMatchSnapshot();
+				expect(store.getActions()).toMatchSnapshot();
 				resolve();
 			}, 1000)
 		);

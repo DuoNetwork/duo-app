@@ -1,24 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`store actions 1`] = `
-Object {
-  "contract": Object {
-    "addresses": Object {
-      "test": "test",
-    },
-    "balances": Object {
-      "test": "test",
-    },
-    "prices": Array [
-      "reset",
-      "last",
-    ],
-    "states": Object {
+exports[`actions refresh 1`] = `
+Array [
+  Object {
+    "type": "refresh",
+  },
+  Object {
+    "type": "custodianStates",
+    "value": Object {
       "test": "test",
     },
   },
-  "dynamo": Object {
-    "hourly": Object {
+  Object {
+    "type": "custodianPrices",
+    "value": Array [
+      "reset",
+      "last",
+    ],
+  },
+  Object {
+    "type": "balances",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "dynamoHourly",
+    "value": Object {
       "bitfinex": Object {
         "test": "test",
       },
@@ -32,12 +40,6 @@ Object {
         "test": "test",
       },
     },
-    "status": Object {
-      "test": "test",
-    },
   },
-  "ui": Object {
-    "refresh": 1234567890,
-  },
-}
+]
 `;

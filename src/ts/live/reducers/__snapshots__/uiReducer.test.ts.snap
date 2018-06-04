@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui reducer default 1`] = `
+Object {
+  "refresh": 0,
+}
+`;
+
+exports[`ui reducer refresh 1`] = `
+Object {
+  "refresh": 1234567890,
+}
+`;
