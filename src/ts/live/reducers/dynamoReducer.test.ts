@@ -18,4 +18,14 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('dynamoHourly', () => {
+		state = dynamoReducer(state, {
+			type: CST.AC_DMN_HOURLY,
+			value: {
+				test: 'test'
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
 });

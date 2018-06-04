@@ -1,3 +1,5 @@
+import * as adminTypes from '../../../../../duo-admin/src/types';
+
 export interface ICustodianPrice {
 	address: string;
 	price: number;
@@ -66,4 +68,13 @@ export interface IStatus {
 export interface IPriceStatus extends IStatus {
 	price: number;
 	volume: number;
+}
+
+export import IPriceBar = adminTypes.IPriceBar;
+
+export interface IPriceBars {
+	bitfinex: IPriceBar[];
+	gemini: IPriceBar[];
+	kraken: IPriceBar[];
+	gdax: IPriceBar[];
 }

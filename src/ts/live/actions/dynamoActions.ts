@@ -1,6 +1,8 @@
+import moment from 'moment';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
 import * as reduxTypes from '../common/reduxTypes';
+import { IPriceBars } from '../common/types';
 
 export function statusUpdate(status: object): reduxTypes.Action {
 	return {
@@ -13,5 +15,33 @@ export function scanStatus(): reduxTypes.ThunkAction {
 	return async dispatch => {
 		const states = await dynamoUtil.scanStatus();
 		dispatch(statusUpdate(states));
+	};
+}
+
+export function hourlyUpdate(hourly: IPriceBars): reduxTypes.Action {
+	return {
+		type: CST.AC_DMN_HOURLY,
+		value: hourly
+	};
+}
+
+export function fetchHourly(): reduxTypes.ThunkAction {
+	return async dispatch => {
+		const dates: string[] = [];
+		const date = moment.utc();
+		for (let i = 0; i < 7; i++) {
+			dates.push(date.format('YYYY-MM-DD'))
+			date.subtract(1, 'day');
+		}
+		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
+		const results = await Promise.all(promistList);
+		const hourly: IPriceBars = {
+			bitfinex: [],
+			gemini: [],
+			kraken: [],
+			gdax: []
+		};
+		results.forEach((r, i) => (hourly[CST.EXCHANGES[i].toLowerCase()] = r));
+		dispatch(hourlyUpdate(hourly));
 	};
 }

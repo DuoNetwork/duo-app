@@ -28,11 +28,17 @@ describe('store', () => {
 				test: 'test'
 			})
 		);
+		dynamoUtil.queryHourlyOHLC = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
 		store.dispatch(contractActions.getCustodianStates());
 		store.dispatch(contractActions.getCustodianPrices());
 		store.dispatch(contractActions.getBalances());
 		store.dispatch(contractActions.getAddresses());
 		store.dispatch(dynamoActions.scanStatus());
+		store.dispatch(dynamoActions.fetchHourly());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

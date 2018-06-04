@@ -1,11 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`actions hourlyUpdate 1`] = `
+Object {
+  "type": "dynamoHourly",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
 exports[`actions scanStatus 1`] = `
 Array [
   Object {
     "type": "dynamoStatus",
     "value": Object {
       "test": "test",
+    },
+  },
+]
+`;
+
+exports[`actions scanStatus 2`] = `
+Array [
+  Object {
+    "type": "dynamoHourly",
+    "value": Object {
+      "bitfinex": Object {
+        "test": "test",
+      },
+      "gdax": Object {
+        "test": "test",
+      },
+      "gemini": Object {
+        "test": "test",
+      },
+      "kraken": Object {
+        "test": "test",
+      },
     },
   },
 ]

@@ -26,4 +26,24 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('hourlyUpdate', () => {
+		expect(dynamoActions.hourlyUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	});
+
+	test('scanStatus', () => {
+		const store = mockStore({});
+		dynamoUtil.queryHourlyOHLC = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
+		store.dispatch(dynamoActions.fetchHourly() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

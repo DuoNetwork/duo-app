@@ -6,7 +6,8 @@ function mapStateToProps(state: reduxTypes.IState) {
 	return {
 		states: state.contract.states,
 		prices: state.contract.prices,
-		balances: state.contract.balances
+		balances: state.contract.balances,
+		hourly: state.dynamo.hourly
 	};
 }
 

@@ -2,12 +2,35 @@
 
 exports[`ui reducer default 1`] = `
 Object {
-  "status": Object {},
+  "hourly": Object {
+    "bitfinex": Array [],
+    "gdax": Array [],
+    "gemini": Array [],
+    "kraken": Array [],
+  },
+  "status": Array [],
+}
+`;
+
+exports[`ui reducer dynamoHourly 1`] = `
+Object {
+  "hourly": Object {
+    "test": "test",
+  },
+  "status": Object {
+    "test": "test",
+  },
 }
 `;
 
 exports[`ui reducer dynamoStatus 1`] = `
 Object {
+  "hourly": Object {
+    "bitfinex": Array [],
+    "gdax": Array [],
+    "gemini": Array [],
+    "kraken": Array [],
+  },
   "status": Object {
     "test": "test",
   },

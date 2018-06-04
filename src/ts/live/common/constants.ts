@@ -5,3 +5,4 @@ export const AC_CTD_PRICES = 'custodianPrices';
 export const AC_BALANCES = 'balances';
 export const AC_ADDRESSES = 'addresses';
 export const AC_DNM_STATUS = 'dynamoStatus';
+export const AC_DMN_HOURLY = 'dynamoHourly';

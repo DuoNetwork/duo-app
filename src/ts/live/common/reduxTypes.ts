@@ -1,4 +1,4 @@
-import { IAddresses, IBalances, ICustodianPrices, ICustodianStates, IStatus } from './types';
+import { IAddresses, IBalances, ICustodianPrices, ICustodianStates, IPriceBars, IStatus } from './types';
 
 export interface IState {
 	contract: IContractState;
@@ -14,6 +14,7 @@ export interface IContractState {
 
 export interface IDynamoState {
 	status: IStatus[];
+	hourly: IPriceBars;
 }
 
 export type Action = IBaseAction | IBooleanAction | IStringAction | IObjectAction | INumberAction;
