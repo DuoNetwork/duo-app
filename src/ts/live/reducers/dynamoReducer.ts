@@ -2,7 +2,7 @@ import * as CST from '../common/constants';
 import * as reduxTypes from '../common/reduxTypes';
 
 export const initialState: reduxTypes.IDynamoState = {
-	status: {}
+	status: []
 };
 
 export function dynamoReducer(

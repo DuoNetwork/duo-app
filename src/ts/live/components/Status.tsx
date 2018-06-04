@@ -1,9 +1,10 @@
 import * as React from 'react';
-import { IAddresses } from '../common/types';
+import { IAddresses, IPriceStatus, IStatus } from '../common/types';
+import util from '../common/util';
 
 interface IProps {
 	addresses: IAddresses;
-	status: object;
+	status: IStatus[];
 }
 
 export default class Duo extends React.PureComponent<IProps> {
@@ -12,7 +13,32 @@ export default class Duo extends React.PureComponent<IProps> {
 		return (
 			<div>
 				<pre>{JSON.stringify(addresses, null, 4)}</pre>
-				<pre>{JSON.stringify(status, null, 4)}</pre>
+				<table>
+					<tr>
+						<th>Process</th>
+						<th>Updated</th>
+						<th>Price</th>
+						<th>Volume</th>
+					</tr>
+					{status.map(
+						(s, i) =>
+							(s as IPriceStatus).price ? (
+								<tr key={i}>
+									<td>{s.process}</td>
+									<td>{util.convertUpdateTime(s.timestamp)}</td>
+									<td>{(s as IPriceStatus).price}</td>
+									<td>{(s as IPriceStatus).volume}</td>
+								</tr>
+							) : (
+								<tr key={i}>
+									<td>{s.process}</td>
+									<td>{util.convertUpdateTime(s.timestamp)}</td>
+									<td />
+									<td />
+								</tr>
+							)
+					)}
+				</table>
 			</div>
 		);
 	}

@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`convertStatus 1`] = `
+Array [
+  Object {
+    "price": 617.67,
+    "process": "PRICE_AWS_PUBLIC_GEMINI",
+    "timestamp": 1528081767414,
+    "volume": 0.021854,
+  },
+  Object {
+    "price": 568.74,
+    "process": "PRICE_AWS_PRIVATE_GDAX",
+    "timestamp": 1527756997255,
+    "volume": 0.112,
+  },
+  Object {
+    "process": "MINUTELY_AWS_PUBLIC",
+    "timestamp": 1528081764433,
+  },
+  Object {
+    "process": "HOURLY_AWS_PUBLIC",
+    "timestamp": 1528081753755,
+  },
+  Object {
+    "process": "EVENT_AWS_PRIVATE_STARTPRERESET",
+    "timestamp": 1527751553589,
+  },
+  Object {
+    "price": 569.4241372856894,
+    "process": "FEED_AZURE_PRIVATE",
+    "timestamp": 1527758100003,
+    "volume": 210.82909559000007,
+  },
+  Object {
+    "price": 573.84,
+    "process": "PRICE_AWS_PRIVATE_BITFINEX",
+    "timestamp": 1527831872000,
+    "volume": 2,
+  },
+  Object {
+    "price": 567.99,
+    "process": "PRICE_AWS_PRIVATE_KRAKEN",
+    "timestamp": 1527756882730,
+    "volume": 1.3,
+  },
+  Object {
+    "price": 575.41,
+    "process": "PRICE_GCP_PRIVATE_GEMINI",
+    "timestamp": 1527766669797,
+    "volume": 0.005219,
+  },
+  Object {
+    "process": "EVENT_AZURE_PRIVATE_STARTPRERESET",
+    "timestamp": 1527752331975,
+  },
+  Object {
+    "price": 616.14,
+    "process": "PRICE_AWS_PUBLIC_GDAX",
+    "timestamp": 1528081164613,
+    "volume": 6.52551355,
+  },
+  Object {
+    "price": 575.97,
+    "process": "PRICE_GCP_PRIVATE_BITFINEX",
+    "timestamp": 1527766704000,
+    "volume": 5.16121098,
+  },
+  Object {
+    "process": "EVENT_GCP_PRIVATE_STARTPRERESET",
+    "timestamp": 1527752140470,
+  },
+  Object {
+    "price": 569.01,
+    "process": "PRICE_AZURE_PRIVATE_GEMINI",
+    "timestamp": 1527757197779,
+    "volume": 0.714947,
+  },
+  Object {
+    "process": "EVENT_GCP_PRIVATE_STARTRESET",
+    "timestamp": 1527752036379,
+  },
+  Object {
+    "price": 617.38,
+    "process": "PRICE_AWS_PUBLIC_BITFINEX",
+    "timestamp": 1528081780000,
+    "volume": 1.608,
+  },
+  Object {
+    "process": "CHAIN_AWS_PUBLIC",
+    "timestamp": 1527846160749,
+  },
+  Object {
+    "price": 617.85,
+    "process": "PRICE_AWS_PUBLIC_KRAKEN",
+    "timestamp": 1528081700549,
+    "volume": 1.13,
+  },
+  Object {
+    "process": "EVENT_AZURE_PRIVATE_STARTRESET",
+    "timestamp": 1527751947443,
+  },
+  Object {
+    "price": 568.9,
+    "process": "PRICE_AWS_PRIVATE_GEMINI",
+    "timestamp": 1527757021801,
+    "volume": 0.034274,
+  },
+  Object {
+    "price": 569.3,
+    "process": "PRICE_AZURE_PRIVATE_KRAKEN",
+    "timestamp": 1527757210567,
+    "volume": 0.29453729,
+  },
+  Object {
+    "process": "EVENT_AWS_PRIVATE_STARTRESET",
+    "timestamp": 1527751833800,
+  },
+  Object {
+    "price": 575.04,
+    "process": "PRICE_GCP_PRIVATE_KRAKEN",
+    "timestamp": 1527766688094,
+    "volume": 0.2,
+  },
+  Object {
+    "price": 569.89,
+    "process": "PRICE_AZURE_PRIVATE_BITFINEX",
+    "timestamp": 1527757209000,
+    "volume": 0.02548273,
+  },
+  Object {
+    "price": 569.09,
+    "process": "PRICE_AZURE_PRIVATE_GDAX",
+    "timestamp": 1527757217889,
+    "volume": 0.69683,
+  },
+  Object {
+    "price": 575,
+    "process": "PRICE_GCP_PRIVATE_GDAX",
+    "timestamp": 1527766704262,
+    "volume": 0.7576,
+  },
+  Object {
+    "price": 584.6845,
+    "process": "FEED_AWS_PRIVATE",
+    "timestamp": 1527851700049,
+    "volume": 136.97828929999997,
+  },
+  Object {
+    "price": 570.3235,
+    "process": "FEED_GCP_PRIVATE",
+    "timestamp": 1527757500018,
+    "volume": 1085.5908951400004,
+  },
+]
+`;

@@ -57,3 +57,13 @@ export interface IAddresses {
 	priceFeed3: string;
 	poolManager: string;
 }
+
+export interface IStatus {
+	process: string;
+	timestamp: number;
+}
+
+export interface IPriceStatus extends IStatus {
+	price: number;
+	volume: number;
+}
