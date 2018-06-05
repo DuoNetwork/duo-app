@@ -114,8 +114,7 @@ class ContractUtil {
 		};
 	}
 
-	public async getBalances(): Promise<IBalances> {
-		const address = await this.getCurrentAddress();
+	public async getBalances(address: string): Promise<IBalances> {
 		if (!address)
 			return {
 				eth: 0,
@@ -146,7 +145,7 @@ class ContractUtil {
 		return await this.web3.eth.getGasPrice();
 	}
 
-	private async getCurrentAddress(): Promise<string> {
+	public async getCurrentAddress(): Promise<string> {
 		return (await this.web3.eth.getAccounts())[0];
 	}
 
@@ -171,21 +170,24 @@ class ContractUtil {
 	}
 
 	public toWei(value: string | number) {
-		return this.web3.utils.toWei(value, 'ether');
+		return this.web3.utils.toWei(value + '', 'ether');
 	}
 
-	public create(value: number) {
+	public create(address: string, value: number) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.custodian.methods.create(false).send({
+		return this.custodian.methods.create(true).send({
+			from: address,
 			value: this.toWei(value)
 		});
 	}
 
-	public redeem(amtA: number, amtB: number) {
+	public redeem(address: string, amtA: number, amtB: number) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.custodian.methods.redeem(this.toWei(amtA), this.toWei(amtB), false).send();
+		return this.custodian.methods.redeem(this.toWei(amtA), this.toWei(amtB), true).send({
+			from: address
+		});
 	}
 
 	public approveDuo(value: number) {

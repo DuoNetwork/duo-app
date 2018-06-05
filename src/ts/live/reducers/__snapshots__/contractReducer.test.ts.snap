@@ -1,7 +1,27 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ui reducer account 1`] = `
+Object {
+  "account": "test",
+  "addresses": Object {
+    "test": "test",
+  },
+  "balances": Object {
+    "test": "test",
+  },
+  "prices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "states": Object {
+    "test": "test",
+  },
+}
+`;
+
 exports[`ui reducer addresses 1`] = `
 Object {
+  "account": "0x0",
   "addresses": Object {
     "test": "test",
   },
@@ -20,6 +40,7 @@ Object {
 
 exports[`ui reducer balances 1`] = `
 Object {
+  "account": "0x0",
   "addresses": Object {
     "admin": "0x0",
     "feeCollector": "0x0",
@@ -43,6 +64,7 @@ Object {
 
 exports[`ui reducer custodianPrices 1`] = `
 Object {
+  "account": "0x0",
   "addresses": Object {
     "admin": "0x0",
     "feeCollector": "0x0",
@@ -70,6 +92,7 @@ Object {
 
 exports[`ui reducer custodianStates 1`] = `
 Object {
+  "account": "0x0",
   "addresses": Object {
     "admin": "0x0",
     "feeCollector": "0x0",
@@ -115,6 +138,7 @@ Object {
 
 exports[`ui reducer default 1`] = `
 Object {
+  "account": "0x0",
   "addresses": Object {
     "admin": "0x0",
     "feeCollector": "0x0",

@@ -11,6 +11,7 @@ export interface IContractState {
 	prices: ICustodianPrices;
 	balances: IBalances;
 	addresses: IAddresses;
+	account: string;
 }
 
 export interface IDynamoState {

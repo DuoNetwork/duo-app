@@ -49,4 +49,12 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('account', () => {
+		state = contractReducer(state, {
+			type: CST.AC_ACCOUNT,
+			value: 'test'
+		});
+		expect(state).toMatchSnapshot();
+	});
 });

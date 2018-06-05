@@ -16,6 +16,7 @@ describe('actions', () => {
 			})
 		);
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
+		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
 		contractUtil.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
@@ -46,7 +47,7 @@ describe('actions', () => {
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
 				resolve();
-			}, 1000)
+			}, 2000)
 		);
 	});
 });

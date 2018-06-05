@@ -3,6 +3,13 @@ import contractUtil from '../common/contractUtil';
 import * as reduxTypes from '../common/reduxTypes';
 import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 
+export function accountUpdate(account: string): reduxTypes.Action {
+	return {
+		type: CST.AC_ACCOUNT,
+		value: account
+	};
+}
+
 export function custodianStatesUpdate(states: ICustodianStates): reduxTypes.Action {
 	return {
 		type: CST.AC_CTD_STATES,
@@ -36,7 +43,11 @@ export function balancesUpdate(balance: IBalances): reduxTypes.Action {
 }
 
 export function getBalances(): reduxTypes.ThunkAction {
-	return async dispatch => dispatch(balancesUpdate(await contractUtil.getBalances()));
+	return async dispatch => {
+		const account = await contractUtil.getCurrentAddress();
+		dispatch(accountUpdate(account));
+		dispatch(balancesUpdate(await contractUtil.getBalances(account)));
+	};
 }
 
 export function addressesUpdate(addr: IAddresses): reduxTypes.Action {

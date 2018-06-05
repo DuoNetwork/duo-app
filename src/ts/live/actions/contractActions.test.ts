@@ -7,6 +7,10 @@ import * as contractActions from './contractActions';
 const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
+	test('accountUpdate', () => {
+		expect(contractActions.accountUpdate('test')).toMatchSnapshot();
+	});
+
 	test('custodianStatesUpdate', () => {
 		expect(contractActions.custodianStatesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
@@ -54,13 +58,14 @@ describe('actions', () => {
 
 	test('getBalances', () => {
 		const store = mockStore({});
+		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
 		contractUtil.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(contractActions.getBalances() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
 				resolve();
-			}, 1000)
+			}, 2000)
 		);
 	});
 

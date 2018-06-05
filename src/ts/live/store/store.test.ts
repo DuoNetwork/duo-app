@@ -15,6 +15,7 @@ describe('store', () => {
 			})
 		);
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
+		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
 		contractUtil.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'

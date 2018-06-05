@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`actions accountUpdate 1`] = `
+Object {
+  "type": "account",
+  "value": "test",
+}
+`;
+
 exports[`actions addressesUpdate 1`] = `
 Object {
   "type": "addresses",
@@ -49,6 +56,10 @@ Array [
 
 exports[`actions getBalances 1`] = `
 Array [
+  Object {
+    "type": "account",
+    "value": "test",
+  },
   Object {
     "type": "balances",
     "value": Object {

@@ -51,7 +51,8 @@ export const initialState: reduxTypes.IContractState = {
 		priceFeed2: '0x0',
 		priceFeed3: '0x0',
 		poolManager: '0x0'
-	}
+	},
+	account: '0x0'
 };
 
 export function contractReducer(
@@ -69,6 +70,7 @@ export function contractReducer(
 			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
+		case CST.AC_ACCOUNT:
 			return Object.assign({}, state, {
 				[action.type]: (action as reduxTypes.IObjectAction).value
 			});

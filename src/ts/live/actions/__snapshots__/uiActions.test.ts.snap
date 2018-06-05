@@ -19,6 +19,10 @@ Array [
     ],
   },
   Object {
+    "type": "account",
+    "value": "test",
+  },
+  Object {
     "type": "balances",
     "value": Object {
       "test": "test",
