@@ -12,7 +12,7 @@ class ContractUtil {
 	private web3: Web3;
 	private duo: Contract;
 	private custodian: Contract;
-	public isReadOnly: boolean;
+	private isReadOnly: boolean;
 
 	constructor() {
 		if (typeof (window as any).web3 !== 'undefined') {
@@ -168,6 +168,30 @@ class ContractUtil {
 
 	public fromWei(value: string | number) {
 		return this.web3.utils.fromWei(value, 'ether');
+	}
+
+	public toWei(value: string | number) {
+		return this.web3.utils.toWei(value, 'ether');
+	}
+
+	public create(value: number) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		return this.custodian.methods.create(false).send({
+			value: this.toWei(value)
+		});
+	}
+
+	public redeem(amtA: number, amtB: number) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		return this.custodian.methods.redeem(this.toWei(amtA), this.toWei(amtB), false).send();
+	}
+
+	public approveDuo(value: number) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		return this.duo.methods.approve(CST.CUSTODIAN_ADDR, this.toWei(value)).send();
 	}
 }
 
