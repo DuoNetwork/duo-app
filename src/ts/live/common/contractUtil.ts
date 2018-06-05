@@ -87,7 +87,6 @@ class ContractUtil {
 	}
 
 	public async getSystemAddresses(): Promise<IAddresses> {
-		console.log('getSystemAddresses');
 		const addr = await this.custodian.methods.getSystemAddresses().call();
 		return {
 			admin: addr[0],

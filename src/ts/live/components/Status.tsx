@@ -14,30 +14,34 @@ export default class Duo extends React.PureComponent<IProps> {
 			<div>
 				<pre>{JSON.stringify(addresses, null, 4)}</pre>
 				<table>
-					<tr>
-						<th>Process</th>
-						<th>Updated</th>
-						<th>Price</th>
-						<th>Volume</th>
-					</tr>
-					{status.map(
-						(s, i) =>
-							(s as IPriceStatus).price ? (
-								<tr key={i}>
-									<td>{s.process}</td>
-									<td>{util.convertUpdateTime(s.timestamp)}</td>
-									<td>{(s as IPriceStatus).price}</td>
-									<td>{(s as IPriceStatus).volume}</td>
-								</tr>
-							) : (
-								<tr key={i}>
-									<td>{s.process}</td>
-									<td>{util.convertUpdateTime(s.timestamp)}</td>
-									<td />
-									<td />
-								</tr>
-							)
-					)}
+					<thead>
+						<tr>
+							<th>Process</th>
+							<th>Updated</th>
+							<th>Price</th>
+							<th>Volume</th>
+						</tr>
+					</thead>
+					<tbody>
+						{status.map(
+							(s, i) =>
+								(s as IPriceStatus).price ? (
+									<tr key={i}>
+										<td>{s.process}</td>
+										<td>{util.convertUpdateTime(s.timestamp)}</td>
+										<td>{(s as IPriceStatus).price}</td>
+										<td>{(s as IPriceStatus).volume}</td>
+									</tr>
+								) : (
+									<tr key={i}>
+										<td>{s.process}</td>
+										<td>{util.convertUpdateTime(s.timestamp)}</td>
+										<td />
+										<td />
+									</tr>
+								)
+						)}
+					</tbody>
 				</table>
 			</div>
 		);
