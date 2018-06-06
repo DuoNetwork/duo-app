@@ -14,4 +14,7 @@ function mapStateToProps(state: reduxTypes.IState) {
 	};
 }
 
-export default connect(mapStateToProps, {})(D3OHLCChart);
+export default connect(
+	mapStateToProps,
+	{}
+)(D3OHLCChart);
