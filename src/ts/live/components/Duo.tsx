@@ -2,6 +2,7 @@ import moment from 'moment';
 import * as React from 'react';
 import contractUtil from '../common/contractUtil';
 import { IBalances, ICustodianPrices, ICustodianStates, IPriceBars } from '../common/types';
+import D3OHLCChart from '../containers/D3OHLCChartContainer';
 
 interface IProps {
 	account: string;
@@ -15,9 +16,9 @@ interface IProps {
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { account, refresh, states, prices, balances, hourly, minutely } = this.props;
+		const { account, refresh, states, prices, balances/*, hourly, minutely*/ } = this.props;
 		return (
-			<div>
+			<div style={{position: 'relative'}}>
 				<button onClick={() => contractUtil.create(account, 0.1)}>Create 0.1 eth</button>
 				<button
 					onClick={() => contractUtil.redeem(account, balances.tokenA, balances.tokenB)}
@@ -29,8 +30,7 @@ export default class Duo extends React.PureComponent<IProps> {
 				<pre>{JSON.stringify(states, null, 4)}</pre>
 				<pre>{JSON.stringify(prices, null, 4)}</pre>
 				<pre>{JSON.stringify(balances, null, 4)}</pre>
-				<pre>{JSON.stringify(hourly, null, 4)}</pre>
-				<pre>{JSON.stringify(minutely, null, 4)}</pre>
+				<div className='d3-test-graph'><D3OHLCChart/></div>
 			</div>
 		);
 	}

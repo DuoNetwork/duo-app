@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import '../../css/style.css';
+import '../../css/demoStyle.css';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
 
