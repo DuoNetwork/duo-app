@@ -1,6 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 //import * as CST from '../common/constants';
+import chartUtil from '../common/chartUtil';
 import dynamoUtil from '../common/dynamoUtil';
 import * as dynamoActions from './dynamoActions';
 
@@ -38,6 +39,7 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
+		chartUtil.interpolate = jest.fn(r => r);
 		store.dispatch(dynamoActions.fetchHourly() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -58,6 +60,7 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
+		chartUtil.interpolate = jest.fn(r => r);
 		store.dispatch(dynamoActions.fetchMinutely() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {

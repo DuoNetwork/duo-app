@@ -2,6 +2,7 @@
 import * as contractActions from '../actions/contractActions';
 import * as dynamoActions from '../actions/dynamoActions';
 import * as uiActions from '../actions/uiActions';
+import chartUtil from '../common/chartUtil';
 import contractUtil from '../common/contractUtil';
 import dynamoUtil from '../common/dynamoUtil';
 import util from '../common/util';
@@ -41,6 +42,7 @@ describe('store', () => {
 				test: 'test'
 			})
 		);
+		chartUtil.interpolate = jest.fn(r => r);
 		util.getNowTimestamp = jest.fn(() => 1234567890);
 		store.dispatch(contractActions.getAddresses());
 		store.dispatch(dynamoActions.scanStatus());

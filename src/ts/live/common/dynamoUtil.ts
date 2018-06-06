@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import { QueryInput, QueryOutput, ScanInput, ScanOutput } from 'aws-sdk/clients/dynamodb';
+import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
 import { IPriceBar, IPriceStatus, IStatus } from '../common/types';
@@ -38,7 +39,6 @@ export class DynamoUtil {
 
 		const allData: IPriceBar[] = [];
 		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertHourly(r)));
-		allData.sort((a, b) => a.timestamp - b.timestamp);
 		return allData;
 	}
 
@@ -55,7 +55,6 @@ export class DynamoUtil {
 
 		const allData: IPriceBar[] = [];
 		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertMinutely(r)));
-		allData.sort((a, b) => a.timestamp - b.timestamp);
 		return allData;
 	}
 
@@ -63,20 +62,20 @@ export class DynamoUtil {
 		source: string,
 		date: string,
 		hour: string,
-		minite: number,
+		minute: number,
 		ohlc: object
 	): IPriceBar {
 		return {
 			source: source,
 			date: date,
 			hour: hour,
-			minute: minite,
+			minute: minute,
 			open: Number(ohlc[CST.DB_OHLC_OPEN].N),
 			high: Number(ohlc[CST.DB_OHLC_HIGH].N),
 			low: Number(ohlc[CST.DB_OHLC_LOW].N),
 			close: Number(ohlc[CST.DB_OHLC_CLOSE].N),
 			volume: Number(ohlc[CST.DB_OHLC_VOLUME].N),
-			timestamp: Number(ohlc[CST.DB_OHLC_TS].N)
+			timestamp: moment(date + ' ' + hour + ':' + minute, 'YYYY-MM-DD HH:m').valueOf()
 		};
 	}
 

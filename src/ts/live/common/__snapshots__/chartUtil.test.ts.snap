@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`interpolate correctly 1`] = `
+Object {
+  "close": 2,
+  "date": "2018-06-06",
+  "high": 2,
+  "hour": "01",
+  "low": 2,
+  "minute": 0,
+  "open": 2,
+  "source": "source",
+  "timestamp": 1528218000000,
+  "volume": 0,
+}
+`;
+
+exports[`interpolate correctly 2`] = `
+Object {
+  "close": 2,
+  "date": "2018-06-06",
+  "high": 2,
+  "hour": "02",
+  "low": 2,
+  "minute": 0,
+  "open": 2,
+  "source": "source",
+  "timestamp": 1528221600000,
+  "volume": 0,
+}
+`;
+
+exports[`interpolate correctly 3`] = `
+Object {
+  "close": 2,
+  "date": "2018-06-06",
+  "high": 2,
+  "hour": "00",
+  "low": 2,
+  "minute": 1,
+  "open": 2,
+  "source": "source",
+  "timestamp": 1528214460000,
+  "volume": 0,
+}
+`;
+
+exports[`interpolate correctly 4`] = `
+Object {
+  "close": 2,
+  "date": "2018-06-06",
+  "high": 2,
+  "hour": "00",
+  "low": 2,
+  "minute": 2,
+  "open": 2,
+  "source": "source",
+  "timestamp": 1528214520000,
+  "volume": 0,
+}
+`;

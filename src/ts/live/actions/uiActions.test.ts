@@ -1,6 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 //import * as CST from '../common/constants';
+import chartUtil from '../common/chartUtil';
 import contractUtil from '../common/contractUtil';
 import dynamoUtil from '../common/dynamoUtil';
 import * as uiActions from './uiActions';
@@ -42,6 +43,7 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
+		chartUtil.interpolate = jest.fn(r => r);
 		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {

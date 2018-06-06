@@ -1,4 +1,5 @@
 import moment from 'moment';
+import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
 import * as reduxTypes from '../common/reduxTypes';
@@ -41,7 +42,7 @@ export function fetchHourly(): reduxTypes.ThunkAction {
 			kraken: [],
 			gdax: []
 		};
-		results.forEach((r, i) => (hourly[CST.EXCHANGES[i].toLowerCase()] = r));
+		results.forEach((r, i) => (hourly[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, true)));
 		dispatch(hourlyUpdate(hourly));
 	};
 }
@@ -69,7 +70,7 @@ export function fetchMinutely(): reduxTypes.ThunkAction {
 			kraken: [],
 			gdax: []
 		};
-		results.forEach((r, i) => (minutely[CST.EXCHANGES[i].toLowerCase()] = r));
+		results.forEach((r, i) => (minutely[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, false)));
 		dispatch(minutelyUpdate(minutely));
 	};
 }

@@ -11,7 +11,7 @@ Array [
     "minute": 0,
     "open": 619.39,
     "source": "BITFINEX",
-    "timestamp": 1528077438455,
+    "timestamp": 1528041600000,
     "volume": 9626.950549620002,
   },
 ]
@@ -28,7 +28,7 @@ Array [
     "minute": 53,
     "open": 582.88,
     "source": "GDAX",
-    "timestamp": 1527839720962,
+    "timestamp": 1527810780000,
     "volume": 12.117600000000001,
   },
 ]
