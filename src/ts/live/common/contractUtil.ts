@@ -173,27 +173,76 @@ class ContractUtil {
 		return this.web3.utils.toWei(value + '', 'ether');
 	}
 
-	public create(address: string, value: number) {
+	public create(address: string, value: number, payFeeInEth: boolean) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.custodian.methods.create(true).send({
+		return this.custodian.methods.create(payFeeInEth).send({
 			from: address,
 			value: this.toWei(value)
 		});
 	}
 
-	public redeem(address: string, amtA: number, amtB: number) {
+	public redeem(address: string, amtA: number, amtB: number, payFeeInEth: boolean) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.custodian.methods.redeem(this.toWei(amtA), this.toWei(amtB), true).send({
+		return this.custodian.methods.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth).send({
 			from: address
 		});
 	}
 
-	public approveDuo(value: number) {
+	public duoApprove(address: string, value: number) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.duo.methods.approve(CST.CUSTODIAN_ADDR, this.toWei(value)).send();
+		return this.duo.methods.approve(CST.DUO_CONTRACT_ADDR, this.toWei(value)).send({
+			from: address
+		});
+	}
+
+	public duoTransfer(address: string, to: string, value: number) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		return this.duo.methods.transfer(to, this.toWei(value)).send({
+			from: address
+		});
+	}
+
+	public duoTransferFrom(address: string, from: string, value: number) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		return this.duo.methods.transferFrom(from, address, this.toWei(value)).send({
+			from: address
+		});
+	}
+
+	public approve(address: string, spender: string, value: number, isA: boolean) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		return this.custodian.methods.approve(isA ? 0 : 1, spender, this.toWei(value)).send({
+			from: address
+		});
+	}
+
+	public transfer(address: string, to: string, value: number, isA: boolean) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		// dummy from address
+		return this.custodian.methods.transfer(isA ? 0 : 1, address, to, this.toWei(value)).send({
+			from: address
+		});
+	}
+
+	public transferFrom(
+		address: string,
+		from: string,
+		to: string,
+		value: number,
+		isA: boolean
+	) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+
+		return this.custodian.methods.transferFrom(isA ? 0 : 1, from, to, this.toWei(value)).send({
+			from: address
+		});
 	}
 }
 
