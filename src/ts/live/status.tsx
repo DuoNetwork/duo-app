@@ -7,8 +7,8 @@ import * as dynamoActions from './actions/dynamoActions';
 import Status from './containers/StatusContainer';
 import store from './store/store';
 
-store.dispatch(contractActions.getAddresses());
-store.dispatch(dynamoActions.scanStatus());
+store.dispatch(contractActions.getAddresses() as any);
+store.dispatch(dynamoActions.scanStatus() as any);
 
 ReactDOM.render(
 	<Provider store={store}>

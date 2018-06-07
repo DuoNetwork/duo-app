@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import * as reduxTypes from '../common/reduxTypes';
+import { IState } from '../common/types';
 import D3OHLCChart from '../components/Charts/D3OHLCChart';
 
-function mapStateToProps(state: reduxTypes.IState) {
+function mapStateToProps(state: IState) {
 	return {
 		account: state.contract.account,
 		refresh: state.ui.refresh,

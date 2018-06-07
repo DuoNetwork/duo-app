@@ -1,12 +1,11 @@
 import calculator from '../common/calculator';
 import * as CST from '../common/constants';
-import * as reduxTypes from '../common/reduxTypes';
-import { IRawData } from '../common/types';
+import { IRawData, IUIState } from '../common/types';
 const rawData: IRawData[] = require('../../../static/ETH.json');
 
 const [e, a, b, rp, bt, up, down, period] = calculator.getAllTimeSeriesFromEth(rawData);
 
-export const initialState: reduxTypes.IUIState = {
+export const initialState: IUIState = {
 	eth: e,
 	classA: a,
 	classB: b,
@@ -46,10 +45,7 @@ export const initialState: reduxTypes.IUIState = {
 	}
 };
 
-export function uiReducer(
-	state: reduxTypes.IUIState = initialState,
-	action: reduxTypes.Action
-): reduxTypes.IUIState {
+export function uiReducer(state: IUIState = initialState, action): IUIState {
 	const { eth, classA, classB, resetPrice, beta, upward, downward, periodic, setting } = state;
 	switch (action.type) {
 		case CST.AC_REFRESH:
@@ -66,10 +62,10 @@ export function uiReducer(
 			});
 		case CST.AC_MESSAGE:
 			return Object.assign({}, state, {
-				[CST.AC_MESSAGE]: (action as reduxTypes.IObjectAction).value
+				[CST.AC_MESSAGE]: action.value
 			});
 		case CST.AC_SETTING:
-			const newSetting: any = (action as reduxTypes.IObjectAction).value;
+			const newSetting: any = action.value;
 			const [ne, na, nb, nrp, nbt, nup, ndown, nperiod] = calculator.getAllTimeSeriesFromEth(
 				rawData,
 				1,
@@ -91,12 +87,12 @@ export function uiReducer(
 			});
 		case CST.AC_FORM:
 			return Object.assign({}, state, {
-				[CST.AC_FORM]: (action as reduxTypes.IObjectAction).value
+				[CST.AC_FORM]: action.value
 			});
 		case CST.AC_TRADE:
 			return Object.assign({}, state, {
-				trades: [...state.trades, (action as reduxTypes.ITradeAction).trade],
-				[CST.AC_ASSETS]: (action as reduxTypes.ITradeAction).assets
+				trades: [...state.trades, action.trade],
+				[CST.AC_ASSETS]: action.assets
 			});
 		case CST.AC_NEXT:
 			return Object.assign({}, state, calculator.calculateNextDayState(state));

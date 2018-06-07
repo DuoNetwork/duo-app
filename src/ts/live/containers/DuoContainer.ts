@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
-import * as reduxTypes from '../common/reduxTypes';
+import { IState } from '../common/types';
 import Duo from '../components/Duo';
 
-function mapStateToProps(state: reduxTypes.IState) {
+function mapStateToProps(state: IState) {
 	return {
 		account: state.contract.account,
 		refresh: state.ui.refresh,
@@ -14,4 +14,7 @@ function mapStateToProps(state: reduxTypes.IState) {
 	};
 }
 
-export default connect(mapStateToProps, {})(Duo);
+export default connect(
+	mapStateToProps,
+	{}
+)(Duo);

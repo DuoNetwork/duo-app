@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import * as uiActions from '../actions/uiActions';
-import * as reduxTypes from '../common/reduxTypes';
+import { IState } from '../common/types';
 import Duo from '../components/Duo';
 
-function mapStateToProps(state: reduxTypes.IState) {
+function mapStateToProps(state: IState) {
 	return {
 		eth: state.ui.eth,
 		classA: state.ui.classA,
@@ -23,13 +23,17 @@ function mapStateToProps(state: reduxTypes.IState) {
 	};
 }
 
-function mapDispatchToProps(dispatch: reduxTypes.Dispatch) {
+function mapDispatchToProps(dispatch) {
 	return {
 		refresh: () => dispatch(uiActions.refresh()),
 		next: () => dispatch(uiActions.next()),
 		forward: () => dispatch(uiActions.forward()),
-		setting: (c: number, u: number, d: number, p: number) => dispatch(uiActions.setting( c, u, d, p))
+		setting: (c: number, u: number, d: number, p: number) =>
+			dispatch(uiActions.setting(c, u, d, p))
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Duo);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Duo);

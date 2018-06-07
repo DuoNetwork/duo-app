@@ -7,8 +7,8 @@ import * as uiActions from './actions/uiActions';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
 
-store.dispatch(uiActions.refresh());
-setInterval(() => store.dispatch(uiActions.refresh()), 60000);
+store.dispatch(uiActions.refresh() as any);
+setInterval(() => store.dispatch(uiActions.refresh() as any), 60000);
 
 ReactDOM.render(
 	<Provider store={store}>

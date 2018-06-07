@@ -45,9 +45,9 @@ describe('store', () => {
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		util.getNowTimestamp = jest.fn(() => 1234567890);
-		store.dispatch(contractActions.getAddresses());
-		store.dispatch(dynamoActions.scanStatus());
-		store.dispatch(uiActions.refresh());
+		store.dispatch(contractActions.getAddresses() as any);
+		store.dispatch(dynamoActions.scanStatus() as any);
+		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

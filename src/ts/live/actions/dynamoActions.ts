@@ -2,31 +2,30 @@ import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
-import * as reduxTypes from '../common/reduxTypes';
 import { IPrice, IPriceBars } from '../common/types';
 
-export function statusUpdate(status: object): reduxTypes.Action {
+export function statusUpdate(status: object) {
 	return {
 		type: CST.AC_DNM_STATUS,
 		value: status
 	};
 }
 
-export function scanStatus(): reduxTypes.ThunkAction {
+export function scanStatus() {
 	return async dispatch => {
 		const states = await dynamoUtil.scanStatus();
 		dispatch(statusUpdate(states));
 	};
 }
 
-export function hourlyUpdate(hourly: IPriceBars): reduxTypes.Action {
+export function hourlyUpdate(hourly: IPriceBars) {
 	return {
 		type: CST.AC_DMN_HOURLY,
 		value: hourly
 	};
 }
 
-export function fetchHourly(): reduxTypes.ThunkAction {
+export function fetchHourly() {
 	return async dispatch => {
 		const dates: string[] = [];
 		const date = moment.utc();
@@ -47,14 +46,14 @@ export function fetchHourly(): reduxTypes.ThunkAction {
 	};
 }
 
-export function minutelyUpdate(minutely: IPriceBars): reduxTypes.Action {
+export function minutelyUpdate(minutely: IPriceBars) {
 	return {
 		type: CST.AC_DMN_MINUTELY,
 		value: minutely
 	};
 }
 
-export function fetchMinutely(): reduxTypes.ThunkAction {
+export function fetchMinutely() {
 	return async dispatch => {
 		const dates: string[] = [];
 		const date = moment.utc();
@@ -75,14 +74,14 @@ export function fetchMinutely(): reduxTypes.ThunkAction {
 	};
 }
 
-export function pricesUpdate(prices: IPrice[]): reduxTypes.Action {
+export function pricesUpdate(prices: IPrice[]) {
 	return {
 		type: CST.AC_DMN_PRICES,
 		value: prices
 	};
 }
 
-export function fetchPrices(): reduxTypes.ThunkAction {
+export function fetchPrices() {
 	return async dispatch => {
 		const dates: string[] = [];
 		const date = moment.utc();

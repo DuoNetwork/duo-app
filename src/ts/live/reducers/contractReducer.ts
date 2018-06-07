@@ -1,7 +1,7 @@
 import * as CST from '../common/constants';
-import * as reduxTypes from '../common/reduxTypes';
+import { IContractState } from '../common/types';
 
-export const initialState: reduxTypes.IContractState = {
+export const initialState: IContractState = {
 	states: {
 		state: 'Unknown',
 		navA: 0,
@@ -55,24 +55,21 @@ export const initialState: reduxTypes.IContractState = {
 	account: '0x0'
 };
 
-export function contractReducer(
-	state: reduxTypes.IContractState = initialState,
-	action: reduxTypes.Action
-): reduxTypes.IContractState {
+export function contractReducer(state: IContractState = initialState, action): IContractState {
 	switch (action.type) {
 		case CST.AC_CTD_STATES:
 			return Object.assign({}, state, {
-				states: (action as reduxTypes.IObjectAction).value
+				states: action.value
 			});
 		case CST.AC_CTD_PRICES:
 			return Object.assign({}, state, {
-				prices: (action as reduxTypes.IObjectAction).value
+				prices: action.value
 			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
 		case CST.AC_ACCOUNT:
 			return Object.assign({}, state, {
-				[action.type]: (action as reduxTypes.IObjectAction).value
+				[action.type]: action.value
 			});
 		default:
 			return state;

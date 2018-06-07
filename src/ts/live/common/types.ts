@@ -80,3 +80,28 @@ export interface IPriceBars {
 }
 
 export import IPrice = adminTypes.IPrice;
+
+export interface IState {
+	contract: IContractState;
+	dynamo: IDynamoState;
+	ui: IUIState;
+}
+
+export interface IContractState {
+	states: ICustodianStates;
+	prices: ICustodianPrices;
+	balances: IBalances;
+	addresses: IAddresses;
+	account: string;
+}
+
+export interface IDynamoState {
+	status: IStatus[];
+	hourly: IPriceBars;
+	minutely: IPriceBars;
+	prices: IPrice[];
+}
+
+export interface IUIState {
+	refresh: number;
+}

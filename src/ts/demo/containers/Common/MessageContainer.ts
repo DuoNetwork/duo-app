@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import * as uiActions from '../../actions/uiActions';
-import * as reduxTypes from '../../common/reduxTypes';
+import { IState } from '../../common/types';
 import Message from '../../components/Common/Message';
 
-function mapStateToProps(state: reduxTypes.IState) {
+function mapStateToProps(state: IState) {
 	return {
 		type: state.ui.message.type,
 		content: state.ui.message.content,
@@ -11,10 +11,13 @@ function mapStateToProps(state: reduxTypes.IState) {
 	};
 }
 
-function mapDispatchToProps(dispatch: reduxTypes.Dispatch) {
+function mapDispatchToProps(dispatch) {
 	return {
 		close: () => dispatch(uiActions.messsage('', '', false))
 	};
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Message);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Message);

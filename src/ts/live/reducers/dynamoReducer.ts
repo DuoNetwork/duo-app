@@ -1,7 +1,7 @@
 import * as CST from '../common/constants';
-import * as reduxTypes from '../common/reduxTypes';
+import {IDynamoState} from '../common/types';
 
-export const initialState: reduxTypes.IDynamoState = {
+export const initialState: IDynamoState = {
 	status: [],
 	hourly: {
 		bitfinex: [],
@@ -19,25 +19,25 @@ export const initialState: reduxTypes.IDynamoState = {
 };
 
 export function dynamoReducer(
-	state: reduxTypes.IDynamoState = initialState,
-	action: reduxTypes.Action
-): reduxTypes.IDynamoState {
+	state: IDynamoState = initialState,
+	action
+): IDynamoState {
 	switch (action.type) {
 		case CST.AC_DNM_STATUS:
 			return Object.assign({}, state, {
-				status: (action as reduxTypes.IObjectAction).value
+				status: action.value
 			});
 		case CST.AC_DMN_HOURLY:
 			return Object.assign({}, state, {
-				hourly: (action as reduxTypes.IObjectAction).value
+				hourly: action.value
 			});
 		case CST.AC_DMN_MINUTELY:
 			return Object.assign({}, state, {
-				minutely: (action as reduxTypes.IObjectAction).value
+				minutely: action.value
 			});
 		case CST.AC_DMN_PRICES:
 		return Object.assign({}, state, {
-			prices: (action as reduxTypes.IObjectAction).value
+			prices: action.value
 		});
 		default:
 			return state;

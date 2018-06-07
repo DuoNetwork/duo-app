@@ -1,7 +1,6 @@
 import moment from 'moment';
 import * as CST from './constants';
-import { IUIState } from './reduxTypes';
-import { IAssets, IRawData, ITimeSeriesData } from './types';
+import { IAssets, IRawData, ITimeSeriesData, IUIState } from './types';
 
 class Calculator {
 	public getAllTimeSeriesFromEth(
