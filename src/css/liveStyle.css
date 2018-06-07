@@ -1,8 +1,7 @@
+@import '~antd/dist/antd.css';
+
 /* D3 Test Graph */
 .d3-test-graph {
-	position: absolute;
-	top: 20px;
-	left: 500px;
 	width: 600px;
 	height: 400px;
 	background: rgba(0,0,0,0.8);

@@ -1,6 +1,5 @@
 import moment from 'moment';
 import chartUtil from './chartUtil';
-import { IPriceBar } from './types';
 
 const hourlyBar1 = {
 	source: 'source',

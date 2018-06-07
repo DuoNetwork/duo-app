@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import * as reduxTypes from '../common/reduxTypes';
-import D3OHLCChart from '../components/charts/D3OHLCChart';
+import D3OHLCChart from '../components/Charts/D3OHLCChart';
 
 function mapStateToProps(state: reduxTypes.IState) {
 	return {
