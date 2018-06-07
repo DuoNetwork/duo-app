@@ -47,6 +47,9 @@ Object {
         "test": "test",
       },
     },
+    "prices": Array [
+      "test",
+    ],
     "status": Object {
       "test": "test",
     },

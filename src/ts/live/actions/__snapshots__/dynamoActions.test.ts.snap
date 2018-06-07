@@ -44,6 +44,17 @@ Array [
 ]
 `;
 
+exports[`actions fetchPrices 1`] = `
+Array [
+  Object {
+    "type": "dynamoPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
 exports[`actions hourlyUpdate 1`] = `
 Object {
   "type": "dynamoHourly",
@@ -59,6 +70,15 @@ Object {
   "value": Object {
     "test": "test",
   },
+}
+`;
+
+exports[`actions pricesUpdate 1`] = `
+Object {
+  "type": "dynamoPrices",
+  "value": Array [
+    "test",
+  ],
 }
 `;
 

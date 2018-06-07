@@ -14,6 +14,7 @@ Object {
     "gemini": Array [],
     "kraken": Array [],
   },
+  "prices": Array [],
   "status": Array [],
 }
 `;
@@ -29,6 +30,7 @@ Object {
     "gemini": Array [],
     "kraken": Array [],
   },
+  "prices": Array [],
   "status": Object {
     "test": "test",
   },
@@ -43,6 +45,24 @@ Object {
   "minutely": Object {
     "test": "test",
   },
+  "prices": Array [],
+  "status": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`ui reducer dynamoPrices 1`] = `
+Object {
+  "hourly": Object {
+    "test": "test",
+  },
+  "minutely": Object {
+    "test": "test",
+  },
+  "prices": Array [
+    "test",
+  ],
   "status": Object {
     "test": "test",
   },
@@ -63,6 +83,7 @@ Object {
     "gemini": Array [],
     "kraken": Array [],
   },
+  "prices": Array [],
   "status": Object {
     "test": "test",
   },

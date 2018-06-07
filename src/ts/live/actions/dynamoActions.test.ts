@@ -69,4 +69,20 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('pricesUpdate', () => {
+		expect(dynamoActions.pricesUpdate(['test'] as any)).toMatchSnapshot();
+	});
+
+	test('fetchPrices', () => {
+		const store = mockStore({});
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		store.dispatch(dynamoActions.fetchPrices() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

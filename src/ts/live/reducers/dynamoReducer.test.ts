@@ -38,4 +38,12 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('dynamoPrices', () => {
+		state = dynamoReducer(state, {
+			type: CST.AC_DMN_PRICES,
+			value: ['test']
+		});
+		expect(state).toMatchSnapshot();
+	});
 });

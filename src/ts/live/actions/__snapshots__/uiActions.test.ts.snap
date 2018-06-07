@@ -23,6 +23,12 @@ Array [
     "value": "test",
   },
   Object {
+    "type": "dynamoPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
     "type": "balances",
     "value": Object {
       "test": "test",

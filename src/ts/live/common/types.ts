@@ -78,3 +78,5 @@ export interface IPriceBars {
 	kraken: IPriceBar[];
 	gdax: IPriceBar[];
 }
+
+export import IPrice = adminTypes.IPrice;

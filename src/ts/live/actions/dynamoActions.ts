@@ -3,7 +3,7 @@ import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
 import * as reduxTypes from '../common/reduxTypes';
-import { IPriceBars } from '../common/types';
+import { IPrice, IPriceBars } from '../common/types';
 
 export function statusUpdate(status: object): reduxTypes.Action {
 	return {
@@ -72,5 +72,26 @@ export function fetchMinutely(): reduxTypes.ThunkAction {
 		};
 		results.forEach((r, i) => (minutely[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, false)));
 		dispatch(minutelyUpdate(minutely));
+	};
+}
+
+export function pricesUpdate(prices: IPrice[]): reduxTypes.Action {
+	return {
+		type: CST.AC_DMN_PRICES,
+		value: prices
+	};
+}
+
+export function fetchPrices(): reduxTypes.ThunkAction {
+	return async dispatch => {
+		const dates: string[] = [];
+		const date = moment.utc();
+		for (let i = 0; i < 7; i++) {
+			dates.push(date.format('YYYY-MM-DD'))
+			date.subtract(1, 'day');
+		}
+		dates.sort((a, b) => a.localeCompare(b));
+		const result = await dynamoUtil.queryAcceptPriceEvent(dates);
+		dispatch(pricesUpdate(result));
 	};
 }

@@ -42,6 +42,7 @@ describe('store', () => {
 				test: 'test'
 			})
 		);
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		util.getNowTimestamp = jest.fn(() => 1234567890);
 		store.dispatch(contractActions.getAddresses());

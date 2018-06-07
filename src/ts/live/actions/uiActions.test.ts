@@ -43,6 +43,7 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>

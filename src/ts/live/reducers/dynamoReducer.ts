@@ -14,7 +14,8 @@ export const initialState: reduxTypes.IDynamoState = {
 		gemini: [],
 		kraken: [],
 		gdax: []
-	}
+	},
+	prices: []
 };
 
 export function dynamoReducer(
@@ -34,6 +35,10 @@ export function dynamoReducer(
 			return Object.assign({}, state, {
 				minutely: (action as reduxTypes.IObjectAction).value
 			});
+		case CST.AC_DMN_PRICES:
+		return Object.assign({}, state, {
+			prices: (action as reduxTypes.IObjectAction).value
+		});
 		default:
 			return state;
 	}

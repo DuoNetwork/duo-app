@@ -1,0 +1,240 @@
+{
+	"Items": [
+		{
+			"timeInSecond": { "S": "1528343400" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000001000000000000" },
+			"timestampId": { "S": "1528343408000|log_df3afbfd" },
+			"blockNumber": { "N": "7601869" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348800239" },
+			"priceInWei": { "S": "389920541687670600000" },
+			"navBInWei": { "S": "949601708438353000" },
+			"blockHash": {
+				"S": "0xb78701d106bb53f6dabc69eeecda08d42a635630e0a4e1d976ea0faa1c0f3cb0"
+			},
+			"transactionHash": {
+				"S": "0xe812d2ee1082ffb061de4d35c2502619deb2c6eaebf46a0e6db4b565637c50e0"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528344000" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000003000000000000" },
+			"timestampId": { "S": "1528344020000|log_34b40b03" },
+			"blockNumber": { "N": "7601915" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348800239" },
+			"priceInWei": { "S": "387735114095329600000" },
+			"navBInWei": { "S": "938672570476648000" },
+			"blockHash": {
+				"S": "0x69b222a4e17776654ab32f7983ed344c30e5e1c683c5bb2ac92899766945be96"
+			},
+			"transactionHash": {
+				"S": "0xccce0d1576ae3f457874f26723423d53ae16445337fd517c4c728c51b824a94a"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528344300" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000004000000000000" },
+			"timestampId": { "S": "1528344308000|log_51f51247" },
+			"blockNumber": { "N": "7601935" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348800239" },
+			"priceInWei": { "S": "400000000000000000000" },
+			"navBInWei": { "S": "999996000000000000" },
+			"blockHash": {
+				"S": "0x738dc9ac546b1d4ba1b11046979610bfd28c36619c97c0075d1b5cfd7907326f"
+			},
+			"transactionHash": {
+				"S": "0x34c9453da01ec0ab7f8825139098818fe6c513978a374b96fa144e283479be8a"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528344600" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000005000000000000" },
+			"timestampId": { "S": "1528344608000|log_0bfa1662" },
+			"blockNumber": { "N": "7601956" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348808776" },
+			"priceInWei": { "S": "407252528702636300000" },
+			"navBInWei": { "S": "1036257643513181500" },
+			"blockHash": {
+				"S": "0xd10328ee27d6f67a70203dceabe7f1c56e861aecb268d45a60998af29e7356fc"
+			},
+			"transactionHash": {
+				"S": "0x7c1f78550d25cc5778d89259f79f36c784817b71f0927149cd84401c048c127a"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528345200" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000007000000000000" },
+			"timestampId": { "S": "1528345207000|log_46adeb25" },
+			"blockNumber": { "N": "7601998" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348808776" },
+			"priceInWei": { "S": "372927678973777900000" },
+			"navBInWei": { "S": "864631394868889500" },
+			"blockHash": {
+				"S": "0xcb68dfb33807a841f9b8de05c615fec638f1c729d71bc33b6534f2d3cd69af7f"
+			},
+			"transactionHash": {
+				"S": "0x013ef5ff185b02e542e7a8c09e6fc58f4f1c8a4f9a24aceb7cad055ac57deda4"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528345800" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000009000000000000" },
+			"timestampId": { "S": "1528345820000|log_2278b80c" },
+			"blockNumber": { "N": "7602043" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348808776" },
+			"priceInWei": { "S": "295690729063033900000" },
+			"navBInWei": { "S": "478444645315169500" },
+			"blockHash": {
+				"S": "0x9959efa5c96984b3c7b5bab2ecb85024d2f542fdd37a57edc64939b6e9896d21"
+			},
+			"transactionHash": {
+				"S": "0xaed8a268e55ccf2595f95f3ea2d00e646e0284e48ad759dc3317ae8b1d0e3b3e"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528346101" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000010000000000000" },
+			"timestampId": { "S": "1528346108000|log_936cf76f" },
+			"blockNumber": { "N": "7602063" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348816903" },
+			"priceInWei": { "S": "296388142570402350000" },
+			"navBInWei": { "S": "481930712852011750" },
+			"blockHash": {
+				"S": "0x9618915a928c87dafbedc2bce432bbdf36c8449116dd6524ececc7e6eb33786c"
+			},
+			"transactionHash": {
+				"S": "0xe04125ebf7bb79cf218e210faa78c056b45707cc0154aa832ce6abca694f5e69"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528346700" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000012000000000000" },
+			"timestampId": { "S": "1528346720000|log_2e11fbe9" },
+			"blockNumber": { "N": "7602106" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348816903" },
+			"priceInWei": { "S": "521399720831112200000" },
+			"navBInWei": { "S": "1606986604155561000" },
+			"blockHash": {
+				"S": "0x488494ad8926fe823d66bdfa8280b6ca2a16345bb80a240775a708c62342ace4"
+			},
+			"transactionHash": {
+				"S": "0x313f0e11df309085907e0a4f0f29e829609f9a1f751fbb5d6255f12bbe33aa67"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528347300" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000002000000000000" },
+			"timestampId": { "S": "1528347308000|log_8e3e2319" },
+			"blockNumber": { "N": "7602152" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348825750" },
+			"priceInWei": { "S": "548924472139322700000" },
+			"navBInWei": { "S": "1105578230324389092" },
+			"blockHash": {
+				"S": "0x53e16b220b367ccaab66aeb7424a52e2026fb663cc071f8b2d133662be1c674d"
+			},
+			"transactionHash": {
+				"S": "0xaec53bf77f6f86a4461d194e0de8bc5383903659c5d72d04761b0faf92310bf6"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528347900" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000004000000000000" },
+			"timestampId": { "S": "1528347908000|log_9c1ebfb1" },
+			"blockNumber": { "N": "7602197" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348825750" },
+			"priceInWei": { "S": "741641978064776900000" },
+			"navBInWei": { "S": "1844807565616483646" },
+			"blockHash": {
+				"S": "0xde4aa8e8c33be1946f92fdb5b3bfa111d475ebc0372709f822415bac527c9389"
+			},
+			"transactionHash": {
+				"S": "0xbe9d7aa7d4cbc4d97f8b195be4bd49d35801838810d426a40269fedd73f64eeb"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528348500" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000002000000000000" },
+			"timestampId": { "S": "1528348516000|log_b295ae0c" },
+			"blockNumber": { "N": "7602243" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528348825750" },
+			"priceInWei": { "S": "478792621455291200000" },
+			"navBInWei": { "S": "291167150658492614" },
+			"blockHash": {
+				"S": "0x18a290f4b3dcf8d4e1e0d9765a65892925e0120a300831da8b3cadc41782ca25"
+			},
+			"transactionHash": {
+				"S": "0x8cf6f44ea14f7b9f607f537350d9b9a14eddbb5870374fb092ab4ceac77286be"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528349100" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000004000000000000" },
+			"timestampId": { "S": "1528349108000|log_a0955e04" },
+			"blockNumber": { "N": "7602292" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528349999218" },
+			"priceInWei": { "S": "515415800063212300000" },
+			"navBInWei": { "S": "389927571586943182" },
+			"blockHash": {
+				"S": "0xa6b9f24db24b4136919acf5b26c910ab0b1188e938885ff6d50a041546b7e3ad"
+			},
+			"transactionHash": {
+				"S": "0xa0f9df566449bae13f3a6352c44bb997cb5a39b915b53c2444afead01242b0ab"
+			}
+		},
+		{
+			"timeInSecond": { "S": "1528349700" },
+			"sender": { "S": "0x002002812b42601Ae5026344F0395E68527bb0F8" },
+			"eventKey": { "S": "AcceptPrice|2018-06-07" },
+			"navAInWei": { "S": "1000006000000000000" },
+			"timestampId": { "S": "1528349708000|log_83f013eb" },
+			"blockNumber": { "N": "7602337" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528349999218" },
+			"priceInWei": { "S": "514866681029779700000" },
+			"navBInWei": { "S": "388444751866178568" },
+			"blockHash": {
+				"S": "0xa231f12f337541bef495a837a3fc5b593ac21857aed7cd8b84b2dc9c5fc7b647"
+			},
+			"transactionHash": {
+				"S": "0xcc22ca3c12077a5b83a55028c993186b6b78b23434d318653e0a63894eb64bf9"
+			}
+		}
+	],
+	"Count": 13,
+	"ScannedCount": 13
+}

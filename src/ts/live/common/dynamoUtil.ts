@@ -3,8 +3,9 @@ import { QueryInput, QueryOutput, ScanInput, ScanOutput } from 'aws-sdk/clients/
 import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
-import { IPriceBar, IPriceStatus, IStatus } from '../common/types';
+import { IPrice, IPriceBar, IPriceStatus, IStatus } from '../common/types';
 import * as CST from './constants';
+import contractUtil from './contractUtil';
 
 export class DynamoUtil {
 	private ddb: AWS.DynamoDB;
@@ -24,6 +25,31 @@ export class DynamoUtil {
 		return new Promise((resolve, reject) =>
 			this.ddb.query(params, (err, data) => (err ? reject(err) : resolve(data)))
 		);
+	}
+
+	public async queryAcceptPriceEvent(dates: string[]) {
+		const promiseList = dates.map(date =>
+			this.queryData({
+				TableName: __DEV__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
+				KeyConditionExpression: CST.DB_EVENT_KEY + ' = :' + CST.DB_EVENT_KEY,
+				ExpressionAttributeValues: {
+					[':' + CST.DB_EVENT_KEY]: { S: CST.EVENT_ACCEPT_PRICE + '|' + date }
+				}
+			})
+		);
+
+		const allData: IPrice[] = [];
+		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertPrices(r)));
+		return allData;
+	}
+
+	public convertPrices(acceptPrice: QueryOutput): IPrice[] {
+		if (!acceptPrice.Items || !acceptPrice.Items.length) return [];
+		return acceptPrice.Items.map(p => ({
+			price: contractUtil.fromWei(p['priceInWei'].S || ''),
+			volume: 0,
+			timestamp: Number(p['timeInSecond'].S) * 1000
+		}));
 	}
 
 	public async queryHourlyOHLC(source: string, dates: string[]) {

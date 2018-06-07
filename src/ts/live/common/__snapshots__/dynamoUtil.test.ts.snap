@@ -34,6 +34,76 @@ Array [
 ]
 `;
 
+exports[`convertPrices 1`] = `
+Array [
+  Object {
+    "price": "389.9205416876706",
+    "timestamp": 1528343400000,
+    "volume": 0,
+  },
+  Object {
+    "price": "387.7351140953296",
+    "timestamp": 1528344000000,
+    "volume": 0,
+  },
+  Object {
+    "price": "400",
+    "timestamp": 1528344300000,
+    "volume": 0,
+  },
+  Object {
+    "price": "407.2525287026363",
+    "timestamp": 1528344600000,
+    "volume": 0,
+  },
+  Object {
+    "price": "372.9276789737779",
+    "timestamp": 1528345200000,
+    "volume": 0,
+  },
+  Object {
+    "price": "295.6907290630339",
+    "timestamp": 1528345800000,
+    "volume": 0,
+  },
+  Object {
+    "price": "296.38814257040235",
+    "timestamp": 1528346101000,
+    "volume": 0,
+  },
+  Object {
+    "price": "521.3997208311122",
+    "timestamp": 1528346700000,
+    "volume": 0,
+  },
+  Object {
+    "price": "548.9244721393227",
+    "timestamp": 1528347300000,
+    "volume": 0,
+  },
+  Object {
+    "price": "741.6419780647769",
+    "timestamp": 1528347900000,
+    "volume": 0,
+  },
+  Object {
+    "price": "478.7926214552912",
+    "timestamp": 1528348500000,
+    "volume": 0,
+  },
+  Object {
+    "price": "515.4158000632123",
+    "timestamp": 1528349100000,
+    "volume": 0,
+  },
+  Object {
+    "price": "514.8666810297797",
+    "timestamp": 1528349700000,
+    "volume": 0,
+  },
+]
+`;
+
 exports[`convertStatus 1`] = `
 Array [
   Object {

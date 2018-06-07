@@ -15,6 +15,7 @@ export function refresh(): reduxTypes.ThunkAction {
 		dispatch(contractActions.getBalances());
 		dispatch(dynamoActions.fetchHourly());
 		dispatch(dynamoActions.fetchMinutely());
+		dispatch(dynamoActions.fetchPrices());
 		dispatch(refreshUpdate());
 	};
 }
