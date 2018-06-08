@@ -28,6 +28,11 @@ class ContractUtil {
 		}
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, CST.CUSTODIAN_ADDR);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, CST.DUO_CONTRACT_ADDR);
+
+		this.web3.currentProvider.publicConfigStore.on('update', data => {
+			console.log(data.selectedAddress);
+		});
+
 	}
 
 	public async read(name: string): Promise<string> {
