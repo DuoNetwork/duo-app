@@ -62,10 +62,10 @@ const PriceInfo = (props: {
 	);
 };
 
-const AssetInfo = (props: { icon: string; name: string; prices: string }) => {
-	const { icon, name, prices } = props;
+const AssetInfo = (props: { icon: string; name: string; prices: string; value: number }) => {
+	const { icon, name, prices, value } = props;
 	return (
-		<SCardAssetTag>
+		<SCardAssetTag value={value}>
 			<div className="bg-logo">
 				<img src={icon} />
 			</div>
@@ -168,26 +168,31 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							icon={ethIcon}
 							name="ETH"
 							prices={d3.formatPrefix(',.2', 1)(balances.eth)}
+							value={balances.eth}
 						/>
 						<AssetInfo
 							icon={duoIcon}
 							name="DUO"
 							prices={d3.formatPrefix(',.2', 1)(balances.duo)}
+							value={balances.duo}
 						/>
 						<AssetInfo
 							icon={allowanceIcon}
 							name="Allowance"
-							prices={d3.formatPrefix(',.2', 1)(999999.99)}
+							prices={d3.formatPrefix(',.2', 1)(balances.allowance)}
+							value={balances.allowance}
 						/>
 						<AssetInfo
 							icon={classAIcon}
 							name="Class A"
 							prices={d3.formatPrefix(',.2', 1)(balances.tokenA)}
+							value={balances.tokenA}
 						/>
 						<AssetInfo
 							icon={classBIcon}
 							name="Class B"
 							prices={d3.formatPrefix(',.2', 1)(balances.tokenB)}
+							value={balances.tokenB}
 						/>
 					</SDivFlexCenter>
 				</SCard>

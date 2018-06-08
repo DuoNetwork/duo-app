@@ -158,6 +158,10 @@ export const SCardPriceTag = styled.div`
 	}
 `;
 
+export interface ICardAssetTagProps {
+	value: number;
+}
+
 export const SCardAssetTag = styled.div`
 	height: 100px;
 	width: 115px;
@@ -202,7 +206,7 @@ export const SCardAssetTag = styled.div`
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
-		font-size: 14px;
+		font-size: ${(props: ICardAssetTagProps) => props.value >= 9999999.99 ? '11px' : '14px'}
 	}
 `;
 
