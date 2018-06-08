@@ -3,7 +3,7 @@ import { QueryInput, QueryOutput, ScanInput, ScanOutput } from 'aws-sdk/clients/
 import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
-import { IPrice, IPriceBar, IPriceStatus, IStatus } from '../common/types';
+import { IAcceptedPrice, IPriceBar, IPriceStatus, IStatus } from '../common/types';
 import * as CST from './constants';
 import contractUtil from './contractUtil';
 
@@ -38,16 +38,19 @@ export class DynamoUtil {
 			})
 		);
 
-		const allData: IPrice[] = [];
-		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertPrices(r)));
+		const allData: IAcceptedPrice[] = [];
+		(await Promise.all(promiseList)).forEach(r =>
+			allData.push(...this.convertAcceptedPrices(r))
+		);
 		return allData;
 	}
 
-	public convertPrices(acceptPrice: QueryOutput): IPrice[] {
+	public convertAcceptedPrices(acceptPrice: QueryOutput): IAcceptedPrice[] {
 		if (!acceptPrice.Items || !acceptPrice.Items.length) return [];
 		return acceptPrice.Items.map(p => ({
 			price: contractUtil.fromWei(p['priceInWei'].S || ''),
-			volume: 0,
+			navA: contractUtil.fromWei(p['navAInWei'].S || ''),
+			navB: contractUtil.fromWei(p['navBInWei'].S || ''),
 			timestamp: Number(p['timeInSecond'].S) * 1000
 		}));
 	}

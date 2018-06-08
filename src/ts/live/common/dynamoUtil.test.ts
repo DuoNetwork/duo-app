@@ -10,4 +10,4 @@ test('convertHourly', () => expect(dynamoUtil.convertHourly(hourly)).toMatchSnap
 
 test('convertMinutely', () => expect(dynamoUtil.convertMinutely(minutely)).toMatchSnapshot());
 
-test('convertPrices', () => expect(dynamoUtil.convertPrices(prices)).toMatchSnapshot());
+test('convertAcceptedPrices', () => expect(dynamoUtil.convertAcceptedPrices(prices)).toMatchSnapshot());

@@ -81,7 +81,12 @@ export interface IPriceBars {
 	gdax: IPriceBar[];
 }
 
-export import IPrice = adminTypes.IPrice;
+export interface IAcceptedPrice {
+	price: number,
+	navA: number,
+	navB: number,
+	timestamp: number;
+}
 
 export interface IState {
 	readonly contract: IContractState;
@@ -101,7 +106,7 @@ export interface IDynamoState {
 	readonly status: IStatus[];
 	readonly hourly: IPriceBars;
 	readonly minutely: IPriceBars;
-	readonly prices: IPrice[];
+	readonly prices: IAcceptedPrice[];
 }
 
 export interface IUIState {

@@ -1,5 +1,88 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`convertAcceptedPrices 1`] = `
+Array [
+  Object {
+    "navA": "1.000001",
+    "navB": "0.949601708438353",
+    "price": "389.9205416876706",
+    "timestamp": 1528343400000,
+  },
+  Object {
+    "navA": "1.000003",
+    "navB": "0.938672570476648",
+    "price": "387.7351140953296",
+    "timestamp": 1528344000000,
+  },
+  Object {
+    "navA": "1.000004",
+    "navB": "0.999996",
+    "price": "400",
+    "timestamp": 1528344300000,
+  },
+  Object {
+    "navA": "1.000005",
+    "navB": "1.0362576435131815",
+    "price": "407.2525287026363",
+    "timestamp": 1528344600000,
+  },
+  Object {
+    "navA": "1.000007",
+    "navB": "0.8646313948688895",
+    "price": "372.9276789737779",
+    "timestamp": 1528345200000,
+  },
+  Object {
+    "navA": "1.000009",
+    "navB": "0.4784446453151695",
+    "price": "295.6907290630339",
+    "timestamp": 1528345800000,
+  },
+  Object {
+    "navA": "1.00001",
+    "navB": "0.48193071285201175",
+    "price": "296.38814257040235",
+    "timestamp": 1528346101000,
+  },
+  Object {
+    "navA": "1.000012",
+    "navB": "1.606986604155561",
+    "price": "521.3997208311122",
+    "timestamp": 1528346700000,
+  },
+  Object {
+    "navA": "1.000002",
+    "navB": "1.105578230324389092",
+    "price": "548.9244721393227",
+    "timestamp": 1528347300000,
+  },
+  Object {
+    "navA": "1.000004",
+    "navB": "1.844807565616483646",
+    "price": "741.6419780647769",
+    "timestamp": 1528347900000,
+  },
+  Object {
+    "navA": "1.000002",
+    "navB": "0.291167150658492614",
+    "price": "478.7926214552912",
+    "timestamp": 1528348500000,
+  },
+  Object {
+    "navA": "1.000004",
+    "navB": "0.389927571586943182",
+    "price": "515.4158000632123",
+    "timestamp": 1528349100000,
+  },
+  Object {
+    "navA": "1.000006",
+    "navB": "0.388444751866178568",
+    "price": "514.8666810297797",
+    "timestamp": 1528349700000,
+  },
+]
+`;
+
 exports[`convertHourly 1`] = `
 Array [
   Object {
@@ -30,76 +113,6 @@ Array [
     "source": "GDAX",
     "timestamp": 1527810780000,
     "volume": 12.117600000000001,
-  },
-]
-`;
-
-exports[`convertPrices 1`] = `
-Array [
-  Object {
-    "price": "389.9205416876706",
-    "timestamp": 1528343400000,
-    "volume": 0,
-  },
-  Object {
-    "price": "387.7351140953296",
-    "timestamp": 1528344000000,
-    "volume": 0,
-  },
-  Object {
-    "price": "400",
-    "timestamp": 1528344300000,
-    "volume": 0,
-  },
-  Object {
-    "price": "407.2525287026363",
-    "timestamp": 1528344600000,
-    "volume": 0,
-  },
-  Object {
-    "price": "372.9276789737779",
-    "timestamp": 1528345200000,
-    "volume": 0,
-  },
-  Object {
-    "price": "295.6907290630339",
-    "timestamp": 1528345800000,
-    "volume": 0,
-  },
-  Object {
-    "price": "296.38814257040235",
-    "timestamp": 1528346101000,
-    "volume": 0,
-  },
-  Object {
-    "price": "521.3997208311122",
-    "timestamp": 1528346700000,
-    "volume": 0,
-  },
-  Object {
-    "price": "548.9244721393227",
-    "timestamp": 1528347300000,
-    "volume": 0,
-  },
-  Object {
-    "price": "741.6419780647769",
-    "timestamp": 1528347900000,
-    "volume": 0,
-  },
-  Object {
-    "price": "478.7926214552912",
-    "timestamp": 1528348500000,
-    "volume": 0,
-  },
-  Object {
-    "price": "515.4158000632123",
-    "timestamp": 1528349100000,
-    "volume": 0,
-  },
-  Object {
-    "price": "514.8666810297797",
-    "timestamp": 1528349700000,
-    "volume": 0,
   },
 ]
 `;

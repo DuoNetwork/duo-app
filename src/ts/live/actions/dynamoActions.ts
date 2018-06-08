@@ -2,7 +2,7 @@ import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
-import { IPrice, IPriceBars, VoidThunkAction } from '../common/types';
+import { IAcceptedPrice, IPriceBars, VoidThunkAction } from '../common/types';
 
 export function statusUpdate(status: object) {
 	return {
@@ -74,7 +74,7 @@ export function fetchMinutely(): VoidThunkAction {
 	};
 }
 
-export function pricesUpdate(prices: IPrice[]) {
+export function pricesUpdate(prices: IAcceptedPrice[]) {
 	return {
 		type: CST.AC_DMN_PRICES,
 		value: prices
