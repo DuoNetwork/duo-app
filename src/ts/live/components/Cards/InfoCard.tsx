@@ -37,11 +37,11 @@ interface IState {
 const SCardTitleWithSelector = () => {
 	return (
 		<SCardTitle>
-			<SDivFlexCenter horizontal width="200px">
+			<SDivFlexCenter horizontal noJust>
 				<div>PRICE</div>
 				<SCardTitleSelector
 					defaultValue="smartContract"
-					style={{ width: 120 }}
+					style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 					size="small"
 				>
 					<Option value="smartContract">Smart Contract</Option>
