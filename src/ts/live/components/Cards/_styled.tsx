@@ -1,4 +1,4 @@
-import { Card, Radio } from 'antd';
+import { Card, Radio, Select } from 'antd';
 import styled, { injectGlobal } from 'styled-components';
 import { ColorStyles } from '../../common/styles';
 
@@ -21,7 +21,7 @@ export const SCard = styled(Card)`
 	width: ${(props: ICardProps) => props.width};
 	margin: ${(props: ICardProps) => props.margin};
 	background: ${ColorStyles.CardBackground};
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.20);
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
 	border-radius: 0px;
 	border: none !important;
 	& > .ant-card-head {
@@ -34,7 +34,8 @@ export const SCard = styled(Card)`
 	}
 `;
 
-injectGlobal([`
+injectGlobal([
+	`
 	body {
 		.ant-card-wider-padding .ant-card-head{
 			padding: 0 16px;
@@ -46,7 +47,8 @@ injectGlobal([`
 			border-bottom: 1px solid rgba(255,255,255,.05);
 		}
 	}
-`] as any);
+`
+] as any);
 
 export const SCardTitle = styled.div`
 	color: ${ColorStyles.TextWhiteAlpha};
@@ -56,6 +58,55 @@ export const SCardTitle = styled.div`
 	font-size: 18px;
 	padding-left: 12px;
 `;
+
+export const SCardTitleSelector = styled(Select)`
+	.ant-select-selection {
+		border-radius: 0;
+		color: ${ColorStyles.TextWhiteAlphaL};
+		background-color: transparent;
+		border: 1px solid;
+		border-color: ${ColorStyles.BorderWhite1};
+		font-size: 10px;
+		font-family: 'Roboto';
+		font-weight: 400;
+		letter-spacing: 0;
+		span {
+			color: ${ColorStyles.TextWhiteAlphaLLL};
+		}
+	}
+	.ant-select-selection:focus {
+		-webkit-box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
+		box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
+	}
+`;
+
+injectGlobal([
+	`
+	body {
+		.ant-select-dropdown {
+			border-radius: 0;
+			font-size: 10px;
+			font-family: 'Roboto';
+			background: ${ColorStyles.CardBackgroundSolid};
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
+		}
+		.ant-select-dropdown-menu-item {
+			color: ${ColorStyles.TextWhiteAlphaLL};
+		}
+		.ant-select-dropdown-menu-item:hover {
+			background: ${ColorStyles.HoverBackgroundSolid};
+		}
+		.ant-select-dropdown-menu-item-selected, .ant-select-dropdown-menu-item-selected:hover {
+			color: ${ColorStyles.TextWhiteAlpha};
+			background: ${ColorStyles.SelectBackgroundSolid};
+			font-weight: 500;
+		}
+		.ant-select-dropdown-menu-item:first-child, .ant-select-dropdown-menu-item:last-child {
+			border-radius: 0;
+		}
+	}
+`
+] as any);
 
 export const SCardPriceTag = styled.div`
 	height: 100px;
@@ -67,11 +118,11 @@ export const SCardPriceTag = styled.div`
 	overflow: hidden;
 	padding-top: 10px;
 	.bg-logo {
-	height: 100px;
-	width: 100px;
-	position: absolute;
-	left: -35px;
-	top: 10px;
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		left: -35px;
+		top: 10px;
 	}
 	.bg-logo > img {
 		height: 100%;
@@ -158,6 +209,10 @@ export const SCardPriceTag = styled.div`
 	}
 `;
 
+export interface ICardAssetTagProps {
+	value: number;
+}
+
 export const SCardAssetTag = styled.div`
 	height: 100px;
 	width: 115px;
@@ -168,11 +223,11 @@ export const SCardAssetTag = styled.div`
 	overflow: hidden;
 	padding-top: 10px;
 	.bg-logo {
-	height: 100px;
-	width: 100px;
-	position: absolute;
-	left: -35px;
-	top: 10px;
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		left: -35px;
+		top: 10px;
 	}
 	.bg-logo > img {
 		height: 100%;
@@ -202,7 +257,7 @@ export const SCardAssetTag = styled.div`
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
-		font-size: 14px;
+		font-size: ${(props: ICardAssetTagProps) => (props.value >= 9999999.99 ? '11px' : '14px')};
 	}
 `;
 
@@ -226,11 +281,13 @@ export const SCardExtendExtraDiv = styled.div`
 	& > .extend-extra-wrapper {
 		padding: 0 10px;
 		border: 1px dashed;
-		border-color: ${(props: ICardExtraProps) => props.color ? ColorStyles.TextRedAlphaLL : ColorStyles.BorderWhite3};
+		border-color: ${(props: ICardExtraProps) =>
+			props.color ? ColorStyles.TextRedAlphaLL : ColorStyles.BorderWhite3};
 		display: flex;
 		flex-direction: row;
 		.tag-content {
-			color: ${(props: ICardExtraProps) => props.color ? props.color : ColorStyles.TextWhiteAlphaL};
+			color: ${(props: ICardExtraProps) =>
+				props.color ? props.color : ColorStyles.TextWhiteAlphaL};
 			overflow: hidden;
 			padding-left: 0px;
 			max-width: 0px;
@@ -259,7 +316,8 @@ export const SCardRadioExtraDiv = styled.div`
 
 export const SRadioGroup = styled(RadioGroup)`
 	margin-left: 8px;
-	.ant-radio-button-wrapper:first-child,.ant-radio-button-wrapper:last-child {
+	.ant-radio-button-wrapper:first-child,
+	.ant-radio-button-wrapper:last-child {
 		border-radius: 0;
 	}
 	.ant-radio-button-wrapper:last-child {
@@ -279,4 +337,4 @@ export const SRadioGroup = styled(RadioGroup)`
 		background: ${ColorStyles.ButtonRadioChekedBG};
 		box-shadow: ${() => '-1px 0 0 0 ' + ColorStyles.BorderWhite6};
 	}
-`
+`;

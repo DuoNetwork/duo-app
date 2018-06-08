@@ -1,3 +1,4 @@
+import { Select } from 'antd';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
@@ -15,8 +16,11 @@ import {
 	SCardExtendExtraDiv,
 	SCardExtraDiv,
 	SCardPriceTag,
-	SCardTitle
+	SCardTitle,
+	SCardTitleSelector
 } from './_styled';
+
+const Option = Select.Option;
 
 interface IProps {
 	account: string;
@@ -29,6 +33,26 @@ interface IProps {
 interface IState {
 	time: string;
 }
+
+const SCardTitleWithSelector = () => {
+	return (
+		<SCardTitle>
+			<SDivFlexCenter horizontal noJust>
+				<div>PRICE</div>
+				<SCardTitleSelector
+					defaultValue="smartContract"
+					style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
+					size="small"
+				>
+					<Option value="smartContract">Smart Contract</Option>
+					<Option value="bitfinex">Bitfinex</Option>
+					<Option value="kraken">Kraken</Option>
+					<Option value="gdax">Gdax</Option>
+				</SCardTitleSelector>
+			</SDivFlexCenter>
+		</SCardTitle>
+	);
+};
 
 const PriceInfo = (props: {
 	icon: string;
@@ -62,10 +86,10 @@ const PriceInfo = (props: {
 	);
 };
 
-const AssetInfo = (props: { icon: string; name: string; prices: string }) => {
-	const { icon, name, prices } = props;
+const AssetInfo = (props: { icon: string; name: string; prices: string; value: number }) => {
+	const { icon, name, prices, value } = props;
 	return (
-		<SCardAssetTag>
+		<SCardAssetTag value={value}>
 			<div className="bg-logo">
 				<img src={icon} />
 			</div>
@@ -101,10 +125,13 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 		return (
 			<SDivFlexCenter center horizontal marginBottom="20px;">
 				<SCard
-					title={<SCardTitle>PRICE</SCardTitle>}
+					title={<SCardTitleWithSelector />}
 					extra={
 						<SCardExtraDiv>
-							{prices.last.timestamp ? 'Last Updated: ' + moment(prices.last.timestamp).format('YYYY-MM-DD kk:mm') : 'Loading Prices'}
+							{prices.last.timestamp
+								? 'Last Updated: ' +
+								moment(prices.last.timestamp).format('YYYY-MM-DD kk:mm')
+								: 'Loading Prices'}
 						</SCardExtraDiv>
 					}
 					width="570px"
@@ -168,26 +195,31 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							icon={ethIcon}
 							name="ETH"
 							prices={d3.formatPrefix(',.2', 1)(balances.eth)}
+							value={balances.eth}
 						/>
 						<AssetInfo
 							icon={duoIcon}
 							name="DUO"
 							prices={d3.formatPrefix(',.2', 1)(balances.duo)}
+							value={balances.duo}
 						/>
 						<AssetInfo
 							icon={allowanceIcon}
 							name="Allowance"
-							prices={d3.formatPrefix(',.2', 1)(999999.99)}
+							prices={d3.formatPrefix(',.2', 1)(balances.allowance)}
+							value={balances.allowance}
 						/>
 						<AssetInfo
 							icon={classAIcon}
 							name="Class A"
 							prices={d3.formatPrefix(',.2', 1)(balances.tokenA)}
+							value={balances.tokenA}
 						/>
 						<AssetInfo
 							icon={classBIcon}
 							name="Class B"
 							prices={d3.formatPrefix(',.2', 1)(balances.tokenB)}
+							value={balances.tokenB}
 						/>
 					</SDivFlexCenter>
 				</SCard>
