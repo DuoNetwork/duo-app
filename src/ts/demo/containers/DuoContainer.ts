@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 import * as uiActions from '../actions/uiActions';
 import { IState } from '../common/types';
 import Duo from '../components/Duo';
@@ -23,7 +23,7 @@ function mapStateToProps(state: IState) {
 	};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch<IState>) {
 	return {
 		refresh: () => dispatch(uiActions.refresh()),
 		next: () => dispatch(uiActions.next()),

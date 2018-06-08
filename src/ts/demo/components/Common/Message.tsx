@@ -8,7 +8,7 @@ interface IProps {
 	type: string;
 	content: string;
 	visible: boolean;
-	close: () => void;
+	close: () => any;
 }
 
 export default class Message extends React.Component<IProps> {

@@ -25,10 +25,10 @@ interface IProps {
 	upwardResetLimit: number;
 	downwardResetLimit: number;
 	periodicResetLimit: number;
-	refresh: () => void;
-	next: () => void;
-	forward: () => void;
-	setting: (c: number, u: number, d: number, p: number) => void;
+	refresh: () => any;
+	next: () => any;
+	forward: () => any;
+	setting: (c: number, u: number, d: number, p: number) => any;
 }
 
 interface IState {

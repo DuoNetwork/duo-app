@@ -11,8 +11,8 @@ interface IProps {
 	resetPrice: number;
 	beta: number;
 	trades: string[];
-	trade: (tradeString: string, assets: IAssets) => void;
-	message: (type: string, content: string) => void;
+	trade: (tradeString: string, assets: IAssets) => any;
+	message: (type: string, content: string) => any;
 }
 
 interface IState {

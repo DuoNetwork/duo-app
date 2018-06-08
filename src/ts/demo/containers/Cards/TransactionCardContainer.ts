@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 import * as uiActions from '../../actions/uiActions';
 import { IAssets, IState } from '../../common/types';
 import TransactionCard from '../../components/Cards/TransactionCard';
@@ -13,7 +13,7 @@ function mapStateToProps(state: IState) {
 	};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch<IState>) {
 	return {
 		message: (type: string, content: string) =>
 			dispatch(uiActions.messsage(type, content, true)),

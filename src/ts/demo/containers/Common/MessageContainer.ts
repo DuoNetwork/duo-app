@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { connect, Dispatch } from 'react-redux';
 import * as uiActions from '../../actions/uiActions';
 import { IState } from '../../common/types';
 import Message from '../../components/Common/Message';
@@ -11,7 +11,7 @@ function mapStateToProps(state: IState) {
 	};
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch<IState>) {
 	return {
 		close: () => dispatch(uiActions.messsage('', '', false))
 	};
