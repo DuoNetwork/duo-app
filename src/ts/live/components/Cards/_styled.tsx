@@ -75,6 +75,7 @@ export const SCardPriceTag = styled.div`
 		height: 100%;
 		width: 100%;
 		opacity: 0.05;
+		pointer-events: none;
 	}
 	.tag-title {
 		width: 90px;
@@ -144,7 +145,7 @@ export const SCardPriceTag = styled.div`
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 10px;
-		margin-top: 6px;
+		margin-top: 4px;
 	}
 	.tag-unit-3 {
 		color: ${ColorStyles.TextWhiteAlphaL};
@@ -175,6 +176,7 @@ export const SCardAssetTag = styled.div`
 		height: 100%;
 		width: 100%;
 		opacity: 0.05;
+		pointer-events: none;
 	}
 	.tag-title {
 		width: 90px;

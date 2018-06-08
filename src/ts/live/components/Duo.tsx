@@ -6,6 +6,7 @@ import { IBalances, ICustodianPrices, ICustodianStates, IPriceBars } from '../co
 import { SContent } from './_styled';
 import GraphCard from './Cards/GraphCard';
 import InfoCard from './Cards/InfoCard';
+import TransactionCard from './Cards/TransactionCard';
 import Header from './DuoHeader';
 
 interface IProps {
@@ -32,6 +33,8 @@ export default class Duo extends React.PureComponent<IProps> {
 				<Header />
 				<SContent>
 					<InfoCard prices={prices} states={states} refresh={refresh} balances={balances} account={account}/>
+					<GraphCard prices={prices} states={states} refresh={refresh} balances={balances}/>
+					<TransactionCard prices={prices} states={states} refresh={refresh} balances={balances}/>
 					{/*
 					<SDivFlexCenter horizontal center>
 						<button onClick={() => contractUtil.create(account, 0.1, true)}>
@@ -71,7 +74,6 @@ export default class Duo extends React.PureComponent<IProps> {
 					<pre>{JSON.stringify(prices, null, 4)}</pre>
 					<pre>{JSON.stringify(balances, null, 4)}</pre>
 					*/}
-					<GraphCard prices={prices} states={states} refresh={refresh} balances={balances}/>
 				</SContent>
 			</Layout>
 		);

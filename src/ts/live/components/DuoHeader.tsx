@@ -15,7 +15,7 @@ export default class Header extends React.PureComponent {
 							<a href="https://duo.network">HOME</a>
 						</div>
 						<div className="nav-button-wrapper">
-							<a href="https://duo.network">STATUS</a>
+							<a href="./status.html">STATUS</a>
 						</div>
 					</SDivFlexCenter>
 				</SDivFlexCenter>
