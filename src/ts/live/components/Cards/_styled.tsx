@@ -1,6 +1,8 @@
-import { Card } from 'antd';
+import { Card, Radio } from 'antd';
 import styled, { injectGlobal } from 'styled-components';
 import { ColorStyles } from '../../common/styles';
+
+const RadioGroup = Radio.Group;
 
 export interface ICardProps {
 	width?: string;
@@ -231,13 +233,50 @@ export const SCardExtendExtraDiv = styled.div`
 			color: ${(props: ICardExtraProps) => props.color ? props.color : ColorStyles.TextWhiteAlphaL};
 			overflow: hidden;
 			padding-left: 0px;
-			width: 0px;
-			transition: width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
-			-webkit-transition: width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
+			max-width: 0px;
+			transition: max-width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
+			-webkit-transition: max-width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
 		}
 	}
 	& > .extend-extra-wrapper:hover > .tag-content {
 		padding-left: 8px;
-		width: ${(props: ICardExtraProps) => props.color ? '57.2px' : '295px'};
+		max-width: 300px;
+	}
+`;
+
+export const SCardRadioExtraDiv = styled.div`
+	font-family: 'Roboto';
+	color: ${ColorStyles.TextWhiteAlphaLL};
+	font-size: 10px;
+	padding-right: 10px;
+	line-height: 24px;
+	& > .extend-extra-wrapper {
+		padding: 0 10px;
+		display: flex;
+		flex-direction: row;
+	}
+`;
+
+export const SRadioGroup = styled(RadioGroup)`
+	margin-left: 8px;
+	.ant-radio-button-wrapper:first-child,.ant-radio-button-wrapper:last-child {
+		border-radius: 0;
+	}
+	.ant-radio-button-wrapper:last-child {
+		border-left: 0;
+	}
+	.ant-radio-button-wrapper {
+		padding: 0 12px;
+		border: 1px dashed;
+		border-color: ${ColorStyles.BorderWhite2};
+		color: ${ColorStyles.TextWhiteAlphaLLL};
+		background: ${ColorStyles.ButtonRadioUnchekedBG};
+	}
+	.ant-radio-button-wrapper-checked {
+		border: 1px solid;
+		border-color: ${ColorStyles.BorderWhite4};
+		color: ${ColorStyles.TextWhiteAlphaL};
+		background: ${ColorStyles.ButtonRadioChekedBG};
+		box-shadow: ${() => '-1px 0 0 0 ' + ColorStyles.BorderWhite6};
 	}
 `

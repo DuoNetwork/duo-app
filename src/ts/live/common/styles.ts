@@ -18,8 +18,12 @@ export const ColorStyles = {
 	TextWhiteAlpha: 'rgba(255,255,255,.8)',
 	TextWhiteAlphaL: 'rgba(255,255,255,.6)',
 	TextWhiteAlphaLL: 'rgba(255,255,255,.4)',
+	TextWhiteAlphaLLL: 'rgba(255,255,255,.2)',
 	TextRed: 'rgba(255,94,94,1)',
 	TextRedAlpha: 'rgba(255,94,94,.8)',
 	TextRedAlphaL: 'rgba(255,94,94,.6)',
 	TextRedAlphaLL: 'rgba(255,94,94,.4)',
+	//Button Colors
+	ButtonRadioUnchekedBG: 'rgba(55,54,56,.2)',
+	ButtonRadioChekedBG: 'rgba(55,54,56,.6)',
 };
