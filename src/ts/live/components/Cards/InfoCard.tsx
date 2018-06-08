@@ -1,3 +1,4 @@
+import { Select } from 'antd';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
@@ -15,8 +16,11 @@ import {
 	SCardExtendExtraDiv,
 	SCardExtraDiv,
 	SCardPriceTag,
-	SCardTitle
+	SCardTitle,
+	SCardTitleSelector
 } from './_styled';
+
+const Option = Select.Option;
 
 interface IProps {
 	account: string;
@@ -29,6 +33,26 @@ interface IProps {
 interface IState {
 	time: string;
 }
+
+const SCardTitleWithSelector = () => {
+	return (
+		<SCardTitle>
+			<SDivFlexCenter horizontal width="200px">
+				<div>PRICE</div>
+				<SCardTitleSelector
+					defaultValue="smartContract"
+					style={{ width: 120 }}
+					size="small"
+				>
+					<Option value="smartContract">Smart Contract</Option>
+					<Option value="bitfinex">Bitfinex</Option>
+					<Option value="kraken">Kraken</Option>
+					<Option value="gdax">Gdax</Option>
+				</SCardTitleSelector>
+			</SDivFlexCenter>
+		</SCardTitle>
+	);
+};
 
 const PriceInfo = (props: {
 	icon: string;
@@ -101,10 +125,13 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 		return (
 			<SDivFlexCenter center horizontal marginBottom="20px;">
 				<SCard
-					title={<SCardTitle>PRICE</SCardTitle>}
+					title={<SCardTitleWithSelector />}
 					extra={
 						<SCardExtraDiv>
-							{prices.last.timestamp ? 'Last Updated: ' + moment(prices.last.timestamp).format('YYYY-MM-DD kk:mm') : 'Loading Prices'}
+							{prices.last.timestamp
+								? 'Last Updated: ' +
+								moment(prices.last.timestamp).format('YYYY-MM-DD kk:mm')
+								: 'Loading Prices'}
 						</SCardExtraDiv>
 					}
 					width="570px"
