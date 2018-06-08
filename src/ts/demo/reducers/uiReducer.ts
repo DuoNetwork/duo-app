@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux';
 import calculator from '../common/calculator';
 import * as CST from '../common/constants';
 import { IRawData, IUIState } from '../common/types';
@@ -45,7 +46,7 @@ export const initialState: IUIState = {
 	}
 };
 
-export function uiReducer(state: IUIState = initialState, action): IUIState {
+export function uiReducer(state: IUIState = initialState, action: AnyAction): IUIState {
 	const { eth, classA, classB, resetPrice, beta, upward, downward, periodic, setting } = state;
 	switch (action.type) {
 		case CST.AC_REFRESH:

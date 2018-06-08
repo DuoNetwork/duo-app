@@ -1,6 +1,12 @@
 import * as CST from '../common/constants';
 import contractUtil from '../common/contractUtil';
-import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
+import {
+	IAddresses,
+	IBalances,
+	ICustodianPrices,
+	ICustodianStates,
+	VoidThunkAction
+} from '../common/types';
 
 export function accountUpdate(account: string) {
 	return {
@@ -16,7 +22,7 @@ export function custodianStatesUpdate(states: ICustodianStates) {
 	};
 }
 
-export function getCustodianStates() {
+export function getCustodianStates(): VoidThunkAction {
 	return async dispatch => {
 		const states = await contractUtil.getSystemStates();
 		dispatch(custodianStatesUpdate(states));
@@ -30,7 +36,7 @@ export function custodianPricesUpdate(prices: ICustodianPrices) {
 	};
 }
 
-export function getCustodianPrices() {
+export function getCustodianPrices(): VoidThunkAction {
 	return async dispatch => dispatch(custodianPricesUpdate(await contractUtil.getSystemPrices()));
 }
 
@@ -41,7 +47,7 @@ export function balancesUpdate(balance: IBalances) {
 	};
 }
 
-export function getBalances() {
+export function getBalances(): VoidThunkAction {
 	return async dispatch => {
 		const account = await contractUtil.getCurrentAddress();
 		dispatch(accountUpdate(account));
@@ -56,6 +62,6 @@ export function addressesUpdate(addr: IAddresses) {
 	};
 }
 
-export function getAddresses() {
+export function getAddresses(): VoidThunkAction {
 	return async dispatch => dispatch(addressesUpdate(await contractUtil.getSystemAddresses()));
 }

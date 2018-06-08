@@ -2,7 +2,7 @@ import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
-import { IPrice, IPriceBars } from '../common/types';
+import { IPrice, IPriceBars, VoidThunkAction } from '../common/types';
 
 export function statusUpdate(status: object) {
 	return {
@@ -11,7 +11,7 @@ export function statusUpdate(status: object) {
 	};
 }
 
-export function scanStatus() {
+export function scanStatus(): VoidThunkAction {
 	return async dispatch => {
 		const states = await dynamoUtil.scanStatus();
 		dispatch(statusUpdate(states));
@@ -25,7 +25,7 @@ export function hourlyUpdate(hourly: IPriceBars) {
 	};
 }
 
-export function fetchHourly() {
+export function fetchHourly(): VoidThunkAction {
 	return async dispatch => {
 		const dates: string[] = [];
 		const date = moment.utc();
@@ -53,7 +53,7 @@ export function minutelyUpdate(minutely: IPriceBars) {
 	};
 }
 
-export function fetchMinutely() {
+export function fetchMinutely(): VoidThunkAction {
 	return async dispatch => {
 		const dates: string[] = [];
 		const date = moment.utc();
@@ -81,7 +81,7 @@ export function pricesUpdate(prices: IPrice[]) {
 	};
 }
 
-export function fetchPrices() {
+export function fetchPrices(): VoidThunkAction {
 	return async dispatch => {
 		const dates: string[] = [];
 		const date = moment.utc();

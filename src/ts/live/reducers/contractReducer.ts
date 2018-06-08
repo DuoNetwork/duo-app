@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux';
 import * as CST from '../common/constants';
 import { IContractState } from '../common/types';
 
@@ -55,7 +56,7 @@ export const initialState: IContractState = {
 	account: '0x0'
 };
 
-export function contractReducer(state: IContractState = initialState, action): IContractState {
+export function contractReducer(state: IContractState = initialState, action: AnyAction): IContractState {
 	switch (action.type) {
 		case CST.AC_CTD_STATES:
 			return Object.assign({}, state, {

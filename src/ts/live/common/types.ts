@@ -1,3 +1,5 @@
+import { AnyAction } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import * as adminTypes from '../../../../../duo-admin/src/types';
 
 export interface ICustodianPrice {
@@ -82,26 +84,28 @@ export interface IPriceBars {
 export import IPrice = adminTypes.IPrice;
 
 export interface IState {
-	contract: IContractState;
-	dynamo: IDynamoState;
-	ui: IUIState;
+	readonly contract: IContractState;
+	readonly dynamo: IDynamoState;
+	readonly ui: IUIState;
 }
 
 export interface IContractState {
-	states: ICustodianStates;
-	prices: ICustodianPrices;
-	balances: IBalances;
-	addresses: IAddresses;
-	account: string;
+	readonly states: ICustodianStates;
+	readonly prices: ICustodianPrices;
+	readonly balances: IBalances;
+	readonly addresses: IAddresses;
+	readonly account: string;
 }
 
 export interface IDynamoState {
-	status: IStatus[];
-	hourly: IPriceBars;
-	minutely: IPriceBars;
-	prices: IPrice[];
+	readonly status: IStatus[];
+	readonly hourly: IPriceBars;
+	readonly minutely: IPriceBars;
+	readonly prices: IPrice[];
 }
 
 export interface IUIState {
-	refresh: number;
+	readonly refresh: number;
 }
+
+export type VoidThunkAction = ThunkAction<void, IState, undefined, AnyAction>;

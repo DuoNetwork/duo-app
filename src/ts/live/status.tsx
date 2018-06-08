@@ -1,14 +1,13 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-//import contractUtil from './common/contractUtil';
 import * as contractActions from './actions/contractActions';
 import * as dynamoActions from './actions/dynamoActions';
 import Status from './containers/StatusContainer';
 import store from './store/store';
 
-store.dispatch(contractActions.getAddresses() as any);
-store.dispatch(dynamoActions.scanStatus() as any);
+store.dispatch(contractActions.getAddresses());
+store.dispatch(dynamoActions.scanStatus());
 
 ReactDOM.render(
 	<Provider store={store}>

@@ -1,4 +1,5 @@
 import * as CST from '../common/constants';
+import { VoidThunkAction } from '../common/types';
 import * as contractActions from './contractActions';
 import * as dynamoActions from './dynamoActions';
 
@@ -7,7 +8,7 @@ export function refreshUpdate() {
 		type: CST.AC_REFRESH
 	};
 }
-export function refresh() {
+export function refresh(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(contractActions.getCustodianStates());
 		dispatch(contractActions.getCustodianPrices());

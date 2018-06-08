@@ -1,3 +1,4 @@
+import { AnyAction } from 'redux';
 import * as CST from '../common/constants';
 import { IUIState } from '../common/types';
 import util from '../common/util';
@@ -8,7 +9,7 @@ export const initialState: IUIState = {
 
 export function uiReducer(
 	state: IUIState = initialState,
-	action
+	action: AnyAction
 ): IUIState {
 	switch (action.type) {
 		case CST.AC_REFRESH:

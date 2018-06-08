@@ -1,5 +1,4 @@
 import * as CST from '../common/constants';
-//import * as reduxTypes from '../common/reduxTypes';
 import { IAssets } from '../common/types';
 
 export function refresh() {
