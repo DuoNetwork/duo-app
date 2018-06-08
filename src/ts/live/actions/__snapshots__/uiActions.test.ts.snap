@@ -23,18 +23,6 @@ Array [
     "value": "test",
   },
   Object {
-    "type": "dynamoPrices",
-    "value": Array [
-      "test",
-    ],
-  },
-  Object {
-    "type": "balances",
-    "value": Object {
-      "test": "test",
-    },
-  },
-  Object {
     "type": "dynamoHourly",
     "value": Object {
       "bitfinex": Object {
@@ -66,6 +54,18 @@ Array [
       "kraken": Object {
         "test": "test",
       },
+    },
+  },
+  Object {
+    "type": "dynamoPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "balances",
+    "value": Object {
+      "test": "test",
     },
   },
 ]

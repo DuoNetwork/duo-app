@@ -47,7 +47,7 @@ injectGlobal([`
 `] as any);
 
 export const SCardTitle = styled.div`
-	color: rgba(250, 250, 250, 0.8);
+	color: ${ColorStyles.TextWhiteAlpha};
 	font-family: 'Roboto';
 	font-weight: 500;
 	letter-spacing: 2px;
@@ -60,7 +60,8 @@ export const SCardPriceTag = styled.div`
 	width: 160px;
 	position: relative;
 	margin-top: 10px;
-	border: 1px dashed rgba(255,255,255,.08);
+	border: 1px dashed;
+	border-color: ${ColorStyles.BorderWhite1};
 	overflow: hidden;
 	padding-top: 10px;
 	.bg-logo {
@@ -84,7 +85,7 @@ export const SCardPriceTag = styled.div`
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
-		color: rgba(250, 250, 250, 0.6);
+		color: ${ColorStyles.TextWhiteAlphaL};
 		margin: 0;
 	}
 	.tag-content {
@@ -101,7 +102,7 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-unit {
 		margin-left: 2px;
-		color: rgba(250, 250, 250, 0.6);
+		color: ${ColorStyles.TextWhiteAlphaL};
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -138,7 +139,7 @@ export const SCardPriceTag = styled.div`
 	.tag-unit-1,
 	.tag-unit-2 {
 		margin-left: 2px;
-		color: rgba(250, 250, 250, 0.6);
+		color: ${ColorStyles.TextWhiteAlphaL};
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -146,7 +147,7 @@ export const SCardPriceTag = styled.div`
 		margin-top: 6px;
 	}
 	.tag-unit-3 {
-		color: rgba(250, 250, 250, 0.6);
+		color: ${ColorStyles.TextWhiteAlphaL};
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -159,7 +160,8 @@ export const SCardAssetTag = styled.div`
 	width: 115px;
 	position: relative;
 	margin-top: 10px;
-	border: 1px dashed rgba(255,255,255,.08);
+	border: 1px dashed;
+	border-color: ${ColorStyles.BorderWhite1};
 	overflow: hidden;
 	padding-top: 10px;
 	.bg-logo {
@@ -176,19 +178,19 @@ export const SCardAssetTag = styled.div`
 	}
 	.tag-title {
 		width: 90px;
-		margin-left: 20px;
+		margin-left: 15px;
 	}
 	.tag-title > h3 {
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
-		color: rgba(250, 250, 250, 0.6);
+		color: ${ColorStyles.TextWhiteAlphaL};
 		margin: 0;
 	}
 	.tag-content {
 		width: 120px;
-		margin-left: 20px;
+		margin-left: 15px;
 		margin-top: 15px;
 	}
 	.tag-price {
@@ -206,3 +208,34 @@ export const SCardExtraDiv = styled.div`
 	padding-right: 10px;
 	line-height: 24px;
 `;
+
+export interface ICardExtraProps {
+	color?: string;
+}
+
+export const SCardExtendExtraDiv = styled.div`
+	font-family: 'Roboto';
+	color: ${ColorStyles.TextWhiteAlphaLL};
+	font-size: 10px;
+	padding-right: 10px;
+	line-height: 24px;
+	& > .extend-extra-wrapper {
+		padding: 0 10px;
+		border: 1px dashed;
+		border-color: ${(props: ICardExtraProps) => props.color ? ColorStyles.TextRedAlphaLL : ColorStyles.BorderWhite3};
+		display: flex;
+		flex-direction: row;
+		.tag-content {
+			color: ${(props: ICardExtraProps) => props.color ? props.color : ColorStyles.TextWhiteAlphaL};
+			overflow: hidden;
+			padding-left: 0px;
+			width: 0px;
+			transition: width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
+			-webkit-transition: width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
+		}
+	}
+	& > .extend-extra-wrapper:hover > .tag-content {
+		padding-left: 8px;
+		width: ${(props: ICardExtraProps) => props.color ? '57.2px' : '295px'};
+	}
+`

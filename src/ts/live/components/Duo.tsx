@@ -21,7 +21,7 @@ interface IProps {
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
 		const {
-			//account,
+			account,
 			refresh,
 			states,
 			prices,
@@ -31,7 +31,7 @@ export default class Duo extends React.PureComponent<IProps> {
 			<Layout>
 				<Header />
 				<SContent>
-					<InfoCard prices={prices} states={states} refresh={refresh} balances={balances} />
+					<InfoCard prices={prices} states={states} refresh={refresh} balances={balances} account={account}/>
 					{/*
 					<SDivFlexCenter horizontal center>
 						<button onClick={() => contractUtil.create(account, 0.1, true)}>

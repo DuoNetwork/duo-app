@@ -103,7 +103,7 @@ class ContractUtil {
 		const custodianPrices = [0, 1, 2, 3].map(i => ({
 			address: prices[i * 3].valueOf(),
 			price: this.fromWei(prices[1 + i * 3]),
-			timestamp: prices[2 + i * 3].valueOf()
+			timestamp: prices[2 + i * 3].valueOf() * 1000
 		}));
 
 		return {

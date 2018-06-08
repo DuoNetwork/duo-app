@@ -6,11 +6,20 @@ import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
 import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
+import { ColorStyles } from '../../common/styles';
 import { IBalances, ICustodianPrices, ICustodianStates } from '../../common/types';
-import { SDivFlexCenter } from '../_styled'
-import { SCard, SCardAssetTag, SCardExtraDiv, SCardPriceTag, SCardTitle,  } from './_styled';
+import { SDivFlexCenter } from '../_styled';
+import {
+	SCard,
+	SCardAssetTag,
+	SCardExtendExtraDiv,
+	SCardExtraDiv,
+	SCardPriceTag,
+	SCardTitle
+} from './_styled';
 
 interface IProps {
+	account: string;
 	prices: ICustodianPrices;
 	states: ICustodianStates;
 	refresh: number;
@@ -53,11 +62,7 @@ const PriceInfo = (props: {
 	);
 };
 
-const AssetInfo = (props: {
-	icon: string;
-	name: string;
-	prices: string;
-}) => {
+const AssetInfo = (props: { icon: string; name: string; prices: string }) => {
 	const { icon, name, prices } = props;
 	return (
 		<SCardAssetTag>
@@ -70,9 +75,7 @@ const AssetInfo = (props: {
 			<div className="tag-content">
 				<div>
 					<div style={{ display: 'flex', flexDirection: 'row' }}>
-						<div className={'tag-price'}>
-							{prices}
-						</div>
+						<div className={'tag-price'}>{prices}</div>
 					</div>
 				</div>
 			</div>
@@ -80,13 +83,34 @@ const AssetInfo = (props: {
 	);
 };
 
+const ExtendExtraDiv = (props: { account: string }) => {
+	const { account } = props;
+	return (
+		<SCardExtendExtraDiv color={account === 'Unknown' ? ColorStyles.TextRedAlpha : undefined}>
+			<div className="extend-extra-wrapper">
+				<div className="tag-title">Address</div>
+				<div className="tag-content">{account}</div>
+			</div>
+		</SCardExtendExtraDiv>
+	);
+};
+
 export default class InfoCard extends React.PureComponent<IProps, IState> {
 	public render() {
-		const { prices, states, refresh, balances } = this.props;
+		const { prices, states, balances, account } = this.props;
 		return (
-			<SDivFlexCenter center horizontal marginBottom='20px;'>
-				<SCard title={<SCardTitle>PRICE</SCardTitle>} extra={<SCardExtraDiv>{'Last Updated: ' + moment(refresh).format('YYYY MMM Do hh:mm a')}</SCardExtraDiv>} width="570px" margin='0 10px 0 0'>
-					<SDivFlexCenter horizontal padding='0 10px'>
+			<SDivFlexCenter center horizontal marginBottom="20px;">
+				<SCard
+					title={<SCardTitle>PRICE</SCardTitle>}
+					extra={
+						<SCardExtraDiv>
+							{prices.last.timestamp ? 'Last Updated: ' + moment(prices.last.timestamp).format('YYYY-MM-DD kk:mm') : 'Loading Prices'}
+						</SCardExtraDiv>
+					}
+					width="570px"
+					margin="0 10px 0 0"
+				>
+					<SDivFlexCenter horizontal padding="0 10px">
 						<PriceInfo
 							icon={ethIcon}
 							name="ETH"
@@ -106,7 +130,9 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.6', 1)(states.navA / prices.last.price),
+									value: d3.formatPrefix(',.6', 1)(
+										states.navA / prices.last.price
+									),
 									unit: 'ETH'
 								}
 							]}
@@ -121,7 +147,9 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.6', 1)(states.navB / prices.last.price),
+									value: d3.formatPrefix(',.6', 1)(
+										states.navB / prices.last.price
+									),
 									unit: 'ETH'
 								}
 							]}
@@ -129,8 +157,13 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 						/>
 					</SDivFlexCenter>
 				</SCard>
-				<SCard title={<SCardTitle>ASSETS</SCardTitle>} width="690px"  margin='0 0 0 10px'>
-					<SDivFlexCenter horizontal padding='0 10px'>
+				<SCard
+					title={<SCardTitle>ASSETS</SCardTitle>}
+					width="690px"
+					margin="0 0 0 10px"
+					extra={<ExtendExtraDiv account={account ? account : 'Unknown'} />}
+				>
+					<SDivFlexCenter horizontal padding="0 10px">
 						<AssetInfo
 							icon={ethIcon}
 							name="ETH"
