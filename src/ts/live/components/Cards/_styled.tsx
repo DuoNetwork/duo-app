@@ -280,7 +280,6 @@ export const SCardExtraDivSolid = styled.div`
 		margin-left: 5px;
 		width: 12px;
 		height: 12px;
-		opacity: 0.8;
 	}
 `;
 
@@ -355,17 +354,36 @@ export const SRadioGroup = styled(RadioGroup)`
 	}
 `;
 
-export const SCardList = styled.ul`
-	height: 400px;
-	list-style: none;
-	margin: 10px 0;
-	padding: 0;
-	li {
-		.title {
-			color: ${ColorStyles.TextWhiteAlphaL}
+export const SCardList = styled.div`
+	width: 100%;
+	.status-list-wrapper {
+		width: 100%;
+	}
+  	.status-list-wrapper > ul{
+		list-style: none;
+		margin: 10px 0;
+		padding: 10px 5px;
+		border: 1px dashed;
+		border-color: ${ColorStyles.BorderWhite1};
+		li:nth-child(even) {
+			background-color: ${ColorStyles.ListHighlight};
 		}
-		.content {
-			color: ${ColorStyles.TextWhiteAlpha}
+		.block-title {
+			font-weight: 500;
+			color:${ColorStyles.TextWhiteAlphaL};
+			margin-bottom: 5px;
+		}
+		li {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			padding: 0 5px;
+			.title {
+				color:${ColorStyles.TextWhiteAlphaL};
+			}
+			.content {
+				color: ${ColorStyles.TextWhiteAlpha};
+			}
 		}
 	}
 `;
