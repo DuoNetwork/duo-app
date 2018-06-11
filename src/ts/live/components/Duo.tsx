@@ -27,15 +27,32 @@ export default class Duo extends React.PureComponent<IProps> {
 			refresh,
 			states,
 			prices,
-			balances /*, hourly, minutely*/
+			balances,
+			network /*, hourly, minutely*/
 		} = this.props;
 		return (
 			<Layout>
-				<Header />
+				<Header network={network} />
 				<SContent>
-					<InfoCard prices={prices} states={states} refresh={refresh} balances={balances} account={account}/>
-					<GraphCard prices={prices} states={states} refresh={refresh} balances={balances}/>
-					<TransactionCard prices={prices} states={states} refresh={refresh} balances={balances}/>
+					<InfoCard
+						prices={prices}
+						states={states}
+						refresh={refresh}
+						balances={balances}
+						account={account}
+					/>
+					<GraphCard
+						prices={prices}
+						states={states}
+						refresh={refresh}
+						balances={balances}
+					/>
+					<TransactionCard
+						prices={prices}
+						states={states}
+						refresh={refresh}
+						balances={balances}
+					/>
 					{/*
 					<SDivFlexCenter horizontal center>
 						<button onClick={() => contractUtil.create(account, 0.1, true)}>

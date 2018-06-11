@@ -1,11 +1,14 @@
 //import moment from 'moment';
 import { Radio } from 'antd';
 import * as React from 'react';
+import successIcon from '../../../../images/stauts/success.svg';
+import warningIcon from '../../../../images/stauts/warning.svg';
 import { IBalances, ICustodianPrices, ICustodianStates } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
-import { SCard, SCardRadioExtraDiv, SCardTitle, SRadioGroup } from './_styled';
+import { SCard, SCardExtraDivSolid, SCardList, SCardRadioExtraDiv, SCardTitle, SRadioGroup } from './_styled';
 
 const RadioButton = Radio.Button;
+
 interface IProps {
 	prices: ICustodianPrices;
 	states: ICustodianStates;
@@ -15,6 +18,27 @@ interface IProps {
 
 interface IState {
 	time: string;
+}
+
+interface IStatusList {
+	state: string;
+	totalSupplyA: number;
+	totalSupplyB: number;
+	alpha: number;
+	beta: number;
+	periodCoupon: number;
+	limitPeriodic: number;
+	limitUpper: number;
+	limitLower: number;
+	commissionRate: number;
+	ethDuoFeeRatio: number;
+}
+
+const StatusList = (props: {
+	statusList: IStatusList
+}) => {
+	const statusList = props.statusList;
+	return<div>{JSON.stringify(statusList)}</div>
 }
 
 const RadioExtraDiv = () => {
@@ -33,15 +57,47 @@ const RadioExtraDiv = () => {
 
 export default class InfoCard extends React.PureComponent<IProps, IState> {
 	public render() {
+		const { states } = this.props;
+		const statusList: IStatusList = {
+		state: states.state,
+		totalSupplyA: states.totalSupplyA,
+		totalSupplyB: states.totalSupplyB,
+		alpha: states.alpha,
+		beta: states.beta,
+		periodCoupon: states.periodCoupon,
+		limitPeriodic: states.limitPeriodic,
+		limitUpper: states.limitUpper,
+		limitLower: states.limitLower,
+		commissionRate: states.commissionRate,
+		ethDuoFeeRatio: states.ethDuoFeeRatio
+		};
 		return (
 			<SDivFlexCenter center horizontal>
 				<SCard
-					title={<SCardTitle>TRANSACTION</SCardTitle>}
-					width="1280px"
-					extra={<RadioExtraDiv />}
+					title={<SCardTitle>CUSTODIAN STATUS</SCardTitle>}
+					width="470px"
+					margin="0 10px 0 0"
+					extra={
+						<SCardExtraDivSolid>
+							<div>{statusList.state}</div>
+							<img src={statusList.state === 'Trading' ? successIcon : warningIcon}/>
+						</SCardExtraDivSolid>
+					}
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
-						<div style={{ color: 'white', height: 300 }}>1234</div>
+						<SCardList>
+							<StatusList statusList={statusList}/>
+						</SCardList>
+					</SDivFlexCenter>
+				</SCard>
+				<SCard
+					title={<SCardTitle>TRANSACTION</SCardTitle>}
+					extra={<RadioExtraDiv />}
+					width="790px"
+					margin="0 0 0 10px"
+				>
+					<SDivFlexCenter horizontal padding="0 10px">
+						<div style={{ color: 'white', height: 400 }}>1234</div>
 					</SDivFlexCenter>
 				</SCard>
 			</SDivFlexCenter>

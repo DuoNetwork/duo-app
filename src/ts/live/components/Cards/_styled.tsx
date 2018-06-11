@@ -268,6 +268,22 @@ export const SCardExtraDiv = styled.div`
 	line-height: 24px;
 `;
 
+export const SCardExtraDivSolid = styled.div`
+	color: ${ColorStyles.TextWhiteAlphaL};
+	font-size: 14px;
+	padding-right: 10px;
+	line-height: 24px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	img {
+		margin-left: 5px;
+		width: 12px;
+		height: 12px;
+		opacity: 0.8;
+	}
+`;
+
 export interface ICardExtraProps {
 	color?: string;
 }
@@ -291,13 +307,13 @@ export const SCardExtendExtraDiv = styled.div`
 			overflow: hidden;
 			padding-left: 0px;
 			max-width: 0px;
-			transition: max-width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
-			-webkit-transition: max-width 0.4s ease-in-out, padding-left 0.4s ease-in-out;
+			transition: max-width 0.3s ease-in-out, padding-left 0.3s ease-in-out;
+			-webkit-transition: max-width 0.3s ease-in-out, padding-left 0.3s ease-in-out;
 		}
 	}
 	& > .extend-extra-wrapper:hover > .tag-content {
 		padding-left: 8px;
-		max-width: 300px;
+		max-width: ${(props: ICardExtraProps) => (props.color ? '60px' : '300px')};
 	}
 `;
 
@@ -336,5 +352,20 @@ export const SRadioGroup = styled(RadioGroup)`
 		color: ${ColorStyles.TextWhiteAlphaL};
 		background: ${ColorStyles.ButtonRadioChekedBG};
 		box-shadow: ${() => '-1px 0 0 0 ' + ColorStyles.BorderWhite6};
+	}
+`;
+
+export const SCardList = styled.ul`
+	height: 400px;
+	list-style: none;
+	margin: 10px 0;
+	padding: 0;
+	li {
+		.title {
+			color: ${ColorStyles.TextWhiteAlphaL}
+		}
+		.content {
+			color: ${ColorStyles.TextWhiteAlpha}
+		}
 	}
 `;

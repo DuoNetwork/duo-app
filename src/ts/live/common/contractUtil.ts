@@ -49,7 +49,7 @@ class ContractUtil {
 			case CST.STATE_PERIOD_RESET:
 				return 'PeriodicReset';
 			default:
-				return 'Unknown';
+				return 'Loading';
 		}
 	}
 

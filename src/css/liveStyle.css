@@ -35,6 +35,10 @@ body {
 .nav-button-wrapper > a:visited {
 	color: rgba(250, 250, 250, 0.65);
 }
+.error-msg {
+	color: rgba(255,94,94,.8);
+	font-weight: 200;
+}
 
 /* D3 Test Graph */
 .d3-test-graph {
