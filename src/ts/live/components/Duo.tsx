@@ -17,6 +17,7 @@ interface IProps {
 	balances: IBalances;
 	hourly: IPriceBars;
 	minutely: IPriceBars;
+	network: number;
 }
 
 export default class Duo extends React.PureComponent<IProps> {

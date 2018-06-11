@@ -34,10 +34,6 @@ class ContractUtil {
 		(this.web3.currentProvider as any).publicConfigStore.on('update', onUpdate);
 	}
 
-	public async read(name: string): Promise<string> {
-		return await this.custodian.methods[name]().call();
-	}
-
 	public convertCustodianState(rawState: string) {
 		switch (rawState) {
 			case CST.STATE_INCEPTION:
@@ -151,6 +147,10 @@ class ContractUtil {
 
 	public async getCurrentAddress(): Promise<string> {
 		return (await this.web3.eth.getAccounts())[0];
+	}
+
+	public getCurrentNetwork(): Promise<number> {
+		return this.web3.eth.net.getId();
 	}
 
 	private async getEthBalance(address: string): Promise<number> {

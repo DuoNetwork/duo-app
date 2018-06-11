@@ -10,7 +10,8 @@ function mapStateToProps(state: IState) {
 		prices: state.contract.prices,
 		balances: state.contract.balances,
 		hourly: state.dynamo.hourly,
-		minutely: state.dynamo.minutely
+		minutely: state.dynamo.minutely,
+		network: state.contract.network
 	};
 }
 

@@ -100,6 +100,7 @@ export interface IContractState {
 	readonly balances: IBalances;
 	readonly addresses: IAddresses;
 	readonly account: string;
+	readonly network: number;
 }
 
 export interface IDynamoState {
