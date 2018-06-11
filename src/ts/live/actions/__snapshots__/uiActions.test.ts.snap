@@ -19,6 +19,12 @@ Array [
     ],
   },
   Object {
+    "type": "dynamoStatus",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
     "type": "dynamoPrices",
     "value": Array [
       "test",

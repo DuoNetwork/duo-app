@@ -13,6 +13,7 @@ export function refresh(): VoidThunkAction {
 		dispatch(contractActions.getCustodianStates());
 		dispatch(contractActions.getCustodianPrices());
 		dispatch(contractActions.getBalances());
+		dispatch(dynamoActions.scanStatus());
 		dispatch(dynamoActions.fetchHourly());
 		dispatch(dynamoActions.fetchMinutely());
 		dispatch(dynamoActions.fetchPrices());
