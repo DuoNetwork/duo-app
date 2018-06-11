@@ -82,9 +82,9 @@ export interface IPriceBars {
 }
 
 export interface IAcceptedPrice {
-	price: number,
-	navA: number,
-	navB: number,
+	price: number;
+	navA: number;
+	navB: number;
 	timestamp: number;
 }
 

@@ -13,6 +13,24 @@ class Util {
 	public getNowTimestamp() {
 		return moment().valueOf();
 	}
+
+	public calculateNav(
+		price: number,
+		time: number,
+		resetPrice: number,
+		resetTime: number,
+		alpha: number,
+		beta: number,
+		period: number,
+		coupon: number
+	) {
+		const navParent = price / resetPrice / beta * (1 + alpha);
+
+		const navA = 1 + Math.floor((time - resetTime) / 1000 / period) * coupon;
+		const navAAdj = navA * alpha;
+		if (navParent <= navAAdj) return [navParent / alpha, 0];
+		else return [navA, navParent - navAAdj];
+	}
 }
 
 const util = new Util();

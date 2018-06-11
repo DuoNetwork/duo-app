@@ -16,7 +16,6 @@ describe('store', () => {
 			})
 		);
 		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
-		contractUtil.calculateNav = jest.fn(() => Promise.resolve([123, 456]));
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
 		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
 		contractUtil.getBalances = jest.fn(() =>
@@ -50,7 +49,6 @@ describe('store', () => {
 		store.dispatch(contractActions.getAddresses());
 		store.dispatch(dynamoActions.scanStatus());
 		store.dispatch(uiActions.refresh());
-		store.dispatch(contractActions.calculateNav(1, 2, 3, 4, 5));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

@@ -167,24 +167,6 @@ class ContractUtil {
 		return this.fromWei(await this.custodian.methods.balanceOf(isA ? 0 : 1, address).call());
 	}
 
-	public async calculateNav(
-		price: number,
-		time: number,
-		resetPrice: number,
-		resetTime: number,
-		beta: number
-	) {
-		const [navA, navB] = await this.custodian.methods.calculateNav(
-			this.toWei(price),
-			time / 1000,
-			this.toWei(resetPrice),
-			resetTime / 1000,
-			this.toWei(beta)
-		).call();
-
-		return [this.fromWei(navA), this.fromWei(navB)];
-	}
-
 	public fromWei(value: string | number) {
 		return this.web3.utils.fromWei(value, 'ether');
 	}

@@ -85,20 +85,4 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
-
-	test('navUpdate', () => {
-		expect(contractActions.navUpdate([123, 456])).toMatchSnapshot();
-	});
-
-	test('calculateNav', () => {
-		const store = mockStore({});
-		contractUtil.calculateNav = jest.fn(() => Promise.resolve([123, 456]));
-		store.dispatch(contractActions.calculateNav(1, 2, 3, 4, 5) as any);
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 1000)
-		);
-	});
 });

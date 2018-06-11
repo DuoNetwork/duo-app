@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`calculateNav 1`] = `
+Array [
+  1,
+  1.4,
+]
+`;
+
+exports[`calculateNav 2`] = `
+Array [
+  1,
+  0.6000000000000001,
+]
+`;
+
+exports[`calculateNav 3`] = `
+Array [
+  0.8,
+  0,
+]
+`;
+
+exports[`calculateNav 4`] = `
+Array [
+  1,
+  1.5999999999999996,
+]
+`;
+
+exports[`calculateNav 5`] = `
+Array [
+  1,
+  0.40000000000000036,
+]
+`;
+
+exports[`calculateNav 6`] = `
+Array [
+  0.6000000000000001,
+  0,
+]
+`;
+
+exports[`calculateNav 7`] = `
+Array [
+  1,
+  1.2999999999999998,
+]
+`;
+
+exports[`calculateNav 8`] = `
+Array [
+  1,
+  0.7000000000000002,
+]
+`;
+
+exports[`calculateNav 9`] = `
+Array [
+  0.6000000000000001,
+  0,
+]
+`;

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-import { AnyAction } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
-import { calculateNav } from '../../actions/contractActions';
+//import { AnyAction } from 'redux';
+//import { ThunkDispatch } from 'redux-thunk';
 import { ICustodianPrice, IPriceStatus, IState } from '../../common/types';
 import InfoCard from '../../components/Cards/InfoCard';
 
@@ -45,7 +44,7 @@ function mapStateToProps(state: IState) {
 		account: state.contract.account,
 		last: state.contract.prices.last,
 		reset: state.contract.prices.reset,
-		beta: state.contract.states.beta,
+		states: state.contract.states,
 		navA: state.contract.states.navA,
 		navB: state.contract.states.navB,
 		balances: state.contract.balances,
@@ -56,19 +55,7 @@ function mapStateToProps(state: IState) {
 	};
 }
 
-function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
-	return {
-		onSelect: (
-			price: number,
-			time: number,
-			resetPrice: number,
-			resetTime: number,
-			beta: number
-		) => dispatch(calculateNav(price, time, resetPrice, resetTime, beta))
-	};
-}
-
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps
+	{}
 )(InfoCard);

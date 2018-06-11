@@ -25,18 +25,6 @@ Object {
 }
 `;
 
-exports[`actions calculateNav 1`] = `
-Array [
-  Object {
-    "type": "nav",
-    "value": Array [
-      123,
-      456,
-    ],
-  },
-]
-`;
-
 exports[`actions custodianPricesUpdate 1`] = `
 Object {
   "type": "custodianPrices",
@@ -106,14 +94,4 @@ Array [
     },
   },
 ]
-`;
-
-exports[`actions navUpdate 1`] = `
-Object {
-  "type": "nav",
-  "value": Array [
-    123,
-    456,
-  ],
-}
 `;

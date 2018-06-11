@@ -16,8 +16,6 @@ Object {
       "last",
     ],
     "states": Object {
-      "navA": 123,
-      "navB": 456,
       "test": "test",
     },
   },

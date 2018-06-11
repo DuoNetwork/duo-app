@@ -73,23 +73,3 @@ export function addressesUpdate(addr: IAddresses) {
 export function getAddresses(): VoidThunkAction {
 	return async dispatch => dispatch(addressesUpdate(await contractUtil.getSystemAddresses()));
 }
-
-export function navUpdate(navs: number[]) {
-	return {
-		type: CST.AC_NAV,
-		value: navs
-	};
-}
-
-export function calculateNav(
-	price: number,
-	time: number,
-	resetPrice: number,
-	resetTime: number,
-	beta: number
-): VoidThunkAction {
-	return async dispatch =>
-		dispatch(
-			navUpdate(await contractUtil.calculateNav(price, time, resetPrice, resetTime, beta))
-		);
-}

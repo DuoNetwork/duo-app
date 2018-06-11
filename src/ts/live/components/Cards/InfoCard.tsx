@@ -9,7 +9,8 @@ import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
-import { IBalances, ICustodianPrice } from '../../common/types';
+import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
+import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import {
 	SCard,
@@ -27,7 +28,7 @@ interface IProps {
 	account: string;
 	last: ICustodianPrice;
 	reset: ICustodianPrice;
-	beta: number;
+	states: ICustodianStates;
 	bitfinex: ICustodianPrice;
 	kraken: ICustodianPrice;
 	gemini: ICustodianPrice;
@@ -35,13 +36,6 @@ interface IProps {
 	navA: number;
 	navB: number;
 	balances: IBalances;
-	onSelect: (
-		price: number,
-		time: number,
-		resetPrice: number,
-		resetTime: number,
-		beta: number
-	) => any;
 }
 
 interface IState {
@@ -144,25 +138,32 @@ export default class InfoCard extends React.Component<IProps, IState> {
 		};
 	}
 
-	private handleSourceChange = (src: string) => {
-		const { reset, beta } = this.props;
-		const last: ICustodianPrice = CST.EXCHANGES.includes(src.toUpperCase())
-			? this.props[src]
-			: this.props.last;
-		this.props.onSelect(last.price, last.timestamp, reset.price, reset.timestamp, beta);
-		this.setState({ source: src });
-	};
-
 	public render() {
-		const { navA, navB, balances, account } = this.props;
+		const { balances, account, reset, states } = this.props;
 		const { source } = this.state;
 		const last: ICustodianPrice = CST.EXCHANGES.includes(source.toUpperCase())
 			? this.props[source]
 			: this.props.last;
+		const [navA, navB] = CST.EXCHANGES.includes(source.toUpperCase())
+			? util.calculateNav(
+					last.price,
+					last.timestamp,
+					reset.price,
+					reset.timestamp,
+					states.alpha,
+					states.beta,
+					states.period,
+					states.periodCoupon
+			)
+			: [this.props.navA, this.props.navB];
 		return (
 			<SDivFlexCenter center horizontal marginBottom="20px;">
 				<SCard
-					title={<SCardTitleWithSelector onSelect={this.handleSourceChange} />}
+					title={
+						<SCardTitleWithSelector
+							onSelect={(src: string) => this.setState({ source: src })}
+						/>
+					}
 					extra={
 						<SCardExtraDiv>
 							{last.timestamp
