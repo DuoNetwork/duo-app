@@ -9,6 +9,14 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
+	test('nav', () => {
+		state = contractReducer(state, {
+			type: CST.AC_NAV,
+			value: [123, 456]
+		});
+		expect(state).toMatchSnapshot();
+	});
+
 	test('custodianStates', () => {
 		state = contractReducer(state, {
 			type: CST.AC_CTD_STATES,
@@ -54,6 +62,14 @@ describe('ui reducer', () => {
 		state = contractReducer(state, {
 			type: CST.AC_ACCOUNT,
 			value: 'test'
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('network', () => {
+		state = contractReducer(state, {
+			type: CST.AC_NETWORK,
+			value: 123
 		});
 		expect(state).toMatchSnapshot();
 	});

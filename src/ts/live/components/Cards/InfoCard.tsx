@@ -7,8 +7,9 @@ import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
 import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
+import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
-import { IBalances, ICustodianPrices, ICustodianStates } from '../../common/types';
+import { IBalances, ICustodianPrice } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import {
 	SCard,
@@ -24,17 +25,30 @@ const Option = Select.Option;
 
 interface IProps {
 	account: string;
-	prices: ICustodianPrices;
-	states: ICustodianStates;
-	refresh: number;
+	last: ICustodianPrice;
+	reset: ICustodianPrice;
+	beta: number;
+	bitfinex: ICustodianPrice;
+	kraken: ICustodianPrice;
+	gemini: ICustodianPrice;
+	gdax: ICustodianPrice;
+	navA: number;
+	navB: number;
 	balances: IBalances;
+	onSelect: (
+		price: number,
+		time: number,
+		resetPrice: number,
+		resetTime: number,
+		beta: number
+	) => any;
 }
 
 interface IState {
-	time: string;
+	source: string;
 }
 
-const SCardTitleWithSelector = () => {
+const SCardTitleWithSelector = (props: { onSelect: (src: string) => any }) => {
 	return (
 		<SCardTitle>
 			<SDivFlexCenter horizontal noJust>
@@ -43,11 +57,14 @@ const SCardTitleWithSelector = () => {
 					defaultValue="smartContract"
 					style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 					size="small"
+					onSelect={value => props.onSelect(value + '')}
 				>
 					<Option value="smartContract">Smart Contract</Option>
-					<Option value="bitfinex">Bitfinex</Option>
-					<Option value="kraken">Kraken</Option>
-					<Option value="gdax">Gdax</Option>
+					{CST.EXCHANGES.map(src => (
+						<Option key={src.toLowerCase()} value={src.toLowerCase()}>
+							{src}
+						</Option>
+					))}
 				</SCardTitleSelector>
 			</SDivFlexCenter>
 		</SCardTitle>
@@ -119,18 +136,38 @@ const ExtendExtraDiv = (props: { account: string }) => {
 	);
 };
 
-export default class InfoCard extends React.PureComponent<IProps, IState> {
+export default class InfoCard extends React.Component<IProps, IState> {
+	constructor(props: IProps) {
+		super(props);
+		this.state = {
+			source: ''
+		};
+	}
+
+	private handleSourceChange = (src: string) => {
+		const { reset, beta } = this.props;
+		const last: ICustodianPrice = CST.EXCHANGES.includes(src.toUpperCase())
+			? this.props[src]
+			: this.props.last;
+		this.props.onSelect(last.price, last.timestamp, reset.price, reset.timestamp, beta);
+		this.setState({ source: src });
+	};
+
 	public render() {
-		const { prices, states, balances, account } = this.props;
+		const { navA, navB, balances, account } = this.props;
+		const { source } = this.state;
+		const last: ICustodianPrice = CST.EXCHANGES.includes(source.toUpperCase())
+			? this.props[source]
+			: this.props.last;
 		return (
 			<SDivFlexCenter center horizontal marginBottom="20px;">
 				<SCard
-					title={<SCardTitleWithSelector />}
+					title={<SCardTitleWithSelector onSelect={this.handleSourceChange} />}
 					extra={
 						<SCardExtraDiv>
-							{prices.last.timestamp
+							{last.timestamp
 								? 'Last Updated: ' +
-								moment(prices.last.timestamp).format('YYYY-MM-DD kk:mm')
+								moment(last.timestamp).format('YYYY-MM-DD kk:mm')
 								: 'Loading Prices'}
 						</SCardExtraDiv>
 					}
@@ -143,7 +180,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							name="ETH"
 							prices={[
 								{
-									value: d3.formatPrefix(',.2', 1)(prices.last.price),
+									value: d3.formatPrefix(',.2', 1)(last.price),
 									unit: 'USD'
 								}
 							]}
@@ -153,13 +190,11 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							name="Class A"
 							prices={[
 								{
-									value: d3.formatPrefix(',.6', 1)(states.navA),
+									value: d3.formatPrefix(',.6', 1)(navA),
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.8', 1)(
-										states.navA / prices.last.price
-									),
+									value: d3.formatPrefix(',.8', 1)(navA / last.price),
 									unit: 'ETH'
 								}
 							]}
@@ -170,13 +205,11 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							name="Class B"
 							prices={[
 								{
-									value: d3.formatPrefix(',.6', 1)(states.navB),
+									value: d3.formatPrefix(',.6', 1)(navB),
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.8', 1)(
-										states.navB / prices.last.price
-									),
+									value: d3.formatPrefix(',.8', 1)(navB / last.price),
 									unit: 'ETH'
 								}
 							]}

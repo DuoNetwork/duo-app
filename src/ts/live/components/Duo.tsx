@@ -4,14 +4,13 @@ import { Layout } from 'antd';
 import * as React from 'react';
 //import contractUtil from '../common/contractUtil';
 import { IBalances, ICustodianPrices, ICustodianStates, IPriceBars } from '../common/types';
+import InfoCard from '../containers/Cards/InfoCardContainer';
 import { SContent } from './_styled';
 import GraphCard from './Cards/GraphCard';
-import InfoCard from './Cards/InfoCard';
 import TransactionCard from './Cards/TransactionCard';
 import Header from './DuoHeader';
 
 interface IProps {
-	account: string;
 	refresh: number;
 	states: ICustodianStates;
 	prices: ICustodianPrices;
@@ -23,25 +22,12 @@ interface IProps {
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const {
-			account,
-			refresh,
-			states,
-			prices,
-			balances,
-			network /*, hourly, minutely*/
-		} = this.props;
+		const { refresh, states, prices, balances, network /*, hourly, minutely*/ } = this.props;
 		return (
 			<Layout>
 				<Header network={network} />
 				<SContent>
-					<InfoCard
-						prices={prices}
-						states={states}
-						refresh={refresh}
-						balances={balances}
-						account={account}
-					/>
+					<InfoCard />
 					<GraphCard
 						prices={prices}
 						states={states}
