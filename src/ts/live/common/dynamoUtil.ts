@@ -11,7 +11,7 @@ export class DynamoUtil {
 	private ddb: AWS.DynamoDB;
 	constructor() {
 		// this.role = role;
-		AWS.config.update(__DEV__ ? devConfig : liveConfig);
+		AWS.config.update(__KOVAN__ ? devConfig : liveConfig);
 		this.ddb = new AWS.DynamoDB({ apiVersion: CST.AWS_DYNAMO_API_VERSION });
 	}
 
@@ -30,7 +30,7 @@ export class DynamoUtil {
 	public async queryAcceptPriceEvent(dates: string[]) {
 		const promiseList = dates.map(date =>
 			this.queryData({
-				TableName: __DEV__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
+				TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
 				KeyConditionExpression: CST.DB_EVENT_KEY + ' = :' + CST.DB_EVENT_KEY,
 				ExpressionAttributeValues: {
 					[':' + CST.DB_EVENT_KEY]: { S: CST.EVENT_ACCEPT_PRICE + '|' + date }
@@ -58,7 +58,7 @@ export class DynamoUtil {
 	public async queryHourlyOHLC(source: string, dates: string[]) {
 		const promiseList = dates.map(date =>
 			this.queryData({
-				TableName: __DEV__ ? CST.DB_AWS_HOURLY_DEV : CST.DB_AWS_HOURLY_LIVE,
+				TableName: __KOVAN__ ? CST.DB_AWS_HOURLY_DEV : CST.DB_AWS_HOURLY_LIVE,
 				KeyConditionExpression: CST.DB_HR_SRC_DATE + ' = :' + CST.DB_HR_SRC_DATE,
 				ExpressionAttributeValues: {
 					[':' + CST.DB_HR_SRC_DATE]: { S: source + '|' + date }
@@ -74,7 +74,7 @@ export class DynamoUtil {
 	public async queryMinutelyOHLC(source: string, datetimes: string[]) {
 		const promiseList = datetimes.map(datetime =>
 			this.queryData({
-				TableName: __DEV__ ? CST.DB_AWS_MINUTELY_DEV : CST.DB_AWS_MINUTELY_LIVE,
+				TableName: __KOVAN__ ? CST.DB_AWS_MINUTELY_DEV : CST.DB_AWS_MINUTELY_LIVE,
 				KeyConditionExpression: CST.DB_MN_SRC_DATE_HOUR + ' = :' + CST.DB_MN_SRC_DATE_HOUR,
 				ExpressionAttributeValues: {
 					[':' + CST.DB_MN_SRC_DATE_HOUR]: { S: source + '|' + datetime }
@@ -136,7 +136,7 @@ export class DynamoUtil {
 	public async scanStatus() {
 		return this.convertStatus(
 			await this.scanData({
-				TableName: __DEV__ ? CST.DB_AWS_STATUS_DEV : CST.DB_AWS_STATUS_LIVE
+				TableName: __KOVAN__ ? CST.DB_AWS_STATUS_DEV : CST.DB_AWS_STATUS_LIVE
 			})
 		);
 	}

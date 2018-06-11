@@ -21,7 +21,7 @@ class ContractUtil {
 		} else {
 			this.web3 = new Web3(
 				new Web3.providers.HttpProvider(
-					__DEV__ ? CST.PROVIDER_INFURA_DEV : CST.PROVIDER_INFURA_LIVE
+					__KOVAN__ ? CST.PROVIDER_INFURA_DEV : CST.PROVIDER_INFURA_LIVE
 				)
 			);
 			this.isReadOnly = true;
