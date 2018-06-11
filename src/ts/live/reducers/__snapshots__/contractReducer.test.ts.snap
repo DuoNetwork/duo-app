@@ -9,6 +9,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "network": 0,
   "prices": Object {
     "last": "last",
     "reset": "reset",
@@ -28,6 +29,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "network": 0,
   "prices": Object {
     "last": "last",
     "reset": "reset",
@@ -52,6 +54,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "network": 0,
   "prices": Object {
     "last": "last",
     "reset": "reset",
@@ -80,6 +83,7 @@ Object {
     "tokenA": 0,
     "tokenB": 0,
   },
+  "network": 0,
   "prices": Object {
     "last": "last",
     "reset": "reset",
@@ -108,6 +112,7 @@ Object {
     "tokenA": 0,
     "tokenB": 0,
   },
+  "network": 0,
   "prices": Object {
     "first": Object {
       "address": "0x0",
@@ -154,6 +159,7 @@ Object {
     "tokenA": 0,
     "tokenB": 0,
   },
+  "network": 0,
   "prices": Object {
     "first": Object {
       "address": "0x0",
@@ -204,6 +210,99 @@ Object {
     "totalSupplyA": 0,
     "totalSupplyB": 0,
     "usersLength": 0,
+  },
+}
+`;
+
+exports[`ui reducer nav 1`] = `
+Object {
+  "account": "0x0",
+  "addresses": Object {
+    "admin": "0x0",
+    "feeCollector": "0x0",
+    "poolManager": "0x0",
+    "priceFeed1": "0x0",
+    "priceFeed2": "0x0",
+    "priceFeed3": "0x0",
+  },
+  "balances": Object {
+    "allowance": 0,
+    "duo": 0,
+    "eth": 0,
+    "tokenA": 0,
+    "tokenB": 0,
+  },
+  "network": 0,
+  "prices": Object {
+    "first": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "last": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "reset": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "second": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
+  "states": Object {
+    "addrPoolLength": 0,
+    "adminCoolDown": 0,
+    "alpha": 0,
+    "beta": 0,
+    "commissionRate": 0,
+    "ethDuoFeeRatio": 0,
+    "feeAccumulated": 0,
+    "iterationGasThreshold": 0,
+    "lastAdminTime": 0,
+    "limitLower": 0,
+    "limitPeriodic": 0,
+    "limitUpper": 0,
+    "navA": 123,
+    "navB": 456,
+    "nextResetAddrIndex": 0,
+    "numOfPrices": 0,
+    "period": 0,
+    "periodCoupon": 0,
+    "preResetWaitingBlocks": 0,
+    "priceFeedTimeTol": 0,
+    "priceFeedTol": 0,
+    "priceTol": 0,
+    "priceUpdateCoolDown": 0,
+    "state": "Unknown",
+    "totalSupplyA": 0,
+    "totalSupplyB": 0,
+    "usersLength": 0,
+  },
+}
+`;
+
+exports[`ui reducer network 1`] = `
+Object {
+  "account": "test",
+  "addresses": Object {
+    "test": "test",
+  },
+  "balances": Object {
+    "test": "test",
+  },
+  "network": 123,
+  "prices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "states": Object {
+    "test": "test",
   },
 }
 `;

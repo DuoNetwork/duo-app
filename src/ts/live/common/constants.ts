@@ -11,6 +11,7 @@ export const AC_DMN_HOURLY = 'dynamoHourly';
 export const AC_DMN_MINUTELY = 'dynamoMinutely';
 export const AC_DMN_PRICES = 'dynamoPrices';
 export const AC_REFRESH = 'refresh';
+export const AC_NAV = 'nav';
 
 export const ETH_MAINNET_ID = 1;
 export const ETH_KOVAN_ID = 42;

@@ -10,11 +10,14 @@ Object {
     "balances": Object {
       "test": "test",
     },
+    "network": 123,
     "prices": Array [
       "reset",
       "last",
     ],
     "states": Object {
+      "navA": 123,
+      "navB": 456,
       "test": "test",
     },
   },

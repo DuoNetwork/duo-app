@@ -19,8 +19,10 @@ Array [
     ],
   },
   Object {
-    "type": "account",
-    "value": "test",
+    "type": "dynamoPrices",
+    "value": Array [
+      "test",
+    ],
   },
   Object {
     "type": "dynamoHourly",
@@ -57,10 +59,12 @@ Array [
     },
   },
   Object {
-    "type": "dynamoPrices",
-    "value": Array [
-      "test",
-    ],
+    "type": "network",
+    "value": 42,
+  },
+  Object {
+    "type": "account",
+    "value": "test",
   },
   Object {
     "type": "balances",

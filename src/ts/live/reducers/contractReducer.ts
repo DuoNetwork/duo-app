@@ -57,7 +57,10 @@ export const initialState: IContractState = {
 	network: 0
 };
 
-export function contractReducer(state: IContractState = initialState, action: AnyAction): IContractState {
+export function contractReducer(
+	state: IContractState = initialState,
+	action: AnyAction
+): IContractState {
 	switch (action.type) {
 		case CST.AC_CTD_STATES:
 			return Object.assign({}, state, {
@@ -66,6 +69,13 @@ export function contractReducer(state: IContractState = initialState, action: An
 		case CST.AC_CTD_PRICES:
 			return Object.assign({}, state, {
 				prices: action.value
+			});
+		case CST.AC_NAV:
+			return Object.assign({}, state, {
+				states: Object.assign(state.states, {
+					navA: action.value[0],
+					navB: action.value[1]
+				})
 			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
