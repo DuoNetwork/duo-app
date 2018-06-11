@@ -5,8 +5,6 @@ import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
 import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import * as CST from './constants';
 //import util from './util';
-//const Tx = require('ethereumjs-tx');
-//const abiDecoder = require('abi-decoder');
 
 class ContractUtil {
 	private web3: Web3;

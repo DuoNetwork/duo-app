@@ -50,17 +50,17 @@ const StatusList = (props: {
 			<ul>
 				<li className='block-title'>Conversion Fee</li>
 				<li><span className='title'>Rate</span><span className='content'>{d3.format(".2%")(statusList.commissionRate)}</span></li>
-				<li><span className='title'>ETH/DUO Ratio</span><span className='content'>{d3.formatPrefix(',.0', 1)(statusList.ethDuoFeeRatio)}</span></li>
+				<li><span className='title'>ETH/DUO Ratio</span><span className='content'>1 ETH = {d3.formatPrefix(',.0', 1)(statusList.ethDuoFeeRatio)} DUO</span></li>
 			</ul>
 			<ul>
-				<li className='block-title'>Parameters</li>
+				<li className='block-title'>Contract Parameters</li>
 				<li><span className='title'>Alpha</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.alpha)}</span></li>
 				<li><span className='title'>Beta</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.beta)}</span></li>
-				<li><span className='title'>Coupon per Period</span><span className='content'>{d3.format(".5%")(statusList.periodCoupon)}</span></li>
+				<li><span className='title'>Coupon per Period</span><span className='content'>{d3.format(".4%")(statusList.periodCoupon)}</span></li>
 				<li><span className='title'>Period Length</span><span className='content'>{statusList.period / 60 + ' mins'}</span></li>
-				<li><span className='title'>Upward Reset Limit</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.limitUpper)}</span></li>
-				<li><span className='title'>Downward Reset Limit</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.limitLower)}</span></li>
-				<li><span className='title'>Periodic Reset Limit</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.limitPeriodic)}</span></li>
+				<li><span className='title'>Upward Reset Limit for Class B</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.limitUpper)}</span></li>
+				<li><span className='title'>Downward Reset Limit for Class B</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.limitLower)}</span></li>
+				<li><span className='title'>Periodic Reset Limit for Class A</span><span className='content'>{d3.formatPrefix(',.2', 1)(statusList.limitPeriodic)}</span></li>
 			</ul>
 		</div>
 	)
@@ -100,7 +100,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 		return (
 			<SDivFlexCenter center horizontal>
 				<SCard
-					title={<SCardTitle>CUSTODIAN STATUS</SCardTitle>}
+					title={<SCardTitle>CUSTODIAN STATES</SCardTitle>}
 					width="470px"
 					margin="0 10px 0 0"
 					extra={
