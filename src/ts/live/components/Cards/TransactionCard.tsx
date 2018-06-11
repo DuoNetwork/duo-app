@@ -115,7 +115,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
 						<SCardList>
-							{statusList ? <StatusList statusList={statusList}/> : 'Loading Status'}
+							{statusList ? <StatusList statusList={statusList}/> : 'Loading'}
 						</SCardList>
 					</SDivFlexCenter>
 				</SCard>
@@ -126,7 +126,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 					margin="0 10px 0 10px"
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
-						<div style={{ color: 'white', height: 400 }}>1234</div>
+						<div style={{ color: 'white'}}>1234</div>
 					</SDivFlexCenter>
 				</SCard>
 				<SCard
@@ -135,7 +135,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 					margin="0 0 0 10px"
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
-						<div style={{ color: 'white', height: 400 }}>1234</div>
+						<div style={{ color: 'white'}}>1234</div>
 					</SDivFlexCenter>
 				</SCard>
 			</SDivFlexCenter>

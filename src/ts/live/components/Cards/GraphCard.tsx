@@ -31,10 +31,11 @@ const SCardTitleWithSelector = (props: {
 					style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 					size="small"
 				>
-					<Option value="smartContract">Smart Contract</Option>
+					<Option value="smartContract">Contract</Option>
 					<Option value="bitfinex">Bitfinex</Option>
 					<Option value="kraken">Kraken</Option>
 					<Option value="gdax">Gdax</Option>
+					<Option value="gemini">Gemini</Option>
 				</SCardTitleSelector>
 			</SDivFlexCenter>
 		</SCardTitle>

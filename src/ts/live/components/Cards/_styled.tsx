@@ -271,16 +271,16 @@ export const SCardExtraDiv = styled.div`
 export const SCardExtraDivSolid = styled.div`
 	span {
 		color: ${ColorStyles.TextWhiteAlphaL};
-		font-size: 14px;
+		font-size: 12px;
 		padding-right: 10px;
 		line-height: 24px;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		img {
-			margin-left: 5px;
-			width: 12px;
-			height: 12px;
+			margin-left: 4px;
+			width: 10px;
+			height: 10px;
 		}
 	}
 `;
