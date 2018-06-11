@@ -153,11 +153,11 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							name="Class A"
 							prices={[
 								{
-									value: d3.formatPrefix(',.4', 1)(states.navA),
+									value: d3.formatPrefix(',.6', 1)(states.navA),
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.6', 1)(
+									value: d3.formatPrefix(',.8', 1)(
 										states.navA / prices.last.price
 									),
 									unit: 'ETH'
@@ -170,11 +170,11 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							name="Class B"
 							prices={[
 								{
-									value: d3.formatPrefix(',.4', 1)(states.navB),
+									value: d3.formatPrefix(',.6', 1)(states.navB),
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.6', 1)(
+									value: d3.formatPrefix(',.8', 1)(
 										states.navB / prices.last.price
 									),
 									unit: 'ETH'

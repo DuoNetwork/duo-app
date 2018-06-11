@@ -269,19 +269,40 @@ export const SCardExtraDiv = styled.div`
 `;
 
 export const SCardExtraDivSolid = styled.div`
-	color: ${ColorStyles.TextWhiteAlphaL};
-	font-size: 14px;
-	padding-right: 10px;
-	line-height: 24px;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	img {
-		margin-left: 5px;
-		width: 12px;
-		height: 12px;
+	span {
+		color: ${ColorStyles.TextWhiteAlphaL};
+		font-size: 14px;
+		padding-right: 10px;
+		line-height: 24px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		img {
+			margin-left: 5px;
+			width: 12px;
+			height: 12px;
+		}
 	}
 `;
+
+injectGlobal([
+	`
+	body {
+		.ant-tooltip-placement-top .ant-tooltip-arrow {
+			border-top-color: ${ColorStyles.CardBackgroundSolid};
+		}
+		.ant-tooltip-inner {
+			max-width: 400px;
+			border-radius: 0;
+			font-size: 12px;
+			font-family: 'Roboto';
+			background: ${ColorStyles.CardBackgroundSolid};
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
+			color: ${ColorStyles.TextWhiteAlpha};
+		}
+	}
+`
+] as any);
 
 export interface ICardExtraProps {
 	color?: string;

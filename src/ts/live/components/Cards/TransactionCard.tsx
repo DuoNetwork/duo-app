@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import { Radio } from 'antd';
+import { Radio, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import successIcon from '../../../../images/stauts/success.svg';
@@ -97,16 +97,19 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 		commissionRate: states.commissionRate,
 		ethDuoFeeRatio: states.ethDuoFeeRatio
 		};
+		const Tooltiotext = statusList.state === 'Trading' ? "Trading state, operations are permitted during current state." : "Reset ongoing, operations are prohibited during current state.";
 		return (
 			<SDivFlexCenter center horizontal>
 				<SCard
-					title={<SCardTitle>CUSTODIAN STATES</SCardTitle>}
-					width="470px"
+					title={<SCardTitle>CONTRACT STATES</SCardTitle>}
+					width="360px"
 					margin="0 10px 0 0"
 					extra={
 						<SCardExtraDivSolid>
-							<div>{statusList.state}</div>
-							<img src={statusList.state === 'Trading' ? successIcon : warningIcon}/>
+							<Tooltip title={Tooltiotext}>
+								<div>{statusList.state}</div>
+								<img src={statusList.state === 'Trading' ? successIcon : warningIcon}/>
+							</Tooltip>
 						</SCardExtraDivSolid>
 					}
 				>
@@ -117,9 +120,18 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 					</SDivFlexCenter>
 				</SCard>
 				<SCard
-					title={<SCardTitle>TRANSACTION</SCardTitle>}
+					title={<SCardTitle>CONVERSION</SCardTitle>}
 					extra={<RadioExtraDiv />}
-					width="790px"
+					width="440px"
+					margin="0 10px 0 10px"
+				>
+					<SDivFlexCenter horizontal padding="0 10px">
+						<div style={{ color: 'white', height: 400 }}>1234</div>
+					</SDivFlexCenter>
+				</SCard>
+				<SCard
+					title={<SCardTitle>TRANSACTION</SCardTitle>}
+					width="440px"
 					margin="0 0 0 10px"
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
