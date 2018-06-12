@@ -60,7 +60,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 									) : (
 										<li className="no-bg">
 											<SCardListProgressBar
-												index={states.nextResetAddrIndex + 1}
+												index={states.nextResetAddrIndex}
 												total={states.usersLength}
 											>
 												<div className="bar-bg">
@@ -68,7 +68,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 												</div>
 												<div className="bar-text">
 													{d3.format('.2%')(
-														(states.nextResetAddrIndex + 1 + 1) /
+														states.nextResetAddrIndex /
 															states.usersLength
 													)}
 												</div>
