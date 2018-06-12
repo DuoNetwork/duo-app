@@ -48,8 +48,8 @@ const PriceInfo = (props: {
 	const { icon, name, prices } = props;
 	const classNamePostfix = props.classNamePostfix || '';
 	const tooltipText = props.fromContract
-		? 'Nav calculated from Smart Contract ETH price.'
-		: 'Estimated nav calculated from selected exchange ETH price.';
+		? 'Nav as currently in Smart Contract'
+		: 'Estimated nav based selected ETH price';
 	return (
 		<SCardPriceTag>
 			<div className="bg-logo">
