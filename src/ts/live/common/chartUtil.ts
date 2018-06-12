@@ -65,10 +65,10 @@ class ChartUtil {
 	) {
 		CST.EXCHANGES.forEach(src => {
 			const pricebar: IPriceBar[] = pricebars[src.toLowerCase()];
-			if (!pricebar.length) return;
+			if (!pricebar || !pricebar.length) return;
 			const sourceLast: ICustodianPrice = last[src.toLowerCase()];
 			const lastBar = pricebar[pricebar.length - 1];
-			const dateObj = moment(sourceLast.timestamp);
+			const dateObj = moment.utc(sourceLast.timestamp);
 			if (isHourly && lastBar.date + ' ' + lastBar.hour !== dateObj.format('YYYY-MM-DD HH'))
 				pricebar.push({
 					source: lastBar.source,
