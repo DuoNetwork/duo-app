@@ -46,12 +46,30 @@ export const initialState: IContractState = {
 		tokenB: 0
 	},
 	addresses: {
-		admin: '0x0',
-		feeCollector: '0x0',
-		priceFeed1: '0x0',
-		priceFeed2: '0x0',
-		priceFeed3: '0x0',
-		poolManager: '0x0'
+		admin: {
+			address: '0x0',
+			balance: 0
+		},
+		feeCollector: {
+			address: '0x0',
+			balance: 0
+		},
+		priceFeed1: {
+			address: '0x0',
+			balance: 0
+		},
+		priceFeed2: {
+			address: '0x0',
+			balance: 0
+		},
+		priceFeed3: {
+			address: '0x0',
+			balance: 0
+		},
+		poolManager: {
+			address: '0x0',
+			balance: 0
+		},
 	},
 	account: '0x0',
 	network: 0

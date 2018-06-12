@@ -85,14 +85,33 @@ class ContractUtil {
 	}
 
 	public async getSystemAddresses(): Promise<IAddresses> {
-		const addr = await this.custodian.methods.getSystemAddresses().call();
+		const addr: string[] = await this.custodian.methods.getSystemAddresses().call();
+		const balances = await Promise.all(addr.map(a => this.getEthBalance(a)))
 		return {
-			admin: addr[0],
-			feeCollector: addr[1],
-			priceFeed1: addr[2],
-			priceFeed2: addr[3],
-			priceFeed3: addr[4],
-			poolManager: addr[5]
+			admin: {
+				address: addr[0],
+				balance: balances[0],
+			},
+			feeCollector: {
+				address: addr[1],
+				balance: balances[1],
+			},
+			priceFeed1: {
+				address: addr[2],
+				balance: balances[2],
+			},
+			priceFeed2: {
+				address: addr[3],
+				balance: balances[3],
+			},
+			priceFeed3: {
+				address: addr[4],
+				balance: balances[4],
+			},
+			poolManager: {
+				address: addr[5],
+				balance: balances[5],
+			}
 		};
 	}
 

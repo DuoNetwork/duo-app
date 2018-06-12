@@ -53,13 +53,18 @@ export interface IBalances {
 	tokenB: number;
 }
 
+export interface IAddress {
+	address: string;
+	balance: number;
+}
+
 export interface IAddresses {
-	admin: string;
-	feeCollector: string;
-	priceFeed1: string;
-	priceFeed2: string;
-	priceFeed3: string;
-	poolManager: string;
+	admin: IAddress;
+	feeCollector: IAddress;
+	priceFeed1: IAddress;
+	priceFeed2: IAddress;
+	priceFeed3: IAddress;
+	poolManager: IAddress;
 }
 
 export interface IStatus {
