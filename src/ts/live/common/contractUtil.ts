@@ -187,7 +187,7 @@ class ContractUtil {
 	}
 
 	public fromWei(value: string | number) {
-		return this.web3.utils.fromWei(value, 'ether');
+		return Number(this.web3.utils.fromWei(value, 'ether'));
 	}
 
 	public toWei(value: string | number) {
