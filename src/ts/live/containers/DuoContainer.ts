@@ -8,7 +8,8 @@ function mapStateToProps(state: IState) {
 		states: state.contract.states,
 		prices: state.contract.prices,
 		balances: state.contract.balances,
-		network: state.contract.network
+		network: state.contract.network,
+		account: state.contract.account
 	};
 }
 

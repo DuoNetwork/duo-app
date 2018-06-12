@@ -437,12 +437,43 @@ export const SCardList = styled.div`
 				border-color: ${ColorStyles.BorderWhite4};
 				background-color: ${ColorStyles.ButtonHoverWhite1};
 			}
+			.align-right {
+				width: 100%;
+				color: ${ColorStyles.TextWhiteAlphaLL};
+				font-size: 12px;
+				text-align: right;
+			}
 		}
 		.input-line {
 			padding: 8px 5px;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
+			margin-bottom: 5px;
+		}
+		.description {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			color: ${ColorStyles.TextWhiteAlphaL};
+			margin-bottom: 5px;
+			img {
+				width: 10px;
+				height: 10px;
+				opacity: 0.6;
+			}
+		}
+		.img-line {
+			width: 100%;
+			height: 108px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			.demo-img {
+				height: 90%;
+				opacity: 0.6;
+			}
 		}
 	}
 `;
@@ -516,6 +547,9 @@ export const SCardListProgressBar = styled.div`
 
 export const SCardConversionForm = styled.div`
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	.conv-button {
 		outline: none;
 		cursor: pointer;
@@ -538,6 +572,23 @@ export const SCardConversionForm = styled.div`
 		border-color: ${ColorStyles.BorderWhite6} !important;
 		color: ${ColorStyles.TextWhiteAlpha} !important;
 		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+	}
+	.form-button {
+		outline: none;
+		cursor: pointer;
+		width: 180px;
+		font-family: 'Roboto';
+		background-color: transparent;
+		color: ${ColorStyles.TextWhiteAlphaL};
+		border: 1px solid;
+		border-color: ${ColorStyles.BorderWhite4};
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
+	}
+	.form-button:hover {
+		color: ${ColorStyles.TextWhiteAlpha};
+		border-color: ${ColorStyles.BorderWhite6};
+		background-color: ${ColorStyles.ButtonHoverWhite1};
 	}
 `;
 
@@ -579,7 +630,7 @@ export const SInput = styled.input`
 	height: 28px;
 	padding: 0 8px;
 	text-align: right;
-	&:focus{
+	&:focus {
 		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 255, 255, 0.05);
 	}
 `;

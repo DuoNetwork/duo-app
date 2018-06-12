@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
 //import moment from 'moment';
 import * as React from 'react';
-//import contractUtil from '../common/contractUtil';
+import contractUtil from '../common/contractUtil';
 import { IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import InfoCard from '../containers/Cards/InfoCardContainer';
 import NavChartCard from '../containers/Cards/NavChartCardContainer';
@@ -16,11 +16,12 @@ interface IProps {
 	prices: ICustodianPrices;
 	balances: IBalances;
 	network: number;
+	account: string;
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { refresh, states, prices, balances, network /*, hourly, minutely*/ } = this.props;
+		const { refresh, states, prices, balances, network, account /*, hourly, minutely*/ } = this.props;
 		return (
 			<Layout>
 				<Header network={network} />
@@ -35,6 +36,8 @@ export default class Duo extends React.PureComponent<IProps> {
 						states={states}
 						refresh={refresh}
 						balances={balances}
+						create={contractUtil.create}
+						account={account}
 					/>
 					{/*
 					<SDivFlexCenter horizontal center>
