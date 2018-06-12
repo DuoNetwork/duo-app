@@ -204,7 +204,8 @@ const ConversionForm = (props: {
 				<button
 					className="form-button"
 					onClick={() => {
-						contractUtil.create(account, conversionInputValue, ethFee);
+						if (conversionInputValue)
+							contractUtil.create(account, conversionInputValue, ethFee);
 					}}
 				>
 					SUBMIT
