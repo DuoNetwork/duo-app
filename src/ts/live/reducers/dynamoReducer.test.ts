@@ -12,9 +12,9 @@ describe('ui reducer', () => {
 	test('dynamoStatus', () => {
 		state = dynamoReducer(state, {
 			type: CST.AC_DNM_STATUS,
-			value: {
-				test: 'test'
-			}
+			value: [{
+				process: 'test'
+			}]
 		});
 		expect(state).toMatchSnapshot();
 	});

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { IPriceBar } from './types';
+import { IAcceptedPrice, IPriceBar } from './types';
 
 class ChartUtil {
 	public interpolate(sourceData: IPriceBar[], isHourly: boolean): IPriceBar[] {
@@ -33,6 +33,28 @@ class ChartUtil {
 		newSourceData.push(sourceData[sourceData.length - 1]);
 
 		return newSourceData;
+	}
+
+	public reset(
+		prices: IAcceptedPrice[],
+		limitUp: number,
+		limitDown: number,
+		limitPeriod: number
+	): IAcceptedPrice[] {
+		return prices
+			.filter(p => p.navB >= limitUp || p.navB <= limitDown || p.navA >= limitPeriod)
+			.map(p => ({
+				price: p.price,
+				navA: 1,
+				navB: 1,
+				timestamp: p.timestamp + 717
+			}));
+	}
+
+	public mergeReset(prices: IAcceptedPrice[], resets: IAcceptedPrice[]): IAcceptedPrice[] {
+		const all = [...prices, ...resets];
+		all.sort((a, b) => a.timestamp - b.timestamp);
+		return all;
 	}
 }
 

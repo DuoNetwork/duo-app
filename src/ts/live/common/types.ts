@@ -74,11 +74,11 @@ export interface IPriceStatus extends IStatus {
 
 export import IPriceBar = adminTypes.IPriceBar;
 
-export interface IPriceBars {
-	bitfinex: IPriceBar[];
-	gemini: IPriceBar[];
-	kraken: IPriceBar[];
-	gdax: IPriceBar[];
+export interface ISourceData<T> {
+	bitfinex: T;
+	gemini: T;
+	kraken: T;
+	gdax: T;
 }
 
 export interface IAcceptedPrice {
@@ -105,9 +105,10 @@ export interface IContractState {
 
 export interface IDynamoState {
 	readonly status: IStatus[];
-	readonly hourly: IPriceBars;
-	readonly minutely: IPriceBars;
+	readonly hourly: ISourceData<IPriceBar[]>;
+	readonly minutely: ISourceData<IPriceBar[]>;
 	readonly prices: IAcceptedPrice[];
+	readonly last: ISourceData<ICustodianPrice>;
 }
 
 export interface IUIState {

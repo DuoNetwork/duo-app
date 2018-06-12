@@ -8,6 +8,28 @@ Object {
     "gemini": Array [],
     "kraken": Array [],
   },
+  "last": Object {
+    "bitfinex": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gdax": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gemini": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "kraken": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
   "minutely": Object {
     "bitfinex": Array [],
     "gdax": Array [],
@@ -24,6 +46,28 @@ Object {
   "hourly": Object {
     "test": "test",
   },
+  "last": Object {
+    "bitfinex": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gdax": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gemini": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "kraken": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
   "minutely": Object {
     "bitfinex": Array [],
     "gdax": Array [],
@@ -31,9 +75,11 @@ Object {
     "kraken": Array [],
   },
   "prices": Array [],
-  "status": Object {
-    "test": "test",
-  },
+  "status": Array [
+    Object {
+      "process": "test",
+    },
+  ],
 }
 `;
 
@@ -42,13 +88,37 @@ Object {
   "hourly": Object {
     "test": "test",
   },
+  "last": Object {
+    "bitfinex": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gdax": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gemini": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "kraken": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
   "minutely": Object {
     "test": "test",
   },
   "prices": Array [],
-  "status": Object {
-    "test": "test",
-  },
+  "status": Array [
+    Object {
+      "process": "test",
+    },
+  ],
 }
 `;
 
@@ -57,15 +127,39 @@ Object {
   "hourly": Object {
     "test": "test",
   },
+  "last": Object {
+    "bitfinex": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gdax": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gemini": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "kraken": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
   "minutely": Object {
     "test": "test",
   },
   "prices": Array [
     "test",
   ],
-  "status": Object {
-    "test": "test",
-  },
+  "status": Array [
+    Object {
+      "process": "test",
+    },
+  ],
 }
 `;
 
@@ -77,6 +171,28 @@ Object {
     "gemini": Array [],
     "kraken": Array [],
   },
+  "last": Object {
+    "bitfinex": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gdax": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gemini": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "kraken": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
   "minutely": Object {
     "bitfinex": Array [],
     "gdax": Array [],
@@ -84,8 +200,10 @@ Object {
     "kraken": Array [],
   },
   "prices": Array [],
-  "status": Object {
-    "test": "test",
-  },
+  "status": Array [
+    Object {
+      "process": "test",
+    },
+  ],
 }
 `;

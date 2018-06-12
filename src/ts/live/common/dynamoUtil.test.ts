@@ -4,7 +4,10 @@ const hourly = require('../samples/hourly.json');
 const minutely = require('../samples/minutely.json')
 const prices = require('../samples/prices.json');
 
-test('convertStatus', () => expect(dynamoUtil.convertStatus(status)).toMatchSnapshot());
+const convertedStatus = dynamoUtil.convertStatus(status);
+test('convertStatus', () => expect(convertedStatus).toMatchSnapshot());
+
+test('getLastPriceFromStatus', () => expect(dynamoUtil.getLastPriceFromStatus(convertedStatus)).toMatchSnapshot());
 
 test('convertHourly', () => expect(dynamoUtil.convertHourly(hourly)).toMatchSnapshot());
 

@@ -2,9 +2,19 @@
 //import * as d3 from 'd3';
 import * as React from 'react';
 //import contractUtil from '../common/contractUtil';
-import { IBalances, ICustodianPrices, ICustodianStates, IPriceBars } from '../../common/types';
+import {
+	IBalances,
+	ICustodianPrices,
+	ICustodianStates,
+	IPriceBar,
+	ISourceData
+} from '../../common/types';
 
-function drawGraph(el: Element, dataHourly: IPriceBars, dataMinutely: IPriceBars) {
+function drawGraph(
+	el: Element,
+	dataHourly: ISourceData<IPriceBar[]>,
+	dataMinutely: ISourceData<IPriceBar[]>
+) {
 	console.log(el);
 	console.log('************* Hourly **************');
 	console.log(dataHourly);
@@ -18,8 +28,8 @@ interface IProps {
 	states: ICustodianStates;
 	prices: ICustodianPrices;
 	balances: IBalances;
-	hourly: IPriceBars;
-	minutely: IPriceBars;
+	hourly: ISourceData<IPriceBar[]>;
+	minutely: ISourceData<IPriceBar[]>;
 }
 
 export default class D3OHLCChart extends React.Component<IProps> {

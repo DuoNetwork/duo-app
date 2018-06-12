@@ -2,7 +2,7 @@ import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
-import { IAcceptedPrice, IPriceBars, VoidThunkAction } from '../common/types';
+import { IAcceptedPrice, IPriceBar, ISourceData, VoidThunkAction } from '../common/types';
 
 export function statusUpdate(status: object) {
 	return {
@@ -18,7 +18,7 @@ export function scanStatus(): VoidThunkAction {
 	};
 }
 
-export function hourlyUpdate(hourly: IPriceBars) {
+export function hourlyUpdate(hourly: ISourceData<IPriceBar[]>) {
 	return {
 		type: CST.AC_DMN_HOURLY,
 		value: hourly
@@ -35,7 +35,7 @@ export function fetchHourly(): VoidThunkAction {
 		}
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
 		const results = await Promise.all(promistList);
-		const hourly: IPriceBars = {
+		const hourly: ISourceData<IPriceBar[]> = {
 			bitfinex: [],
 			gemini: [],
 			kraken: [],
@@ -46,7 +46,7 @@ export function fetchHourly(): VoidThunkAction {
 	};
 }
 
-export function minutelyUpdate(minutely: IPriceBars) {
+export function minutelyUpdate(minutely: ISourceData<IPriceBar[]>) {
 	return {
 		type: CST.AC_DMN_MINUTELY,
 		value: minutely
@@ -63,7 +63,7 @@ export function fetchMinutely(): VoidThunkAction {
 		}
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
 		const results = await Promise.all(promistList);
-		const minutely: IPriceBars = {
+		const minutely: ISourceData<IPriceBar[]> = {
 			bitfinex: [],
 			gemini: [],
 			kraken: [],

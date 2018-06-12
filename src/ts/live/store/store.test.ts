@@ -29,9 +29,9 @@ describe('store', () => {
 			})
 		);
 		dynamoUtil.scanStatus = jest.fn(() =>
-			Promise.resolve({
-				test: 'test'
-			})
+			Promise.resolve([{
+				process: 'test'
+			}])
 		);
 		dynamoUtil.queryHourlyOHLC = jest.fn(() =>
 			Promise.resolve({

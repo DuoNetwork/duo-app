@@ -1,9 +1,32 @@
 import { AnyAction } from 'redux';
 import * as CST from '../common/constants';
+import dynamoUtil from '../common/dynamoUtil';
 import { IDynamoState } from '../common/types';
 
 export const initialState: IDynamoState = {
 	status: [],
+	last: {
+		bitfinex: {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		},
+		kraken: {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		},
+		gemini: {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		},
+		gdax: {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		}
+	},
 	hourly: {
 		bitfinex: [],
 		gemini: [],
@@ -23,7 +46,8 @@ export function dynamoReducer(state: IDynamoState = initialState, action: AnyAct
 	switch (action.type) {
 		case CST.AC_DNM_STATUS:
 			return Object.assign({}, state, {
-				status: action.value
+				status: action.value,
+				last: dynamoUtil.getLastPriceFromStatus(action.value)
 			});
 		case CST.AC_DMN_HOURLY:
 			return Object.assign({}, state, {

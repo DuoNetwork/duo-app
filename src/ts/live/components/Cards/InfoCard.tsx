@@ -1,4 +1,3 @@
-import { Select } from 'antd';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
@@ -9,30 +8,25 @@ import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
-import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
+import { IBalances, ICustodianPrice, ICustodianStates, ISourceData } from '../../common/types';
 import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
+import CardTitleSelect from '../Common/CardTitleSelect';
 import {
 	SCard,
 	SCardAssetTag,
 	SCardExtendExtraDiv,
 	SCardExtraDiv,
 	SCardPriceTag,
-	SCardTitle,
-	SCardTitleSelector
+	SCardTitle
 } from './_styled';
-
-const Option = Select.Option;
 
 interface IProps {
 	account: string;
 	last: ICustodianPrice;
 	reset: ICustodianPrice;
 	states: ICustodianStates;
-	bitfinex: ICustodianPrice;
-	kraken: ICustodianPrice;
-	gemini: ICustodianPrice;
-	gdax: ICustodianPrice;
+	sourceLast: ISourceData<ICustodianPrice>
 	navA: number;
 	navB: number;
 	balances: IBalances;
@@ -41,29 +35,6 @@ interface IProps {
 interface IState {
 	source: string;
 }
-
-const SCardTitleWithSelector = (props: { onSelect: (src: string) => any }) => {
-	return (
-		<SCardTitle>
-			<SDivFlexCenter horizontal noJust>
-				<div>PRICE</div>
-				<SCardTitleSelector
-					defaultValue="smartContract"
-					style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
-					size="small"
-					onSelect={value => props.onSelect(value + '')}
-				>
-					<Option value="smartContract">Smart Contract</Option>
-					{CST.EXCHANGES.map(src => (
-						<Option key={src.toLowerCase()} value={src.toLowerCase()}>
-							{src}
-						</Option>
-					))}
-				</SCardTitleSelector>
-			</SDivFlexCenter>
-		</SCardTitle>
-	);
-};
 
 const PriceInfo = (props: {
 	icon: string;
@@ -142,7 +113,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 		const { balances, account, reset, states } = this.props;
 		const { source } = this.state;
 		const last: ICustodianPrice = CST.EXCHANGES.includes(source.toUpperCase())
-			? this.props[source]
+			? this.props.sourceLast[source]
 			: this.props.last;
 		const [navA, navB] = CST.EXCHANGES.includes(source.toUpperCase())
 			? util.calculateNav(
@@ -160,7 +131,8 @@ export default class InfoCard extends React.Component<IProps, IState> {
 			<SDivFlexCenter center horizontal marginBottom="20px;">
 				<SCard
 					title={
-						<SCardTitleWithSelector
+						<CardTitleSelect
+							name="PRICE"
 							onSelect={(src: string) => this.setState({ source: src })}
 						/>
 					}

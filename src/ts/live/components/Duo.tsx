@@ -1,12 +1,12 @@
 import { Layout } from 'antd';
 //import moment from 'moment';
-
 import * as React from 'react';
 //import contractUtil from '../common/contractUtil';
-import { IBalances, ICustodianPrices, ICustodianStates, IPriceBars } from '../common/types';
+import { IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import InfoCard from '../containers/Cards/InfoCardContainer';
-import { SContent } from './_styled';
-import GraphCard from './Cards/GraphCard';
+import NavChartCard from '../containers/Cards/NavChartCardContainer';
+import PriceChartCard from '../containers/Cards/PriceChartCardContainer';
+import { SContent, SDivFlexCenter } from './_styled';
 import TransactionCard from './Cards/TransactionCard';
 import Header from './DuoHeader';
 
@@ -15,8 +15,6 @@ interface IProps {
 	states: ICustodianStates;
 	prices: ICustodianPrices;
 	balances: IBalances;
-	hourly: IPriceBars;
-	minutely: IPriceBars;
 	network: number;
 }
 
@@ -28,12 +26,10 @@ export default class Duo extends React.PureComponent<IProps> {
 				<Header network={network} />
 				<SContent>
 					<InfoCard />
-					<GraphCard
-						prices={prices}
-						states={states}
-						refresh={refresh}
-						balances={balances}
-					/>
+					<SDivFlexCenter center horizontal marginBottom="20px;">
+						<PriceChartCard />
+						<NavChartCard />
+					</SDivFlexCenter>
 					<TransactionCard
 						prices={prices}
 						states={states}

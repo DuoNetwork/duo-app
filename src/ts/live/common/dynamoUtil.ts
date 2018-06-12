@@ -3,7 +3,14 @@ import { QueryInput, QueryOutput, ScanInput, ScanOutput } from 'aws-sdk/clients/
 import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
-import { IAcceptedPrice, IPriceBar, IPriceStatus, IStatus } from '../common/types';
+import {
+	IAcceptedPrice,
+	ICustodianPrice,
+	IPriceBar,
+	IPriceStatus,
+	ISourceData,
+	IStatus
+} from '../common/types';
 import * as CST from './constants';
 import contractUtil from './contractUtil';
 
@@ -164,6 +171,51 @@ export class DynamoUtil {
 		output.sort((a, b) => a.process.localeCompare(b.process));
 
 		return output;
+	}
+
+	public getLastPriceFromStatus(status: IStatus[]): ISourceData<ICustodianPrice> {
+		const bitfinex: ICustodianPrice = {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		};
+		const kraken: ICustodianPrice = {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		};
+		const gemini: ICustodianPrice = {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		};
+		const gdax: ICustodianPrice = {
+			address: '0x0',
+			price: 0,
+			timestamp: 0
+		};
+		status.forEach(s => {
+			if (s.process === 'PRICE_AWS_PUBLIC_BITFINEX') {
+				bitfinex.price = (s as IPriceStatus).price;
+				bitfinex.timestamp = (s as IPriceStatus).timestamp;
+			} else if (s.process === 'PRICE_AWS_PUBLIC_GEMINI') {
+				gemini.price = (s as IPriceStatus).price;
+				gemini.timestamp = (s as IPriceStatus).timestamp;
+			} else if (s.process === 'PRICE_AWS_PUBLIC_KRAKEN') {
+				kraken.price = (s as IPriceStatus).price;
+				kraken.timestamp = (s as IPriceStatus).timestamp;
+			} else if (s.process === 'PRICE_AWS_PUBLIC_GDAX') {
+				gdax.price = (s as IPriceStatus).price;
+				gdax.timestamp = (s as IPriceStatus).timestamp;
+			}
+		});
+
+		return {
+			bitfinex,
+			kraken,
+			gemini,
+			gdax
+		};
 	}
 }
 

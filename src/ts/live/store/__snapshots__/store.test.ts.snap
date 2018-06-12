@@ -34,6 +34,28 @@ Object {
         "test": "test",
       },
     },
+    "last": Object {
+      "bitfinex": Object {
+        "address": "0x0",
+        "price": 0,
+        "timestamp": 0,
+      },
+      "gdax": Object {
+        "address": "0x0",
+        "price": 0,
+        "timestamp": 0,
+      },
+      "gemini": Object {
+        "address": "0x0",
+        "price": 0,
+        "timestamp": 0,
+      },
+      "kraken": Object {
+        "address": "0x0",
+        "price": 0,
+        "timestamp": 0,
+      },
+    },
     "minutely": Object {
       "bitfinex": Object {
         "test": "test",
@@ -51,9 +73,11 @@ Object {
     "prices": Array [
       "test",
     ],
-    "status": Object {
-      "test": "test",
-    },
+    "status": Array [
+      Object {
+        "process": "test",
+      },
+    ],
   },
   "ui": Object {
     "refresh": 1234567890,
