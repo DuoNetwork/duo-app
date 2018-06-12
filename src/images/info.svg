@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="51px" height="51px" viewBox="0 0 51 51" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Base Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="MainApp-Mobile-App-Pro" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icon&amp;ColorTestPage-Copy" transform="translate(-273.000000, -466.000000)">
+            <g id="Base-Copy" transform="translate(275.000000, 468.000000)">
+                <circle id="Oval-9" stroke="#FAFAFA" stroke-width="3" cx="23.5" cy="23.5" r="23.5"></circle>
+                <text id="i" font-family="Montserrat-Medium, Montserrat" font-size="32" font-weight="400" fill="#FAFAFA">
+                    <tspan x="19.536" y="35">i</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

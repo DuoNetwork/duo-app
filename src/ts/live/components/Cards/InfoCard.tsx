@@ -1,3 +1,4 @@
+import { Tooltip } from 'antd';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
@@ -6,6 +7,7 @@ import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
 import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
+import infoIcon from '../../../../images/info.svg';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
 import { IBalances, ICustodianPrice, ICustodianStates, ISourceData } from '../../common/types';
@@ -26,7 +28,7 @@ interface IProps {
 	last: ICustodianPrice;
 	reset: ICustodianPrice;
 	states: ICustodianStates;
-	sourceLast: ISourceData<ICustodianPrice>
+	sourceLast: ISourceData<ICustodianPrice>;
 	navA: number;
 	navB: number;
 	balances: IBalances;
@@ -41,17 +43,28 @@ const PriceInfo = (props: {
 	name: string;
 	prices: Array<{ value: string; unit: string }>;
 	classNamePostfix?: string;
+	fromContract: boolean;
 }) => {
 	const { icon, name, prices } = props;
 	const classNamePostfix = props.classNamePostfix || '';
+	const tooltipText = props.fromContract
+		? 'Nav calculated from Smart Contract ETH price.'
+		: 'Estimated nav calculated from selected exchange ETH price.';
 	return (
 		<SCardPriceTag>
 			<div className="bg-logo">
 				<img src={icon} />
 			</div>
+
 			<div className="tag-title">
 				<h3>{name}</h3>
+				{name !== 'ETH' ? (
+					<Tooltip title={tooltipText}>
+						<img src={infoIcon} />
+					</Tooltip>
+				) : null}
 			</div>
+
 			<div className="tag-content">
 				<div>
 					{prices.map(p => (
@@ -125,8 +138,9 @@ export default class InfoCard extends React.Component<IProps, IState> {
 					states.beta,
 					states.period,
 					states.periodCoupon
-			)
+				)
 			: [this.props.navA, this.props.navB];
+		const fromContract = !CST.EXCHANGES.includes(source.toUpperCase());
 		return (
 			<SDivFlexCenter center horizontal marginBottom="20px;">
 				<SCard
@@ -140,7 +154,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 						<SCardExtraDiv>
 							{last.timestamp
 								? 'Last Updated: ' +
-								moment(last.timestamp).format('YYYY-MM-DD kk:mm')
+									moment(last.timestamp).format('YYYY-MM-DD kk:mm')
 								: 'Loading Prices'}
 						</SCardExtraDiv>
 					}
@@ -157,6 +171,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 									unit: 'USD'
 								}
 							]}
+							fromContract={fromContract}
 						/>
 						<PriceInfo
 							icon={classAIcon}
@@ -171,6 +186,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 									unit: 'ETH'
 								}
 							]}
+							fromContract={fromContract}
 							classNamePostfix="-1"
 						/>
 						<PriceInfo
@@ -186,6 +202,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 									unit: 'ETH'
 								}
 							]}
+							fromContract={fromContract}
 							classNamePostfix="-2"
 						/>
 					</SDivFlexCenter>

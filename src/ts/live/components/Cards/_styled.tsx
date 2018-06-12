@@ -133,6 +133,15 @@ export const SCardPriceTag = styled.div`
 	.tag-title {
 		width: 90px;
 		margin-left: 20px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		img {
+			width: 10px;
+			height: 10px;
+			margin-left: 6px;
+			opacity: 0.6;
+		}
 	}
 	.tag-title > h3 {
 		font-family: 'Roboto';
@@ -380,7 +389,7 @@ export const SCardList = styled.div`
 	.status-list-wrapper {
 		width: 100%;
 	}
-  	.status-list-wrapper > ul{
+	.status-list-wrapper > ul {
 		list-style: none;
 		margin: 10px 0;
 		padding: 10px 5px;
@@ -389,9 +398,15 @@ export const SCardList = styled.div`
 		li:nth-child(even) {
 			background-color: ${ColorStyles.ListHighlight};
 		}
+		.no-bg {
+			background-color: transparent !important;
+			padding: 0 5px 0 3px;
+			overflow: hidden;
+			position: relative;
+		}
 		.block-title {
 			font-weight: 500;
-			color:${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.TextWhiteAlphaL};
 			margin-bottom: 5px;
 		}
 		li {
@@ -400,11 +415,77 @@ export const SCardList = styled.div`
 			justify-content: space-between;
 			padding: 0 5px;
 			.title {
-				color:${ColorStyles.TextWhiteAlphaL};
+				color: ${ColorStyles.TextWhiteAlphaL};
 			}
 			.content {
 				color: ${ColorStyles.TextWhiteAlpha};
 			}
 		}
+	}
+`;
+export interface ICardListProgressBarProps {
+	index: number;
+	total: number;
+}
+export const SCardListProgressBar = styled.div`
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	.bar-bg {
+		width: 225px;
+		height: 12px;
+		background:  ${ColorStyles.CardBackgroundSolid};
+		box-shadow: inset 0 1px 6px 0px rgba(0,0,0,.6);
+		border-radius: 6px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding-left: 3px;
+		padding-right: 3px;
+		.inner-bar {
+			position: relative;
+			width: ${(props: ICardListProgressBarProps) => 219 * props.index / props.total + 'px'};
+			height: 6px;
+			background: ${ColorStyles.TextWhiteAlphaLL};
+			box-shadow: 0 1px 3px 1px rgba(0,0,0,.2);
+			border-radius: 3px;
+		}
+		.inner-bar:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			background-image: -webkit-gradient(
+				linear,
+				0 0,
+				100% 100%,
+				color-stop(0.25, rgba(0, 0, 0, 0.15)),
+				color-stop(0.25, transparent),
+				color-stop(0.5, transparent),
+				color-stop(0.5, rgba(0, 0, 0, 0.15)),
+				color-stop(0.75, rgba(0, 0, 0, 0.15)),
+				color-stop(0.75, transparent),
+				to(transparent)
+			);
+			z-index: 1;
+			background-size: 60px 60px;
+			animation: move 3s linear infinite;
+			overflow: hidden;
+			@keyframes move {
+				0% {
+					background-position: 0 0;
+				}
+				100% {
+					background-position: 60px 60px;
+				}
+			}
+		}
+	}
+	.bar-text {
+		color: ${ColorStyles.TextWhiteAlpha};
 	}
 `;
