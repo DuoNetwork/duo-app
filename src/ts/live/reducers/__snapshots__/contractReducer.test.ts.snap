@@ -44,12 +44,30 @@ exports[`ui reducer balances 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": "0x0",
-    "feeCollector": "0x0",
-    "poolManager": "0x0",
-    "priceFeed1": "0x0",
-    "priceFeed2": "0x0",
-    "priceFeed3": "0x0",
+    "admin": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "feeCollector": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolManager": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed1": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed2": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed3": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
   },
   "balances": Object {
     "test": "test",
@@ -69,12 +87,30 @@ exports[`ui reducer custodianPrices 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": "0x0",
-    "feeCollector": "0x0",
-    "poolManager": "0x0",
-    "priceFeed1": "0x0",
-    "priceFeed2": "0x0",
-    "priceFeed3": "0x0",
+    "admin": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "feeCollector": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolManager": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed1": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed2": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed3": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
   },
   "balances": Object {
     "allowance": 0,
@@ -98,12 +134,30 @@ exports[`ui reducer custodianStates 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": "0x0",
-    "feeCollector": "0x0",
-    "poolManager": "0x0",
-    "priceFeed1": "0x0",
-    "priceFeed2": "0x0",
-    "priceFeed3": "0x0",
+    "admin": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "feeCollector": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolManager": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed1": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed2": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed3": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
   },
   "balances": Object {
     "allowance": 0,
@@ -145,12 +199,30 @@ exports[`ui reducer default 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": "0x0",
-    "feeCollector": "0x0",
-    "poolManager": "0x0",
-    "priceFeed1": "0x0",
-    "priceFeed2": "0x0",
-    "priceFeed3": "0x0",
+    "admin": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "feeCollector": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolManager": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed1": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed2": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed3": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
   },
   "balances": Object {
     "allowance": 0,
@@ -206,7 +278,7 @@ Object {
     "priceFeedTol": 0,
     "priceTol": 0,
     "priceUpdateCoolDown": 0,
-    "state": "Unknown",
+    "state": "Loading",
     "totalSupplyA": 0,
     "totalSupplyB": 0,
     "usersLength": 0,
@@ -218,12 +290,30 @@ exports[`ui reducer nav 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": "0x0",
-    "feeCollector": "0x0",
-    "poolManager": "0x0",
-    "priceFeed1": "0x0",
-    "priceFeed2": "0x0",
-    "priceFeed3": "0x0",
+    "admin": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "feeCollector": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolManager": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed1": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed2": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed3": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
   },
   "balances": Object {
     "allowance": 0,
@@ -279,7 +369,7 @@ Object {
     "priceFeedTol": 0,
     "priceTol": 0,
     "priceUpdateCoolDown": 0,
-    "state": "Unknown",
+    "state": "Loading",
     "totalSupplyA": 0,
     "totalSupplyB": 0,
     "usersLength": 0,
