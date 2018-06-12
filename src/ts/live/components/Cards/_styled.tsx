@@ -436,8 +436,8 @@ export const SCardListProgressBar = styled.div`
 	.bar-bg {
 		width: 225px;
 		height: 12px;
-		background:  ${ColorStyles.CardBackgroundSolid};
-		box-shadow: inset 0 1px 6px 0px rgba(0,0,0,.6);
+		background: ${ColorStyles.CardBackgroundSolid};
+		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.6);
 		border-radius: 6px;
 		display: flex;
 		flex-direction: row;
@@ -446,10 +446,11 @@ export const SCardListProgressBar = styled.div`
 		padding-right: 3px;
 		.inner-bar {
 			position: relative;
-			width: ${(props: ICardListProgressBarProps) => 219 * props.index / props.total + 'px'};
+			width: ${(props: ICardListProgressBarProps) =>
+				(219 * props.index) / props.total + 'px'};
 			height: 6px;
 			background: ${ColorStyles.TextWhiteAlphaLL};
-			box-shadow: 0 1px 3px 1px rgba(0,0,0,.2);
+			box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 			border-radius: 3px;
 		}
 		.inner-bar:after {
@@ -487,5 +488,57 @@ export const SCardListProgressBar = styled.div`
 	}
 	.bar-text {
 		color: ${ColorStyles.TextWhiteAlpha};
+	}
+`;
+
+export const SCardConversionForm = styled.div`
+	width: 100%;
+	.conv-bottom {
+		outline: none;
+		cursor: pointer;
+		width: 180px;
+		font-family: 'Roboto';
+		background-color: transparent;
+		color: ${ColorStyles.TextWhiteAlphaLL};
+		border: 1px dashed;
+		border-color: ${ColorStyles.BorderWhite2};
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+	}
+	.conv-bottom:hover {
+		color: ${ColorStyles.TextWhiteAlphaL};
+		border-color: ${ColorStyles.BorderWhite4};
+		background-color: ${ColorStyles.ButtonHoverWhite1};
+	}
+	.selected {
+		border: 1px solid !important;
+		border-color: ${ColorStyles.BorderWhite6} !important;
+		color: ${ColorStyles.TextWhiteAlpha} !important;
+		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+	}
+`;
+
+export const SCardTransactionForm = styled.div`
+	width: 100%;
+	.trans-bottom {
+		outline: none;
+		cursor: pointer;
+		width: 120px;
+		font-family: 'Roboto';
+		background-color: transparent;
+		color: ${ColorStyles.TextWhiteAlphaLL};
+		border: 1px dashed;
+		border-color: ${ColorStyles.BorderWhite2};
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+	}
+	.trans-bottom:hover {
+		color: ${ColorStyles.TextWhiteAlphaL};
+		border-color: ${ColorStyles.BorderWhite4};
+		background-color: ${ColorStyles.ButtonHoverWhite1};
+	}
+	.selected {
+		border: 1px solid !important;
+		border-color: ${ColorStyles.BorderWhite6} !important;
+		color: ${ColorStyles.TextWhiteAlpha} !important;
+		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
 	}
 `;

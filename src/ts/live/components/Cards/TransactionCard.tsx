@@ -8,11 +8,13 @@ import { IBalances, ICustodianPrices, ICustodianStates } from '../../common/type
 import { SDivFlexCenter } from '../_styled';
 import {
 	SCard,
+	SCardConversionForm,
 	SCardExtraDivSolid,
 	SCardList,
 	SCardListProgressBar,
 	SCardRadioExtraDiv,
 	SCardTitle,
+	SCardTransactionForm,
 	SRadioGroup
 } from './_styled';
 
@@ -26,7 +28,9 @@ interface IProps {
 }
 
 interface IState {
-	time: string;
+	ethFee: boolean;
+	conversionType: string;
+	transactionType: string;
 }
 
 interface IStatusList {
@@ -51,11 +55,11 @@ const ProgressBar = (props: { index: number; total: number }) => {
 	const { index, total } = props;
 	console.log(index, total);
 	return (
-		<SCardListProgressBar index={50} total={100}>
+		<SCardListProgressBar index={43} total={100}>
 			<div className="bar-bg">
 				<div className="inner-bar" />
 			</div>
-			<div className="bar-text">{d3.format('.2%')(50 / 100)}</div>
+			<div className="bar-text">{d3.format('.2%')(43 / 100)}</div>
 		</SCardListProgressBar>
 	);
 };
@@ -164,12 +168,17 @@ const StatusList = (props: { statusList: IStatusList }) => {
 	);
 };
 
-const RadioExtraDiv = () => {
+const RadioExtraDiv = (props: { changeFeePayment: () => void; eth: boolean }) => {
 	return (
 		<SCardRadioExtraDiv>
 			<div className="extend-extra-wrapper">
 				<div className="tag-title">Fee Payment Method</div>
-				<SRadioGroup defaultValue="a" size="small">
+				<SRadioGroup
+					defaultValue="a"
+					size="small"
+					onChange={props.changeFeePayment}
+					value={props.eth ? 'a' : 'b'}
+				>
 					<RadioButton value="a">ETH</RadioButton>
 					<RadioButton value="b">DUO</RadioButton>
 				</SRadioGroup>
@@ -178,9 +187,113 @@ const RadioExtraDiv = () => {
 	);
 };
 
+const ConversionForm = (props: {
+	conversionType: string;
+	changeConversionType: (type: string) => void;
+}) => {
+	const { conversionType, changeConversionType } = props;
+	return (
+		<SCardConversionForm>
+			<SDivFlexCenter horizontal width="100%" padding="10px 0px">
+				<button
+					className={
+						conversionType === 'create'
+							? 'conv-bottom selected'
+							: 'conv-bottom non-select'
+					}
+					onClick={() => changeConversionType('create')}
+				>
+					CREATION
+				</button>
+				<button
+					className={
+						conversionType === 'redeem'
+							? 'conv-bottom selected'
+							: 'conv-bottom non-select'
+					}
+					onClick={() => changeConversionType('redeem')}
+				>
+					REDEMPTION
+				</button>
+			</SDivFlexCenter>
+		</SCardConversionForm>
+	);
+};
+
+const TransactionForm = (props: {
+	transactionType: string;
+	changeTransactionType: (type: string) => void;
+}) => {
+	const { transactionType, changeTransactionType } = props;
+	return (
+		<SCardTransactionForm>
+			<SDivFlexCenter horizontal width="100%" padding="10px 0px">
+				<button
+					className={
+						transactionType === 'duo'
+							? 'trans-bottom selected'
+							: 'trans-bottom non-select'
+					}
+					onClick={() => changeTransactionType('duo')}
+				>
+					DUO
+				</button>
+				<button
+					className={
+						transactionType === 'classa'
+							? 'trans-bottom selected'
+							: 'trans-bottom non-select'
+					}
+					onClick={() => changeTransactionType('classa')}
+				>
+					CLASS A
+				</button>
+				<button
+					className={
+						transactionType === 'classb'
+							? 'trans-bottom selected'
+							: 'trans-bottom non-select'
+					}
+					onClick={() => changeTransactionType('classb')}
+				>
+					CLASS B
+				</button>
+			</SDivFlexCenter>
+		</SCardTransactionForm>
+	);
+};
+
 export default class InfoCard extends React.PureComponent<IProps, IState> {
+	constructor(props: IProps) {
+		super(props);
+		this.state = {
+			ethFee: true,
+			conversionType: 'create',
+			transactionType: 'duo'
+		};
+	}
+
+	private changeFeePayment = () => {
+		this.setState({
+			ethFee: !this.state.ethFee
+		});
+	};
+
+	private changeConversionType = (type: string) => {
+		this.setState({
+			conversionType: type
+		});
+	};
+
+	private changeTransactionType = (type: string) => {
+		this.setState({
+			transactionType: type
+		});
+	};
+
 	public render() {
 		const { states, prices } = this.props;
+		const { ethFee, conversionType, transactionType } = this.state;
 		const statusList: IStatusList = {
 			state: states.state,
 			totalSupplyA: states.totalSupplyA,
@@ -227,12 +340,15 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 				</SCard>
 				<SCard
 					title={<SCardTitle>CONVERSION</SCardTitle>}
-					extra={<RadioExtraDiv />}
+					extra={<RadioExtraDiv changeFeePayment={this.changeFeePayment} eth={ethFee} />}
 					width="440px"
 					margin="0 10px 0 10px"
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
-						<div style={{ color: 'white' }}>1234</div>
+						<ConversionForm
+							conversionType={conversionType}
+							changeConversionType={this.changeConversionType}
+						/>
 					</SDivFlexCenter>
 				</SCard>
 				<SCard
@@ -241,7 +357,10 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 					margin="0 0 0 10px"
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
-						<div style={{ color: 'white' }}>1234</div>
+						<TransactionForm
+							transactionType={transactionType}
+							changeTransactionType={this.changeTransactionType}
+						/>
 					</SDivFlexCenter>
 				</SCard>
 			</SDivFlexCenter>

@@ -34,4 +34,10 @@ export const ColorStyles = {
 	//Button Colors
 	ButtonRadioUnchekedBG: 'rgba(55,54,56,.2)',
 	ButtonRadioChekedBG: 'rgba(55,54,56,.6)',
+	ButtonHoverWhite10: 'rgba(255,255,255,1)',
+	ButtonHoverWhite9: 'rgba(255,255,255,0.9)',
+	ButtonHoverWhite5: 'rgba(255,255,255,0.5)',
+	ButtonHoverWhite4: 'rgba(255,255,255,0.4)',
+	ButtonHoverWhite3: 'rgba(255,255,255,0.3)',
+	ButtonHoverWhite1: 'rgba(255,255,255,0.1)',
 };
