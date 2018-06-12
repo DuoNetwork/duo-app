@@ -5,6 +5,7 @@ import * as React from 'react';
 import demoCreate from '../../../../images/createDemo.png';
 import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
+import contractUtil from '../../common/contractUtil';
 import { IBalances, ICustodianPrices, ICustodianStates } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import {
@@ -26,7 +27,6 @@ interface IProps {
 	states: ICustodianStates;
 	refresh: number;
 	balances: IBalances;
-	create: (address: string, value: number, payFeeInEth: boolean) => any;
 	account: string;
 }
 
@@ -71,7 +71,6 @@ const ConversionForm = (props: {
 	limit: number;
 	handleRatio: (limit: number, ratio: number) => void;
 	clear: () => void;
-	create: (address: string, value: number, payFeeInEth: boolean) => any;
 	account: string;
 }) => {
 	const {
@@ -87,7 +86,6 @@ const ConversionForm = (props: {
 		limit,
 		handleRatio,
 		clear,
-		create,
 		account
 	} = props;
 	const { eth, tokenA, tokenB } = props.balances;
@@ -206,7 +204,7 @@ const ConversionForm = (props: {
 				<button
 					className="form-button"
 					onClick={() => {
-						create(account, conversionInputValue, ethFee);
+						contractUtil.create(account, conversionInputValue, ethFee);
 					}}
 				>
 					SUBMIT
@@ -335,7 +333,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 	};
 
 	public render() {
-		const { states, prices, balances, create, account } = this.props;
+		const { states, prices, balances, account } = this.props;
 		const {
 			ethFee,
 			conversionType,
@@ -369,7 +367,6 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							limit={limit}
 							handleRatio={this.handleRatio}
 							clear={this.clear}
-							create={create}
 							account={account}
 						/>
 					</SDivFlexCenter>
