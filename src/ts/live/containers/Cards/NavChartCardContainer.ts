@@ -11,8 +11,10 @@ function mapStateToProps(state: IState) {
 		state.contract.states.limitLower,
 		state.contract.states.limitPeriodic
 	);
+	const mergedPrices = chartUtil.mergeReset(prices, resets);
+	chartUtil.mergeLastToPrice(mergedPrices, state.contract.states, state.contract.prices.last);
 	return {
-		prices: chartUtil.mergeReset(prices, resets),
+		prices: mergedPrices,
 		resets: resets
 	};
 }
