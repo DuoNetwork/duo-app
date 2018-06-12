@@ -353,7 +353,6 @@ export const SCardRadioExtraDiv = styled.div`
 	padding-right: 10px;
 	line-height: 24px;
 	& > .extend-extra-wrapper {
-		padding: 0 10px;
 		display: flex;
 		flex-direction: row;
 	}
@@ -420,6 +419,30 @@ export const SCardList = styled.div`
 			.content {
 				color: ${ColorStyles.TextWhiteAlpha};
 			}
+			.percent-button {
+				outline: none;
+				cursor: pointer;
+				font-family: 'Roboto';
+				background-color: transparent;
+				color: ${ColorStyles.TextWhiteAlphaLL};
+				border: 1px dashed;
+				border-color: ${ColorStyles.BorderWhite2};
+				font-size: 10px;
+				height: 24px;
+				width: 40px;
+				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+			}
+			.percent-button:hover {
+				color: ${ColorStyles.TextWhiteAlphaL};
+				border-color: ${ColorStyles.BorderWhite4};
+				background-color: ${ColorStyles.ButtonHoverWhite1};
+			}
+		}
+		.input-line {
+			padding: 8px 5px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
 		}
 	}
 `;
@@ -493,7 +516,7 @@ export const SCardListProgressBar = styled.div`
 
 export const SCardConversionForm = styled.div`
 	width: 100%;
-	.conv-bottom {
+	.conv-button {
 		outline: none;
 		cursor: pointer;
 		width: 180px;
@@ -502,9 +525,10 @@ export const SCardConversionForm = styled.div`
 		color: ${ColorStyles.TextWhiteAlphaLL};
 		border: 1px dashed;
 		border-color: ${ColorStyles.BorderWhite2};
-		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
 	}
-	.conv-bottom:hover {
+	.conv-button:hover {
 		color: ${ColorStyles.TextWhiteAlphaL};
 		border-color: ${ColorStyles.BorderWhite4};
 		background-color: ${ColorStyles.ButtonHoverWhite1};
@@ -519,7 +543,7 @@ export const SCardConversionForm = styled.div`
 
 export const SCardTransactionForm = styled.div`
 	width: 100%;
-	.trans-bottom {
+	.trans-button {
 		outline: none;
 		cursor: pointer;
 		width: 120px;
@@ -528,9 +552,10 @@ export const SCardTransactionForm = styled.div`
 		color: ${ColorStyles.TextWhiteAlphaLL};
 		border: 1px dashed;
 		border-color: ${ColorStyles.BorderWhite2};
-		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
 	}
-	.trans-bottom:hover {
+	.trans-button:hover {
 		color: ${ColorStyles.TextWhiteAlphaL};
 		border-color: ${ColorStyles.BorderWhite4};
 		background-color: ${ColorStyles.ButtonHoverWhite1};
@@ -540,5 +565,21 @@ export const SCardTransactionForm = styled.div`
 		border-color: ${ColorStyles.BorderWhite6} !important;
 		color: ${ColorStyles.TextWhiteAlpha} !important;
 		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+	}
+`;
+
+export const SInput = styled.input`
+	outline: none;
+	font-size: 12px;
+	background: ${ColorStyles.CardBackgroundSolid};
+	box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4);
+	color: ${ColorStyles.TextWhiteAlpha};
+	border: none;
+	width: 160px;
+	height: 28px;
+	padding: 0 8px;
+	text-align: right;
+	&:focus{
+		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 255, 255, 0.05);
 	}
 `;

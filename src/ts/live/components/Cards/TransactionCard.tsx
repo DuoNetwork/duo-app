@@ -6,9 +6,11 @@ import { SDivFlexCenter } from '../_styled';
 import {
 	SCard,
 	SCardConversionForm,
+	SCardList,
 	SCardRadioExtraDiv,
 	SCardTitle,
 	SCardTransactionForm,
+	SInput,
 	SRadioGroup
 } from './_styled';
 import StateCard from './StateCard';
@@ -50,16 +52,19 @@ const RadioExtraDiv = (props: { changeFeePayment: () => void; eth: boolean }) =>
 const ConversionForm = (props: {
 	conversionType: string;
 	changeConversionType: (type: string) => void;
+	balances: IBalances;
+	ethFee: boolean;
 }) => {
 	const { conversionType, changeConversionType } = props;
+	const { eth, tokenA, tokenB } = props.balances;
 	return (
 		<SCardConversionForm>
-			<SDivFlexCenter horizontal width="100%" padding="10px 0px">
+			<SDivFlexCenter horizontal width="100%" padding="10px 0 0 0">
 				<button
 					className={
 						conversionType === 'create'
-							? 'conv-bottom selected'
-							: 'conv-bottom non-select'
+							? 'conv-button selected'
+							: 'conv-button non-select'
 					}
 					onClick={() => changeConversionType('create')}
 				>
@@ -68,14 +73,48 @@ const ConversionForm = (props: {
 				<button
 					className={
 						conversionType === 'redeem'
-							? 'conv-bottom selected'
-							: 'conv-bottom non-select'
+							? 'conv-button selected'
+							: 'conv-button non-select'
 					}
 					onClick={() => changeConversionType('redeem')}
 				>
 					REDEMPTION
 				</button>
 			</SDivFlexCenter>
+			<SCardList>
+				<div className="status-list-wrapper">
+					<ul>
+						<li className="block-title">Available Tokens</li>
+						<li>
+							<span className="title">ETH</span>
+							<span className="content">{eth}</span>
+						</li>
+						<li>
+							<span className="title">Class A</span>
+							<span className="content">{tokenA}</span>
+						</li>
+						<li>
+							<span className="title">Class B</span>
+							<span className="content">{tokenB}</span>
+						</li>
+					</ul>
+					<ul>
+						<li className="block-title">Conversion Amount</li>
+						<li className="input-line">
+							<SDivFlexCenter horizontal width='50%' padding='0'>
+								<button className='percent-button'>25%</button>
+								<button className='percent-button'>50%</button>
+								<button className='percent-button'>75%</button>
+								<button className='percent-button'>100%</button>
+							</SDivFlexCenter>
+							<SInput/>
+						</li>
+						<li>
+							123
+						</li>
+					</ul>
+				</div>
+			</SCardList>
 		</SCardConversionForm>
 	);
 };
@@ -83,6 +122,7 @@ const ConversionForm = (props: {
 const TransactionForm = (props: {
 	transactionType: string;
 	changeTransactionType: (type: string) => void;
+	balances: IBalances;
 }) => {
 	const { transactionType, changeTransactionType } = props;
 	return (
@@ -91,8 +131,8 @@ const TransactionForm = (props: {
 				<button
 					className={
 						transactionType === 'duo'
-							? 'trans-bottom selected'
-							: 'trans-bottom non-select'
+							? 'trans-button selected'
+							: 'trans-button non-select'
 					}
 					onClick={() => changeTransactionType('duo')}
 				>
@@ -101,8 +141,8 @@ const TransactionForm = (props: {
 				<button
 					className={
 						transactionType === 'classa'
-							? 'trans-bottom selected'
-							: 'trans-bottom non-select'
+							? 'trans-button selected'
+							: 'trans-button non-select'
 					}
 					onClick={() => changeTransactionType('classa')}
 				>
@@ -111,8 +151,8 @@ const TransactionForm = (props: {
 				<button
 					className={
 						transactionType === 'classb'
-							? 'trans-bottom selected'
-							: 'trans-bottom non-select'
+							? 'trans-button selected'
+							: 'trans-button non-select'
 					}
 					onClick={() => changeTransactionType('classb')}
 				>
@@ -152,7 +192,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 	};
 
 	public render() {
-		const { states, prices } = this.props;
+		const { states, prices, balances } = this.props;
 		const { ethFee, conversionType, transactionType } = this.state;
 		return (
 			<SDivFlexCenter center horizontal marginBottom="20px;">
@@ -167,6 +207,8 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 						<ConversionForm
 							conversionType={conversionType}
 							changeConversionType={this.changeConversionType}
+							balances={balances}
+							ethFee={ethFee}
 						/>
 					</SDivFlexCenter>
 				</SCard>
@@ -179,6 +221,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 						<TransactionForm
 							transactionType={transactionType}
 							changeTransactionType={this.changeTransactionType}
+							balances={balances}
 						/>
 					</SDivFlexCenter>
 				</SCard>
