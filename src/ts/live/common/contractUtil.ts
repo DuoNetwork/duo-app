@@ -35,19 +35,19 @@ class ContractUtil {
 	public convertCustodianState(rawState: string) {
 		switch (rawState) {
 			case CST.STATE_INCEPTION:
-				return 'Inception';
+				return CST.CTD_INCEPTION;
 			case CST.STATE_TRADING:
-				return 'Trading';
+				return CST.CTD_TRADING;
 			case CST.STATE_PRERESET:
-				return 'PreReset';
+				return CST.CTD_PRERESET
 			case CST.STATE_UP_RESET:
-				return 'UpwardReset';
+				return CST.CTD_UP_RESET
 			case CST.STATE_DOWN_RESET:
-				return 'DownwardReset';
+				return CST.CTD_DOWN_RESET
 			case CST.STATE_PERIOD_RESET:
-				return 'PeriodicReset';
+				return CST.CTD_PERIOD_RESET
 			default:
-				return 'Loading';
+				return CST.CTD_LOADING;
 		}
 	}
 

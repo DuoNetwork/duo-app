@@ -15,3 +15,11 @@ export const AC_NAV = 'nav';
 
 export const ETH_MAINNET_ID = 1;
 export const ETH_KOVAN_ID = 42;
+
+export const CTD_INCEPTION = 'Inception';
+export const CTD_TRADING = 'Trading'
+export const CTD_PRERESET = 'PreReset';
+export const CTD_UP_RESET = 'UpwardReset';
+export const CTD_DOWN_RESET = 'DownwardReset';
+export const CTD_PERIOD_RESET = 'PeriodicReset';
+export const CTD_LOADING = 'Loading';

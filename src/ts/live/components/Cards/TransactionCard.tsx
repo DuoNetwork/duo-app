@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import * as React from 'react';
 import successIcon from '../../../../images/stauts/success.svg';
 import warningIcon from '../../../../images/stauts/warning.svg';
+import * as CST from '../../common/constants';
 import { IBalances, ICustodianPrices, ICustodianStates } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import {
@@ -67,14 +68,14 @@ const StatusList = (props: { statusList: IStatusList }) => {
 		<div className="status-list-wrapper">
 			<ul>
 				<li className="block-title">
-					{statusList.state !== 'Loading'
-						? statusList.state === 'Trading'
+					{statusList.state !== CST.CTD_LOADING
+						? statusList.state === CST.CTD_TRADING
 							? 'Last Reset Price'
 							: 'Reset Progress'
-						: 'Loading'}
+						: CST.CTD_LOADING}
 				</li>
-				{statusList.state !== 'Loading' ? (
-					statusList.state === 'Trading' ? (
+				{statusList.state !== CST.CTD_LOADING ? (
+					statusList.state === CST.CTD_TRADING ? (
 						<li>
 							<span className="title">ETH</span>
 							<span className="content">
@@ -199,7 +200,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			lastReset: prices.reset.price
 		};
 		const tooltioText =
-			statusList.state === 'Trading'
+			statusList.state === CST.CTD_TRADING
 				? 'Trading state, operations are permitted during current state.'
 				: 'Reset ongoing, operations are prohibited during current state.';
 		return (
@@ -213,7 +214,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							<Tooltip title={tooltioText}>
 								<div>{statusList.state}</div>
 								<img
-									src={statusList.state === 'Trading' ? successIcon : warningIcon}
+									src={statusList.state === CST.CTD_TRADING ? successIcon : warningIcon}
 								/>
 							</Tooltip>
 						</SCardExtraDivSolid>
@@ -221,7 +222,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 				>
 					<SDivFlexCenter horizontal padding="0 10px">
 						<SCardList>
-							{statusList ? <StatusList statusList={statusList} /> : 'Loading'}
+							{statusList ? <StatusList statusList={statusList} /> : CST.CTD_LOADING}
 						</SCardList>
 					</SDivFlexCenter>
 				</SCard>
