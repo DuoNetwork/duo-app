@@ -1,5 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`find reset points correctly 1`] = `
+Array [
+  Object {
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 2717,
+  },
+  Object {
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 3717,
+  },
+  Object {
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 4717,
+  },
+]
+`;
+
 exports[`interpolate correctly 1`] = `
 Object {
   "close": 2,
@@ -58,4 +81,152 @@ Object {
   "timestamp": 1528214520000,
   "volume": 0,
 }
+`;
+
+exports[`merge last price to accepted price correctly 1`] = `
+Object {
+  "navA": 1.23,
+  "navB": 1.45,
+  "price": 620,
+  "timestamp": 1528349820000,
+}
+`;
+
+exports[`merge last price to hourly correctly 1`] = `
+Array [
+  Object {
+    "close": 600,
+    "date": "2018-06-04",
+    "high": 625.04,
+    "hour": "00",
+    "low": 600,
+    "minute": 0,
+    "open": 619.39,
+    "source": "BITFINEX",
+    "timestamp": 1528072200000,
+    "volume": 9626.950549620002,
+  },
+]
+`;
+
+exports[`merge last price to hourly correctly 2`] = `
+Array [
+  Object {
+    "close": 600,
+    "date": "2018-06-04",
+    "high": 625.04,
+    "hour": "00",
+    "low": 600,
+    "minute": 0,
+    "open": 619.39,
+    "source": "BITFINEX",
+    "timestamp": 1528072200000,
+    "volume": 9626.950549620002,
+  },
+  Object {
+    "close": 620,
+    "date": "2018-06-04",
+    "high": 620,
+    "hour": "01",
+    "low": 600,
+    "minute": 0,
+    "open": 600,
+    "source": "BITFINEX",
+    "timestamp": 1528074000000,
+    "volume": 0,
+  },
+]
+`;
+
+exports[`merge last price to minutely correctly 1`] = `
+Array [
+  Object {
+    "close": 600,
+    "date": "2018-06-01",
+    "high": 600,
+    "hour": "07",
+    "low": 582.88,
+    "minute": 53,
+    "open": 582.88,
+    "source": "GDAX",
+    "timestamp": 1527839610000,
+    "volume": 12.117600000000001,
+  },
+]
+`;
+
+exports[`merge last price to minutely correctly 2`] = `
+Array [
+  Object {
+    "close": 600,
+    "date": "2018-06-01",
+    "high": 600,
+    "hour": "07",
+    "low": 582.88,
+    "minute": 53,
+    "open": 582.88,
+    "source": "GDAX",
+    "timestamp": 1527839610000,
+    "volume": 12.117600000000001,
+  },
+  Object {
+    "close": 620,
+    "date": "2018-06-01",
+    "high": 620,
+    "hour": "07",
+    "low": 600,
+    "minute": 54,
+    "open": 600,
+    "source": "GDAX",
+    "timestamp": 1527839640000,
+    "volume": 0,
+  },
+]
+`;
+
+exports[`merge reset correctly 1`] = `
+Array [
+  Object {
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 1000,
+  },
+  Object {
+    "navA": 1,
+    "navB": 2,
+    "price": 123,
+    "timestamp": 2000,
+  },
+  Object {
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 2717,
+  },
+  Object {
+    "navA": 1,
+    "navB": 0.25,
+    "price": 123,
+    "timestamp": 3000,
+  },
+  Object {
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 3717,
+  },
+  Object {
+    "navA": 1.1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 4000,
+  },
+  Object {
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 4717,
+  },
+]
 `;
