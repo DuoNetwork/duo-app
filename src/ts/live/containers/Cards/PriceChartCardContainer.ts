@@ -11,7 +11,7 @@ function mapStateToProps(state: IState) {
 	return {
 		hourly: state.dynamo.hourly,
 		minutely: state.dynamo.minutely,
-		prices: state.dynamo.prices
+		prices: state.dynamo.price
 	};
 }
 

@@ -4,18 +4,18 @@ import { IState } from '../../common/types';
 import NavChartCard from '../../components/Cards/NavChartCard';
 
 function mapStateToProps(state: IState) {
-	const prices = state.dynamo.prices;
-	const resets = chartUtil.reset(
-		prices,
+	const price = state.dynamo.price;
+	const reset = chartUtil.reset(
+		price,
 		state.contract.states.limitUpper,
 		state.contract.states.limitLower,
 		state.contract.states.limitPeriodic
 	);
-	const mergedPrices = chartUtil.mergeReset(prices, resets);
-	chartUtil.mergeLastToPrice(mergedPrices, state.contract.states, state.contract.prices.last);
+	const mergedPrice = chartUtil.mergeReset(price, reset);
+	chartUtil.mergeLastToPrice(mergedPrice, state.contract.states, state.contract.prices.last);
 	return {
-		prices: mergedPrices,
-		resets: resets
+		price: mergedPrice,
+		reset: reset
 	};
 }
 

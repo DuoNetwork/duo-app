@@ -39,8 +39,9 @@ export const initialState: IDynamoState = {
 		kraken: [],
 		gdax: []
 	},
-	prices: [],
-	conversions: []
+	price: [],
+	conversion: [],
+	totalSupply: []
 };
 
 export function dynamoReducer(state: IDynamoState = initialState, action: AnyAction): IDynamoState {
@@ -58,13 +59,14 @@ export function dynamoReducer(state: IDynamoState = initialState, action: AnyAct
 			return Object.assign({}, state, {
 				minutely: action.value
 			});
-		case CST.AC_DMN_PRICES:
+		case CST.AC_DMN_PRICE:
 			return Object.assign({}, state, {
-				prices: action.value
+				price: action.value
 			});
 		case CST.AC_CONVERSION:
+		case CST.AC_TOTAL_SUPPLY:
 			return Object.assign({}, state, {
-				conversions: action.value
+				[action.type]: action.value
 			});
 		default:
 			return state;

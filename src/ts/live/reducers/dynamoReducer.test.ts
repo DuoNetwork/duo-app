@@ -41,7 +41,7 @@ describe('ui reducer', () => {
 
 	test('dynamoPrices', () => {
 		state = dynamoReducer(state, {
-			type: CST.AC_DMN_PRICES,
+			type: CST.AC_DMN_PRICE,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();
@@ -50,6 +50,14 @@ describe('ui reducer', () => {
 	test('conversion', () => {
 		state = dynamoReducer(state, {
 			type: CST.AC_CONVERSION,
+			value: ['test']
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('totalSupply', () => {
+		state = dynamoReducer(state, {
+			type: CST.AC_TOTAL_SUPPLY,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();

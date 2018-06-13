@@ -7,8 +7,8 @@ import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard } from './_styled';
 
 interface IProps {
-	prices: IAcceptedPrice[];
-	resets: IAcceptedPrice[];
+	price: IAcceptedPrice[];
+	reset: IAcceptedPrice[];
 }
 
 export default class NavChartCard extends React.PureComponent<IProps> {

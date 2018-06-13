@@ -20,7 +20,7 @@ Object {
     },
   },
   "dynamo": Object {
-    "conversions": Array [
+    "conversion": Array [
       "test",
     ],
     "hourly": Object {
@@ -73,13 +73,16 @@ Object {
         "test": "test",
       },
     },
-    "prices": Array [
+    "price": Array [
       "test",
     ],
     "status": Array [
       Object {
         "process": "test",
       },
+    ],
+    "totalSupply": Array [
+      "test",
     ],
   },
   "ui": Object {

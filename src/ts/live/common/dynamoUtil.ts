@@ -10,7 +10,8 @@ import {
 	IPriceBar,
 	IPriceStatus,
 	ISourceData,
-	IStatus
+	IStatus,
+	ITotalSupply
 } from '../common/types';
 import * as CST from './constants';
 import contractUtil from './contractUtil';
@@ -48,18 +49,45 @@ export class DynamoUtil {
 
 		const allData: IAcceptedPrice[] = [];
 		(await Promise.all(promiseList)).forEach(r =>
-			allData.push(...this.parseAcceptedPrices(r))
+			allData.push(...this.parseAcceptedPrice(r))
 		);
 		return allData;
 	}
 
-	public parseAcceptedPrices(acceptPrice: QueryOutput): IAcceptedPrice[] {
+	public parseAcceptedPrice(acceptPrice: QueryOutput): IAcceptedPrice[] {
 		if (!acceptPrice.Items || !acceptPrice.Items.length) return [];
 		return acceptPrice.Items.map(p => ({
 			price: contractUtil.fromWei(p[CST.DB_EV_PX].S || ''),
 			navA: contractUtil.fromWei(p[CST.DB_EV_NAV_A].S || ''),
 			navB: contractUtil.fromWei(p[CST.DB_EV_NAV_B].S || ''),
 			timestamp: Number(p[CST.DB_EV_TS].S) * 1000
+		}));
+	}
+
+	public async queryTotalSupplyEvent(dates: string[]) {
+		const promiseList = dates.map(date =>
+			this.queryData({
+				TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
+				KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
+				ExpressionAttributeValues: {
+					[':' + CST.DB_EV_KEY]: { S: CST.EVENT_TOTAL_SUPPLY + '|' + date }
+				}
+			})
+		);
+
+		const allData: ITotalSupply[] = [];
+		(await Promise.all(promiseList)).forEach(r =>
+			allData.push(...this.parseTotalSupply(r))
+		);
+		return allData;
+	}
+
+	public parseTotalSupply(totalSupply: QueryOutput): ITotalSupply[] {
+		if (!totalSupply.Items || !totalSupply.Items.length) return [];
+		return totalSupply.Items.map(t => ({
+			tokenA: Number((t[CST.DB_EV_TOTAL_SUPPLY_A].S || '')),
+			tokenB: Number((t[CST.DB_EV_TOTAL_SUPPLY_B].S || '')),
+			timestamp: Number((t[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
 		}));
 	}
 
@@ -82,14 +110,14 @@ export class DynamoUtil {
 
 		const allData: IConversion[] = [];
 		(await Promise.all(promiseList)).forEach(r =>
-			allData.push(...this.parseConversions(r))
+			allData.push(...this.parseConversion(r))
 		);
 		return allData;
 	}
 
-	public parseConversions(conversions: QueryOutput): IConversion[] {
-		if (!conversions.Items || !conversions.Items.length) return [];
-		return conversions.Items.map(c => {
+	public parseConversion(conversion: QueryOutput): IConversion[] {
+		if (!conversion.Items || !conversion.Items.length) return [];
+		return conversion.Items.map(c => {
 			const eventKey = c[CST.DB_EV_KEY].S || '';
 			const type = eventKey.split('|')[0];
 

@@ -289,7 +289,7 @@ test('merge last price to minutely correctly', () => {
 });
 
 test('merge last price to accepted price correctly', () => {
-	const parsedAcceptedPrice = dynamoUtil.parseAcceptedPrices(prices);
+	const parsedAcceptedPrice = dynamoUtil.parseAcceptedPrice(prices);
 	const originalLength = parsedAcceptedPrice.length;
 	chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
 		address: '0x0',

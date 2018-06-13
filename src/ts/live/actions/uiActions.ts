@@ -19,8 +19,9 @@ export function refresh(): VoidThunkAction {
 		dispatch(dynamoActions.scanStatus());
 		dispatch(dynamoActions.fetchHourly());
 		dispatch(dynamoActions.fetchMinutely());
-		dispatch(dynamoActions.fetchPrices());
-		dispatch(dynamoActions.fetchConversions());
+		dispatch(dynamoActions.fetchPrice());
+		dispatch(dynamoActions.fetchConversion());
+		dispatch(dynamoActions.fetchTotalSupply());
 		dispatch(refreshUpdate());
 	};
 }

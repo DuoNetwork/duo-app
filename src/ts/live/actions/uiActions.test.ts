@@ -46,6 +46,7 @@ describe('actions', () => {
 		);
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>

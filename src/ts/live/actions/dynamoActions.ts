@@ -2,7 +2,14 @@ import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
-import { IAcceptedPrice, IConversion, IPriceBar, ISourceData, VoidThunkAction } from '../common/types';
+import {
+	IAcceptedPrice,
+	IConversion,
+	IPriceBar,
+	ISourceData,
+	ITotalSupply,
+	VoidThunkAction
+} from '../common/types';
 
 export function statusUpdate(status: object) {
 	return {
@@ -30,7 +37,7 @@ export function fetchHourly(): VoidThunkAction {
 		const dates: string[] = [];
 		const date = moment.utc();
 		for (let i = 0; i < 7; i++) {
-			dates.push(date.format('YYYY-MM-DD'))
+			dates.push(date.format('YYYY-MM-DD'));
 			date.subtract(1, 'day');
 		}
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
@@ -41,7 +48,9 @@ export function fetchHourly(): VoidThunkAction {
 			kraken: [],
 			gdax: []
 		};
-		results.forEach((r, i) => (hourly[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, true)));
+		results.forEach(
+			(r, i) => (hourly[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, true))
+		);
 		dispatch(hourlyUpdate(hourly));
 	};
 }
@@ -58,7 +67,7 @@ export function fetchMinutely(): VoidThunkAction {
 		const dates: string[] = [];
 		const date = moment.utc();
 		for (let i = 0; i < 2; i++) {
-			dates.push(date.format('YYYY-MM-DD-HH'))
+			dates.push(date.format('YYYY-MM-DD-HH'));
 			date.subtract(1, 'hour');
 		}
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
@@ -69,29 +78,30 @@ export function fetchMinutely(): VoidThunkAction {
 			kraken: [],
 			gdax: []
 		};
-		results.forEach((r, i) => (minutely[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, false)));
+		results.forEach(
+			(r, i) => (minutely[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, false))
+		);
 		dispatch(minutelyUpdate(minutely));
 	};
 }
 
-export function pricesUpdate(prices: IAcceptedPrice[]) {
+export function priceUpdate(prices: IAcceptedPrice[]) {
 	return {
-		type: CST.AC_DMN_PRICES,
+		type: CST.AC_DMN_PRICE,
 		value: prices
 	};
 }
 
-export function fetchPrices(): VoidThunkAction {
+export function fetchPrice(): VoidThunkAction {
 	return async dispatch => {
 		const dates: string[] = [];
 		const date = moment.utc();
 		for (let i = 0; i < 7; i++) {
-			dates.push(date.format('YYYY-MM-DD'))
+			dates.push(date.format('YYYY-MM-DD'));
 			date.subtract(1, 'day');
 		}
 		dates.sort((a, b) => a.localeCompare(b));
-		const result = await dynamoUtil.queryAcceptPriceEvent(dates);
-		dispatch(pricesUpdate(result));
+		dispatch(priceUpdate(await dynamoUtil.queryAcceptPriceEvent(dates)));
 	};
 }
 
@@ -99,19 +109,42 @@ export function conversionUpdate(conversions: IConversion[]) {
 	return {
 		type: CST.AC_CONVERSION,
 		value: conversions
-	}
+	};
 }
 
-export function fetchConversions(): VoidThunkAction {
+export function fetchConversion(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates: string[] = [];
 		const date = moment.utc();
 		for (let i = 0; i < 7; i++) {
-			dates.push(date.format('YYYY-MM-DD'))
+			dates.push(date.format('YYYY-MM-DD'));
 			date.subtract(1, 'day');
 		}
 		dates.sort((a, b) => a.localeCompare(b));
-		const result = await dynamoUtil.queryConversionEvent(getState().contract.account, dates);
-		dispatch(conversionUpdate(result));
+		dispatch(
+			conversionUpdate(
+				await dynamoUtil.queryConversionEvent(getState().contract.account, dates)
+			)
+		);
+	};
+}
+
+export function totalSupplyUpdate(totalSupplies: ITotalSupply[]) {
+	return {
+		type: CST.AC_TOTAL_SUPPLY,
+		value: totalSupplies
+	};
+}
+
+export function fetchTotalSupply(): VoidThunkAction {
+	return async dispatch => {
+		const dates: string[] = [];
+		const date = moment.utc();
+		for (let i = 0; i < 7; i++) {
+			dates.push(date.format('YYYY-MM-DD'));
+			date.subtract(1, 'day');
+		}
+		dates.sort((a, b) => a.localeCompare(b));
+		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
 	};
 }

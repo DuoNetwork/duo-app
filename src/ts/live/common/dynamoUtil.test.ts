@@ -13,4 +13,4 @@ test('parseHourly', () => expect(dynamoUtil.parseHourly(hourly)).toMatchSnapshot
 
 test('parseMinutely', () => expect(dynamoUtil.parseMinutely(minutely)).toMatchSnapshot());
 
-test('parseAcceptedPrices', () => expect(dynamoUtil.parseAcceptedPrices(prices)).toMatchSnapshot());
+test('parseAcceptedPrices', () => expect(dynamoUtil.parseAcceptedPrice(prices)).toMatchSnapshot());

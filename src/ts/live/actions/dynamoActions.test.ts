@@ -70,14 +70,14 @@ describe('actions', () => {
 		);
 	});
 
-	test('pricesUpdate', () => {
-		expect(dynamoActions.pricesUpdate(['test'] as any)).toMatchSnapshot();
+	test('priceUpdate', () => {
+		expect(dynamoActions.priceUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
-	test('fetchPrices', () => {
+	test('fetchPrice', () => {
 		const store = mockStore({});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchPrices() as any);
+		store.dispatch(dynamoActions.fetchPrice() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -90,10 +90,26 @@ describe('actions', () => {
 		expect(dynamoActions.conversionUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
-	test('fetchConversions', () => {
+	test('fetchConversion', () => {
 		const store = mockStore({ contract: { account: '0x0' } });
 		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchConversions() as any);
+		store.dispatch(dynamoActions.fetchConversion() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
+
+	test('totalSupplyUpdate', () => {
+		expect(dynamoActions.totalSupplyUpdate(['test'] as any)).toMatchSnapshot();
+	});
+
+	test('fetchTotalSupply', () => {
+		const store = mockStore({});
+		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
+		store.dispatch(dynamoActions.fetchTotalSupply() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

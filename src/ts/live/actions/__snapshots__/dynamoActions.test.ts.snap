@@ -9,7 +9,7 @@ Object {
 }
 `;
 
-exports[`actions fetchConversions 1`] = `
+exports[`actions fetchConversion 1`] = `
 Array [
   Object {
     "type": "conversion",
@@ -64,10 +64,21 @@ Array [
 ]
 `;
 
-exports[`actions fetchPrices 1`] = `
+exports[`actions fetchPrice 1`] = `
 Array [
   Object {
-    "type": "dynamoPrices",
+    "type": "dynamoPrice",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
+exports[`actions fetchTotalSupply 1`] = `
+Array [
+  Object {
+    "type": "totalSupply",
     "value": Array [
       "test",
     ],
@@ -93,9 +104,9 @@ Object {
 }
 `;
 
-exports[`actions pricesUpdate 1`] = `
+exports[`actions priceUpdate 1`] = `
 Object {
-  "type": "dynamoPrices",
+  "type": "dynamoPrice",
   "value": Array [
     "test",
   ],
@@ -119,5 +130,14 @@ Object {
   "value": Object {
     "test": "test",
   },
+}
+`;
+
+exports[`actions totalSupplyUpdate 1`] = `
+Object {
+  "type": "totalSupply",
+  "value": Array [
+    "test",
+  ],
 }
 `;

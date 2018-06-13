@@ -39,13 +39,19 @@ Array [
     },
   },
   Object {
-    "type": "dynamoPrices",
+    "type": "dynamoPrice",
     "value": Array [
       "test",
     ],
   },
   Object {
     "type": "conversion",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "totalSupply",
     "value": Array [
       "test",
     ],

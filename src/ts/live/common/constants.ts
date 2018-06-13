@@ -9,7 +9,8 @@ export const AC_ADDRESSES = 'addresses';
 export const AC_DNM_STATUS = 'dynamoStatus';
 export const AC_DMN_HOURLY = 'dynamoHourly';
 export const AC_DMN_MINUTELY = 'dynamoMinutely';
-export const AC_DMN_PRICES = 'dynamoPrices';
+export const AC_DMN_PRICE = 'dynamoPrice';
+export const AC_TOTAL_SUPPLY = 'totalSupply';
 export const AC_CONVERSION = 'conversion';
 export const AC_REFRESH = 'refresh';
 

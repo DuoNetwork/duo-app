@@ -37,12 +37,12 @@ class ChartUtil {
 	}
 
 	public reset(
-		prices: IAcceptedPrice[],
+		price: IAcceptedPrice[],
 		limitUp: number,
 		limitDown: number,
 		limitPeriod: number
 	): IAcceptedPrice[] {
-		return prices
+		return price
 			.filter(p => p.navB >= limitUp || p.navB <= limitDown || p.navA >= limitPeriod)
 			.map(p => ({
 				price: p.price,
