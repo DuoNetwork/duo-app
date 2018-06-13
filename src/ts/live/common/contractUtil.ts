@@ -212,10 +212,10 @@ class ContractUtil {
 		});
 	}
 
-	public duoApprove(address: string, value: number) {
+	public duoApprove(address: string, spender: string, value: number) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.duo.methods.approve(CST.CUSTODIAN_ADDR, this.toWei(value)).send({
+		return this.duo.methods.approve(spender, this.toWei(value)).send({
 			from: address
 		});
 	}
