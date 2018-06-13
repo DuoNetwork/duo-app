@@ -88,6 +88,10 @@ export function contractReducer(
 			return Object.assign({}, state, {
 				prices: action.value
 			});
+		case CST.AC_ACCOUNT:
+			return Object.assign({}, state, {
+				[action.type]: action.value || ''
+			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
 		case CST.AC_ACCOUNT:
