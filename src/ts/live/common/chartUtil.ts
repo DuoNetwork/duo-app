@@ -1,6 +1,14 @@
 import moment from 'moment';
 import * as CST from '../common/constants';
-import { IAcceptedPrice, ICustodianPrice, ICustodianStates, IPriceBar, ISourceData } from './types';
+import {
+	IAcceptedPrice,
+	ICustodianPrice,
+	ICustodianStates,
+	IPriceBar,
+	ISourceData,
+	ITotalSupply
+} from './types';
+import util from './util';
 
 class ChartUtil {
 	public interpolate(sourceData: IPriceBar[], isHourly: boolean): IPriceBar[] {
@@ -109,19 +117,32 @@ class ChartUtil {
 	}
 
 	public mergeLastToPrice(
-		prices: IAcceptedPrice[],
+		price: IAcceptedPrice[],
 		states: ICustodianStates,
 		last: ICustodianPrice
 	) {
-		if (!prices.length) return;
-		const lastPrice = prices[prices.length - 1];
+		if (!price.length) return;
+		const lastPrice = price[price.length - 1];
 		if (lastPrice.timestamp < last.timestamp)
-			prices.push({
+			price.push({
 				price: last.price,
 				navA: states.navA,
 				navB: states.navB,
 				timestamp: last.timestamp
 			});
+	}
+
+	public mergeTotalSupply(totalSupply: ITotalSupply[], states: ICustodianStates) {
+		const all = [
+			...totalSupply,
+			{
+				tokenA: states.totalSupplyA,
+				tokenB: states.totalSupplyB,
+				timestamp: util.getNowTimestamp()
+			}
+		];
+		all.sort((a, b) => a.timestamp - b.timestamp);
+		return all;
 	}
 }
 

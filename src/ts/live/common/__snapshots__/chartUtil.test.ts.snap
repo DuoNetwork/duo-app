@@ -230,3 +230,18 @@ Array [
   },
 ]
 `;
+
+exports[`merge total supply correctly 1`] = `
+Array [
+  Object {
+    "timestamp": 1234567890,
+    "tokenA": 123,
+    "tokenB": 456,
+  },
+  Object {
+    "timestamp": 2345678901,
+    "tokenA": 1234,
+    "tokenB": 2345,
+  },
+]
+`;

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import moment, { DurationInputArg2 } from 'moment';
 
 class Util {
 	public convertUpdateTime(timestamp: number): string {
@@ -30,6 +30,18 @@ class Util {
 		const navAAdj = navA * alpha;
 		if (navParent <= navAAdj) return [navParent / alpha, 0];
 		else return [navA, navParent - navAAdj];
+	}
+
+	public getDates(length: number, step: number, stepSize: DurationInputArg2, format: string) {
+		const dates: string[] = [];
+		const date = moment.utc();
+		for (let i = 0; i < length; i++) {
+			dates.push(date.format(format));
+			date.subtract(step, stepSize );
+		}
+		dates.sort((a, b) => a.localeCompare(b));
+
+		return dates;
 	}
 }
 

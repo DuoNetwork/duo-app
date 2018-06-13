@@ -1,9 +1,10 @@
 import moment from 'moment';
+import hourly from '../samples/hourly.json';
+import minutely from '../samples/minutely.json';
+import prices from '../samples/prices.json';
 import chartUtil from './chartUtil';
 import dynamoUtil from './dynamoUtil';
-const hourly = require('../samples/hourly.json');
-const minutely = require('../samples/minutely.json');
-const prices = require('../samples/prices.json');
+import util from './util';
 
 const hourlyBar1 = {
 	source: 'source',
@@ -304,4 +305,20 @@ test('merge last price to accepted price correctly', () => {
 	});
 	expect(parsedAcceptedPrice.length).toBe(originalLength + 1);
 	expect(parsedAcceptedPrice[originalLength]).toMatchSnapshot();
+});
+
+const totalSupply = {
+	tokenA: 123,
+	tokenB: 456,
+	timestamp: 1234567890
+};
+
+test('merge total supply correctly', () => {
+	util.getNowTimestamp = jest.fn(() => 2345678901);
+	expect(
+		chartUtil.mergeTotalSupply([totalSupply], {
+			totalSupplyA: 1234,
+			totalSupplyB: 2345
+		} as any)
+	).toMatchSnapshot();
 });

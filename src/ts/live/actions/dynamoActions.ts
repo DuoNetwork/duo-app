@@ -1,4 +1,3 @@
-import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
@@ -10,6 +9,7 @@ import {
 	ITotalSupply,
 	VoidThunkAction
 } from '../common/types';
+import util from '../common/util';
 
 export function statusUpdate(status: object) {
 	return {
@@ -34,12 +34,7 @@ export function hourlyUpdate(hourly: ISourceData<IPriceBar[]>) {
 
 export function fetchHourly(): VoidThunkAction {
 	return async dispatch => {
-		const dates: string[] = [];
-		const date = moment.utc();
-		for (let i = 0; i < 7; i++) {
-			dates.push(date.format('YYYY-MM-DD'));
-			date.subtract(1, 'day');
-		}
+		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
 		const results = await Promise.all(promistList);
 		const hourly: ISourceData<IPriceBar[]> = {
@@ -64,12 +59,7 @@ export function minutelyUpdate(minutely: ISourceData<IPriceBar[]>) {
 
 export function fetchMinutely(): VoidThunkAction {
 	return async dispatch => {
-		const dates: string[] = [];
-		const date = moment.utc();
-		for (let i = 0; i < 2; i++) {
-			dates.push(date.format('YYYY-MM-DD-HH'));
-			date.subtract(1, 'hour');
-		}
+		const dates = util.getDates(2, 1, 'hour', 'YYYY-MM-DD-HH');
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
 		const results = await Promise.all(promistList);
 		const minutely: ISourceData<IPriceBar[]> = {
@@ -94,13 +84,7 @@ export function priceUpdate(prices: IAcceptedPrice[]) {
 
 export function fetchPrice(): VoidThunkAction {
 	return async dispatch => {
-		const dates: string[] = [];
-		const date = moment.utc();
-		for (let i = 0; i < 7; i++) {
-			dates.push(date.format('YYYY-MM-DD'));
-			date.subtract(1, 'day');
-		}
-		dates.sort((a, b) => a.localeCompare(b));
+		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		dispatch(priceUpdate(await dynamoUtil.queryAcceptPriceEvent(dates)));
 	};
 }
@@ -114,13 +98,7 @@ export function conversionUpdate(conversions: IConversion[]) {
 
 export function fetchConversion(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const dates: string[] = [];
-		const date = moment.utc();
-		for (let i = 0; i < 7; i++) {
-			dates.push(date.format('YYYY-MM-DD'));
-			date.subtract(1, 'day');
-		}
-		dates.sort((a, b) => a.localeCompare(b));
+		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		dispatch(
 			conversionUpdate(
 				await dynamoUtil.queryConversionEvent(getState().contract.account, dates)
@@ -138,13 +116,7 @@ export function totalSupplyUpdate(totalSupplies: ITotalSupply[]) {
 
 export function fetchTotalSupply(): VoidThunkAction {
 	return async dispatch => {
-		const dates: string[] = [];
-		const date = moment.utc();
-		for (let i = 0; i < 7; i++) {
-			dates.push(date.format('YYYY-MM-DD'));
-			date.subtract(1, 'day');
-		}
-		dates.sort((a, b) => a.localeCompare(b));
+		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
 	};
 }

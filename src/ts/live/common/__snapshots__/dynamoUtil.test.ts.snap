@@ -1,5 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`getLastPriceFromStatus 1`] = `
+Object {
+  "bitfinex": Object {
+    "address": "0x0",
+    "price": 617.38,
+    "timestamp": 1528081780000,
+  },
+  "gdax": Object {
+    "address": "0x0",
+    "price": 616.14,
+    "timestamp": 1528081164613,
+  },
+  "gemini": Object {
+    "address": "0x0",
+    "price": 617.67,
+    "timestamp": 1528081767414,
+  },
+  "kraken": Object {
+    "address": "0x0",
+    "price": 617.85,
+    "timestamp": 1528081700549,
+  },
+}
+`;
+
 exports[`parseAcceptedPrices 1`] = `
 Array [
   Object {
@@ -266,27 +291,17 @@ Array [
 ]
 `;
 
-exports[`getLastPriceFromStatus 1`] = `
-Object {
-  "bitfinex": Object {
-    "address": "0x0",
-    "price": 617.38,
-    "timestamp": 1528081780000,
+exports[`parseTotalSupply 1`] = `
+Array [
+  Object {
+    "timestamp": 1528862200000,
+    "tokenA": 0,
+    "tokenB": 0,
   },
-  "gdax": Object {
-    "address": "0x0",
-    "price": 616.14,
-    "timestamp": 1528081164613,
+  Object {
+    "timestamp": 1528867600000,
+    "tokenA": 0,
+    "tokenB": 0,
   },
-  "gemini": Object {
-    "address": "0x0",
-    "price": 617.67,
-    "timestamp": 1528081767414,
-  },
-  "kraken": Object {
-    "address": "0x0",
-    "price": 617.85,
-    "timestamp": 1528081700549,
-  },
-}
+]
 `;
