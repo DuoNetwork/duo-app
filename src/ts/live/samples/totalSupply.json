@@ -1,7 +1,7 @@
 {
 	"Items": [
 		{
-			"eventKey": { "S": "TotalSupply|2018-06-13" },
+			"eventKey": { "S": "TotalSupply|2018-06-13-03" },
 			"timestampId": { "S": "1528862200000|log_a3d23f19" },
 			"totalSupplyA": { "S": "0" },
 			"blockNumber": { "N": "7650502" },
@@ -16,7 +16,7 @@
 			}
 		},
 		{
-			"eventKey": { "S": "TotalSupply|2018-06-13" },
+			"eventKey": { "S": "TotalSupply|2018-06-13-05" },
 			"timestampId": { "S": "1528867600000|log_7f2a9c1c" },
 			"totalSupplyA": { "S": "0" },
 			"blockNumber": { "N": "7651095" },

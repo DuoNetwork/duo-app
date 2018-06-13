@@ -116,7 +116,7 @@ export function totalSupplyUpdate(totalSupplies: ITotalSupply[]) {
 
 export function fetchTotalSupply(): VoidThunkAction {
 	return async dispatch => {
-		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
+		const dates = util.getDates(24, 1, 'hour', 'YYYY-MM-DD-HH');
 		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
 	};
 }

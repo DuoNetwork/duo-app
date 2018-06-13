@@ -37,20 +37,19 @@ export class DynamoUtil {
 	}
 
 	public async queryAcceptPriceEvent(dates: string[]) {
-		const promiseList = dates.map(date =>
-			this.queryData({
-				TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
-				KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
-				ExpressionAttributeValues: {
-					[':' + CST.DB_EV_KEY]: { S: CST.EVENT_ACCEPT_PRICE + '|' + date }
-				}
-			})
-		);
-
 		const allData: IAcceptedPrice[] = [];
-		(await Promise.all(promiseList)).forEach(r =>
-			allData.push(...this.parseAcceptedPrice(r))
-		);
+		for (const date of dates)
+			allData.push(
+				...this.parseAcceptedPrice(
+					await this.queryData({
+						TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
+						KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
+						ExpressionAttributeValues: {
+							[':' + CST.DB_EV_KEY]: { S: CST.EVENT_ACCEPT_PRICE + '|' + date }
+						}
+					})
+				)
+			);
 		return allData;
 	}
 
@@ -65,29 +64,29 @@ export class DynamoUtil {
 	}
 
 	public async queryTotalSupplyEvent(dates: string[]) {
-		const promiseList = dates.map(date =>
-			this.queryData({
-				TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
-				KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
-				ExpressionAttributeValues: {
-					[':' + CST.DB_EV_KEY]: { S: CST.EVENT_TOTAL_SUPPLY + '|' + date }
-				}
-			})
-		);
-
 		const allData: ITotalSupply[] = [];
-		(await Promise.all(promiseList)).forEach(r =>
-			allData.push(...this.parseTotalSupply(r))
-		);
+		for (const date of dates)
+			allData.push(
+				...this.parseTotalSupply(
+					await this.queryData({
+						TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
+						KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
+						ExpressionAttributeValues: {
+							[':' + CST.DB_EV_KEY]: { S: CST.EVENT_TOTAL_SUPPLY + '|' + date }
+						}
+					})
+				)
+			);
+
 		return allData;
 	}
 
 	public parseTotalSupply(totalSupply: QueryOutput): ITotalSupply[] {
 		if (!totalSupply.Items || !totalSupply.Items.length) return [];
 		return totalSupply.Items.map(t => ({
-			tokenA: Number((t[CST.DB_EV_TOTAL_SUPPLY_A].S || '')),
-			tokenB: Number((t[CST.DB_EV_TOTAL_SUPPLY_B].S || '')),
-			timestamp: Number((t[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
+			tokenA: Number(t[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
+			tokenB: Number(t[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
+			timestamp: Number((t[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0])
 		}));
 	}
 
@@ -98,20 +97,19 @@ export class DynamoUtil {
 				...[CST.EVENT_CREATE, CST.EVENT_REDEEM].map(ev => ev + '|' + date + '|' + address)
 			)
 		);
-		const promiseList = eventKeys.map(ek =>
-			this.queryData({
-				TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
-				KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
-				ExpressionAttributeValues: {
-					[':' + CST.DB_EV_KEY]: { S: ek }
-				}
-			})
-		);
-
 		const allData: IConversion[] = [];
-		(await Promise.all(promiseList)).forEach(r =>
-			allData.push(...this.parseConversion(r))
-		);
+		for (const ek of eventKeys)
+			allData.push(
+				...this.parseConversion(
+					await this.queryData({
+						TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
+						KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
+						ExpressionAttributeValues: {
+							[':' + CST.DB_EV_KEY]: { S: ek }
+						}
+					})
+				)
+			);
 		return allData;
 	}
 
@@ -126,40 +124,43 @@ export class DynamoUtil {
 				timestamp: Number((c[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
 				eth: contractUtil.fromWei(c[CST.DB_EV_ETH].S || ''),
 				tokenA: contractUtil.fromWei(c[CST.DB_EV_TOKEN_A].S || ''),
-				tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || ''),
+				tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || '')
 			};
 		});
 	}
 
 	public async queryHourlyOHLC(source: string, dates: string[]) {
-		const promiseList = dates.map(date =>
-			this.queryData({
-				TableName: __KOVAN__ ? CST.DB_AWS_HOURLY_DEV : CST.DB_AWS_HOURLY_LIVE,
-				KeyConditionExpression: CST.DB_HR_SRC_DATE + ' = :' + CST.DB_HR_SRC_DATE,
-				ExpressionAttributeValues: {
-					[':' + CST.DB_HR_SRC_DATE]: { S: source + '|' + date }
-				}
-			})
-		);
-
 		const allData: IPriceBar[] = [];
-		(await Promise.all(promiseList)).forEach(r => allData.push(...this.parseHourly(r)));
+		for (const date of dates)
+			allData.push(
+				...this.parseHourly(
+					await this.queryData({
+						TableName: __KOVAN__ ? CST.DB_AWS_HOURLY_DEV : CST.DB_AWS_HOURLY_LIVE,
+						KeyConditionExpression: CST.DB_HR_SRC_DATE + ' = :' + CST.DB_HR_SRC_DATE,
+						ExpressionAttributeValues: {
+							[':' + CST.DB_HR_SRC_DATE]: { S: source + '|' + date }
+						}
+					})
+				)
+			);
 		return allData;
 	}
 
 	public async queryMinutelyOHLC(source: string, datetimes: string[]) {
-		const promiseList = datetimes.map(datetime =>
-			this.queryData({
-				TableName: __KOVAN__ ? CST.DB_AWS_MINUTELY_DEV : CST.DB_AWS_MINUTELY_LIVE,
-				KeyConditionExpression: CST.DB_MN_SRC_DATE_HOUR + ' = :' + CST.DB_MN_SRC_DATE_HOUR,
-				ExpressionAttributeValues: {
-					[':' + CST.DB_MN_SRC_DATE_HOUR]: { S: source + '|' + datetime }
-				}
-			})
-		);
-
 		const allData: IPriceBar[] = [];
-		(await Promise.all(promiseList)).forEach(r => allData.push(...this.parseMinutely(r)));
+		for (const datetime of datetimes)
+			allData.push(
+				...this.parseMinutely(
+					await this.queryData({
+						TableName: __KOVAN__ ? CST.DB_AWS_MINUTELY_DEV : CST.DB_AWS_MINUTELY_LIVE,
+						KeyConditionExpression:
+							CST.DB_MN_SRC_DATE_HOUR + ' = :' + CST.DB_MN_SRC_DATE_HOUR,
+						ExpressionAttributeValues: {
+							[':' + CST.DB_MN_SRC_DATE_HOUR]: { S: source + '|' + datetime }
+						}
+					})
+				)
+			);
 		return allData;
 	}
 
