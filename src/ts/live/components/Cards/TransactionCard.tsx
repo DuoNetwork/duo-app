@@ -638,7 +638,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			transactionInput,
 			transactionInputValue
 		} = this.state;
-		const availableAB = balances.tokenA > balances.tokenB ? balances.tokenA : balances.tokenB;
+		const availableAB = balances.tokenA > balances.tokenB ? balances.tokenB : balances.tokenA;
 		const limitC = conversionType === 'create' ? balances.eth : availableAB;
 		const limitT =
 			transactionInnerType === 'transfrom'
