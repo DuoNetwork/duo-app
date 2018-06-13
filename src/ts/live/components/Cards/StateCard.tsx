@@ -69,7 +69,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 												<div className="bar-text">
 													{d3.format('.2%')(
 														states.nextResetAddrIndex /
-															states.usersLength
+															(states.usersLength || 1)
 													)}
 												</div>
 											</SCardListProgressBar>

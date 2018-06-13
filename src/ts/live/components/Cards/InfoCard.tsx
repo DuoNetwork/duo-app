@@ -130,7 +130,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 			: this.props.last;
 		const [navA, navB] = CST.EXCHANGES.includes(source.toUpperCase())
 			? util.calculateNav(
-					last.price,
+					(last.price || 1),
 					last.timestamp,
 					reset.price,
 					reset.timestamp,
@@ -167,7 +167,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 							name="ETH"
 							prices={[
 								{
-									value: d3.formatPrefix(',.2', 1)(last.price),
+									value: d3.formatPrefix(',.2', 1)((last.price)),
 									unit: 'USD'
 								}
 							]}
@@ -182,7 +182,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.8', 1)(navA / last.price),
+									value: d3.formatPrefix(',.8', 1)(navA / (last.price || 1)),
 									unit: 'ETH'
 								}
 							]}
@@ -198,7 +198,7 @@ export default class InfoCard extends React.Component<IProps, IState> {
 									unit: 'USD'
 								},
 								{
-									value: d3.formatPrefix(',.8', 1)(navB / last.price),
+									value: d3.formatPrefix(',.8', 1)(navB / (last.price || 1)),
 									unit: 'ETH'
 								}
 							]}

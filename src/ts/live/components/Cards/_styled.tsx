@@ -451,6 +451,10 @@ export const SCardList = styled.div`
 			align-items: center;
 			margin-bottom: 5px;
 		}
+		.input-disabled {
+			pointer-events: none;
+			opacity: 0.2 !important;
+		}
 		.description {
 			width: 100%;
 			display: flex;
@@ -597,7 +601,7 @@ export const SCardTransactionForm = styled.div`
 	.trans-button {
 		outline: none;
 		cursor: pointer;
-		width: 120px;
+		width: 115px;
 		font-family: 'Roboto';
 		background-color: transparent;
 		color: ${ColorStyles.TextWhiteAlphaLL};
@@ -617,20 +621,43 @@ export const SCardTransactionForm = styled.div`
 		color: ${ColorStyles.TextWhiteAlpha} !important;
 		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
 	}
+	.form-button {
+		outline: none;
+		cursor: pointer;
+		width: 180px;
+		font-family: 'Roboto';
+		background-color: transparent;
+		color: ${ColorStyles.TextWhiteAlphaL};
+		border: 1px solid;
+		border-color: ${ColorStyles.BorderWhite4};
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
+	}
+	.form-button:hover {
+		color: ${ColorStyles.TextWhiteAlpha};
+		border-color: ${ColorStyles.BorderWhite6};
+		background-color: ${ColorStyles.ButtonHoverWhite1};
+	}
 `;
-
+export interface ISInputProps {
+	width?: string;
+	right?: boolean;
+}
 export const SInput = styled.input`
 	outline: none;
-	font-size: 12px;
+	font-size: 11px;
 	background: ${ColorStyles.CardBackgroundSolid};
 	box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4);
 	color: ${ColorStyles.TextWhiteAlpha};
 	border: none;
-	width: 160px;
+	width: ${(props: ISInputProps) => props.width ? props.width : '160px'};
 	height: 28px;
 	padding: 0 8px;
-	text-align: right;
+	text-align: ${(props: ISInputProps) => props.right ? 'right' : 'left'};
 	&:focus {
 		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 255, 255, 0.05);
+	}
+	&::placeholder {
+		color: ${ColorStyles.TextWhiteAlphaLLL};
 	}
 `;

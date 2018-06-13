@@ -34,6 +34,7 @@ interface IState {
 	ethFee: boolean;
 	conversionType: string;
 	transactionType: string;
+	transactionInnerType: string;
 	conversionInput: string;
 	conversionInputValue: number;
 }
@@ -69,7 +70,7 @@ const ConversionForm = (props: {
 	commissionRate: number;
 	ethDuoFeeRatio: number;
 	limit: number;
-	handleRatio: (limit: number, ratio: number) => void;
+	handleRatioConversion: (limit: number, ratio: number) => void;
 	clear: () => void;
 	account: string;
 }) => {
@@ -84,15 +85,15 @@ const ConversionForm = (props: {
 		commissionRate,
 		ethDuoFeeRatio,
 		limit,
-		handleRatio,
+		handleRatioConversion,
 		clear,
 		account
 	} = props;
 	const { eth, tokenA, tokenB } = props.balances;
 	const valueBeforeFee =
 		conversionType === 'create'
-			? conversionInputValue * lastResetETHPrice
-			: (conversionInputValue * 2) / lastResetETHPrice;
+			? conversionInputValue * (lastResetETHPrice || 1)
+			: (conversionInputValue * 2) / (lastResetETHPrice || 1);
 	const conversionFeeValue = ethFee
 		? valueBeforeFee * commissionRate
 		: valueBeforeFee * commissionRate * ethDuoFeeRatio;
@@ -137,42 +138,42 @@ const ConversionForm = (props: {
 						<li className="block-title">Available Tokens</li>
 						<li>
 							<span className="title">ETH</span>
-							<span className="content">{eth}</span>
+							<span className="content">{d3.formatPrefix(',.8s', 1)(eth)}</span>
 						</li>
 						<li>
 							<span className="title">Class A</span>
-							<span className="content">{tokenA}</span>
+							<span className="content">{d3.formatPrefix(',.8s', 1)(tokenA)}</span>
 						</li>
 						<li>
 							<span className="title">Class B</span>
-							<span className="content">{tokenB}</span>
+							<span className="content">{d3.formatPrefix(',.8s', 1)(tokenB)}</span>
 						</li>
 					</ul>
 					<ul>
-						<li className="block-title">Conversion Amount</li>
+						<li className="block-title">Conversion</li>
 						<li className="input-line">
 							<SDivFlexCenter horizontal width="50%" padding="0">
 								<button
 									className="percent-button"
-									onClick={() => handleRatio(limit, 0.25)}
+									onClick={() => handleRatioConversion(limit, 0.25)}
 								>
 									25%
 								</button>
 								<button
 									className="percent-button"
-									onClick={() => handleRatio(limit, 0.5)}
+									onClick={() => handleRatioConversion(limit, 0.5)}
 								>
 									50%
 								</button>
 								<button
 									className="percent-button"
-									onClick={() => handleRatio(limit, 0.75)}
+									onClick={() => handleRatioConversion(limit, 0.75)}
 								>
 									75%
 								</button>
 								<button
 									className="percent-button"
-									onClick={() => handleRatio(limit, 1)}
+									onClick={() => handleRatioConversion(limit, 1)}
 								>
 									100%
 								</button>
@@ -180,6 +181,8 @@ const ConversionForm = (props: {
 							<SInput
 								value={conversionInput}
 								onChange={e => inputConversionAmount(e.target.value, limit)}
+								placeholder="Please input amount"
+								right
 							/>
 						</li>
 						<li className="description">
@@ -192,7 +195,7 @@ const ConversionForm = (props: {
 							<div className="align-right">
 								{'Conversion Fee: ' +
 									d3.formatPrefix(',.8', 1)(
-										conversionFeeValue / lastResetETHPrice
+										conversionFeeValue / (lastResetETHPrice || 1)
 									) +
 									(ethFee ? ' ETH' : ' DUO')}
 							</div>
@@ -232,20 +235,38 @@ const ConversionForm = (props: {
 
 const TransactionForm = (props: {
 	transactionType: string;
+	transactionInnerType: string;
 	changeTransactionType: (type: string) => void;
+	changeTransactionInnerType: (type: string) => void;
 	balances: IBalances;
 }) => {
-	const { transactionType, changeTransactionType } = props;
+	const {
+		transactionType,
+		transactionInnerType,
+		changeTransactionType,
+		changeTransactionInnerType,
+		balances
+	} = props;
+	// const balanceTag = (type: string) => {
+	// 	switch (type) {
+	// 		case 'duo':
+	// 			return { name: 'DUO', value: balances.duo };
+	// 		case 'classa':
+	// 			return { name: 'Class A', value: balances.tokenA };
+	// 		default:
+	// 			return { name: 'Class B', value: balances.tokenB };
+	// 	}
+	// };
 	return (
 		<SCardTransactionForm>
-			<SDivFlexCenter horizontal width="100%" padding="10px 0px">
+			<SDivFlexCenter horizontal width="100%" padding="0">
 				<button
 					className={
 						transactionType === 'duo'
 							? 'trans-button selected'
 							: 'trans-button non-select'
 					}
-					onClick={() => changeTransactionType('duo')}
+					onClick={() => transactionType !== 'duo' && changeTransactionType('duo')}
 				>
 					DUO
 				</button>
@@ -255,7 +276,7 @@ const TransactionForm = (props: {
 							? 'trans-button selected'
 							: 'trans-button non-select'
 					}
-					onClick={() => changeTransactionType('classa')}
+					onClick={() => transactionType !== 'classa' && changeTransactionType('classa')}
 				>
 					CLASS A
 				</button>
@@ -265,9 +286,113 @@ const TransactionForm = (props: {
 							? 'trans-button selected'
 							: 'trans-button non-select'
 					}
-					onClick={() => changeTransactionType('classb')}
+					onClick={() => transactionType !== 'classb' && changeTransactionType('classb')}
 				>
 					CLASS B
+				</button>
+			</SDivFlexCenter>
+			<SCardList>
+				<div className="status-list-wrapper">
+					<ul>
+						<li className="block-title">Balances</li>
+						<li>
+							<span className="title">DUO</span>
+							<span className="content">
+								{d3.formatPrefix(',.8', 1)(balances.duo)}
+							</span>
+						</li>
+						<li>
+							<span className="title">Class A</span>
+							<span className="content">
+								{d3.formatPrefix(',.8', 1)(balances.tokenA)}
+							</span>
+						</li>
+						<li>
+							<span className="title">Class B</span>
+							<span className="content">
+								{d3.formatPrefix(',.8', 1)(balances.tokenB)}
+							</span>
+						</li>
+					</ul>
+					<ul>
+						<li className="block-title">Transaction</li>
+						<li>
+							<SDivFlexCenter horizontal width="100%" padding="10px 0px">
+								<button
+									className={
+										transactionInnerType === 'approve'
+											? 'trans-button selected'
+											: 'trans-button non-select'
+									}
+									onClick={() =>
+										transactionInnerType !== 'approve' &&
+										changeTransactionInnerType('approve')
+									}
+								>
+									Approve
+								</button>
+								<button
+									className={
+										transactionInnerType === 'transfrom'
+											? 'trans-button selected'
+											: 'trans-button non-select'
+									}
+									onClick={() =>
+										transactionInnerType !== 'transfrom' &&
+										changeTransactionInnerType('transfrom')
+									}
+								>
+									Transfer From
+								</button>
+								<button
+									className={
+										transactionInnerType === 'transto'
+											? 'trans-button selected'
+											: 'trans-button non-select'
+									}
+									onClick={() =>
+										transactionInnerType !== 'transto' &&
+										changeTransactionInnerType('transto')
+									}
+								>
+									Transfer To
+								</button>
+							</SDivFlexCenter>
+						</li>
+						<li
+							className={
+								'input-line' +
+								(transactionInnerType === 'approve' && transactionType === 'duo'
+									? ' input-disabled'
+									: '')
+							}
+						>
+							<span className="title">Address</span>
+							<SInput placeholder="Please input address" width="300px" />
+						</li>
+						<li className="input-line">
+							<SDivFlexCenter horizontal width="50%" padding="0">
+								<button className="percent-button">25%</button>
+								<button className="percent-button">50%</button>
+								<button className="percent-button">75%</button>
+								<button className="percent-button">100%</button>
+							</SDivFlexCenter>
+							<SInput placeholder="Please input amount" right />
+						</li>
+						<li>
+							<div className="align-right">Transaction Fee: Free</div>
+						</li>
+					</ul>
+				</div>
+			</SCardList>
+			<SDivFlexCenter horizontal width="100%" padding="0">
+				<button
+					className="form-button"
+				>
+					SUBMIT
+				</button>
+				<button className="form-button">
+					CLEAR
 				</button>
 			</SDivFlexCenter>
 		</SCardTransactionForm>
@@ -281,6 +406,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			ethFee: true,
 			conversionType: 'create',
 			transactionType: 'duo',
+			transactionInnerType: 'approve',
 			conversionInput: '',
 			conversionInputValue: 0
 		};
@@ -309,6 +435,12 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 		});
 	};
 
+	private changeTransactionInnerType = (type: string) => {
+		this.setState({
+			transactionInnerType: type
+		});
+	};
+
 	private inputConversionAmount = (amount: string, limit: number) => {
 		this.setState({
 			conversionInput: amount,
@@ -317,7 +449,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 		});
 	};
 
-	private handleRatio = (value: number, ratio: number) => {
+	private handleRatioConversion = (value: number, ratio: number) => {
 		const result = value * ratio;
 		if (value)
 			this.setState({
@@ -339,6 +471,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			ethFee,
 			conversionType,
 			transactionType,
+			transactionInnerType,
 			conversionInput,
 			conversionInputValue
 		} = this.state;
@@ -366,7 +499,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							commissionRate={states.commissionRate}
 							ethDuoFeeRatio={states.ethDuoFeeRatio}
 							limit={limit}
-							handleRatio={this.handleRatio}
+							handleRatioConversion={this.handleRatioConversion}
 							clear={this.clear}
 							account={account}
 						/>
@@ -380,7 +513,9 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 					<SDivFlexCenter horizontal padding="0 10px">
 						<TransactionForm
 							transactionType={transactionType}
+							transactionInnerType={transactionInnerType}
 							changeTransactionType={this.changeTransactionType}
+							changeTransactionInnerType={this.changeTransactionInnerType}
 							balances={balances}
 						/>
 					</SDivFlexCenter>
