@@ -1,0 +1,23 @@
+{
+	"Items": [
+		{
+			"sender": { "S": "0x5F2Fe6FCd22ada314718d95DFdA925E3DB9B3C99" },
+			"tokenAInWei": { "S": "1347884645572327326" },
+			"eventKey": { "S": "Create|2018-06-13|0x5F2Fe6FCd22ada314718d95DFdA925E3DB9B3C99" },
+			"timestampId": { "S": "1528870196000|log_e456f793" },
+			"blockNumber": { "N": "7651379" },
+			"ethAmtInWei": { "S": "13774000000000000" },
+			"logStatus": { "S": "mined" },
+			"systime": { "N": "1528871425796" },
+			"tokenBInWei": { "S": "1347884645572327326" },
+			"blockHash": {
+				"S": "0x5290d2e54e074fcfc3121a2e45285931e4d236000add3a48283dc6c11c3edff0"
+			},
+			"transactionHash": {
+				"S": "0x0d777e0d33f81e592e209d549423ad7a1c32531f689584fa3710dd770d9f5796"
+			}
+		}
+	],
+	"Count": 1,
+	"ScannedCount": 1
+}

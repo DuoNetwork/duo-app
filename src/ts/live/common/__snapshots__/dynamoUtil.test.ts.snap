@@ -108,6 +108,18 @@ Array [
 ]
 `;
 
+exports[`parseConversion 1`] = `
+Array [
+  Object {
+    "eth": 0.013774,
+    "timestamp": 1528870196000,
+    "tokenA": 1.3478846455723272,
+    "tokenB": 1.3478846455723272,
+    "type": "Create",
+  },
+]
+`;
+
 exports[`parseHourly 1`] = `
 Array [
   Object {

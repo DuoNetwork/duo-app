@@ -1,3 +1,4 @@
+import conversion from '../samples/conversion.json';
 import hourly from '../samples/hourly.json';
 import minutely from '../samples/minutely.json'
 import prices from '../samples/prices.json';
@@ -15,5 +16,7 @@ test('parseHourly', () => expect(dynamoUtil.parseHourly(hourly)).toMatchSnapshot
 test('parseMinutely', () => expect(dynamoUtil.parseMinutely(minutely)).toMatchSnapshot());
 
 test('parseAcceptedPrices', () => expect(dynamoUtil.parseAcceptedPrice(prices)).toMatchSnapshot());
+
+test('parseConversion', () => expect(dynamoUtil.parseConversion(conversion)).toMatchSnapshot());
 
 test('parseTotalSupply', () => expect(dynamoUtil.parseTotalSupply(totalSupply)).toMatchSnapshot());
