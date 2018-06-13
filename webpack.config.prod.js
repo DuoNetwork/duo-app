@@ -8,7 +8,6 @@ const path = require("path");
 module.exports = {
 	mode: "production",
 	entry: {
-		demo: path.resolve(__dirname, "src/ts/demo/app.tsx"),
 		app: path.resolve(__dirname, "src/ts/live/app.tsx"),
 		status: path.resolve(__dirname, "src/ts/live/status.tsx"),
 	},
@@ -25,21 +24,14 @@ module.exports = {
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({ filename: "styles.[chunkhash].css" }),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['app', 'status'],
-			title: "DUO",
-			template: path.resolve(__dirname, "src/index.ejs"),
-			favicon: path.join(__dirname, "src/images/favicon.ico"),
-			filename: 'demo.html'
-		}),
-		new HtmlWebpackPlugin({
-			excludeChunks: ['demo', 'status'],
+			excludeChunks: ['status'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'index.html'
 		}),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['demo', 'app'],
+			excludeChunks: ['app'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),

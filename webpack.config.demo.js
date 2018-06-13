@@ -8,34 +8,24 @@ const path = require("path");
 module.exports = {
 	mode: "production",
 	entry: {
-		app: path.resolve(__dirname, "src/ts/live/app.tsx"),
-		status: path.resolve(__dirname, "src/ts/live/status.tsx"),
+		demo: path.resolve(__dirname, "src/ts/demo/app.tsx"),
 	},
 	output: {
-		path: path.join(__dirname, "dist/kovan"),
+		path: path.join(__dirname, "dist/demo"),
 		filename: "[name].[chunkhash].js",
 	},
 	plugins: [
 		new webpack.DefinePlugin({
 			"process.env.NODE_ENV": JSON.stringify("production"),
-			__DEV__: false,
-			__KOVAN__: true
+			__DEV__: false
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({ filename: "styles.[chunkhash].css" }),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['status'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'index.html'
-		}),
-		new HtmlWebpackPlugin({
-			excludeChunks: ['app'],
-			title: "DUO",
-			template: path.resolve(__dirname, "src/index.ejs"),
-			favicon: path.join(__dirname, "src/images/favicon.ico"),
-			filename: 'status.html'
 		})
 	],
 	optimization: {
