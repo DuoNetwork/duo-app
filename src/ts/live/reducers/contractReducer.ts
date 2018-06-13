@@ -88,13 +88,6 @@ export function contractReducer(
 			return Object.assign({}, state, {
 				prices: action.value
 			});
-		case CST.AC_NAV:
-			return Object.assign({}, state, {
-				states: Object.assign(state.states, {
-					navA: action.value[0],
-					navB: action.value[1]
-				})
-			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
 		case CST.AC_ACCOUNT:

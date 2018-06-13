@@ -10,7 +10,10 @@ import store from './store/store';
 store.dispatch(uiActions.refresh());
 setInterval(() => store.dispatch(uiActions.refresh()), 60000);
 
-contractUtil.onWeb3Update(() => store.dispatch(uiActions.refresh()));
+contractUtil.onWeb3AccountUpdate((addr: string) => {
+	if (addr.toLowerCase() !== store.getState().contract.account.toLowerCase())
+		store.dispatch(uiActions.refresh());
+});
 
 ReactDOM.render(
 	<Provider store={store}>

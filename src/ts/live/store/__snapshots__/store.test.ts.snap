@@ -20,6 +20,9 @@ Object {
     },
   },
   "dynamo": Object {
+    "conversions": Array [
+      "test",
+    ],
     "hourly": Object {
       "bitfinex": Object {
         "test": "test",

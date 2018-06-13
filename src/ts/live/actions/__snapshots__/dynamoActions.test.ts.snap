@@ -1,5 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`actions conversionUpdate 1`] = `
+Object {
+  "type": "conversion",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions fetchConversions 1`] = `
+Array [
+  Object {
+    "type": "conversion",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
 exports[`actions fetchHourly 1`] = `
 Array [
   Object {

@@ -11,6 +11,22 @@ describe('actions', () => {
 		expect(contractActions.accountUpdate('test')).toMatchSnapshot();
 	});
 
+	test('networkUpdate', () => {
+		expect(contractActions.networkUpdate(123)).toMatchSnapshot();
+	});
+
+	test('getNetwork', () => {
+		const store = mockStore({});
+		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
+		store.dispatch(contractActions.getNetwork() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 2000)
+		);
+	});
+
 	test('custodianStatesUpdate', () => {
 		expect(contractActions.custodianStatesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
@@ -57,9 +73,7 @@ describe('actions', () => {
 	});
 
 	test('getBalances', () => {
-		const store = mockStore({});
-		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
-		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
+		const store = mockStore({ contract: { account: '0x0' } });
 		contractUtil.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(contractActions.getBalances() as any);
 		return new Promise(resolve =>

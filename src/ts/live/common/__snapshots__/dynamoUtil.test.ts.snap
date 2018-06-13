@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`convertAcceptedPrices 1`] = `
+exports[`parseAcceptedPrices 1`] = `
 Array [
   Object {
     "navA": 1.000001,
@@ -83,7 +83,7 @@ Array [
 ]
 `;
 
-exports[`convertHourly 1`] = `
+exports[`parseHourly 1`] = `
 Array [
   Object {
     "close": 622.68,
@@ -100,7 +100,7 @@ Array [
 ]
 `;
 
-exports[`convertMinutely 1`] = `
+exports[`parseMinutely 1`] = `
 Array [
   Object {
     "close": 582.89,
@@ -117,7 +117,7 @@ Array [
 ]
 `;
 
-exports[`convertStatus 1`] = `
+exports[`parseStatus 1`] = `
 Array [
   Object {
     "process": "CHAIN_AWS_PUBLIC",

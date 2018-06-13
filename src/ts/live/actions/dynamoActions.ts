@@ -2,7 +2,7 @@ import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
-import { IAcceptedPrice, IPriceBar, ISourceData, VoidThunkAction } from '../common/types';
+import { IAcceptedPrice, IConversion, IPriceBar, ISourceData, VoidThunkAction } from '../common/types';
 
 export function statusUpdate(status: object) {
 	return {
@@ -92,5 +92,26 @@ export function fetchPrices(): VoidThunkAction {
 		dates.sort((a, b) => a.localeCompare(b));
 		const result = await dynamoUtil.queryAcceptPriceEvent(dates);
 		dispatch(pricesUpdate(result));
+	};
+}
+
+export function conversionUpdate(conversions: IConversion[]) {
+	return {
+		type: CST.AC_CONVERSION,
+		value: conversions
+	}
+}
+
+export function fetchConversions(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		const dates: string[] = [];
+		const date = moment.utc();
+		for (let i = 0; i < 7; i++) {
+			dates.push(date.format('YYYY-MM-DD'))
+			date.subtract(1, 'day');
+		}
+		dates.sort((a, b) => a.localeCompare(b));
+		const result = await dynamoUtil.queryConversionEvent(getState().contract.account, dates);
+		dispatch(conversionUpdate(result));
 	};
 }

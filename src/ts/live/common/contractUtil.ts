@@ -28,8 +28,9 @@ class ContractUtil {
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, CST.DUO_CONTRACT_ADDR);
 	}
 
-	public onWeb3Update(onUpdate: () => any) {
-		(this.web3.currentProvider as any).publicConfigStore.on('update', onUpdate);
+	public onWeb3AccountUpdate(onUpdate: (addr: string) => any) {
+		const store = (this.web3.currentProvider as any).publicConfigStore;
+		store.on('update', () => onUpdate(store.getState().selectedAddress));
 	}
 
 	public convertCustodianState(rawState: string) {

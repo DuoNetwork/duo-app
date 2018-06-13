@@ -10,7 +10,7 @@ const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
 	test('refresh', () => {
-		const store = mockStore({});
+		const store = mockStore({ contract: { account: '0x0' } });
 		contractUtil.getSystemStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
@@ -18,6 +18,7 @@ describe('actions', () => {
 		);
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
 		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
+		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
 		contractUtil.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
@@ -44,6 +45,7 @@ describe('actions', () => {
 			})
 		);
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>

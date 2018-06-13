@@ -18,6 +18,7 @@ describe('store', () => {
 		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
 		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
+		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
 		contractUtil.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
@@ -44,6 +45,7 @@ describe('store', () => {
 			})
 		);
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		util.getNowTimestamp = jest.fn(() => 1234567890);
 		store.dispatch(contractActions.getAddresses());

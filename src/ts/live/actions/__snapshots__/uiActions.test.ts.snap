@@ -3,7 +3,21 @@
 exports[`actions refresh 1`] = `
 Array [
   Object {
+    "type": "account",
+    "value": "test",
+  },
+  Object {
     "type": "refresh",
+  },
+  Object {
+    "type": "network",
+    "value": 123,
+  },
+  Object {
+    "type": "balances",
+    "value": Object {
+      "test": "test",
+    },
   },
   Object {
     "type": "custodianStates",
@@ -26,6 +40,12 @@ Array [
   },
   Object {
     "type": "dynamoPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "conversion",
     "value": Array [
       "test",
     ],
@@ -62,20 +82,6 @@ Array [
       "kraken": Object {
         "test": "test",
       },
-    },
-  },
-  Object {
-    "type": "network",
-    "value": 42,
-  },
-  Object {
-    "type": "account",
-    "value": "test",
-  },
-  Object {
-    "type": "balances",
-    "value": Object {
-      "test": "test",
     },
   },
 ]

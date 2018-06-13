@@ -5,6 +5,7 @@ import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
 import {
 	IAcceptedPrice,
+	IConversion,
 	ICustodianPrice,
 	IPriceBar,
 	IPriceStatus,
@@ -38,28 +39,70 @@ export class DynamoUtil {
 		const promiseList = dates.map(date =>
 			this.queryData({
 				TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
-				KeyConditionExpression: CST.DB_EVENT_KEY + ' = :' + CST.DB_EVENT_KEY,
+				KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
 				ExpressionAttributeValues: {
-					[':' + CST.DB_EVENT_KEY]: { S: CST.EVENT_ACCEPT_PRICE + '|' + date }
+					[':' + CST.DB_EV_KEY]: { S: CST.EVENT_ACCEPT_PRICE + '|' + date }
 				}
 			})
 		);
 
 		const allData: IAcceptedPrice[] = [];
 		(await Promise.all(promiseList)).forEach(r =>
-			allData.push(...this.convertAcceptedPrices(r))
+			allData.push(...this.parseAcceptedPrices(r))
 		);
 		return allData;
 	}
 
-	public convertAcceptedPrices(acceptPrice: QueryOutput): IAcceptedPrice[] {
+	public parseAcceptedPrices(acceptPrice: QueryOutput): IAcceptedPrice[] {
 		if (!acceptPrice.Items || !acceptPrice.Items.length) return [];
 		return acceptPrice.Items.map(p => ({
-			price: contractUtil.fromWei(p['priceInWei'].S || ''),
-			navA: contractUtil.fromWei(p['navAInWei'].S || ''),
-			navB: contractUtil.fromWei(p['navBInWei'].S || ''),
-			timestamp: Number(p['timeInSecond'].S) * 1000
+			price: contractUtil.fromWei(p[CST.DB_EV_PX].S || ''),
+			navA: contractUtil.fromWei(p[CST.DB_EV_NAV_A].S || ''),
+			navB: contractUtil.fromWei(p[CST.DB_EV_NAV_B].S || ''),
+			timestamp: Number(p[CST.DB_EV_TS].S) * 1000
 		}));
+	}
+
+	public async queryConversionEvent(address: string, dates: string[]) {
+		const eventKeys: string[] = [];
+		dates.forEach(date =>
+			eventKeys.push(
+				...[CST.EVENT_CREATE, CST.EVENT_REDEEM].map(ev => ev + '|' + date + '|' + address)
+			)
+		);
+		const promiseList = eventKeys.map(ek =>
+			this.queryData({
+				TableName: __KOVAN__ ? CST.DB_AWS_EVENTS_DEV : CST.DB_AWS_EVENTS_LIVE,
+				KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
+				ExpressionAttributeValues: {
+					[':' + CST.DB_EV_KEY]: { S: ek }
+				}
+			})
+		);
+
+		const allData: IConversion[] = [];
+		(await Promise.all(promiseList)).forEach(r =>
+			allData.push(...this.parseConversions(r))
+		);
+		return allData;
+	}
+
+	public parseConversions(conversions: QueryOutput): IConversion[] {
+		if (!conversions.Items || !conversions.Items.length) return [];
+		return conversions.Items.map(c => {
+			const eventKey = c[CST.DB_EV_KEY].S || '';
+			const type = eventKey.split('|')[0];
+
+			return {
+				type: type,
+				timestamp: Number((c[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
+				eth: contractUtil.fromWei(c[CST.DB_EV_ETH].S || ''),
+				tokenA: contractUtil.fromWei(c[type === CST.EVENT_CREATE ? CST.DB_EV_CREATE_A : CST.DB_EV_REDEEM_A].S || ''),
+				tokenB: contractUtil.fromWei(c[type === CST.EVENT_CREATE ? CST.DB_EV_CREATE_B : CST.DB_EV_REDEEM_B].S || ''),
+				totalSupplyA: contractUtil.fromWei(c[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
+				totalSupplyB: contractUtil.fromWei(c[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
+			};
+		});
 	}
 
 	public async queryHourlyOHLC(source: string, dates: string[]) {
@@ -74,7 +117,7 @@ export class DynamoUtil {
 		);
 
 		const allData: IPriceBar[] = [];
-		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertHourly(r)));
+		(await Promise.all(promiseList)).forEach(r => allData.push(...this.parseHourly(r)));
 		return allData;
 	}
 
@@ -90,11 +133,11 @@ export class DynamoUtil {
 		);
 
 		const allData: IPriceBar[] = [];
-		(await Promise.all(promiseList)).forEach(r => allData.push(...this.convertMinutely(r)));
+		(await Promise.all(promiseList)).forEach(r => allData.push(...this.parseMinutely(r)));
 		return allData;
 	}
 
-	private convertOHLC(
+	private parseOHLC(
 		source: string,
 		date: string,
 		hour: string,
@@ -115,22 +158,22 @@ export class DynamoUtil {
 		};
 	}
 
-	public convertHourly(hourly: QueryOutput): IPriceBar[] {
+	public parseHourly(hourly: QueryOutput): IPriceBar[] {
 		if (!hourly.Items || !hourly.Items.length) return [];
 		const sourceDate = hourly.Items[0][CST.DB_HR_SRC_DATE].S || '';
 		const [source, date] = sourceDate.split('|');
 		return hourly.Items.map(h => {
 			const hour = h[CST.DB_HR_HOUR].N || '';
-			return this.convertOHLC(source, date, hour.length < 2 ? '0' + hour : hour, 0, h);
+			return this.parseOHLC(source, date, hour.length < 2 ? '0' + hour : hour, 0, h);
 		});
 	}
 
-	public convertMinutely(minutely: QueryOutput): IPriceBar[] {
+	public parseMinutely(minutely: QueryOutput): IPriceBar[] {
 		if (!minutely.Items || !minutely.Items.length) return [];
 		const sourceDatetime = minutely.Items[0][CST.DB_MN_SRC_DATE_HOUR].S || '';
 		const [source, datetime] = sourceDatetime.split('|');
 		return minutely.Items.map(m =>
-			this.convertOHLC(
+			this.parseOHLC(
 				source,
 				datetime.substring(0, 10),
 				datetime.substring(11, 13),
@@ -141,14 +184,14 @@ export class DynamoUtil {
 	}
 
 	public async scanStatus() {
-		return this.convertStatus(
+		return this.parseStatus(
 			await this.scanData({
 				TableName: __KOVAN__ ? CST.DB_AWS_STATUS_DEV : CST.DB_AWS_STATUS_LIVE
 			})
 		);
 	}
 
-	public convertStatus(status: ScanOutput): IStatus[] {
+	public parseStatus(status: ScanOutput): IStatus[] {
 		if (!status.Items || !status.Items.length) return [];
 
 		const output = status.Items.map(d => {

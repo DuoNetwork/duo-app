@@ -161,7 +161,7 @@ test('merge reset correctly', () =>
 	).toMatchSnapshot());
 
 test('merge last price to hourly correctly', () => {
-	const parsedHourly = dynamoUtil.convertHourly(hourly);
+	const parsedHourly = dynamoUtil.parseHourly(hourly);
 	const sourceHourly = {
 		bitfinex: parsedHourly,
 		gemini: [],
@@ -225,7 +225,7 @@ test('merge last price to hourly correctly', () => {
 });
 
 test('merge last price to minutely correctly', () => {
-	const parsedMinutely = dynamoUtil.convertMinutely(minutely);
+	const parsedMinutely = dynamoUtil.parseMinutely(minutely);
 	const sourceMinutely = {
 		bitfinex: [],
 		gemini: [],
@@ -289,7 +289,7 @@ test('merge last price to minutely correctly', () => {
 });
 
 test('merge last price to accepted price correctly', () => {
-	const parsedAcceptedPrice = dynamoUtil.convertAcceptedPrices(prices);
+	const parsedAcceptedPrice = dynamoUtil.parseAcceptedPrices(prices);
 	const originalLength = parsedAcceptedPrice.length;
 	chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
 		address: '0x0',

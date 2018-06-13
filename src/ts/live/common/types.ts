@@ -93,6 +93,16 @@ export interface IAcceptedPrice {
 	timestamp: number;
 }
 
+export interface IConversion {
+	type: string;
+	timestamp: number;
+	eth: number;
+	tokenA: number;
+	tokenB: number;
+	totalSupplyA: number;
+	totalSupplyB: number;
+}
+
 export interface IState {
 	readonly contract: IContractState;
 	readonly dynamo: IDynamoState;
@@ -114,6 +124,7 @@ export interface IDynamoState {
 	readonly minutely: ISourceData<IPriceBar[]>;
 	readonly prices: IAcceptedPrice[];
 	readonly last: ISourceData<ICustodianPrice>;
+	readonly conversions: IConversion[];
 }
 
 export interface IUIState {

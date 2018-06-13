@@ -46,4 +46,12 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('conversion', () => {
+		state = dynamoReducer(state, {
+			type: CST.AC_CONVERSION,
+			value: ['test']
+		});
+		expect(state).toMatchSnapshot();
+	});
 });

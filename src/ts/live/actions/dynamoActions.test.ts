@@ -85,4 +85,20 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('conversionUpdate', () => {
+		expect(dynamoActions.conversionUpdate(['test'] as any)).toMatchSnapshot();
+	});
+
+	test('fetchConversions', () => {
+		const store = mockStore({ contract: { account: '0x0' } });
+		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
+		store.dispatch(dynamoActions.fetchConversions() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

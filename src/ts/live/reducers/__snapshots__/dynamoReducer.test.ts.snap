@@ -1,7 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ui reducer conversion 1`] = `
+Object {
+  "conversions": Array [
+    "test",
+  ],
+  "hourly": Object {
+    "test": "test",
+  },
+  "last": Object {
+    "bitfinex": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gdax": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gemini": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "kraken": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
+  "minutely": Object {
+    "test": "test",
+  },
+  "prices": Array [
+    "test",
+  ],
+  "status": Array [
+    Object {
+      "process": "test",
+    },
+  ],
+}
+`;
+
 exports[`ui reducer default 1`] = `
 Object {
+  "conversions": Array [],
   "hourly": Object {
     "bitfinex": Array [],
     "gdax": Array [],
@@ -43,6 +88,7 @@ Object {
 
 exports[`ui reducer dynamoHourly 1`] = `
 Object {
+  "conversions": Array [],
   "hourly": Object {
     "test": "test",
   },
@@ -85,6 +131,7 @@ Object {
 
 exports[`ui reducer dynamoMinutely 1`] = `
 Object {
+  "conversions": Array [],
   "hourly": Object {
     "test": "test",
   },
@@ -124,6 +171,7 @@ Object {
 
 exports[`ui reducer dynamoPrices 1`] = `
 Object {
+  "conversions": Array [],
   "hourly": Object {
     "test": "test",
   },
@@ -165,6 +213,7 @@ Object {
 
 exports[`ui reducer dynamoStatus 1`] = `
 Object {
+  "conversions": Array [],
   "hourly": Object {
     "bitfinex": Array [],
     "gdax": Array [],

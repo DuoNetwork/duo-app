@@ -22,6 +22,10 @@ export function networkUpdate(networkId: number) {
 	};
 }
 
+export function getNetwork(): VoidThunkAction {
+	return async dispatch => dispatch(networkUpdate(await contractUtil.getCurrentNetwork()));
+}
+
 export function custodianStatesUpdate(states: ICustodianStates) {
 	return {
 		type: CST.AC_CTD_STATES,
@@ -55,12 +59,8 @@ export function balancesUpdate(balance: IBalances) {
 }
 
 export function getBalances(): VoidThunkAction {
-	return async dispatch => {
-		dispatch(networkUpdate(await contractUtil.getCurrentNetwork()));
-		const account = await contractUtil.getCurrentAddress();
-		dispatch(accountUpdate(account));
-		dispatch(balancesUpdate(await contractUtil.getBalances(account)));
-	};
+	return async (dispatch, getState) =>
+		dispatch(balancesUpdate(await contractUtil.getBalances(getState().contract.account)));
 }
 
 export function addressesUpdate(addr: IAddresses) {
