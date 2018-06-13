@@ -1,6 +1,6 @@
-//import moment from 'moment';
 import { Tooltip } from 'antd';
 import * as d3 from 'd3';
+import moment from 'moment';
 import * as React from 'react';
 import successIcon from '../../../../images/stauts/success.svg';
 import warningIcon from '../../../../images/stauts/warning.svg';
@@ -42,11 +42,25 @@ export default class StateCard extends React.PureComponent<IProps> {
 						<div className="status-list-wrapper">
 							<ul>
 								<li className="block-title">
-									{states.state !== CST.CTD_LOADING
-										? states.state === CST.CTD_TRADING
-											? 'Last Reset Price'
-											: 'Reset Progress'
-										: CST.CTD_LOADING}
+									{states.state !== CST.CTD_LOADING ? (
+										states.state === CST.CTD_TRADING ? (
+											<div className='last-reset-title'>
+												<span>Last Reset Price</span>
+												<span className='last-reset-title-span'>
+													{prices.reset.timestamp
+														? 'Last Updated: ' +
+															moment(prices.reset.timestamp).format(
+																'YYYY-MM-DD kk:mm'
+														)
+														: 'Loading'}
+												</span>
+											</div>
+										) : (
+											'Reset Progress'
+										)
+									) : (
+										CST.CTD_LOADING
+									)}
 								</li>
 								{states.state !== CST.CTD_LOADING ? (
 									states.state === CST.CTD_TRADING ? (

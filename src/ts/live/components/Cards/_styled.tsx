@@ -407,6 +407,17 @@ export const SCardList = styled.div`
 			font-weight: 500;
 			color: ${ColorStyles.TextWhiteAlphaL};
 			margin-bottom: 5px;
+			.last-reset-title {
+				width: 100%;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+				.last-reset-title-span {
+					color: ${ColorStyles.TextWhiteAlphaLL};
+					font-size: 10px;
+				}
+			}
 		}
 		li {
 			display: flex;
@@ -442,6 +453,19 @@ export const SCardList = styled.div`
 				color: ${ColorStyles.TextWhiteAlphaLL};
 				font-size: 12px;
 				text-align: right;
+			}
+			.default-button {
+				cursor: pointer;
+				font-size: 10px;
+				color: ${ColorStyles.TextWhiteAlphaLL};
+				border: 1px dashed;
+				border-color: ${ColorStyles.BorderWhite2};
+				padding: 0 5px;
+				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+			}
+			.default-button:hover {
+				color: ${ColorStyles.TextWhiteAlpha};
+				border-color: ${ColorStyles.BorderWhite6};
 			}
 		}
 		.input-line {
@@ -609,6 +633,10 @@ export const SCardTransactionForm = styled.div`
 		border-color: ${ColorStyles.BorderWhite2};
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
+		.superscript {
+			margin-left: 2px;
+			font-size: 12px;
+		}
 	}
 	.trans-button:hover {
 		color: ${ColorStyles.TextWhiteAlphaL};
@@ -638,22 +666,30 @@ export const SCardTransactionForm = styled.div`
 		border-color: ${ColorStyles.BorderWhite6};
 		background-color: ${ColorStyles.ButtonHoverWhite1};
 	}
+	.remark {
+		margin-top: 20px;
+		font-size: 12px;
+		padding: 0 10px;
+		text-align: justify;
+		color: ${ColorStyles.TextWhiteAlphaLL};
+	}
 `;
 export interface ISInputProps {
 	width?: string;
 	right?: boolean;
+	small?: boolean;
 }
 export const SInput = styled.input`
 	outline: none;
-	font-size: 11px;
+	font-size: ${(props: ISInputProps) => (props.small ? '9px' : '12px')};
 	background: ${ColorStyles.CardBackgroundSolid};
 	box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4);
 	color: ${ColorStyles.TextWhiteAlpha};
 	border: none;
-	width: ${(props: ISInputProps) => props.width ? props.width : '160px'};
+	width: ${(props: ISInputProps) => (props.width ? props.width : '160px')};
 	height: 28px;
 	padding: 0 8px;
-	text-align: ${(props: ISInputProps) => props.right ? 'right' : 'left'};
+	text-align: ${(props: ISInputProps) => (props.right ? 'right' : 'left')};
 	&:focus {
 		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 255, 255, 0.05);
 	}

@@ -2,6 +2,7 @@
 import { Radio, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
+import { CUSTODIAN_ADDR } from '../../../../../../duo-admin/src/constants';
 import demoCreate from '../../../../images/createDemo.png';
 import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
@@ -37,6 +38,9 @@ interface IState {
 	transactionInnerType: string;
 	conversionInput: string;
 	conversionInputValue: number;
+	transactionAdress: string;
+	transactionInput: string;
+	transactionInputValue: number;
 }
 
 const RadioExtraDiv = (props: { changeFeePayment: () => void; eth: boolean }) => {
@@ -71,7 +75,7 @@ const ConversionForm = (props: {
 	ethDuoFeeRatio: number;
 	limit: number;
 	handleRatioConversion: (limit: number, ratio: number) => void;
-	clear: () => void;
+	clearConversion: () => void;
 	account: string;
 }) => {
 	const {
@@ -86,7 +90,7 @@ const ConversionForm = (props: {
 		ethDuoFeeRatio,
 		limit,
 		handleRatioConversion,
-		clear,
+		clearConversion,
 		account
 	} = props;
 	const { eth, tokenA, tokenB } = props.balances;
@@ -208,12 +212,20 @@ const ConversionForm = (props: {
 					className="form-button"
 					onClick={() => {
 						if (conversionInputValue)
-							contractUtil.create(account, conversionInputValue, ethFee);
+							if (conversionType === 'create')
+								contractUtil.create(account, conversionInputValue, ethFee);
+							else if (conversionType === 'redeem')
+								contractUtil.redeem(
+									account,
+									conversionInputValue,
+									conversionInputValue,
+									ethFee
+								);
 					}}
 				>
 					SUBMIT
 				</button>
-				<button className="form-button" onClick={() => clear()}>
+				<button className="form-button" onClick={() => clearConversion()}>
 					CLEAR
 				</button>
 			</SDivFlexCenter>
@@ -239,27 +251,56 @@ const TransactionForm = (props: {
 	changeTransactionType: (type: string) => void;
 	changeTransactionInnerType: (type: string) => void;
 	balances: IBalances;
+	inputTransactionAddress: (address: string) => void;
+	inputTransactionAmount: (amount: string, limit: number) => void;
+	transactionAddress: string;
+	transactionInput: string;
+	transactionInputValue: number;
+	limit: number;
+	handleRatioTransaction: (limit: number, ratio: number) => void;
+	clearTransaction: () => void;
+	account: string;
 }) => {
 	const {
 		transactionType,
 		transactionInnerType,
 		changeTransactionType,
 		changeTransactionInnerType,
-		balances
+		balances,
+		inputTransactionAddress,
+		inputTransactionAmount,
+		transactionAddress,
+		transactionInput,
+		transactionInputValue,
+		limit,
+		handleRatioTransaction,
+		clearTransaction
+		//account
 	} = props;
-	// const balanceTag = (type: string) => {
-	// 	switch (type) {
-	// 		case 'duo':
-	// 			return { name: 'DUO', value: balances.duo };
-	// 		case 'classa':
-	// 			return { name: 'Class A', value: balances.tokenA };
-	// 		default:
-	// 			return { name: 'Class B', value: balances.tokenB };
-	// 	}
-	// };
+	const descriptionText =
+		'' +
+		(transactionInnerType === 'approve' ? 'Approve ' : 'Transfer ') +
+		'amount ' +
+		transactionInputValue +
+		(transactionType === 'duo'
+			? ' DUO'
+			: transactionType === 'classa'
+				? ' Class A'
+				: ' Class B') +
+		'.';
+	const tokenName = (type: string) => {
+		switch (type) {
+			case 'duo':
+				return 'DUO';
+			case 'classa':
+				return 'Class A';
+			default:
+				return 'Class B';
+		}
+	};
 	return (
 		<SCardTransactionForm>
-			<SDivFlexCenter horizontal width="100%" padding="0">
+			<SDivFlexCenter horizontal width="100%" padding="10px 0 0 0">
 				<button
 					className={
 						transactionType === 'duo'
@@ -329,20 +370,7 @@ const TransactionForm = (props: {
 										changeTransactionInnerType('approve')
 									}
 								>
-									Approve
-								</button>
-								<button
-									className={
-										transactionInnerType === 'transfrom'
-											? 'trans-button selected'
-											: 'trans-button non-select'
-									}
-									onClick={() =>
-										transactionInnerType !== 'transfrom' &&
-										changeTransactionInnerType('transfrom')
-									}
-								>
-									Transfer From
+									Approve<span className="superscript">*</span>
 								</button>
 								<button
 									className={
@@ -357,27 +385,73 @@ const TransactionForm = (props: {
 								>
 									Transfer To
 								</button>
+								<button
+									className={
+										transactionInnerType === 'transfrom'
+											? 'trans-button selected'
+											: 'trans-button non-select'
+									}
+									onClick={() =>
+										transactionInnerType !== 'transfrom' &&
+										changeTransactionInnerType('transfrom')
+									}
+								>
+									Transfer From
+								</button>
 							</SDivFlexCenter>
 						</li>
-						<li
-							className={
-								'input-line' +
-								(transactionInnerType === 'approve' && transactionType === 'duo'
-									? ' input-disabled'
-									: '')
-							}
-						>
+						<li className="input-line">
 							<span className="title">Address</span>
-							<SInput placeholder="Please input address" width="300px" />
+							<div
+								className="default-button"
+								onClick={() => inputTransactionAddress(CUSTODIAN_ADDR)}
+							>
+								Custodian
+							</div>
+							<SInput
+								placeholder="Please input address"
+								width="240px"
+								value={transactionAddress}
+								onChange={e => inputTransactionAddress(e.target.value)}
+								small
+							/>
 						</li>
 						<li className="input-line">
 							<SDivFlexCenter horizontal width="50%" padding="0">
-								<button className="percent-button">25%</button>
-								<button className="percent-button">50%</button>
-								<button className="percent-button">75%</button>
-								<button className="percent-button">100%</button>
+								<button
+									className="percent-button"
+									onClick={() => handleRatioTransaction(limit, 0.25)}
+								>
+									25%
+								</button>
+								<button
+									className="percent-button"
+									onClick={() => handleRatioTransaction(limit, 0.5)}
+								>
+									50%
+								</button>
+								<button
+									className="percent-button"
+									onClick={() => handleRatioTransaction(limit, 0.75)}
+								>
+									75%
+								</button>
+								<button
+									className="percent-button"
+									onClick={() => handleRatioTransaction(limit, 1)}
+								>
+									100%
+								</button>
 							</SDivFlexCenter>
-							<SInput placeholder="Please input amount" right />
+							<SInput
+								placeholder="Please input amount"
+								right
+								value={transactionInput}
+								onChange={e => inputTransactionAmount(e.target.value, limit)}
+							/>
+						</li>
+						<li className="description">
+							<div>{descriptionText}</div>
 						</li>
 						<li>
 							<div className="align-right">Transaction Fee: Free</div>
@@ -386,15 +460,16 @@ const TransactionForm = (props: {
 				</div>
 			</SCardList>
 			<SDivFlexCenter horizontal width="100%" padding="0">
-				<button
-					className="form-button"
-				>
-					SUBMIT
-				</button>
-				<button className="form-button">
+				<button className="form-button">SUBMIT</button>
+				<button className="form-button" onClick={() => clearTransaction()}>
 					CLEAR
 				</button>
 			</SDivFlexCenter>
+			<div className="remark">
+				{'* Remark: Approve allows other to spend your ' +
+					tokenName(transactionType) +
+					' tokens.'}
+			</div>
 		</SCardTransactionForm>
 	);
 };
@@ -408,7 +483,10 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			transactionType: 'duo',
 			transactionInnerType: 'approve',
 			conversionInput: '',
-			conversionInputValue: 0
+			conversionInputValue: 0,
+			transactionAdress: '',
+			transactionInput: '',
+			transactionInputValue: 0
 		};
 	}
 	private round = num => {
@@ -431,7 +509,10 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 
 	private changeTransactionType = (type: string) => {
 		this.setState({
-			transactionType: type
+			transactionType: type,
+			transactionAdress: '',
+			transactionInput: '',
+			transactionInputValue: 0
 		});
 	};
 
@@ -458,10 +539,41 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			});
 	};
 
-	private clear = () => {
+	private clearConversion = () => {
 		this.setState({
 			conversionInput: '',
 			conversionInputValue: 0
+		});
+	};
+
+	private inputTransactionAddress = (address: string) => {
+		this.setState({
+			transactionAdress: address
+		});
+	};
+
+	private inputTransactionAmount = (amount: string, limit: number) => {
+		this.setState({
+			transactionInput: amount,
+			transactionInputValue:
+				this.round(Number(amount)) < limit ? this.round(Number(amount)) : limit
+		});
+	};
+
+	private handleRatioTransaction = (value: number, ratio: number) => {
+		const result = value * ratio;
+		if (value)
+			this.setState({
+				transactionInput: this.round(result).toString(),
+				transactionInputValue: result
+			});
+	};
+
+	private clearTransaction = () => {
+		this.setState({
+			transactionAdress: '',
+			transactionInput: '',
+			transactionInputValue: 0
 		});
 	};
 
@@ -473,10 +585,21 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			transactionType,
 			transactionInnerType,
 			conversionInput,
-			conversionInputValue
+			conversionInputValue,
+			transactionAdress,
+			transactionInput,
+			transactionInputValue
 		} = this.state;
 		const availableAB = balances.tokenA > balances.tokenB ? balances.tokenA : balances.tokenB;
-		const limit = conversionType === 'create' ? balances.eth : availableAB;
+		const limitC = conversionType === 'create' ? balances.eth : availableAB;
+		const limitT =
+			transactionInnerType === 'transfrom'
+				? Number.MAX_SAFE_INTEGER
+				: transactionType === 'duo'
+					? balances.duo
+					: transactionType === 'classa'
+						? balances.tokenA
+						: balances.tokenB;
 		return (
 			<SDivFlexCenter center horizontal marginBottom="20px;">
 				<StateCard states={states} prices={prices} />
@@ -498,9 +621,9 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							lastResetETHPrice={prices.reset.price}
 							commissionRate={states.commissionRate}
 							ethDuoFeeRatio={states.ethDuoFeeRatio}
-							limit={limit}
+							limit={limitC}
 							handleRatioConversion={this.handleRatioConversion}
-							clear={this.clear}
+							clearConversion={this.clearConversion}
 							account={account}
 						/>
 					</SDivFlexCenter>
@@ -517,6 +640,15 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 							changeTransactionType={this.changeTransactionType}
 							changeTransactionInnerType={this.changeTransactionInnerType}
 							balances={balances}
+							inputTransactionAddress={this.inputTransactionAddress}
+							inputTransactionAmount={this.inputTransactionAmount}
+							transactionAddress={transactionAdress}
+							transactionInput={transactionInput}
+							transactionInputValue={transactionInputValue}
+							limit={limitT}
+							handleRatioTransaction={this.handleRatioTransaction}
+							clearTransaction={this.clearTransaction}
+							account={account}
 						/>
 					</SDivFlexCenter>
 				</SCard>
