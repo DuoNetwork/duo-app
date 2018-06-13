@@ -97,10 +97,8 @@ export class DynamoUtil {
 				type: type,
 				timestamp: Number((c[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
 				eth: contractUtil.fromWei(c[CST.DB_EV_ETH].S || ''),
-				tokenA: contractUtil.fromWei(c[type === CST.EVENT_CREATE ? CST.DB_EV_CREATE_A : CST.DB_EV_REDEEM_A].S || ''),
-				tokenB: contractUtil.fromWei(c[type === CST.EVENT_CREATE ? CST.DB_EV_CREATE_B : CST.DB_EV_REDEEM_B].S || ''),
-				totalSupplyA: contractUtil.fromWei(c[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
-				totalSupplyB: contractUtil.fromWei(c[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
+				tokenA: contractUtil.fromWei(c[CST.DB_EV_TOKEN_A].S || ''),
+				tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || ''),
 			};
 		});
 	}

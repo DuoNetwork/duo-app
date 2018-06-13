@@ -99,8 +99,6 @@ export interface IConversion {
 	eth: number;
 	tokenA: number;
 	tokenB: number;
-	totalSupplyA: number;
-	totalSupplyB: number;
 }
 
 export interface IState {
