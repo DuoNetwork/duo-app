@@ -4,6 +4,7 @@ body {
 }
 .ant-layout {
 	background: #121416;
+	height: 100vh;
 }
 /* Header */
 .icon-wrapper {

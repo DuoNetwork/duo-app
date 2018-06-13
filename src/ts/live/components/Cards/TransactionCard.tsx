@@ -106,7 +106,7 @@ const ConversionForm = (props: {
 	const descriptionText =
 		'' +
 		(conversionType === 'create' ? 'Split ' : 'Combine ') +
-		conversionInputValue +
+		(conversionInputValue ? d3.formatPrefix(',.8', 1)(conversionInputValue) : 0) +
 		(conversionType === 'create' ? ' ETH' : ' Class A/B') +
 		' into ' +
 		(conversionOutcome ? d3.formatPrefix(',.8', 1)(conversionOutcome) : 0) +
@@ -274,8 +274,8 @@ const TransactionForm = (props: {
 		transactionInputValue,
 		limit,
 		handleRatioTransaction,
-		clearTransaction
-		//account
+		clearTransaction,
+		account
 	} = props;
 	const descriptionText =
 		'' +
@@ -298,6 +298,7 @@ const TransactionForm = (props: {
 				return 'Class B';
 		}
 	};
+	const isA = transactionType === 'classa';
 	return (
 		<SCardTransactionForm>
 			<SDivFlexCenter horizontal width="100%" padding="10px 0 0 0">
@@ -460,7 +461,54 @@ const TransactionForm = (props: {
 				</div>
 			</SCardList>
 			<SDivFlexCenter horizontal width="100%" padding="0">
-				<button className="form-button">SUBMIT</button>
+				<button
+					className="form-button"
+					onClick={() => {
+						if (transactionType === 'duo')
+							if (transactionInnerType === 'approve')
+								contractUtil.duoApprove(
+									account,
+									transactionAddress,
+									transactionInputValue
+								);
+							else if (transactionInnerType === 'transto')
+								contractUtil.duoTransfer(
+									account,
+									transactionAddress,
+									transactionInputValue
+								);
+							else
+								contractUtil.duoTransferFrom(
+									account,
+									transactionAddress,
+									transactionInputValue
+								);
+						else if (transactionInnerType === 'approve')
+							contractUtil.approve(
+								account,
+								transactionAddress,
+								transactionInputValue,
+								isA
+							);
+						else if (transactionInnerType === 'transto')
+							contractUtil.transfer(
+								account,
+								transactionAddress,
+								transactionInputValue,
+								isA
+							);
+						else
+							contractUtil.transferFrom(
+								account,
+								transactionAddress,
+								account,
+								transactionInputValue,
+								isA
+							);
+					}}
+				>
+					SUBMIT
+				</button>
 				<button className="form-button" onClick={() => clearTransaction()}>
 					CLEAR
 				</button>
