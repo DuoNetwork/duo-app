@@ -84,8 +84,8 @@ export class DynamoUtil {
 	public parseTotalSupply(totalSupply: QueryOutput): ITotalSupply[] {
 		if (!totalSupply.Items || !totalSupply.Items.length) return [];
 		return totalSupply.Items.map(t => ({
-			tokenA: Number(t[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
-			tokenB: Number(t[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
+			tokenA: contractUtil.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
+			tokenB: contractUtil.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
 			timestamp: Number((t[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0])
 		}));
 	}

@@ -36,6 +36,7 @@ export interface ICustodianStates {
 	adminCoolDown: number;
 	usersLength: number;
 	addrPoolLength: number;
+	balance: number;
 }
 
 export interface ICustodianPrices {

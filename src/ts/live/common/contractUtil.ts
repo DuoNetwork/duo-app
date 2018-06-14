@@ -82,7 +82,8 @@ class ContractUtil {
 			lastAdminTime: Number(states[23].valueOf()),
 			adminCoolDown: Number(states[24]),
 			usersLength: Number(states[25].valueOf()),
-			addrPoolLength: Number(states[26].valueOf())
+			addrPoolLength: Number(states[26].valueOf()),
+			balance: await this.getEthBalance(CST.CUSTODIAN_ADDR)
 		};
 	}
 

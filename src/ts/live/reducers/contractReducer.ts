@@ -30,7 +30,8 @@ export const initialState: IContractState = {
 		lastAdminTime: 0,
 		adminCoolDown: 0,
 		usersLength: 0,
-		addrPoolLength: 0
+		addrPoolLength: 0,
+		balance: 0
 	},
 	prices: {
 		first: { address: '0x0', price: 0, timestamp: 0 },
@@ -69,7 +70,7 @@ export const initialState: IContractState = {
 		poolManager: {
 			address: '0x0',
 			balance: 0
-		},
+		}
 	},
 	account: '0x0',
 	network: 0
