@@ -37,6 +37,7 @@ export default class Duo extends React.PureComponent<IProps> {
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<PriceChartCard />
 						<NavChartCard />
+						<StateCard states={states} reset={prices.reset} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<PriceCard
@@ -47,16 +48,14 @@ export default class Duo extends React.PureComponent<IProps> {
 						/>
 						<BalanceCard account={account} balances={balances} states={states} />
 					</SDivFlexCenter>
-					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<StateCard states={states} reset={prices.reset} />
-						<ConversionCard
-							reset={prices.reset}
-							states={states}
-							balances={balances}
-							account={account}
-						/>
-						<TransactionCard balances={balances} account={account} />
-					</SDivFlexCenter>
+					<div style={{width: 1000}}/>
+					<ConversionCard
+						reset={prices.reset}
+						states={states}
+						balances={balances}
+						account={account}
+					/>
+					<TransactionCard balances={balances} account={account} />
 				</SContent>
 			</Layout>
 		);

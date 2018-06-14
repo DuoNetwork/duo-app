@@ -117,7 +117,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
 
 		return (
-			<SCard title={<SCardTitle>TRANSACTION</SCardTitle>} width="440px" margin="0 0 0 10px">
+			<SCard title={<SCardTitle>TRANSFER</SCardTitle>} width="440px" margin="0 0 0 10px">
 				<SDivFlexCenter horizontal padding="0 10px">
 					<SCardTransactionForm>
 						<SDivFlexCenter horizontal width="100%" padding="10px 0 0 0">
@@ -138,7 +138,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 						<SCardList>
 							<div className="status-list-wrapper">
 								<ul>
-									<li className="block-title">Transaction</li>
+									<li className="block-title">Action</li>
 									<li>
 										<SDivFlexCenter horizontal width="100%" padding="10px 0px">
 											<button

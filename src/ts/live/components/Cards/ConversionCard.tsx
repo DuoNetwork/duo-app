@@ -137,6 +137,18 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
 					<SCardConversionForm>
+						<SCardList>
+							<div className="status-list-wrapper">
+								<ul>
+									<li className="img-line">
+										<img
+											className="demo-img"
+											src={isCreate ? demoCreate : demoRedeem}
+										/>
+									</li>
+								</ul>
+							</div>
+						</SCardList>
 						<SDivFlexCenter horizontal width="100%" padding="10px 0 0 0">
 							<button
 								className={
@@ -158,7 +170,6 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 						<SCardList>
 							<div className="status-list-wrapper">
 								<ul>
-									<li className="block-title">Conversion</li>
 									<li className="input-line">
 										<SDivFlexCenter horizontal width="50%" padding="0">
 											{[0.25, 0.5, 0.75, 1].map(pct => (
@@ -215,18 +226,6 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 								{CST.TH_CLEAR}
 							</button>
 						</SDivFlexCenter>
-						<SCardList>
-							<div className="status-list-wrapper">
-								<ul>
-									<li className="img-line">
-										<img
-											className="demo-img"
-											src={isCreate ? demoCreate : demoRedeem}
-										/>
-									</li>
-								</ul>
-							</div>
-						</SCardList>
 					</SCardConversionForm>
 				</SDivFlexCenter>
 			</SCard>
