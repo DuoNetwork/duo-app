@@ -2,7 +2,13 @@ import Web3 from 'web3';
 import { Contract } from 'web3/types';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
-import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
+import {
+	IAccountBalances,
+	IAddresses,
+	IBalances,
+	ICustodianPrices,
+	ICustodianStates
+} from '../common/types';
 import * as CST from './constants';
 //import util from './util';
 
@@ -30,8 +36,7 @@ class ContractUtil {
 
 	public onWeb3AccountUpdate(onUpdate: (addr: string) => any) {
 		const store = (this.web3.currentProvider as any).publicConfigStore;
-		if (store)
-			store.on('update', () => onUpdate(store.getState().selectedAddress || ''));
+		if (store) store.on('update', () => onUpdate(store.getState().selectedAddress || ''));
 	}
 
 	public convertCustodianState(rawState: string) {
@@ -41,13 +46,13 @@ class ContractUtil {
 			case CST.STATE_TRADING:
 				return CST.CTD_TRADING;
 			case CST.STATE_PRERESET:
-				return CST.CTD_PRERESET
+				return CST.CTD_PRERESET;
 			case CST.STATE_UP_RESET:
-				return CST.CTD_UP_RESET
+				return CST.CTD_UP_RESET;
 			case CST.STATE_DOWN_RESET:
-				return CST.CTD_DOWN_RESET
+				return CST.CTD_DOWN_RESET;
 			case CST.STATE_PERIOD_RESET:
-				return CST.CTD_PERIOD_RESET
+				return CST.CTD_PERIOD_RESET;
 			default:
 				return CST.CTD_LOADING;
 		}
@@ -89,31 +94,31 @@ class ContractUtil {
 
 	public async getSystemAddresses(): Promise<IAddresses> {
 		const addr: string[] = await this.custodian.methods.getSystemAddresses().call();
-		const balances = await Promise.all(addr.map(a => this.getEthBalance(a)))
+		const balances = await Promise.all(addr.map(a => this.getEthBalance(a)));
 		return {
 			admin: {
 				address: addr[0],
-				balance: balances[0],
+				balance: balances[0]
 			},
 			feeCollector: {
 				address: addr[1],
-				balance: balances[1],
+				balance: balances[1]
 			},
 			priceFeed1: {
 				address: addr[2],
-				balance: balances[2],
+				balance: balances[2]
 			},
 			priceFeed2: {
 				address: addr[3],
-				balance: balances[3],
+				balance: balances[3]
 			},
 			priceFeed3: {
 				address: addr[4],
-				balance: balances[4],
+				balance: balances[4]
 			},
 			poolManager: {
 				address: addr[5],
-				balance: balances[5],
+				balance: balances[5]
 			}
 		};
 	}
@@ -161,6 +166,23 @@ class ContractUtil {
 		};
 	}
 
+	public async getAllBalances(numOfUser: number|undefined = 30): Promise<IAccountBalances[]> {
+		// const sysStates = await this.custodian.methods.getSystemStates().call();
+		// const numOfUser = sysStates[25].valueOf();
+		const allAccountsBalances: IAccountBalances[] = [];
+		// if (numOfUser > 0)
+		for (let i = 0; i < numOfUser; i++) {
+			const userAddr: string = await this.custodian.methods.users(i).call();
+			console.log(userAddr);
+			const balances: IBalances = await this.getBalances(userAddr);
+			allAccountsBalances.push({
+				account: userAddr,
+				...balances
+			});
+		}
+		return allAccountsBalances;
+	}
+
 	public async getGasPrice(): Promise<number> {
 		return await this.web3.eth.getGasPrice();
 	}
@@ -199,8 +221,7 @@ class ContractUtil {
 
 	public checkAddress(addr: string) {
 		console.log(addr);
-		if (!addr.startsWith('0x') || addr.length !== 42)
-			return false;
+		if (!addr.startsWith('0x') || addr.length !== 42) return false;
 		return this.web3.utils.checkAddressChecksum(addr);
 	}
 

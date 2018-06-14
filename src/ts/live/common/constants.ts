@@ -5,6 +5,7 @@ export const AC_CTD_PRICES = 'custodianPrices';
 export const AC_ACCOUNT = 'account';
 export const AC_NETWORK = 'network';
 export const AC_BALANCES = 'balances';
+export const AC_ALL_BALANCES = 'allBalances';
 export const AC_ADDRESSES = 'addresses';
 export const AC_DNM_STATUS = 'dynamoStatus';
 export const AC_DMN_HOURLY = 'dynamoHourly';

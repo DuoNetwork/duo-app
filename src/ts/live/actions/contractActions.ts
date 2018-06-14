@@ -1,6 +1,7 @@
 import * as CST from '../common/constants';
 import contractUtil from '../common/contractUtil';
 import {
+	IAccountBalances,
 	IAddresses,
 	IBalances,
 	ICustodianPrices,
@@ -61,6 +62,18 @@ export function balancesUpdate(balance: IBalances) {
 export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) =>
 		dispatch(balancesUpdate(await contractUtil.getBalances(getState().contract.account)));
+}
+
+export function allBalancesUpdate(allBalances: IAccountBalances[]) {
+	return {
+		type: CST.AC_ALL_BALANCES,
+		value: allBalances
+	};
+}
+
+export function getAllBalances(): VoidThunkAction {
+	return async dispatch =>
+		dispatch(allBalancesUpdate(await contractUtil.getAllBalances()));
 }
 
 export function addressesUpdate(addr: IAddresses) {

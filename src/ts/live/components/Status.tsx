@@ -7,7 +7,7 @@ interface IProps {
 	status: IStatus[];
 }
 
-export default class Duo extends React.PureComponent<IProps> {
+export default class Status extends React.PureComponent<IProps> {
 	public render() {
 		const { addresses, status } = this.props;
 		return (

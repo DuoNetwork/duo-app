@@ -54,6 +54,10 @@ export interface IBalances {
 	tokenB: number;
 }
 
+export interface IAccountBalances extends IBalances {
+	account: string;
+}
+
 export interface IAddress {
 	address: string;
 	balance: number;
@@ -121,6 +125,7 @@ export interface IContractState {
 	readonly addresses: IAddresses;
 	readonly account: string;
 	readonly network: number;
+	readonly allBalances: IAccountBalances[]
 }
 
 export interface IDynamoState {
