@@ -23,6 +23,7 @@ interface IState {
 	value: number;
 	type: string;
 	isETH: boolean;
+	visible: boolean;
 }
 
 const Asset = (props: { name: string; value: number; src: string }) => (
@@ -183,7 +184,8 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 			valueIn: '',
 			value: 0,
 			type: props.type,
-			isETH: true
+			isETH: true,
+			visible: false
 		};
 	}
 	public round = num => {
@@ -222,12 +224,13 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 		});
 	};
 
-	public static getDerivedStateFromProps(nextProps: IProps) {
-		if (nextProps.visible)
+	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+		if (nextProps.visible !== prevState.visible)
 			return {
 				valueIn: '',
 				value: 0,
-				type: nextProps.type
+				type: nextProps.type,
+				visible: nextProps.visible
 			};
 
 		return null;
@@ -275,6 +278,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 				? limit * price.ETH / (this.state.type === 'Class A' ? price.ClassA : price.ClassB)
 				: limit1
 			: limit;
+		console.log(limit);
 		return (
 			<div className={'tf-' + visible + ' transaction-form'}>
 				<div className="transaction-form-title">{type}</div>
