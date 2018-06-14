@@ -99,4 +99,22 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('allBalancesUpdate', () => {
+		expect(contractActions.allBalancesUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	});
+
+	test('getAllBalances', () => {
+		const store = mockStore({});
+		contractUtil.getSystemStates = jest.fn(() => Promise.resolve({ usersLength: 1 }));
+		contractUtil.getUserAddress = jest.fn(() => '0x0');
+		contractUtil.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(contractActions.getAllBalances() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

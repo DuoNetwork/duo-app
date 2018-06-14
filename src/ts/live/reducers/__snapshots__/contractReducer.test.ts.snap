@@ -6,6 +6,7 @@ Object {
   "addresses": Object {
     "test": "test",
   },
+  "allBalances": Array [],
   "balances": Object {
     "test": "test",
   },
@@ -26,10 +27,36 @@ Object {
   "addresses": Object {
     "test": "test",
   },
+  "allBalances": Array [],
   "balances": Object {
     "test": "test",
   },
   "network": 0,
+  "prices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "states": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`ui reducer allBalances 1`] = `
+Object {
+  "account": "test",
+  "addresses": Object {
+    "test": "test",
+  },
+  "allBalances": Array [
+    Object {
+      "test": "test",
+    },
+  ],
+  "balances": Object {
+    "test": "test",
+  },
+  "network": 123,
   "prices": Object {
     "last": "last",
     "reset": "reset",
@@ -69,6 +96,7 @@ Object {
       "balance": 0,
     },
   },
+  "allBalances": Array [],
   "balances": Object {
     "test": "test",
   },
@@ -112,6 +140,7 @@ Object {
       "balance": 0,
     },
   },
+  "allBalances": Array [],
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -159,6 +188,7 @@ Object {
       "balance": 0,
     },
   },
+  "allBalances": Array [],
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -224,6 +254,7 @@ Object {
       "balance": 0,
     },
   },
+  "allBalances": Array [],
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -258,6 +289,7 @@ Object {
     "addrPoolLength": 0,
     "adminCoolDown": 0,
     "alpha": 0,
+    "balance": 0,
     "beta": 0,
     "commissionRate": 0,
     "ethDuoFeeRatio": 0,
@@ -292,6 +324,7 @@ Object {
   "addresses": Object {
     "test": "test",
   },
+  "allBalances": Array [],
   "balances": Object {
     "test": "test",
   },

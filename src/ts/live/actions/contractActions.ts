@@ -64,7 +64,7 @@ export function getBalances(): VoidThunkAction {
 		dispatch(balancesUpdate(await contractUtil.getBalances(getState().contract.account)));
 }
 
-export function allBalancesUpdate(allBalances: IAccountBalances[]) {
+export function allBalancesUpdate(allBalances: IAccountBalances) {
 	return {
 		type: CST.AC_ALL_BALANCES,
 		value: allBalances
@@ -72,8 +72,17 @@ export function allBalancesUpdate(allBalances: IAccountBalances[]) {
 }
 
 export function getAllBalances(): VoidThunkAction {
-	return async dispatch =>
-		dispatch(allBalancesUpdate(await contractUtil.getAllBalances()));
+	return async dispatch => {
+		const states = await contractUtil.getSystemStates();
+		for (let i = 0; i < states.usersLength; i++) {
+			const account: string = await contractUtil.getUserAddress(i);
+			if (account)
+				dispatch(allBalancesUpdate({
+					account: account,
+					...(await contractUtil.getBalances(account))
+				}))
+		}
+	}
 }
 
 export function addressesUpdate(addr: IAddresses) {

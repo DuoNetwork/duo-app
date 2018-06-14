@@ -3,7 +3,6 @@ import { Contract } from 'web3/types';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
 import {
-	IAccountBalances,
 	IAddresses,
 	IBalances,
 	ICustodianPrices,
@@ -166,21 +165,8 @@ class ContractUtil {
 		};
 	}
 
-	public async getAllBalances(numOfUser: number|undefined = 30): Promise<IAccountBalances[]> {
-		// const sysStates = await this.custodian.methods.getSystemStates().call();
-		// const numOfUser = sysStates[25].valueOf();
-		const allAccountsBalances: IAccountBalances[] = [];
-		// if (numOfUser > 0)
-		for (let i = 0; i < numOfUser; i++) {
-			const userAddr: string = await this.custodian.methods.users(i).call();
-			console.log(userAddr);
-			const balances: IBalances = await this.getBalances(userAddr);
-			allAccountsBalances.push({
-				account: userAddr,
-				...balances
-			});
-		}
-		return allAccountsBalances;
+	public getUserAddress(index: number) {
+		return this.custodian.methods.users(index).call();
 	}
 
 	public async getGasPrice(): Promise<number> {

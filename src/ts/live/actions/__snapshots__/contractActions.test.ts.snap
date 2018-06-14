@@ -16,6 +16,15 @@ Object {
 }
 `;
 
+exports[`actions allBalancesUpdate 1`] = `
+Object {
+  "type": "allBalances",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
 exports[`actions balancesUpdate 1`] = `
 Object {
   "type": "balances",
@@ -48,6 +57,18 @@ Array [
   Object {
     "type": "addresses",
     "value": Object {
+      "test": "test",
+    },
+  },
+]
+`;
+
+exports[`actions getAllBalances 1`] = `
+Array [
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "account": "0x0",
       "test": "test",
     },
   },

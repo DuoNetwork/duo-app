@@ -7,6 +7,12 @@ Object {
     "addresses": Object {
       "test": "test",
     },
+    "allBalances": Array [
+      Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    ],
     "balances": Object {
       "test": "test",
     },
@@ -17,6 +23,7 @@ Object {
     ],
     "states": Object {
       "test": "test",
+      "usersLength": 1,
     },
   },
   "dynamo": Object {

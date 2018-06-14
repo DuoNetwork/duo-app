@@ -12,13 +12,15 @@ describe('store', () => {
 	test('actions', () => {
 		contractUtil.getSystemStates = jest.fn(() =>
 			Promise.resolve({
-				test: 'test'
+				test: 'test',
+				usersLength: 1
 			})
 		);
 		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
 		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
 		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
+		contractUtil.getUserAddress = jest.fn(() => '0x0');
 		contractUtil.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
@@ -50,8 +52,8 @@ describe('store', () => {
 		chartUtil.interpolate = jest.fn(r => r);
 		util.getNowTimestamp = jest.fn(() => 1234567890);
 		store.dispatch(contractActions.getAddresses());
-		store.dispatch(dynamoActions.scanStatus());
 		store.dispatch(uiActions.refresh());
+		store.dispatch(contractActions.getAllBalances());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getState()).toMatchSnapshot();

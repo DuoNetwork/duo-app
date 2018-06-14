@@ -65,4 +65,14 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('allBalances', () => {
+		state = contractReducer(state, {
+			type: CST.AC_ALL_BALANCES,
+			value: {
+				test: 'test'
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
 });
