@@ -1,18 +1,19 @@
 import { Layout } from 'antd';
 //import moment from 'moment';
 import * as React from 'react';
-import { IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
+import { IBalances, ICustodianPrice, ICustodianStates } from '../common/types';
 import InfoCard from '../containers/Cards/InfoCardContainer';
 import NavChartCard from '../containers/Cards/NavChartCardContainer';
 import PriceChartCard from '../containers/Cards/PriceChartCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
+import ConversionCard from './Cards/ConversionCard';
+import StateCard from './Cards/StateCard';
 import TransactionCard from './Cards/TransactionCard';
 import Header from './DuoHeader';
 
 interface IProps {
-	refresh: number;
 	states: ICustodianStates;
-	prices: ICustodianPrices;
+	reset: ICustodianPrice;
 	balances: IBalances;
 	network: number;
 	account: string;
@@ -20,7 +21,7 @@ interface IProps {
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { refresh, states, prices, balances, network, account /*, hourly, minutely*/ } = this.props;
+		const { states, reset, balances, network, account } = this.props;
 		return (
 			<Layout>
 				<Header network={network} />
@@ -30,52 +31,16 @@ export default class Duo extends React.PureComponent<IProps> {
 						<PriceChartCard />
 						<NavChartCard />
 					</SDivFlexCenter>
-					<TransactionCard
-						prices={prices}
-						states={states}
-						refresh={refresh}
-						balances={balances}
-						account={account}
-					/>
-					{/*
-					<SDivFlexCenter horizontal center>
-						<button onClick={() => contractUtil.create(account, 0.1, true)}>
-							Create 0.1 eth (fee in eth)
-						</button>
-						<button onClick={() => contractUtil.create(account, 0.1, false)}>
-							Create 0.1 eth (fee in duo)
-						</button>
-						<button
-							onClick={() =>
-								contractUtil.redeem(account, balances.tokenA, balances.tokenB, true)
-							}
-						>
-							Redeem all balance (fee in eth)
-						</button>
-						<button
-							onClick={() =>
-								contractUtil.redeem(
-									account,
-									balances.tokenA,
-									balances.tokenB,
-									false
-								)
-							}
-						>
-							Redeem all balance (fee in duo)
-						</button>
-						<button onClick={() => contractUtil.duoApprove(account, 10)}>
-							Approve 10 DUO for Custodian
-						</button>
+					<SDivFlexCenter center horizontal marginBottom="20px;">
+						<StateCard states={states} reset={reset} />
+						<ConversionCard
+							reset={reset}
+							states={states}
+							balances={balances}
+							account={account}
+						/>
+						<TransactionCard balances={balances} account={account} />
 					</SDivFlexCenter>
-					*/}
-					{/*
-					<div>{account || 'Unknown'}</div>
-					<div>{'Updated at ' + moment(refresh).format()}</div>
-					<pre>{JSON.stringify(states, null, 4)}</pre>
-					<pre>{JSON.stringify(prices, null, 4)}</pre>
-					<pre>{JSON.stringify(balances, null, 4)}</pre>
-					*/}
 				</SContent>
 			</Layout>
 		);

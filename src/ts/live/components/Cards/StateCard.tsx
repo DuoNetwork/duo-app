@@ -5,18 +5,18 @@ import * as React from 'react';
 import successIcon from '../../../../images/stauts/success.svg';
 import warningIcon from '../../../../images/stauts/warning.svg';
 import * as CST from '../../common/constants';
-import { ICustodianPrices, ICustodianStates } from '../../common/types';
+import { ICustodianPrice, ICustodianStates } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
 
 interface IProps {
-	prices: ICustodianPrices;
+	reset: ICustodianPrice;
 	states: ICustodianStates;
 }
 
 export default class StateCard extends React.PureComponent<IProps> {
 	public render() {
-		const { states, prices } = this.props;
+		const { states, reset } = this.props;
 		const tooltioText =
 			states.state === CST.CTD_TRADING
 				? 'Trading state, operations are permitted during current state.'
@@ -47,9 +47,9 @@ export default class StateCard extends React.PureComponent<IProps> {
 											<div className='last-reset-title'>
 												<span>Last Reset Price</span>
 												<span className='last-reset-title-span'>
-													{prices.reset.timestamp
+													{reset.timestamp
 														? 'Last Updated: ' +
-															moment(prices.reset.timestamp).format(
+															moment(reset.timestamp).format(
 																'YYYY-MM-DD kk:mm'
 														)
 														: 'Loading'}
@@ -67,7 +67,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 										<li>
 											<span className="title">ETH</span>
 											<span className="content">
-												{d3.formatPrefix(',.2', 1)(prices.reset.price) +
+												{d3.formatPrefix(',.2', 1)(reset.price) +
 													' USD'}
 											</span>
 										</li>

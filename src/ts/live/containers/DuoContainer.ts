@@ -4,9 +4,8 @@ import Duo from '../components/Duo';
 
 function mapStateToProps(state: IState) {
 	return {
-		refresh: state.ui.refresh,
 		states: state.contract.states,
-		prices: state.contract.prices,
+		reset: state.contract.prices.reset,
 		balances: state.contract.balances,
 		network: state.contract.network,
 		account: state.contract.account

@@ -24,7 +24,7 @@ class Util {
 		period: number,
 		coupon: number
 	) {
-		const navParent = price / resetPrice / beta * (1 + alpha);
+		const navParent = (price / resetPrice / beta) * (1 + alpha);
 
 		const navA = 1 + Math.floor((time - resetTime) / 1000 / period) * coupon;
 		const navAAdj = navA * alpha;
@@ -37,11 +37,15 @@ class Util {
 		const date = moment.utc();
 		for (let i = 0; i < length; i++) {
 			dates.push(date.format(format));
-			date.subtract(step, stepSize );
+			date.subtract(step, stepSize);
 		}
 		dates.sort((a, b) => a.localeCompare(b));
 
 		return dates;
+	}
+
+	public round(num: number) {
+		return +(Math.round((num + 'e+8') as any) + 'e-8');
 	}
 }
 

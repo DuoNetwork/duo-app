@@ -197,6 +197,13 @@ class ContractUtil {
 		return this.web3.utils.toWei(value + '', 'ether');
 	}
 
+	public checkAddress(addr: string) {
+		console.log(addr);
+		if (!addr.startsWith('0x') || addr.length !== 42)
+			return false;
+		return this.web3.utils.checkAddressChecksum(addr);
+	}
+
 	public create(address: string, value: number, payFeeInEth: boolean) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
@@ -230,14 +237,6 @@ class ContractUtil {
 		});
 	}
 
-	public duoTransferFrom(address: string, from: string, value: number) {
-		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-
-		return this.duo.methods.transferFrom(from, address, this.toWei(value)).send({
-			from: address
-		});
-	}
-
 	public approve(address: string, spender: string, value: number, isA: boolean) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
@@ -251,14 +250,6 @@ class ContractUtil {
 
 		// dummy from address
 		return this.custodian.methods.transfer(isA ? 0 : 1, address, to, this.toWei(value)).send({
-			from: address
-		});
-	}
-
-	public transferFrom(address: string, from: string, to: string, value: number, isA: boolean) {
-		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-
-		return this.custodian.methods.transferFrom(isA ? 0 : 1, from, to, this.toWei(value)).send({
 			from: address
 		});
 	}
