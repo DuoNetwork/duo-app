@@ -66,6 +66,12 @@ Array [
 exports[`actions getAllBalances 1`] = `
 Array [
   Object {
+    "type": "custodianStates",
+    "value": Object {
+      "usersLength": 1,
+    },
+  },
+  Object {
     "type": "allBalances",
     "value": Object {
       "account": "0x0",

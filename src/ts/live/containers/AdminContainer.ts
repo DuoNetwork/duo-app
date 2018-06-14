@@ -4,7 +4,8 @@ import Admin from '../components/Admin';
 
 function mapStateToProps(state: IState) {
 	return {
-		allBalances: state.contract.allBalances
+		allBalances: state.contract.allBalances,
+		userLength: state.contract.states.usersLength
 	};
 }
 

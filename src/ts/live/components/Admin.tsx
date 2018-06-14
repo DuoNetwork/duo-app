@@ -4,16 +4,18 @@ import { IAccountBalances } from '../common/types';
 
 interface IProps {
 	allBalances: IAccountBalances[];
+	userLength: number;
 }
 
 export default class Admin extends React.PureComponent<IProps> {
 	public render() {
-		const { allBalances } = this.props;
+		const { allBalances, userLength } = this.props;
 		return (
 			<div>
 				<table>
 					<thead>
 						<tr>
+							<th>No</th>
 							<th>Account</th>
 							<th>ETH balance</th>
 							<th>DUO balance</th>
@@ -25,6 +27,7 @@ export default class Admin extends React.PureComponent<IProps> {
 					<tbody>
 						{allBalances.map((s, i) => (
 							<tr key={i}>
+								<td>{i + '/' + userLength}</td>
 								<td>{s.account}</td>
 								<td>{s.eth}</td>
 								<td>{s.duo}</td>

@@ -74,6 +74,7 @@ export function allBalancesUpdate(allBalances: IAccountBalances) {
 export function getAllBalances(): VoidThunkAction {
 	return async dispatch => {
 		const states = await contractUtil.getSystemStates();
+		dispatch(custodianStatesUpdate(states));
 		for (let i = 0; i < states.usersLength; i++) {
 			const account: string = await contractUtil.getUserAddress(i);
 			if (account)
