@@ -23,7 +23,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 				: 'Reset ongoing, operations are prohibited during current state.';
 		return (
 			<SCard
-				title={<SCardTitle>CONTRACT STATES</SCardTitle>}
+				title={<SCardTitle>CONTRACT MONITOR</SCardTitle>}
 				width="360px"
 				margin="0 10px 0 0"
 				extra={
@@ -44,13 +44,12 @@ export default class StateCard extends React.PureComponent<IProps> {
 								<li className="block-title">
 									{states.state !== CST.CTD_LOADING ? (
 										states.state === CST.CTD_TRADING ? (
-											<div className='last-reset-title'>
-												<span>Last Reset Price</span>
-												<span className='last-reset-title-span'>
+											<div className="last-reset-title">
+												<span>Last Reset</span>
+												<span className="last-reset-title-span">
 													{reset.timestamp
-														? 'Last Updated: ' +
-															moment(reset.timestamp).format(
-																'YYYY-MM-DD kk:mm'
+														? moment(reset.timestamp).format(
+																'YYYY-MM-DD HH:mm'
 														)
 														: 'Loading'}
 												</span>
@@ -67,8 +66,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 										<li>
 											<span className="title">ETH</span>
 											<span className="content">
-												{d3.formatPrefix(',.2', 1)(reset.price) +
-													' USD'}
+												{d3.formatPrefix(',.2', 1)(reset.price) + ' USD'}
 											</span>
 										</li>
 									) : (
@@ -96,38 +94,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 								)}
 							</ul>
 							<ul>
-								<li className="block-title">Total Supply</li>
-								<li>
-									<span className="title">Class A</span>
-									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.totalSupplyA)}
-									</span>
-								</li>
-								<li>
-									<span className="title">Class B</span>
-									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.totalSupplyB)}
-									</span>
-								</li>
-							</ul>
-							<ul>
-								<li className="block-title">Conversion Fee</li>
-								<li>
-									<span className="title">Rate</span>
-									<span className="content">
-										{d3.format('.2%')(states.commissionRate)}
-									</span>
-								</li>
-								<li>
-									<span className="title">ETH/DUO Ratio</span>
-									<span className="content">
-										1 ETH = {d3.formatPrefix(',.0', 1)(states.ethDuoFeeRatio)}{' '}
-										DUO
-									</span>
-								</li>
-							</ul>
-							<ul>
-								<li className="block-title">Contract Parameters</li>
+								<li className="block-title">Contract States</li>
 								<li>
 									<span className="title">Alpha</span>
 									<span className="content">
@@ -151,21 +118,31 @@ export default class StateCard extends React.PureComponent<IProps> {
 									<span className="content">{states.period / 60 + ' mins'}</span>
 								</li>
 								<li>
-									<span className="title">Upward Reset Limit for Class B</span>
+									<span className="title">Upward Limit for Token B</span>
 									<span className="content">
 										{d3.formatPrefix(',.2', 1)(states.limitUpper)}
 									</span>
 								</li>
 								<li>
-									<span className="title">Downward Reset Limit for Class B</span>
+									<span className="title">Downward Limit for Token B</span>
 									<span className="content">
 										{d3.formatPrefix(',.2', 1)(states.limitLower)}
 									</span>
 								</li>
 								<li>
-									<span className="title">Periodic Reset Limit for Class A</span>
+									<span className="title">Periodic Limit for Token A</span>
 									<span className="content">
 										{d3.formatPrefix(',.2', 1)(states.limitPeriodic)}
+									</span>
+								</li>
+								<li>
+									<span className="title">ETH:DUO Fee Ratio</span>
+									<span className="content">1:{states.ethDuoFeeRatio}</span>
+								</li>
+								<li>
+									<span className="title">Net ETH Balance</span>
+									<span className="content">
+										{d3.format(',.2f')(states.balance - states.feeAccumulated)}
 									</span>
 								</li>
 							</ul>

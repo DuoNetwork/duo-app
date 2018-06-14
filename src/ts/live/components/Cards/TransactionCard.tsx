@@ -18,6 +18,7 @@ interface IState {
 	addressError: string;
 	amount: string;
 	amountError: string;
+	description: string;
 }
 
 export default class InfoCard extends React.PureComponent<IProps, IState> {
@@ -29,7 +30,8 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: ''
+			amountError: '',
+			description: ''
 		};
 	}
 
@@ -61,12 +63,24 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 	private handleAmountChange = (value: string) =>
 		this.setState({
 			amount: value,
-			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number'
+			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number',
+			description: ''
 		});
 
 	private handleAmountBlur = (limit: number) => {
-		const { amount, amountError } = this.state;
-		if (!amountError && Number(amount) > limit) this.setState({ amount: limit + '' });
+		const { amountError, isTransfer, token } = this.state;
+		const amount =
+			!amountError && Number(this.state.amount) > limit ? limit + '' : this.state.amount;
+
+		const description = !Number(amount)
+			? ''
+			: isTransfer
+				? 'Transfer ' + amount + ' ' + token + ' out'
+				: 'Approve ' + amount + ' ' + token + ' to be spent';
+		this.setState({
+			amount: amount,
+			description: description
+		});
 	};
 
 	private handleSubmit = () => {
@@ -91,15 +105,16 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		const { duo, tokenA, tokenB } = this.props.balances;
-		const { token, isTransfer, address, amount, addressError, amountError } = this.state;
+		const {
+			token,
+			isTransfer,
+			address,
+			amount,
+			addressError,
+			amountError,
+			description
+		} = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
-
-		const description =
-			addressError ||
-			amountError ||
-			(isTransfer
-				? 'Transfer ' + amount + ' ' + token + ' out'
-				: 'Approve ' + amount + ' ' + token + ' to be spent');
 
 		return (
 			<SCard title={<SCardTitle>TRANSACTION</SCardTitle>} width="440px" margin="0 0 0 10px">
@@ -154,7 +169,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 									</li>
 									<li className="input-line">
 										<span className="title">Address</span>
-										{isTransfer ? null : (
+										{!isTransfer && token === CST.TH_DUO ? (
 											<div
 												className="default-button"
 												onClick={() =>
@@ -163,7 +178,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 											>
 												Custodian
 											</div>
-										)}
+										) : null}
 										<SInput
 											placeholder="Please input address"
 											width="240px"
@@ -196,7 +211,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 										/>
 									</li>
 									<li className="description">
-										<div>{description}</div>
+										<div>{addressError || amountError || description}</div>
 									</li>
 								</ul>
 							</div>

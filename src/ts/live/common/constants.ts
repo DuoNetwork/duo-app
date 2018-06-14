@@ -30,6 +30,7 @@ export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
 
 export const TH_CREATE = 'Create';
 export const TH_REDEEM = 'Redeem';
+export const TH_ETH = 'ETH';
 export const TH_DUO = 'DUO';
 export const TH_TOKEN_A = 'Token A';
 export const TH_TOKEN_B = 'Token B';

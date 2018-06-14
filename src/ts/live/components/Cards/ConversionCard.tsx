@@ -33,21 +33,22 @@ interface IState {
 	isCreate: boolean;
 	amount: string;
 	amountError: string;
+	description: string;
 }
 
 const RadioExtraDiv = (props: { onChange: () => void; eth: boolean }) => {
 	return (
 		<SCardRadioExtraDiv>
 			<div className="extend-extra-wrapper">
-				<div className="tag-title">Fee Payment Method</div>
+				<div className="tag-title">Fee in</div>
 				<SRadioGroup
-					defaultValue="a"
+					defaultValue={CST.TH_DUO}
 					size="small"
 					onChange={props.onChange}
-					value={props.eth ? 'a' : 'b'}
+					value={props.eth ? CST.TH_ETH : CST.TH_DUO}
 				>
-					<RadioButton value="a">ETH</RadioButton>
-					<RadioButton value="b">DUO</RadioButton>
+					<RadioButton value={CST.TH_DUO}>{CST.TH_DUO}</RadioButton>
+					<RadioButton value={CST.TH_ETH}>{CST.TH_ETH}</RadioButton>
 				</SRadioGroup>
 			</div>
 		</SCardRadioExtraDiv>
@@ -58,10 +59,11 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			ethFee: true,
+			ethFee: false,
 			isCreate: true,
 			amount: '',
-			amountError: ''
+			amountError: '',
+			description: ''
 		};
 	}
 
@@ -80,8 +82,30 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		});
 
 	private handleAmountBlur = (limit: number) => {
-		const { amount, amountError } = this.state;
-		if (!amountError && Number(amount) > limit) this.setState({ amount: limit + '' });
+		const { states, reset } = this.props;
+		const { amountError, isCreate } = this.state;
+		const amount =
+			!amountError && Number(this.state.amount) > limit ? limit + '' : this.state.amount;
+		const description = !Number(amount)
+			? ''
+			: isCreate
+				? 'Create ' +
+				(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) / 2 +
+				' Token A/B from ' +
+				Number(amount) * (1 - states.commissionRate) +
+				' ' +
+				CST.TH_ETH
+				: 'Redeem ' +
+				(Number(amount) / reset.price / states.beta) * 2 * (1 - states.commissionRate) +
+				' ' +
+				CST.TH_ETH +
+				' from ' +
+				Number(amount) +
+				' Token A/B';
+		this.setState({
+			amount: amount,
+			description: description
+		});
 	};
 
 	private handleSubmit = () => {
@@ -94,22 +118,8 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 	public render() {
 		const { states, reset } = this.props;
 		const { eth, tokenA, tokenB } = this.props.balances;
-		const { ethFee, isCreate, amount, amountError } = this.state;
+		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = isCreate ? eth : Math.min(tokenA, tokenB);
-
-		const description =
-			amountError ||
-			(isCreate
-				? 'Create ' +
-				(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) / 2 +
-				' Token A/B from ' +
-				Number(amount) * (1 - states.commissionRate) +
-				' ETH'
-				: 'Redeem ' +
-				(Number(amount) / reset.price / states.beta) * 2 * (1 - states.commissionRate) +
-				' ETH from ' +
-				Number(amount) +
-				' Token A/B');
 
 		const fee =
 			(isCreate
@@ -173,16 +183,18 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 										/>
 									</li>
 									<li className="description">
-										<div>{description}</div>
+										<div>{amountError || description}</div>
 										<Tooltip title={tooltipText}>
 											<img src={infoIcon} />
 										</Tooltip>
 									</li>
 									<li>
 										<div className="align-right">
-											{'Conversion Fee: ' +
+											{states.commissionRate * 100 +
+												'% Conversion Fee: ' +
 												d3.formatPrefix(',.8', 1)(fee) +
-												(ethFee ? ' ETH' : ' DUO')}
+												' ' +
+												(ethFee ? CST.TH_ETH : CST.TH_DUO)}
 										</div>
 									</li>
 								</ul>

@@ -1,40 +1,56 @@
 import { Layout } from 'antd';
 //import moment from 'moment';
 import * as React from 'react';
-import { IBalances, ICustodianPrice, ICustodianStates } from '../common/types';
-import InfoCard from '../containers/Cards/InfoCardContainer';
+import {
+	IBalances,
+	ICustodianPrice,
+	ICustodianPrices,
+	ICustodianStates,
+	ISourceData
+} from '../common/types';
 import NavChartCard from '../containers/Cards/NavChartCardContainer';
 import PriceChartCard from '../containers/Cards/PriceChartCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
+import BalanceCard from './Cards/BalanceCard';
 import ConversionCard from './Cards/ConversionCard';
+import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
 import TransactionCard from './Cards/TransactionCard';
 import Header from './DuoHeader';
 
 interface IProps {
 	states: ICustodianStates;
-	reset: ICustodianPrice;
+	prices: ICustodianPrices;
 	balances: IBalances;
 	network: number;
 	account: string;
+	sourceLast: ISourceData<ICustodianPrice>;
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { states, reset, balances, network, account } = this.props;
+		const { states, prices, balances, network, account, sourceLast } = this.props;
 		return (
 			<Layout>
 				<Header network={network} />
 				<SContent>
-					<InfoCard />
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<PriceChartCard />
 						<NavChartCard />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<StateCard states={states} reset={reset} />
+						<PriceCard
+							last={prices.last}
+							reset={prices.reset}
+							states={states}
+							sourceLast={sourceLast}
+						/>
+						<BalanceCard account={account} balances={balances} states={states} />
+					</SDivFlexCenter>
+					<SDivFlexCenter center horizontal marginBottom="20px;">
+						<StateCard states={states} reset={prices.reset} />
 						<ConversionCard
-							reset={reset}
+							reset={prices.reset}
 							states={states}
 							balances={balances}
 							account={account}

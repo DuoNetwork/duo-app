@@ -5,10 +5,11 @@ import Duo from '../components/Duo';
 function mapStateToProps(state: IState) {
 	return {
 		states: state.contract.states,
-		reset: state.contract.prices.reset,
+		prices: state.contract.prices,
 		balances: state.contract.balances,
 		network: state.contract.network,
-		account: state.contract.account
+		account: state.contract.account,
+		sourceLast: state.dynamo.last
 	};
 }
 
