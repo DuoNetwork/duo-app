@@ -278,7 +278,6 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 				? limit * price.ETH / (this.state.type === 'Class A' ? price.ClassA : price.ClassB)
 				: limit1
 			: limit;
-		console.log(limit);
 		return (
 			<div className={'tf-' + visible + ' transaction-form'}>
 				<div className="transaction-form-title">{type}</div>
