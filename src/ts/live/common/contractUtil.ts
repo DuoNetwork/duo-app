@@ -31,7 +31,7 @@ class ContractUtil {
 	public onWeb3AccountUpdate(onUpdate: (addr: string) => any) {
 		const store = (this.web3.currentProvider as any).publicConfigStore;
 		if (store)
-			store.on('update', () => onUpdate(store.getState().selectedAddress));
+			store.on('update', () => onUpdate(store.getState().selectedAddress || ''));
 	}
 
 	public convertCustodianState(rawState: string) {
