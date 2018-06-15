@@ -651,7 +651,7 @@ export const SCardTransactionForm = styled.div`
 		color: ${ColorStyles.TextWhiteAlpha} !important;
 		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
 	}
-	.wild {
+	.wide {
 		width: 175px !important;
 	}
 	.form-button {
