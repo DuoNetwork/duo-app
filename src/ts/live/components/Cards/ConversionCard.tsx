@@ -90,13 +90,20 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			? ''
 			: isCreate
 				? 'Create ' +
-					d3.formatPrefix(',.8', 1)((Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) / 2) +
+				d3.formatPrefix(',.8', 1)(
+						(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) /
+							2
+					) +
 					' Token A/B from ' +
 					d3.formatPrefix(',.8', 1)(Number(amount) * (1 - states.commissionRate)) +
 					' ' +
 					CST.TH_ETH
 				: 'Redeem ' +
-					d3.formatPrefix(',.8', 1)((Number(amount) / reset.price / states.beta) * 2 * (1 - states.commissionRate)) +
+				d3.formatPrefix(',.8', 1)(
+						(Number(amount) / reset.price / states.beta) *
+							2 *
+							(1 - states.commissionRate)
+					) +
 					' ' +
 					CST.TH_ETH +
 					' from ' +
@@ -178,9 +185,10 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 												<button
 													key={pct + ''}
 													className="percent-button"
-													onClick={() =>
-														this.handleAmountChange(limit * pct + '')
-													}
+													onClick={() => {
+														this.handleAmountChange(limit * pct + '');
+														this.handleAmountBlur(limit);
+													}}
 												>
 													{pct * 100 + '%'}
 												</button>
@@ -213,7 +221,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 								</ul>
 							</div>
 						</SCardList>
-						<SDivFlexCenter horizontal width="100%" padding="0" marginBottom='10px'>
+						<SDivFlexCenter horizontal width="100%" padding="0" marginBottom="10px">
 							<button
 								className="form-button"
 								disabled={!amount || !!amountError}

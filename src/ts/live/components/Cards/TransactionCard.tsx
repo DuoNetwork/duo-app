@@ -143,9 +143,8 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 										<SDivFlexCenter horizontal width="100%" padding="10px 0px">
 											<button
 												className={
-													isTransfer
-														? 'trans-button selected'
-														: 'trans-button non-select'
+													'trans-button wide ' +
+													(isTransfer ? 'selected' : 'non-select')
 												}
 												onClick={() =>
 													!isTransfer && this.handleTypeChange()
@@ -155,9 +154,8 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 											</button>
 											<button
 												className={
-													!isTransfer
-														? 'trans-button selected'
-														: 'trans-button non-select'
+													'trans-button wide ' +
+													(isTransfer ? 'non-select' : 'selected')
 												}
 												onClick={() =>
 													isTransfer && this.handleTypeChange()
@@ -182,6 +180,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 											</div>
 										) : null}
 										<SInput
+											className={addressError ? 'input-error' : ''}
 											placeholder="Please input address"
 											width="240px"
 											value={address}
@@ -189,7 +188,12 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 											small
 										/>
 									</li>
-									<li className="input-line">
+									<li
+										className={
+											'input-line' +
+											(!address || !!addressError ? ' input-disabled' : '')
+										}
+									>
 										<SDivFlexCenter horizontal width="50%" padding="0">
 											{[0.25, 0.5, 0.75, 1].map(pct => (
 												<button
@@ -204,9 +208,9 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 											))}
 										</SDivFlexCenter>
 										<SInput
+											className={amountError ? 'input-error' : ''}
 											placeholder="Please input amount"
 											right
-											disabled={!address || !!addressError}
 											value={amount}
 											onChange={e => this.handleAmountChange(e.target.value)}
 											onBlur={() => this.handleAmountBlur(limit)}
