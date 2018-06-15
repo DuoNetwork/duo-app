@@ -41,15 +41,18 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: ''
+			amountError: '',
+			description: ''
 		});
+
 	private handleTypeChange = () =>
 		this.setState({
 			isTransfer: !this.state.isTransfer,
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: ''
+			amountError: '',
+			description: ''
 		});
 
 	private handleAddressChange = (addr: string) =>
@@ -57,29 +60,40 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: addr,
 			addressError: contractUtil.checkAddress(addr) ? '' : 'Invalid Address',
 			amount: '',
-			amountError: ''
+			amountError: '',
+			description: ''
 		});
 
-	private handleAmountChange = (value: string) =>
+	private handleAmountInputChange = (value: string) =>
 		this.setState({
 			amount: value,
 			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number',
 			description: ''
 		});
 
-	private handleAmountBlur = (limit: number) => {
-		const { amountError, isTransfer, token } = this.state;
-		const amount =
-			!amountError && Number(this.state.amount) > limit ? limit + '' : this.state.amount;
+	private handleAmountButtonClick = (amount: string) =>
+		this.setState({
+			amount: amount,
+			description: this.getDescription(amount)
+		});
 
-		const description = !Number(amount)
+	private getDescription = (amount: string) => {
+		const { token, isTransfer } = this.state;
+		return !Number(amount)
 			? ''
 			: isTransfer
 				? 'Transfer ' + amount + ' ' + token + ' out'
 				: 'Approve ' + amount + ' ' + token + ' to be spent';
+	};
+
+	private handleAmountBlur = (limit: number) => {
+		const { amountError } = this.state;
+		const amount =
+			!amountError && Number(this.state.amount) > limit ? limit + '' : this.state.amount;
+
 		this.setState({
 			amount: amount,
-			description: description
+			description: this.getDescription(amount)
 		});
 	};
 
@@ -100,7 +114,8 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: ''
+			amountError: '',
+			description: ''
 		});
 
 	public render() {
@@ -200,7 +215,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 													key={pct + ''}
 													className="percent-button"
 													onClick={() =>
-														this.handleAmountChange(limit * pct + '')
+														this.handleAmountButtonClick(limit * pct + '')
 													}
 												>
 													{pct * 100 + '%'}
@@ -212,7 +227,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 											placeholder="Please input amount"
 											right
 											value={amount}
-											onChange={e => this.handleAmountChange(e.target.value)}
+											onChange={e => this.handleAmountInputChange(e.target.value)}
 											onBlur={() => this.handleAmountBlur(limit)}
 										/>
 									</li>

@@ -80,13 +80,13 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		description: ''
 	});
 
-	private handleAmountChange = (value: string) =>
+	private handleAmountInputChange = (value: string) =>
 		this.setState({
 			amount: value,
 			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number'
 		});
 
-	private handleAmountButton = (amount: string) =>
+	private handleAmountButtonClick = (amount: string) =>
 		this.setState({
 			amount: amount,
 			description: this.getDescription(amount)
@@ -206,7 +206,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 													key={pct + ''}
 													className="percent-button"
 													onClick={() =>
-														this.handleAmountButton(limit * pct + '')
+														this.handleAmountButtonClick(limit * pct + '')
 													}
 												>
 													{pct * 100 + '%'}
@@ -216,7 +216,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 										<SInput
 											className={amountError ? 'input-error' : ''}
 											value={amount}
-											onChange={e => this.handleAmountChange(e.target.value)}
+											onChange={e => this.handleAmountInputChange(e.target.value)}
 											onBlur={() => this.handleAmountBlur(limit)}
 											placeholder="Please input amount"
 											right
