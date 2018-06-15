@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import * as React from 'react';
 import {
 	IBalances,
+	IConversion,
 	ICustodianPrice,
 	ICustodianPrices,
 	ICustodianStates,
@@ -13,6 +14,7 @@ import PriceChartCard from '../containers/Cards/PriceChartCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
 import ConversionCard from './Cards/ConversionCard';
+import HistoryCard from './Cards/HistoryCard';
 import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
 import TransactionCard from './Cards/TransactionCard';
@@ -25,11 +27,12 @@ interface IProps {
 	network: number;
 	account: string;
 	sourceLast: ISourceData<ICustodianPrice>;
+	conversion: IConversion[]
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { states, prices, balances, network, account, sourceLast } = this.props;
+		const { states, prices, balances, network, account, sourceLast, conversion } = this.props;
 		return (
 			<Layout>
 				<Header network={network} />
@@ -49,6 +52,7 @@ export default class Duo extends React.PureComponent<IProps> {
 						<BalanceCard account={account} balances={balances} states={states} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
+						<HistoryCard conversion={conversion}/>
 						<ConversionCard
 							reset={prices.reset}
 							states={states}

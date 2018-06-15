@@ -9,7 +9,8 @@ function mapStateToProps(state: IState) {
 		balances: state.contract.balances,
 		network: state.contract.network,
 		account: state.contract.account,
-		sourceLast: state.dynamo.last
+		sourceLast: state.dynamo.last,
+		conversion: state.dynamo.conversion
 	};
 }
 

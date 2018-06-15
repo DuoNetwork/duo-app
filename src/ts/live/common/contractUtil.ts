@@ -216,7 +216,7 @@ class ContractUtil {
 		return this.custodian.methods.create(payFeeInEth).send({
 			from: address,
 			value: this.toWei(value)
-		});
+		}).on('transactionHash', (hash) => console.log(hash))
 	}
 
 	public redeem(address: string, amtA: number, amtB: number, payFeeInEth: boolean) {
@@ -224,7 +224,7 @@ class ContractUtil {
 
 		return this.custodian.methods.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth).send({
 			from: address
-		});
+		}).on('transactionHash', (hash) => console.log(hash))
 	}
 
 	public duoApprove(address: string, spender: string, value: number) {
