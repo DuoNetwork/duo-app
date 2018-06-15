@@ -2,12 +2,7 @@ import Web3 from 'web3';
 import { Contract } from 'web3/types';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
-import {
-	IAddresses,
-	IBalances,
-	ICustodianPrices,
-	ICustodianStates
-} from '../common/types';
+import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import * as CST from './constants';
 //import util from './util';
 
@@ -16,6 +11,8 @@ class ContractUtil {
 	private duo: Contract;
 	private custodian: Contract;
 	private isReadOnly: boolean;
+	public readonly custodianAddr: string;
+	private readonly duoContractAddr: string;
 
 	constructor() {
 		if (typeof (window as any).web3 !== 'undefined') {
@@ -24,13 +21,15 @@ class ContractUtil {
 		} else {
 			this.web3 = new Web3(
 				new Web3.providers.HttpProvider(
-					__KOVAN__ ? CST.PROVIDER_INFURA_DEV : CST.PROVIDER_INFURA_LIVE
+					__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN
 				)
 			);
 			this.isReadOnly = true;
 		}
-		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, CST.CUSTODIAN_ADDR);
-		this.duo = new this.web3.eth.Contract(duoAbi.abi, CST.DUO_CONTRACT_ADDR);
+		this.custodianAddr = __KOVAN__ ? CST.CUSTODIAN_ADDR_KOVAN : CST.CUSTODIAN_ADDR_MAIN;
+		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
+		this.duoContractAddr = __KOVAN__ ? CST.DUO_CONTRACT_ADDR_KOVAN : CST.DUO_CONTRACT_ADDR_MAIN;
+		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 	}
 
 	public onWeb3AccountUpdate(onUpdate: (addr: string) => any) {
@@ -87,7 +86,7 @@ class ContractUtil {
 			adminCoolDown: Number(states[24]),
 			usersLength: Number(states[25].valueOf()),
 			addrPoolLength: Number(states[26].valueOf()),
-			balance: await this.getEthBalance(CST.CUSTODIAN_ADDR)
+			balance: await this.getEthBalance(this.custodianAddr)
 		};
 	}
 
@@ -190,7 +189,7 @@ class ContractUtil {
 	}
 
 	private async getDuoAllowance(address: string): Promise<number> {
-		return this.fromWei(await this.duo.methods.allowance(address, CST.CUSTODIAN_ADDR).call());
+		return this.fromWei(await this.duo.methods.allowance(address, this.custodianAddr).call());
 	}
 
 	private async getTokenBalance(address: string, isA: boolean): Promise<number> {

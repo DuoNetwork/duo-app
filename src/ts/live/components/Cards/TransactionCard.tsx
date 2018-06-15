@@ -173,7 +173,9 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 											<div
 												className="default-button"
 												onClick={() =>
-													this.handleAddressChange(CST.CUSTODIAN_ADDR)
+													this.handleAddressChange(
+														contractUtil.custodianAddr
+													)
 												}
 											>
 												Custodian
