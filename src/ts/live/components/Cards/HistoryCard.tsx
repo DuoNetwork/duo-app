@@ -1,53 +1,42 @@
+import { Table } from 'antd';
 //import * as d3 from 'd3';
 //import moment from 'moment';
 import * as React from 'react';
-import img from '../../../../images/ud.png';
-import { IAcceptedPrice } from '../../common/types';
-import { SDivFlexCenter } from '../_styled';
+import { IConversion } from '../../common/types';
 import { SCard, SCardTitle } from './_styled';
 
+const { Column } = Table;
+
 interface IProps {
-	price: IAcceptedPrice[];
-	reset: IAcceptedPrice[];
+	conversion: IConversion[];
 }
 
 export default class HistoryCard extends React.PureComponent<IProps> {
 	public render() {
 		return (
 			<SCard
-			title={<SCardTitle>TRANSFER</SCardTitle>}
+				title={<SCardTitle>CONVERSION HISTORY</SCardTitle>}
 				width="630px"
 				margin="0 0 0 10px"
 			>
-				<SDivFlexCenter horizontal padding="0 10px">
-					<div
-						style={{
-							width: '100%',
-							height: 350,
-							display: 'flex',
-							justifyContent: 'center',
-							alignItems: 'center',
-							marginTop: 10,
-							border: '1px dashed rgba(255,255,255,.1)'
+				<Table
+					showHeader={false}
+					dataSource={this.props.conversion.map((c, i) => ({
+						key: i,
+						conversion: JSON.stringify(c)
+					}))}
+					pagination={
+						{
+							showSizeChanger: true,
+							showQuickJumper: true,
+							showTotal: (total: number) => 'Total ' + total + ' Conversions',
+							pageSize: 10,
+							pageSizeOptions: ['10', '20', '50'],
+							size: 'small'
 						}}
-					>
-						<div
-							style={{
-								color: 'rgba(255,255,255,.7)',
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'center',
-								alignItems: 'center'
-							}}
-						>
-							<img
-								src={img}
-								style={{ width: 100, height: 100, marginBottom: 20, opacity: 0.9 }}
-							/>
-							<span> Graph Under Development </span>
-						</div>
-					</div>
-				</SDivFlexCenter>
+				>
+					<Column title="conversion" dataIndex="conversion" key="conversion" />
+				</Table>
 			</SCard>
 		);
 	}
