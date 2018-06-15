@@ -73,7 +73,12 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		});
 	};
 
-	private handleTypeChange = () => this.setState({ isCreate: !this.state.isCreate });
+	private handleTypeChange = () => this.setState({
+		isCreate: !this.state.isCreate,
+		amount: '',
+		amountError: '',
+		description: ''
+	});
 
 	private handleAmountChange = (value: string) =>
 		this.setState({
@@ -81,39 +86,48 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number'
 		});
 
-	private handleAmountBlur = (limit: number) => {
+	private handleAmountButton = (amount: string) =>
+		this.setState({
+			amount: amount,
+			description: this.getDescription(amount)
+		});
+
+	private getDescription = (amount: string) => {
 		const { states, reset } = this.props;
-		const { amountError, isCreate } = this.state;
-		const amount =
-			!amountError && Number(this.state.amount) > limit ? limit + '' : this.state.amount;
-		const description = !Number(amount)
+		const { isCreate } = this.state;
+		return !Number(amount)
 			? ''
 			: isCreate
 				? 'Create ' +
 				d3.formatPrefix(',.8', 1)(
 						(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) /
 							2
-					) +
-					' Token A/B from ' +
-					d3.formatPrefix(',.8', 1)(Number(amount) * (1 - states.commissionRate)) +
-					' ' +
-					CST.TH_ETH
+				) +
+				' Token A/B from ' +
+				d3.formatPrefix(',.8', 1)(Number(amount) * (1 - states.commissionRate)) +
+				' ' +
+				CST.TH_ETH
 				: 'Redeem ' +
 				d3.formatPrefix(',.8', 1)(
 						(Number(amount) / reset.price / states.beta) *
 							2 *
 							(1 - states.commissionRate)
-					) +
-					' ' +
-					CST.TH_ETH +
-					' from ' +
-					d3.formatPrefix(',.8', 1)(Number(amount)) +
-					' Token A/B';
-		console.log('description');
-		console.log(description);
+				) +
+				' ' +
+				CST.TH_ETH +
+				' from ' +
+				d3.formatPrefix(',.8', 1)(Number(amount)) +
+				' Token A/B';
+	};
+
+	private handleAmountBlur = (limit: number) => {
+		const amount =
+			!this.state.amountError && Number(this.state.amount) > limit
+				? limit + ''
+				: this.state.amount;
 		this.setState({
 			amount: amount,
-			description: description
+			description: this.getDescription(amount)
 		});
 	};
 
@@ -123,6 +137,12 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		if (isCreate) contractUtil.create(account, Number(amount), ethFee);
 		else contractUtil.redeem(account, Number(amount), Number(amount), ethFee);
 	};
+
+	private handleClear = () => this.setState({
+		amount: '',
+		amountError: '',
+		description: ''
+	});
 
 	public render() {
 		const { states, reset } = this.props;
@@ -185,10 +205,9 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 												<button
 													key={pct + ''}
 													className="percent-button"
-													onClick={() => {
-														this.handleAmountChange(limit * pct + '');
-														this.handleAmountBlur(limit);
-													}}
+													onClick={() =>
+														this.handleAmountButton(limit * pct + '')
+													}
 												>
 													{pct * 100 + '%'}
 												</button>
@@ -231,7 +250,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 							</button>
 							<button
 								className="form-button"
-								onClick={() => this.handleAmountChange('')}
+								onClick={() => this.handleClear()}
 							>
 								{CST.TH_CLEAR}
 							</button>
