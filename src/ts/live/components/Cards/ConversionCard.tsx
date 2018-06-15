@@ -90,18 +90,20 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			? ''
 			: isCreate
 				? 'Create ' +
-				(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) / 2 +
-				' Token A/B from ' +
-				Number(amount) * (1 - states.commissionRate) +
-				' ' +
-				CST.TH_ETH
+					d3.formatPrefix(',.8', 1)((Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) / 2) +
+					' Token A/B from ' +
+					d3.formatPrefix(',.8', 1)(Number(amount) * (1 - states.commissionRate)) +
+					' ' +
+					CST.TH_ETH
 				: 'Redeem ' +
-				(Number(amount) / reset.price / states.beta) * 2 * (1 - states.commissionRate) +
-				' ' +
-				CST.TH_ETH +
-				' from ' +
-				Number(amount) +
-				' Token A/B';
+					d3.formatPrefix(',.8', 1)((Number(amount) / reset.price / states.beta) * 2 * (1 - states.commissionRate)) +
+					' ' +
+					CST.TH_ETH +
+					' from ' +
+					d3.formatPrefix(',.8', 1)(Number(amount)) +
+					' Token A/B';
+		console.log('description');
+		console.log(description);
 		this.setState({
 			amount: amount,
 			description: description
@@ -211,7 +213,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 								</ul>
 							</div>
 						</SCardList>
-						<SDivFlexCenter horizontal width="100%" padding="0">
+						<SDivFlexCenter horizontal width="100%" padding="0" marginBottom='10px'>
 							<button
 								className="form-button"
 								disabled={!amount || !!amountError}

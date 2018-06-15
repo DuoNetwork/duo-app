@@ -481,11 +481,13 @@ export const SCardList = styled.div`
 		}
 		.description {
 			width: 100%;
+			height: 21px;
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			color: ${ColorStyles.TextWhiteAlphaL};
 			margin-bottom: 5px;
+			font-size: 12px;
 			img {
 				width: 10px;
 				height: 10px;
@@ -516,7 +518,7 @@ export const SCardListProgressBar = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	.bar-bg {
-		width: 225px;
+		width: 285px;
 		height: 12px;
 		background: ${ColorStyles.CardBackgroundSolid};
 		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.6);
@@ -529,7 +531,7 @@ export const SCardListProgressBar = styled.div`
 		.inner-bar {
 			position: relative;
 			width: ${(props: ICardListProgressBarProps) =>
-				(219 * props.index) / props.total + 'px'};
+				(273 * props.index) / props.total + 6 + 'px'};
 			height: 6px;
 			background: ${ColorStyles.TextWhiteAlphaLL};
 			box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
@@ -649,6 +651,9 @@ export const SCardTransactionForm = styled.div`
 		color: ${ColorStyles.TextWhiteAlpha} !important;
 		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
 	}
+	.wild {
+		width: 175px !important;
+	}
 	.form-button {
 		outline: none;
 		cursor: pointer;
@@ -695,5 +700,8 @@ export const SInput = styled.input`
 	}
 	&::placeholder {
 		color: ${ColorStyles.TextWhiteAlphaLLL};
+	}
+	&.input-error {
+		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 86, 86, 0.2) !important;
 	}
 `;

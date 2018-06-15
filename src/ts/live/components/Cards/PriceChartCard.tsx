@@ -18,7 +18,7 @@ export default class InfoCard extends React.PureComponent<IProps> {
 		return (
 			<SCard
 				title={<CardTitleSelect name="FIXING" onSelect={value => alert(value)} />}
-				width="630px"
+				width="840px"
 				margin="0 10px 0 0"
 			>
 				<SDivFlexCenter horizontal padding="0 10px">

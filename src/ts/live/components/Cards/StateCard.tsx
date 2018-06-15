@@ -24,8 +24,8 @@ export default class StateCard extends React.PureComponent<IProps> {
 		return (
 			<SCard
 				title={<SCardTitle>CONTRACT MONITOR</SCardTitle>}
-				width="360px"
-				margin="0 10px 0 0"
+				width="420px"
+				margin="0 0 0 10px"
 				extra={
 					<SCardExtraDivSolid>
 						<Tooltip title={tooltioText}>
