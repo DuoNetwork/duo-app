@@ -145,6 +145,12 @@ export default class StateCard extends React.PureComponent<IProps> {
 										{d3.format(',.2f')(states.balance - states.feeAccumulated)}
 									</span>
 								</li>
+								<li>
+									<span className="title">Total Users</span>
+									<span className="content">
+										{states.usersLength}
+									</span>
+								</li>
 							</ul>
 						</div>
 					</SCardList>
