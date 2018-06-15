@@ -56,6 +56,8 @@ export class DynamoUtil {
 	public parseAcceptedPrice(acceptPrice: QueryOutput): IAcceptedPrice[] {
 		if (!acceptPrice.Items || !acceptPrice.Items.length) return [];
 		return acceptPrice.Items.map(p => ({
+			transactionHash: p[CST.DB_EV_TX_HASH].S || '',
+			blockNumber: Number(p[CST.DB_EV_BLOCK_NO].N),
 			price: contractUtil.fromWei(p[CST.DB_EV_PX].S || ''),
 			navA: contractUtil.fromWei(p[CST.DB_EV_NAV_A].S || ''),
 			navB: contractUtil.fromWei(p[CST.DB_EV_NAV_B].S || ''),
@@ -84,6 +86,8 @@ export class DynamoUtil {
 	public parseTotalSupply(totalSupply: QueryOutput): ITotalSupply[] {
 		if (!totalSupply.Items || !totalSupply.Items.length) return [];
 		return totalSupply.Items.map(t => ({
+			transactionHash: t[CST.DB_EV_TX_HASH].S || '',
+			blockNumber: Number(t[CST.DB_EV_BLOCK_NO].N),
 			tokenA: contractUtil.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
 			tokenB: contractUtil.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
 			timestamp: Number((t[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0])
@@ -115,18 +119,15 @@ export class DynamoUtil {
 
 	public parseConversion(conversion: QueryOutput): IConversion[] {
 		if (!conversion.Items || !conversion.Items.length) return [];
-		return conversion.Items.map(c => {
-			const eventKey = c[CST.DB_EV_KEY].S || '';
-			const type = eventKey.split('|')[0];
-
-			return {
-				type: type,
-				timestamp: Number((c[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
-				eth: contractUtil.fromWei(c[CST.DB_EV_ETH].S || ''),
-				tokenA: contractUtil.fromWei(c[CST.DB_EV_TOKEN_A].S || ''),
-				tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || '')
-			};
-		});
+		return conversion.Items.map(c => ({
+			transactionHash: c[CST.DB_EV_TX_HASH].S || '',
+			blockNumber: Number(c[CST.DB_EV_BLOCK_NO].N),
+			type: (c[CST.DB_EV_KEY].S || '').split('|')[0],
+			timestamp: Number((c[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
+			eth: contractUtil.fromWei(c[CST.DB_EV_ETH].S || ''),
+			tokenA: contractUtil.fromWei(c[CST.DB_EV_TOKEN_A].S || ''),
+			tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || '')
+		}));
 	}
 
 	public async queryHourlyOHLC(source: string, dates: string[]) {

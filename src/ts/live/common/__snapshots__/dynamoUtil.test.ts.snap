@@ -28,82 +28,108 @@ Object {
 exports[`parseAcceptedPrices 1`] = `
 Array [
   Object {
+    "blockNumber": 7601869,
     "navA": 1.000001,
     "navB": 0.949601708438353,
     "price": 389.9205416876706,
     "timestamp": 1528343400000,
+    "transactionHash": "0xe812d2ee1082ffb061de4d35c2502619deb2c6eaebf46a0e6db4b565637c50e0",
   },
   Object {
+    "blockNumber": 7601915,
     "navA": 1.000003,
     "navB": 0.938672570476648,
     "price": 387.7351140953296,
     "timestamp": 1528344000000,
+    "transactionHash": "0xccce0d1576ae3f457874f26723423d53ae16445337fd517c4c728c51b824a94a",
   },
   Object {
+    "blockNumber": 7601935,
     "navA": 1.000004,
     "navB": 0.999996,
     "price": 400,
     "timestamp": 1528344300000,
+    "transactionHash": "0x34c9453da01ec0ab7f8825139098818fe6c513978a374b96fa144e283479be8a",
   },
   Object {
+    "blockNumber": 7601956,
     "navA": 1.000005,
     "navB": 1.0362576435131814,
     "price": 407.2525287026363,
     "timestamp": 1528344600000,
+    "transactionHash": "0x7c1f78550d25cc5778d89259f79f36c784817b71f0927149cd84401c048c127a",
   },
   Object {
+    "blockNumber": 7601998,
     "navA": 1.000007,
     "navB": 0.8646313948688895,
     "price": 372.9276789737779,
     "timestamp": 1528345200000,
+    "transactionHash": "0x013ef5ff185b02e542e7a8c09e6fc58f4f1c8a4f9a24aceb7cad055ac57deda4",
   },
   Object {
+    "blockNumber": 7602043,
     "navA": 1.000009,
     "navB": 0.4784446453151695,
     "price": 295.6907290630339,
     "timestamp": 1528345800000,
+    "transactionHash": "0xaed8a268e55ccf2595f95f3ea2d00e646e0284e48ad759dc3317ae8b1d0e3b3e",
   },
   Object {
+    "blockNumber": 7602063,
     "navA": 1.00001,
     "navB": 0.4819307128520117,
     "price": 296.38814257040235,
     "timestamp": 1528346101000,
+    "transactionHash": "0xe04125ebf7bb79cf218e210faa78c056b45707cc0154aa832ce6abca694f5e69",
   },
   Object {
+    "blockNumber": 7602106,
     "navA": 1.000012,
     "navB": 1.606986604155561,
     "price": 521.3997208311122,
     "timestamp": 1528346700000,
+    "transactionHash": "0x313f0e11df309085907e0a4f0f29e829609f9a1f751fbb5d6255f12bbe33aa67",
   },
   Object {
+    "blockNumber": 7602152,
     "navA": 1.000002,
     "navB": 1.105578230324389,
     "price": 548.9244721393227,
     "timestamp": 1528347300000,
+    "transactionHash": "0xaec53bf77f6f86a4461d194e0de8bc5383903659c5d72d04761b0faf92310bf6",
   },
   Object {
+    "blockNumber": 7602197,
     "navA": 1.000004,
     "navB": 1.8448075656164837,
     "price": 741.6419780647769,
     "timestamp": 1528347900000,
+    "transactionHash": "0xbe9d7aa7d4cbc4d97f8b195be4bd49d35801838810d426a40269fedd73f64eeb",
   },
   Object {
+    "blockNumber": 7602243,
     "navA": 1.000002,
     "navB": 0.29116715065849263,
     "price": 478.7926214552912,
     "timestamp": 1528348500000,
+    "transactionHash": "0x8cf6f44ea14f7b9f607f537350d9b9a14eddbb5870374fb092ab4ceac77286be",
   },
   Object {
+    "blockNumber": 7602292,
     "navA": 1.000004,
     "navB": 0.3899275715869432,
     "price": 515.4158000632123,
     "timestamp": 1528349100000,
+    "transactionHash": "0xa0f9df566449bae13f3a6352c44bb997cb5a39b915b53c2444afead01242b0ab",
   },
   Object {
+    "blockNumber": 7602337,
     "navA": 1.000006,
     "navB": 0.38844475186617855,
     "price": 514.8666810297797,
     "timestamp": 1528349700000,
+    "transactionHash": "0xcc22ca3c12077a5b83a55028c993186b6b78b23434d318653e0a63894eb64bf9",
   },
 ]
 `;
@@ -111,10 +137,12 @@ Array [
 exports[`parseConversion 1`] = `
 Array [
   Object {
+    "blockNumber": 7651379,
     "eth": 0.013774,
     "timestamp": 1528870196000,
     "tokenA": 1.3478846455723272,
     "tokenB": 1.3478846455723272,
+    "transactionHash": "0x0d777e0d33f81e592e209d549423ad7a1c32531f689584fa3710dd770d9f5796",
     "type": "Create",
   },
 ]
@@ -306,14 +334,18 @@ Array [
 exports[`parseTotalSupply 1`] = `
 Array [
   Object {
+    "blockNumber": 7650502,
     "timestamp": 1528862200000,
     "tokenA": 0,
     "tokenB": 0,
+    "transactionHash": "0xd7c9bf35f925a8353032cfe1178439617997d6e27484465d393de3d38f8331ab",
   },
   Object {
+    "blockNumber": 7651095,
     "timestamp": 1528867600000,
     "tokenA": 0,
     "tokenB": 0,
+    "transactionHash": "0xe35137d392e20dd2025cd996de73a271ebcea23128a89f7f423b326ce20893e5",
   },
 ]
 `;

@@ -91,22 +91,25 @@ export interface ISourceData<T> {
 	gdax: T;
 }
 
-export interface IAcceptedPrice {
+export interface IBaseEvent {
+	timestamp: number;
+	transactionHash: string;
+	blockNumber: number;
+}
+
+export interface IAcceptedPrice extends IBaseEvent {
 	price: number;
 	navA: number;
 	navB: number;
-	timestamp: number;
 }
 
-export interface ITotalSupply {
+export interface ITotalSupply extends IBaseEvent {
 	tokenA: number,
 	tokenB: number
-	timestamp: number;
 }
 
-export interface IConversion {
+export interface IConversion extends IBaseEvent {
 	type: string;
-	timestamp: number;
 	eth: number;
 	tokenA: number;
 	tokenB: number;
