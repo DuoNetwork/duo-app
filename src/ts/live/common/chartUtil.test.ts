@@ -120,28 +120,36 @@ const acceptedPrice1 = {
 	price: 123,
 	navA: 1,
 	navB: 1,
-	timestamp: 1000
+	timestamp: 1000,
+	blockNumber: 111,
+	transactionHash: 'aaa'
 };
 
 const acceptedPrice2 = {
 	price: 123,
 	navA: 1,
 	navB: 2,
-	timestamp: 2000
+	timestamp: 2000,
+	blockNumber: 222,
+	transactionHash: 'bbb'
 };
 
 const acceptedPrice3 = {
 	price: 123,
 	navA: 1,
 	navB: 0.25,
-	timestamp: 3000
+	timestamp: 3000,
+	blockNumber: 333,
+	transactionHash: 'ccc'
 };
 
 const acceptedPrice4 = {
 	price: 123,
 	navA: 1.1,
 	navB: 1,
-	timestamp: 4000
+	timestamp: 4000,
+	blockNumber: 444,
+	transactionHash: 'ddd'
 };
 
 const reset = chartUtil.reset(
@@ -310,7 +318,9 @@ test('merge last price to accepted price correctly', () => {
 const totalSupply = {
 	tokenA: 123,
 	tokenB: 456,
-	timestamp: 1234567890
+	timestamp: 1234567890,
+	blockNumber: 111,
+	transactionHash: 'abc'
 };
 
 test('merge total supply correctly', () => {

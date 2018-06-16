@@ -56,7 +56,9 @@ class ChartUtil {
 				price: p.price,
 				navA: 1,
 				navB: 1,
-				timestamp: p.timestamp + 717
+				timestamp: p.timestamp + 717,
+				blockNumber: p.blockNumber,
+				transactionHash: p.transactionHash
 			}));
 	}
 
@@ -128,17 +130,21 @@ class ChartUtil {
 				price: last.price,
 				navA: states.navA,
 				navB: states.navB,
-				timestamp: last.timestamp
+				timestamp: last.timestamp,
+				blockNumber: 0,
+				transactionHash: ''
 			});
 	}
 
-	public mergeTotalSupply(totalSupply: ITotalSupply[], states: ICustodianStates) {
+	public mergeTotalSupply(totalSupply: ITotalSupply[], states: ICustodianStates): ITotalSupply[] {
 		const all = [
 			...totalSupply,
 			{
 				tokenA: states.totalSupplyA,
 				tokenB: states.totalSupplyB,
-				timestamp: util.getNowTimestamp()
+				timestamp: util.getNowTimestamp(),
+				blockNumber: 0,
+				transactionHash: ''
 			}
 		];
 		all.sort((a, b) => a.timestamp - b.timestamp);

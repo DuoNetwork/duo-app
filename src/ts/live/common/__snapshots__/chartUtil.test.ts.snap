@@ -3,22 +3,28 @@
 exports[`find reset points correctly 1`] = `
 Array [
   Object {
+    "blockNumber": 222,
     "navA": 1,
     "navB": 1,
     "price": 123,
     "timestamp": 2717,
+    "transactionHash": "bbb",
   },
   Object {
+    "blockNumber": 333,
     "navA": 1,
     "navB": 1,
     "price": 123,
     "timestamp": 3717,
+    "transactionHash": "ccc",
   },
   Object {
+    "blockNumber": 444,
     "navA": 1,
     "navB": 1,
     "price": 123,
     "timestamp": 4717,
+    "transactionHash": "ddd",
   },
 ]
 `;
@@ -85,10 +91,12 @@ Object {
 
 exports[`merge last price to accepted price correctly 1`] = `
 Object {
+  "blockNumber": 0,
   "navA": 1.23,
   "navB": 1.45,
   "price": 620,
   "timestamp": 1528349820000,
+  "transactionHash": "",
 }
 `;
 
@@ -187,46 +195,60 @@ Array [
 exports[`merge reset correctly 1`] = `
 Array [
   Object {
+    "blockNumber": 111,
     "navA": 1,
     "navB": 1,
     "price": 123,
     "timestamp": 1000,
+    "transactionHash": "aaa",
   },
   Object {
+    "blockNumber": 222,
     "navA": 1,
     "navB": 2,
     "price": 123,
     "timestamp": 2000,
+    "transactionHash": "bbb",
   },
   Object {
+    "blockNumber": 222,
     "navA": 1,
     "navB": 1,
     "price": 123,
     "timestamp": 2717,
+    "transactionHash": "bbb",
   },
   Object {
+    "blockNumber": 333,
     "navA": 1,
     "navB": 0.25,
     "price": 123,
     "timestamp": 3000,
+    "transactionHash": "ccc",
   },
   Object {
+    "blockNumber": 333,
     "navA": 1,
     "navB": 1,
     "price": 123,
     "timestamp": 3717,
+    "transactionHash": "ccc",
   },
   Object {
+    "blockNumber": 444,
     "navA": 1.1,
     "navB": 1,
     "price": 123,
     "timestamp": 4000,
+    "transactionHash": "ddd",
   },
   Object {
+    "blockNumber": 444,
     "navA": 1,
     "navB": 1,
     "price": 123,
     "timestamp": 4717,
+    "transactionHash": "ddd",
   },
 ]
 `;
@@ -234,14 +256,18 @@ Array [
 exports[`merge total supply correctly 1`] = `
 Array [
   Object {
+    "blockNumber": 111,
     "timestamp": 1234567890,
     "tokenA": 123,
     "tokenB": 456,
+    "transactionHash": "abc",
   },
   Object {
+    "blockNumber": 0,
     "timestamp": 2345678901,
     "tokenA": 1234,
     "tokenB": 2345,
+    "transactionHash": "",
   },
 ]
 `;
