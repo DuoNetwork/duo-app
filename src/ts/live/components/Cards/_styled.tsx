@@ -686,6 +686,7 @@ injectGlobal([
 
 export const SCardTransactionForm = styled.div`
 	width: 100%;
+	margin-top: -10px;
 	.token-button {
 		outline: none;
 		cursor: pointer;
