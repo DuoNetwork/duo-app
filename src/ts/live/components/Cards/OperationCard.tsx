@@ -8,6 +8,7 @@ import demoRedeem from '../../../../images/redeemDemo.png';
 import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
 import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
+import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import Erc20Form from '../Forms/Erc20Form';
 import {
@@ -100,26 +101,18 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		return !Number(amount)
 			? 'Estimated outcome'
 			: isCreate
-				? 'Create ' +
-				d3.formatPrefix(',.8', 1)(
+				? util.getConversionDescription(
+						Number(amount) * (1 - states.commissionRate),
 						(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) /
-							2
-					) +
-					' Token A/B from ' +
-					d3.formatPrefix(',.8', 1)(Number(amount) * (1 - states.commissionRate)) +
-					' ' +
-					CST.TH_ETH
-				: 'Redeem ' +
-				d3.formatPrefix(',.8', 1)(
-						(Number(amount) / reset.price / states.beta) *
-							2 *
-							(1 - states.commissionRate)
-					) +
-					' ' +
-					CST.TH_ETH +
-					' from ' +
-					d3.formatPrefix(',.8', 1)(Number(amount)) +
-					' Token A/B';
+							2,
+						true
+				)
+				: util.getConversionDescription(
+						((2 * Number(amount)) / reset.price / states.beta) *
+							(1 - states.commissionRate),
+						Number(amount),
+						false
+				);
 	};
 
 	private handleAmountBlur = (limit: number) => {
