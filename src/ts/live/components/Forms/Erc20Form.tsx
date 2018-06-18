@@ -99,7 +99,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		const { token, address, amount, addressError, amountError } = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
 		const noTransferAddr = address === contractUtil.custodianAddr;
-		const tooltipText = 'Click to auto fill in custodian address, no TRANSFER is permitted to custodian address.'
+		const tooltipText = 'Click to auto fill in custodian address, TRANSFER is not permitted to custodian address.'
 		return (
 			<SCardTransactionForm>
 				<SCardList>
