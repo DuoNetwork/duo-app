@@ -4,7 +4,7 @@ import * as React from 'react';
 import img from '../../../../images/ud.png';
 import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
-import CardTitleSelect from '../Common/CardTitleSelect';
+import CardTitleComboSelect from '../Common/CardTitleComboSelect';
 import { SCard } from './_styled';
 
 interface IProps {
@@ -13,11 +13,11 @@ interface IProps {
 	prices: IAcceptedPrice[];
 }
 
-export default class InfoCard extends React.PureComponent<IProps> {
+export default class PriceChartCard extends React.PureComponent<IProps> {
 	public render() {
 		return (
 			<SCard
-				title={<CardTitleSelect name="FIXING" onSelect={value => alert(value)} />}
+				title={<CardTitleComboSelect name="FIXING" onSelect={value => alert(value)} />}
 				width="760px"
 				margin="0 10px 0 0"
 			>
