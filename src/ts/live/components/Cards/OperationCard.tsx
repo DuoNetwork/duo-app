@@ -7,6 +7,7 @@ import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
 import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
+import dynamoUtil from '../../common/dynamoUtil';
 import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
 import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
@@ -28,6 +29,7 @@ interface IProps {
 	states: ICustodianStates;
 	balances: IBalances;
 	account: string;
+	refresh: () => any;
 }
 
 interface IState {
@@ -96,23 +98,28 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		});
 
 	private getDescription = (amount: string) => {
-		const { states, reset } = this.props;
+		const { states } = this.props;
 		const { isCreate } = this.state;
-		return !Number(amount)
+		const amtNum = Number(amount);
+		return !amtNum
 			? 'Estimated outcome'
 			: isCreate
 				? util.getConversionDescription(
-						Number(amount) * (1 - states.commissionRate),
-						(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) /
-							2,
+						amtNum * (1 - states.commissionRate),
+						this.getABFromEth(amtNum),
 						true
-					)
-				: util.getConversionDescription(
-						((2 * Number(amount)) / reset.price / states.beta) *
-							(1 - states.commissionRate),
-						Number(amount),
-						false
-					);
+				)
+				: util.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false);
+	};
+
+	private getABFromEth = (amount: number) => {
+		const { states, reset } = this.props;
+		return (amount * (1 - states.commissionRate) * reset.price * states.beta) / 2;
+	};
+
+	private getEthFromAB = (amount: number) => {
+		const { states, reset } = this.props;
+		return ((2 * amount) / reset.price / states.beta) * (1 - states.commissionRate);
 	};
 
 	private handleAmountBlur = (limit: number) => {
@@ -127,10 +134,33 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 	};
 
 	private handleSubmit = () => {
-		const { account } = this.props;
+		const { account, states, refresh } = this.props;
 		const { isCreate, amount, ethFee } = this.state;
-		if (isCreate) contractUtil.create(account, Number(amount), ethFee);
-		else contractUtil.redeem(account, Number(amount), Number(amount), ethFee);
+		const amtNum = Number(amount);
+		if (isCreate)
+			contractUtil.create(account, amtNum, ethFee, (txHash: string) =>
+				dynamoUtil
+					.insertUIConversion(
+						account,
+						txHash,
+						true,
+						amtNum * (1 - states.commissionRate),
+						this.getABFromEth(amtNum)
+					)
+					.then(() => refresh())
+			);
+		else
+			contractUtil.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
+				dynamoUtil
+					.insertUIConversion(
+						account,
+						txHash,
+						false,
+						this.getEthFromAB(amtNum),
+						amtNum * (1 - states.commissionRate)
+					)
+					.then(() => refresh())
+			);
 		this.setState({
 			amount: '',
 			amountError: '',
@@ -147,7 +177,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 
 	public render() {
 		const { states, reset, account, balances } = this.props;
-		const { eth, tokenA, tokenB, allowance } = this.props.balances;
+		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = isCreate ? eth : Math.min(tokenA, tokenB);
 
@@ -156,7 +186,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 				? Number(amount) * states.commissionRate
 				: (Number(amount) / reset.price / states.beta) * 2 * states.commissionRate) *
 			(ethFee ? 1 : states.ethDuoFeeRatio);
-		const duoInsuffient = ethFee ? false : fee < allowance;
+		const duoIsSuffient = ethFee ? true : fee < allowance || fee < duo;
 
 		const tooltipText = 'Estimated outcome may vary from actual result';
 		return (
@@ -261,7 +291,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 											padding="0"
 											marginTop="10px"
 										>
-											{!duoInsuffient ? (
+											{!duoIsSuffient ? (
 												<Popconfirm
 													title="Insufficient DUO Allowance balance, transaction may fail"
 													onConfirm={this.handleSubmit}

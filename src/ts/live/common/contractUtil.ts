@@ -213,7 +213,7 @@ class ContractUtil {
 		return this.web3.utils.checkAddressChecksum(addr);
 	}
 
-	public create(address: string, value: number, payFeeInEth: boolean) {
+	public create(address: string, value: number, payFeeInEth: boolean, onTxHash: (hash: string) => any) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
 		return this.custodian.methods
@@ -222,10 +222,10 @@ class ContractUtil {
 				from: address,
 				value: this.toWei(value)
 			})
-			.on('transactionHash', hash => console.log(hash));
+			.on('transactionHash', onTxHash);
 	}
 
-	public redeem(address: string, amtA: number, amtB: number, payFeeInEth: boolean) {
+	public redeem(address: string, amtA: number, amtB: number, payFeeInEth: boolean, onTxHash: (hash: string) => any) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
 		return this.custodian.methods
@@ -233,7 +233,7 @@ class ContractUtil {
 			.send({
 				from: address
 			})
-			.on('transactionHash', hash => console.log(hash));
+			.on('transactionHash', onTxHash);
 	}
 
 	public duoApprove(address: string, spender: string, value: number) {

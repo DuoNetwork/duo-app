@@ -24,12 +24,14 @@ interface IProps {
 	network: number;
 	account: string;
 	sourceLast: ISourceData<ICustodianPrice>;
-	conversion: IConversion[]
+	conversion: IConversion[],
+	uiConversion: IConversion[],
+	refresh: () => any
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const { states, prices, balances, network, account, sourceLast, conversion } = this.props;
+		const { states, prices, balances, network, account, sourceLast, conversion, refresh, uiConversion } = this.props;
 		return (
 			<Layout>
 				<Header network={network} />
@@ -48,12 +50,13 @@ export default class Duo extends React.PureComponent<IProps> {
 						<BalanceCard account={account} balances={balances} states={states} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<ConversionCard conversion={conversion}/>
+						<ConversionCard conversion={conversion} uiConversion={uiConversion}/>
 						<OperationCard
 							reset={prices.reset}
 							states={states}
 							balances={balances}
 							account={account}
+							refresh={refresh}
 						/>
 					</SDivFlexCenter>
 				</SContent>

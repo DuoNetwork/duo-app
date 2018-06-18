@@ -11,14 +11,13 @@ const { Column } = Table;
 
 interface IProps {
 	conversion: IConversion[];
+	uiConversion: IConversion[];
 }
 
 export default class ConversionCard extends React.PureComponent<IProps> {
-	public render() {
-		const data = this.props.conversion.map((c, i) => ({
-			key: i,
-			[CST.TH_TIME]: moment.utc(c.timestamp).format('YYYY-MM-DD HH:mm:ss'),
-			[CST.TH_STATUS]: CST.TH_CONFIRMED,
+	private formatData(conversion: IConversion) {
+		return {
+			[CST.TH_TIME]: moment.utc(conversion.timestamp).format('YYYY-MM-DD HH:mm:ss'),
 			[CST.TH_DESCRIPTION]: (
 				<a
 					className="tag-content"
@@ -26,15 +25,33 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 						'https://' +
 						(__KOVAN__ ? 'kovan.' : '') +
 						'etherscan.io/tx/' +
-						c.transactionHash
+						conversion.transactionHash
 					}
 					target="_blank"
 				>
-					{util.getConversionDescription(c.eth, c.tokenA, c.type === CST.EVENT_CREATE)}
+					{util.getConversionDescription(
+						conversion.eth,
+						conversion.tokenA,
+						conversion.type === CST.EVENT_CREATE
+					)}
 				</a>
 			)
+		};
+	}
+	public render() {
+		const { conversion, uiConversion } = this.props;
+		const pending = uiConversion.map(c => ({
+			key: c.transactionHash,
+			[CST.TH_STATUS]: CST.TH_PENDING,
+			...this.formatData(c)
 		}));
-		data.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
+		pending.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
+		const confirmed = conversion.map(c => ({
+			key: c.transactionHash,
+			[CST.TH_STATUS]: CST.TH_CONFIRMED,
+			...this.formatData(c)
+		}));
+		confirmed.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
 		return (
 			<SCard
 				title={<SCardTitle>{CST.TH_CONVERSION.toUpperCase()}</SCardTitle>}
@@ -42,7 +59,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 				margin="0 10px 0 0"
 			>
 				<Table
-					dataSource={data}
+					dataSource={[...pending, ...confirmed]}
 					pagination={{
 						showSizeChanger: true,
 						showQuickJumper: true,

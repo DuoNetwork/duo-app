@@ -25,6 +25,52 @@ Object {
 }
 `;
 
+exports[`insertUIConversion 1`] = `
+Object {
+  "Item": Object {
+    "ab": Object {
+      "N": "456",
+    },
+    "eth": Object {
+      "N": "123",
+    },
+    "eventKey": Object {
+      "S": "Create|0x0",
+    },
+    "systime": Object {
+      "N": "1234567890",
+    },
+    "transactionHash": Object {
+      "S": "0x123",
+    },
+  },
+  "TableName": "uiEvents_dev",
+}
+`;
+
+exports[`insertUIConversion 2`] = `
+Object {
+  "Item": Object {
+    "ab": Object {
+      "N": "456",
+    },
+    "eth": Object {
+      "N": "123",
+    },
+    "eventKey": Object {
+      "S": "Redeem|0x0",
+    },
+    "systime": Object {
+      "N": "1234567890",
+    },
+    "transactionHash": Object {
+      "S": "0x123",
+    },
+  },
+  "TableName": "uiEvents_dev",
+}
+`;
+
 exports[`parseAcceptedPrices 1`] = `
 Array [
   Object {
@@ -350,48 +396,204 @@ Array [
 ]
 `;
 
-exports[`parseUIConversionToDynamo 1`] = `
+exports[`parseUIConversion 1`] = `
+Array [
+  Object {
+    "blockNumber": 0,
+    "eth": 0.21704519241528358,
+    "timestamp": 1529317121530,
+    "tokenA": 36.9599025612444,
+    "tokenB": 36.9599025612444,
+    "transactionHash": "0x8e59dff2458a76b2ba0a9e11413e603cddc227d663a8bf7b45e0241f3896424d",
+    "type": "Create",
+  },
+]
+`;
+
+exports[`parseUIConversion 2`] = `
+Array [
+  Object {
+    "blockNumber": 0,
+    "eth": 0.20051663085602844,
+    "timestamp": 1529317783500,
+    "tokenA": 34.14530889109876,
+    "tokenB": 34.14530889109876,
+    "transactionHash": "0x94ea38c42188eaacfa75ad0a091866b46f4c75993d33c94c8cc22822433ca244",
+    "type": "Redeem",
+  },
+]
+`;
+
+exports[`queryAcceptPriceEvent 1`] = `
 Object {
-  "Item": Object {
-    "ab": Object {
-      "N": "456",
-    },
-    "eth": Object {
-      "N": "123",
-    },
-    "eventKey": Object {
-      "S": "Create|0x0",
-    },
-    "systime": Object {
-      "N": "1234567890",
-    },
-    "transactionHash": Object {
-      "S": "0x123",
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "AcceptPrice|date1",
     },
   },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryAcceptPriceEvent 2`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "AcceptPrice|date2",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryConversionEvent 1`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "Create|date1|0x0",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryConversionEvent 2`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "Redeem|date1|0x0",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryConversionEvent 3`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "Create|date2|0x0",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryConversionEvent 4`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "Redeem|date2|0x0",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryHourlyOHLC 1`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":sourceDate": Object {
+      "S": "src|date1",
+    },
+  },
+  "KeyConditionExpression": "sourceDate = :sourceDate",
+  "TableName": "hourly_dev",
+}
+`;
+
+exports[`queryHourlyOHLC 2`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":sourceDate": Object {
+      "S": "src|date2",
+    },
+  },
+  "KeyConditionExpression": "sourceDate = :sourceDate",
+  "TableName": "hourly_dev",
+}
+`;
+
+exports[`queryMinutelyOHLC 1`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":sourceDateHour": Object {
+      "S": "src|date1",
+    },
+  },
+  "KeyConditionExpression": "sourceDateHour = :sourceDateHour",
+  "TableName": "minutely_dev",
+}
+`;
+
+exports[`queryMinutelyOHLC 2`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":sourceDateHour": Object {
+      "S": "src|date2",
+    },
+  },
+  "KeyConditionExpression": "sourceDateHour = :sourceDateHour",
+  "TableName": "minutely_dev",
+}
+`;
+
+exports[`queryTotalSupplyEvent 1`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "TotalSupply|date1",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryTotalSupplyEvent 2`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "TotalSupply|date2",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
+  "TableName": "events_dev",
+}
+`;
+
+exports[`queryUIConversionEvent 1`] = `
+Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
+      "S": "Create|0x0",
+    },
+  },
+  "KeyConditionExpression": "eventKey = :eventKey",
   "TableName": "uiEvents_dev",
 }
 `;
 
-exports[`parseUIConversionToDynamo 2`] = `
+exports[`queryUIConversionEvent 2`] = `
 Object {
-  "Item": Object {
-    "ab": Object {
-      "N": "456",
-    },
-    "eth": Object {
-      "N": "123",
-    },
-    "eventKey": Object {
+  "ExpressionAttributeValues": Object {
+    ":eventKey": Object {
       "S": "Redeem|0x0",
     },
-    "systime": Object {
-      "N": "1234567890",
-    },
-    "transactionHash": Object {
-      "S": "0x123",
-    },
   },
+  "KeyConditionExpression": "eventKey = :eventKey",
   "TableName": "uiEvents_dev",
+}
+`;
+
+exports[`scanStatus 1`] = `
+Object {
+  "TableName": "status_dev",
 }
 `;
