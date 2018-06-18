@@ -110,7 +110,7 @@ injectGlobal([
 
 export const SCardPriceTag = styled.div`
 	height: 100px;
-	width: 160px;
+	width: 155px;
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -224,7 +224,7 @@ export interface ICardAssetTagProps {
 
 export const SCardAssetTag = styled.div`
 	height: 100px;
-	width: 150px;
+	width: 140px;
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -257,7 +257,7 @@ export const SCardAssetTag = styled.div`
 		margin: 0;
 	}
 	.tag-content {
-		width: 150px;
+		width: 140px;
 		margin-left: 15px;
 		margin-top: 15px;
 	}

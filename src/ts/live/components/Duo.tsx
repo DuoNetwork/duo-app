@@ -9,7 +9,6 @@ import {
 	ICustodianStates,
 	ISourceData
 } from '../common/types';
-//import NavChartCard from '../containers/Cards/NavChartCardContainer';
 import PriceChartCard from '../containers/Cards/PriceChartCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
@@ -38,7 +37,6 @@ export default class Duo extends React.PureComponent<IProps> {
 				<SContent>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<PriceChartCard />
-						{/*<NavChartCard />*/}
 						<StateCard states={states} reset={prices.reset} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">

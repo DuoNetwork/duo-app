@@ -113,7 +113,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							: 'Loading Prices'}
 					</SCardExtraDiv>
 				}
-				width="570px"
+				width="540px"
 				margin="0 10px 0 0"
 			>
 				<SDivFlexCenter horizontal padding="0 10px">

@@ -67,7 +67,7 @@ export default class BalanceCard extends React.Component<IProps> {
 		return (
 			<SCard
 				title={<SCardTitle>BALANCE</SCardTitle>}
-				width="690px"
+				width="640px"
 				margin="0 0 0 10px"
 				extra={<ExtendExtraDiv account={account ? account : 'Unknown'} />}
 			>

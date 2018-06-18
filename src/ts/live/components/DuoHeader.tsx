@@ -12,7 +12,7 @@ export default class Header extends React.PureComponent<IProps> {
 		const { network } = this.props;
 		return (
 			<SHeader>
-				<SDivFlexCenter horizontal width="1280px">
+				<SDivFlexCenter horizontal width="1200px">
 					<div className="icon-wrapper">
 						<img src={duoIcon} />
 					</div>
