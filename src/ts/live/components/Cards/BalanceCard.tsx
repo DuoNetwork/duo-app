@@ -49,13 +49,13 @@ const BalanceInfo = (props: {
 	);
 };
 
-const ExtendExtraDiv = (props: { account: string }) => {
-	const { account } = props;
+const ExtendExtraDiv = (props: { accountShow: string, account: string }) => {
+	const { account, accountShow } = props;
 	return (
-		<SCardExtendExtraDiv color={account === 'Unknown' ? ColorStyles.TextRedAlpha : undefined}>
+		<SCardExtendExtraDiv color={accountShow === 'Unknown' ? ColorStyles.TextRedAlpha : undefined}>
 			<div className="extend-extra-wrapper">
 				<div className="tag-title">Address</div>
-				<div className="tag-content">{account}</div>
+				<a className="tag-content" href={'https://kovan.etherscan.io' + (account ? ('/address/' + account) : '')} target='_blank'>{accountShow}</a>
 			</div>
 		</SCardExtendExtraDiv>
 	);
@@ -69,7 +69,7 @@ export default class BalanceCard extends React.Component<IProps> {
 				title={<SCardTitle>BALANCE</SCardTitle>}
 				width="640px"
 				margin="0 0 0 10px"
-				extra={<ExtendExtraDiv account={account ? account : 'Unknown'} />}
+				extra={<ExtendExtraDiv accountShow={account ? account : 'Unknown'} account={account} />}
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
 					<BalanceInfo icon={ethIcon} name={CST.TH_ETH} value={balances.eth} />

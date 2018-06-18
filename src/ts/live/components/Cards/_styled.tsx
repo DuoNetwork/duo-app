@@ -335,13 +335,14 @@ export const SCardExtendExtraDiv = styled.div`
 		display: flex;
 		flex-direction: row;
 		.tag-content {
+			text-decoration: none;
 			color: ${(props: ICardExtraProps) =>
 				props.color ? props.color : ColorStyles.TextWhiteAlphaL};
 			overflow: hidden;
 			display: flex;
 			flex-direction: row-reverse;
 			margin-left: 8px;
-			max-width: 41px;
+			max-width: 42px;
 			transition: max-width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
 			-webkit-transition: max-width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
 		}
