@@ -99,14 +99,14 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		const { token, address, amount, addressError, amountError } = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
 		const noTransferAddr = address === contractUtil.custodianAddr;
-		const tooltipText = 'Click to auto fill in custodian address, TRANSFER is not permitted to custodian address.'
+		const tooltipText = 'Click to auto fill in custodian address. Transfer to custodian address is disabled.'
 		return (
 			<SCardTransactionForm>
 				<SCardList>
 					<div className="status-list-wrapper">
 						<ul>
 							<li className="block-title">
-								<span>ERC20</span>
+								<span>{CST.TH_ERC20}</span>
 								<SDivFlexCenter horizontal width="200px">
 									{[CST.TH_DUO, CST.TH_TOKEN_A, CST.TH_TOKEN_B].map(tk => (
 										<button

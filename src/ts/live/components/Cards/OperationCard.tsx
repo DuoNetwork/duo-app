@@ -155,13 +155,13 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		const tooltipText = 'Estimated outcome may vary from actual result';
 		return (
 			<Affix offsetTop={20}>
-				<SCard title={<SCardTitle>OPERATION</SCardTitle>} width="440px" margin="0 0 0 10px">
+				<SCard title={<SCardTitle>{CST.TH_OPERATION.toUpperCase()}</SCardTitle>} width="440px" margin="0 0 0 10px">
 					<SCardConversionForm>
 						<SCardList>
 							<div className="status-list-wrapper">
 								<ul>
 									<li className="block-title">
-										<span>Conversion</span>
+										<span>{CST.TH_CONVERSION}</span>
 										<RadioExtraDiv
 											onChange={this.handleFeeTypeChange}
 											eth={ethFee}

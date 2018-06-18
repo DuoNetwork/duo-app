@@ -1,5 +1,6 @@
 import Web3 from 'web3';
 import { Contract } from 'web3/types';
+import infura from '../../../../../duo-admin/src/keys/infura.json';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
 import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
@@ -21,7 +22,9 @@ class ContractUtil {
 		} else {
 			this.web3 = new Web3(
 				new Web3.providers.HttpProvider(
-					__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN
+					(__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN) +
+						'/' +
+						infura.token
 				)
 			);
 			this.isReadOnly = true;
@@ -213,18 +216,24 @@ class ContractUtil {
 	public create(address: string, value: number, payFeeInEth: boolean) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.custodian.methods.create(payFeeInEth).send({
-			from: address,
-			value: this.toWei(value)
-		}).on('transactionHash', (hash) => console.log(hash))
+		return this.custodian.methods
+			.create(payFeeInEth)
+			.send({
+				from: address,
+				value: this.toWei(value)
+			})
+			.on('transactionHash', hash => console.log(hash));
 	}
 
 	public redeem(address: string, amtA: number, amtB: number, payFeeInEth: boolean) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
-		return this.custodian.methods.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth).send({
-			from: address
-		}).on('transactionHash', (hash) => console.log(hash))
+		return this.custodian.methods
+			.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth)
+			.send({
+				from: address
+			})
+			.on('transactionHash', hash => console.log(hash));
 	}
 
 	public duoApprove(address: string, spender: string, value: number) {

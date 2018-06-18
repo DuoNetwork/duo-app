@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+		"module": "commonjs",
+		//"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"moduleResolution": "node",
 		"outDir": "./dist/",
@@ -15,6 +16,6 @@
 		"noFallthroughCasesInSwitch": true,
 		"allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "jsx": "react"
+		"jsx": "react"
   }
 }

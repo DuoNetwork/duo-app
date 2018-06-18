@@ -83,7 +83,7 @@ export default class BalanceCard extends React.Component<IProps> {
 		const { balances, account, states } = this.props;
 		return (
 			<SCard
-				title={<SCardTitle>BALANCE</SCardTitle>}
+				title={<SCardTitle>{CST.TH_BALANCE.toUpperCase()}</SCardTitle>}
 				width="640px"
 				margin="0 0 0 10px"
 				extra={

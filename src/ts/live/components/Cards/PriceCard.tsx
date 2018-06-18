@@ -102,7 +102,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			<SCard
 				title={
 					<CardTitleSelect
-						name="PRICE"
+						name={CST.TH_PRICE.toUpperCase()}
 						onSelect={(src: string) => this.setState({ source: src })}
 					/>
 				}

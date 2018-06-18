@@ -23,7 +23,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 				: 'Reset ongoing, operations are prohibited during current state.';
 		return (
 			<SCard
-				title={<SCardTitle>CONTRACT MONITOR</SCardTitle>}
+				title={<SCardTitle>{CST.TH_CUSTODIAN.toUpperCase()}</SCardTitle>}
 				width="420px"
 				margin="0 0 0 10px"
 				extra={
