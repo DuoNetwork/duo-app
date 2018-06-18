@@ -37,10 +37,14 @@ const BalanceInfo = (props: {
 					<div>
 						<div className={'tag-price'}>{d3.formatPrefix(',.8', 1)(value)}</div>
 						{allowance !== undefined ? (
-							<div className='tag-subtext'>{d3.formatPrefix(',.8', 1)(allowance) + ' allowance'}</div>
+							<div className="tag-subtext">
+								{d3.formatPrefix(',.8', 1)(allowance) + ' allowance'}
+							</div>
 						) : null}
 						{totalSupply ? (
-							<div className='tag-subtext'>{d3.format(',.2f')(totalSupply) + ' total supply'}</div>
+							<div className="tag-subtext">
+								{d3.format(',.2f')(totalSupply) + ' total supply'}
+							</div>
 						) : null}
 					</div>
 				</div>
@@ -49,13 +53,26 @@ const BalanceInfo = (props: {
 	);
 };
 
-const ExtendExtraDiv = (props: { accountShow: string, account: string }) => {
+const ExtendExtraDiv = (props: { accountShow: string; account: string }) => {
 	const { account, accountShow } = props;
 	return (
-		<SCardExtendExtraDiv color={accountShow === 'Unknown' ? ColorStyles.TextRedAlpha : undefined}>
+		<SCardExtendExtraDiv
+			color={accountShow === 'Unknown' ? ColorStyles.TextRedAlpha : undefined}
+		>
 			<div className="extend-extra-wrapper">
 				<div className="tag-title">Address</div>
-				<a className="tag-content" href={'https://kovan.etherscan.io' + (account ? ('/address/' + account) : '')} target='_blank'>{accountShow}</a>
+				<a
+					className="tag-content"
+					href={
+						'https://' +
+						(__KOVAN__ ? 'kovan.' : '') +
+						'etherscan.io' +
+						(account ? '/address/' + account : '')
+					}
+					target="_blank"
+				>
+					{accountShow}
+				</a>
 			</div>
 		</SCardExtendExtraDiv>
 	);
@@ -69,7 +86,9 @@ export default class BalanceCard extends React.Component<IProps> {
 				title={<SCardTitle>BALANCE</SCardTitle>}
 				width="640px"
 				margin="0 0 0 10px"
-				extra={<ExtendExtraDiv accountShow={account ? account : 'Unknown'} account={account} />}
+				extra={
+					<ExtendExtraDiv accountShow={account ? account : 'Unknown'} account={account} />
+				}
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
 					<BalanceInfo icon={ethIcon} name={CST.TH_ETH} value={balances.eth} />
