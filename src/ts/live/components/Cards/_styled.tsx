@@ -313,6 +313,9 @@ injectGlobal([
 			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
 			color: ${ColorStyles.TextWhiteAlpha};
 		}
+		.ant-table-row > td {
+			color: white !important;
+		}
 	}
 `
 ] as any);
