@@ -20,6 +20,17 @@ Array [
 ]
 `;
 
+exports[`actions fetchConversion 2`] = `
+Array [
+  Object {
+    "type": "uiConversion",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
 exports[`actions fetchHourly 1`] = `
 Array [
   Object {
@@ -136,6 +147,15 @@ Object {
 exports[`actions totalSupplyUpdate 1`] = `
 Object {
   "type": "totalSupply",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions uiConversionUpdate 1`] = `
+Object {
+  "type": "uiConversion",
   "value": Array [
     "test",
   ],

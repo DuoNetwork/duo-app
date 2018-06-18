@@ -47,6 +47,7 @@ describe('store', () => {
 		);
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryUIConversionEvent = jest.fn(() => Promise.resolve(['test']));
 		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		util.getNowTimestamp = jest.fn(() => 1234567890);

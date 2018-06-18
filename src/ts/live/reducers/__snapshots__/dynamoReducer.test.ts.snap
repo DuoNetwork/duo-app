@@ -42,6 +42,7 @@ Object {
     },
   ],
   "totalSupply": Array [],
+  "uiConversion": Array [],
 }
 `;
 
@@ -85,6 +86,7 @@ Object {
   "price": Array [],
   "status": Array [],
   "totalSupply": Array [],
+  "uiConversion": Array [],
 }
 `;
 
@@ -129,6 +131,7 @@ Object {
     },
   ],
   "totalSupply": Array [],
+  "uiConversion": Array [],
 }
 `;
 
@@ -170,6 +173,7 @@ Object {
     },
   ],
   "totalSupply": Array [],
+  "uiConversion": Array [],
 }
 `;
 
@@ -213,6 +217,7 @@ Object {
     },
   ],
   "totalSupply": Array [],
+  "uiConversion": Array [],
 }
 `;
 
@@ -260,6 +265,7 @@ Object {
     },
   ],
   "totalSupply": Array [],
+  "uiConversion": Array [],
 }
 `;
 
@@ -305,6 +311,57 @@ Object {
     },
   ],
   "totalSupply": Array [
+    "test",
+  ],
+  "uiConversion": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`ui reducer ui conversion 1`] = `
+Object {
+  "conversion": Array [
+    "test",
+  ],
+  "hourly": Object {
+    "test": "test",
+  },
+  "last": Object {
+    "bitfinex": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gdax": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "gemini": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+    "kraken": Object {
+      "address": "0x0",
+      "price": 0,
+      "timestamp": 0,
+    },
+  },
+  "minutely": Object {
+    "test": "test",
+  },
+  "price": Array [
+    "test",
+  ],
+  "status": Array [
+    Object {
+      "process": "test",
+    },
+  ],
+  "totalSupply": Array [],
+  "uiConversion": Array [
     "test",
   ],
 }

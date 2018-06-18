@@ -41,6 +41,7 @@ export const initialState: IDynamoState = {
 	},
 	price: [],
 	conversion: [],
+	uiConversion: [],
 	totalSupply: []
 };
 
@@ -64,6 +65,7 @@ export function dynamoReducer(state: IDynamoState = initialState, action: AnyAct
 				price: action.value
 			});
 		case CST.AC_CONVERSION:
+		case CST.AC_UI_CONVERSION:
 		case CST.AC_TOTAL_SUPPLY:
 			return Object.assign({}, state, {
 				[action.type]: action.value

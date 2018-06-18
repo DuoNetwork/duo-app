@@ -9,6 +9,7 @@ export function refreshUpdate() {
 		type: CST.AC_REFRESH
 	};
 }
+
 export function refresh(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(contractActions.accountUpdate(await contractUtil.getCurrentAddress()));
@@ -21,6 +22,7 @@ export function refresh(): VoidThunkAction {
 		dispatch(dynamoActions.fetchMinutely());
 		dispatch(dynamoActions.fetchPrice());
 		dispatch(dynamoActions.fetchConversion());
+		dispatch(dynamoActions.fetchUIConversion());
 		dispatch(dynamoActions.fetchTotalSupply());
 		dispatch(refreshUpdate());
 	};

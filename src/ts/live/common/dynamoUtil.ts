@@ -1,5 +1,11 @@
 import AWS from 'aws-sdk';
-import { QueryInput, QueryOutput, ScanInput, ScanOutput } from 'aws-sdk/clients/dynamodb';
+import {
+	PutItemInput,
+	QueryInput,
+	QueryOutput,
+	ScanInput,
+	ScanOutput
+} from 'aws-sdk/clients/dynamodb';
 import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
@@ -15,6 +21,7 @@ import {
 } from '../common/types';
 import * as CST from './constants';
 import contractUtil from './contractUtil';
+import util from './util';
 
 export class DynamoUtil {
 	private ddb: AWS.DynamoDB;
@@ -33,6 +40,12 @@ export class DynamoUtil {
 	public queryData(params: QueryInput): Promise<QueryOutput> {
 		return new Promise((resolve, reject) =>
 			this.ddb.query(params, (err, data) => (err ? reject(err) : resolve(data)))
+		);
+	}
+
+	public insertData(params: PutItemInput): Promise<void> {
+		return new Promise((resolve, reject) =>
+			this.ddb.putItem(params, err => (err ? reject(err) : resolve()))
 		);
 	}
 
@@ -287,6 +300,62 @@ export class DynamoUtil {
 			gemini,
 			gdax
 		};
+	}
+
+	public async insertUIConversion(
+		account: string,
+		txHash: string,
+		isCreate: boolean,
+		eth: number,
+		ab: number
+	) {
+		const params = {
+			TableName: __KOVAN__ ? CST.DB_AWS_UI_EVENTS_DEV : CST.DB_AWS_UI_EVENTS_LIVE,
+			Item: {
+				[CST.DB_EV_KEY]: {
+					S: (isCreate ? CST.EVENT_CREATE : CST.EVENT_REDEEM) + '|' + account
+				},
+				[CST.DB_EV_SYSTIME]: { N: util.getNowTimestamp() + '' },
+				[CST.DB_EV_TX_HASH]: { S: txHash },
+				[CST.DB_EV_UI_ETH]: { N: eth + '' },
+				[CST.DB_EV_UI_AB]: { N: ab + '' }
+			}
+		};
+
+		await this.insertData(params);
+	}
+
+	public async queryUIConversionEvent(account: string) {
+		const eventKeys: string[] = [CST.EVENT_CREATE, CST.EVENT_REDEEM].map(
+			ev => ev + '|' + account
+		);
+		const allData: IConversion[] = [];
+		for (const ek of eventKeys)
+			allData.push(
+				...this.parseUIConversion(
+					await this.queryData({
+						TableName: __KOVAN__ ? CST.DB_AWS_UI_EVENTS_DEV : CST.DB_AWS_UI_EVENTS_LIVE,
+						KeyConditionExpression: CST.DB_EV_KEY + ' = :' + CST.DB_EV_KEY,
+						ExpressionAttributeValues: {
+							[':' + CST.DB_EV_KEY]: { S: ek }
+						}
+					})
+				)
+			);
+		return allData;
+	}
+
+	public parseUIConversion(conversion: QueryOutput): IConversion[] {
+		if (!conversion.Items || !conversion.Items.length) return [];
+		return conversion.Items.map(c => ({
+			transactionHash: c[CST.DB_EV_TX_HASH].S || '',
+			blockNumber: 0,
+			type: (c[CST.DB_EV_KEY].S || '').split('|')[0],
+			timestamp: Number((c[CST.DB_EV_SYSTIME].N || '')),
+			eth: Number(c[CST.DB_EV_UI_ETH].N),
+			tokenA: Number(c[CST.DB_EV_UI_AB].N),
+			tokenB: Number(c[CST.DB_EV_UI_AB].N),
+		}));
 	}
 }
 

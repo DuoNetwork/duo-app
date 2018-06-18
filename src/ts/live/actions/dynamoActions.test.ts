@@ -117,4 +117,20 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('uiConversionUpdate', () => {
+		expect(dynamoActions.uiConversionUpdate(['test'] as any)).toMatchSnapshot();
+	});
+
+	test('fetchConversion', () => {
+		const store = mockStore({ contract: { account: '0x0' } });
+		dynamoUtil.queryUIConversionEvent = jest.fn(() => Promise.resolve(['test']));
+		store.dispatch(dynamoActions.fetchUIConversion() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

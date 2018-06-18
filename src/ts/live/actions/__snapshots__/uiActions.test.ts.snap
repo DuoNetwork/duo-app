@@ -51,6 +51,12 @@ Array [
     ],
   },
   Object {
+    "type": "uiConversion",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
     "type": "totalSupply",
     "value": Array [
       "test",

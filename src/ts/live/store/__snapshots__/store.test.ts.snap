@@ -91,6 +91,9 @@ Object {
     "totalSupply": Array [
       "test",
     ],
+    "uiConversion": Array [
+      "test",
+    ],
   },
   "ui": Object {
     "refresh": 1234567890,

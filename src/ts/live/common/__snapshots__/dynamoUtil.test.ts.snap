@@ -349,3 +349,49 @@ Array [
   },
 ]
 `;
+
+exports[`parseUIConversionToDynamo 1`] = `
+Object {
+  "Item": Object {
+    "ab": Object {
+      "N": "456",
+    },
+    "eth": Object {
+      "N": "123",
+    },
+    "eventKey": Object {
+      "S": "Create|0x0",
+    },
+    "systime": Object {
+      "N": "1234567890",
+    },
+    "transactionHash": Object {
+      "S": "0x123",
+    },
+  },
+  "TableName": "uiEvents_dev",
+}
+`;
+
+exports[`parseUIConversionToDynamo 2`] = `
+Object {
+  "Item": Object {
+    "ab": Object {
+      "N": "456",
+    },
+    "eth": Object {
+      "N": "123",
+    },
+    "eventKey": Object {
+      "S": "Redeem|0x0",
+    },
+    "systime": Object {
+      "N": "1234567890",
+    },
+    "transactionHash": Object {
+      "S": "0x123",
+    },
+  },
+  "TableName": "uiEvents_dev",
+}
+`;

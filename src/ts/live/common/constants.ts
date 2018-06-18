@@ -13,6 +13,7 @@ export const AC_DMN_MINUTELY = 'dynamoMinutely';
 export const AC_DMN_PRICE = 'dynamoPrice';
 export const AC_TOTAL_SUPPLY = 'totalSupply';
 export const AC_CONVERSION = 'conversion';
+export const AC_UI_CONVERSION = 'uiConversion';
 export const AC_REFRESH = 'refresh';
 
 export const ETH_MAINNET_ID = 1;

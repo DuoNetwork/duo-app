@@ -138,6 +138,7 @@ export interface IDynamoState {
 	readonly price: IAcceptedPrice[];
 	readonly last: ISourceData<ICustodianPrice>;
 	readonly conversion: IConversion[];
+	readonly uiConversion: IConversion[];
 	readonly totalSupply: ITotalSupply[]
 }
 

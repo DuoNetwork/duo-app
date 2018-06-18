@@ -120,3 +120,18 @@ export function fetchTotalSupply(): VoidThunkAction {
 		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
 	};
 }
+
+export function uiConversionUpdate(conversions: IConversion[]) {
+	return {
+		type: CST.AC_UI_CONVERSION,
+		value: conversions
+	};
+}
+
+export function fetchUIConversion(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		dispatch(
+			uiConversionUpdate(await dynamoUtil.queryUIConversionEvent(getState().contract.account))
+		);
+	};
+}
