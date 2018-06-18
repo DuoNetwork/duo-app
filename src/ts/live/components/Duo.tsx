@@ -17,7 +17,6 @@ import ConversionCard from './Cards/ConversionCard';
 import HistoryCard from './Cards/HistoryCard';
 import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
-import TransactionCard from './Cards/TransactionCard';
 import Header from './DuoHeader';
 
 interface IProps {
@@ -59,7 +58,6 @@ export default class Duo extends React.PureComponent<IProps> {
 							balances={balances}
 							account={account}
 						/>
-						<TransactionCard balances={balances} account={account} />
 					</SDivFlexCenter>
 				</SContent>
 			</Layout>

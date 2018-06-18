@@ -35,12 +35,12 @@ const BalanceInfo = (props: {
 			<div className="tag-content">
 				<div>
 					<div>
-						<div className={'tag-price'}>{value}</div>
+						<div className={'tag-price'}>{d3.formatPrefix(',.8', 1)(value)}</div>
 						{allowance ? (
-							<div style={{ color: 'white' }}>{allowance + ' allowance'}</div>
+							<div className='tag-subtext'>{d3.formatPrefix(',.8', 1)(allowance) + ' allowance'}</div>
 						) : null}
 						{totalSupply ? (
-							<div style={{ color: 'white' }}>{'Total Supply: ' + d3.format(',.2f')(totalSupply)}</div>
+							<div className='tag-subtext'>{'Total Supply: ' + d3.format(',.2f')(totalSupply)}</div>
 						) : null}
 					</div>
 				</div>

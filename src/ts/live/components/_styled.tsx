@@ -11,6 +11,7 @@ export interface IDivFlexCenterProps {
 	noJust?: boolean;
 	horizontal?: boolean;
 	marginBottom?: string;
+	marginTop?: string;
 	padding?: string;
 	paddingLeft?: string;
 	paddingRight?: string;
@@ -47,4 +48,5 @@ export const SDivFlexCenter = styled.div`
 	padding-top: ${(props: IDivFlexCenterProps) => (props.padding ? null : props.paddingTop)};
 	padding-bottom: ${(props: IDivFlexCenterProps) => (props.padding ? null : props.paddingBottom)};
 	margin-bottom: ${(props: IDivFlexCenterProps) => (props.marginBottom)};
+	margin-top: ${(props: IDivFlexCenterProps) => (props.marginTop)};
 `;

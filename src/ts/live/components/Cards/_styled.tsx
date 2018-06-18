@@ -224,7 +224,7 @@ export interface ICardAssetTagProps {
 
 export const SCardAssetTag = styled.div`
 	height: 100px;
-	width: 115px;
+	width: 150px;
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -257,12 +257,16 @@ export const SCardAssetTag = styled.div`
 		margin: 0;
 	}
 	.tag-content {
-		width: 120px;
+		width: 150px;
 		margin-left: 15px;
 		margin-top: 15px;
 	}
+	.tag-subtext {
+		color: ${ColorStyles.TextWhiteAlphaL};
+		font-size: 10px;
+	}
 	.tag-price {
-		color: white;
+		color: ${ColorStyles.TextWhiteAlpha};
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -334,14 +338,16 @@ export const SCardExtendExtraDiv = styled.div`
 			color: ${(props: ICardExtraProps) =>
 				props.color ? props.color : ColorStyles.TextWhiteAlphaL};
 			overflow: hidden;
-			padding-left: 0px;
-			max-width: 0px;
-			transition: max-width 0.3s ease-in-out, padding-left 0.3s ease-in-out;
-			-webkit-transition: max-width 0.3s ease-in-out, padding-left 0.3s ease-in-out;
+			display: flex;
+			flex-direction: row-reverse;
+			margin-left: 8px;
+			max-width: 41px;
+			transition: max-width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+			-webkit-transition: max-width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
 		}
 	}
 	& > .extend-extra-wrapper:hover > .tag-content {
-		padding-left: 8px;
+		margin-left: 8px;
 		max-width: ${(props: ICardExtraProps) => (props.color ? '60px' : '300px')};
 	}
 `;
@@ -350,11 +356,14 @@ export const SCardRadioExtraDiv = styled.div`
 	font-family: 'Roboto';
 	color: ${ColorStyles.TextWhiteAlphaLL};
 	font-size: 10px;
-	padding-right: 10px;
 	line-height: 24px;
 	& > .extend-extra-wrapper {
 		display: flex;
 		flex-direction: row;
+	}
+	.ant-radio-group {
+		font-size: 10px;
+		font-weight: 400;
 	}
 `;
 
@@ -624,6 +633,24 @@ export const SCardConversionForm = styled.div`
 
 export const SCardTransactionForm = styled.div`
 	width: 100%;
+	.token-button {
+		outline: none;
+		cursor: pointer;
+		width: 60px;
+		font-family: 'Roboto';
+		font-size: 10px;
+		background-color: transparent;
+		color: ${ColorStyles.TextWhiteAlphaLL};
+		border: 1px dashed;
+		border-color: ${ColorStyles.BorderWhite2};
+		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+			background-color 0.2s ease-in-out;
+	}
+	.token-button:hover {
+		color: ${ColorStyles.TextWhiteAlphaL};
+		border-color: ${ColorStyles.BorderWhite4};
+		background-color: ${ColorStyles.ButtonHoverWhite1};
+	}
 	.trans-button {
 		outline: none;
 		cursor: pointer;

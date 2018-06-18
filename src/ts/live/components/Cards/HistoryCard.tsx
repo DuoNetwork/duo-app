@@ -16,8 +16,8 @@ export default class HistoryCard extends React.PureComponent<IProps> {
 		return (
 			<SCard
 				title={<SCardTitle>CONVERSION HISTORY</SCardTitle>}
-				width="630px"
-				margin="0 0 0 10px"
+				width="830px"
+				margin="0 10px 0 0"
 			>
 				<Table
 					showHeader={false}

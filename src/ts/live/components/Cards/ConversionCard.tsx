@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import { Radio, Tooltip } from 'antd';
+import { Affix, Radio, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import demoCreate from '../../../../images/createDemo.png';
@@ -18,6 +18,7 @@ import {
 	SInput,
 	SRadioGroup
 } from './_styled';
+import TransactionForm from './TransactionCard'
 
 const RadioButton = Radio.Button;
 
@@ -63,7 +64,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			isCreate: true,
 			amount: '',
 			amountError: '',
-			description: ''
+			description: 'Estimated outcome'
 		};
 	}
 
@@ -73,12 +74,13 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		});
 	};
 
-	private handleTypeChange = () => this.setState({
-		isCreate: !this.state.isCreate,
-		amount: '',
-		amountError: '',
-		description: ''
-	});
+	private handleTypeChange = () =>
+		this.setState({
+			isCreate: !this.state.isCreate,
+			amount: '',
+			amountError: '',
+			description: 'Estimated outcome'
+		});
 
 	private handleAmountInputChange = (value: string) =>
 		this.setState({
@@ -96,28 +98,28 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		const { states, reset } = this.props;
 		const { isCreate } = this.state;
 		return !Number(amount)
-			? ''
+			? 'Estimated outcome'
 			: isCreate
 				? 'Create ' +
-				d3.formatPrefix(',.8', 1)(
+					d3.formatPrefix(',.8', 1)(
 						(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) /
 							2
-				) +
-				' Token A/B from ' +
-				d3.formatPrefix(',.8', 1)(Number(amount) * (1 - states.commissionRate)) +
-				' ' +
-				CST.TH_ETH
+					) +
+					' Token A/B from ' +
+					d3.formatPrefix(',.8', 1)(Number(amount) * (1 - states.commissionRate)) +
+					' ' +
+					CST.TH_ETH
 				: 'Redeem ' +
-				d3.formatPrefix(',.8', 1)(
+					d3.formatPrefix(',.8', 1)(
 						(Number(amount) / reset.price / states.beta) *
 							2 *
 							(1 - states.commissionRate)
-				) +
-				' ' +
-				CST.TH_ETH +
-				' from ' +
-				d3.formatPrefix(',.8', 1)(Number(amount)) +
-				' Token A/B';
+					) +
+					' ' +
+					CST.TH_ETH +
+					' from ' +
+					d3.formatPrefix(',.8', 1)(Number(amount)) +
+					' Token A/B';
 	};
 
 	private handleAmountBlur = (limit: number) => {
@@ -138,14 +140,15 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		else contractUtil.redeem(account, Number(amount), Number(amount), ethFee);
 	};
 
-	private handleClear = () => this.setState({
-		amount: '',
-		amountError: '',
-		description: ''
-	});
+	private handleClear = () =>
+		this.setState({
+			amount: '',
+			amountError: '',
+			description: 'Estimated outcome'
+		});
 
 	public render() {
-		const { states, reset } = this.props;
+		const { states, reset, account, balances } = this.props;
 		const { eth, tokenA, tokenB } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = isCreate ? eth : Math.min(tokenA, tokenB);
@@ -158,47 +161,55 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 
 		const tooltipText = 'Estimated outcome may vary from actual result';
 		return (
-			<SCard
-				title={<SCardTitle>CONVERSION</SCardTitle>}
-				extra={<RadioExtraDiv onChange={this.handleFeeTypeChange} eth={ethFee} />}
-				width="440px"
-				margin="0 10px 0 10px"
-			>
-				<SDivFlexCenter horizontal padding="0 10px">
+			<Affix offsetTop={20}>
+				<SCard
+					title={<SCardTitle>OPERATION</SCardTitle>}
+					width="440px"
+					margin="0 0 0 10px"
+				>
 					<SCardConversionForm>
 						<SCardList>
 							<div className="status-list-wrapper">
 								<ul>
-									<li className="img-line">
+									<li className="block-title">
+										<span>Conversion</span>
+										<RadioExtraDiv onChange={this.handleFeeTypeChange} eth={ethFee} />
+									</li>
+									<li className="img-line no-bg">
 										<img
 											className="demo-img"
 											src={isCreate ? demoCreate : demoRedeem}
 										/>
 									</li>
-								</ul>
-							</div>
-						</SCardList>
-						<SDivFlexCenter horizontal width="100%" padding="10px 0 0 0">
-							<button
-								className={
-									isCreate ? 'conv-button selected' : 'conv-button non-select'
-								}
-								onClick={() => !isCreate && this.handleTypeChange()}
-							>
-								{CST.TH_CREATE}
-							</button>
-							<button
-								className={
-									!isCreate ? 'conv-button selected' : 'conv-button non-select'
-								}
-								onClick={() => isCreate && this.handleTypeChange()}
-							>
-								{CST.TH_REDEEM}
-							</button>
-						</SDivFlexCenter>
-						<SCardList>
-							<div className="status-list-wrapper">
-								<ul>
+									<li>
+										<SDivFlexCenter
+											horizontal
+											width="100%"
+											padding="5px 0 0 0"
+											marginBottom='10px'
+										>
+											<button
+												className={
+													isCreate
+														? 'conv-button selected'
+														: 'conv-button non-select'
+												}
+												onClick={() => !isCreate && this.handleTypeChange()}
+											>
+												{CST.TH_CREATE}
+											</button>
+											<button
+												className={
+													!isCreate
+														? 'conv-button selected'
+														: 'conv-button non-select'
+												}
+												onClick={() => isCreate && this.handleTypeChange()}
+											>
+												{CST.TH_REDEEM}
+											</button>
+										</SDivFlexCenter>
+									</li>
 									<li className="input-line">
 										<SDivFlexCenter horizontal width="50%" padding="0">
 											{[0.25, 0.5, 0.75, 1].map(pct => (
@@ -206,7 +217,9 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 													key={pct + ''}
 													className="percent-button"
 													onClick={() =>
-														this.handleAmountButtonClick(limit * pct + '')
+														this.handleAmountButtonClick(
+															limit * pct + ''
+														)
 													}
 												>
 													{pct * 100 + '%'}
@@ -216,7 +229,9 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 										<SInput
 											className={amountError ? 'input-error' : ''}
 											value={amount}
-											onChange={e => this.handleAmountInputChange(e.target.value)}
+											onChange={e =>
+												this.handleAmountInputChange(e.target.value)
+											}
 											onBlur={() => this.handleAmountBlur(limit)}
 											placeholder="Please input amount"
 											right
@@ -237,27 +252,27 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 												(ethFee ? CST.TH_ETH : CST.TH_DUO)}
 										</div>
 									</li>
+									<li>
+										<SDivFlexCenter horizontal width="100%" padding="0" marginTop="10px">
+											<button
+												className="form-button"
+												disabled={!amount || !!amountError}
+												onClick={this.handleSubmit}
+											>
+												{CST.TH_SUBMIT}
+											</button>
+											<button className="form-button" onClick={() => this.handleClear()}>
+												{CST.TH_CLEAR}
+											</button>
+										</SDivFlexCenter>
+									</li>
 								</ul>
 							</div>
 						</SCardList>
-						<SDivFlexCenter horizontal width="100%" padding="0" marginBottom="10px">
-							<button
-								className="form-button"
-								disabled={!amount || !!amountError}
-								onClick={this.handleSubmit}
-							>
-								{CST.TH_SUBMIT}
-							</button>
-							<button
-								className="form-button"
-								onClick={() => this.handleClear()}
-							>
-								{CST.TH_CLEAR}
-							</button>
-						</SDivFlexCenter>
 					</SCardConversionForm>
-				</SDivFlexCenter>
-			</SCard>
+					<TransactionForm balances={balances} account={account} />
+				</SCard>
+			</Affix>
 		);
 	}
 }

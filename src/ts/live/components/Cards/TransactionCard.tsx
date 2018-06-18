@@ -4,7 +4,7 @@ import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
 import { IBalances } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
-import { SCard, SCardList, SCardTitle, SCardTransactionForm, SInput } from './_styled';
+import { SCardList, SCardTransactionForm, SInput } from './_styled';
 
 interface IProps {
 	account: string;
@@ -18,10 +18,9 @@ interface IState {
 	addressError: string;
 	amount: string;
 	amountError: string;
-	description: string;
 }
 
-export default class InfoCard extends React.PureComponent<IProps, IState> {
+export default class TransactionForm extends React.PureComponent<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -30,8 +29,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: '',
-			description: ''
+			amountError: ''
 		};
 	}
 
@@ -41,8 +39,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: '',
-			description: ''
+			amountError: ''
 		});
 
 	private handleTypeChange = () =>
@@ -51,8 +48,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: '',
-			description: ''
+			amountError: ''
 		});
 
 	private handleAddressChange = (addr: string) =>
@@ -60,31 +56,19 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: addr,
 			addressError: contractUtil.checkAddress(addr) ? '' : 'Invalid Address',
 			amount: '',
-			amountError: '',
-			description: ''
+			amountError: ''
 		});
 
 	private handleAmountInputChange = (value: string) =>
 		this.setState({
 			amount: value,
-			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number',
-			description: ''
+			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number'
 		});
 
 	private handleAmountButtonClick = (amount: string) =>
 		this.setState({
-			amount: amount,
-			description: this.getDescription(amount)
+			amount: amount
 		});
-
-	private getDescription = (amount: string) => {
-		const { token, isTransfer } = this.state;
-		return !Number(amount)
-			? ''
-			: isTransfer
-				? 'Transfer ' + amount + ' ' + token + ' out'
-				: 'Approve ' + amount + ' ' + token + ' to be spent';
-	};
 
 	private handleAmountBlur = (limit: number) => {
 		const { amountError } = this.state;
@@ -92,8 +76,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			!amountError && Number(this.state.amount) > limit ? limit + '' : this.state.amount;
 
 		this.setState({
-			amount: amount,
-			description: this.getDescription(amount)
+			amount: amount
 		});
 	};
 
@@ -114,8 +97,7 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address: '',
 			addressError: '',
 			amount: '',
-			amountError: '',
-			description: ''
+			amountError: ''
 		});
 
 	public render() {
@@ -126,132 +108,118 @@ export default class InfoCard extends React.PureComponent<IProps, IState> {
 			address,
 			amount,
 			addressError,
-			amountError,
-			description
+			amountError
 		} = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
 
 		return (
-			<SCard title={<SCardTitle>TRANSFER</SCardTitle>} width="440px" margin="0 0 0 10px">
-				<SDivFlexCenter horizontal padding="0 10px">
-					<SCardTransactionForm>
-						<SDivFlexCenter horizontal width="100%" padding="10px 0 0 0">
-							{[CST.TH_DUO, CST.TH_TOKEN_A, CST.TH_TOKEN_B].map(tk => (
-								<button
-									key={tk}
-									className={
-										token === tk
-											? 'trans-button selected'
-											: 'trans-button non-select'
-									}
-									onClick={() => token !== tk && this.handleTokenChange(tk)}
-								>
-									{tk}
-								</button>
-							))}
-						</SDivFlexCenter>
-						<SCardList>
-							<div className="status-list-wrapper">
-								<ul>
-									<li className="block-title">Action</li>
-									<li>
-										<SDivFlexCenter horizontal width="100%" padding="10px 0px">
-											<button
-												className={
-													'trans-button wide ' +
-													(isTransfer ? 'selected' : 'non-select')
-												}
-												onClick={() =>
-													!isTransfer && this.handleTypeChange()
-												}
-											>
-												{CST.TH_TRANSFER}
-											</button>
-											<button
-												className={
-													'trans-button wide ' +
-													(isTransfer ? 'non-select' : 'selected')
-												}
-												onClick={() =>
-													isTransfer && this.handleTypeChange()
-												}
-											>
-												{CST.TH_APPROVE}
-											</button>
-										</SDivFlexCenter>
-									</li>
-									<li className="input-line">
-										<span className="title">Address</span>
-										{!isTransfer && token === CST.TH_DUO ? (
-											<div
-												className="default-button"
-												onClick={() =>
-													this.handleAddressChange(
-														contractUtil.custodianAddr
-													)
-												}
-											>
-												Custodian
-											</div>
-										) : null}
-										<SInput
-											className={addressError ? 'input-error' : ''}
-											placeholder="Please input address"
-											width="240px"
-											value={address}
-											onChange={e => this.handleAddressChange(e.target.value)}
-											small
-										/>
-									</li>
-									<li
+			<SCardTransactionForm>
+				<SCardList>
+					<div className="status-list-wrapper">
+						<ul>
+							<li className="block-title">
+								<span>Transfer</span>
+								<SDivFlexCenter horizontal width="200px">
+									{[CST.TH_DUO, CST.TH_TOKEN_A, CST.TH_TOKEN_B].map(tk => (
+										<button
+											key={tk}
+											className={
+												token === tk ? 'token-button selected' : 'token-button non-select'
+											}
+											onClick={() => token !== tk && this.handleTokenChange(tk)}
+										>
+											{tk}
+										</button>
+									))}
+								</SDivFlexCenter>
+							</li>
+							<li>
+								<SDivFlexCenter horizontal width="100%" padding="10px 0px">
+									<button
 										className={
-											'input-line' +
-											(!address || !!addressError ? ' input-disabled' : '')
+											'trans-button wide ' +
+											(isTransfer ? 'selected' : 'non-select')
 										}
+										onClick={() => !isTransfer && this.handleTypeChange()}
 									>
-										<SDivFlexCenter horizontal width="50%" padding="0">
-											{[0.25, 0.5, 0.75, 1].map(pct => (
-												<button
-													key={pct + ''}
-													className="percent-button"
-													onClick={() =>
-														this.handleAmountButtonClick(limit * pct + '')
-													}
-												>
-													{pct * 100 + '%'}
-												</button>
-											))}
-										</SDivFlexCenter>
-										<SInput
-											className={amountError ? 'input-error' : ''}
-											placeholder="Please input amount"
-											right
-											value={amount}
-											onChange={e => this.handleAmountInputChange(e.target.value)}
-											onBlur={() => this.handleAmountBlur(limit)}
-										/>
-									</li>
-									<li className="description">
-										<div>{addressError || amountError || description}</div>
-									</li>
-								</ul>
-							</div>
-						</SCardList>
-						<SDivFlexCenter horizontal width="100%" padding="0">
-							<button
-								className="form-button"
-								disabled={!address || !amount || !!addressError || !!amountError}
-								onClick={this.handleSubmit}
+										{CST.TH_TRANSFER}
+									</button>
+									<button
+										className={
+											'trans-button wide ' +
+											(isTransfer ? 'non-select' : 'selected')
+										}
+										onClick={() => isTransfer && this.handleTypeChange()}
+									>
+										{CST.TH_APPROVE}
+									</button>
+								</SDivFlexCenter>
+							</li>
+							<li className="input-line">
+								<span className="title">Address</span>
+								<div
+									className="default-button"
+									onClick={() =>
+										this.handleAddressChange(contractUtil.custodianAddr)
+									}
+								>
+									Custodian
+								</div>
+								<SInput
+									className={addressError ? 'input-error' : ''}
+									placeholder="Please input address"
+									width="240px"
+									value={address}
+									onChange={e => this.handleAddressChange(e.target.value)}
+									small
+								/>
+							</li>
+							<li
+								className={
+									'input-line' +
+									(!address || !!addressError ? ' input-disabled' : '')
+								}
 							>
-								{CST.TH_SUBMIT}
-							</button>
-							<button className="form-button" onClick={this.handleClear}>
-								{CST.TH_CLEAR}
-							</button>
-						</SDivFlexCenter>
-					</SCardTransactionForm>
-				</SDivFlexCenter>
-			</SCard>
+								<SDivFlexCenter horizontal width="50%" padding="0">
+									{[0.25, 0.5, 0.75, 1].map(pct => (
+										<button
+											key={pct + ''}
+											className="percent-button"
+											onClick={() =>
+												this.handleAmountButtonClick(limit * pct + '')
+											}
+										>
+											{pct * 100 + '%'}
+										</button>
+									))}
+								</SDivFlexCenter>
+								<SInput
+									className={amountError ? 'input-error' : ''}
+									placeholder="Please input amount"
+									right
+									value={amount}
+									onChange={e => this.handleAmountInputChange(e.target.value)}
+									onBlur={() => this.handleAmountBlur(limit)}
+								/>
+							</li>
+							<li>
+								<SDivFlexCenter horizontal width="100%" padding="0">
+									<button
+										className="form-button"
+										disabled={!address || !amount || !!addressError || !!amountError}
+										onClick={this.handleSubmit}
+									>
+										{CST.TH_SUBMIT}
+									</button>
+									<button className="form-button" onClick={this.handleClear}>
+										{CST.TH_CLEAR}
+									</button>
+								</SDivFlexCenter>
+							</li>
+						</ul>
+					</div>
+				</SCardList>
+			</SCardTransactionForm>
 		);
 	}
 }
