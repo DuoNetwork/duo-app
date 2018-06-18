@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import { Affix, Radio, Tooltip } from 'antd';
+import { Affix, Popconfirm, Radio, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import demoCreate from '../../../../images/createDemo.png';
@@ -106,13 +106,13 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 						(Number(amount) * (1 - states.commissionRate) * reset.price * states.beta) /
 							2,
 						true
-				)
+					)
 				: util.getConversionDescription(
 						((2 * Number(amount)) / reset.price / states.beta) *
 							(1 - states.commissionRate),
 						Number(amount),
 						false
-				);
+					);
 	};
 
 	private handleAmountBlur = (limit: number) => {
@@ -131,6 +131,11 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		const { isCreate, amount, ethFee } = this.state;
 		if (isCreate) contractUtil.create(account, Number(amount), ethFee);
 		else contractUtil.redeem(account, Number(amount), Number(amount), ethFee);
+		this.setState({
+			amount: '',
+			amountError: '',
+			description: 'Estimated outcome'
+		});
 	};
 
 	private handleClear = () =>
@@ -142,7 +147,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 
 	public render() {
 		const { states, reset, account, balances } = this.props;
-		const { eth, tokenA, tokenB } = this.props.balances;
+		const { eth, tokenA, tokenB, allowance } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = isCreate ? eth : Math.min(tokenA, tokenB);
 
@@ -151,11 +156,16 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 				? Number(amount) * states.commissionRate
 				: (Number(amount) / reset.price / states.beta) * 2 * states.commissionRate) *
 			(ethFee ? 1 : states.ethDuoFeeRatio);
+		const duoInsuffient = ethFee ? false : fee < allowance;
 
 		const tooltipText = 'Estimated outcome may vary from actual result';
 		return (
 			<Affix offsetTop={20}>
-				<SCard title={<SCardTitle>{CST.TH_OPERATION.toUpperCase()}</SCardTitle>} width="440px" margin="0 0 0 10px">
+				<SCard
+					title={<SCardTitle>{CST.TH_OPERATION.toUpperCase()}</SCardTitle>}
+					width="440px"
+					margin="0 0 0 10px"
+				>
 					<SCardConversionForm>
 						<SCardList>
 							<div className="status-list-wrapper">
@@ -251,16 +261,33 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 											padding="0"
 											marginTop="10px"
 										>
+											{!duoInsuffient ? (
+												<Popconfirm
+													title="Insufficient DUO Allowance balance, transaction may fail"
+													onConfirm={this.handleSubmit}
+													onCancel={this.handleClear}
+													okText="Submit"
+													cancelText="Cancel"
+												>
+													<button
+														className="form-button"
+														disabled={!amount || !!amountError}
+													>
+														{CST.TH_SUBMIT}
+													</button>
+												</Popconfirm>
+											) : (
+												<button
+													className="form-button"
+													disabled={!amount || !!amountError}
+													onClick={this.handleSubmit}
+												>
+													{CST.TH_SUBMIT}
+												</button>
+											)}
 											<button
 												className="form-button"
-												disabled={!amount || !!amountError}
-												onClick={this.handleSubmit}
-											>
-												{CST.TH_SUBMIT}
-											</button>
-											<button
-												className="form-button"
-												onClick={() => this.handleClear()}
+												onClick={this.handleClear}
 											>
 												{CST.TH_CLEAR}
 											</button>

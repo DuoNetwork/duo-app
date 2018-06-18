@@ -76,6 +76,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		token === CST.TH_DUO
 			? contractUtil.duoTransfer(account, address, Number(amount))
 			: contractUtil.transfer(account, address, Number(amount), token === CST.TH_TOKEN_A);
+		this.handleClear();
 	};
 
 	private handleApprove = () => {
@@ -84,6 +85,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		token === CST.TH_DUO
 			? contractUtil.duoApprove(account, address, Number(amount))
 			: contractUtil.approve(account, address, Number(amount), token === CST.TH_TOKEN_A);
+		this.handleClear();
 	};
 
 	private handleClear = () =>

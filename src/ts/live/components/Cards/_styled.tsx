@@ -628,12 +628,61 @@ export const SCardConversionForm = styled.div`
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
 	}
+	.form-button:disabled {
+		pointer-events: none;
+		opacity: 0.2 !important;
+	}
 	.form-button:hover {
 		color: ${ColorStyles.TextWhiteAlpha};
 		border-color: ${ColorStyles.BorderWhite6};
 		background-color: ${ColorStyles.ButtonHoverWhite1};
 	}
 `;
+injectGlobal([
+	`
+	body {
+		.ant-popover-arrow {
+			background: ${ColorStyles.CardBackgroundSolid};
+		}
+		.ant-popover-placement-top > .ant-popover-content > .ant-popover-arrow {
+			bottom: 6px;
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
+		}
+		.ant-popover {
+			font-family: 'Roboto';
+		}
+		.ant-popover-inner {
+			background: ${ColorStyles.CardBackgroundSolid};
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
+			border-radius: 0;
+		}
+		.ant-popover-inner-content {
+			padding: 10px 10px;
+		}
+		.ant-popover-message {
+			color: ${ColorStyles.TextWhiteAlpha};
+		}
+		.ant-btn-sm {
+			padding: 0 10px;
+			font-size: 12px;
+			border-radius: 0;
+			border: 1px solid;
+			border-color: ${ColorStyles.BorderWhite4};
+			height: 20px;
+			background: none;
+			color: ${ColorStyles.TextWhiteAlphaL};
+		}
+		.ant-btn-sm:hover {
+			color: ${ColorStyles.TextWhiteAlpha} !important;
+			border-color: ${ColorStyles.BorderWhite6} !important;
+			background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+		}
+		.ant-popover-buttons {
+			margin-bottom: 0px;
+		}
+	}
+`
+] as any);
 
 export const SCardTransactionForm = styled.div`
 	width: 100%;

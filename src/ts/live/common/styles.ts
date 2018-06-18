@@ -2,8 +2,8 @@ export const ColorStyles = {
 	//Background Colors
 	HeaderBackground: 'rgba(32,31,33,.5)',
 	CardBackground: 'rgba(32,31,33,.5)',
-	CardBackgroundSolid: 'rgba(30,31,32,1)',
-	HoverBackgroundSolid: 'rgba(40,41,42,1)',
+	CardBackgroundSolid: 'rgba(35,36,37,1)',
+	HoverBackgroundSolid: 'rgba(45,46,47,1)',
 	SelectBackgroundSolid: 'rgba(45,46,48,1)',
 	ListHighlight: 'rgba(255,255,255,.04)',
 	//Border Colors
