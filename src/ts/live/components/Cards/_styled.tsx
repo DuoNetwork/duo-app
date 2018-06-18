@@ -479,7 +479,7 @@ export const SCardList = styled.div`
 			}
 		}
 		.input-line {
-			padding: 8px 5px;
+			padding: 5px 5px;
 			display: flex;
 			flex-direction: row;
 			align-items: center;
@@ -685,7 +685,7 @@ export const SCardTransactionForm = styled.div`
 	.form-button {
 		outline: none;
 		cursor: pointer;
-		width: 180px;
+		width: 120px;
 		font-family: 'Roboto';
 		background-color: transparent;
 		color: ${ColorStyles.TextWhiteAlphaL};
@@ -698,6 +698,10 @@ export const SCardTransactionForm = styled.div`
 		color: ${ColorStyles.TextWhiteAlpha};
 		border-color: ${ColorStyles.BorderWhite6};
 		background-color: ${ColorStyles.ButtonHoverWhite1};
+	}
+	.form-button:disabled {
+		pointer-events: none;
+		opacity: 0.2 !important;
 	}
 	.remark {
 		margin-top: 20px;

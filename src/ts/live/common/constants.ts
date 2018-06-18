@@ -39,3 +39,5 @@ export const TH_APPROVE = 'Approve';
 export const TH_TRANSFER = 'Transfer';
 export const TH_SUBMIT = 'Submit';
 export const TH_CLEAR = 'Clear';
+export const TH_ADDRESS = 'Address';
+export const TH_CUSTODIAN = 'Custodian';

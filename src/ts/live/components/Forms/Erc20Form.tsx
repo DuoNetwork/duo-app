@@ -1,4 +1,5 @@
 //import moment from 'moment';
+import { Tooltip } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
@@ -12,7 +13,6 @@ interface IProps {
 }
 
 interface IState {
-	isTransfer: boolean;
 	token: string;
 	address: string;
 	addressError: string;
@@ -25,7 +25,6 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		super(props);
 		this.state = {
 			token: CST.TH_DUO,
-			isTransfer: true,
 			address: '',
 			addressError: '',
 			amount: '',
@@ -36,15 +35,6 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 	private handleTokenChange = (type: string) =>
 		this.setState({
 			token: type,
-			address: '',
-			addressError: '',
-			amount: '',
-			amountError: ''
-		});
-
-	private handleTypeChange = () =>
-		this.setState({
-			isTransfer: !this.state.isTransfer,
 			address: '',
 			addressError: '',
 			amount: '',
@@ -80,16 +70,20 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		});
 	};
 
-	private handleSubmit = () => {
+	private handleTransfer = () => {
 		const { account } = this.props;
-		const { token, isTransfer, address, amount } = this.state;
-		isTransfer
-			? token === CST.TH_DUO
-				? contractUtil.duoTransfer(account, address, Number(amount))
-				: contractUtil.transfer(account, address, Number(amount), token === CST.TH_TOKEN_A)
-			: token === CST.TH_DUO
-				? contractUtil.duoApprove(account, address, Number(amount))
-				: contractUtil.approve(account, address, Number(amount), token === CST.TH_TOKEN_A);
+		const { token, address, amount } = this.state;
+		token === CST.TH_DUO
+			? contractUtil.duoTransfer(account, address, Number(amount))
+			: contractUtil.transfer(account, address, Number(amount), token === CST.TH_TOKEN_A);
+	};
+
+	private handleApprove = () => {
+		const { account } = this.props;
+		const { token, address, amount } = this.state;
+		token === CST.TH_DUO
+			? contractUtil.duoApprove(account, address, Number(amount))
+			: contractUtil.approve(account, address, Number(amount), token === CST.TH_TOKEN_A);
 	};
 
 	private handleClear = () =>
@@ -102,16 +96,10 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 
 	public render() {
 		const { duo, tokenA, tokenB } = this.props.balances;
-		const {
-			token,
-			isTransfer,
-			address,
-			amount,
-			addressError,
-			amountError
-		} = this.state;
+		const { token, address, amount, addressError, amountError } = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
-
+		const noTransferAddr = address === contractUtil.custodianAddr;
+		const tooltipText = 'Click to auto fill in custodian address, no TRANSFER is permitted to custodian address.'
 		return (
 			<SCardTransactionForm>
 				<SCardList>
@@ -124,47 +112,31 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 										<button
 											key={tk}
 											className={
-												token === tk ? 'token-button selected' : 'token-button non-select'
+												token === tk
+													? 'token-button selected'
+													: 'token-button non-select'
 											}
-											onClick={() => token !== tk && this.handleTokenChange(tk)}
+											onClick={() =>
+												token !== tk && this.handleTokenChange(tk)
+											}
 										>
 											{tk}
 										</button>
 									))}
 								</SDivFlexCenter>
 							</li>
-							<li>
-								<SDivFlexCenter horizontal width="100%" padding="10px 0px">
-									<button
-										className={
-											'trans-button wide ' +
-											(isTransfer ? 'selected' : 'non-select')
-										}
-										onClick={() => !isTransfer && this.handleTypeChange()}
-									>
-										{CST.TH_TRANSFER}
-									</button>
-									<button
-										className={
-											'trans-button wide ' +
-											(isTransfer ? 'non-select' : 'selected')
-										}
-										onClick={() => isTransfer && this.handleTypeChange()}
-									>
-										{CST.TH_APPROVE}
-									</button>
-								</SDivFlexCenter>
-							</li>
 							<li className="input-line">
-								<span className="title">Address</span>
-								<div
-									className="default-button"
-									onClick={() =>
-										this.handleAddressChange(contractUtil.custodianAddr)
-									}
-								>
-									Custodian
-								</div>
+								<span className="title">{CST.TH_ADDRESS}</span>
+								<Tooltip title={tooltipText}>
+									<div
+										className="default-button"
+										onClick={() =>
+											this.handleAddressChange(contractUtil.custodianAddr)
+										}
+									>
+										{CST.TH_CUSTODIAN}
+									</div>
+								</Tooltip>
 								<SInput
 									className={addressError ? 'input-error' : ''}
 									placeholder="Please input address"
@@ -202,14 +174,25 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 									onBlur={() => this.handleAmountBlur(limit)}
 								/>
 							</li>
-							<li>
+							<li className='no-bg'>
 								<SDivFlexCenter horizontal width="100%" padding="0">
 									<button
 										className="form-button"
-										disabled={!address || !amount || !!addressError || !!amountError}
-										onClick={this.handleSubmit}
+										disabled={
+											!address || !amount || !!addressError || !!amountError || noTransferAddr
+										}
+										onClick={this.handleTransfer}
 									>
-										{CST.TH_SUBMIT}
+										{CST.TH_TRANSFER}
+									</button>
+									<button
+										className="form-button"
+										disabled={
+											!address || !amount || !!addressError || !!amountError
+										}
+										onClick={this.handleApprove}
+									>
+										{CST.TH_APPROVE}
 									</button>
 									<button className="form-button" onClick={this.handleClear}>
 										{CST.TH_CLEAR}
