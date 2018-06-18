@@ -4,7 +4,7 @@ import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
 import { IBalances } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
-import { SCardList, SCardTransactionForm, SInput } from './_styled';
+import { SCardList, SCardTransactionForm, SInput } from '../Cards/_styled';
 
 interface IProps {
 	account: string;
@@ -20,7 +20,7 @@ interface IState {
 	amountError: string;
 }
 
-export default class TransactionForm extends React.PureComponent<IProps, IState> {
+export default class Erc20Form extends React.PureComponent<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -118,7 +118,7 @@ export default class TransactionForm extends React.PureComponent<IProps, IState>
 					<div className="status-list-wrapper">
 						<ul>
 							<li className="block-title">
-								<span>Transfer</span>
+								<span>ERC20</span>
 								<SDivFlexCenter horizontal width="200px">
 									{[CST.TH_DUO, CST.TH_TOKEN_A, CST.TH_TOKEN_B].map(tk => (
 										<button

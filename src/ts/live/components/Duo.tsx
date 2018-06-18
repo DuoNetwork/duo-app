@@ -1,5 +1,4 @@
 import { Layout } from 'antd';
-//import moment from 'moment';
 import * as React from 'react';
 import {
 	IBalances,
@@ -13,7 +12,7 @@ import PriceChartCard from '../containers/Cards/PriceChartCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
 import ConversionCard from './Cards/ConversionCard';
-import HistoryCard from './Cards/HistoryCard';
+import OperationCard from './Cards/OperationCard';
 import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
 import Header from './DuoHeader';
@@ -49,8 +48,8 @@ export default class Duo extends React.PureComponent<IProps> {
 						<BalanceCard account={account} balances={balances} states={states} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<HistoryCard conversion={conversion}/>
-						<ConversionCard
+						<ConversionCard conversion={conversion}/>
+						<OperationCard
 							reset={prices.reset}
 							states={states}
 							balances={balances}
