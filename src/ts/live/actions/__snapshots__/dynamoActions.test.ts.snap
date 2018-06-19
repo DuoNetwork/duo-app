@@ -15,6 +15,7 @@ Array [
     "type": "uiConversion",
     "value": Array [
       Object {
+        "timestamp": 1234567890,
         "transactionHash": "bbb",
       },
     ],
@@ -32,7 +33,15 @@ Array [
 
 exports[`actions fetchConversion 2`] = `
 Object {
+  "timestamp": 1234567890,
   "transactionHash": "aaa",
+}
+`;
+
+exports[`actions fetchConversion 3`] = `
+Object {
+  "timestamp": 0,
+  "transactionHash": "ccc",
 }
 `;
 

@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 //import * as CST from '../common/constants';
 import chartUtil from '../common/chartUtil';
 import dynamoUtil from '../common/dynamoUtil';
+import util from '../common/util';
 import * as dynamoActions from './dynamoActions';
 
 const mockStore = configureMockStore([thunk]);
@@ -96,6 +97,7 @@ describe('actions', () => {
 
 	test('fetchConversion', () => {
 		const store = mockStore({ contract: { account: '0x0' } });
+		util.getDates = jest.fn(() => ['1970-01-15']);
 		dynamoUtil.queryConversionEvent = jest.fn(() =>
 			Promise.resolve([
 				{
@@ -106,10 +108,16 @@ describe('actions', () => {
 		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
 			Promise.resolve([
 				{
-					transactionHash: 'aaa'
+					transactionHash: 'aaa',
+					timestamp: 1234567890
 				},
 				{
-					transactionHash: 'bbb'
+					transactionHash: 'bbb',
+					timestamp: 1234567890
+				},
+				{
+					transactionHash: 'ccc',
+					timestamp: 0
 				}
 			])
 		);
@@ -121,10 +129,14 @@ describe('actions', () => {
 				expect(
 					(dynamoUtil.deleteUIConversionEvent as jest.Mock<Promise<void>>).mock.calls
 						.length
-				).toBe(1);
+				).toBe(2);
 				expect(
 					(dynamoUtil.deleteUIConversionEvent as jest.Mock<Promise<void>>).mock
 						.calls[0][1]
+				).toMatchSnapshot();
+				expect(
+					(dynamoUtil.deleteUIConversionEvent as jest.Mock<Promise<void>>).mock
+						.calls[1][1]
 				).toMatchSnapshot();
 				resolve();
 			}, 1000)
