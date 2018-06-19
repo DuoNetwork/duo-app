@@ -22,7 +22,6 @@ export function refresh(): VoidThunkAction {
 		dispatch(dynamoActions.fetchMinutely());
 		dispatch(dynamoActions.fetchPrice());
 		dispatch(dynamoActions.fetchConversion());
-		dispatch(dynamoActions.fetchUIConversion());
 		dispatch(dynamoActions.fetchTotalSupply());
 		dispatch(refreshUpdate());
 	};

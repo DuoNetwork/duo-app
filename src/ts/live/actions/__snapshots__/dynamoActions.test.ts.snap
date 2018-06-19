@@ -12,23 +12,28 @@ Object {
 exports[`actions fetchConversion 1`] = `
 Array [
   Object {
+    "type": "uiConversion",
+    "value": Array [
+      Object {
+        "transactionHash": "bbb",
+      },
+    ],
+  },
+  Object {
     "type": "conversion",
     "value": Array [
-      "test",
+      Object {
+        "transactionHash": "aaa",
+      },
     ],
   },
 ]
 `;
 
 exports[`actions fetchConversion 2`] = `
-Array [
-  Object {
-    "type": "uiConversion",
-    "value": Array [
-      "test",
-    ],
-  },
-]
+Object {
+  "transactionHash": "aaa",
+}
 `;
 
 exports[`actions fetchHourly 1`] = `

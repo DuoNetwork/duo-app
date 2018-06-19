@@ -28,7 +28,9 @@ Object {
   },
   "dynamo": Object {
     "conversion": Array [
-      "test",
+      Object {
+        "transactionHash": "aaa",
+      },
     ],
     "hourly": Object {
       "bitfinex": Object {
@@ -92,7 +94,9 @@ Object {
       "test",
     ],
     "uiConversion": Array [
-      "test",
+      Object {
+        "transactionHash": "bbb",
+      },
     ],
   },
   "ui": Object {

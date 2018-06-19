@@ -45,10 +45,26 @@ describe('actions', () => {
 			})
 		);
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
-		dynamoUtil.queryUIConversionEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				}
+			])
+		);
+		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				},
+				{
+					transactionHash: 'bbb'
+				}
+			])
+		);
 		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
+		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
 		store.dispatch(uiActions.refresh() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
