@@ -41,6 +41,10 @@ injectGlobal([
 		.ant-card-head-wrapper {
 			border-bottom: 1px solid rgba(255,255,255,.05);
 		}
+		.card-disable {
+			pointer-events: none !important;
+			opacity: 0.5;
+		}
 	}
 `
 ] as any);

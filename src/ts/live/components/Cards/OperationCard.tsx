@@ -97,21 +97,21 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		});
 
 	private getConversionDescription = (eth: number, ab: number, isCreate: boolean) => {
-			return isCreate
-				? 'Create ' +
-						d3.formatPrefix(',.8', 1)(ab) +
-						' Token A/B from ' +
-						d3.formatPrefix(',.8', 1)(eth) +
-						' ' +
-						CST.TH_ETH
-				: 'Redeem ' +
-						d3.formatPrefix(',.8', 1)(eth) +
-						' ' +
-						CST.TH_ETH +
-						' from ' +
-						d3.formatPrefix(',.8', 1)(ab) +
-						' Token A/B';
-		};
+		return isCreate
+			? 'Create ' +
+					d3.formatPrefix(',.8', 1)(ab) +
+					' Token A/B from ' +
+					d3.formatPrefix(',.8', 1)(eth) +
+					' ' +
+					CST.TH_ETH
+			: 'Redeem ' +
+					d3.formatPrefix(',.8', 1)(eth) +
+					' ' +
+					CST.TH_ETH +
+					' from ' +
+					d3.formatPrefix(',.8', 1)(ab) +
+					' Token A/B';
+	};
 
 	private getDescription = (amount: string) => {
 		const { states } = this.props;
@@ -124,7 +124,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 						amtNum * (1 - states.commissionRate),
 						this.getABFromEth(amtNum),
 						true
-				)
+					)
 				: this.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false);
 	};
 
@@ -208,9 +208,15 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		return (
 			<Affix offsetTop={20}>
 				<SCard
-					title={<SCardTitle>{CST.TH_OPERATION.toUpperCase()}</SCardTitle>}
+					title={
+						<SCardTitle>
+							{CST.TH_OPERATION.toUpperCase() +
+								(states.state !== CST.CTD_TRADING ? ' (Disabled)' : '')}
+						</SCardTitle>
+					}
 					width="440px"
 					margin="0 0 0 10px"
+					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
 				>
 					<SCardConversionForm>
 						<SCardList>
