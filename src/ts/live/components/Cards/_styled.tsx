@@ -831,7 +831,7 @@ export const STableWrapper = styled.div`
 		border-radius: 0;
 	}
 	.ant-table-placeholder {
-		width: 707.27px;
+		width: 708px;
 		background: none !important;
 		border-bottom: 1px dashed;
 		border-left: 1px dashed;
