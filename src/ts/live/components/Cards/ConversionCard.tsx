@@ -1,4 +1,4 @@
-import { Table } from 'antd';
+import { Table, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
@@ -32,6 +32,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 		const pending = uiConversion.map(c => ({
 			key: 'ui' + c.transactionHash,
 			[CST.TH_STATUS]: CST.TH_PENDING,
+			[CST.TH_TOOLTIP]: 'Delayed up to 10 minutes. Click to open tx in etherscan.io',
 			...this.formatData(c)
 		}));
 		pending.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
@@ -86,6 +87,13 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							filterMultiple={false}
 							onFilter={(value, record) => record[CST.TH_STATUS] === value}
 							width={100}
+							render={(text, record) =>
+								record[CST.TH_TOOLTIP] ? (
+									<Tooltip title={record[CST.TH_TOOLTIP]}>{text}</Tooltip>
+								) : (
+									text
+								)
+							}
 						/>
 						<Column
 							title={CST.TH_TYPE}
