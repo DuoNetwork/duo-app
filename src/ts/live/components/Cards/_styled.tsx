@@ -7,19 +7,14 @@ const RadioGroup = Radio.Group;
 export interface ICardProps {
 	width?: string;
 	margin?: string;
-	// center?: boolean;
-	// horizontal?: boolean;
-	// padding?: string;
-	// paddingLeft?: string;
-	// paddingRight?: string;
-	// paddingTop?: string;
-	// paddingBottom?: string;
+	inLine?: boolean;
 }
 
 export const SCard = styled(Card)`
 	overflow: hidden;
 	width: ${(props: ICardProps) => props.width};
 	margin: ${(props: ICardProps) => props.margin};
+	display: ${(props: ICardProps) => (props.inLine ? 'inline-table' : '')};
 	background: ${ColorStyles.CardBackground};
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
 	border-radius: 0px;
@@ -791,3 +786,5 @@ export const SInput = styled.input`
 		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 86, 86, 0.2) !important;
 	}
 `;
+
+export const STableWrapper = styled.div``;

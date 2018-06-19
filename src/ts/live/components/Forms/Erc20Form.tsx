@@ -129,7 +129,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 							</li>
 							<li className="input-line">
 								<span className="title">{CST.TH_ADDRESS}</span>
-								<Tooltip title={tooltipText}>
+								<Tooltip title={tooltipText} mouseEnterDelay={1.2}>
 									<div
 										className="default-button"
 										onClick={() =>
