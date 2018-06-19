@@ -95,3 +95,17 @@ test('insertUIConversion', async () => {
 	expect((dynamoUtil.insertData as jest.Mock<Promise<void>>).mock.calls[0][0]).toMatchSnapshot();
 	expect((dynamoUtil.insertData as jest.Mock<Promise<void>>).mock.calls[1][0]).toMatchSnapshot();
 });
+
+test('deleteUIConversionEvent', async () => {
+	dynamoUtil.deleteData = jest.fn(() => Promise.resolve());
+	await dynamoUtil.deleteUIConversionEvent('0x0', {
+		type: 'type',
+		transactionHash: 'txHash',
+		eth: 0,
+		tokenA: 0,
+		tokenB: 0,
+		timestamp: 0,
+		blockNumber: 0
+	});
+	expect((dynamoUtil.deleteData as jest.Mock<Promise<void>>).mock.calls[0][0]).toMatchSnapshot();
+});

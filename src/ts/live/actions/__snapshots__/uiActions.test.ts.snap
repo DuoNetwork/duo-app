@@ -45,7 +45,7 @@ Array [
     ],
   },
   Object {
-    "type": "conversion",
+    "type": "totalSupply",
     "value": Array [
       "test",
     ],
@@ -53,13 +53,17 @@ Array [
   Object {
     "type": "uiConversion",
     "value": Array [
-      "test",
+      Object {
+        "transactionHash": "bbb",
+      },
     ],
   },
   Object {
-    "type": "totalSupply",
+    "type": "conversion",
     "value": Array [
-      "test",
+      Object {
+        "transactionHash": "aaa",
+      },
     ],
   },
   Object {

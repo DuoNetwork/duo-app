@@ -31,9 +31,11 @@ describe('store', () => {
 			})
 		);
 		dynamoUtil.scanStatus = jest.fn(() =>
-			Promise.resolve([{
-				process: 'test'
-			}])
+			Promise.resolve([
+				{
+					process: 'test'
+				}
+			])
 		);
 		dynamoUtil.queryHourlyOHLC = jest.fn(() =>
 			Promise.resolve({
@@ -46,9 +48,25 @@ describe('store', () => {
 			})
 		);
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
-		dynamoUtil.queryUIConversionEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				}
+			])
+		);
+		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				},
+				{
+					transactionHash: 'bbb'
+				}
+			])
+		);
 		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
 		chartUtil.interpolate = jest.fn(r => r);
 		util.getNowTimestamp = jest.fn(() => 1234567890);
 		store.dispatch(contractActions.getAddresses());

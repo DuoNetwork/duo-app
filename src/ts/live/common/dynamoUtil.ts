@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import {
+	DeleteItemInput,
 	PutItemInput,
 	QueryInput,
 	QueryOutput,
@@ -46,6 +47,12 @@ export class DynamoUtil {
 	public insertData(params: PutItemInput): Promise<void> {
 		return new Promise((resolve, reject) =>
 			this.ddb.putItem(params, err => (err ? reject(err) : resolve()))
+		);
+	}
+
+	public deleteData(params: DeleteItemInput): Promise<void> {
+		return new Promise((resolve, reject) =>
+			this.ddb.deleteItem(params, err => (err ? reject(err) : resolve()))
 		);
 	}
 
@@ -356,6 +363,20 @@ export class DynamoUtil {
 			tokenA: Number(c[CST.DB_EV_UI_AB].N),
 			tokenB: Number(c[CST.DB_EV_UI_AB].N),
 		}));
+	}
+
+	public deleteUIConversionEvent(account: string, conversion: IConversion): Promise<void> {
+		return this.deleteData({
+			TableName: __KOVAN__ ? CST.DB_AWS_UI_EVENTS_DEV : CST.DB_AWS_UI_EVENTS_LIVE,
+			Key: {
+				[CST.DB_EV_KEY]: {
+					S: conversion.type + '|' + account
+				},
+				[CST.DB_EV_TX_HASH]: {
+					S: conversion.transactionHash
+				}
+			}
+		});
 	}
 }
 

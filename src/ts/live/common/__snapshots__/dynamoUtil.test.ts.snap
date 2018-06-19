@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`deleteUIConversionEvent 1`] = `
+Object {
+  "Key": Object {
+    "eventKey": Object {
+      "S": "type|0x0",
+    },
+    "transactionHash": Object {
+      "S": "txHash",
+    },
+  },
+  "TableName": "uiEvents_dev",
+}
+`;
+
 exports[`getLastPriceFromStatus 1`] = `
 Object {
   "bitfinex": Object {

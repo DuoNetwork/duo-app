@@ -90,13 +90,42 @@ describe('actions', () => {
 		expect(dynamoActions.conversionUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
+	test('uiConversionUpdate', () => {
+		expect(dynamoActions.uiConversionUpdate(['test'] as any)).toMatchSnapshot();
+	});
+
 	test('fetchConversion', () => {
 		const store = mockStore({ contract: { account: '0x0' } });
-		dynamoUtil.queryConversionEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				}
+			])
+		);
+		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				},
+				{
+					transactionHash: 'bbb'
+				}
+			])
+		);
+		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
 		store.dispatch(dynamoActions.fetchConversion() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
+				expect(
+					(dynamoUtil.deleteUIConversionEvent as jest.Mock<Promise<void>>).mock.calls
+						.length
+				).toBe(1);
+				expect(
+					(dynamoUtil.deleteUIConversionEvent as jest.Mock<Promise<void>>).mock
+						.calls[0][1]
+				).toMatchSnapshot();
 				resolve();
 			}, 1000)
 		);
@@ -110,22 +139,6 @@ describe('actions', () => {
 		const store = mockStore({});
 		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
 		store.dispatch(dynamoActions.fetchTotalSupply() as any);
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 1000)
-		);
-	});
-
-	test('uiConversionUpdate', () => {
-		expect(dynamoActions.uiConversionUpdate(['test'] as any)).toMatchSnapshot();
-	});
-
-	test('fetchConversion', () => {
-		const store = mockStore({ contract: { account: '0x0' } });
-		dynamoUtil.queryUIConversionEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchUIConversion() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

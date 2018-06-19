@@ -96,14 +96,29 @@ export function conversionUpdate(conversions: IConversion[]) {
 	};
 }
 
+export function uiConversionUpdate(conversions: IConversion[]) {
+	return {
+		type: CST.AC_UI_CONVERSION,
+		value: conversions
+	};
+}
+
 export function fetchConversion(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
-		dispatch(
-			conversionUpdate(
-				await dynamoUtil.queryConversionEvent(getState().contract.account, dates)
-			)
+		const account = getState().contract.account;
+		const conversion = await dynamoUtil.queryConversionEvent(
+			getState().contract.account,
+			dates
 		);
+		const uiConversion: IConversion[] = [];
+		(await dynamoUtil.queryUIConversionEvent(account)).forEach(uc => {
+			if (conversion.some(c => c.transactionHash === uc.transactionHash))
+				dynamoUtil.deleteUIConversionEvent(account, uc);
+			else uiConversion.push(uc);
+		});
+		dispatch(uiConversionUpdate(uiConversion))
+		dispatch(conversionUpdate(conversion));
 	};
 }
 
@@ -118,20 +133,5 @@ export function fetchTotalSupply(): VoidThunkAction {
 	return async dispatch => {
 		const dates = util.getDates(24, 1, 'hour', 'YYYY-MM-DD-HH');
 		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
-	};
-}
-
-export function uiConversionUpdate(conversions: IConversion[]) {
-	return {
-		type: CST.AC_UI_CONVERSION,
-		value: conversions
-	};
-}
-
-export function fetchUIConversion(): VoidThunkAction {
-	return async (dispatch, getState) => {
-		dispatch(
-			uiConversionUpdate(await dynamoUtil.queryUIConversionEvent(getState().contract.account))
-		);
 	};
 }
