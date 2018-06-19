@@ -16,7 +16,7 @@ interface IProps {
 export default class ConversionCard extends React.PureComponent<IProps> {
 	private formatData(conversion: IConversion) {
 		return {
-			[CST.TH_TIME]: moment.utc(conversion.timestamp).format('YYYY-MM-DD HH:mm:ss'),
+			[CST.TH_TIME]: moment(conversion.timestamp).format('YYYY-MM-DD HH:mm:ss'),
 			[CST.TH_TYPE]: conversion.type,
 			[CST.TH_ETH]: d3.format(',.8f')(conversion.eth),
 			[CST.TH_TOKEN_AB]: d3.format(',.8f')(conversion.tokenA),
@@ -30,7 +30,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 	public render() {
 		const { conversion, uiConversion } = this.props;
 		const pending = uiConversion.map(c => ({
-			key: c.transactionHash,
+			key: 'ui' + c.transactionHash,
 			[CST.TH_STATUS]: CST.TH_PENDING,
 			...this.formatData(c)
 		}));
@@ -46,7 +46,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 				title={<SCardTitle>{CST.TH_CONVERSION.toUpperCase()}</SCardTitle>}
 				width="740px"
 				margin="0 10px 0 0"
-				inLine
+				inlinetype="table"
 			>
 				<STableWrapper>
 					<Table
@@ -64,12 +64,16 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								onClick: () => window.open(record[CST.TH_LINK])
 							};
 						}}
+						rowClassName={record => record[CST.TH_TYPE]}
 					>
 						<Column
 							title={CST.TH_TIME}
 							dataIndex={CST.TH_TIME}
 							key={CST.TH_TIME}
-							sorter={(a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME])}
+							sorter={(a, b) =>
+								-(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME])
+							}
+							width={160}
 						/>
 						<Column
 							title={CST.TH_STATUS}
@@ -81,6 +85,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							}))}
 							filterMultiple={false}
 							onFilter={(value, record) => record[CST.TH_STATUS] === value}
+							width={100}
 						/>
 						<Column
 							title={CST.TH_TYPE}
@@ -92,12 +97,19 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							}))}
 							filterMultiple={false}
 							onFilter={(value, record) => record[CST.TH_TYPE] === value}
+							width={100}
 						/>
-						<Column title={CST.TH_ETH} dataIndex={CST.TH_ETH} key={CST.TH_ETH} />
+						<Column
+							title={CST.TH_ETH}
+							dataIndex={CST.TH_ETH}
+							key={CST.TH_ETH}
+							className="eth"
+						/>
 						<Column
 							title={CST.TH_TOKEN_AB}
 							dataIndex={CST.TH_TOKEN_AB}
 							key={CST.TH_TOKEN_AB}
+							className="token-ab"
 						/>
 					</Table>
 				</STableWrapper>
