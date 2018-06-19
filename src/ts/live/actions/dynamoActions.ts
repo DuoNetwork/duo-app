@@ -1,3 +1,4 @@
+import moment from 'moment';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
@@ -113,11 +114,14 @@ export function fetchConversion(): VoidThunkAction {
 		);
 		const uiConversion: IConversion[] = [];
 		(await dynamoUtil.queryUIConversionEvent(account)).forEach(uc => {
-			if (conversion.some(c => c.transactionHash === uc.transactionHash))
+			if (
+				!dates.includes(moment.utc(uc.timestamp).format('YYYY-MM-DD')) ||
+				conversion.some(c => c.transactionHash === uc.transactionHash)
+			)
 				dynamoUtil.deleteUIConversionEvent(account, uc);
 			else uiConversion.push(uc);
 		});
-		dispatch(uiConversionUpdate(uiConversion))
+		dispatch(uiConversionUpdate(uiConversion));
 		dispatch(conversionUpdate(conversion));
 	};
 }

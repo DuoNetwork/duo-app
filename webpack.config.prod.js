@@ -37,7 +37,7 @@ module.exports = {
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'status.html'
-		})
+		}),
 		new HtmlWebpackPlugin({
 			excludeChunks: ['app', 'status'],
 			title: "DUO",
