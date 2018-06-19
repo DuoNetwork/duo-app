@@ -315,6 +315,7 @@ injectGlobal([
 		}
 		.ant-table-row > td {
 			color: white !important;
+			cursor: pointer
 		}
 	}
 `

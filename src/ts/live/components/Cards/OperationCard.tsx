@@ -9,7 +9,6 @@ import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
 import dynamoUtil from '../../common/dynamoUtil';
 import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
-import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import Erc20Form from '../Forms/Erc20Form';
 import {
@@ -97,6 +96,23 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			description: this.getDescription(amount)
 		});
 
+	private getConversionDescription = (eth: number, ab: number, isCreate: boolean) => {
+			return isCreate
+				? 'Create ' +
+						d3.formatPrefix(',.8', 1)(ab) +
+						' Token A/B from ' +
+						d3.formatPrefix(',.8', 1)(eth) +
+						' ' +
+						CST.TH_ETH
+				: 'Redeem ' +
+						d3.formatPrefix(',.8', 1)(eth) +
+						' ' +
+						CST.TH_ETH +
+						' from ' +
+						d3.formatPrefix(',.8', 1)(ab) +
+						' Token A/B';
+		};
+
 	private getDescription = (amount: string) => {
 		const { states } = this.props;
 		const { isCreate } = this.state;
@@ -104,12 +120,12 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		return !amtNum
 			? 'Estimated outcome'
 			: isCreate
-				? util.getConversionDescription(
+				? this.getConversionDescription(
 						amtNum * (1 - states.commissionRate),
 						this.getABFromEth(amtNum),
 						true
 				)
-				: util.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false);
+				: this.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false);
 	};
 
 	private getABFromEth = (amount: number) => {

@@ -1,10 +1,9 @@
 import { Table } from 'antd';
-//import * as d3 from 'd3';
+import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import { IConversion } from '../../common/types';
-import util from '../../common/util';
 import { SCard, SCardTitle } from './_styled';
 
 const { Column } = Table;
@@ -18,24 +17,14 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 	private formatData(conversion: IConversion) {
 		return {
 			[CST.TH_TIME]: moment.utc(conversion.timestamp).format('YYYY-MM-DD HH:mm:ss'),
-			[CST.TH_DESCRIPTION]: (
-				<a
-					className="tag-content"
-					href={
-						'https://' +
-						(__KOVAN__ ? 'kovan.' : '') +
-						'etherscan.io/tx/' +
-						conversion.transactionHash
-					}
-					target="_blank"
-				>
-					{util.getConversionDescription(
-						conversion.eth,
-						conversion.tokenA,
-						conversion.type === CST.EVENT_CREATE
-					)}
-				</a>
-			)
+			[CST.TH_TYPE]: conversion.type,
+			[CST.TH_ETH]: d3.format(',.8f')(conversion.eth),
+			[CST.TH_TOKEN_AB]: d3.format(',.8f')(conversion.tokenA),
+			[CST.TH_LINK]:
+				'https://' +
+				(__KOVAN__ ? 'kovan.' : '') +
+				'etherscan.io/tx/' +
+				conversion.transactionHash
 		};
 	}
 	public render() {
@@ -68,6 +57,11 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 						pageSizeOptions: ['10', '20', '50'],
 						size: 'small'
 					}}
+					onRow={record => {
+						return {
+							onClick: () => window.open(record[CST.TH_LINK])
+						};
+					}}
 				>
 					<Column
 						title={CST.TH_TIME}
@@ -87,9 +81,21 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 						onFilter={(value, record) => record[CST.TH_STATUS] === value}
 					/>
 					<Column
-						title={CST.TH_DESCRIPTION}
-						dataIndex={CST.TH_DESCRIPTION}
-						key={CST.TH_DESCRIPTION}
+						title={CST.TH_TYPE}
+						dataIndex={CST.TH_TYPE}
+						key={CST.TH_TYPE}
+						filters={[CST.EVENT_CREATE, CST.EVENT_REDEEM].map(f => ({
+							text: f,
+							value: f
+						}))}
+						filterMultiple={false}
+						onFilter={(value, record) => record[CST.TH_TYPE] === value}
+					/>
+					<Column title={CST.TH_ETH} dataIndex={CST.TH_ETH} key={CST.TH_ETH} />
+					<Column
+						title={CST.TH_TOKEN_AB}
+						dataIndex={CST.TH_TOKEN_AB}
+						key={CST.TH_TOKEN_AB}
 					/>
 				</Table>
 			</SCard>
