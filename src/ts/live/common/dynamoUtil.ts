@@ -202,7 +202,7 @@ export class DynamoUtil {
 			low: Number(ohlc[CST.DB_OHLC_LOW].N),
 			close: Number(ohlc[CST.DB_OHLC_CLOSE].N),
 			volume: Number(ohlc[CST.DB_OHLC_VOLUME].N),
-			timestamp: moment(date + ' ' + hour + ':' + minute, 'YYYY-MM-DD HH:m').valueOf()
+			timestamp: moment.utc(date + ' ' + hour + ':' + minute, 'YYYY-MM-DD HH:m').valueOf()
 		};
 	}
 

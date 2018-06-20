@@ -35,7 +35,7 @@ export function hourlyUpdate(hourly: ISourceData<IPriceBar[]>) {
 
 export function fetchHourly(): VoidThunkAction {
 	return async dispatch => {
-		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
+		const dates = util.getDates(8, 1, 'day', 'YYYY-MM-DD');
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
 		const results = await Promise.all(promistList);
 		const hourly: ISourceData<IPriceBar[]> = {
