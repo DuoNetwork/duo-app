@@ -60,9 +60,8 @@ class ContractUtil {
 	}
 
 	public async getSystemStates(): Promise<ICustodianStates> {
-		const [states, ethBalance, duoBalance] = await Promise.all([
+		const [states, duoBalance] = await Promise.all([
 			this.custodian.methods.getSystemStates().call(),
-			this.getEthBalance(this.custodianAddr),
 			this.getDuoBalance(this.custodianAddr)
 		]);
 		return {
@@ -71,29 +70,29 @@ class ContractUtil {
 			navB: this.fromWei(states[2]),
 			totalSupplyA: this.fromWei(states[3]),
 			totalSupplyB: this.fromWei(states[4]),
-			alpha: states[5].valueOf() / 10000,
-			beta: this.fromWei(states[6]),
-			feeAccumulated: this.fromWei(states[7]),
-			periodCoupon: this.fromWei(states[8]),
-			limitPeriodic: this.fromWei(states[9]),
-			limitUpper: this.fromWei(states[10]),
-			limitLower: this.fromWei(states[11]),
-			commissionRate: states[12] / 10000,
-			period: Number(states[13].valueOf()),
-			iterationGasThreshold: Number(states[14].valueOf()),
-			ethDuoFeeRatio: Number(states[15].valueOf()),
-			preResetWaitingBlocks: Number(states[16].valueOf()),
-			priceTol: Number(states[17].valueOf() / 10000),
-			priceFeedTol: Number(states[18].valueOf() / 10000),
-			priceFeedTimeTol: Number(states[19].valueOf()),
-			priceUpdateCoolDown: Number(states[20].valueOf()),
-			numOfPrices: Number(states[21].valueOf()),
-			nextResetAddrIndex: Number(states[22].valueOf()),
-			lastAdminTime: Number(states[23].valueOf()),
-			adminCoolDown: Number(states[24]),
-			usersLength: Number(states[25].valueOf()),
-			addrPoolLength: Number(states[26].valueOf()),
-			ethBalance: ethBalance,
+			ethBalance: this.fromWei(states[5]),
+			alpha: states[6].valueOf() / 10000,
+			beta: this.fromWei(states[7]),
+			feeAccumulated: this.fromWei(states[8]),
+			periodCoupon: this.fromWei(states[9]),
+			limitPeriodic: this.fromWei(states[10]),
+			limitUpper: this.fromWei(states[11]),
+			limitLower: this.fromWei(states[12]),
+			commissionRate: states[13] / 10000,
+			period: Number(states[14].valueOf()),
+			iterationGasThreshold: Number(states[15].valueOf()),
+			ethDuoFeeRatio: Number(states[16].valueOf()),
+			preResetWaitingBlocks: Number(states[17].valueOf()),
+			priceTol: Number(states[18].valueOf() / 10000),
+			priceFeedTol: Number(states[19].valueOf() / 10000),
+			priceFeedTimeTol: Number(states[20].valueOf()),
+			priceUpdateCoolDown: Number(states[21].valueOf()),
+			numOfPrices: Number(states[22].valueOf()),
+			nextResetAddrIndex: Number(states[23].valueOf()),
+			lastAdminTime: Number(states[24].valueOf()),
+			adminCoolDown: Number(states[25]),
+			usersLength: Number(states[26].valueOf()),
+			addrPoolLength: Number(states[27].valueOf()),
 			duoBalance: duoBalance
 		};
 	}

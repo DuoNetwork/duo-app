@@ -124,19 +124,19 @@ export default class StateCard extends React.PureComponent<IProps> {
 								<li>
 									<span className="title">Upper Limit for Token A</span>
 									<span className="content">
-										{d3.format(',.2f')(states.limitPeriodic)} USD
+										{d3.format(',.4f')(states.limitPeriodic)} USD
 									</span>
 								</li>
 								<li>
 									<span className="title">Upper Limit for Token B</span>
 									<span className="content">
-										{d3.format(',.2f')(states.limitUpper)} USD
+										{d3.format(',.4f')(states.limitUpper)} USD
 									</span>
 								</li>
 								<li>
 									<span className="title">Lower Limit for Token B</span>
 									<span className="content">
-										{d3.format(',.2f')(states.limitLower)} USD
+										{d3.format(',.4f')(states.limitLower)} USD
 									</span>
 								</li>
 								<li>
