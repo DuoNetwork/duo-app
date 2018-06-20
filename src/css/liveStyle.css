@@ -50,3 +50,32 @@ body {
 	width: 100%;
 	height: 100%;
 }
+
+.chart-wrapper {
+	width: 760px;
+	height: 350px;
+	margin-top: 10px;
+	border: 1px dashed;
+	border-color: rgba(255,255,255,0.1);
+}
+.x-axis text,
+.ly-axis text,
+.ry-axis text {
+	font: 8px 'Roboto';
+	fill: #474849;
+	pointer-events: none;
+}
+.x-axis path,
+.x-axis line,
+.ly-axis path,
+.ly-axis line,
+.ry-axis path,
+.ry-axis line {
+	fill: none;
+	stroke: #303132;
+	shape-rendering: crispEdges;
+	pointer-events: none;
+}
+path.domain {
+	stroke-width: 0.5px;
+}

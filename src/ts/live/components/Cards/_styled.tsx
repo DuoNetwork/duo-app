@@ -808,25 +808,26 @@ export const STableWrapper = styled.div`
 	td {
 		cursor: pointer;
 		border-bottom: 0 !important;
-		color: ${ColorStyles.TextWhiteAlphaL}
+		color: ${ColorStyles.TextWhiteAlphaL};
 	}
-	tr > .eth, tr > .token-ab {
+	tr > .eth,
+	tr > .token-ab {
 		text-align: right;
 	}
 	.Redeem {
 		.eth {
-			color: ${ColorStyles.TextGreenAlpha}
+			color: ${ColorStyles.TextGreenAlpha};
 		}
 		.token-ab {
-			color: ${ColorStyles.TextRedAlpha}
+			color: ${ColorStyles.TextRedAlpha};
 		}
 	}
 	.Create {
 		.token-ab {
-			color: ${ColorStyles.TextGreenAlpha}
+			color: ${ColorStyles.TextGreenAlpha};
 		}
 		.eth {
-			color: ${ColorStyles.TextRedAlpha}
+			color: ${ColorStyles.TextRedAlpha};
 		}
 	}
 	.ant-table table {
@@ -973,3 +974,11 @@ injectGlobal([
 	}
 `
 ] as any);
+
+export const SChartWrapper = styled.div`
+	width: 760px;
+	height: 350px;
+	margin-top: 10px;
+	border: 1px dashed;
+	border-color: ${ColorStyles.BorderWhite1};
+`;
