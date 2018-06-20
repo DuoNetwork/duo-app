@@ -60,7 +60,7 @@ export function minutelyUpdate(minutely: ISourceData<IPriceBar[]>) {
 
 export function fetchMinutely(): VoidThunkAction {
 	return async dispatch => {
-		const dates = util.getDates(2, 1, 'hour', 'YYYY-MM-DD-HH');
+		const dates = util.getDates(3, 1, 'hour', 'YYYY-MM-DD-HH');
 		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
 		const results = await Promise.all(promistList);
 		const minutely: ISourceData<IPriceBar[]> = {
@@ -85,7 +85,7 @@ export function priceUpdate(prices: IAcceptedPrice[]) {
 
 export function fetchPrice(): VoidThunkAction {
 	return async dispatch => {
-		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
+		const dates = util.getDates(8, 1, 'day', 'YYYY-MM-DD');
 		dispatch(priceUpdate(await dynamoUtil.queryAcceptPriceEvent(dates)));
 	};
 }

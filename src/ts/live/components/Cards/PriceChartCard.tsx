@@ -1,12 +1,14 @@
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
+import loadingImg from '../../../../images/loadingDUO.png';
+import * as CST from '../../common/constants';
 import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleDropdown from '../Common/CardTitleDropdown';
 import { SCard } from './_styled';
 
-const margin = { top: 12, right: 23, bottom: 20, left: 32 };
+const margin = { top: 15, right: 26, bottom: 23, left: 36 };
 
 interface IProps {
 	hourly: ISourceData<IPriceBar[]>;
@@ -29,11 +31,19 @@ function drawLines(
 	console.log(custodianData);
 	console.log(sourceData);
 	console.log(timeStep);
-	if (!custodianData.length) return;
+	if (!custodianData.length) {
+		d3.selectAll('.loading').remove();
+		d3.select(el)
+			.append('div')
+			.attr('class', 'loading')
+			.html('<span>Loading...</span><img class="loading-img" src="' + loadingImg + '" />');
+		return;
+	}
 	const width = 708 - margin.left - margin.right;
 	const height = 350 - margin.top - margin.bottom;
 
 	//Establish SVG Playground
+	d3.selectAll('.loading').remove();
 	d3.selectAll('#timeserieschart').remove();
 	d3.select(el)
 		.append('svg')
@@ -42,7 +52,7 @@ function drawLines(
 		.attr('height', height + margin.top + margin.bottom);
 
 	//Date Range
-	const zoomFormat = date => moment(date).format('HH:mm');
+	const zoomFormat = date => moment(date).format('MM-DD HH:mm');
 	const displayColums = (step: number) => {
 		switch (step) {
 			case 60000:
@@ -63,10 +73,10 @@ function drawLines(
 		) || 0;
 	const minDate = maxDate - timeStep * displayColums(timeStep);
 	//Time Scale
-	const xStart = minDate - 2 * timeStep;
+	const xStart = minDate;
 	const xEnd = maxDate + 2 * timeStep;
-	console.log(xStart);
-	console.log(xEnd);
+	console.log(moment(xStart));
+	console.log(moment(xEnd));
 	const xScale = d3
 		.scaleTime()
 		.domain([xStart, xEnd])
@@ -81,29 +91,16 @@ function drawLines(
 		d3.max(
 			[
 				d3.max(
-					[...custodianData.map(d => d.price)].slice(
-						custodianData.length - displayColums(timeStep)
-					)
+					[...sourceData.bitfinex.map(d => d.high)]
 				) || 0,
 				d3.max(
-					[...sourceData.bitfinex.map(d => d.high)].slice(
-						sourceData.bitfinex.length - displayColums(timeStep)
-					)
+					[...sourceData.gemini.map(d => d.high)]
 				) || 0,
 				d3.max(
-					[...sourceData.gemini.map(d => d.high)].slice(
-						sourceData.gemini.length - displayColums(timeStep)
-					)
+					[...sourceData.kraken.map(d => d.high)]
 				) || 0,
 				d3.max(
-					[...sourceData.kraken.map(d => d.high)].slice(
-						sourceData.kraken.length - displayColums(timeStep)
-					)
-				) || 0,
-				d3.max(
-					[...sourceData.gdax.map(d => d.high)].slice(
-						sourceData.gdax.length - displayColums(timeStep)
-					)
+					[...sourceData.gdax.map(d => d.high)]
 				) || 0
 			]
 		) || 0;
@@ -111,29 +108,16 @@ function drawLines(
 		d3.min(
 			[
 				d3.min(
-					[...custodianData.map(d => d.price)].slice(
-						custodianData.length - displayColums(timeStep)
-					)
+					[...sourceData.bitfinex.map(d => d.low)]
 				) || 0,
 				d3.min(
-					[...sourceData.bitfinex.map(d => d.low)].slice(
-						sourceData.bitfinex.length - displayColums(timeStep)
-					)
+					[...sourceData.gemini.map(d => d.low)]
 				) || 0,
 				d3.min(
-					[...sourceData.gemini.map(d => d.low)].slice(
-						sourceData.gemini.length - displayColums(timeStep)
-					)
+					[...sourceData.kraken.map(d => d.low)]
 				) || 0,
 				d3.min(
-					[...sourceData.kraken.map(d => d.low)].slice(
-						sourceData.kraken.length - displayColums(timeStep)
-					)
-				) || 0,
-				d3.min(
-					[...sourceData.gdax.map(d => d.low)].slice(
-						sourceData.gdax.length - displayColums(timeStep)
-					)
+					[...sourceData.gdax.map(d => d.low)]
 				) || 0
 			]
 		) || 0;
@@ -170,10 +154,10 @@ function drawLines(
 		.domain([rangeBottomNav, rangeTopNav])
 		.range([height, 0]);
 	//Lines
-	// const lineSource = d3
-	// 	.line<IPriceBar>()
-	// 	.x(d => xScale(d.timestamp))
-	// 	.y(d => ethYScale(d.close));
+	const lineSource = d3
+		.line<IPriceBar>()
+		.x(d => xScale(d.timestamp))
+		.y(d => ethYScale(d.close));
 	// const lineCustodian = d3
 	// 	.line<IAcceptedPrice>()
 	// 	.x(d => xScale(d.timestamp))
@@ -217,6 +201,33 @@ function drawLines(
 		.attr('transform', 'translate(' + width + ', 0)')
 		.call(ryAxis as any);
 	raY.selectAll('text').style('text-anchor', 'start');
+	chart
+		.append('defs')
+		.append('clipPath')
+		.attr('id', 'clip')
+		.append('rect')
+		.attr('x', 1)
+		.attr('y', 0)
+		.attr('width', width - 1)
+		.attr('height', height);
+	// Chart Data
+	const chartdata = chart
+		.append('g')
+		.attr('class', 'chart-data')
+		.attr('clip-path', 'url(#clip)');
+	//Draw Source Lines
+	CST.EXCHANGES.forEach(ex => {
+		chartdata
+			.append('path')
+			.attr('class', 'line-' + ex.toLowerCase())
+			.datum(sourceData[ex.toLowerCase()])
+			.attr('d', lineSource)
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', 'white')
+			.attr('stroke-width', 1);
+	});
 }
 
 export default class PriceChartCard extends React.Component<IProps, IState> {
@@ -239,9 +250,9 @@ export default class PriceChartCard extends React.Component<IProps, IState> {
 	};
 
 	public componentDidMount() {
-		const { minutely, prices } = this.props;
+		const { hourly, prices } = this.props;
 		const { timeStep } = this.state;
-		drawLines(this.chartRef.current as Element, prices, minutely, timeStep);
+		drawLines(this.chartRef.current as Element, prices, hourly, timeStep);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
