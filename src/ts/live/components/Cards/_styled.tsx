@@ -392,10 +392,17 @@ export const SRadioGroup = styled(RadioGroup)`
 	}
 `;
 
+export interface ICardListProps {
+	noMargin?: boolean;
+}
 export const SCardList = styled.div`
 	width: 100%;
 	.status-list-wrapper {
 		width: 100%;
+	}
+	.status-list-wrapper > ul:last-child {
+		margin: ${(props: ICardListProps) => (props.noMargin ? '10px 0 0 0 !important' : '10px 0')};
+	}
 	}
 	.status-list-wrapper > ul {
 		list-style: none;

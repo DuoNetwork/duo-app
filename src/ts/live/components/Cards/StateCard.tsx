@@ -54,7 +54,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 				}
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
-					<SCardList>
+					<SCardList noMargin>
 						<div className="status-list-wrapper">
 							<ul>
 								<li className="block-title">

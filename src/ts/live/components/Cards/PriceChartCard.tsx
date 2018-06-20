@@ -40,7 +40,7 @@ function drawLines(
 		return;
 	}
 	const width = 708 - margin.left - margin.right;
-	const height = 350 - margin.top - margin.bottom;
+	const height = 400 - margin.top - margin.bottom;
 
 	//Establish SVG Playground
 	d3.selectAll('.loading').remove();
@@ -61,6 +61,15 @@ function drawLines(
 				return 168;
 		}
 	};
+	const custodianSourceTimestepRatio = (step: number) => {
+		switch (step) {
+			case 60000:
+				return 60;
+			default:
+				return 1;
+		}
+	};
+	const colums = displayColums(timeStep);
 	const maxDate =
 		d3.max(
 			[
@@ -71,7 +80,7 @@ function drawLines(
 				sourceData.gdax[sourceData.gdax.length - 1].timestamp
 			]
 		) || 0;
-	const minDate = maxDate - timeStep * displayColums(timeStep);
+	const minDate = maxDate - timeStep * colums;
 	//Time Scale
 	const xStart = minDate;
 	const xEnd = maxDate + 2 * timeStep;
@@ -87,38 +96,35 @@ function drawLines(
 		0.85;
 	console.log(rectWidth);
 	//Data Range (ETH price)
+	const slicedCustodianData = custodianData.slice(
+		-colums / custodianSourceTimestepRatio(timeStep)
+	);
 	const maxPrice =
 		d3.max(
 			[
-				d3.max(
-					[...sourceData.bitfinex.map(d => d.high)]
-				) || 0,
-				d3.max(
-					[...sourceData.gemini.map(d => d.high)]
-				) || 0,
-				d3.max(
-					[...sourceData.kraken.map(d => d.high)]
-				) || 0,
-				d3.max(
-					[...sourceData.gdax.map(d => d.high)]
-				) || 0
+				d3.max(slicedCustodianData.map(d => d.price)) || 0,
+				...CST.EXCHANGES.map(
+					src =>
+						d3.max(
+							(sourceData[src.toLowerCase()] as IPriceBar[])
+								.map(d => d.high)
+								.slice(-colums)
+						) || 0
+				)
 			]
 		) || 0;
 	const minPrice =
 		d3.min(
 			[
-				d3.min(
-					[...sourceData.bitfinex.map(d => d.low)]
-				) || 0,
-				d3.min(
-					[...sourceData.gemini.map(d => d.low)]
-				) || 0,
-				d3.min(
-					[...sourceData.kraken.map(d => d.low)]
-				) || 0,
-				d3.min(
-					[...sourceData.gdax.map(d => d.low)]
-				) || 0
+				d3.min(slicedCustodianData.map(d => d.price)) || 0,
+				...CST.EXCHANGES.map(
+					src =>
+						d3.min(
+							(sourceData[src.toLowerCase()] as IPriceBar[])
+								.map(d => d.high)
+								.slice(-colums)
+						) || 0
+				)
 			]
 		) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
@@ -128,7 +134,6 @@ function drawLines(
 	console.log(rangeTop);
 	console.log(rangeBottom);
 	//Data Range (Nav A/B)
-	const slicedCustodianData = custodianData.slice(custodianData.length - displayColums(timeStep));
 	const maxNav =
 		d3.max(
 			[...slicedCustodianData.map(d => d.navA), ...slicedCustodianData.map(d => d.navB)]
@@ -158,18 +163,18 @@ function drawLines(
 		.line<IPriceBar>()
 		.x(d => xScale(d.timestamp))
 		.y(d => ethYScale(d.close));
-	// const lineCustodian = d3
-	// 	.line<IAcceptedPrice>()
-	// 	.x(d => xScale(d.timestamp))
-	// 	.y(d => ethYScale(d.price));
-	// const lineNavA = d3
-	// 	.line<IAcceptedPrice>()
-	// 	.x(d => xScale(d.timestamp))
-	// 	.y(d => navYScale(d.navA));
-	// const lineNavB = d3
-	// 	.line<IAcceptedPrice>()
-	// 	.x(d => xScale(d.timestamp))
-	// 	.y(d => navYScale(d.navB));
+	const lineCustodian = d3
+		.line<IAcceptedPrice>()
+		.x(d => xScale(d.timestamp))
+		.y(d => ethYScale(d.price));
+	const lineNavA = d3
+		.line<IAcceptedPrice>()
+		.x(d => xScale(d.timestamp))
+		.y(d => navYScale(d.navA));
+	const lineNavB = d3
+		.line<IAcceptedPrice>()
+		.x(d => xScale(d.timestamp))
+		.y(d => navYScale(d.navB));
 	//Axis
 	const xAxis = d3
 		.axisBottom(xScale)
@@ -228,6 +233,41 @@ function drawLines(
 			.attr('stroke', 'white')
 			.attr('stroke-width', 1);
 	});
+	//Draw Custodian ETH Line
+	chartdata
+		.append('path')
+		.attr('class', 'line-custodian-eth')
+		.datum(custodianData)
+		.attr('d', lineCustodian)
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', 'red')
+		.attr('stroke-width', 1);
+	//Draw Nav A/B Lines
+	chartdata
+		.append('path')
+		.attr('class', 'line-custodian-navA')
+		.datum(custodianData)
+		.attr('d', lineNavA)
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', 'yellow')
+		.attr('stroke-width', 1);
+	chartdata
+		.append('path')
+		.attr('class', 'line-custodian-navB')
+		.datum(custodianData)
+		.attr('d', lineNavB)
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', 'blue')
+		.attr('stroke-width', 1);
+	chartdata.select('.line-custodian-navA').attr('opacity', 0);
+	chartdata.select('.line-custodian-navB').attr('opacity', 0);
+
 }
 
 export default class PriceChartCard extends React.Component<IProps, IState> {
@@ -236,7 +276,7 @@ export default class PriceChartCard extends React.Component<IProps, IState> {
 		super(props);
 		this.state = {
 			keys: [],
-			timeStep: 60000
+			timeStep: 60000 * 60
 		};
 		this.chartRef = React.createRef();
 	}
@@ -261,9 +301,9 @@ export default class PriceChartCard extends React.Component<IProps, IState> {
 			JSON.stringify(nextProps.hourly) !== JSON.stringify(this.props.hourly) ||
 			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices)
 		) {
-			const { minutely, prices } = nextProps;
+			const { hourly, prices } = nextProps;
 			const { timeStep } = this.state;
-			drawLines(this.chartRef.current as Element, prices, minutely, timeStep);
+			drawLines(this.chartRef.current as Element, prices, hourly, timeStep);
 		}
 		return false;
 	}
