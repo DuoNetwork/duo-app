@@ -31,7 +31,8 @@ export const initialState: IContractState = {
 		adminCoolDown: 0,
 		usersLength: 0,
 		addrPoolLength: 0,
-		balance: 0
+		ethBalance: 0,
+		duoBalance: 0
 	},
 	prices: {
 		first: { address: '0x0', price: 0, timestamp: 0 },

@@ -6,14 +6,13 @@ import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
-import { IBalances, ICustodianStates } from '../../common/types';
+import { IBalances } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardAssetTag, SCardExtendExtraDiv, SCardTitle } from './_styled';
 
 interface IProps {
 	account: string;
 	balances: IBalances;
-	states: ICustodianStates;
 }
 
 const BalanceInfo = (props: {
@@ -21,9 +20,8 @@ const BalanceInfo = (props: {
 	name: string;
 	value: number;
 	allowance?: number;
-	totalSupply?: number;
 }) => {
-	const { icon, name, value, allowance, totalSupply } = props;
+	const { icon, name, value, allowance } = props;
 	return (
 		<SCardAssetTag value={value}>
 			<div className="bg-logo">
@@ -39,11 +37,6 @@ const BalanceInfo = (props: {
 						{allowance !== undefined ? (
 							<div className="tag-subtext">
 								{d3.formatPrefix(',.8', 1)(allowance) + ' allowance'}
-							</div>
-						) : null}
-						{totalSupply ? (
-							<div className="tag-subtext">
-								{d3.format(',.2f')(totalSupply) + ' total supply'}
 							</div>
 						) : null}
 					</div>
@@ -80,7 +73,7 @@ const ExtendExtraDiv = (props: { accountShow: string; account: string }) => {
 
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
-		const { balances, account, states } = this.props;
+		const { balances, account } = this.props;
 		return (
 			<SCard
 				title={<SCardTitle>{CST.TH_BALANCE.toUpperCase()}</SCardTitle>}
@@ -102,13 +95,11 @@ export default class BalanceCard extends React.Component<IProps> {
 						icon={classAIcon}
 						name={CST.TH_TOKEN_A}
 						value={balances.tokenA}
-						totalSupply={states.totalSupplyA}
 					/>
 					<BalanceInfo
 						icon={classBIcon}
 						name={CST.TH_TOKEN_B}
 						value={balances.tokenB}
-						totalSupply={states.totalSupplyB}
 					/>
 				</SDivFlexCenter>
 			</SCard>

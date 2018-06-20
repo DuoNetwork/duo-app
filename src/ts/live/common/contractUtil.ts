@@ -60,7 +60,11 @@ class ContractUtil {
 	}
 
 	public async getSystemStates(): Promise<ICustodianStates> {
-		const states = await this.custodian.methods.getSystemStates().call();
+		const [states, ethBalance, duoBalance] = await Promise.all([
+			this.custodian.methods.getSystemStates().call(),
+			this.getEthBalance(this.custodianAddr),
+			this.getDuoBalance(this.custodianAddr)
+		]);
 		return {
 			state: this.convertCustodianState(states[0].valueOf()),
 			navA: this.fromWei(states[1]),
@@ -89,7 +93,8 @@ class ContractUtil {
 			adminCoolDown: Number(states[24]),
 			usersLength: Number(states[25].valueOf()),
 			addrPoolLength: Number(states[26].valueOf()),
-			balance: await this.getEthBalance(this.custodianAddr)
+			ethBalance: ethBalance,
+			duoBalance: duoBalance
 		};
 	}
 
@@ -213,7 +218,12 @@ class ContractUtil {
 		return this.web3.utils.checkAddressChecksum(addr);
 	}
 
-	public create(address: string, value: number, payFeeInEth: boolean, onTxHash: (hash: string) => any) {
+	public create(
+		address: string,
+		value: number,
+		payFeeInEth: boolean,
+		onTxHash: (hash: string) => any
+	) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
 		return this.custodian.methods
@@ -225,7 +235,13 @@ class ContractUtil {
 			.on('transactionHash', onTxHash);
 	}
 
-	public redeem(address: string, amtA: number, amtB: number, payFeeInEth: boolean, onTxHash: (hash: string) => any) {
+	public redeem(
+		address: string,
+		amtA: number,
+		amtB: number,
+		payFeeInEth: boolean,
+		onTxHash: (hash: string) => any
+	) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
 
 		return this.custodian.methods

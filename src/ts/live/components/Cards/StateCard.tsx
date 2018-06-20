@@ -122,43 +122,59 @@ export default class StateCard extends React.PureComponent<IProps> {
 									</span>
 								</li>
 								<li>
-									<span className="title">Alpha</span>
-									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.alpha)}
-									</span>
-								</li>
-								<li>
-									<span className="title">Beta</span>
-									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.beta)}
-									</span>
-								</li>
-								<li>
 									<span className="title">Upper Limit for Token A</span>
 									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.limitPeriodic)} USD
+										{d3.format(',.2f')(states.limitPeriodic)} USD
 									</span>
 								</li>
 								<li>
 									<span className="title">Upper Limit for Token B</span>
 									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.limitUpper)} USD
+										{d3.format(',.2f')(states.limitUpper)} USD
 									</span>
 								</li>
 								<li>
 									<span className="title">Lower Limit for Token B</span>
 									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.limitLower)} USD
+										{d3.format(',.2f')(states.limitLower)} USD
 									</span>
+								</li>
+								<li>
+									<span className="title">Leverage Factor (Alpha)</span>
+									<span className="content">
+										{d3.format(',.2f')(states.alpha)}
+									</span>
+								</li>
+								<li>
+									<span className="title">Conversion Factor (Beta)</span>
+									<span className="content">{d3.format(',.2f')(states.beta)}</span>
 								</li>
 								<li>
 									<span className="title">ETH:DUO Fee Ratio</span>
 									<span className="content">1:{states.ethDuoFeeRatio}</span>
 								</li>
 								<li>
+									<span className="title">DUO Received</span>
+									<span className="content">
+										{d3.format(',.2f')(states.duoBalance)}
+									</span>
+								</li>
+								<li>
 									<span className="title">Net ETH Balance</span>
 									<span className="content">
-										{d3.format(',.2f')(states.balance - states.feeAccumulated)}
+										{d3.format(',.2f')(states.ethBalance - states.feeAccumulated)}
+									</span>
+								</li>
+								<li>
+									<span className="title">Token A Total Supply</span>
+									<span className="content">
+										{d3.format(',.2f')(states.totalSupplyA)}
+									</span>
+								</li>
+								<li>
+									<span className="title">Token B Total Supply</span>
+									<span className="content">
+										{d3.format(',.2f')(states.totalSupplyB)}
 									</span>
 								</li>
 								<li>

@@ -47,7 +47,7 @@ export default class Duo extends React.PureComponent<IProps> {
 							states={states}
 							sourceLast={sourceLast}
 						/>
-						<BalanceCard account={account} balances={balances} states={states} />
+						<BalanceCard account={account} balances={balances} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<ConversionCard conversion={conversion} uiConversion={uiConversion}/>
