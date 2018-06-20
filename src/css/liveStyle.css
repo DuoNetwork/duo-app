@@ -60,13 +60,14 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    color: rgba(255,255,255,0.5);;
+	color: rgba(255,255,255,0.5);
+	position: relative;
 }
 .loading-img {
-	width: 12px;
-	height:	12px;
-	opacity: 0.5;
-	margin-left: 8px;
+	position: absolute;
+	width: 200px;
+	height:	200px;
+	opacity: 0.02;
 	
 }
 .chart-wrapper {
