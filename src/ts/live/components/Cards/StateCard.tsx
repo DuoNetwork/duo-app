@@ -23,7 +23,23 @@ export default class StateCard extends React.PureComponent<IProps> {
 				: 'Reset ongoing, operations are prohibited during current state.';
 		return (
 			<SCard
-				title={<SCardTitle>{CST.TH_CUSTODIAN.toUpperCase()}</SCardTitle>}
+				title={
+					<SCardTitle>
+						<a
+							className="tag-content"
+							href={
+								'https://' +
+								(__KOVAN__ ? 'kovan.' : '') +
+								'etherscan.io/address/' +
+								(__KOVAN__ ? CST.CUSTODIAN_ADDR_KOVAN : CST.CUSTODIAN_ADDR_MAIN)
+							}
+							target="_blank"
+							style={{ color: 'white' }}
+						>
+							{CST.TH_CUSTODIAN.toUpperCase()}
+						</a>
+					</SCardTitle>
+				}
 				width="420px"
 				margin="0 0 0 10px"
 				extra={
@@ -96,6 +112,16 @@ export default class StateCard extends React.PureComponent<IProps> {
 							<ul>
 								<li className="block-title">Contract States</li>
 								<li>
+									<span className="title">Period Length</span>
+									<span className="content">{states.period / 60 + ' mins'}</span>
+								</li>
+								<li>
+									<span className="title">Coupon per Period</span>
+									<span className="content">
+										{d3.format('.4%')(states.periodCoupon)}
+									</span>
+								</li>
+								<li>
 									<span className="title">Alpha</span>
 									<span className="content">
 										{d3.formatPrefix(',.2', 1)(states.alpha)}
@@ -108,31 +134,21 @@ export default class StateCard extends React.PureComponent<IProps> {
 									</span>
 								</li>
 								<li>
-									<span className="title">Coupon per Period</span>
+									<span className="title">Upper Limit for Token A</span>
 									<span className="content">
-										{d3.format('.4%')(states.periodCoupon)}
+										{d3.formatPrefix(',.2', 1)(states.limitPeriodic)} USD
 									</span>
 								</li>
 								<li>
-									<span className="title">Period Length</span>
-									<span className="content">{states.period / 60 + ' mins'}</span>
-								</li>
-								<li>
-									<span className="title">Upward Limit for Token B</span>
+									<span className="title">Upper Limit for Token B</span>
 									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.limitUpper)}
+										{d3.formatPrefix(',.2', 1)(states.limitUpper)} USD
 									</span>
 								</li>
 								<li>
-									<span className="title">Downward Limit for Token B</span>
+									<span className="title">Lower Limit for Token B</span>
 									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.limitLower)}
-									</span>
-								</li>
-								<li>
-									<span className="title">Periodic Limit for Token A</span>
-									<span className="content">
-										{d3.formatPrefix(',.2', 1)(states.limitPeriodic)}
+										{d3.formatPrefix(',.2', 1)(states.limitLower)} USD
 									</span>
 								</li>
 								<li>
@@ -147,9 +163,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 								</li>
 								<li>
 									<span className="title">Total Users</span>
-									<span className="content">
-										{states.usersLength}
-									</span>
+									<span className="content">{states.usersLength}</span>
 								</li>
 							</ul>
 						</div>
