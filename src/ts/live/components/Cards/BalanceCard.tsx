@@ -19,7 +19,7 @@ interface IProps {
 const BalanceInfo = (props: { icon: string; name: string; value: number; allowance?: number }) => {
 	const { icon, name, value, allowance } = props;
 	return (
-		<SCardAssetTag value={value}>
+		<SCardAssetTag>
 			<div className="bg-logo">
 				<img src={icon} />
 			</div>

@@ -258,7 +258,7 @@ export const SCardAssetTag = styled.div`
 	.tag-content {
 		width: 140px;
 		margin-left: 15px;
-		margin-top: 15px;
+		margin-top: 10px;
 	}
 	.tag-subtext {
 		color: ${ColorStyles.TextWhiteAlphaL};
@@ -269,7 +269,7 @@ export const SCardAssetTag = styled.div`
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
-		font-size: ${(props: ICardAssetTagProps) => (props.value >= 9999999.99 ? '11px' : '14px')};
+		font-size: 18px;
 	}
 `;
 

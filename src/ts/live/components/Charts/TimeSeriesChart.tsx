@@ -161,10 +161,10 @@ function drawLines(
 		.domain([rangeBottomNav, rangeTopNav])
 		.range([height, 0]);
 	//Lines
-	const lineSource = d3
-		.line<IPriceBar>()
-		.x(d => xScale(d.timestamp))
-		.y(d => ethYScale(d.close));
+	// const lineSource = d3
+	// 	.line<IPriceBar>()
+	// 	.x(d => xScale(d.timestamp))
+	// 	.y(d => ethYScale(d.close));
 	const lineCustodian = d3
 		.line<IAcceptedPrice>()
 		.x(d => xScale(d.timestamp))
@@ -222,30 +222,19 @@ function drawLines(
 		.append('g')
 		.attr('class', 'chart-data')
 		.attr('clip-path', 'url(#clip)');
-	//Draw Source Lines
-	CST.EXCHANGES.forEach(ex => {
-		chartdata
-			.append('path')
-			.attr('class', 'line-' + ex.toLowerCase())
-			.datum(sourceData[ex.toLowerCase()])
-			.attr('d', lineSource)
-			.attr('fill', 'none')
-			.attr('stroke-linejoin', 'round')
-			.attr('stroke-linecap', 'round')
-			.attr('stroke', 'white')
-			.attr('stroke-width', 1);
-	});
-	//Draw Custodian ETH Line
-	chartdata
-		.append('path')
-		.attr('class', 'line-custodian-eth')
-		.datum(custodianData)
-		.attr('d', lineCustodian)
-		.attr('fill', 'none')
-		.attr('stroke-linejoin', 'round')
-		.attr('stroke-linecap', 'round')
-		.attr('stroke', 'red')
-		.attr('stroke-width', 1);
+	// //Draw Source Lines
+	// CST.EXCHANGES.forEach(ex => {
+	// 	chartdata
+	// 		.append('path')
+	// 		.attr('class', 'line-' + ex.toLowerCase())
+	// 		.datum(sourceData[ex.toLowerCase()])
+	// 		.attr('d', lineSource)
+	// 		.attr('fill', 'none')
+	// 		.attr('stroke-linejoin', 'round')
+	// 		.attr('stroke-linecap', 'round')
+	// 		.attr('stroke', 'white')
+	// 		.attr('stroke-width', 1);
+	// });
 	//Draw Nav A/B Lines
 	chartdata
 		.append('path')
@@ -255,7 +244,7 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.TextTokenA)
+		.attr('stroke', ColorStyles.TextTokenAAlpha)
 		.attr('stroke-width', 1);
 	chartdata
 		.append('path')
@@ -265,8 +254,23 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.TextTokenB)
+		.attr('stroke', ColorStyles.TextTokenBAlpha)
 		.attr('stroke-width', 1);
+	//Draw Custodian ETH Line
+	chartdata
+		.append('path')
+		.attr('class', 'line-custodian-eth')
+		.datum(custodianData)
+		.attr('d', lineCustodian)
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', 'white')
+		.attr('stroke-width', 1.5);
+	//Draw OHLCs
+	// CST.EXCHANGES.forEach (ex => {
+
+	// })
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
