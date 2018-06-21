@@ -108,7 +108,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							}))}
 							filterMultiple={false}
 							onFilter={(value, record) => record[CST.TH_TYPE] === value}
-							width={100}
+							width={90}
 						/>
 						<Column
 							title={CST.TH_ETH}
@@ -127,6 +127,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							dataIndex={CST.TH_FEE}
 							key={CST.TH_FEE}
 							className="fee"
+							width={140}
 						/>
 					</Table>
 				</STableWrapper>

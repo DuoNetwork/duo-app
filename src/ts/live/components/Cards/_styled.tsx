@@ -818,8 +818,12 @@ export const STableWrapper = styled.div`
 		color: ${ColorStyles.TextWhiteAlphaL};
 	}
 	tr > .eth,
-	tr > .token-ab {
+	tr > .token-ab,
+	tr > .fee {
 		text-align: right;
+	}
+	tbody > tr > .fee {
+		color: ${ColorStyles.TextRedAlpha};
 	}
 	.Redeem {
 		.eth {
