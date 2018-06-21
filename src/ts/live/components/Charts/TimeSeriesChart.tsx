@@ -59,7 +59,7 @@ function drawLines(
 			case 300000:
 				return 'HH:mm';
 			default:
-				return 'MM-DD';
+				return 'MM-DD HH:mm';
 		}
 	};
 	const zoomFormat = date => moment(date).format(formatString(timeStep));
@@ -68,7 +68,7 @@ function drawLines(
 			case 300000:
 				return 72;
 			default:
-				return 168;
+				return 72;
 		}
 	};
 	const custodianSourceTimestepRatio = (step: number) => {
@@ -131,7 +131,7 @@ function drawLines(
 					src =>
 						d3.min(
 							(sourceData[src.toLowerCase()] as IPriceBar[])
-								.map(d => d.high)
+								.map(d => d.low)
 								.slice(-colums)
 						) || 0
 				)
@@ -263,6 +263,75 @@ function drawLines(
 	// 		.attr('stroke', 'white')
 	// 		.attr('stroke-width', 1);
 	// });
+	//Draw OHLCs
+	const isUpday = (d: IPriceBar): boolean => {
+		return d.close > d.open;
+	};
+	const line = d3
+		.line<any>()
+		.x(d => {
+			return d.x;
+		})
+		.y(d => {
+			return d.y;
+		});
+	CST.EXCHANGES.forEach(ex => {
+		const ohlc = chartdata.append('g').attr('class', 'ohlc-' + ex.toLowerCase());
+		ohlc.selectAll('g')
+			.data(sourceData[ex.toLowerCase()])
+			.enter()
+			.append('g');
+		const bars = ohlc.selectAll('g');
+		bars.append('rect')
+			.attr('class', 'bar-rect-' + ex.toLowerCase())
+			.attr('x', (d: any) => {
+				return xScale(d.timestamp) - rectWidth / 2;
+			})
+			.attr('y', (d: any) => {
+				return isUpday(d) ? ethYScale(d.close) : ethYScale(d.open);
+			})
+			.attr('width', rectWidth)
+			.attr('height', (d: any) => {
+				return isUpday(d)
+					? ethYScale(d.open) - ethYScale(d.close)
+					: ethYScale(d.close) - ethYScale(d.open) || 1;
+			})
+			.style('fill', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreenAlphaLLL : ColorStyles.TextRedAlphaLLL;
+			})
+			.style('stroke', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+			});
+		bars.append('path')
+			.attr('class', 'bar-line1-' + ex.toLowerCase())
+			.attr('d', (d: any) => {
+				return line([
+					{ x: xScale(d.timestamp), y: ethYScale(d.high) },
+					{
+						x: xScale(d.timestamp),
+						y: isUpday(d) ? ethYScale(d.close) : ethYScale(d.open)
+					}
+				]);
+			})
+			.style('stroke', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+			});
+		bars.append('path')
+			.attr('class', 'bar-line2-' + ex.toLowerCase())
+			.attr('d', (d: any) => {
+				return line([
+					{ x: xScale(d.timestamp), y: ethYScale(d.low) },
+					{
+						x: xScale(d.timestamp),
+						y: isUpday(d) ? ethYScale(d.open) : ethYScale(d.close)
+					}
+				]);
+			})
+			.style('stroke', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+			});
+		d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0);
+	});
 	//Draw Nav A/B Lines
 	chartdata
 		.append('path')
@@ -295,77 +364,19 @@ function drawLines(
 		.attr('stroke-linecap', 'round')
 		.attr('stroke', 'white')
 		.attr('stroke-width', 1.5);
-	//Draw OHLCs
-	const isUpday = (d: IPriceBar): boolean => {
-		return d.close > d.open;
-	};
-	const line = d3
-		.line<any>()
-		.x(d => {
-			return d.x;
-		})
-		.y(d => {
-			return d.y;
-		});
-	['bitfinex'].forEach(ex => {
-		chartdata
-			.selectAll('g')
-			.data(sourceData[ex.toLowerCase()])
-			.enter()
-			.append('g')
-			.attr('class', 'single-bar');
-		const bars = chartdata.selectAll('g');
-		console.log(bars);
-		bars.data(sourceData[ex.toLowerCase()])
-			.exit()
-			.remove();
-		bars.append('rect')
-			.attr('class', 'bar-rect-' + ex.toLowerCase())
-			.attr('x', (d: any) => {
-				return xScale(d.timestamp) - rectWidth / 2;
-			})
-			.attr('y', (d: any) => {
-				return isUpday(d) ? ethYScale(d.close) : ethYScale(d.open);
-			})
-			.attr('width', rectWidth)
-			.attr('height', (d: any) => {
-				return isUpday(d)
-					? ethYScale(d.open) - ethYScale(d.close)
-					: ethYScale(d.close) - ethYScale(d.open);
-			})
-			.style('fill', 'transparent')
-			.style('stroke', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
-			});
-		bars.append('path')
-			.attr('class', 'bar-line1-' + ex.toLowerCase())
-			.attr('d', (d: any) => {
-				return line([
-					{ x: xScale(d.timestamp), y: ethYScale(d.high) },
-					{
-						x: xScale(d.timestamp),
-						y: isUpday(d) ? ethYScale(d.close) : ethYScale(d.open)
-					}
-				]);
-			})
-			.style('stroke', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreen : ColorStyles.TextRed;
-			});
-		bars.append('path')
-			.attr('class', 'bar-line2-' + ex.toLowerCase())
-			.attr('d', (d: any) => {
-				return line([
-					{ x: xScale(d.timestamp), y: ethYScale(d.low) },
-					{
-						x: xScale(d.timestamp),
-						y: isUpday(d) ? ethYScale(d.open) : ethYScale(d.close)
-					}
-				]);
-			})
-			.style('stroke', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreen : ColorStyles.TextRed;
-			});
-	});
+}
+
+function showLines(keys: string[]) {
+	if (keys.length) {
+		CST.EXCHANGES.forEach(ex => d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0));
+		d3.selectAll('.ohlc-' + keys[0].toLowerCase()).attr('opacity', 1);
+		d3.selectAll('.line-custodian-navA').attr('opacity', 0);
+		d3.selectAll('.line-custodian-navB').attr('opacity', 0);
+	} else {
+		CST.EXCHANGES.forEach(ex => d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0));
+		d3.selectAll('.line-custodian-navA').attr('opacity', 1);
+		d3.selectAll('.line-custodian-navB').attr('opacity', 1);
+	}
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
@@ -388,6 +399,10 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 		) {
 			const { minutely, prices, timeStep } = nextProps;
 			drawLines(this.chartRef.current as Element, prices, minutely, timeStep);
+		}
+		if (JSON.stringify(nextProps.keys) !== JSON.stringify(this.props.keys)) {
+			const { keys } = nextProps;
+			showLines(keys);
 		}
 		return false;
 	}

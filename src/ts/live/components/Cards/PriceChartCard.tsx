@@ -26,7 +26,9 @@ export default class PriceChartCard extends React.Component<IProps, IState> {
 	}
 
 	private handlePickSource = (key: string) => {
-		this.setState({ keys: [key] });
+		const { keys } = this.state;
+		if (key === keys[0]) this.setState({ keys: [] });
+		else this.setState({ keys: [key] });
 	};
 
 	public render() {
