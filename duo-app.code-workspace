@@ -9,9 +9,6 @@
 		{
 			"path": "..\\duo-contract"
 		},
-		{
-			"path": "..\\duo-test"
-		}
 	],
 	"settings": {
 		"vsicons.presets.angular": false,
