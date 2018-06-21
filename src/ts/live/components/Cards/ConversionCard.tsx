@@ -41,7 +41,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 		pending.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
 		const confirmed = conversion.map(c => ({
 			key: c.transactionHash,
-			[CST.TH_STATUS]: CST.TH_CONFIRMED,
+			[CST.TH_STATUS]: CST.TH_MINED,
 			...this.formatData(c)
 		}));
 		confirmed.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
@@ -83,13 +83,13 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							title={CST.TH_STATUS}
 							dataIndex={CST.TH_STATUS}
 							key={CST.TH_STATUS}
-							filters={[CST.TH_CONFIRMED, CST.TH_PENDING].map(f => ({
+							filters={[CST.TH_MINED, CST.TH_PENDING].map(f => ({
 								text: f,
 								value: f
 							}))}
 							filterMultiple={false}
 							onFilter={(value, record) => record[CST.TH_STATUS] === value}
-							width={100}
+							width={90}
 							render={(text, record) =>
 								record[CST.TH_TOOLTIP] ? (
 									<Tooltip title={record[CST.TH_TOOLTIP]}>{text}</Tooltip>
