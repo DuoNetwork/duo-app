@@ -146,7 +146,9 @@ export class DynamoUtil {
 			timestamp: Number((c[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
 			eth: contractUtil.fromWei(c[CST.DB_EV_ETH].S || ''),
 			tokenA: contractUtil.fromWei(c[CST.DB_EV_TOKEN_A].S || ''),
-			tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || '')
+			tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || ''),
+			ethFee: contractUtil.fromWei(c[CST.DB_EV_ETH_FEE].S || ''),
+			duoFee: contractUtil.fromWei(c[CST.DB_EV_DUO_FEE].S || '')
 		}));
 	}
 
@@ -314,7 +316,9 @@ export class DynamoUtil {
 		txHash: string,
 		isCreate: boolean,
 		eth: number,
-		ab: number
+		ab: number,
+		ethFee: number,
+		duoFee: number
 	) {
 		const params = {
 			TableName: __KOVAN__ ? CST.DB_AWS_UI_EVENTS_DEV : CST.DB_AWS_UI_EVENTS_LIVE,
@@ -325,7 +329,9 @@ export class DynamoUtil {
 				[CST.DB_EV_SYSTIME]: { N: util.getNowTimestamp() + '' },
 				[CST.DB_EV_TX_HASH]: { S: txHash },
 				[CST.DB_EV_UI_ETH]: { N: eth + '' },
-				[CST.DB_EV_UI_AB]: { N: ab + '' }
+				[CST.DB_EV_UI_AB]: { N: ab + '' },
+				[CST.DB_EV_UI_ETH_FEE]: { N: ethFee + '' },
+				[CST.DB_EV_UI_DUO_FEE]: { N: duoFee + '' }
 			}
 		};
 
@@ -358,10 +364,12 @@ export class DynamoUtil {
 			transactionHash: c[CST.DB_EV_TX_HASH].S || '',
 			blockNumber: 0,
 			type: (c[CST.DB_EV_KEY].S || '').split('|')[0],
-			timestamp: Number((c[CST.DB_EV_SYSTIME].N || '')),
+			timestamp: Number(c[CST.DB_EV_SYSTIME].N || ''),
 			eth: Number(c[CST.DB_EV_UI_ETH].N),
 			tokenA: Number(c[CST.DB_EV_UI_AB].N),
 			tokenB: Number(c[CST.DB_EV_UI_AB].N),
+			ethFee: Number(c[CST.DB_EV_UI_ETH_FEE].N),
+			duoFee: Number(c[CST.DB_EV_UI_DUO_FEE].N)
 		}));
 	}
 

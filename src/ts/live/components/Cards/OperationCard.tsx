@@ -153,30 +153,38 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		const { account, states, refresh } = this.props;
 		const { isCreate, amount, ethFee } = this.state;
 		const amtNum = Number(amount);
-		if (isCreate)
+		if (isCreate) {
+			const fee = amtNum * states.commissionRate;
 			contractUtil.create(account, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						account,
 						txHash,
 						true,
-						amtNum * (1 - states.commissionRate),
-						this.getABFromEth(amtNum)
+						amtNum - fee,
+						this.getABFromEth(amtNum),
+						ethFee ? fee : 0,
+						ethFee ? 0 : fee * states.ethDuoFeeRatio
 					)
 					.then(() => refresh())
 			);
-		else
+		} else {
+			const ethAmount = this.getEthFromAB(amtNum);
+			const fee = ethAmount / (1 - states.commissionRate) * states.commissionRate;
 			contractUtil.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						account,
 						txHash,
 						false,
-						this.getEthFromAB(amtNum),
-						amtNum * (1 - states.commissionRate)
+						ethAmount,
+						amtNum,
+						ethFee ? fee : 0,
+						ethFee ? 0 : fee * states.ethDuoFeeRatio
 					)
 					.then(() => refresh())
 			);
+		}
 		this.setState({
 			amount: '',
 			amountError: '',

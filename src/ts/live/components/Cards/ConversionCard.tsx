@@ -20,6 +20,9 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 			[CST.TH_TYPE]: conversion.type,
 			[CST.TH_ETH]: d3.format(',.8f')(conversion.eth),
 			[CST.TH_TOKEN_AB]: d3.format(',.8f')(conversion.tokenA),
+			[CST.TH_FEE]: conversion.duoFee
+				? d3.format(',.8f')(conversion.duoFee) + ' ' + CST.TH_DUO
+				: d3.format(',.8f')(conversion.ethFee) + ' ' + CST.TH_ETH,
 			[CST.TH_LINK]:
 				'https://' +
 				(__KOVAN__ ? 'kovan.' : '') +
@@ -118,6 +121,12 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							dataIndex={CST.TH_TOKEN_AB}
 							key={CST.TH_TOKEN_AB}
 							className="token-ab"
+						/>
+						<Column
+							title={CST.TH_FEE}
+							dataIndex={CST.TH_FEE}
+							key={CST.TH_FEE}
+							className="fee"
 						/>
 					</Table>
 				</STableWrapper>

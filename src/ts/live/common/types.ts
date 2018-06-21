@@ -114,6 +114,8 @@ export interface IConversion extends IBaseEvent {
 	eth: number;
 	tokenA: number;
 	tokenB: number;
+	ethFee: number;
+	duoFee: number;
 }
 
 export interface IState {

@@ -52,6 +52,7 @@ export const TH_BALANCE = 'Balance';
 export const TH_ERC20 = 'ERC20';
 export const TH_TYPE = 'Type';
 export const TH_TOKEN_AB = 'Token A/B'
+export const TH_FEE = 'Fee'
 export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
 export const TH_BEETHOVEN = 'Beethoven';

@@ -45,8 +45,14 @@ Object {
     "ab": Object {
       "N": "456",
     },
+    "duoFee": Object {
+      "N": "0",
+    },
     "eth": Object {
       "N": "123",
+    },
+    "ethFee": Object {
+      "N": "0.123",
     },
     "eventKey": Object {
       "S": "Create|0x0",
@@ -68,8 +74,14 @@ Object {
     "ab": Object {
       "N": "456",
     },
+    "duoFee": Object {
+      "N": "0.123",
+    },
     "eth": Object {
       "N": "123",
+    },
+    "ethFee": Object {
+      "N": "0",
     },
     "eventKey": Object {
       "S": "Redeem|0x0",
@@ -197,12 +209,14 @@ Array [
 exports[`parseConversion 1`] = `
 Array [
   Object {
-    "blockNumber": 7651379,
-    "eth": 0.013774,
-    "timestamp": 1528870196000,
-    "tokenA": 1.3478846455723272,
-    "tokenB": 1.3478846455723272,
-    "transactionHash": "0x0d777e0d33f81e592e209d549423ad7a1c32531f689584fa3710dd770d9f5796",
+    "blockNumber": 7715602,
+    "duoFee": 0.8,
+    "eth": 0.1,
+    "ethFee": 0,
+    "timestamp": 1529559912000,
+    "tokenA": 26.160725,
+    "tokenB": 26.160725,
+    "transactionHash": "0x7283db82115b77c3fa055ec1553acf7c16d3ba1e2db5b2cea1974ba32bad29dc",
     "type": "Create",
   },
 ]
@@ -414,7 +428,9 @@ exports[`parseUIConversion 1`] = `
 Array [
   Object {
     "blockNumber": 0,
+    "duoFee": 0,
     "eth": 0.21704519241528358,
+    "ethFee": 0.0021704519241528357,
     "timestamp": 1529317121530,
     "tokenA": 36.9599025612444,
     "tokenB": 36.9599025612444,
@@ -428,7 +444,9 @@ exports[`parseUIConversion 2`] = `
 Array [
   Object {
     "blockNumber": 0,
+    "duoFee": 2.0051663085602844,
     "eth": 0.20051663085602844,
+    "ethFee": 0,
     "timestamp": 1529317783500,
     "tokenA": 34.14530889109876,
     "tokenB": 34.14530889109876,
