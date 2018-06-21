@@ -32,13 +32,16 @@ const BalanceInfo = (props: { icon: string; name: string; value: number; allowan
 						<div className={'tag-price'}>
 							{d3
 								.format(value > 1 ? ',.4s' : ',.4n')(value)
-								.toUpperCase()}
+								.toUpperCase()
+								.replace(/G/g, 'B')}
 						</div>
 						{allowance !== undefined ? (
 							<Tooltip title={'Allowance for ' + CST.TH_BEETHOVEN}>
 								<div className="tag-subtext">
-									{d3.format(allowance > 1 ? ',.4s' : ',.4n')(allowance) +
-										' allowance'}
+									{d3
+										.format(allowance > 1 ? ',.4s' : ',.4n')(allowance)
+										.toUpperCase()
+										.replace(/G/g, 'B') + ' allowance'}
 								</div>
 							</Tooltip>
 						) : null}

@@ -29,7 +29,7 @@ Array [
 ]
 `;
 
-exports[`interpolate correctly 1`] = `
+exports[`hourly interpolate correctly 1`] = `
 Object {
   "close": 2,
   "date": "2018-06-06",
@@ -44,7 +44,7 @@ Object {
 }
 `;
 
-exports[`interpolate correctly 2`] = `
+exports[`hourly interpolate correctly 2`] = `
 Object {
   "close": 2,
   "date": "2018-06-06",
@@ -59,33 +59,18 @@ Object {
 }
 `;
 
-exports[`interpolate correctly 3`] = `
+exports[`hourly interpolate correctly 3`] = `
 Object {
   "close": 2,
   "date": "2018-06-06",
-  "high": 2,
-  "hour": "00",
-  "low": 2,
-  "minute": 1,
-  "open": 2,
+  "high": 3,
+  "hour": "03",
+  "low": 0,
+  "minute": 0,
+  "open": 1,
   "source": "source",
-  "timestamp": 1528214460000,
-  "volume": 0,
-}
-`;
-
-exports[`interpolate correctly 4`] = `
-Object {
-  "close": 2,
-  "date": "2018-06-06",
-  "high": 2,
-  "hour": "00",
-  "low": 2,
-  "minute": 2,
-  "open": 2,
-  "source": "source",
-  "timestamp": 1528214520000,
-  "volume": 0,
+  "timestamp": 1528225200000,
+  "volume": 246,
 }
 `;
 
@@ -270,4 +255,49 @@ Array [
     "transactionHash": "",
   },
 ]
+`;
+
+exports[`minutely interpolate correctly 1`] = `
+Object {
+  "close": 2,
+  "date": "2018-06-06",
+  "high": 2,
+  "hour": "00",
+  "low": 2,
+  "minute": 1,
+  "open": 2,
+  "source": "source",
+  "timestamp": 1528214460000,
+  "volume": 0,
+}
+`;
+
+exports[`minutely interpolate correctly 2`] = `
+Object {
+  "close": 2,
+  "date": "2018-06-06",
+  "high": 2,
+  "hour": "00",
+  "low": 2,
+  "minute": 2,
+  "open": 2,
+  "source": "source",
+  "timestamp": 1528214520000,
+  "volume": 0,
+}
+`;
+
+exports[`minutely interpolate correctly 3`] = `
+Object {
+  "close": 2,
+  "date": "2018-06-06",
+  "high": 3,
+  "hour": "00",
+  "low": 0,
+  "minute": 3,
+  "open": 1,
+  "source": "source",
+  "timestamp": 1528214580000,
+  "volume": 246,
+}
 `;

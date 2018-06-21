@@ -44,6 +44,31 @@ class ChartUtil {
 		return newSourceData;
 	}
 
+	public mergePriceBars(bars: IPriceBar[]) {
+		if (!bars.length) return null;
+		const last = bars[bars.length - 1];
+		let high = bars[0].high;
+		let low = bars[0].low;
+		let volume = 0;
+		for (const bar of bars) {
+			high = Math.max(high, bar.high);
+			low = Math.min(low, bar.low);
+			volume += bar.volume;
+		}
+		return {
+			source: bars[0].source,
+			date: last.date,
+			hour: last.hour,
+			minute: last.minute,
+			open: bars[0].open,
+			high: high,
+			low: low,
+			close: last.close,
+			volume: volume,
+			timestamp: last.timestamp
+		};
+	}
+
 	public reset(
 		price: IAcceptedPrice[],
 		limitUp: number,
