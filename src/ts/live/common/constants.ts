@@ -56,3 +56,6 @@ export const TH_FEE = 'Fee'
 export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
 export const TH_BEETHOVEN = 'Beethoven';
+export const TH_TIMESERIES = 'Time Series';
+export const TH_1H = '1h';
+export const TH_5M = '5m';

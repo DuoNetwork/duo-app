@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import chartUtil from '../../common/chartUtil';
 import { IPriceBar, ISourceData, IState } from '../../common/types';
-import PriceChartCard from '../../components/Cards/PriceChartCard';
+import TimeSeriesCard from '../../components/Cards/TimeSeriesCard';
 
 function mapStateToProps(state: IState) {
 	const hourly = state.dynamo.hourly;
@@ -33,4 +33,4 @@ function mapStateToProps(state: IState) {
 export default connect(
 	mapStateToProps,
 	{}
-)(PriceChartCard);
+)(TimeSeriesCard);

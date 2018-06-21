@@ -8,7 +8,7 @@ import {
 	ICustodianStates,
 	ISourceData
 } from '../common/types';
-import PriceChartCard from '../containers/Cards/PriceChartCardContainer';
+import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
 import ConversionCard from './Cards/ConversionCard';
@@ -37,7 +37,7 @@ export default class Duo extends React.PureComponent<IProps> {
 				<Header network={network} />
 				<SContent>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<PriceChartCard />
+						<TimeSeriesCard />
 						<StateCard states={states} reset={prices.reset} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">

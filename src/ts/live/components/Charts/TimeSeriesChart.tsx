@@ -8,14 +8,6 @@ import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 
 const margin = { top: 15, right: 31, bottom: 23, left: 36 };
 
-interface IProps {
-	hourly: ISourceData<IPriceBar[]>;
-	minutely: ISourceData<IPriceBar[]>;
-	prices: IAcceptedPrice[];
-	source: string;
-	timeStep: number;
-}
-
 function drawLines(
 	el: Element,
 	custodianData: IAcceptedPrice[],
@@ -279,7 +271,7 @@ function drawLines(
 			.attr('height', (d: any) => {
 				return isUpday(d)
 					? ethYScale(d.open) - ethYScale(d.close)
-					: ethYScale(d.close) - ethYScale(d.open) || 1;
+					: ethYScale(d.close) - ethYScale(d.open);
 			})
 			.style('fill', (d: any) => {
 				return isUpday(d) ? ColorStyles.TextGreenAlphaLLL : ColorStyles.TextRedAlphaLLL;
@@ -315,7 +307,7 @@ function drawLines(
 			.style('stroke', (d: any) => {
 				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
 			});
-		if (source !== ex)
+		if (source !== ex.toLowerCase())
 			d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0);
 	});
 	//Draw Nav A/B Lines
@@ -357,6 +349,13 @@ function showLines(source: string) {
 	d3.selectAll('.ohlc-' + source.toLowerCase()).attr('opacity', 1);
 }
 
+interface IProps {
+	sourceData: ISourceData<IPriceBar[]>;
+	prices: IAcceptedPrice[];
+	source: string;
+	timeStep: number;
+}
+
 export default class TimeSeriesChart extends React.Component<IProps> {
 	private chartRef: any;
 	constructor(props: IProps) {
@@ -365,21 +364,20 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { minutely, prices, timeStep, source } = this.props;
-		drawLines(this.chartRef.current as Element, prices, minutely, timeStep, source);
+		const { sourceData, prices, timeStep, source } = this.props;
+		drawLines(this.chartRef.current as Element, prices, sourceData, timeStep, source);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
+		const { sourceData, prices, timeStep, source } = nextProps;
 		if (
-			JSON.stringify(nextProps.minutely) !== JSON.stringify(this.props.minutely) ||
-			JSON.stringify(nextProps.hourly) !== JSON.stringify(this.props.hourly) ||
-			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices)
-		) {
-			const { minutely, prices, timeStep, source } = nextProps;
-			drawLines(this.chartRef.current as Element, prices, minutely, timeStep, source);
-		}
-		if (JSON.stringify(nextProps.source) !== JSON.stringify(this.props.source))
-			showLines(nextProps.source);
+			JSON.stringify(nextProps.sourceData) !== JSON.stringify(this.props.sourceData) ||
+			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices) ||
+			timeStep !== this.props.timeStep
+		)
+			drawLines(this.chartRef.current as Element, prices, sourceData, timeStep, source);
+
+		if (source !== this.props.source) showLines(source);
 
 		return false;
 	}

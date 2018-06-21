@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import { Affix, Popconfirm, Radio, Tooltip } from 'antd';
+import { Affix, Popconfirm, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import demoCreate from '../../../../images/createDemo.png';
@@ -10,18 +10,9 @@ import contractUtil from '../../common/contractUtil';
 import dynamoUtil from '../../common/dynamoUtil';
 import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
+import RadioExtra from '../Common/RadioExtra';
 import Erc20Form from '../Forms/Erc20Form';
-import {
-	SCard,
-	SCardConversionForm,
-	SCardList,
-	SCardRadioExtraDiv,
-	SCardTitle,
-	SInput,
-	SRadioGroup
-} from './_styled';
-
-const RadioButton = Radio.Button;
+import { SCard, SCardConversionForm, SCardList, SCardTitle, SInput } from './_styled';
 
 interface IProps {
 	reset: ICustodianPrice;
@@ -38,25 +29,6 @@ interface IState {
 	amountError: string;
 	description: string;
 }
-
-const RadioExtraDiv = (props: { onChange: () => void; eth: boolean }) => {
-	return (
-		<SCardRadioExtraDiv>
-			<div className="extend-extra-wrapper">
-				<div className="tag-title">Fee in</div>
-				<SRadioGroup
-					defaultValue={CST.TH_DUO}
-					size="small"
-					onChange={props.onChange}
-					value={props.eth ? CST.TH_ETH : CST.TH_DUO}
-				>
-					<RadioButton value={CST.TH_DUO}>{CST.TH_DUO}</RadioButton>
-					<RadioButton value={CST.TH_ETH}>{CST.TH_ETH}</RadioButton>
-				</SRadioGroup>
-			</div>
-		</SCardRadioExtraDiv>
-	);
-};
 
 export default class ConversionCard extends React.PureComponent<IProps, IState> {
 	constructor(props: IProps) {
@@ -124,13 +96,14 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 						amtNum * (1 - states.commissionRate),
 						this.getABFromEth(amtNum)[0],
 						true
-					)
+				)
 				: this.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false);
 	};
 
 	private getABFromEth = (amount: number) => {
 		const { states, reset } = this.props;
-		const tokenB = (amount * (1 - states.commissionRate) * reset.price * states.beta) / (1 + states.alpha);
+		const tokenB =
+			(amount * (1 - states.commissionRate) * reset.price * states.beta) / (1 + states.alpha);
 		return [tokenB * states.alpha, tokenB];
 	};
 
@@ -173,7 +146,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			);
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
-			const fee = ethAmount / (1 - states.commissionRate) * states.commissionRate;
+			const fee = (ethAmount / (1 - states.commissionRate)) * states.commissionRate;
 			contractUtil.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
@@ -236,9 +209,12 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 								<ul>
 									<li className="block-title">
 										<span>{CST.TH_CONVERSION}</span>
-										<RadioExtraDiv
+										<RadioExtra
+											text="Fee in"
 											onChange={this.handleFeeTypeChange}
-											eth={ethFee}
+											left={CST.TH_DUO}
+											right={CST.TH_ETH}
+											isLeft={!ethFee}
 										/>
 									</li>
 									<li className="img-line no-bg">
