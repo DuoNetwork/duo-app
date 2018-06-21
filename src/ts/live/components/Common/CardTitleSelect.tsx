@@ -20,12 +20,12 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 				<SDivFlexCenter horizontal noJust>
 					<div>{this.props.name}</div>
 					<SCardTitleSelector
-						defaultValue="smartContract"
+						defaultValue={CST.TH_BEETHOVEN}
 						style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 						size="small"
 						onSelect={value => this.props.onSelect(value + '')}
 					>
-						<Option value="smartContract">Contract</Option>
+						<Option value={CST.TH_BEETHOVEN}>{CST.TH_BEETHOVEN}</Option>
 						{CST.EXCHANGES.map(src => (
 							<Option key={src.toLowerCase()} value={src.toLowerCase()}>
 								{src}

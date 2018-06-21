@@ -204,7 +204,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			(ethFee ? 1 : states.ethDuoFeeRatio);
 		const duoIsSuffient = ethFee ? true : fee < allowance || fee < duo;
 
-		const tooltipText = 'Estimated outcome may vary from actual result';
+		const tooltipText = 'May vary from actual result';
 		return (
 			<Affix offsetTop={20}>
 				<SCard

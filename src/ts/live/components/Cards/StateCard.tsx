@@ -36,7 +36,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 							target="_blank"
 							style={{ color: 'white' }}
 						>
-							{CST.TH_CUSTODIAN.toUpperCase()}
+							{CST.TH_BEETHOVEN.toUpperCase()}
 						</a>
 					</SCardTitle>
 				}

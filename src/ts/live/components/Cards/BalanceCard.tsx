@@ -1,3 +1,4 @@
+import { Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import classAIcon from '../../../../images/ClassA_white.png';
@@ -15,12 +16,7 @@ interface IProps {
 	balances: IBalances;
 }
 
-const BalanceInfo = (props: {
-	icon: string;
-	name: string;
-	value: number;
-	allowance?: number;
-}) => {
+const BalanceInfo = (props: { icon: string; name: string; value: number; allowance?: number }) => {
 	const { icon, name, value, allowance } = props;
 	return (
 		<SCardAssetTag value={value}>
@@ -33,11 +29,18 @@ const BalanceInfo = (props: {
 			<div className="tag-content">
 				<div>
 					<div>
-						<div className={'tag-price'}>{d3.formatPrefix(',.8', 1)(value)}</div>
+						<div className={'tag-price'}>
+							{d3
+								.format(value > 1 ? ',.4s' : ',.4n')(value)
+								.toUpperCase()}
+						</div>
 						{allowance !== undefined ? (
-							<div className="tag-subtext">
-								{d3.formatPrefix(',.8', 1)(allowance) + ' allowance'}
-							</div>
+							<Tooltip title={'Allowance for ' + CST.TH_BEETHOVEN}>
+								<div className="tag-subtext">
+									{d3.format(allowance > 1 ? ',.4s' : ',.4n')(allowance) +
+										' allowance'}
+								</div>
+							</Tooltip>
 						) : null}
 					</div>
 				</div>
@@ -91,16 +94,8 @@ export default class BalanceCard extends React.Component<IProps> {
 						value={balances.duo}
 						allowance={balances.allowance}
 					/>
-					<BalanceInfo
-						icon={classAIcon}
-						name={CST.TH_TOKEN_A}
-						value={balances.tokenA}
-					/>
-					<BalanceInfo
-						icon={classBIcon}
-						name={CST.TH_TOKEN_B}
-						value={balances.tokenB}
-					/>
+					<BalanceInfo icon={classAIcon} name={CST.TH_TOKEN_A} value={balances.tokenA} />
+					<BalanceInfo icon={classBIcon} name={CST.TH_TOKEN_B} value={balances.tokenB} />
 				</SDivFlexCenter>
 			</SCard>
 		);
