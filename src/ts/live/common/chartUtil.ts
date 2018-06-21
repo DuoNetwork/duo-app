@@ -45,7 +45,19 @@ class ChartUtil {
 	}
 
 	public mergePriceBars(bars: IPriceBar[]) {
-		if (!bars.length) return null;
+		if (!bars.length)
+			return {
+				source: '',
+				date: '',
+				hour: '',
+				minute: 0,
+				open: 0,
+				high: 0,
+				low: 0,
+				close: 0,
+				volume: 0,
+				timestamp: 0
+			};
 		const last = bars[bars.length - 1];
 		let high = bars[0].high;
 		let low = bars[0].low;

@@ -23,6 +23,7 @@
         "curly": [true, "as-needed"],
         "jsx-boolean-value": false,
         "prefer-for-of": false,
-        "jsx-curly-spacing": false
+        "jsx-curly-spacing": false,
+        "forin": false
     }
 }
