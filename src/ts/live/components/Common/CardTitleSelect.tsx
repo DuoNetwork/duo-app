@@ -11,21 +11,25 @@ const Option = Select.Option;
 interface IProps {
 	name: string;
 	onSelect: (value: string) => any;
+	onlySource?: boolean;
 }
 
 export default class CardTitleSelect extends React.PureComponent<IProps> {
 	public render() {
+		const { onlySource } = this.props;
 		return (
 			<SCardTitle>
 				<SDivFlexCenter horizontal noJust>
 					<div>{this.props.name}</div>
 					<SCardTitleSelector
-						defaultValue={CST.TH_BEETHOVEN}
+						defaultValue={onlySource ? CST.EXCHANGE_BITFINEX : CST.TH_BEETHOVEN}
 						style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 						size="small"
 						onSelect={value => this.props.onSelect(value + '')}
 					>
-						<Option value={CST.TH_BEETHOVEN}>{CST.TH_BEETHOVEN}</Option>
+						{onlySource ? null : (
+							<Option value={CST.TH_BEETHOVEN}>{CST.TH_BEETHOVEN}</Option>
+						)}
 						{CST.EXCHANGES.map(src => (
 							<Option key={src.toLowerCase()} value={src.toLowerCase()}>
 								{src}

@@ -12,21 +12,17 @@ interface IProps {
 	hourly: ISourceData<IPriceBar[]>;
 	minutely: ISourceData<IPriceBar[]>;
 	prices: IAcceptedPrice[];
-	keys: string[];
+	source: string;
 	timeStep: number;
-	handlePickSource: (key: string) => void;
 }
 
 function drawLines(
 	el: Element,
 	custodianData: IAcceptedPrice[],
 	sourceData: ISourceData<IPriceBar[]>,
-	timeStep: number
+	timeStep: number,
+	source: string
 ) {
-	console.log(el);
-	console.log(custodianData);
-	console.log(sourceData);
-	console.log(timeStep);
 	const dataLoaded =
 		custodianData.length &&
 		sourceData.bitfinex.length &&
@@ -94,8 +90,6 @@ function drawLines(
 	//Time Scale
 	const xStart = minDate;
 	const xEnd = maxDate + 2 * timeStep;
-	console.log(moment(xStart));
-	console.log(moment(xEnd));
 	const xScale = d3
 		.scaleTime()
 		.domain([xStart, xEnd])
@@ -104,7 +98,6 @@ function drawLines(
 		(xScale(moment('2000-01-01').valueOf() + timeStep) -
 			xScale(moment('2000-01-01').valueOf())) *
 		0.6;
-	console.log(rectWidth);
 	//Data Range (ETH price)
 	const slicedCustodianData = custodianData.slice(
 		-colums / custodianSourceTimestepRatio(timeStep)
@@ -139,10 +132,6 @@ function drawLines(
 		) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
 	const rangeBottom = d3.max([0, minPrice - 0.1 * (maxPrice - minPrice)]) || 0;
-	console.log(maxPrice);
-	console.log(minPrice);
-	console.log(rangeTop);
-	console.log(rangeBottom);
 	//Data Range (Nav A/B)
 	const maxNav =
 		d3.max(
@@ -154,10 +143,6 @@ function drawLines(
 		) || 0;
 	const rangeTopNav = maxNav + 0.1 * (maxNav - minNav);
 	const rangeBottomNav = d3.max([0, minNav - 0.1 * (maxNav - minNav)]) || 0;
-	console.log(maxNav);
-	console.log(minNav);
-	console.log(rangeTopNav);
-	console.log(rangeBottomNav);
 	//ETH Linear YScale
 	const ethYScale = d3
 		.scaleLinear()
@@ -330,7 +315,8 @@ function drawLines(
 			.style('stroke', (d: any) => {
 				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
 			});
-		d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0);
+		if (source !== ex)
+			d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0);
 	});
 	//Draw Nav A/B Lines
 	chartdata
@@ -366,17 +352,9 @@ function drawLines(
 		.attr('stroke-width', 1.5);
 }
 
-function showLines(keys: string[]) {
-	if (keys.length) {
-		CST.EXCHANGES.forEach(ex => d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0));
-		d3.selectAll('.ohlc-' + keys[0].toLowerCase()).attr('opacity', 1);
-		d3.selectAll('.line-custodian-navA').attr('opacity', 0);
-		d3.selectAll('.line-custodian-navB').attr('opacity', 0);
-	} else {
-		CST.EXCHANGES.forEach(ex => d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0));
-		d3.selectAll('.line-custodian-navA').attr('opacity', 1);
-		d3.selectAll('.line-custodian-navB').attr('opacity', 1);
-	}
+function showLines(source: string) {
+	CST.EXCHANGES.forEach(ex => d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0));
+	d3.selectAll('.ohlc-' + source.toLowerCase()).attr('opacity', 1);
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
@@ -387,8 +365,8 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { minutely, prices, timeStep } = this.props;
-		drawLines(this.chartRef.current as Element, prices, minutely, timeStep);
+		const { minutely, prices, timeStep, source } = this.props;
+		drawLines(this.chartRef.current as Element, prices, minutely, timeStep, source);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
@@ -397,13 +375,12 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 			JSON.stringify(nextProps.hourly) !== JSON.stringify(this.props.hourly) ||
 			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices)
 		) {
-			const { minutely, prices, timeStep } = nextProps;
-			drawLines(this.chartRef.current as Element, prices, minutely, timeStep);
+			const { minutely, prices, timeStep, source } = nextProps;
+			drawLines(this.chartRef.current as Element, prices, minutely, timeStep, source);
 		}
-		if (JSON.stringify(nextProps.keys) !== JSON.stringify(this.props.keys)) {
-			const { keys } = nextProps;
-			showLines(keys);
-		}
+		if (JSON.stringify(nextProps.source) !== JSON.stringify(this.props.source))
+			showLines(nextProps.source);
+
 		return false;
 	}
 

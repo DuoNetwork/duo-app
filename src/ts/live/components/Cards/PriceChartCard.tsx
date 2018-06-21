@@ -1,8 +1,9 @@
 import * as React from 'react';
+import * as CST from '../../common/constants';
 import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import TimeSeriesChart from '../Charts/TimeSeriesChart';
-import CardTitleDropdown from '../Common/CardTitleDropdown';
+import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard } from './_styled';
 
 interface IProps {
@@ -12,7 +13,7 @@ interface IProps {
 }
 
 interface IState {
-	keys: string[];
+	source: string;
 	timeStep: number;
 }
 
@@ -20,28 +21,22 @@ export default class PriceChartCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			keys: [],
+			source: CST.EXCHANGE_BITFINEX,
 			timeStep: 60000 * 5
 		};
 	}
 
-	private handlePickSource = (key: string) => {
-		const { keys } = this.state;
-		if (key === keys[0]) this.setState({ keys: [] });
-		else this.setState({ keys: [key] });
+	private handleSelect = (source: string) => {
+		this.setState({ source: source });
 	};
 
 	public render() {
 		const { hourly, minutely, prices } = this.props;
-		const { keys, timeStep } = this.state;
+		const { source, timeStep } = this.state;
 		return (
 			<SCard
 				title={
-					<CardTitleDropdown
-						name="TIME SERIES"
-						keys={keys}
-						handlePickSource={this.handlePickSource}
-					/>
+					<CardTitleSelect name="TIME SERIES" onSelect={this.handleSelect} onlySource />
 				}
 				width="760px"
 				margin="0 10px 0 0"
@@ -51,8 +46,7 @@ export default class PriceChartCard extends React.Component<IProps, IState> {
 						hourly={hourly}
 						minutely={minutely}
 						prices={prices}
-						keys={keys}
-						handlePickSource={this.handlePickSource}
+						source={source}
 						timeStep={timeStep}
 					/>
 				</SDivFlexCenter>
