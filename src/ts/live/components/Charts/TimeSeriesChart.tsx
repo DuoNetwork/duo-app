@@ -66,7 +66,7 @@ function drawLines(
 	const displayColums = (step: number) => {
 		switch (step) {
 			case 300000:
-				return 48;
+				return 72;
 			default:
 				return 168;
 		}
@@ -103,7 +103,7 @@ function drawLines(
 	const rectWidth =
 		(xScale(moment('2000-01-01').valueOf() + timeStep) -
 			xScale(moment('2000-01-01').valueOf())) *
-		0.7;
+		0.6;
 	console.log(rectWidth);
 	//Data Range (ETH price)
 	const slicedCustodianData = custodianData.slice(
