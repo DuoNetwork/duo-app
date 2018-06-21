@@ -3,9 +3,10 @@ import moment from 'moment';
 import * as React from 'react';
 import loadingImg from '../../../../images/loadingDUO.png';
 import * as CST from '../../common/constants';
+import { ColorStyles } from '../../common/styles';
 import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 
-const margin = { top: 15, right: 26, bottom: 23, left: 36 };
+const margin = { top: 15, right: 31, bottom: 23, left: 36 };
 
 interface IProps {
 	hourly: ISourceData<IPriceBar[]>;
@@ -254,7 +255,7 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', 'yellow')
+		.attr('stroke', ColorStyles.TextTokenA)
 		.attr('stroke-width', 1);
 	chartdata
 		.append('path')
@@ -264,10 +265,8 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', 'blue')
+		.attr('stroke', ColorStyles.TextTokenB)
 		.attr('stroke-width', 1);
-	chartdata.select('.line-custodian-navA').attr('opacity', 0);
-	chartdata.select('.line-custodian-navB').attr('opacity', 0);
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {

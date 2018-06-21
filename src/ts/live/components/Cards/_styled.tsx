@@ -172,7 +172,7 @@ export const SCardPriceTag = styled.div`
 		margin-top: 11px;
 	}
 	.tag-price-1 {
-		color: #69bcff;
+		color: ${ColorStyles.TextTokenA};
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -180,7 +180,7 @@ export const SCardPriceTag = styled.div`
 		margin-bottom: 5px;
 	}
 	.tag-price-2 {
-		color: #f9ae32;
+		color: ${ColorStyles.TextTokenB};
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;

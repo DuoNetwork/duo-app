@@ -31,6 +31,12 @@ export const ColorStyles = {
 	TextGreenAlpha: 'rgba(78,255,78,.8)',
 	TextGreenAlphaL: 'rgba(78,255,78,.6)',
 	TextGreenAlphaLL: 'rgba(78,255,78,.4)',
+	TextTokenA: 'rgba(105,188,255,1)',
+	TextTokenAAlpha: 'rgba(105,188,255,.8)',
+	TextTokenAAlphaL: 'rgba(105,188,255,.6)',
+	TextTokenB: 'rgba(249,174,50,1)',
+	TextTokenBAlpha: 'rgba(249,174,50,.8)',
+	TextTokenBAlphaL: 'rgba(249,174,50,.6)',
 	//Button Colors
 	ButtonRadioUnchekedBG: 'rgba(55,54,56,.2)',
 	ButtonRadioChekedBG: 'rgba(55,54,56,.6)',
