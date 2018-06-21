@@ -51,6 +51,7 @@ export default class TimeSeriesCard extends React.Component<IProps, IState> {
 						right={CST.TH_1H}
 						isLeft={!isHourly}
 						onChange={this.handleIntervalToggle}
+						rightPadding
 					/>
 				}
 			>

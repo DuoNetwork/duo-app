@@ -361,6 +361,9 @@ export const SCardRadioExtraDiv = styled.div`
 		display: flex;
 		flex-direction: row;
 	}
+	& > .true {
+		padding-right: 10px;
+	}
 	.ant-radio-group {
 		font-size: 10px;
 		font-weight: 400;
@@ -981,6 +984,10 @@ injectGlobal([
 		}
 		.ant-select-open, .ant-select-selection {
 			box-shadow: none !important;
+		}
+		.ant-select-dropdown-menu-item-active {
+			background: ${ColorStyles.SelectBackgroundSolid};
+			font-weight: 500;
 		}
 	}
 `

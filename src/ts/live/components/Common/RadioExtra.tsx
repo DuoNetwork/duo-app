@@ -11,14 +11,15 @@ interface IProps {
 	left: string,
 	right: string,
 	isLeft: boolean
+	rightPadding?: boolean
 }
 
 export default class RadioExtra extends React.PureComponent<IProps> {
 	public render() {
-		const {text, onChange, left, right, isLeft } = this.props;
+		const {text, onChange, left, right, isLeft, rightPadding } = this.props;
 		return (
 			<SCardRadioExtraDiv>
-				<div className="extend-extra-wrapper">
+				<div className={"extend-extra-wrapper " + rightPadding}>
 					{text ? <div className="tag-title">Fee in</div> : null}
 					<SRadioGroup
 						defaultValue={left}
