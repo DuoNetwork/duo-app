@@ -20,6 +20,7 @@ function mapStateToProps(state: IState) {
 		mergedMinutely[src] = [];
 		for (let i = srcData.length; i > 0; i -= 5)
 			mergedMinutely[src].push(chartUtil.mergePriceBars(srcData.slice(Math.max(0, i - 5), i)));
+		mergedMinutely[src].sort((a, b) => a.timestamp - b.timestamp);
 	}
 	chartUtil.mergeLastToPrice(price, state.contract.states, state.contract.prices.last);
 	return {

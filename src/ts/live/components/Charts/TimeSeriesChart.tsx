@@ -56,7 +56,7 @@ function drawLines(
 	//Date Range
 	const formatString = (step: number) => {
 		switch (step) {
-			case 60000:
+			case 300000:
 				return 'HH:mm';
 			default:
 				return 'MM-DD';
@@ -65,16 +65,16 @@ function drawLines(
 	const zoomFormat = date => moment(date).format(formatString(timeStep));
 	const displayColums = (step: number) => {
 		switch (step) {
-			case 60000:
-				return 120;
+			case 300000:
+				return 48;
 			default:
 				return 168;
 		}
 	};
 	const custodianSourceTimestepRatio = (step: number) => {
 		switch (step) {
-			case 60000:
-				return 60;
+			case 300000:
+				return 12;
 			default:
 				return 1;
 		}
@@ -103,7 +103,7 @@ function drawLines(
 	const rectWidth =
 		(xScale(moment('2000-01-01').valueOf() + timeStep) -
 			xScale(moment('2000-01-01').valueOf())) *
-		0.4;
+		0.7;
 	console.log(rectWidth);
 	//Data Range (ETH price)
 	const slicedCustodianData = custodianData.slice(
@@ -376,8 +376,8 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { hourly, prices, timeStep } = this.props;
-		drawLines(this.chartRef.current as Element, prices, hourly, timeStep);
+		const { minutely, prices, timeStep } = this.props;
+		drawLines(this.chartRef.current as Element, prices, minutely, timeStep);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
@@ -386,8 +386,8 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 			JSON.stringify(nextProps.hourly) !== JSON.stringify(this.props.hourly) ||
 			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices)
 		) {
-			const { hourly, prices, timeStep } = nextProps;
-			drawLines(this.chartRef.current as Element, prices, hourly, timeStep);
+			const { minutely, prices, timeStep } = nextProps;
+			drawLines(this.chartRef.current as Element, prices, minutely, timeStep);
 		}
 		return false;
 	}

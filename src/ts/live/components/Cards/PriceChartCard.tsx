@@ -21,7 +21,7 @@ export default class PriceChartCard extends React.Component<IProps, IState> {
 		super(props);
 		this.state = {
 			keys: [],
-			timeStep: 60000 * 60
+			timeStep: 60000 * 5
 		};
 	}
 

@@ -16,7 +16,7 @@ const hourlyBar1 = {
 	low: 0,
 	close: 2,
 	volume: 123,
-	timestamp: moment('2018-06-06 00:0', 'YYYY-MM-DD HH:m').valueOf()
+	timestamp: moment.utc('2018-06-06 00:0', 'YYYY-MM-DD HH:m').valueOf()
 };
 
 const hourlyBar2 = {
@@ -29,7 +29,7 @@ const hourlyBar2 = {
 	low: 0,
 	close: 2,
 	volume: 123,
-	timestamp: moment('2018-06-06 01:0', 'YYYY-MM-DD HH:m').valueOf()
+	timestamp: moment.utc('2018-06-06 01:0', 'YYYY-MM-DD HH:m').valueOf()
 };
 
 const hourlyBar3 = {
@@ -42,7 +42,7 @@ const hourlyBar3 = {
 	low: 0,
 	close: 2,
 	volume: 123,
-	timestamp: moment('2018-06-06 03:0', 'YYYY-MM-DD HH:m').valueOf()
+	timestamp: moment.utc('2018-06-06 03:0', 'YYYY-MM-DD HH:m').valueOf()
 };
 
 test('hourly does not interpolate unnecessarily', () => {
@@ -72,7 +72,7 @@ const minutelyBar1 = {
 	low: 0,
 	close: 2,
 	volume: 123,
-	timestamp: moment('2018-06-06 00:0', 'YYYY-MM-DD HH:m').valueOf()
+	timestamp: moment.utc('2018-06-06 00:0', 'YYYY-MM-DD HH:m').valueOf()
 };
 
 const minutelyBar2 = {
@@ -85,7 +85,7 @@ const minutelyBar2 = {
 	low: 0,
 	close: 2,
 	volume: 123,
-	timestamp: moment('2018-06-06 00:1', 'YYYY-MM-DD HH:m').valueOf()
+	timestamp: moment.utc('2018-06-06 00:1', 'YYYY-MM-DD HH:m').valueOf()
 };
 
 const minutelyBar3 = {
@@ -98,7 +98,7 @@ const minutelyBar3 = {
 	low: 0,
 	close: 2,
 	volume: 123,
-	timestamp: moment('2018-06-06 00:3', 'YYYY-MM-DD HH:m').valueOf()
+	timestamp: moment.utc('2018-06-06 00:3', 'YYYY-MM-DD HH:m').valueOf()
 };
 
 test('minutely does not interpolate unnecessarily', () => {

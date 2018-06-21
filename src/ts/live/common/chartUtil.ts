@@ -26,9 +26,9 @@ class ChartUtil {
 			while (newTimeStamp < nextTimeIndex) {
 				newSourceData.push({
 					source: source,
-					date: moment(newTimeStamp).format('YYYY-MM-DD'),
-					hour: moment(newTimeStamp).format('HH'),
-					minute: isHourly ? 0 : Number(moment(newTimeStamp).format('mm')),
+					date: moment.utc(newTimeStamp).format('YYYY-MM-DD'),
+					hour: moment.utc(newTimeStamp).format('HH'),
+					minute: isHourly ? 0 : Number(moment.utc(newTimeStamp).format('mm')),
 					open: close,
 					high: close,
 					low: close,
