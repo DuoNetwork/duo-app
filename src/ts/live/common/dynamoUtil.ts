@@ -316,7 +316,8 @@ export class DynamoUtil {
 		txHash: string,
 		isCreate: boolean,
 		eth: number,
-		ab: number,
+		tokenA: number,
+		tokenB: number,
 		ethFee: number,
 		duoFee: number
 	) {
@@ -329,7 +330,8 @@ export class DynamoUtil {
 				[CST.DB_EV_SYSTIME]: { N: util.getNowTimestamp() + '' },
 				[CST.DB_EV_TX_HASH]: { S: txHash },
 				[CST.DB_EV_UI_ETH]: { N: eth + '' },
-				[CST.DB_EV_UI_AB]: { N: ab + '' },
+				[CST.DB_EV_UI_TOKEN_A]: { N: tokenA + '' },
+				[CST.DB_EV_UI_TOKEN_B]: { N: tokenB + '' },
 				[CST.DB_EV_UI_ETH_FEE]: { N: ethFee + '' },
 				[CST.DB_EV_UI_DUO_FEE]: { N: duoFee + '' }
 			}
@@ -366,8 +368,8 @@ export class DynamoUtil {
 			type: (c[CST.DB_EV_KEY].S || '').split('|')[0],
 			timestamp: Number(c[CST.DB_EV_SYSTIME].N || ''),
 			eth: Number(c[CST.DB_EV_UI_ETH].N),
-			tokenA: Number(c[CST.DB_EV_UI_AB].N),
-			tokenB: Number(c[CST.DB_EV_UI_AB].N),
+			tokenA: Number(c[CST.DB_EV_UI_TOKEN_A].N),
+			tokenB: Number(c[CST.DB_EV_UI_TOKEN_B].N),
 			ethFee: Number(c[CST.DB_EV_UI_ETH_FEE].N),
 			duoFee: Number(c[CST.DB_EV_UI_DUO_FEE].N)
 		}));

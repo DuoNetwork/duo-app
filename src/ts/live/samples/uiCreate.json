@@ -5,7 +5,8 @@
 			"ethFee": { "N": "0.0021704519241528358" },
 			"duoFee": { "N": "0" },
 			"eventKey": { "S": "Create|0xf5921ff118e7Fb7fE74559A3632fB2d0bcc35AF2" },
-			"ab": { "N": "36.9599025612444" },
+			"tokenA": { "N": "36.9599025612444" },
+			"tokenB": { "N": "36.9599025612444" },
 			"systime": { "N": "1529317121530" },
 			"transactionHash": {
 				"S": "0x8e59dff2458a76b2ba0a9e11413e603cddc227d663a8bf7b45e0241f3896424d"

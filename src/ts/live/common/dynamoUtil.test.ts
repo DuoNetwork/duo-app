@@ -90,8 +90,8 @@ test('parseUIConversion', () => {
 test('insertUIConversion', async () => {
 	dynamoUtil.insertData = jest.fn(() => Promise.resolve());
 	util.getNowTimestamp = jest.fn(() => 1234567890);
-	await dynamoUtil.insertUIConversion('0x0', '0x123', true, 123, 456, 0.123, 0);
-	await dynamoUtil.insertUIConversion('0x0', '0x123', false, 123, 456, 0, 0.123);
+	await dynamoUtil.insertUIConversion('0x0', '0x123', true, 123, 456, 456, 0.123, 0);
+	await dynamoUtil.insertUIConversion('0x0', '0x123', false, 123, 456, 456, 0, 0.123);
 	expect((dynamoUtil.insertData as jest.Mock<Promise<void>>).mock.calls[0][0]).toMatchSnapshot();
 	expect((dynamoUtil.insertData as jest.Mock<Promise<void>>).mock.calls[1][0]).toMatchSnapshot();
 });

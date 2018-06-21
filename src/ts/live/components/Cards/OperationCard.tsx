@@ -122,7 +122,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 			: isCreate
 				? this.getConversionDescription(
 						amtNum * (1 - states.commissionRate),
-						this.getABFromEth(amtNum),
+						this.getABFromEth(amtNum)[0],
 						true
 					)
 				: this.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false);
@@ -130,7 +130,8 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 
 	private getABFromEth = (amount: number) => {
 		const { states, reset } = this.props;
-		return (amount * (1 - states.commissionRate) * reset.price * states.beta) / 2;
+		const tokenB = (amount * (1 - states.commissionRate) * reset.price * states.beta) / (1 + states.alpha);
+		return [tokenB * states.alpha, tokenB];
 	};
 
 	private getEthFromAB = (amount: number) => {
@@ -155,6 +156,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		const amtNum = Number(amount);
 		if (isCreate) {
 			const fee = amtNum * states.commissionRate;
+			const [tokenA, tokenB] = this.getABFromEth(amtNum);
 			contractUtil.create(account, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
@@ -162,7 +164,8 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 						txHash,
 						true,
 						amtNum - fee,
-						this.getABFromEth(amtNum),
+						tokenA,
+						tokenB,
 						ethFee ? fee : 0,
 						ethFee ? 0 : fee * states.ethDuoFeeRatio
 					)
@@ -178,6 +181,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 						txHash,
 						false,
 						ethAmount,
+						amtNum,
 						amtNum,
 						ethFee ? fee : 0,
 						ethFee ? 0 : fee * states.ethDuoFeeRatio

@@ -42,9 +42,6 @@ Object {
 exports[`insertUIConversion 1`] = `
 Object {
   "Item": Object {
-    "ab": Object {
-      "N": "456",
-    },
     "duoFee": Object {
       "N": "0",
     },
@@ -60,6 +57,12 @@ Object {
     "systime": Object {
       "N": "1234567890",
     },
+    "tokenA": Object {
+      "N": "456",
+    },
+    "tokenB": Object {
+      "N": "456",
+    },
     "transactionHash": Object {
       "S": "0x123",
     },
@@ -71,9 +74,6 @@ Object {
 exports[`insertUIConversion 2`] = `
 Object {
   "Item": Object {
-    "ab": Object {
-      "N": "456",
-    },
     "duoFee": Object {
       "N": "0.123",
     },
@@ -88,6 +88,12 @@ Object {
     },
     "systime": Object {
       "N": "1234567890",
+    },
+    "tokenA": Object {
+      "N": "456",
+    },
+    "tokenB": Object {
+      "N": "456",
     },
     "transactionHash": Object {
       "S": "0x123",
