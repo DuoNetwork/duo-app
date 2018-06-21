@@ -97,5 +97,13 @@ body {
 	pointer-events: none;
 }
 path.domain {
+	stroke: #303132 !important;
 	stroke-width: 0.5px;
+}
+.grid line {
+	stroke: rgba(34, 34, 34, 1);
+	stroke-opacity: 0.7;
+	shape-rendering: crispEdges;
+	z-index: 0;
+	pointer-events: none;
 }

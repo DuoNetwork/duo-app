@@ -54,7 +54,15 @@ function drawLines(
 		.attr('height', height + margin.top + margin.bottom);
 
 	//Date Range
-	const zoomFormat = date => moment(date).format('MM-DD HH:mm');
+	const formatString = (step: number) => {
+		switch (step) {
+			case 60000:
+				return 'HH:mm';
+			default:
+				return 'MM-DD';
+		}
+	};
+	const zoomFormat = date => moment(date).format(formatString(timeStep));
 	const displayColums = (step: number) => {
 		switch (step) {
 			case 60000:
@@ -95,7 +103,7 @@ function drawLines(
 	const rectWidth =
 		(xScale(moment('2000-01-01').valueOf() + timeStep) -
 			xScale(moment('2000-01-01').valueOf())) *
-		0.85;
+		0.4;
 	console.log(rectWidth);
 	//Data Range (ETH price)
 	const slicedCustodianData = custodianData.slice(
@@ -184,7 +192,18 @@ function drawLines(
 		.tickFormat(zoomFormat);
 	const lyAxis = d3.axisLeft(ethYScale).ticks(5);
 	const ryAxis = d3.axisRight(navYScale).ticks(5);
+	//Grid
+	const xGrid = d3
+		.axisBottom(xScale)
+		.ticks(8)
+		.tickSize(-height)
+		.tickFormat(() => '');
 
+	const yGrid = d3
+		.axisLeft(ethYScale)
+		.ticks(10)
+		.tickSize(-width)
+		.tickFormat(() => '');
 	//Chart
 	const chart = d3
 		.select(el)
@@ -217,6 +236,15 @@ function drawLines(
 		.attr('y', 0)
 		.attr('width', width - 1)
 		.attr('height', height);
+	chart
+		.append('g')
+		.attr('class', 'grid')
+		.attr('transform', 'translate(0,' + height + ')')
+		.call(xGrid as any);
+	chart
+		.append('g')
+		.attr('class', 'grid')
+		.call(yGrid as any);
 	// Chart Data
 	const chartdata = chart
 		.append('g')
@@ -268,9 +296,76 @@ function drawLines(
 		.attr('stroke', 'white')
 		.attr('stroke-width', 1.5);
 	//Draw OHLCs
-	// CST.EXCHANGES.forEach (ex => {
-
-	// })
+	const isUpday = (d: IPriceBar): boolean => {
+		return d.close > d.open;
+	};
+	const line = d3
+		.line<any>()
+		.x(d => {
+			return d.x;
+		})
+		.y(d => {
+			return d.y;
+		});
+	['bitfinex'].forEach(ex => {
+		chartdata
+			.selectAll('g')
+			.data(sourceData[ex.toLowerCase()])
+			.enter()
+			.append('g')
+			.attr('class', 'single-bar');
+		const bars = chartdata.selectAll('g');
+		console.log(bars);
+		bars.data(sourceData[ex.toLowerCase()])
+			.exit()
+			.remove();
+		bars.append('rect')
+			.attr('class', 'bar-rect-' + ex.toLowerCase())
+			.attr('x', (d: any) => {
+				return xScale(d.timestamp) - rectWidth / 2;
+			})
+			.attr('y', (d: any) => {
+				return isUpday(d) ? ethYScale(d.close) : ethYScale(d.open);
+			})
+			.attr('width', rectWidth)
+			.attr('height', (d: any) => {
+				return isUpday(d)
+					? ethYScale(d.open) - ethYScale(d.close)
+					: ethYScale(d.close) - ethYScale(d.open);
+			})
+			.style('fill', 'transparent')
+			.style('stroke', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+			});
+		bars.append('path')
+			.attr('class', 'bar-line1-' + ex.toLowerCase())
+			.attr('d', (d: any) => {
+				return line([
+					{ x: xScale(d.timestamp), y: ethYScale(d.high) },
+					{
+						x: xScale(d.timestamp),
+						y: isUpday(d) ? ethYScale(d.close) : ethYScale(d.open)
+					}
+				]);
+			})
+			.style('stroke', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreen : ColorStyles.TextRed;
+			});
+		bars.append('path')
+			.attr('class', 'bar-line2-' + ex.toLowerCase())
+			.attr('d', (d: any) => {
+				return line([
+					{ x: xScale(d.timestamp), y: ethYScale(d.low) },
+					{
+						x: xScale(d.timestamp),
+						y: isUpday(d) ? ethYScale(d.open) : ethYScale(d.close)
+					}
+				]);
+			})
+			.style('stroke', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreen : ColorStyles.TextRed;
+			});
+	});
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
