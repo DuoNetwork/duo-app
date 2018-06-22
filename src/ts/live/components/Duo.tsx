@@ -1,5 +1,6 @@
 import { Layout } from 'antd';
 import * as React from 'react';
+import * as CST from '../common/constants';
 import {
 	IBalances,
 	IConversion,
@@ -15,7 +16,7 @@ import ConversionCard from './Cards/ConversionCard';
 import OperationCard from './Cards/OperationCard';
 import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
-import Header from './DuoHeader';
+import Header from './Header';
 
 interface IProps {
 	states: ICustodianStates;
@@ -34,7 +35,7 @@ export default class Duo extends React.PureComponent<IProps> {
 		const { states, prices, balances, network, account, sourceLast, conversion, refresh, uiConversion } = this.props;
 		return (
 			<Layout>
-				<Header network={network} />
+				<Header network={network} to={CST.TH_STATUS} />
 				<SContent>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<TimeSeriesCard />

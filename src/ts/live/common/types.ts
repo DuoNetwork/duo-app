@@ -83,6 +83,10 @@ export interface IPriceStatus extends IStatus {
 	volume: number;
 }
 
+export interface INodeStatus extends IStatus {
+	block: number;
+}
+
 export import IPriceBar = adminTypes.IPriceBar;
 
 export interface ISourceData<T> {

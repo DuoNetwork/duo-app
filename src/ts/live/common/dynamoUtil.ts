@@ -254,6 +254,12 @@ export class DynamoUtil {
 					price: Number(d[CST.DB_TX_PRICE].N),
 					volume: Number(d[CST.DB_TX_AMOUNT].N)
 				} as IPriceStatus;
+			else if (process.startsWith('CHAIN'))
+				return {
+					process: process,
+					timestamp: timestamp,
+					block: Number(d[CST.DB_ST_BLOCK].N)
+				}
 			else
 				return {
 					process: process,

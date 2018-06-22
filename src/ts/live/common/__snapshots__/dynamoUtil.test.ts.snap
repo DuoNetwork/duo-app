@@ -265,6 +265,7 @@ Array [
 exports[`parseStatus 1`] = `
 Array [
   Object {
+    "block": 7535634,
     "process": "CHAIN_AWS_PUBLIC",
     "timestamp": 1527846160749,
   },

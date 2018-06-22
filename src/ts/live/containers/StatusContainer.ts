@@ -4,6 +4,7 @@ import Status from '../components/Status';
 
 function mapStateToProps(state: IState) {
 	return {
+		network: state.contract.network,
 		addresses: state.contract.addresses,
 		status: state.dynamo.status
 	};
