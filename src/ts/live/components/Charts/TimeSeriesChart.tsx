@@ -299,42 +299,42 @@ function drawLines(
 		if (source !== ex.toLowerCase())
 			d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0);
 	});
-	if (isHourly) {
-		//Hourly Lines
-		//Draw Nav A/B Lines
-		chartdata
-			.append('path')
-			.attr('class', 'line-custodian-navA')
-			.datum(custodianData)
-			.attr('d', lineNavA)
-			.attr('fill', 'none')
-			.attr('stroke-linejoin', 'round')
-			.attr('stroke-linecap', 'round')
-			.attr('stroke', ColorStyles.TextTokenAAlpha)
-			.attr('stroke-width', 1);
-		chartdata
-			.append('path')
-			.attr('class', 'line-custodian-navB')
-			.datum(custodianData)
-			.attr('d', lineNavB)
-			.attr('fill', 'none')
-			.attr('stroke-linejoin', 'round')
-			.attr('stroke-linecap', 'round')
-			.attr('stroke', ColorStyles.TextTokenBAlpha)
-			.attr('stroke-width', 1);
-		//Draw Custodian ETH Line
-		chartdata
-			.append('path')
-			.attr('class', 'line-custodian-eth')
-			.datum(custodianData)
-			.attr('d', lineCustodian)
-			.attr('fill', 'none')
-			.attr('stroke-linejoin', 'round')
-			.attr('stroke-linecap', 'round')
-			.attr('stroke', 'white')
-			.attr('stroke-width', 1.5);
-	} else {
-		//Non-hourly Lines
+
+	//Hourly Lines
+	//Draw Nav A/B Lines
+	chartdata
+		.append('path')
+		.attr('class', 'line-custodian-navA ' + (!isHourly ? 'dashed' : ''))
+		.datum(custodianData)
+		.attr('d', lineNavA)
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', ColorStyles.TextTokenAAlpha)
+		.attr('stroke-width', 1);
+	chartdata
+		.append('path')
+		.attr('class', 'line-custodian-navB ' + (!isHourly ? 'dashed' : ''))
+		.datum(custodianData)
+		.attr('d', lineNavB)
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', ColorStyles.TextTokenBAlpha)
+		.attr('stroke-width', 1);
+	//Draw Custodian ETH Line
+	chartdata
+		.append('path')
+		.attr('class', 'line-custodian-eth ' + (!isHourly ? 'dashed' : ''))
+		.datum(custodianData)
+		.attr('d', lineCustodian)
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', 'white')
+		.attr('stroke-width', 1.5);
+	if (!isHourly) {
+		//Non-hourly dots
 		const segments = chartdata.append('g').attr('class', 'segments');
 		segments
 			.selectAll('g')
@@ -343,44 +343,21 @@ function drawLines(
 			.append('g');
 		const segBar = segments.selectAll('g');
 		segBar
-			.append('path')
-			.attr('class', 'segline-eth')
-			.attr('d', (d: any) => {
-				return line([
-					{ x: xScale(d.timestamp), y: ethYScale(d.price) },
-					{
-						x: xScale(d.timestamp + custodianSourceTimestepRatio(timeStep) * timeStep),
-						y: ethYScale(d.price)
-					}
-				]);
-			})
-			.style('stroke', 'white');
+			.append('circle')
+			.attr('class', 'segdot-eth')
+			.attr('cx', (d: any) => xScale(d.timestamp))
+			.attr('cy', (d: any) => ethYScale(d.price))
+			.attr('r', 2)
+			.style('fill', 'white');
 		['navA', 'navB'].forEach(s => {
 			segBar
-				.append('path')
-				.attr('class', 'segline-' + s)
-				.attr('d', (d: any) => {
-					if (d.timestamp % 1000 === 717)
-						return line([
-							{ x: xScale(d.timestamp), y: navYScale(d[s]) },
-							{
-								x: xScale(d.timestamp),
-								y: navYScale(1)
-							}
-						]);
-					else
-						return line([
-							{ x: xScale(d.timestamp), y: navYScale(d[s]) },
-							{
-								x: xScale(
-									d.timestamp + custodianSourceTimestepRatio(timeStep) * timeStep
-								),
-								y: navYScale(d[s])
-							}
-						]);
-				})
+				.append('circle')
+				.attr('class', 'segdot' + s)
+				.attr('cx', (d: any) => xScale(d.timestamp))
+				.attr('cy', (d: any) => navYScale(d[s]))
+				.attr('r', 2)
 				.style(
-					'stroke',
+					'fill',
 					s === 'navA' ? ColorStyles.TextTokenAAlpha : ColorStyles.TextTokenBAlpha
 				);
 		});
