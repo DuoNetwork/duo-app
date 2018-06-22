@@ -162,12 +162,13 @@ class ChartUtil {
 	) {
 		if (!price.length) return;
 		const lastPrice = price[price.length - 1];
-		if (lastPrice.timestamp < last.timestamp)
+		const lastTimestamp = Math.round(last.timestamp / 3600000) * 3600000;
+		if (lastPrice.timestamp < lastTimestamp)
 			price.push({
 				price: last.price,
 				navA: states.navA,
 				navB: states.navB,
-				timestamp: last.timestamp,
+				timestamp: lastTimestamp,
 				blockNumber: 0,
 				transactionHash: ''
 			});

@@ -305,13 +305,13 @@ test('merge last price to accepted price correctly', () => {
 	chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
 		address: '0x0',
 		price: 620,
-		timestamp: 1528349100000
+		timestamp: 1529640000000
 	});
 	expect(parsedAcceptedPrice.length).toBe(originalLength);
 	chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
 		address: '0x0',
 		price: 620,
-		timestamp: 1528349820000
+		timestamp: 1529640000000 + 1850000
 	});
 	expect(parsedAcceptedPrice.length).toBe(originalLength + 1);
 	expect(parsedAcceptedPrice[originalLength]).toMatchSnapshot();

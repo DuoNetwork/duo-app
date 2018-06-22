@@ -90,9 +90,7 @@ Object {
         "process": "test",
       },
     ],
-    "totalSupply": Array [
-      "test",
-    ],
+    "totalSupply": Array [],
     "uiConversion": Array [
       Object {
         "transactionHash": "bbb",

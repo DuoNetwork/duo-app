@@ -22,7 +22,7 @@ export function refresh(): VoidThunkAction {
 		dispatch(dynamoActions.fetchMinutely());
 		dispatch(dynamoActions.fetchPrice());
 		dispatch(dynamoActions.fetchConversion());
-		dispatch(dynamoActions.fetchTotalSupply());
+		// dispatch(dynamoActions.fetchTotalSupply());
 		dispatch(refreshUpdate());
 	};
 }

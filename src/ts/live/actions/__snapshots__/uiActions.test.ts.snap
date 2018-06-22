@@ -45,12 +45,6 @@ Array [
     ],
   },
   Object {
-    "type": "totalSupply",
-    "value": Array [
-      "test",
-    ],
-  },
-  Object {
     "type": "uiConversion",
     "value": Array [
       Object {

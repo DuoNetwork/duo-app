@@ -81,7 +81,7 @@ export class DynamoUtil {
 			price: contractUtil.fromWei(p[CST.DB_EV_PX].S || ''),
 			navA: contractUtil.fromWei(p[CST.DB_EV_NAV_A].S || ''),
 			navB: contractUtil.fromWei(p[CST.DB_EV_NAV_B].S || ''),
-			timestamp: Number(p[CST.DB_EV_TS].S) * 1000
+			timestamp: Math.round(Number(p[CST.DB_EV_TS].S) / 3600) * 3600000
 		}));
 	}
 
