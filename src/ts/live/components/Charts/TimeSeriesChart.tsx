@@ -375,7 +375,7 @@ function drawLines(
 	function drawAssisLine() {
 		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
 		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
-
+		const yPosR = navYScale.invert(d3.mouse(overlay.node() as any)[1]);
 		svg.append('path')
 			.attr('class', 'assist-line-x')
 			.attr('d', () => {
@@ -402,15 +402,89 @@ function drawLines(
 			})
 			.attr('stroke', ColorStyles.BorderWhite1)
 			.attr('stroke-width', 1);
+		const lyAxisBox = svg.append('g').attr('class', 'ly-axis-box');
+		const ryAxisBox = svg.append('g').attr('class', 'ry-axis-box');
+		const xAxisBox = svg.append('g').attr('class', 'x-axis-box');
+		lyAxisBox
+			.append('rect')
+			.attr('class', 'ly-axis-box-rect')
+			.attr('x', margin.left)
+			.attr('y', ethYScale(yPosL) + margin.top)
+			.attr('width', 28)
+			.attr('height', 18)
+			.attr('transform', 'translate(-31, -9)')
+			.style('fill', ColorStyles.CardBackgroundSolid)
+			.style('stroke', ColorStyles.BorderWhite3);
+		lyAxisBox
+			.append('text')
+			.attr('class', 'ly-axis-box-text')
+			.attr('transform', 'translate(12.5,' + (ethYScale(yPosL) + margin.top + 4) + ')')
+			.attr('fill', ColorStyles.TextWhiteAlphaL)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.text(d3.format(',.0f')(yPosL));
+		ryAxisBox
+			.append('rect')
+			.attr('class', 'ry-axis-box-rect')
+			.attr('x', width + margin.left)
+			.attr('y', navYScale(yPosR) + margin.top)
+			.attr('width', 28)
+			.attr('height', 18)
+			.attr('transform', 'translate(4, -9)')
+			.style('fill', ColorStyles.CardBackgroundSolid)
+			.style('stroke', ColorStyles.BorderWhite3);
+		ryAxisBox
+			.append('text')
+			.attr('class', 'ry-axis-box-text')
+			.attr(
+				'transform',
+				'translate(' +
+					(width + margin.left + 6.2) +
+					', ' +
+					(ethYScale(yPosL) + margin.top + 4) +
+					')'
+			)
+			.attr('fill', ColorStyles.TextWhiteAlphaL)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.text(d3.format(',.3f')(yPosR));
+		xAxisBox
+			.append('rect')
+			.attr('class', 'x-axis-box-rect')
+			.attr('x', xScale(xPos) + margin.left)
+			.attr('y', height + margin.top)
+			.attr('width', 40)
+			.attr('height', 16)
+			.attr('transform', 'translate(-20, 3)')
+			.style('fill', ColorStyles.CardBackgroundSolid)
+			.style('stroke', ColorStyles.BorderWhite3);
+		xAxisBox
+			.append('text')
+			.attr('class', 'x-axis-box-text')
+			.attr(
+				'transform',
+				'translate(' +
+					(xScale(xPos) + margin.left - 13) +
+					', ' +
+					(height + margin.top + 14.5) +
+					')'
+			)
+			.attr('fill', ColorStyles.TextWhiteAlphaL)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.text(moment(xPos).format('HH:mm'));
 	}
 	function deleteAssisLine() {
 		d3.selectAll('.assist-line-x').remove();
 		d3.selectAll('.assist-line-y').remove();
+		d3.selectAll('.x-axis-box').remove();
+		d3.selectAll('.ly-axis-box').remove();
+		d3.selectAll('.ry-axis-box').remove();
 	}
 	function moveAssisLine() {
 		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
 		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
-		console.log('move');
+		const yPosR = navYScale.invert(d3.mouse(overlay.node() as any)[1]);
 		d3.selectAll('.assist-line-x').attr('d', () => {
 			return line([
 				{ x: 0 + margin.left, y: ethYScale(yPosL) + margin.top },
@@ -429,6 +503,38 @@ function drawLines(
 				}
 			]);
 		});
+		d3.selectAll('.x-axis-box-rect')
+			.attr('x', xScale(xPos) + margin.left)
+			.attr('y', height + margin.top);
+		d3.selectAll('.x-axis-box-text')
+			.attr(
+				'transform',
+				'translate(' +
+					(xScale(xPos) + margin.left - 13) +
+					', ' +
+					(height + margin.top + 14.5) +
+					')'
+			)
+			.text(moment(xPos).format('HH:mm'));
+		d3.selectAll('.ly-axis-box-rect')
+			.attr('x', margin.left)
+			.attr('y', ethYScale(yPosL) + margin.top);
+		d3.selectAll('.ly-axis-box-text')
+			.attr('transform', 'translate(12.5,' + (ethYScale(yPosL) + margin.top + 4) + ')')
+			.text(d3.format(',.0f')(yPosL));
+		d3.selectAll('.ry-axis-box-rect')
+			.attr('x', width + margin.left)
+			.attr('y', navYScale(yPosR) + margin.top);
+		d3.selectAll('.ry-axis-box-text')
+			.attr(
+				'transform',
+				'translate(' +
+					(width + margin.left + 6.2) +
+					', ' +
+					(ethYScale(yPosL) + margin.top + 4) +
+					')'
+			)
+			.text(d3.format(',.3f')(yPosR));
 	}
 	function mousemove() {
 		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
