@@ -110,6 +110,9 @@ path.domain {
 .overlay {
 	cursor: crosshair;
 }
+.eth-dot {
+	cursor: pointer;
+}
 .assist-line-x, .assist-line-y {
 	pointer-events: none;
 }
