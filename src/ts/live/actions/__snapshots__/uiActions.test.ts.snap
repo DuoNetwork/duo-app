@@ -7,6 +7,12 @@ Array [
     "value": "test",
   },
   Object {
+    "type": "custodianStates",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
     "type": "refresh",
   },
   Object {
@@ -15,12 +21,6 @@ Array [
   },
   Object {
     "type": "balances",
-    "value": Object {
-      "test": "test",
-    },
-  },
-  Object {
-    "type": "custodianStates",
     "value": Object {
       "test": "test",
     },

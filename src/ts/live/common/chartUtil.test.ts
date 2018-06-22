@@ -1,6 +1,4 @@
 import moment from 'moment';
-import hourly from '../samples/hourly.json';
-import minutely from '../samples/minutely.json';
 import prices from '../samples/prices.json';
 import chartUtil from './chartUtil';
 import dynamoUtil from './dynamoUtil';
@@ -171,150 +169,21 @@ test('merge reset correctly', () =>
 		)
 	).toMatchSnapshot());
 
-test('merge last price to hourly correctly', () => {
-	const parsedHourly = dynamoUtil.parseHourly(hourly);
-	const sourceHourly = {
-		bitfinex: parsedHourly,
-		gemini: [],
-		kraken: [],
-		gdax: []
-	};
-	chartUtil.mergeLastToPriceBar(
-		sourceHourly,
-		{
-			bitfinex: {
-				address: '0x0',
-				price: 600,
-				timestamp: 1528072200000
-			},
-			gemini: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			kraken: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			gdax: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			}
-		},
-		true
-	);
-	expect(sourceHourly.bitfinex).toMatchSnapshot();
-	chartUtil.mergeLastToPriceBar(
-		sourceHourly,
-		{
-			bitfinex: {
-				address: '0x0',
-				price: 620,
-				timestamp: 1528074000000
-			},
-			gemini: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			kraken: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			gdax: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			}
-		},
-		true
-	);
-	expect(sourceHourly.bitfinex).toMatchSnapshot();
-});
-
-test('merge last price to minutely correctly', () => {
-	const parsedMinutely = dynamoUtil.parseMinutely(minutely);
-	const sourceMinutely = {
-		bitfinex: [],
-		gemini: [],
-		kraken: [],
-		gdax: parsedMinutely
-	};
-	chartUtil.mergeLastToPriceBar(
-		sourceMinutely,
-		{
-			bitfinex: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			gemini: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			kraken: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			gdax: {
-				address: '0x0',
-				price: 600,
-				timestamp: 1527839610000
-			}
-		},
-		false
-	);
-	expect(sourceMinutely.gdax).toMatchSnapshot();
-	chartUtil.mergeLastToPriceBar(
-		sourceMinutely,
-		{
-			bitfinex: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			gemini: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			kraken: {
-				address: '0x0',
-				price: 0,
-				timestamp: 0
-			},
-			gdax: {
-				address: '0x0',
-				price: 620,
-				timestamp: 1527839640000
-			}
-		},
-		false
-	);
-	expect(sourceMinutely.gdax).toMatchSnapshot();
-});
-
 test('merge last price to accepted price correctly', () => {
 	const parsedAcceptedPrice = dynamoUtil.parseAcceptedPrice(prices);
-	const originalLength = parsedAcceptedPrice.length;
-	chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
+	const merged = chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
 		address: '0x0',
 		price: 620,
 		timestamp: 1529640000000
 	});
-	expect(parsedAcceptedPrice.length).toBe(originalLength);
-	chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
+	expect(merged.length).toBe(parsedAcceptedPrice.length);
+	const merged1 = chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
 		address: '0x0',
 		price: 620,
 		timestamp: 1529640000000 + 1850000
 	});
-	expect(parsedAcceptedPrice.length).toBe(originalLength + 1);
-	expect(parsedAcceptedPrice[originalLength]).toMatchSnapshot();
+	expect(merged1.length).toBe(parsedAcceptedPrice.length + 1);
+	expect(merged1[parsedAcceptedPrice.length]).toMatchSnapshot();
 });
 
 const totalSupply = {
