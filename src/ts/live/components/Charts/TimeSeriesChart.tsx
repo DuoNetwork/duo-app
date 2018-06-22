@@ -43,15 +43,15 @@ function drawLines(
 		.attr('height', height + margin.top + margin.bottom);
 
 	//Date Range
-	const formatString = (step: number) => {
+	const formatString = (step: number, date: number) => {
 		switch (step) {
 			case 300000:
 				return 'HH:mm';
 			default:
-				return 'MM-DD HH:mm';
+				return moment(date).format('HH') === '00' ? 'MM-DD' : 'HH:mm';
 		}
 	};
-	const zoomFormat = date => moment(date).format(formatString(timeStep));
+	const zoomFormat = date => moment(date).format(formatString(timeStep, date));
 	const displayColums = (step: number) => {
 		switch (step) {
 			case 300000:
@@ -537,19 +537,25 @@ function drawLines(
 			.text(d3.format(',.3f')(yPosR));
 	}
 	function mousemove() {
-		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
-		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
-		const yPosR = navYScale.invert(d3.mouse(overlay.node() as any)[1]);
-		findBar(xPos);
+		// const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
+		// const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
+		// const yPosR = navYScale.invert(d3.mouse(overlay.node() as any)[1]);
+		//findBar(xPos);
 		moveAssisLine();
-		console.log('[' + xPos + ', ' + yPosL + ', ' + yPosR + ']');
 	}
-	function findBar(x: number) {
-		sourceData[source].forEach(item => {
-			if (item.timestamp - timeStep / 2 < x && x < item.timestamp + timeStep / 2)
-				console.log(item);
-		});
-	}
+	// function findBar(x: number) {
+	// 	sourceData[source].forEach(item => {
+	// 		if (item.timestamp - timeStep / 2 < x && x < item.timestamp + timeStep / 2)
+	// 			console.log(item);
+	// 	});
+	// }
+	// function findETHDot(x: number, y: number) {
+	// 	custodianData.forEach(item => {
+	// 		if (xScale(item.timestamp) - 5 < xScale(x) && xScale(x) < xScale(item.timestamp) +  5 && ethYScale(item.price) - 5 < ethYScale(y) && ethYScale(y) < ethYScale(item.price) + 5)
+	// 			console.log(item);
+	// 	});
+	// }
+	// function findNavDot(x: number, y: number)
 }
 
 function showLines(source: string) {
