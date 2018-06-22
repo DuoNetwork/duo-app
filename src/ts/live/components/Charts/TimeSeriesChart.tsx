@@ -713,8 +713,8 @@ function drawLines(
 				xScale(x) < xScale(item.timestamp) + barWidth / 2
 			) {
 				d3.selectAll('.custodian-eth-legend-text').text(d3.format(',.2f')(item.price));
-				d3.selectAll('.custodian-tokenA-legend-text').text(d3.format(',.2f')(item.navA));
-				d3.selectAll('.custodian-tokenB-legend-text').text(d3.format(',.2f')(item.navB));
+				d3.selectAll('.custodian-tokenA-legend-text').text(d3.format(',.4f')(item.navA));
+				d3.selectAll('.custodian-tokenB-legend-text').text(d3.format(',.4f')(item.navB));
 			}
 		});
 	}
