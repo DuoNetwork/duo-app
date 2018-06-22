@@ -90,18 +90,18 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								</div>
 								<div className={'tag-unit'}>USD</div>
 							</div>
-							<div style={{ display: 'flex', flexDirection: 'row' }}>
+							<div className='tag-subtext'>
 								<div
 									style={{
 										color:
 											ethChange >= 0
-												? ColorStyles.TextGreen
-												: ColorStyles.TextRed
+												? ColorStyles.TextGreenAlphaL
+												: ColorStyles.TextRedAlphaL
 									}}
 								>
 									{d3.format('+.2%')(ethChange)}
 								</div>
-								<div style={{ color: ColorStyles.TextWhite }}>since reset</div>
+								<div style={{ marginLeft: 5 }}>since reset</div>
 							</div>
 						</div>
 					</SCardPriceTag>
@@ -122,7 +122,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-price-1 USD'}>{d3.format(',.6f')(navA)}</div>
 								<div className={'tag-unit-1'}>USD</div>
 							</div>
-							<div style={{ color: ColorStyles.TextWhite }}>
+							<div className='tag-subtext'>
 								{d3.format('.2%')(
 									(states.periodCoupon * 365 * 24 * 3600) / states.period || 0
 								) + ' p.a.'}
@@ -146,7 +146,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-price-2 USD'}>{d3.format(',.6f')(navB)}</div>
 								<div className={'tag-unit-2'}>USD</div>
 							</div>
-							<div style={{ color: ColorStyles.TextWhite }}>
+							<div className='tag-subtext'>
 								{d3.format('.2f')((navA + navB) / (navB || 1)) + 'x leverage'}
 							</div>
 						</div>
