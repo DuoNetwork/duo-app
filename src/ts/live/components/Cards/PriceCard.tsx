@@ -7,15 +7,12 @@ import classBIcon from '../../../../images/ClassB_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import infoIcon from '../../../../images/info.svg';
 import * as CST from '../../common/constants';
+import { ColorStyles } from '../../common/styles';
 import { ICustodianPrice, ICustodianStates, ISourceData } from '../../common/types';
 import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
-import {
-	SCard,
-	SCardExtraDiv,
-	SCardPriceTag,
-} from './_styled';
+import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
 
 interface IProps {
 	last: ICustodianPrice;
@@ -27,49 +24,6 @@ interface IProps {
 interface IState {
 	source: string;
 }
-
-const PriceInfo = (props: {
-	icon: string;
-	name: string;
-	prices: Array<{ value: string; unit: string }>;
-	classNamePostfix?: string;
-	fromContract: boolean;
-}) => {
-	const { icon, name, prices } = props;
-	const classNamePostfix = props.classNamePostfix || '';
-	const tooltipText = props.fromContract
-		? 'Nav as currently in Smart Contract'
-		: 'Estimated nav based selected ETH price';
-	return (
-		<SCardPriceTag>
-			<div className="bg-logo">
-				<img src={icon} />
-			</div>
-
-			<div className="tag-title">
-				<h3>{name}</h3>
-				{name !== 'ETH' ? (
-					<Tooltip title={tooltipText}>
-						<img src={infoIcon} />
-					</Tooltip>
-				) : null}
-			</div>
-
-			<div className="tag-content">
-				<div>
-					{prices.map(p => (
-						<div key={p.unit} style={{ display: 'flex', flexDirection: 'row' }}>
-							<div className={'tag-price' + classNamePostfix + ' ' + p.unit}>
-								{p.value}
-							</div>
-							<div className={'tag-unit' + classNamePostfix}>{p.unit}</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</SCardPriceTag>
-	);
-};
 
 export default class PriceCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
@@ -97,7 +51,10 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					states.periodCoupon
 			)
 			: [states.navA, states.navB];
-		const fromContract = !CST.EXCHANGES.includes(source.toUpperCase());
+		const ethChange = last.price / reset.price - 1;
+		const tooltipText = !CST.EXCHANGES.includes(source.toUpperCase())
+			? 'Nav as currently in Smart Contract'
+			: 'Estimated nav based selected ETH price';
 		return (
 			<SCard
 				title={
@@ -117,49 +74,88 @@ export default class PriceCard extends React.Component<IProps, IState> {
 				margin="0 10px 0 0"
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
-					<PriceInfo
-						icon={ethIcon}
-						name={CST.TH_ETH}
-						prices={[
-							{
-								value: d3.formatPrefix(',.2', 1)(last.price),
-								unit: 'USD'
-							}
-						]}
-						fromContract={fromContract}
-					/>
-					<PriceInfo
-						icon={classAIcon}
-						name={CST.TH_TOKEN_A}
-						prices={[
-							{
-								value: d3.formatPrefix(',.6', 1)(navA),
-								unit: 'USD'
-							},
-							{
-								value: d3.formatPrefix(',.8', 1)(navA / (last.price || 1)),
-								unit: 'ETH'
-							}
-						]}
-						fromContract={fromContract}
-						classNamePostfix="-1"
-					/>
-					<PriceInfo
-						icon={classBIcon}
-						name={CST.TH_TOKEN_B}
-						prices={[
-							{
-								value: d3.formatPrefix(',.6', 1)(navB),
-								unit: 'USD'
-							},
-							{
-								value: d3.formatPrefix(',.8', 1)(navB / (last.price || 1)),
-								unit: 'ETH'
-							}
-						]}
-						fromContract={fromContract}
-						classNamePostfix="-2"
-					/>
+					<SCardPriceTag>
+						<div className="bg-logo">
+							<img src={ethIcon} />
+						</div>
+
+						<div className="tag-title">
+							<h3>{CST.TH_ETH}</h3>
+						</div>
+
+						<div className="tag-content">
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<div className={'tag-price USD'}>
+									{d3.format(',.2f')(last.price)}
+								</div>
+								<div className={'tag-unit'}>USD</div>
+							</div>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<div
+									style={{
+										color:
+											ethChange >= 0
+												? ColorStyles.TextGreen
+												: ColorStyles.TextRed
+									}}
+								>
+									{d3.format('+.2%')(ethChange)}
+								</div>
+								<div style={{ color: ColorStyles.TextWhite }}>since reset</div>
+							</div>
+						</div>
+					</SCardPriceTag>
+					<SCardPriceTag>
+						<div className="bg-logo">
+							<img src={classAIcon} />
+						</div>
+
+						<div className="tag-title">
+							<h3>{name}</h3>
+							{name !== 'ETH' ? (
+								<Tooltip title={tooltipText}>
+									<img src={infoIcon} />
+								</Tooltip>
+							) : null}
+						</div>
+
+						<div className="tag-content">
+							<div>
+								<div style={{ display: 'flex', flexDirection: 'row' }}>
+									<div className={'tag-price-1 USD'}>
+										{d3.format(',.6f')(navA)}
+									</div>
+									<div className={'tag-unit-1'}>USD</div>
+								</div>
+							</div>
+						</div>
+					</SCardPriceTag>
+					<SCardPriceTag>
+						<div className="bg-logo">
+							<img src={classBIcon} />
+						</div>
+
+						<div className="tag-title">
+							<h3>{name}</h3>
+							{name !== 'ETH' ? (
+								<Tooltip title={tooltipText}>
+									<img src={infoIcon} />
+								</Tooltip>
+							) : null}
+						</div>
+
+						<div className="tag-content">
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<div className={'tag-price-2 USD'}>{d3.format(',.6f')(navB)}</div>
+								<div className={'tag-unit-2'}>USD</div>
+							</div>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<div style={{ color: ColorStyles.TextWhite }}>
+									{d3.format('.2f')((navA + navB) / (navB || 1)) + 'x leverage'}
+								</div>
+							</div>
+						</div>
+					</SCardPriceTag>
 				</SDivFlexCenter>
 			</SCard>
 		);
