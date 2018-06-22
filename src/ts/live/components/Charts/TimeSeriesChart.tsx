@@ -329,8 +329,8 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', 'white')
-		.attr('stroke-width', 1.5);
+		.attr('stroke', ColorStyles.TextWhiteAlphaSolid)
+		.attr('stroke-width', 1.2);
 	if (!isHourly) {
 		//Non-hourly dots
 		const segments = chartdata.append('g').attr('class', 'segments');

@@ -20,6 +20,7 @@ export const ColorStyles = {
 	//Text Colors
 	TextWhite: 'rgba(255,255,255,1)',
 	TextWhiteAlpha: 'rgba(255,255,255,.8)',
+	TextWhiteAlphaSolid: 'rgba(211,211,211,1)',
 	TextWhiteAlphaL: 'rgba(255,255,255,.6)',
 	TextWhiteAlphaLL: 'rgba(255,255,255,.4)',
 	TextWhiteAlphaLLL: 'rgba(255,255,255,.2)',
