@@ -571,7 +571,10 @@ function drawLines(
 					.on('mousemove', moveAssisLine)
 					.on('click', () =>
 						window.open(
-							'https://kovan.etherscan.io/tx/' + item.transactionHash,
+							'https://' +
+								(__KOVAN__ ? 'kovan.' : '') +
+								'etherscan.io/tx/' +
+								item.transactionHash,
 							'_blank'
 						)
 					);
