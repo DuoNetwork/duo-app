@@ -107,7 +107,7 @@ class ChartUtil {
 		price: IAcceptedPrice[],
 		states: ICustodianStates,
 		last: ICustodianPrice
-	) {
+	): IAcceptedPrice[] {
 		if (!price.length) return price;
 		const lastPrice = price[price.length - 1];
 		const lastTimestamp = Math.round(last.timestamp / 3600000) * 3600000;
