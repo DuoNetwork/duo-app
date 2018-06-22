@@ -26,7 +26,28 @@ function mapStateToProps(state: IState) {
 		state.contract.prices.last
 	);
 	return {
-		hourly: state.dynamo.hourly,
+		hourly: {
+			bitfinex: chartUtil.mergeLastToPriceBar(
+				state.dynamo.hourly.bitfinex,
+				state.dynamo.last.bitfinex,
+				true
+			),
+			gemini: chartUtil.mergeLastToPriceBar(
+				state.dynamo.hourly.gemini,
+				state.dynamo.last.gemini,
+				true
+			),
+			gdax: chartUtil.mergeLastToPriceBar(
+				state.dynamo.hourly.gdax,
+				state.dynamo.last.gdax,
+				true
+			),
+			kraken: chartUtil.mergeLastToPriceBar(
+				state.dynamo.hourly.kraken,
+				state.dynamo.last.kraken,
+				true
+			)
+		},
 		minutely: mergedMinutely,
 		prices: price
 	};

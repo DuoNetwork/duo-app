@@ -13,6 +13,12 @@ Array [
     },
   },
   Object {
+    "type": "dynamoStatus",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
     "type": "refresh",
   },
   Object {
@@ -31,12 +37,6 @@ Array [
       "reset",
       "last",
     ],
-  },
-  Object {
-    "type": "dynamoStatus",
-    "value": Object {
-      "test": "test",
-    },
   },
   Object {
     "type": "dynamoPrice",

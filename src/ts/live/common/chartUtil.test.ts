@@ -1,4 +1,6 @@
 import moment from 'moment';
+import hourly from '../samples/hourly.json';
+import minutely from '../samples/minutely.json';
 import prices from '../samples/prices.json';
 import chartUtil from './chartUtil';
 import dynamoUtil from './dynamoUtil';
@@ -169,19 +171,79 @@ test('merge reset correctly', () =>
 		)
 	).toMatchSnapshot());
 
+test('merge last price to hourly correctly', () => {
+	const parsedHourly = dynamoUtil.parseHourly(hourly);
+	expect(
+		chartUtil.mergeLastToPriceBar(
+			parsedHourly,
+			{
+				address: '0x0',
+				price: 600,
+				timestamp: 1528072200000
+			},
+			true
+		)
+	).toMatchSnapshot();
+	expect(
+		chartUtil.mergeLastToPriceBar(
+			parsedHourly,
+			{
+				address: '0x0',
+				price: 620,
+				timestamp: 1528074000000
+			},
+			true
+		)
+	).toMatchSnapshot();
+});
+
+test('merge last price to minutely correctly', () => {
+	const parsedMinutely = dynamoUtil.parseMinutely(minutely);
+	expect(
+		chartUtil.mergeLastToPriceBar(
+			parsedMinutely,
+			{
+				address: '0x0',
+				price: 600,
+				timestamp: 1527839610000
+			},
+			false
+		)
+	).toMatchSnapshot();
+	expect(
+		chartUtil.mergeLastToPriceBar(
+			parsedMinutely,
+			{
+				address: '0x0',
+				price: 620,
+				timestamp: 1527839640000
+			},
+			false
+		)
+	).toMatchSnapshot();
+});
+
 test('merge last price to accepted price correctly', () => {
 	const parsedAcceptedPrice = dynamoUtil.parseAcceptedPrice(prices);
-	const merged = chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
-		address: '0x0',
-		price: 620,
-		timestamp: 1529640000000
-	});
+	const merged = chartUtil.mergeLastToPrice(
+		parsedAcceptedPrice,
+		{ navA: 1.23, navB: 1.45 } as any,
+		{
+			address: '0x0',
+			price: 620,
+			timestamp: 1529640000000
+		}
+	);
 	expect(merged.length).toBe(parsedAcceptedPrice.length);
-	const merged1 = chartUtil.mergeLastToPrice(parsedAcceptedPrice, { navA: 1.23, navB: 1.45 } as any, {
-		address: '0x0',
-		price: 620,
-		timestamp: 1529640000000 + 1850000
-	});
+	const merged1 = chartUtil.mergeLastToPrice(
+		parsedAcceptedPrice,
+		{ navA: 1.23, navB: 1.45 } as any,
+		{
+			address: '0x0',
+			price: 620,
+			timestamp: 1529640000000 + 1850000
+		}
+	);
 	expect(merged1.length).toBe(parsedAcceptedPrice.length + 1);
 	expect(merged1[parsedAcceptedPrice.length]).toMatchSnapshot();
 });

@@ -103,6 +103,70 @@ class ChartUtil {
 		return all;
 	}
 
+	public mergeLastToPriceBar(
+		pricebars: IPriceBar[],
+		last: ICustodianPrice,
+		isHourly: boolean
+	): IPriceBar[] {
+		if (!pricebars || !pricebars.length) return pricebars;
+		const lastBar = pricebars[pricebars.length - 1];
+		const dateObj = moment.utc(last.timestamp);
+		if (lastBar.timestamp >= last.timestamp) return pricebars;
+
+		if (isHourly && lastBar.date + ' ' + lastBar.hour !== dateObj.format('YYYY-MM-DD HH'))
+			return [
+				...pricebars,
+				{
+					source: lastBar.source,
+					date: dateObj.format('YYYY-MM-DD'),
+					hour: dateObj.format('HH'),
+					minute: 0,
+					open: lastBar.close,
+					high: Math.max(lastBar.close, last.price),
+					low: Math.min(lastBar.close, last.price),
+					close: last.price,
+					volume: 0,
+					timestamp: last.timestamp
+				}
+			];
+		else if (
+			!isHourly &&
+			lastBar.date + ' ' + lastBar.hour + ' ' + lastBar.minute !==
+				dateObj.format('YYYY-MM-DD HH m')
+		)
+			return [
+				...pricebars,
+				{
+					source: lastBar.source,
+					date: dateObj.format('YYYY-MM-DD'),
+					hour: dateObj.format('HH'),
+					minute: Number(dateObj.format('mm')),
+					open: lastBar.close,
+					high: Math.max(lastBar.close, last.price),
+					low: Math.min(lastBar.close, last.price),
+					close: last.price,
+					volume: 0,
+					timestamp: last.timestamp
+				}
+			];
+		else
+			return [
+				...pricebars.slice(0, pricebars.length - 1),
+				{
+					source: lastBar.source,
+					date: lastBar.date,
+					hour: lastBar.hour,
+					minute: lastBar.minute,
+					open: lastBar.open,
+					high: Math.max(lastBar.high, last.price),
+					low: Math.min(lastBar.low, last.price),
+					close: last.price,
+					volume: 0,
+					timestamp: last.timestamp
+				}
+			];
+	}
+
 	public mergeLastToPrice(
 		price: IAcceptedPrice[],
 		states: ICustodianStates,

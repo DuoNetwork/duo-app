@@ -85,6 +85,98 @@ Object {
 }
 `;
 
+exports[`merge last price to hourly correctly 1`] = `
+Array [
+  Object {
+    "close": 600,
+    "date": "2018-06-04",
+    "high": 625.04,
+    "hour": "00",
+    "low": 600,
+    "minute": 0,
+    "open": 619.39,
+    "source": "BITFINEX",
+    "timestamp": 1528072200000,
+    "volume": 0,
+  },
+]
+`;
+
+exports[`merge last price to hourly correctly 2`] = `
+Array [
+  Object {
+    "close": 622.68,
+    "date": "2018-06-04",
+    "high": 625.04,
+    "hour": "00",
+    "low": 619.39,
+    "minute": 0,
+    "open": 619.39,
+    "source": "BITFINEX",
+    "timestamp": 1528070400000,
+    "volume": 9626.950549620002,
+  },
+  Object {
+    "close": 620,
+    "date": "2018-06-04",
+    "high": 622.68,
+    "hour": "01",
+    "low": 620,
+    "minute": 0,
+    "open": 622.68,
+    "source": "BITFINEX",
+    "timestamp": 1528074000000,
+    "volume": 0,
+  },
+]
+`;
+
+exports[`merge last price to minutely correctly 1`] = `
+Array [
+  Object {
+    "close": 600,
+    "date": "2018-06-01",
+    "high": 600,
+    "hour": "07",
+    "low": 582.88,
+    "minute": 53,
+    "open": 582.88,
+    "source": "GDAX",
+    "timestamp": 1527839610000,
+    "volume": 0,
+  },
+]
+`;
+
+exports[`merge last price to minutely correctly 2`] = `
+Array [
+  Object {
+    "close": 582.89,
+    "date": "2018-06-01",
+    "high": 582.89,
+    "hour": "07",
+    "low": 582.88,
+    "minute": 53,
+    "open": 582.88,
+    "source": "GDAX",
+    "timestamp": 1527839580000,
+    "volume": 12.117600000000001,
+  },
+  Object {
+    "close": 620,
+    "date": "2018-06-01",
+    "high": 620,
+    "hour": "07",
+    "low": 582.89,
+    "minute": 54,
+    "open": 582.89,
+    "source": "GDAX",
+    "timestamp": 1527839640000,
+    "volume": 0,
+  },
+]
+`;
+
 exports[`merge reset correctly 1`] = `
 Array [
   Object {
