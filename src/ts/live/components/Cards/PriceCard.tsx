@@ -111,22 +111,21 @@ export default class PriceCard extends React.Component<IProps, IState> {
 						</div>
 
 						<div className="tag-title">
-							<h3>{name}</h3>
-							{name !== 'ETH' ? (
-								<Tooltip title={tooltipText}>
-									<img src={infoIcon} />
-								</Tooltip>
-							) : null}
+							<h3>{CST.TH_TOKEN_A}</h3>
+							<Tooltip title={tooltipText}>
+								<img src={infoIcon} />
+							</Tooltip>
 						</div>
 
 						<div className="tag-content">
-							<div>
-								<div style={{ display: 'flex', flexDirection: 'row' }}>
-									<div className={'tag-price-1 USD'}>
-										{d3.format(',.6f')(navA)}
-									</div>
-									<div className={'tag-unit-1'}>USD</div>
-								</div>
+							<div style={{ display: 'flex', flexDirection: 'row' }}>
+								<div className={'tag-price-1 USD'}>{d3.format(',.6f')(navA)}</div>
+								<div className={'tag-unit-1'}>USD</div>
+							</div>
+							<div style={{ color: ColorStyles.TextWhite }}>
+								{d3.format('.2%')(
+									(states.periodCoupon * 365 * 24 * 3600) / states.period || 0
+								) + ' p.a.'}
 							</div>
 						</div>
 					</SCardPriceTag>
@@ -136,12 +135,10 @@ export default class PriceCard extends React.Component<IProps, IState> {
 						</div>
 
 						<div className="tag-title">
-							<h3>{name}</h3>
-							{name !== 'ETH' ? (
-								<Tooltip title={tooltipText}>
-									<img src={infoIcon} />
-								</Tooltip>
-							) : null}
+							<h3>{CST.TH_TOKEN_B}</h3>
+							<Tooltip title={tooltipText}>
+								<img src={infoIcon} />
+							</Tooltip>
 						</div>
 
 						<div className="tag-content">
@@ -149,10 +146,8 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-price-2 USD'}>{d3.format(',.6f')(navB)}</div>
 								<div className={'tag-unit-2'}>USD</div>
 							</div>
-							<div style={{ display: 'flex', flexDirection: 'row' }}>
-								<div style={{ color: ColorStyles.TextWhite }}>
-									{d3.format('.2f')((navA + navB) / (navB || 1)) + 'x leverage'}
-								</div>
+							<div style={{ color: ColorStyles.TextWhite }}>
+								{d3.format('.2f')((navA + navB) / (navB || 1)) + 'x leverage'}
 							</div>
 						</div>
 					</SCardPriceTag>
