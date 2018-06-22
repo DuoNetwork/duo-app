@@ -6,14 +6,15 @@ import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
 import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 
-const margin = { top: 15, right: 31, bottom: 23, left: 36 };
+const margin = { top: 40, right: 31, bottom: 23, left: 36 };
 
 function drawLines(
 	el: Element,
 	custodianData: IAcceptedPrice[],
 	sourceData: ISourceData<IPriceBar[]>,
 	timeStep: number,
-	source: string
+	source: string,
+	isHourly?: boolean
 ) {
 	const dataLoaded =
 		custodianData.length &&
@@ -35,7 +36,8 @@ function drawLines(
 	//Establish SVG Playground
 	d3.selectAll('.loading').remove();
 	d3.selectAll('#timeserieschart').remove();
-	d3.select(el)
+	const svg = d3
+		.select(el)
 		.append('svg')
 		.attr('id', 'timeserieschart')
 		.attr('width', width + margin.left + margin.right)
@@ -90,6 +92,10 @@ function drawLines(
 		(xScale(moment('2000-01-01').valueOf() + timeStep) -
 			xScale(moment('2000-01-01').valueOf())) *
 		0.6;
+	// const backRectWidth =
+	// 	(xScale(moment('2000-01-01').valueOf() + timeStep) -
+	// 		xScale(moment('2000-01-01').valueOf())) *
+	// 	0.8;
 	//Data Range (ETH price)
 	const slicedCustodianData = custodianData.slice(
 		-colums / custodianSourceTimestepRatio(timeStep)
@@ -145,11 +151,7 @@ function drawLines(
 		.scaleLinear()
 		.domain([rangeBottomNav, rangeTopNav])
 		.range([height, 0]);
-	//Lines
-	// const lineSource = d3
-	// 	.line<IPriceBar>()
-	// 	.x(d => xScale(d.timestamp))
-	// 	.y(d => ethYScale(d.close));
+	//Custodian ETH TokenA/B Lines
 	const lineCustodian = d3
 		.line<IAcceptedPrice>()
 		.x(d => xScale(d.timestamp))
@@ -227,19 +229,6 @@ function drawLines(
 		.append('g')
 		.attr('class', 'chart-data')
 		.attr('clip-path', 'url(#clip)');
-	// //Draw Source Lines
-	// CST.EXCHANGES.forEach(ex => {
-	// 	chartdata
-	// 		.append('path')
-	// 		.attr('class', 'line-' + ex.toLowerCase())
-	// 		.datum(sourceData[ex.toLowerCase()])
-	// 		.attr('d', lineSource)
-	// 		.attr('fill', 'none')
-	// 		.attr('stroke-linejoin', 'round')
-	// 		.attr('stroke-linecap', 'round')
-	// 		.attr('stroke', 'white')
-	// 		.attr('stroke-width', 1);
-	// });
 	//Draw OHLCs
 	const isUpday = (d: IPriceBar): boolean => {
 		return d.close > d.open;
@@ -310,38 +299,105 @@ function drawLines(
 		if (source !== ex.toLowerCase())
 			d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0);
 	});
-	//Draw Nav A/B Lines
-	chartdata
-		.append('path')
-		.attr('class', 'line-custodian-navA')
-		.datum(custodianData)
-		.attr('d', lineNavA)
-		.attr('fill', 'none')
-		.attr('stroke-linejoin', 'round')
-		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.TextTokenAAlpha)
-		.attr('stroke-width', 1);
-	chartdata
-		.append('path')
-		.attr('class', 'line-custodian-navB')
-		.datum(custodianData)
-		.attr('d', lineNavB)
-		.attr('fill', 'none')
-		.attr('stroke-linejoin', 'round')
-		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.TextTokenBAlpha)
-		.attr('stroke-width', 1);
-	//Draw Custodian ETH Line
-	chartdata
-		.append('path')
-		.attr('class', 'line-custodian-eth')
-		.datum(custodianData)
-		.attr('d', lineCustodian)
-		.attr('fill', 'none')
-		.attr('stroke-linejoin', 'round')
-		.attr('stroke-linecap', 'round')
-		.attr('stroke', 'white')
-		.attr('stroke-width', 1.5);
+	if (isHourly) {
+		//Hourly Lines
+		//Draw Nav A/B Lines
+		chartdata
+			.append('path')
+			.attr('class', 'line-custodian-navA')
+			.datum(custodianData)
+			.attr('d', lineNavA)
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', ColorStyles.TextTokenAAlpha)
+			.attr('stroke-width', 1);
+		chartdata
+			.append('path')
+			.attr('class', 'line-custodian-navB')
+			.datum(custodianData)
+			.attr('d', lineNavB)
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', ColorStyles.TextTokenBAlpha)
+			.attr('stroke-width', 1);
+		//Draw Custodian ETH Line
+		chartdata
+			.append('path')
+			.attr('class', 'line-custodian-eth')
+			.datum(custodianData)
+			.attr('d', lineCustodian)
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', 'white')
+			.attr('stroke-width', 1.5);
+	} else {
+		//Non-hourly Lines
+		const segments = chartdata.append('g').attr('class', 'segments');
+		segments
+			.selectAll('g')
+			.data(custodianData)
+			.enter()
+			.append('g');
+		const segBar = segments.selectAll('g');
+		segBar
+			.append('path')
+			.attr('class', 'segline-eth')
+			.attr('d', (d: any) => {
+				return line([
+					{ x: xScale(d.timestamp), y: ethYScale(d.price) },
+					{
+						x: xScale(d.timestamp + custodianSourceTimestepRatio(timeStep) * timeStep),
+						y: ethYScale(d.price)
+					}
+				]);
+			})
+			.style('stroke', 'white');
+		['navA', 'navB'].forEach(s => {
+			segBar
+				.append('path')
+				.attr('class', 'segline-' + s)
+				.attr('d', (d: any) => {
+					if (d.timestamp % 1000 === 717)
+						return line([
+							{ x: xScale(d.timestamp), y: navYScale(d[s]) },
+							{
+								x: xScale(d.timestamp),
+								y: navYScale(1)
+							}
+						]);
+					else
+						return line([
+							{ x: xScale(d.timestamp), y: navYScale(d[s]) },
+							{
+								x: xScale(
+									d.timestamp + custodianSourceTimestepRatio(timeStep) * timeStep
+								),
+								y: navYScale(d[s])
+							}
+						]);
+				})
+				.style(
+					'stroke',
+					s === 'navA' ? ColorStyles.TextTokenAAlpha : ColorStyles.TextTokenBAlpha
+				);
+		});
+	}
+	//Overlay layer
+	const overlay = svg
+		.append('rect')
+		.attr('class', 'overlay')
+		.attr('width', width)
+		.attr('height', height)
+		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+		.style('opacity', 0)
+		.on('mousemove', mousemove);
+	function mousemove() {
+		const x0 = xScale.invert(d3.mouse(overlay.node() as any)[0]);
+		console.log(x0);
+	}
 }
 
 function showLines(source: string) {
@@ -354,6 +410,7 @@ interface IProps {
 	prices: IAcceptedPrice[];
 	source: string;
 	timeStep: number;
+	isHourly?: boolean;
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
@@ -364,18 +421,25 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { sourceData, prices, timeStep, source } = this.props;
-		drawLines(this.chartRef.current as Element, prices, sourceData, timeStep, source);
+		const { sourceData, prices, timeStep, source, isHourly } = this.props;
+		drawLines(this.chartRef.current as Element, prices, sourceData, timeStep, source, isHourly);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		const { sourceData, prices, timeStep, source } = nextProps;
+		const { sourceData, prices, timeStep, source, isHourly } = nextProps;
 		if (
 			JSON.stringify(nextProps.sourceData) !== JSON.stringify(this.props.sourceData) ||
 			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices) ||
 			timeStep !== this.props.timeStep
 		)
-			drawLines(this.chartRef.current as Element, prices, sourceData, timeStep, source);
+			drawLines(
+				this.chartRef.current as Element,
+				prices,
+				sourceData,
+				timeStep,
+				source,
+				isHourly
+			);
 
 		if (source !== this.props.source) showLines(source);
 

@@ -61,6 +61,7 @@ export default class TimeSeriesCard extends React.Component<IProps, IState> {
 						prices={prices}
 						source={source}
 						timeStep={isHourly ? 3600000 : 300000}
+						isHourly={isHourly}
 					/>
 				</SDivFlexCenter>
 			</SCard>

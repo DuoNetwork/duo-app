@@ -6,14 +6,15 @@ import { SDivFlexCenter, SHeader } from './_styled';
 interface IProps {
 	network: number;
 	to: string;
+	width?: string
 }
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
-		const { network, to } = this.props;
+		const { network, to, width } = this.props;
 		return (
 			<SHeader>
-				<SDivFlexCenter horizontal width="1200px">
+				<SDivFlexCenter horizontal width={width ?  width : "1200px"}>
 					<div className="icon-wrapper">
 						<img src={duoIcon} />
 					</div>

@@ -107,3 +107,6 @@ path.domain {
 	z-index: 0;
 	pointer-events: none;
 }
+.overlay {
+	cursor: crosshair;
+}

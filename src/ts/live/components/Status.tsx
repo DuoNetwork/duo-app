@@ -18,7 +18,7 @@ export default class Status extends React.PureComponent<IProps> {
 		const { addresses, status, network } = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_APP}/>
+				<Header network={network} to={CST.TH_APP} width='1000px'/>
 				<SContent>
 					<AddressCard addresses={addresses} />
 					<StatusCard status={status} />
