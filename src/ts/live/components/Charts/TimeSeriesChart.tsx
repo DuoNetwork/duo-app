@@ -6,7 +6,9 @@ import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
 import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 
-const margin = { top: 40, right: 31, bottom: 23, left: 36 };
+const margin = { top: 40, right: 34, bottom: 23, left: 38 };
+const width = 708 - margin.left - margin.right;
+const height = 400 - margin.top - margin.bottom;
 
 function drawLines(
 	el: Element,
@@ -30,9 +32,6 @@ function drawLines(
 			.html('<span>Loading...</span><img class="loading-img" src="' + loadingImg + '" />');
 		return;
 	}
-	const width = 708 - margin.left - margin.right;
-	const height = 400 - margin.top - margin.bottom;
-
 	//Establish SVG Playground
 	d3.selectAll('.loading').remove();
 	d3.selectAll('#timeserieschart').remove();
@@ -304,7 +303,7 @@ function drawLines(
 	//Draw Nav A/B Lines
 	chartdata
 		.append('path')
-		.attr('class', 'line-custodian-navA ' + (!isHourly ? 'dashed' : 'dashed'))
+		.attr('class', 'line-custodian-navA ' + (!isHourly ? 'dashed' : ''))
 		.datum(custodianData)
 		.attr('d', lineNavA)
 		.attr('fill', 'none')
@@ -314,7 +313,7 @@ function drawLines(
 		.attr('stroke-width', 1);
 	chartdata
 		.append('path')
-		.attr('class', 'line-custodian-navB ' + (!isHourly ? 'dashed' : 'dashed'))
+		.attr('class', 'line-custodian-navB ' + (!isHourly ? 'dashed' : ''))
 		.datum(custodianData)
 		.attr('d', lineNavB)
 		.attr('fill', 'none')
@@ -325,7 +324,7 @@ function drawLines(
 	//Draw Custodian ETH Line
 	chartdata
 		.append('path')
-		.attr('class', 'line-custodian-eth ' + (!isHourly ? 'dashed' : 'dashed'))
+		.attr('class', 'line-custodian-eth ' + (!isHourly ? 'dashed' : ''))
 		.datum(custodianData)
 		.attr('d', lineCustodian)
 		.attr('fill', 'none')
@@ -333,7 +332,8 @@ function drawLines(
 		.attr('stroke-linecap', 'round')
 		.attr('stroke', 'white')
 		.attr('stroke-width', 1.5);
-	
+	if (!isHourly) {
+		//Non-hourly dots
 		const segments = chartdata.append('g').attr('class', 'segments');
 		segments
 			.selectAll('g')
@@ -346,7 +346,7 @@ function drawLines(
 			.attr('class', 'segdot-eth')
 			.attr('cx', (d: any) => xScale(d.timestamp))
 			.attr('cy', (d: any) => ethYScale(d.price))
-			.attr('r', isHourly ? 1 : 2)
+			.attr('r', 2)
 			.style('fill', 'white');
 		['navA', 'navB'].forEach(s => {
 			segBar
@@ -354,13 +354,13 @@ function drawLines(
 				.attr('class', 'segdot' + s)
 				.attr('cx', (d: any) => xScale(d.timestamp))
 				.attr('cy', (d: any) => navYScale(d[s]))
-				.attr('r', isHourly ? 1 : 2)
+				.attr('r', 2)
 				.style(
 					'fill',
 					s === 'navA' ? ColorStyles.TextTokenAAlpha : ColorStyles.TextTokenBAlpha
 				);
 		});
-	
+	}
 	//Overlay layer
 	const overlay = svg
 		.append('rect')
@@ -368,11 +368,81 @@ function drawLines(
 		.attr('width', width)
 		.attr('height', height)
 		.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-		.style('opacity', 0)
+		.attr('fill', 'transparent')
+		.on('mouseover', drawAssisLine)
+		.on('mouseout', deleteAssisLine)
 		.on('mousemove', mousemove);
+	function drawAssisLine() {
+		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
+		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
+
+		svg.append('path')
+			.attr('class', 'assist-line-x')
+			.attr('d', () => {
+				return line([
+					{ x: margin.left, y: ethYScale(yPosL) + margin.top },
+					{
+						x: width + margin.left,
+						y: ethYScale(yPosL) + margin.top
+					}
+				]);
+			})
+			.attr('stroke', ColorStyles.BorderWhite1)
+			.attr('stroke-width', 1);
+		svg.append('path')
+			.attr('class', 'assist-line-y')
+			.attr('d', () => {
+				return line([
+					{ x: xScale(xPos) + margin.left, y: margin.top },
+					{
+						x: xScale(xPos) + margin.left,
+						y: height + margin.top
+					}
+				]);
+			})
+			.attr('stroke', ColorStyles.BorderWhite1)
+			.attr('stroke-width', 1);
+	}
+	function deleteAssisLine() {
+		d3.selectAll('.assist-line-x').remove();
+		d3.selectAll('.assist-line-y').remove();
+	}
+	function moveAssisLine() {
+		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
+		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
+		console.log('move');
+		d3.selectAll('.assist-line-x').attr('d', () => {
+			return line([
+				{ x: 0 + margin.left, y: ethYScale(yPosL) + margin.top },
+				{
+					x: width + margin.left,
+					y: ethYScale(yPosL) + margin.top
+				}
+			]);
+		});
+		d3.selectAll('.assist-line-y').attr('d', () => {
+			return line([
+				{ x: xScale(xPos) + margin.left, y: margin.top },
+				{
+					x: xScale(xPos) + margin.left,
+					y: height + margin.top
+				}
+			]);
+		});
+	}
 	function mousemove() {
-		const x0 = xScale.invert(d3.mouse(overlay.node() as any)[0]);
-		console.log(x0);
+		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
+		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
+		const yPosR = navYScale.invert(d3.mouse(overlay.node() as any)[1]);
+		findBar(xPos);
+		moveAssisLine();
+		console.log('[' + xPos + ', ' + yPosL + ', ' + yPosR + ']');
+	}
+	function findBar(x: number) {
+		sourceData[source].forEach(item => {
+			if (item.timestamp - timeStep / 2 < x && x < item.timestamp + timeStep / 2)
+				console.log(item);
+		});
 	}
 }
 

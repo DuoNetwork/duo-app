@@ -110,6 +110,9 @@ path.domain {
 .overlay {
 	cursor: crosshair;
 }
+.assist-line-x, .assist-line-y {
+	pointer-events: none;
+}
 .dashed {
 	stroke-dasharray: 2 4;
 	opacity: 0.4;
