@@ -87,10 +87,9 @@ function drawLines(
 		.scaleTime()
 		.domain([xStart, xEnd])
 		.range([0, width]);
-	const rectWidth =
-		(xScale(moment('2000-01-01').valueOf() + timeStep) -
-			xScale(moment('2000-01-01').valueOf())) *
-		0.6;
+	const barWidth =
+		xScale(moment('2000-01-01').valueOf() + timeStep) - xScale(moment('2000-01-01').valueOf());
+	const rectWidth = barWidth * 0.7;
 	// const backRectWidth =
 	// 	(xScale(moment('2000-01-01').valueOf() + timeStep) -
 	// 		xScale(moment('2000-01-01').valueOf())) *
@@ -372,6 +371,148 @@ function drawLines(
 		.on('mouseover', drawAssisLine)
 		.on('mouseout', deleteAssisLine)
 		.on('mousemove', mousemove);
+	//Legend bar
+	const legendBar = svg.append('g').attr('class', 'legend-bar');
+	const sourceLegend = legendBar.append('g').attr('class', 'source-legend');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(30, 27.5)')
+		.text(source.toUpperCase());
+	sourceLegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(77, 27.5)')
+		.text('Open');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-open')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(102, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(139, 27.5)')
+		.text('High');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-high')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(161, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(197, 27.5)')
+		.text('Low');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-low')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(218, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(254, 27.5)')
+		.text('Close');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-close')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(281, 27.5)')
+		.text('');
+	const custodianLegend = legendBar.append('g').attr('class', 'custodian-legend');
+	const ethLegend = custodianLegend.append('g').attr('class', 'custodian-eth-legend');
+	ethLegend
+		.append('rect')
+		.attr('width', 8)
+		.attr('height', 8)
+		.attr('x', 320)
+		.attr('y', 20)
+		.style('fill', 'white');
+	ethLegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(333, 27.5)')
+		.text('beETHoven');
+	ethLegend
+		.append('text')
+		.attr('class', 'custodian-eth-legend-text')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(386, 27.5)')
+		.text('');
+	const tokenALegend = custodianLegend.append('g').attr('class', 'custodian-tokenA-legend');
+	const tokenBLegend = custodianLegend.append('g').attr('class', 'custodian-tokenB-legend');
+	tokenALegend
+		.append('rect')
+		.attr('width', 8)
+		.attr('height', 8)
+		.attr('x', 520)
+		.attr('y', 20)
+		.style('fill', ColorStyles.TextTokenA);
+	tokenALegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(533, 27.5)')
+		.text('Token A');
+	tokenALegend
+		.append('text')
+		.attr('class', 'custodian-tokenA-legend-text')
+		.attr('fill', ColorStyles.TextTokenA)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(572, 27.5)')
+		.text('');
+	tokenBLegend
+		.append('rect')
+		.attr('width', 8)
+		.attr('height', 8)
+		.attr('x', 605)
+		.attr('y', 20)
+		.style('fill', ColorStyles.TextTokenB);
+	tokenBLegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(618, 27.5)')
+		.text('Token B');
+	tokenBLegend
+		.append('text')
+		.attr('class', 'custodian-tokenB-legend-text')
+		.attr('fill', ColorStyles.TextTokenB)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(657, 27.5)')
+		.text('');
+
 	function drawAssisLine() {
 		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
 		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
@@ -480,6 +621,13 @@ function drawLines(
 		d3.selectAll('.x-axis-box').remove();
 		d3.selectAll('.ly-axis-box').remove();
 		d3.selectAll('.ry-axis-box').remove();
+		d3.selectAll('.custodian-eth-legend-text').text('');
+		d3.selectAll('.custodian-tokenA-legend-text').text('');
+		d3.selectAll('.custodian-tokenB-legend-text').text('');
+		d3.selectAll('.source-legend-text-open').text('');
+		d3.selectAll('.source-legend-text-high').text('');
+		d3.selectAll('.source-legend-text-low').text('');
+		d3.selectAll('.source-legend-text-close').text('');
 	}
 	function moveAssisLine() {
 		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
@@ -539,30 +687,51 @@ function drawLines(
 	function mousemove() {
 		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
 		const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
-		//findBar(xPos);
+		findBar(xPos);
 		moveAssisLine();
 		findETHDot(xPos, yPosL);
 	}
-	// function findBar(x: number) {
-	// 	sourceData[source].forEach(item => {
-	// 		if (item.timestamp - timeStep / 2 < x && x < item.timestamp + timeStep / 2)
-	// 			console.log(item);
-	// 	});
-	// }
+	function findBar(x: number) {
+		d3.selectAll('.source-legend-text-open').text('');
+		d3.selectAll('.source-legend-text-high').text('');
+		d3.selectAll('.source-legend-text-low').text('');
+		d3.selectAll('.source-legend-text-close').text('');
+		sourceData[source].forEach(item => {
+			if (item.timestamp - timeStep / 2 < x && x < item.timestamp + timeStep / 2) {
+				d3.selectAll('.source-legend-text-open').text(d3.format(',.1f')(item.open));
+				d3.selectAll('.source-legend-text-high').text(d3.format(',.1f')(item.high));
+				d3.selectAll('.source-legend-text-low').text(d3.format(',.1f')(item.low));
+				d3.selectAll('.source-legend-text-close').text(d3.format(',.1f')(item.close));
+			}
+		});
+		d3.selectAll('.custodian-eth-legend-text').text('');
+		d3.selectAll('.custodian-tokenA-legend-text').text('');
+		d3.selectAll('.custodian-tokenB-legend-text').text('');
+		custodianData.forEach(item => {
+			if (
+				xScale(item.timestamp) - barWidth / 2 < xScale(x) &&
+				xScale(x) < xScale(item.timestamp) + barWidth / 2
+			) {
+				d3.selectAll('.custodian-eth-legend-text').text(d3.format(',.2f')(item.price));
+				d3.selectAll('.custodian-tokenA-legend-text').text(d3.format(',.2f')(item.navA));
+				d3.selectAll('.custodian-tokenB-legend-text').text(d3.format(',.2f')(item.navB));
+			}
+		});
+	}
 	function findETHDot(x: number, y: number) {
 		d3.selectAll('.eth-dot').remove();
 		custodianData.forEach(item => {
 			if (
-				xScale(item.timestamp) - 2 < xScale(x) &&
-				xScale(x) < xScale(item.timestamp) + 2 &&
-				ethYScale(item.price) - 2 < ethYScale(y) &&
-				ethYScale(y) < ethYScale(item.price) + 2
+				xScale(item.timestamp) - barWidth / 2 < xScale(x) &&
+				xScale(x) < xScale(item.timestamp) + barWidth / 2 &&
+				ethYScale(item.price) - barWidth / 2 < ethYScale(y) &&
+				ethYScale(y) < ethYScale(item.price) + barWidth / 2
 			)
 				svg.append('circle')
 					.attr('class', 'eth-dot')
 					.attr('cx', xScale(item.timestamp) + margin.left)
 					.attr('cy', ethYScale(item.price) + margin.top)
-					.attr('r', 4)
+					.attr('r', 4.8)
 					.style('fill', isHourly ? 'white' : 'transparent')
 					.style('stroke-width', 1)
 					.style('stroke', 'white')
@@ -583,6 +752,7 @@ function drawLines(
 }
 
 function showLines(source: string) {
+	d3.select('.source-legend-text').text(source.toLocaleUpperCase());
 	CST.EXCHANGES.forEach(ex => d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0));
 	d3.selectAll('.ohlc-' + source.toLowerCase()).attr('opacity', 1);
 }
