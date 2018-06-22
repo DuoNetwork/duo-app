@@ -15,7 +15,7 @@ input:focus {
 }
 .play-button {
 	position: fixed;
-	top: 860px;
+	top: 80vh;
 	left: 57%;
 	z-index: 6;
 }
