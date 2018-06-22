@@ -735,7 +735,10 @@ function drawLines(
 					.style('fill', isHourly ? 'white' : 'transparent')
 					.style('stroke-width', 1)
 					.style('stroke', 'white')
-					.on('mouseover', drawAssisLine)
+					.on('mouseover', () => {
+						drawAssisLine();
+						findBar(x);
+					})
 					.on('mouseout', deleteAssisLine)
 					.on('mousemove', moveAssisLine)
 					.on('click', () =>
