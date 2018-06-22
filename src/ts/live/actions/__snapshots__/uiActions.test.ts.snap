@@ -7,6 +7,10 @@ Array [
     "value": "test",
   },
   Object {
+    "type": "network",
+    "value": 123,
+  },
+  Object {
     "type": "custodianStates",
     "value": Object {
       "test": "test",
@@ -20,10 +24,6 @@ Array [
   },
   Object {
     "type": "refresh",
-  },
-  Object {
-    "type": "network",
-    "value": 123,
   },
   Object {
     "type": "balances",

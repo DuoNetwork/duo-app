@@ -13,9 +13,9 @@ export function refreshUpdate() {
 export function refresh(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(contractActions.accountUpdate(await contractUtil.getCurrentAddress()));
+		await dispatch(contractActions.getNetwork());
 		await dispatch(contractActions.getCustodianStates());
 		await dispatch(dynamoActions.scanStatus());
-		dispatch(contractActions.getNetwork());
 		dispatch(contractActions.getBalances());
 		dispatch(contractActions.getCustodianPrices());
 		dispatch(dynamoActions.fetchHourly());
