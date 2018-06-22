@@ -304,7 +304,7 @@ function drawLines(
 	//Draw Nav A/B Lines
 	chartdata
 		.append('path')
-		.attr('class', 'line-custodian-navA ' + (!isHourly ? 'dashed' : ''))
+		.attr('class', 'line-custodian-navA ' + (!isHourly ? 'dashed' : 'dashed'))
 		.datum(custodianData)
 		.attr('d', lineNavA)
 		.attr('fill', 'none')
@@ -314,7 +314,7 @@ function drawLines(
 		.attr('stroke-width', 1);
 	chartdata
 		.append('path')
-		.attr('class', 'line-custodian-navB ' + (!isHourly ? 'dashed' : ''))
+		.attr('class', 'line-custodian-navB ' + (!isHourly ? 'dashed' : 'dashed'))
 		.datum(custodianData)
 		.attr('d', lineNavB)
 		.attr('fill', 'none')
@@ -325,7 +325,7 @@ function drawLines(
 	//Draw Custodian ETH Line
 	chartdata
 		.append('path')
-		.attr('class', 'line-custodian-eth ' + (!isHourly ? 'dashed' : ''))
+		.attr('class', 'line-custodian-eth ' + (!isHourly ? 'dashed' : 'dashed'))
 		.datum(custodianData)
 		.attr('d', lineCustodian)
 		.attr('fill', 'none')
@@ -333,8 +333,7 @@ function drawLines(
 		.attr('stroke-linecap', 'round')
 		.attr('stroke', 'white')
 		.attr('stroke-width', 1.5);
-	if (!isHourly) {
-		//Non-hourly dots
+	
 		const segments = chartdata.append('g').attr('class', 'segments');
 		segments
 			.selectAll('g')
@@ -347,7 +346,7 @@ function drawLines(
 			.attr('class', 'segdot-eth')
 			.attr('cx', (d: any) => xScale(d.timestamp))
 			.attr('cy', (d: any) => ethYScale(d.price))
-			.attr('r', 2)
+			.attr('r', isHourly ? 1 : 2)
 			.style('fill', 'white');
 		['navA', 'navB'].forEach(s => {
 			segBar
@@ -355,13 +354,13 @@ function drawLines(
 				.attr('class', 'segdot' + s)
 				.attr('cx', (d: any) => xScale(d.timestamp))
 				.attr('cy', (d: any) => navYScale(d[s]))
-				.attr('r', 2)
+				.attr('r', isHourly ? 1 : 2)
 				.style(
 					'fill',
 					s === 'navA' ? ColorStyles.TextTokenAAlpha : ColorStyles.TextTokenBAlpha
 				);
 		});
-	}
+	
 	//Overlay layer
 	const overlay = svg
 		.append('rect')
