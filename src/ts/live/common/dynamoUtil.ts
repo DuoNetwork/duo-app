@@ -192,6 +192,7 @@ export class DynamoUtil {
 		date: string,
 		hour: string,
 		minute: number,
+		volume: number,
 		ohlc: object
 	): IPriceBar {
 		return {
@@ -203,34 +204,50 @@ export class DynamoUtil {
 			high: Number(ohlc[CST.DB_OHLC_HIGH].N),
 			low: Number(ohlc[CST.DB_OHLC_LOW].N),
 			close: Number(ohlc[CST.DB_OHLC_CLOSE].N),
-			volume: Number(ohlc[CST.DB_OHLC_VOLUME].N),
+			volume: volume,
 			timestamp: moment.utc(date + ' ' + hour + ':' + minute, 'YYYY-MM-DD HH:m').valueOf()
 		};
 	}
 
 	public parseHourly(hourly: QueryOutput): IPriceBar[] {
-		if (!hourly.Items || !hourly.Items.length) return [];
+		const result: IPriceBar[] = [];
+		if (!hourly.Items || !hourly.Items.length) return result;
 		const sourceDate = hourly.Items[0][CST.DB_HR_SRC_DATE].S || '';
 		const [source, date] = sourceDate.split('|');
-		return hourly.Items.map(h => {
-			const hour = h[CST.DB_HR_HOUR].N || '';
-			return this.parseOHLC(source, date, hour.length < 2 ? '0' + hour : hour, 0, h);
+		hourly.Items.forEach(h => {
+			const volume = Number(h[CST.DB_OHLC_VOLUME].N);
+			if (volume) {
+				const hour = h[CST.DB_HR_HOUR].N || '';
+				result.push(
+					this.parseOHLC(source, date, hour.length < 2 ? '0' + hour : hour, 0, volume, h)
+				);
+			}
 		});
+
+		return result;
 	}
 
 	public parseMinutely(minutely: QueryOutput): IPriceBar[] {
-		if (!minutely.Items || !minutely.Items.length) return [];
+		const result: IPriceBar[] = [];
+		if (!minutely.Items || !minutely.Items.length) return result;
 		const sourceDatetime = minutely.Items[0][CST.DB_MN_SRC_DATE_HOUR].S || '';
 		const [source, datetime] = sourceDatetime.split('|');
-		return minutely.Items.map(m =>
-			this.parseOHLC(
-				source,
-				datetime.substring(0, 10),
-				datetime.substring(11, 13),
-				Number(m[CST.DB_MN_MINUTE].N),
-				m
-			)
-		);
+		minutely.Items.forEach(m => {
+			const volume = Number(m[CST.DB_OHLC_VOLUME].N);
+			if (volume)
+				result.push(
+					this.parseOHLC(
+						source,
+						datetime.substring(0, 10),
+						datetime.substring(11, 13),
+						Number(m[CST.DB_MN_MINUTE].N),
+						volume,
+						m
+					)
+				);
+		});
+
+		return result;
 	}
 
 	public async scanStatus() {
@@ -259,7 +276,7 @@ export class DynamoUtil {
 					process: process,
 					timestamp: timestamp,
 					block: Number(d[CST.DB_ST_BLOCK].N)
-				}
+				};
 			else
 				return {
 					process: process,
