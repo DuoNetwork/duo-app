@@ -113,7 +113,7 @@ class ChartUtil {
 		const dateObj = moment.utc(last.timestamp);
 		if (lastBar.timestamp >= last.timestamp) return pricebars;
 
-		if (isHourly && lastBar.date + ' ' + lastBar.hour <= dateObj.format('YYYY-MM-DD HH'))
+		if (isHourly && lastBar.date + ' ' + lastBar.hour !== dateObj.format('YYYY-MM-DD HH'))
 			return [
 				...pricebars,
 				{
@@ -126,12 +126,12 @@ class ChartUtil {
 					low: Math.min(lastBar.close, last.price),
 					close: last.price,
 					volume: 0,
-					timestamp: last.timestamp
+					timestamp: moment.utc(dateObj.format('YYYY-MM-DD HH') + ':0', 'YYYY-MM-DD HH:m').valueOf()
 				}
 			];
 		else if (
 			!isHourly &&
-			lastBar.date + ' ' + lastBar.hour + ' ' + lastBar.minute <=
+			lastBar.date + ' ' + lastBar.hour + ' ' + lastBar.minute !==
 				dateObj.format('YYYY-MM-DD HH m')
 		)
 			return [
@@ -146,7 +146,7 @@ class ChartUtil {
 					low: Math.min(lastBar.close, last.price),
 					close: last.price,
 					volume: 0,
-					timestamp: last.timestamp
+					timestamp: moment.utc(dateObj.format('YYYY-MM-DD HH:m'), 'YYYY-MM-DD HH:m').valueOf()
 				}
 			];
 		else
@@ -162,7 +162,7 @@ class ChartUtil {
 					low: Math.min(lastBar.low, last.price),
 					close: last.price,
 					volume: 0,
-					timestamp: last.timestamp
+					timestamp: lastBar.timestamp
 				}
 			];
 	}
