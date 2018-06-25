@@ -71,11 +71,11 @@ exports[`ui reducer balances 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": Object {
+    "feeCollector": Object {
       "address": "0x0",
       "balance": 0,
     },
-    "feeCollector": Object {
+    "operator": Object {
       "address": "0x0",
       "balance": 0,
     },
@@ -115,11 +115,11 @@ exports[`ui reducer custodianPrices 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": Object {
+    "feeCollector": Object {
       "address": "0x0",
       "balance": 0,
     },
-    "feeCollector": Object {
+    "operator": Object {
       "address": "0x0",
       "balance": 0,
     },
@@ -163,11 +163,11 @@ exports[`ui reducer custodianStates 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": Object {
+    "feeCollector": Object {
       "address": "0x0",
       "balance": 0,
     },
-    "feeCollector": Object {
+    "operator": Object {
       "address": "0x0",
       "balance": 0,
     },
@@ -229,11 +229,11 @@ exports[`ui reducer default 1`] = `
 Object {
   "account": "0x0",
   "addresses": Object {
-    "admin": Object {
+    "feeCollector": Object {
       "address": "0x0",
       "balance": 0,
     },
-    "feeCollector": Object {
+    "operator": Object {
       "address": "0x0",
       "balance": 0,
     },
