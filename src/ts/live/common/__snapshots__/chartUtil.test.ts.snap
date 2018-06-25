@@ -69,7 +69,7 @@ Object {
   "minute": 0,
   "open": 1,
   "source": "source",
-  "timestamp": 2528243200000,
+  "timestamp": 1528243200000,
   "volume": 246,
 }
 `;
@@ -321,7 +321,7 @@ Object {
   "minute": 3,
   "open": 1,
   "source": "source",
-  "timestamp": 1528243500000,
+  "timestamp": 1528243200000,
   "volume": 246,
 }
 `;

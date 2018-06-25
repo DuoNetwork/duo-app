@@ -16,7 +16,7 @@ function mapStateToProps(state: IState) {
 		mergedMinutely[src] = [];
 		for (let i = 0; i < srcData.length; i += 5)
 			mergedMinutely[src].push(
-				chartUtil.mergePriceBars(srcData.slice(i, Math.min(srcData.length, i + 5)), 300000)
+				chartUtil.mergePriceBars(srcData.slice(i, Math.min(srcData.length, i + 5)))
 			);
 	}
 	const price = chartUtil.mergeLastToPrice(
