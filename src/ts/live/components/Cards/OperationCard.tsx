@@ -34,7 +34,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			ethFee: false,
+			ethFee: true,
 			isCreate: true,
 			amount: '',
 			amountError: '',
