@@ -20,7 +20,9 @@ export default class StateCard extends React.PureComponent<IProps> {
 		const tooltioText =
 			states.state === CST.CTD_TRADING
 				? 'Trading state, operations are permitted during current state.'
-				: 'Reset ongoing, operations are prohibited during current state.';
+				: states.state === CST.CTD_INCEPTION
+					? 'Inception ongoing, please wait until the system is ready.'
+					: 'Reset ongoing, operations are prohibited during current state.';
 		return (
 			<SCard
 				title={
@@ -66,7 +68,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 													{reset.timestamp
 														? moment(reset.timestamp).format(
 																'YYYY-MM-DD HH:mm'
-														)
+															)
 														: 'Loading'}
 												</span>
 											</div>
@@ -147,7 +149,9 @@ export default class StateCard extends React.PureComponent<IProps> {
 								</li>
 								<li>
 									<span className="title">Conversion Factor (Beta)</span>
-									<span className="content">{d3.format(',.2f')(states.beta)}</span>
+									<span className="content">
+										{d3.format(',.2f')(states.beta)}
+									</span>
 								</li>
 								<li>
 									<span className="title">ETH:DUO Fee Ratio</span>
@@ -162,7 +166,9 @@ export default class StateCard extends React.PureComponent<IProps> {
 								<li>
 									<span className="title">Net ETH Balance</span>
 									<span className="content">
-										{d3.format(',.2f')(states.ethBalance - states.feeAccumulated)}
+										{d3.format(',.2f')(
+											states.ethBalance - states.feeAccumulated
+										)}
 									</span>
 								</li>
 								<li>

@@ -127,7 +127,21 @@ function drawLines(
 			]
 		) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
-	const rangeBottom = d3.max([0, minPrice - 0.1 * (maxPrice - minPrice)]) || 0;
+	const rangeBottom = d3.max([0, minPrice - 0.5 * (maxPrice - minPrice)]) || 0;
+	//Data Range Volumn
+	const maxVol =
+		d3.max(
+			CST.EXCHANGES.map(
+				src =>
+					d3.max(
+						(sourceData[src.toLowerCase()] as IPriceBar[])
+							.map(d => d.volume)
+							.slice(-colums)
+					) || 0
+			)
+		) || 0;
+	const rangeTopV = maxVol * 3.5;
+	console.log(rangeTopV)
 	//Data Range (Nav A/B)
 	const maxNav =
 		d3.max(
@@ -138,11 +152,16 @@ function drawLines(
 			[...slicedCustodianData.map(d => d.navA), ...slicedCustodianData.map(d => d.navB)]
 		) || 0;
 	const rangeTopNav = maxNav + 0.1 * (maxNav - minNav);
-	const rangeBottomNav = d3.max([0, minNav - 0.1 * (maxNav - minNav)]) || 0;
+	const rangeBottomNav = d3.max([0, minNav - 0.5 * (maxNav - minNav)]) || 0;
 	//ETH Linear YScale
 	const ethYScale = d3
 		.scaleLinear()
 		.domain([rangeBottom, rangeTop])
+		.range([height, 0]);
+	//Volumn Linear YScale
+	const volYScale = d3
+		.scaleLinear()
+		.domain([0, rangeTopV])
 		.range([height, 0]);
 	//Nav A/B Linear YScale
 	const navYScale = d3
@@ -246,6 +265,17 @@ function drawLines(
 			.enter()
 			.append('g');
 		const bars = ohlc.selectAll('g');
+		bars.append('rect')
+			.attr('class', 'bar-rectvol-' + ex.toLowerCase())
+			.attr('x', (d: any) => {
+				return xScale(d.timestamp) - rectWidth / 2;
+			})
+			.attr('y', (d: any) => volYScale(d.volume))
+			.attr('width', rectWidth)
+			.attr('height', (d: any) => height - volYScale(d.volume))
+			.style('fill', (d: any) => {
+				return isUpday(d) ? ColorStyles.TextGreenAlphaLLLL : ColorStyles.TextRedAlphaLLLL;
+			});
 		bars.append('rect')
 			.attr('class', 'bar-rect-' + ex.toLowerCase())
 			.attr('x', (d: any) => {
@@ -376,71 +406,78 @@ function drawLines(
 	const sourceLegend = legendBar.append('g').attr('class', 'source-legend');
 	sourceLegend
 		.append('text')
-		.attr('class', 'source-legend-text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(30, 27.5)')
-		.text(source.toUpperCase());
-	sourceLegend
-		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
-		.attr('font-size', 10)
-		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(77, 27.5)')
-		.text('Open');
+		.attr('transform', 'translate(37, 27.5)')
+		.text('O:');
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-open')
 		.attr('fill', ColorStyles.TextWhite)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(102, 27.5)')
+		.attr('transform', 'translate(48, 27.5)')
 		.text('');
 	sourceLegend
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(139, 27.5)')
-		.text('High');
+		.attr('transform', 'translate(82, 27.5)')
+		.text('H:');
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-high')
 		.attr('fill', ColorStyles.TextWhite)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(161, 27.5)')
+		.attr('transform', 'translate(93, 27.5)')
 		.text('');
 	sourceLegend
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(197, 27.5)')
-		.text('Low');
+		.attr('transform', 'translate(127, 27.5)')
+		.text('L:');
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-low')
 		.attr('fill', ColorStyles.TextWhite)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(218, 27.5)')
+		.attr('transform', 'translate(137, 27.5)')
 		.text('');
 	sourceLegend
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(254, 27.5)')
-		.text('Close');
+		.attr('transform', 'translate(169, 27.5)')
+		.text('C:');
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-close')
 		.attr('fill', ColorStyles.TextWhite)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(281, 27.5)')
+		.attr('transform', 'translate(179, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(211, 27.5)')
+		.text('vol:');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-vol')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(228, 27.5)')
 		.text('');
 	const custodianLegend = legendBar.append('g').attr('class', 'custodian-legend');
 	const ethLegend = custodianLegend.append('g').attr('class', 'custodian-eth-legend');
@@ -472,7 +509,7 @@ function drawLines(
 		.append('rect')
 		.attr('width', 8)
 		.attr('height', 8)
-		.attr('x', 520)
+		.attr('x', 510)
 		.attr('y', 20)
 		.style('fill', ColorStyles.TextTokenA);
 	tokenALegend
@@ -480,7 +517,7 @@ function drawLines(
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(533, 27.5)')
+		.attr('transform', 'translate(523, 27.5)')
 		.text('Token A');
 	tokenALegend
 		.append('text')
@@ -488,7 +525,7 @@ function drawLines(
 		.attr('fill', ColorStyles.TextTokenA)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(572, 27.5)')
+		.attr('transform', 'translate(562, 27.5)')
 		.text('');
 	tokenBLegend
 		.append('rect')
@@ -628,6 +665,7 @@ function drawLines(
 		d3.selectAll('.source-legend-text-high').text('');
 		d3.selectAll('.source-legend-text-low').text('');
 		d3.selectAll('.source-legend-text-close').text('');
+		d3.selectAll('.source-legend-text-vol').text('');
 	}
 	function moveAssisLine() {
 		const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
@@ -696,12 +734,14 @@ function drawLines(
 		d3.selectAll('.source-legend-text-high').text('');
 		d3.selectAll('.source-legend-text-low').text('');
 		d3.selectAll('.source-legend-text-close').text('');
+		d3.selectAll('.source-legend-text-vol').text('');
 		sourceData[source].forEach(item => {
 			if (item.timestamp - timeStep / 2 < x && x < item.timestamp + timeStep / 2) {
 				d3.selectAll('.source-legend-text-open').text(d3.format(',.1f')(item.open));
 				d3.selectAll('.source-legend-text-high').text(d3.format(',.1f')(item.high));
 				d3.selectAll('.source-legend-text-low').text(d3.format(',.1f')(item.low));
 				d3.selectAll('.source-legend-text-close').text(d3.format(',.1f')(item.close));
+				d3.selectAll('.source-legend-text-vol').text(d3.format(',.1f')(item.volume));
 			}
 		});
 		d3.selectAll('.custodian-eth-legend-text').text('');
