@@ -42,7 +42,7 @@ class ChartUtil {
 		return newSourceData;
 	}
 
-	public mergePriceBars(bars: IPriceBar[], timestep: number) {
+	public mergePriceBars(bars: IPriceBar[]) {
 		if (!bars.length)
 			return {
 				source: '',
@@ -75,7 +75,7 @@ class ChartUtil {
 			low: low,
 			close: last.close,
 			volume: volume,
-			timestamp: bars[0].timestamp + timestep
+			timestamp: bars[0].timestamp
 		};
 	}
 
