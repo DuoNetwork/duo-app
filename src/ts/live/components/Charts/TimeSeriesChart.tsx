@@ -259,7 +259,7 @@ function drawLines(
 		bars.append('rect')
 			.attr('class', 'bar-rectvol-' + ex.toLowerCase())
 			.attr('x', (d: any) => {
-				return xScale(d.timestamp) - rectWidth / 2;
+				return xScale(d.timestamp + timeStep / 2) - rectWidth / 2;
 			})
 			.attr('y', (d: any) => volYScale(ex)(d.volume))
 			.attr('width', rectWidth)
@@ -270,7 +270,7 @@ function drawLines(
 		bars.append('rect')
 			.attr('class', 'bar-rect-' + ex.toLowerCase())
 			.attr('x', (d: any) => {
-				return xScale(d.timestamp) - rectWidth / 2;
+				return xScale(d.timestamp + timeStep / 2) - rectWidth / 2;
 			})
 			.attr('y', (d: any) => {
 				return isUpday(d) ? ethYScale(d.close) : ethYScale(d.open);
@@ -291,9 +291,9 @@ function drawLines(
 			.attr('class', 'bar-line1-' + ex.toLowerCase())
 			.attr('d', (d: any) => {
 				return line([
-					{ x: xScale(d.timestamp), y: ethYScale(d.high) },
+					{ x: xScale(d.timestamp + timeStep / 2), y: ethYScale(d.high) },
 					{
-						x: xScale(d.timestamp),
+						x: xScale(d.timestamp + timeStep / 2),
 						y: isUpday(d) ? ethYScale(d.close) : ethYScale(d.open)
 					}
 				]);
@@ -305,9 +305,9 @@ function drawLines(
 			.attr('class', 'bar-line2-' + ex.toLowerCase())
 			.attr('d', (d: any) => {
 				return line([
-					{ x: xScale(d.timestamp), y: ethYScale(d.low) },
+					{ x: xScale(d.timestamp + timeStep / 2), y: ethYScale(d.low) },
 					{
-						x: xScale(d.timestamp),
+						x: xScale(d.timestamp + timeStep / 2),
 						y: isUpday(d) ? ethYScale(d.open) : ethYScale(d.close)
 					}
 				]);
@@ -727,7 +727,7 @@ function drawLines(
 		d3.selectAll('.source-legend-text-close').text('');
 		d3.selectAll('.source-legend-text-vol').text('');
 		sourceData[source].forEach(item => {
-			if (item.timestamp - timeStep / 2 < x && x < item.timestamp + timeStep / 2) {
+			if (item.timestamp < x && x < item.timestamp + timeStep) {
 				d3.selectAll('.source-legend-text-open').text(d3.format(',.1f')(item.open));
 				d3.selectAll('.source-legend-text-high').text(d3.format(',.1f')(item.high));
 				d3.selectAll('.source-legend-text-low').text(d3.format(',.1f')(item.low));
