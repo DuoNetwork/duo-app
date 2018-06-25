@@ -59,7 +59,8 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 	private handleAmountInputChange = (value: string) =>
 		this.setState({
 			amount: value,
-			amountError: !value || value.match(CST.RX_NUM_P) ? '' : 'Invalid number'
+			amountError:
+				!value || (value.match(CST.RX_NUM_P) && Number(value) > 0) ? '' : 'Invalid number'
 		});
 
 	private handleAmountButtonClick = (amount: string) =>
@@ -252,7 +253,12 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 											</button>
 										</SDivFlexCenter>
 									</li>
-									<li className="input-line">
+									<li
+										className={
+											'input-line' +
+											(limit <= 0 ? ' input-disabled' : '')
+										}
+									>
 										<SDivFlexCenter horizontal width="50%" padding="0">
 											{[0.25, 0.5, 0.75, 1].map(pct => (
 												<button

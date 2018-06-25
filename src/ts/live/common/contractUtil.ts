@@ -108,7 +108,7 @@ class ContractUtil {
 		const addr: string[] = await this.custodian.methods.getSystemAddresses().call();
 		const balances = await Promise.all(addr.map(a => this.getEthBalance(a)));
 		return {
-			admin: {
+			operator: {
 				address: addr[0],
 				balance: balances[0]
 			},

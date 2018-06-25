@@ -48,7 +48,7 @@ export const initialState: IContractState = {
 		tokenB: 0
 	},
 	addresses: {
-		admin: {
+		operator: {
 			address: '0x0',
 			balance: 0
 		},

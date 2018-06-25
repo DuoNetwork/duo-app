@@ -65,7 +65,7 @@ export interface IAddress {
 }
 
 export interface IAddresses {
-	admin: IAddress;
+	operator: IAddress;
 	feeCollector: IAddress;
 	priceFeed1: IAddress;
 	priceFeed2: IAddress;
