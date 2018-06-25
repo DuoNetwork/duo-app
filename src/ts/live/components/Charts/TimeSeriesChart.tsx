@@ -394,82 +394,85 @@ function drawLines(
 		.on('mousemove', mousemove);
 	//Legend bar
 	const legendBar = svg.append('g').attr('class', 'legend-bar');
-	const sourceLegend = legendBar.append('g').attr('class', 'source-legend');
-	sourceLegend
+	legendBar
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(37, 27.5)')
 		.text('O:');
-	sourceLegend
-		.append('text')
-		.attr('class', 'source-legend-text-open')
-		.attr('fill', ColorStyles.TextWhite)
-		.attr('font-size', 10)
-		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(48, 27.5)')
-		.text('');
-	sourceLegend
+	legendBar
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(82, 27.5)')
 		.text('H:');
-	sourceLegend
-		.append('text')
-		.attr('class', 'source-legend-text-high')
-		.attr('fill', ColorStyles.TextWhite)
-		.attr('font-size', 10)
-		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(93, 27.5)')
-		.text('');
-	sourceLegend
+	legendBar
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(127, 27.5)')
 		.text('L:');
-	sourceLegend
-		.append('text')
-		.attr('class', 'source-legend-text-low')
-		.attr('fill', ColorStyles.TextWhite)
-		.attr('font-size', 10)
-		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(137, 27.5)')
-		.text('');
-	sourceLegend
+	legendBar
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(169, 27.5)')
 		.text('C:');
-	sourceLegend
-		.append('text')
-		.attr('class', 'source-legend-text-close')
-		.attr('fill', ColorStyles.TextWhite)
-		.attr('font-size', 10)
-		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(179, 27.5)')
-		.text('');
-	sourceLegend
+	legendBar
 		.append('text')
 		.attr('fill', ColorStyles.TextWhiteAlphaL)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(211, 27.5)')
 		.text('vol:');
-	sourceLegend
-		.append('text')
-		.attr('class', 'source-legend-text-vol')
-		.attr('fill', ColorStyles.TextWhite)
-		.attr('font-size', 10)
-		.attr('font-family', 'Roboto')
-		.attr('transform', 'translate(228, 27.5)')
-		.text('');
+	CST.EXCHANGES.forEach(ex => {
+		const sourceLegend = legendBar.append('g').attr('class', 'source-legend-' + ex.toLowerCase());
+		sourceLegend
+			.append('text')
+			.attr('class', 'source-legend-text-open-' + ex.toLowerCase())
+			.attr('fill', ColorStyles.TextWhite)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.attr('transform', 'translate(48, 27.5)')
+			.text('');
+		sourceLegend
+			.append('text')
+			.attr('class', 'source-legend-text-high-' + ex.toLowerCase())
+			.attr('fill', ColorStyles.TextWhite)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.attr('transform', 'translate(93, 27.5)')
+			.text('');
+		sourceLegend
+			.append('text')
+			.attr('class', 'source-legend-text-low-' + ex.toLowerCase())
+			.attr('fill', ColorStyles.TextWhite)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.attr('transform', 'translate(137, 27.5)')
+			.text('');
+		sourceLegend
+			.append('text')
+			.attr('class', 'source-legend-text-close-' + ex.toLowerCase())
+			.attr('fill', ColorStyles.TextWhite)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.attr('transform', 'translate(179, 27.5)')
+			.text('');
+		sourceLegend
+			.append('text')
+			.attr('class', 'source-legend-text-vol-' + ex.toLowerCase())
+			.attr('fill', ColorStyles.TextWhite)
+			.attr('font-size', 10)
+			.attr('font-family', 'Roboto')
+			.attr('transform', 'translate(228, 27.5)')
+			.text('');
+	});
+
 	const custodianLegend = legendBar.append('g').attr('class', 'custodian-legend');
 	const ethLegend = custodianLegend.append('g').attr('class', 'custodian-eth-legend');
 	ethLegend
