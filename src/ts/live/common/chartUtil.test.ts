@@ -59,7 +59,7 @@ test('hourly interpolate correctly', () => {
 	expect(result[3]).toEqual(hourlyBar3);
 	expect(result[1]).toMatchSnapshot();
 	expect(result[2]).toMatchSnapshot();
-	expect(chartUtil.mergePriceBars(result)).toMatchSnapshot();
+	expect(chartUtil.mergePriceBars(result, 1000000000000)).toMatchSnapshot();
 });
 
 const minutelyBar1 = {
@@ -115,7 +115,7 @@ test('minutely interpolate correctly', () => {
 	expect(result[3]).toEqual(minutelyBar3);
 	expect(result[1]).toMatchSnapshot();
 	expect(result[2]).toMatchSnapshot();
-	expect(chartUtil.mergePriceBars(result)).toMatchSnapshot();
+	expect(chartUtil.mergePriceBars(result, 300000)).toMatchSnapshot();
 });
 
 const acceptedPrice1 = {
