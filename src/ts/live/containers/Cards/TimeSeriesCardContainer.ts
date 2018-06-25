@@ -14,11 +14,10 @@ function mapStateToProps(state: IState) {
 	for (const src in minutely) {
 		const srcData: IPriceBar[] = minutely[src];
 		mergedMinutely[src] = [];
-		for (let i = srcData.length; i > 0; i -= 5)
+		for (let i = 0; i < srcData.length; i += 5)
 			mergedMinutely[src].push(
-				chartUtil.mergePriceBars(srcData.slice(Math.max(0, i - 5), i))
+				chartUtil.mergePriceBars(srcData.slice(i, Math.min(srcData.length, i + 5)))
 			);
-		mergedMinutely[src].sort((a, b) => a.timestamp - b.timestamp);
 	}
 	const price = chartUtil.mergeLastToPrice(
 		state.dynamo.price,
