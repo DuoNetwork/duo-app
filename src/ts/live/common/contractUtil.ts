@@ -35,9 +35,16 @@ class ContractUtil {
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 	}
 
-	public onWeb3AccountUpdate(onUpdate: (addr: string) => any) {
+	public onWeb3AccountUpdate(onUpdate: (addr: string, network: number) => any) {
 		const store = (this.web3.currentProvider as any).publicConfigStore;
-		if (store) store.on('update', () => onUpdate(store.getState().selectedAddress || ''));
+		if (store)
+			store.on('update', () => {
+				onUpdate(
+					store.getState().selectedAddress || '',
+					Number(store.getState().networkVersion || '')
+				);
+			}
+			);
 	}
 
 	public convertCustodianState(rawState: string) {

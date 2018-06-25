@@ -10,8 +10,11 @@ import store from './store/store';
 store.dispatch(uiActions.refresh());
 setInterval(() => store.dispatch(uiActions.refresh()), 60000);
 
-contractUtil.onWeb3AccountUpdate((addr: string) => {
-	if (addr.toLowerCase() !== store.getState().contract.account.toLowerCase())
+contractUtil.onWeb3AccountUpdate((addr: string, network: number) => {
+	if (
+		addr.toLowerCase() !== store.getState().contract.account.toLowerCase() ||
+		network !== store.getState().contract.network
+	)
 		store.dispatch(uiActions.refresh());
 });
 
