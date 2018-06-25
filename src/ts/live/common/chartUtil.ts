@@ -42,7 +42,7 @@ class ChartUtil {
 		return newSourceData;
 	}
 
-	public mergePriceBars(bars: IPriceBar[]) {
+	public mergePriceBars(bars: IPriceBar[], timestep: number) {
 		if (!bars.length)
 			return {
 				source: '',
@@ -75,7 +75,7 @@ class ChartUtil {
 			low: low,
 			close: last.close,
 			volume: volume,
-			timestamp: last.timestamp
+			timestamp: bars[0].timestamp + timestep
 		};
 	}
 
@@ -113,7 +113,7 @@ class ChartUtil {
 		const dateObj = moment.utc(last.timestamp);
 		if (lastBar.timestamp >= last.timestamp) return pricebars;
 
-		if (isHourly && lastBar.date + ' ' + lastBar.hour !== dateObj.format('YYYY-MM-DD HH'))
+		if (isHourly && lastBar.date + ' ' + lastBar.hour <= dateObj.format('YYYY-MM-DD HH'))
 			return [
 				...pricebars,
 				{
@@ -131,7 +131,7 @@ class ChartUtil {
 			];
 		else if (
 			!isHourly &&
-			lastBar.date + ' ' + lastBar.hour + ' ' + lastBar.minute !==
+			lastBar.date + ' ' + lastBar.hour + ' ' + lastBar.minute <=
 				dateObj.format('YYYY-MM-DD HH m')
 		)
 			return [
