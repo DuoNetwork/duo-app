@@ -90,10 +90,6 @@ function drawLines(
 	const barWidth =
 		xScale(moment('2000-01-01').valueOf() + timeStep) - xScale(moment('2000-01-01').valueOf());
 	const rectWidth = barWidth * 0.7;
-	// const backRectWidth =
-	// 	(xScale(moment('2000-01-01').valueOf() + timeStep) -
-	// 		xScale(moment('2000-01-01').valueOf())) *
-	// 	0.8;
 	//Data Range (ETH price)
 	const slicedCustodianData = custodianData.slice(
 		-colums / custodianSourceTimestepRatio(timeStep)
@@ -129,18 +125,14 @@ function drawLines(
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
 	const rangeBottom = d3.max([0, minPrice - 0.2 * (maxPrice - minPrice)]) || 0;
 	//Data Range Volumn
-	const maxVol =
-		d3.max(
-			CST.EXCHANGES.map(
-				src =>
-					d3.max(
-						(sourceData[src.toLowerCase()] as IPriceBar[])
-							.map(d => d.volume)
-							.slice(-colums)
-					) || 0
-			)
-		) || 0;
-	const rangeTopV = maxVol * 6;
+	const maxVol = CST.EXCHANGES.map(
+		src =>
+			d3.max(
+				(sourceData[src.toLowerCase()] as IPriceBar[]).map(d => d.volume).slice(-colums)
+			) || 0
+	);
+	const rangeTopV = maxVol.map(d => d * 7);
+
 	//Data Range (Nav A/B)
 	const maxNav =
 		d3.max(
@@ -158,10 +150,11 @@ function drawLines(
 		.domain([rangeBottom, rangeTop])
 		.range([height, 0]);
 	//Volumn Linear YScale
-	const volYScale = d3
-		.scaleLinear()
-		.domain([0, rangeTopV])
-		.range([height, 0]);
+	const volYScale = (s: string) =>
+		d3
+			.scaleLinear()
+			.domain([0, rangeTopV[CST.EXCHANGES.indexOf(s)]])
+			.range([height, 0]);
 	//Nav A/B Linear YScale
 	const navYScale = d3
 		.scaleLinear()
@@ -193,7 +186,6 @@ function drawLines(
 		.ticks(8)
 		.tickSize(-height)
 		.tickFormat(() => '');
-
 	const yGrid = d3
 		.axisLeft(ethYScale)
 		.ticks(10)
@@ -269,9 +261,9 @@ function drawLines(
 			.attr('x', (d: any) => {
 				return xScale(d.timestamp) - rectWidth / 2;
 			})
-			.attr('y', (d: any) => volYScale(d.volume))
+			.attr('y', (d: any) => volYScale(ex)(d.volume))
 			.attr('width', rectWidth)
-			.attr('height', (d: any) => height - volYScale(d.volume))
+			.attr('height', (d: any) => height - volYScale(ex)(d.volume))
 			.style('fill', (d: any) => {
 				return isUpday(d) ? ColorStyles.TextGreenAlphaLLLL : ColorStyles.TextRedAlphaLLLL;
 			});
