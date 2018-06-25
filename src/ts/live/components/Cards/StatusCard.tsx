@@ -26,6 +26,7 @@ export default class StatusCard extends React.PureComponent<IProps> {
 				<STableWrapper>
 					<Table
 						dataSource={status.map(s => ({
+							key: s.process,
 							[CST.TH_PROCESS]: s.process,
 							[CST.TH_UPDATED]: util.convertUpdateTime(s.timestamp),
 							[CST.TH_PRICE]: (s as IPriceStatus).price || '',

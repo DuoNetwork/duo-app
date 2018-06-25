@@ -1,9 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import '../../css/liveStyle.css';
 import * as contractActions from './actions/contractActions';
 // import * as dynamoActions from './actions/dynamoActions';
-import Admin from './containers/AdminContainer';
+import User from './containers/UserContainer';
 import store from './store/store';
 
 store.dispatch(contractActions.getAllBalances());
@@ -11,7 +12,7 @@ store.dispatch(contractActions.getAllBalances());
 
 ReactDOM.render(
 	<Provider store={store}>
-		<Admin />
+		<User />
 	</Provider>,
 	document.getElementById('app')
 );

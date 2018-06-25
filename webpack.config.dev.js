@@ -8,7 +8,7 @@ module.exports = {
 		demo: path.resolve(__dirname, "src/ts/demo/app.tsx"),
 		app: path.resolve(__dirname, "src/ts/live/app.tsx"),
 		status: path.resolve(__dirname, "src/ts/live/status.tsx"),
-		admin: path.resolve(__dirname, "src/ts/live/admin.tsx"),
+		user: path.resolve(__dirname, "src/ts/live/user.tsx"),
 	},
 	output: {
 		path: path.join(__dirname, "dist"),
@@ -33,21 +33,21 @@ module.exports = {
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['app', 'status', 'admin'],
+			excludeChunks: ['app', 'status', 'user'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'demo.html'
 		}),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['demo', 'status', 'admin'],
+			excludeChunks: ['demo', 'status', 'user'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'index.html'
 		}),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['demo', 'app', 'admin'],
+			excludeChunks: ['demo', 'app', 'user'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
@@ -58,7 +58,7 @@ module.exports = {
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
-			filename: 'admin.html'
+			filename: 'user.html'
 		})
 	],
 	optimization: {

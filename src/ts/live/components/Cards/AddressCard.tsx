@@ -17,6 +17,7 @@ export default class StatusCard extends React.PureComponent<IProps> {
 		for (const role in addresses) {
 			const addr: IAddress = addresses[role];
 			data.push({
+				key: role,
 				[CST.TH_ROLE]: role,
 				[CST.TH_ADDRESS]: addr.address,
 				[CST.TH_BALANCE]: addr.balance

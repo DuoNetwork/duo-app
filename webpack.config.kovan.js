@@ -10,7 +10,7 @@ module.exports = {
 	entry: {
 		app: path.resolve(__dirname, "src/ts/live/app.tsx"),
 		status: path.resolve(__dirname, "src/ts/live/status.tsx"),
-		admin: path.resolve(__dirname, "src/ts/live/admin.tsx"),
+		user: path.resolve(__dirname, "src/ts/live/user.tsx"),
 	},
 	output: {
 		path: path.join(__dirname, "dist/kovan"),
@@ -25,14 +25,14 @@ module.exports = {
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({ filename: "styles.[chunkhash].css" }),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['status', 'admin'],
+			excludeChunks: ['status', 'user'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'index.html'
 		}),
 		new HtmlWebpackPlugin({
-			excludeChunks: ['app', 'admin'],
+			excludeChunks: ['app', 'user'],
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
@@ -43,7 +43,7 @@ module.exports = {
 			title: "DUO",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
-			filename: 'admin.html'
+			filename: 'user.html'
 		})
 	],
 	optimization: {
