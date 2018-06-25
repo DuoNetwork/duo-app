@@ -405,7 +405,7 @@ function drawLines(
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(211, 27.5)')
-		.text('vol:');
+		.text('Vol:');
 
 	const sourceLegend = legendBar.append('g').attr('class', 'source-legend');
 	sourceLegend
