@@ -127,7 +127,7 @@ function drawLines(
 			]
 		) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
-	const rangeBottom = d3.max([0, minPrice - 0.5 * (maxPrice - minPrice)]) || 0;
+	const rangeBottom = d3.max([0, minPrice - 0.2 * (maxPrice - minPrice)]) || 0;
 	//Data Range Volumn
 	const maxVol =
 		d3.max(
@@ -140,7 +140,7 @@ function drawLines(
 					) || 0
 			)
 		) || 0;
-	const rangeTopV = maxVol * 3.5;
+	const rangeTopV = maxVol * 6;
 	console.log(rangeTopV)
 	//Data Range (Nav A/B)
 	const maxNav =
@@ -152,7 +152,7 @@ function drawLines(
 			[...slicedCustodianData.map(d => d.navA), ...slicedCustodianData.map(d => d.navB)]
 		) || 0;
 	const rangeTopNav = maxNav + 0.1 * (maxNav - minNav);
-	const rangeBottomNav = d3.max([0, minNav - 0.5 * (maxNav - minNav)]) || 0;
+	const rangeBottomNav = d3.max([0, minNav - 0.2 * (maxNav - minNav)]) || 0;
 	//ETH Linear YScale
 	const ethYScale = d3
 		.scaleLinear()
