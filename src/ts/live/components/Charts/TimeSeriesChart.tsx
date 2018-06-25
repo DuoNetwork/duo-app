@@ -2,7 +2,6 @@ import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
 import loadingImg from '../../../../images/loadingDUO.png';
-import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
 import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
 
@@ -98,40 +97,22 @@ function drawLines(
 		d3.max(
 			[
 				d3.max(slicedCustodianData.map(d => d.price)) || 0,
-				...CST.EXCHANGES.map(
-					src =>
-						d3.max(
-							(sourceData[src.toLowerCase()] as IPriceBar[])
-								.map(d => d.high)
-								.slice(-colums)
-						) || 0
-				)
+				d3.max((sourceData[source] as IPriceBar[]).map(d => d.high).slice(-colums)) || 0
 			]
 		) || 0;
 	const minPrice =
 		d3.min(
 			[
 				d3.min(slicedCustodianData.map(d => d.price)) || 0,
-				...CST.EXCHANGES.map(
-					src =>
-						d3.min(
-							(sourceData[src.toLowerCase()] as IPriceBar[])
-								.map(d => d.low)
-								.slice(-colums)
-						) || 0
-				)
+				d3.min((sourceData[source] as IPriceBar[]).map(d => d.low).slice(-colums)) || 0
 			]
 		) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
 	const rangeBottom = d3.max([0, minPrice - 0.2 * (maxPrice - minPrice)]) || 0;
 	//Data Range Volumn
-	const maxVol = CST.EXCHANGES.map(
-		src =>
-			d3.max(
-				(sourceData[src.toLowerCase()] as IPriceBar[]).map(d => d.volume).slice(-colums)
-			) || 0
-	);
-	const rangeTopV = maxVol.map(d => d * 7);
+	const maxVol =
+		d3.max((sourceData[source] as IPriceBar[]).map(d => d.volume).slice(-colums)) || 0;
+	const rangeTopV = maxVol * 7;
 
 	//Data Range (Nav A/B)
 	const maxNav =
@@ -150,11 +131,10 @@ function drawLines(
 		.domain([rangeBottom, rangeTop])
 		.range([height, 0]);
 	//Volumn Linear YScale
-	const volYScale = (s: string) =>
-		d3
-			.scaleLinear()
-			.domain([0, rangeTopV[CST.EXCHANGES.indexOf(s)]])
-			.range([height, 0]);
+	const volYScale = d3
+		.scaleLinear()
+		.domain([0, rangeTopV])
+		.range([height, 0]);
 	//Nav A/B Linear YScale
 	const navYScale = d3
 		.scaleLinear()
@@ -249,75 +229,72 @@ function drawLines(
 		.y(d => {
 			return d.y;
 		});
-	CST.EXCHANGES.forEach(ex => {
-		const ohlc = chartdata.append('g').attr('class', 'ohlc-' + ex.toLowerCase());
-		ohlc.selectAll('g')
-			.data(sourceData[ex.toLowerCase()])
-			.enter()
-			.append('g');
-		const bars = ohlc.selectAll('g');
-		bars.append('rect')
-			.attr('class', 'bar-rectvol-' + ex.toLowerCase())
-			.attr('x', (d: any) => {
-				return xScale(d.timestamp + timeStep / 2) - rectWidth / 2;
-			})
-			.attr('y', (d: any) => volYScale(ex)(d.volume))
-			.attr('width', rectWidth)
-			.attr('height', (d: any) => height - volYScale(ex)(d.volume))
-			.style('fill', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreenAlphaLLLL : ColorStyles.TextRedAlphaLLLL;
-			});
-		bars.append('rect')
-			.attr('class', 'bar-rect-' + ex.toLowerCase())
-			.attr('x', (d: any) => {
-				return xScale(d.timestamp + timeStep / 2) - rectWidth / 2;
-			})
-			.attr('y', (d: any) => {
-				return isUpday(d) ? ethYScale(d.close) : ethYScale(d.open);
-			})
-			.attr('width', rectWidth)
-			.attr('height', (d: any) => {
-				return isUpday(d)
-					? ethYScale(d.open) - ethYScale(d.close)
-					: ethYScale(d.close) - ethYScale(d.open);
-			})
-			.style('fill', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreenAlphaLLL : ColorStyles.TextRedAlphaLLL;
-			})
-			.style('stroke', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
-			});
-		bars.append('path')
-			.attr('class', 'bar-line1-' + ex.toLowerCase())
-			.attr('d', (d: any) => {
-				return line([
-					{ x: xScale(d.timestamp + timeStep / 2), y: ethYScale(d.high) },
-					{
-						x: xScale(d.timestamp + timeStep / 2),
-						y: isUpday(d) ? ethYScale(d.close) : ethYScale(d.open)
-					}
-				]);
-			})
-			.style('stroke', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
-			});
-		bars.append('path')
-			.attr('class', 'bar-line2-' + ex.toLowerCase())
-			.attr('d', (d: any) => {
-				return line([
-					{ x: xScale(d.timestamp + timeStep / 2), y: ethYScale(d.low) },
-					{
-						x: xScale(d.timestamp + timeStep / 2),
-						y: isUpday(d) ? ethYScale(d.open) : ethYScale(d.close)
-					}
-				]);
-			})
-			.style('stroke', (d: any) => {
-				return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
-			});
-		if (source !== ex.toLowerCase())
-			d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0);
-	});
+
+	const ohlc = chartdata.append('g').attr('class', 'ohlc');
+	ohlc.selectAll('g')
+		.data(sourceData[source])
+		.enter()
+		.append('g');
+	const bars = ohlc.selectAll('g');
+	bars.append('rect')
+		.attr('class', 'bar-rectvol')
+		.attr('x', (d: any) => {
+			return xScale(d.timestamp + timeStep / 2) - rectWidth / 2;
+		})
+		.attr('y', (d: any) => volYScale(d.volume))
+		.attr('width', rectWidth)
+		.attr('height', (d: any) => height - volYScale(d.volume))
+		.style('fill', (d: any) => {
+			return isUpday(d) ? ColorStyles.TextGreenAlphaLLLL : ColorStyles.TextRedAlphaLLLL;
+		});
+	bars.append('rect')
+		.attr('class', 'bar-rect')
+		.attr('x', (d: any) => {
+			return xScale(d.timestamp + timeStep / 2) - rectWidth / 2;
+		})
+		.attr('y', (d: any) => {
+			return isUpday(d) ? ethYScale(d.close) : ethYScale(d.open);
+		})
+		.attr('width', rectWidth)
+		.attr('height', (d: any) => {
+			return isUpday(d)
+				? ethYScale(d.open) - ethYScale(d.close)
+				: ethYScale(d.close) - ethYScale(d.open);
+		})
+		.style('fill', (d: any) => {
+			return isUpday(d) ? ColorStyles.TextGreenAlphaLLL : ColorStyles.TextRedAlphaLLL;
+		})
+		.style('stroke', (d: any) => {
+			return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+		});
+	bars.append('path')
+		.attr('class', 'bar-line1')
+		.attr('d', (d: any) => {
+			return line([
+				{ x: xScale(d.timestamp + timeStep / 2), y: ethYScale(d.high) },
+				{
+					x: xScale(d.timestamp + timeStep / 2),
+					y: isUpday(d) ? ethYScale(d.close) : ethYScale(d.open)
+				}
+			]);
+		})
+		.style('stroke', (d: any) => {
+			return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+		});
+	bars.append('path')
+		.attr('class', 'bar-line2')
+		.attr('d', (d: any) => {
+			return line([
+				{ x: xScale(d.timestamp + timeStep / 2), y: ethYScale(d.low) },
+				{
+					x: xScale(d.timestamp + timeStep / 2),
+					y: isUpday(d) ? ethYScale(d.open) : ethYScale(d.close)
+				}
+			]);
+		})
+		.style('stroke', (d: any) => {
+			return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+		});
 
 	//Hourly Lines
 	//Draw Nav A/B Lines
@@ -429,49 +406,48 @@ function drawLines(
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(211, 27.5)')
 		.text('vol:');
-	CST.EXCHANGES.forEach(ex => {
-		const sourceLegend = legendBar.append('g').attr('class', 'source-legend-' + ex.toLowerCase());
-		sourceLegend
-			.append('text')
-			.attr('class', 'source-legend-text-open-' + ex.toLowerCase())
-			.attr('fill', ColorStyles.TextWhite)
-			.attr('font-size', 10)
-			.attr('font-family', 'Roboto')
-			.attr('transform', 'translate(48, 27.5)')
-			.text('');
-		sourceLegend
-			.append('text')
-			.attr('class', 'source-legend-text-high-' + ex.toLowerCase())
-			.attr('fill', ColorStyles.TextWhite)
-			.attr('font-size', 10)
-			.attr('font-family', 'Roboto')
-			.attr('transform', 'translate(93, 27.5)')
-			.text('');
-		sourceLegend
-			.append('text')
-			.attr('class', 'source-legend-text-low-' + ex.toLowerCase())
-			.attr('fill', ColorStyles.TextWhite)
-			.attr('font-size', 10)
-			.attr('font-family', 'Roboto')
-			.attr('transform', 'translate(137, 27.5)')
-			.text('');
-		sourceLegend
-			.append('text')
-			.attr('class', 'source-legend-text-close-' + ex.toLowerCase())
-			.attr('fill', ColorStyles.TextWhite)
-			.attr('font-size', 10)
-			.attr('font-family', 'Roboto')
-			.attr('transform', 'translate(179, 27.5)')
-			.text('');
-		sourceLegend
-			.append('text')
-			.attr('class', 'source-legend-text-vol-' + ex.toLowerCase())
-			.attr('fill', ColorStyles.TextWhite)
-			.attr('font-size', 10)
-			.attr('font-family', 'Roboto')
-			.attr('transform', 'translate(228, 27.5)')
-			.text('');
-	});
+
+	const sourceLegend = legendBar.append('g').attr('class', 'source-legend');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-open')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(48, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-high')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(93, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-low')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(137, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-close')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(179, 27.5)')
+		.text('');
+	sourceLegend
+		.append('text')
+		.attr('class', 'source-legend-text-vol')
+		.attr('fill', ColorStyles.TextWhite)
+		.attr('font-size', 10)
+		.attr('font-family', 'Roboto')
+		.attr('transform', 'translate(228, 27.5)')
+		.text('');
 
 	const custodianLegend = legendBar.append('g').attr('class', 'custodian-legend');
 	const ethLegend = custodianLegend.append('g').attr('class', 'custodian-eth-legend');
@@ -788,12 +764,6 @@ function drawLines(
 	}
 }
 
-function showLines(source: string) {
-	d3.select('.source-legend-text').text(source.toLocaleUpperCase());
-	CST.EXCHANGES.forEach(ex => d3.selectAll('.ohlc-' + ex.toLowerCase()).attr('opacity', 0));
-	d3.selectAll('.ohlc-' + source.toLowerCase()).attr('opacity', 1);
-}
-
 interface IProps {
 	sourceData: ISourceData<IPriceBar[]>;
 	prices: IAcceptedPrice[];
@@ -819,7 +789,8 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 		if (
 			JSON.stringify(nextProps.sourceData) !== JSON.stringify(this.props.sourceData) ||
 			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices) ||
-			timeStep !== this.props.timeStep
+			timeStep !== this.props.timeStep ||
+			source !== this.props.source
 		)
 			drawLines(
 				this.chartRef.current as Element,
@@ -829,8 +800,6 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 				source,
 				isHourly
 			);
-
-		if (source !== this.props.source) showLines(source);
 
 		return false;
 	}
