@@ -70,7 +70,9 @@ describe('ui reducer', () => {
 		state = contractReducer(state, {
 			type: CST.AC_ALL_BALANCES,
 			value: {
-				test: 'test'
+				123: {
+					test: 'test'
+				}
 			}
 		});
 		expect(state).toMatchSnapshot();

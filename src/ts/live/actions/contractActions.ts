@@ -64,26 +64,33 @@ export function getBalances(): VoidThunkAction {
 		dispatch(balancesUpdate(await contractUtil.getBalances(getState().contract.account)));
 }
 
-export function allBalancesUpdate(allBalances: IAccountBalances) {
+export function allBalancesUpdate(balance: IAccountBalances, index: number) {
 	return {
 		type: CST.AC_ALL_BALANCES,
-		value: allBalances
+		value: {
+			[index]: balance
+		}
 	};
 }
 
-export function getAllBalances(): VoidThunkAction {
+export function getAllBalances(start: number, end: number): VoidThunkAction {
 	return async dispatch => {
-		const states = await contractUtil.getSystemStates();
-		dispatch(custodianStatesUpdate(states));
-		for (let i = 0; i < states.usersLength; i++) {
-			const account: string = await contractUtil.getUserAddress(i);
-			if (account)
-				dispatch(allBalancesUpdate({
-					account: account,
-					...(await contractUtil.getBalances(account))
-				}))
-		}
-	}
+		for (let i = start; i < end; i++)
+			contractUtil.getUserAddress(i).then(account => {
+				if (account)
+					contractUtil.getBalances(account).then(balance =>
+						dispatch(
+							allBalancesUpdate(
+								{
+									account: account,
+									...balance
+								},
+								i
+							)
+						)
+					);
+			});
+	};
 }
 
 export function addressesUpdate(addr: IAddresses) {

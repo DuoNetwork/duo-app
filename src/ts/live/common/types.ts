@@ -135,7 +135,7 @@ export interface IContractState {
 	readonly addresses: IAddresses;
 	readonly account: string;
 	readonly network: number;
-	readonly allBalances: IAccountBalances[]
+	readonly allBalances: {[index: number]: IAccountBalances}
 }
 
 export interface IDynamoState {

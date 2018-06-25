@@ -75,7 +75,7 @@ export const initialState: IContractState = {
 	},
 	account: '0x0',
 	network: 0,
-	allBalances: []
+	allBalances: {}
 };
 
 export function contractReducer(
@@ -97,13 +97,12 @@ export function contractReducer(
 			});
 		case CST.AC_ALL_BALANCES:
 			return Object.assign({}, state, {
-				[action.type]: [...state.allBalances, action.value]
+				[action.type]: Object.assign({}, state.allBalances, action.value)
 			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
 		case CST.AC_ACCOUNT:
 		case CST.AC_NETWORK:
-		case CST.AC_ALL_BALANCES:
 			return Object.assign({}, state, {
 				[action.type]: action.value
 			});

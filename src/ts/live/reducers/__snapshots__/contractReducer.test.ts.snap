@@ -6,7 +6,7 @@ Object {
   "addresses": Object {
     "test": "test",
   },
-  "allBalances": Array [],
+  "allBalances": Object {},
   "balances": Object {
     "test": "test",
   },
@@ -27,7 +27,7 @@ Object {
   "addresses": Object {
     "test": "test",
   },
-  "allBalances": Array [],
+  "allBalances": Object {},
   "balances": Object {
     "test": "test",
   },
@@ -48,11 +48,11 @@ Object {
   "addresses": Object {
     "test": "test",
   },
-  "allBalances": Array [
-    Object {
+  "allBalances": Object {
+    "123": Object {
       "test": "test",
     },
-  ],
+  },
   "balances": Object {
     "test": "test",
   },
@@ -96,7 +96,7 @@ Object {
       "balance": 0,
     },
   },
-  "allBalances": Array [],
+  "allBalances": Object {},
   "balances": Object {
     "test": "test",
   },
@@ -140,7 +140,7 @@ Object {
       "balance": 0,
     },
   },
-  "allBalances": Array [],
+  "allBalances": Object {},
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -188,7 +188,7 @@ Object {
       "balance": 0,
     },
   },
-  "allBalances": Array [],
+  "allBalances": Object {},
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -254,7 +254,7 @@ Object {
       "balance": 0,
     },
   },
-  "allBalances": Array [],
+  "allBalances": Object {},
   "balances": Object {
     "allowance": 0,
     "duo": 0,
@@ -325,7 +325,7 @@ Object {
   "addresses": Object {
     "test": "test",
   },
-  "allBalances": Array [],
+  "allBalances": Object {},
   "balances": Object {
     "test": "test",
   },

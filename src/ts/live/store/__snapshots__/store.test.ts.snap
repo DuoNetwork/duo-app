@@ -7,12 +7,16 @@ Object {
     "addresses": Object {
       "test": "test",
     },
-    "allBalances": Array [
-      Object {
+    "allBalances": Object {
+      "123": Object {
         "account": "0x0",
         "test": "test",
       },
-    ],
+      "124": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
     "balances": Object {
       "test": "test",
     },

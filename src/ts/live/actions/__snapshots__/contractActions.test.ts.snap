@@ -20,7 +20,9 @@ exports[`actions allBalancesUpdate 1`] = `
 Object {
   "type": "allBalances",
   "value": Object {
-    "test": "test",
+    "123": Object {
+      "test": "test",
+    },
   },
 }
 `;
@@ -66,16 +68,21 @@ Array [
 exports[`actions getAllBalances 1`] = `
 Array [
   Object {
-    "type": "custodianStates",
+    "type": "allBalances",
     "value": Object {
-      "usersLength": 1,
+      "123": Object {
+        "account": "0x0",
+        "test": "test",
+      },
     },
   },
   Object {
     "type": "allBalances",
     "value": Object {
-      "account": "0x0",
-      "test": "test",
+      "124": Object {
+        "account": "0x0",
+        "test": "test",
+      },
     },
   },
 ]

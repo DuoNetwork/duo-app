@@ -7,7 +7,8 @@ import * as contractActions from './actions/contractActions';
 import User from './containers/UserContainer';
 import store from './store/store';
 
-store.dispatch(contractActions.getAllBalances());
+store.dispatch(contractActions.getCustodianStates());
+store.dispatch(contractActions.getAllBalances(0, 20));
 // store.dispatch(dynamoActions.scanStatus());
 
 ReactDOM.render(
