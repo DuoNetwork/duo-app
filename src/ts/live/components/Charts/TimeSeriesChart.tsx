@@ -141,7 +141,6 @@ function drawLines(
 			)
 		) || 0;
 	const rangeTopV = maxVol * 6;
-	console.log(rangeTopV)
 	//Data Range (Nav A/B)
 	const maxNav =
 		d3.max(
