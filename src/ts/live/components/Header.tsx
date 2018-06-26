@@ -6,7 +6,7 @@ import { SDivFlexCenter, SHeader } from './_styled';
 interface IProps {
 	network: number;
 	to: string;
-	width?: string
+	width?: string;
 }
 
 export default class Header extends React.PureComponent<IProps> {
@@ -14,7 +14,7 @@ export default class Header extends React.PureComponent<IProps> {
 		const { network, to, width } = this.props;
 		return (
 			<SHeader>
-				<SDivFlexCenter horizontal width={width ?  width : "1200px"}>
+				<SDivFlexCenter horizontal width={width ? width : '1200px'}>
 					<div className="icon-wrapper">
 						<img src={duoIcon} />
 					</div>
@@ -30,7 +30,14 @@ export default class Header extends React.PureComponent<IProps> {
 					) : null}
 					<SDivFlexCenter horizontal>
 						<div className="nav-button-wrapper">
-							<a href="https://duo.network">HOME</a>
+							<a href="https://duo.network" target="_blank">
+								HOME
+							</a>
+						</div>
+						<div className="nav-button-wrapper">
+							<a href="./GettingStarted.pdf" target="_blank">
+								GUIDE
+							</a>
 						</div>
 						<div className="nav-button-wrapper">
 							<a
@@ -39,6 +46,7 @@ export default class Header extends React.PureComponent<IProps> {
 									(to === CST.TH_APP ? 'index' : to.toLowerCase()) +
 									'.html'
 								}
+								target="_blank"
 							>
 								{to.toUpperCase()}
 							</a>
