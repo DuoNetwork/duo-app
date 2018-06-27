@@ -63,11 +63,9 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							pageSizeOptions: ['10', '20', '50'],
 							size: 'small'
 						}}
-						onRow={record => {
-							return {
-								onClick: () => window.open(record[CST.TH_LINK])
-							};
-						}}
+						onRow={record => ({
+							onClick: () => window.open(record[CST.TH_LINK])
+						})}
 						rowClassName={record => record[CST.TH_TYPE]}
 					>
 						<Column

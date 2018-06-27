@@ -8,7 +8,7 @@ const { Column } = Table;
 
 interface IProps {
 	addresses: IAddresses;
-	addressPool: {[index: number]: IAddress}
+	addressPool: { [index: number]: IAddress };
 }
 
 export default class AddressCard extends React.PureComponent<IProps> {
@@ -21,7 +21,12 @@ export default class AddressCard extends React.PureComponent<IProps> {
 				key: role,
 				[CST.TH_ROLE]: role,
 				[CST.TH_ADDRESS]: addr.address,
-				[CST.TH_BALANCE]: addr.balance
+				[CST.TH_BALANCE]: addr.balance,
+				[CST.TH_LINK]:
+					'https://' +
+					(__KOVAN__ ? 'kovan.' : '') +
+					'etherscan.io/address/' +
+					addr.address
 			});
 		}
 		for (const index in addressPool) {
@@ -30,7 +35,12 @@ export default class AddressCard extends React.PureComponent<IProps> {
 				key: CST.TH_POOL + index,
 				[CST.TH_ROLE]: CST.TH_POOL + index,
 				[CST.TH_ADDRESS]: addr.address,
-				[CST.TH_BALANCE]: addr.balance
+				[CST.TH_BALANCE]: addr.balance,
+				[CST.TH_LINK]:
+					'https://' +
+					(__KOVAN__ ? 'kovan.' : '') +
+					'etherscan.io/address/' +
+					addr.address
 			});
 		}
 
@@ -42,7 +52,13 @@ export default class AddressCard extends React.PureComponent<IProps> {
 				inlinetype="table"
 			>
 				<STableWrapper>
-					<Table dataSource={data} pagination={false}>
+					<Table
+						dataSource={data}
+						pagination={false}
+						onRow={record => ({
+							onClick: () => window.open(record[CST.TH_LINK])
+						})}
+					>
 						{[CST.TH_ROLE, CST.TH_ADDRESS, CST.TH_BALANCE].map(th => (
 							<Column title={th} dataIndex={th} key={th} />
 						))}
