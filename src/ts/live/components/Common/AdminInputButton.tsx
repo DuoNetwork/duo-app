@@ -66,6 +66,7 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 				<SInput
 					className={valueError ? 'input-error' : ''}
 					value={value}
+					disabled={disabled}
 					onChange={e => this.handleChange(e.target.value)}
 					right
 				/>
@@ -77,7 +78,17 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 						right
 					/>
 				) : null}
-				<button className="form-button" disabled={disabled} onClick={this.handleClick}>
+				<button
+					className="form-button"
+					disabled={
+						disabled ||
+						!value ||
+						!!valueError ||
+						!!value1Error ||
+						(type === CST.TH_ADD_ADDR && !value1)
+					}
+					onClick={this.handleClick}
+				>
 					{type}
 				</button>
 			</SDivFlexCenter>

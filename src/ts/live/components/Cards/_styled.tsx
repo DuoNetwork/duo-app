@@ -807,6 +807,9 @@ export const SInput = styled.input`
 	&.input-error {
 		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 86, 86, 0.2) !important;
 	}
+	&:disabled {
+		cursor: not-allowed;
+	}
 `;
 
 export const STableWrapper = styled.div`
