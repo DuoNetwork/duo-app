@@ -4,7 +4,7 @@ exports[`store actions 1`] = `
 Object {
   "contract": Object {
     "account": "test",
-    "addressPool": Object {},
+    "addressPool": Array [],
     "addresses": Object {
       "test": "test",
     },

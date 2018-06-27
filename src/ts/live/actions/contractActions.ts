@@ -101,12 +101,10 @@ export function addressesUpdate(addr: IAddresses) {
 	};
 }
 
-export function addressPoolUpdate(address: IAddress, index: number) {
+export function addressPoolUpdate(address: IAddress[]) {
 	return {
 		type: CST.AC_ADDR_POOL,
-		value: {
-			[index]: address
-		}
+		value: address
 	};
 }
 
@@ -114,20 +112,15 @@ export function getAddresses(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		dispatch(addressesUpdate(await contractUtil.getSystemAddresses()));
 		const poolLength = getState().contract.states.addrPoolLength;
-		for (let i = 0; i < poolLength; i++)
-			contractUtil.getPoolAddress(i).then(address => {
-				if (address)
-					contractUtil.getEthBalance(address).then(balance =>
-						dispatch(
-							addressPoolUpdate(
-								{
-									address: address,
-									balance: balance
-								},
-								i
-							)
-						)
-					);
-			});
+		const addrPool: IAddress[] = [];
+		for (let i = 0; i < poolLength; i++) {
+			const address = await contractUtil.getPoolAddress(i);
+			if (address)
+				addrPool.push({
+					address: address,
+					balance: await contractUtil.getEthBalance(address)
+				});
+		}
+		dispatch(addressPoolUpdate(addrPool));
 	};
 }

@@ -8,7 +8,7 @@ const { Column } = Table;
 
 interface IProps {
 	addresses: IAddresses;
-	addressPool: { [index: number]: IAddress };
+	addressPool: IAddress[];
 }
 
 export default class AddressCard extends React.PureComponent<IProps> {
@@ -26,23 +26,22 @@ export default class AddressCard extends React.PureComponent<IProps> {
 					'https://' +
 					(__KOVAN__ ? 'kovan.' : '') +
 					'etherscan.io/address/' +
-					addr.address
+					addr.address,
+				[CST.TH_ACTION]: role === 'poolManager' ? '' : <button>{CST.TH_UPDATE_ROLE}</button>
 			});
 		}
-		for (const index in addressPool) {
-			const addr: IAddress = addressPool[index];
-			data.push({
-				key: CST.TH_POOL + index,
-				[CST.TH_ROLE]: CST.TH_POOL + index,
-				[CST.TH_ADDRESS]: addr.address,
-				[CST.TH_BALANCE]: addr.balance,
-				[CST.TH_LINK]:
-					'https://' +
-					(__KOVAN__ ? 'kovan.' : '') +
-					'etherscan.io/address/' +
-					addr.address
-			});
-		}
+		addressPool.forEach((addr, i) => data.push({
+			key: CST.TH_POOL + i,
+			[CST.TH_ROLE]: CST.TH_POOL + i,
+			[CST.TH_ADDRESS]: addr.address,
+			[CST.TH_BALANCE]: addr.balance,
+			[CST.TH_LINK]:
+				'https://' +
+				(__KOVAN__ ? 'kovan.' : '') +
+				'etherscan.io/address/' +
+				addr.address,
+			[CST.TH_ACTION]: <button>{CST.TH_RM_ADDR}</button>
+		}))
 
 		return (
 			<SCard
@@ -59,7 +58,7 @@ export default class AddressCard extends React.PureComponent<IProps> {
 							onClick: () => window.open(record[CST.TH_LINK])
 						})}
 					>
-						{[CST.TH_ROLE, CST.TH_ADDRESS, CST.TH_BALANCE].map(th => (
+						{[CST.TH_ROLE, CST.TH_ADDRESS, CST.TH_BALANCE, CST.TH_ACTION].map(th => (
 							<Column title={th} dataIndex={th} key={th} />
 						))}
 					</Table>

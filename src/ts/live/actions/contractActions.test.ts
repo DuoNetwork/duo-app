@@ -89,7 +89,7 @@ describe('actions', () => {
 	});
 
 	test('addressPoolUpdate', () => {
-		expect(contractActions.addressPoolUpdate({ test: 'test' } as any, 123)).toMatchSnapshot();
+		expect(contractActions.addressPoolUpdate([{ test: 'test' }] as any)).toMatchSnapshot();
 	});
 
 	test('getAddresses', () => {

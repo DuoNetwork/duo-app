@@ -3,7 +3,7 @@
 exports[`ui reducer account 1`] = `
 Object {
   "account": "test",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "test": "test",
   },
@@ -55,7 +55,7 @@ Object {
 exports[`ui reducer addresses 1`] = `
 Object {
   "account": "0x0",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "test": "test",
   },
@@ -77,7 +77,7 @@ Object {
 exports[`ui reducer allBalances 1`] = `
 Object {
   "account": "test",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "test": "test",
   },
@@ -103,7 +103,7 @@ Object {
 exports[`ui reducer balances 1`] = `
 Object {
   "account": "0x0",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -148,7 +148,7 @@ Object {
 exports[`ui reducer custodianPrices 1`] = `
 Object {
   "account": "0x0",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -197,7 +197,7 @@ Object {
 exports[`ui reducer custodianStates 1`] = `
 Object {
   "account": "0x0",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -264,7 +264,7 @@ Object {
 exports[`ui reducer default 1`] = `
 Object {
   "account": "0x0",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -359,7 +359,7 @@ Object {
 exports[`ui reducer network 1`] = `
 Object {
   "account": "test",
-  "addressPool": Object {},
+  "addressPool": Array [],
   "addresses": Object {
     "test": "test",
   },

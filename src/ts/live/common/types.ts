@@ -133,7 +133,7 @@ export interface IContractState {
 	readonly prices: ICustodianPrices;
 	readonly balances: IBalances;
 	readonly addresses: IAddresses;
-	readonly addressPool: {[index: number]: IAddress}
+	readonly addressPool: IAddress[];
 	readonly account: string;
 	readonly network: number;
 	readonly allBalances: {[index: number]: IAccountBalances}

@@ -12,7 +12,7 @@ interface IProps {
 	addresses: IAddresses;
 	states: ICustodianStates;
 	prices: ICustodianPrices;
-	addressPool: { [index: number]: IAddress };
+	addressPool: IAddress[];
 	account: string
 }
 

@@ -10,11 +10,11 @@ Object {
 exports[`actions addressPoolUpdate 1`] = `
 Object {
   "type": "addressPool",
-  "value": Object {
-    "123": Object {
+  "value": Array [
+    Object {
       "test": "test",
     },
-  },
+  ],
 }
 `;
 
@@ -75,12 +75,12 @@ Array [
   },
   Object {
     "type": "addressPool",
-    "value": Object {
-      "0": Object {
+    "value": Array [
+      Object {
         "address": "0x0",
         "balance": 123,
       },
-    },
+    ],
   },
 ]
 `;
