@@ -56,7 +56,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 						dataSource={data}
 						pagination={{
 							showQuickJumper: true,
-							showTotal: () => 'Total ' + userLength + ' Conversions',
+							showTotal: () => 'Total ' + userLength + ' Users',
 							pageSize: 20,
 							size: 'small',
 							onChange: (page: number, pageSize?: number) =>
