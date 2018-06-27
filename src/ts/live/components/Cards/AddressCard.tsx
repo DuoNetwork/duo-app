@@ -77,16 +77,23 @@ export default class AddressCard extends React.PureComponent<IProps> {
 				inlinetype="table"
 			>
 				<STableWrapper>
-					<Table
-						dataSource={data}
-						pagination={false}
-						onRow={record => ({
-							onClick: () => window.open(record[CST.TH_LINK])
-						})}
-					>
-						{[CST.TH_ROLE, CST.TH_ADDRESS, CST.TH_BALANCE, CST.TH_ACTION].map(th => (
-							<Column title={th} dataIndex={th} key={th} />
+					<Table dataSource={data} pagination={false}>
+						{[CST.TH_ROLE, CST.TH_ADDRESS, CST.TH_BALANCE].map(th => (
+							<Column
+								title={th}
+								dataIndex={th}
+								key={th}
+								onCell={record => ({
+									onClick: () => window.open(record[CST.TH_LINK])
+								})}
+							/>
 						))}
+						<Column
+							title={CST.TH_ACTION}
+							dataIndex={CST.TH_ACTION}
+							key={CST.TH_ACTION}
+							className={'address-table-action-col'}
+						/>
 					</Table>
 				</STableWrapper>
 			</SCard>

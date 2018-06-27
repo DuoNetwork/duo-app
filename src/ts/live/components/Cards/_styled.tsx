@@ -694,6 +694,9 @@ injectGlobal([
 			border-color: ${ColorStyles.BorderWhite6};
 			background-color: ${ColorStyles.ButtonHoverWhite1};
 		}
+		.address-table-action-col {
+			cursor: default !important;
+		}
 	}
 `
 ] as any);
