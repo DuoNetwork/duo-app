@@ -302,9 +302,14 @@ class ContractUtil {
 
 	public setValue(address: string, index: number, newValue: number) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-		return this.custodian.methods.setValue(index, newValue).send({
-			from: address
-		});
+		return this.custodian.methods
+			.setValue(
+				index,
+				index === 4 || index === 5 ? Number(newValue) * 10000 : Number(newValue)
+			)
+			.send({
+				from: address
+			});
 	}
 
 	public addAddress(address: string, addr1: string, addr2: string) {
