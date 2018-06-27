@@ -2,7 +2,9 @@ import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from '../../common/constants';
+import contractUtil from '../../common/contractUtil';
 import { IAddresses, ICustodianStates } from '../../common/types';
+import AdminInputButton from '../Common/AdminInputButton';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
@@ -15,61 +17,156 @@ interface IProps {
 
 export default class AdminCard extends React.PureComponent<IProps> {
 	public render() {
-		const { states } = this.props;
+		const { states, account, addresses } = this.props;
 		const data: object[] = [];
 		data.push({
 			[CST.TH_STATE]: 'Fee Accumulated',
 			[CST.TH_VALUE]: d3.format(',.2f')(states.feeAccumulated),
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_COLLLECT_FEE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_COLLLECT_FEE}
+					disabled={account === '0x0' || addresses.feeCollector.address !== account}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'ETH:DUO Fee Ratio',
 			[CST.TH_VALUE]: states.ethDuoFeeRatio,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={1}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'Iteration Gas Threshold',
 			[CST.TH_VALUE]: states.iterationGasThreshold,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={2}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'PreReset Waiting Blocks',
 			[CST.TH_VALUE]: states.preResetWaitingBlocks,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={3}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'Price Tolerance',
 			[CST.TH_VALUE]: states.priceTol,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={4}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'Price Feed Tolerance',
 			[CST.TH_VALUE]: states.priceFeedTol,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={5}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'Price Feed Time Tolerance',
 			[CST.TH_VALUE]: states.priceFeedTimeTol,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={6}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'Price Update Cool Down',
 			[CST.TH_VALUE]: states.priceUpdateCoolDown,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={7}
+					validateInput={(value: string) =>
+						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
+							? ''
+							: 'Invalid number'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'Address Pool Length',
 			[CST.TH_VALUE]: states.addrPoolLength,
-			[CST.TH_INPUT]: <div><input /><input /></div>,
-			[CST.TH_ACTION]: <button>{CST.TH_ADD_ADDR}</button>
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_ADD_ADDR}
+					disabled={account === '0x0' || addresses.poolManager.address !== account}
+					validateInput={(value: string) =>
+						contractUtil.checkAddress(value) ? '' : 'Invalid Address'
+					}
+				/>
+			)
 		});
 		data.push({
 			[CST.TH_STATE]: 'Staged Prices',
@@ -100,7 +197,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 						pagination={false}
 						rowClassName={() => 'admin-table-row'}
 					>
-						{[CST.TH_STATE, CST.TH_VALUE, CST.TH_INPUT, CST.TH_ACTION].map(th => (
+						{[CST.TH_STATE, CST.TH_VALUE, CST.TH_ACTION].map(th => (
 							<Column title={th} dataIndex={th} key={th} />
 						))}
 					</Table>

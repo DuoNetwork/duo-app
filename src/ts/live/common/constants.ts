@@ -30,6 +30,7 @@ export const CTD_LOADING = 'Loading';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
+export const RX_INTEGER = /^[0-9]+?$/;
 
 export const TH_CREATE = 'Create';
 export const TH_REDEEM = 'Redeem';
@@ -78,5 +79,4 @@ export const TH_SET_VALUE = 'Set Value';
 export const TH_POOL = 'Pool';
 export const TH_STATE = 'State';
 export const TH_VALUE = 'Value';
-export const TH_INPUT = 'Input';
 export const TH_ACTION = 'Action';
