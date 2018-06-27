@@ -10,19 +10,22 @@ export function refreshUpdate() {
 	};
 }
 
-export function refresh(): VoidThunkAction {
+export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 	return async dispatch => {
 		dispatch(contractActions.accountUpdate(await contractUtil.getCurrentAddress()));
 		await dispatch(contractActions.getNetwork());
 		await dispatch(contractActions.getCustodianStates());
-		await dispatch(dynamoActions.scanStatus());
-		dispatch(contractActions.getBalances());
-		dispatch(contractActions.getCustodianPrices());
-		dispatch(dynamoActions.fetchHourly());
-		dispatch(dynamoActions.fetchMinutely());
-		dispatch(dynamoActions.fetchPrice());
-		dispatch(dynamoActions.fetchConversion());
-		// dispatch(dynamoActions.fetchTotalSupply());
+		if (!isAdminPage) {
+			await dispatch(dynamoActions.scanStatus());
+			dispatch(contractActions.getBalances());
+			dispatch(contractActions.getCustodianPrices());
+			dispatch(dynamoActions.fetchHourly());
+			dispatch(dynamoActions.fetchMinutely());
+			dispatch(dynamoActions.fetchPrice());
+			dispatch(dynamoActions.fetchConversion());
+			// dispatch(dynamoActions.fetchTotalSupply());
+		} else
+			dispatch(contractActions.getAddresses());
 		dispatch(refreshUpdate());
 	};
 }

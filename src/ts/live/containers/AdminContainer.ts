@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import { IState } from '../common/types';
-import Status from '../components/Status';
+import Admin from '../components/Admin';
 
 function mapStateToProps(state: IState) {
 	return {
 		network: state.contract.network,
-		status: state.dynamo.status
+		addresses: state.contract.addresses,
 	};
 }
 
 export default connect(
 	mapStateToProps,
 	{}
-)(Status);
+)(Admin);

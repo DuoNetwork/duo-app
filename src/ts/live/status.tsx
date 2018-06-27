@@ -8,11 +8,9 @@ import Status from './containers/StatusContainer';
 import store from './store/store';
 
 store.dispatch(contractActions.getNetwork());
-store.dispatch(contractActions.getAddresses());
 store.dispatch(dynamoActions.scanStatus());
 setInterval(() => {
 	store.dispatch(contractActions.getNetwork());
-	store.dispatch(contractActions.getAddresses());
 	store.dispatch(dynamoActions.scanStatus());
 }, 60000);
 
