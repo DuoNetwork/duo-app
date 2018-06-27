@@ -43,8 +43,7 @@ class ContractUtil {
 					store.getState().selectedAddress || '',
 					Number(store.getState().networkVersion || '')
 				);
-			}
-			);
+			});
 	}
 
 	public convertCustodianState(rawState: string) {
@@ -292,6 +291,57 @@ class ContractUtil {
 		return this.custodian.methods.transfer(isA ? 0 : 1, address, to, this.toWei(value)).send({
 			from: address
 		});
+	}
+
+	public collectFee(address: string, amount: number, onTxHash: (hash: string) => any) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+		return this.custodian.methods
+			.collectFee(this.toWei(amount))
+			.send({
+				from: address
+			})
+			.on('transactionHash', onTxHash);
+	}
+
+	public setValue(address: string, index: number, newValue: number, onTxHash: (hash: string) => any) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+		return this.custodian.methods
+			.setValue(index, newValue)
+			.send({
+				from: address
+			})
+			.on('transactionHash', onTxHash);
+	}
+
+	public addAddress(address: string, addr1: string, addr2: string, onTxHash: (hash: string) => any) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+		return this.custodian.methods
+			.addAddress(addr1, addr2)
+			.send({
+				from: address
+			})
+			.on('transactionHash', onTxHash);
+	}
+
+	public removeAddress(address: string, addr: string, onTxHash: (hash: string) => any) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+		return this.custodian.methods
+			.addAddress(addr)
+			.send({
+				from: address
+			})
+			.on('transactionHash', onTxHash);
+	}
+
+	public updateAddress(address: string, currentRole: string, onTxHash: (hash: string) => any) {
+		if (this.isReadOnly) return Promise.reject('Read Only Mode');
+		return this.custodian.methods
+			.addAddress(currentRole)
+			.send({
+				from: address
+			})
+			.on('transactionHash', onTxHash);
+
 	}
 }
 

@@ -73,27 +73,19 @@ export default class AdminCard extends React.PureComponent<IProps> {
 		});
 		data.push({
 			[CST.TH_STATE]: 'Staged Prices',
-			[CST.TH_VALUE]: states.numOfPrices,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_VALUE]: states.numOfPrices
 		});
 		data.push({
 			[CST.TH_STATE]: 'Next Reset Addr Index',
-			[CST.TH_VALUE]: states.nextResetAddrIndex,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_VALUE]: states.nextResetAddrIndex
 		});
 		data.push({
 			[CST.TH_STATE]: 'Last Admin Time',
-			[CST.TH_VALUE]: states.lastAdminTime,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_VALUE]: states.lastAdminTime
 		});
 		data.push({
 			[CST.TH_STATE]: 'Admin Cool Down',
-			[CST.TH_VALUE]: states.adminCoolDown,
-			[CST.TH_INPUT]: <input />,
-			[CST.TH_ACTION]: <button>{CST.TH_SET_VALUE}</button>
+			[CST.TH_VALUE]: states.adminCoolDown
 		});
 		return (
 			<SCard
