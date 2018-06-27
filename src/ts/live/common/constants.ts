@@ -76,3 +76,7 @@ export const TH_RM_ADDR = 'Remove Address';
 export const TH_UPDATE_ROLE = 'Update Role';
 export const TH_SET_VALUE = 'Set Value';
 export const TH_POOL = 'Pool';
+export const TH_STATE = 'State';
+export const TH_VALUE = 'Value';
+export const TH_INPUT = 'Input';
+export const TH_ACTION = 'Action';

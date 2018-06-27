@@ -999,6 +999,9 @@ injectGlobal([
 		.ant-dropdown-menu-item-selected, .ant-dropdown-menu-submenu-title-selected, .ant-dropdown-menu-item-selected > a, .ant-dropdown-menu-submenu-title-selected > a {
 			background: ${ColorStyles.SelectBackgroundSolid};
 		}
+		.admin-table-row > td {
+			cursor: default !important;
+		}
 	}
 `
 ] as any);

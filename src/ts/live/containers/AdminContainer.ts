@@ -8,7 +8,8 @@ function mapStateToProps(state: IState) {
 		addresses: state.contract.addresses,
 		states: state.contract.states,
 		prices: state.contract.prices,
-		addressPool: state.contract.addressPool
+		addressPool: state.contract.addressPool,
+		account: state.contract.account
 	};
 }
 
