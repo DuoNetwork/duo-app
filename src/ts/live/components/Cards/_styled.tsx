@@ -630,27 +630,6 @@ export const SCardConversionForm = styled.div`
 		color: ${ColorStyles.TextWhiteAlpha} !important;
 		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
 	}
-	.form-button {
-		outline: none;
-		cursor: pointer;
-		width: 180px;
-		font-family: 'Roboto';
-		background-color: transparent;
-		color: ${ColorStyles.TextWhiteAlphaL};
-		border: 1px solid;
-		border-color: ${ColorStyles.BorderWhite4};
-		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
-			background-color 0.2s ease-in-out;
-	}
-	.form-button:disabled {
-		pointer-events: none;
-		opacity: 0.2 !important;
-	}
-	.form-button:hover {
-		color: ${ColorStyles.TextWhiteAlpha};
-		border-color: ${ColorStyles.BorderWhite6};
-		background-color: ${ColorStyles.ButtonHoverWhite1};
-	}
 `;
 injectGlobal([
 	`
@@ -693,6 +672,27 @@ injectGlobal([
 		}
 		.ant-popover-buttons {
 			margin-bottom: 0px;
+		}
+		.form-button {
+			outline: none;
+			cursor: pointer;
+			width: 180px;
+			font-family: 'Roboto';
+			background-color: transparent;
+			color: ${ColorStyles.TextWhiteAlphaL};
+			border: 1px solid;
+			border-color: ${ColorStyles.BorderWhite4};
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+				background-color 0.2s ease-in-out;
+		}
+		.form-button:disabled {
+			pointer-events: none;
+			opacity: 0.2 !important;
+		}
+		.form-button:hover {
+			color: ${ColorStyles.TextWhiteAlpha};
+			border-color: ${ColorStyles.BorderWhite6};
+			background-color: ${ColorStyles.ButtonHoverWhite1};
 		}
 	}
 `

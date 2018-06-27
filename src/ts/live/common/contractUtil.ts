@@ -293,55 +293,39 @@ class ContractUtil {
 		});
 	}
 
-	public collectFee(address: string, amount: number, onTxHash: (hash: string) => any) {
+	public collectFee(address: string, amount: number) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-		return this.custodian.methods
-			.collectFee(this.toWei(amount))
-			.send({
-				from: address
-			})
-			.on('transactionHash', onTxHash);
+		return this.custodian.methods.collectFee(this.toWei(amount)).send({
+			from: address
+		});
 	}
 
-	public setValue(address: string, index: number, newValue: number, onTxHash: (hash: string) => any) {
+	public setValue(address: string, index: number, newValue: number) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-		return this.custodian.methods
-			.setValue(index, newValue)
-			.send({
-				from: address
-			})
-			.on('transactionHash', onTxHash);
+		return this.custodian.methods.setValue(index, newValue).send({
+			from: address
+		});
 	}
 
-	public addAddress(address: string, addr1: string, addr2: string, onTxHash: (hash: string) => any) {
+	public addAddress(address: string, addr1: string, addr2: string) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-		return this.custodian.methods
-			.addAddress(addr1, addr2)
-			.send({
-				from: address
-			})
-			.on('transactionHash', onTxHash);
+		return this.custodian.methods.addAddress(addr1, addr2).send({
+			from: address
+		});
 	}
 
-	public removeAddress(address: string, addr: string, onTxHash: (hash: string) => any) {
+	public removeAddress(address: string, addr: string) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-		return this.custodian.methods
-			.addAddress(addr)
-			.send({
-				from: address
-			})
-			.on('transactionHash', onTxHash);
+		return this.custodian.methods.addAddress(addr).send({
+			from: address
+		});
 	}
 
-	public updateAddress(address: string, currentRole: string, onTxHash: (hash: string) => any) {
+	public updateAddress(address: string, currentRole: string) {
 		if (this.isReadOnly) return Promise.reject('Read Only Mode');
-		return this.custodian.methods
-			.addAddress(currentRole)
-			.send({
-				from: address
-			})
-			.on('transactionHash', onTxHash);
-
+		return this.custodian.methods.addAddress(currentRole).send({
+			from: address
+		});
 	}
 }
 

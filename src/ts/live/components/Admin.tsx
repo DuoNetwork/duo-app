@@ -26,7 +26,7 @@ export default class Admin extends React.PureComponent<IProps> {
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<AdminCard addresses={addresses} states={states} account={account}/>
 					</SDivFlexCenter>
-					<AddressCard addresses={addresses} addressPool={addressPool} />
+					<AddressCard addresses={addresses} addressPool={addressPool} account={account}/>
 				</SContent>
 			</Layout>
 		);

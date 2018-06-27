@@ -1,3 +1,4 @@
+import * as d3 from 'd3';
 import moment, { DurationInputArg2 } from 'moment';
 
 class Util {
@@ -46,6 +47,13 @@ class Util {
 
 	public round(num: number) {
 		return +(Math.round((num + 'e+8') as any) + 'e-8');
+	}
+
+	public formatBalance(num: number) {
+		return d3
+			.format(num > 1 ? ',.4s' : ',.4n')(num)
+			.toUpperCase()
+			.replace(/G/g, 'B')
 	}
 }
 

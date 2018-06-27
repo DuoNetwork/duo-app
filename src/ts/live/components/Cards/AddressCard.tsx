@@ -1,7 +1,9 @@
 import { Table } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
+import contractUtil from '../../common/contractUtil';
 import { IAddress, IAddresses } from '../../common/types';
+import util from '../../common/util';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
@@ -9,39 +11,63 @@ const { Column } = Table;
 interface IProps {
 	addresses: IAddresses;
 	addressPool: IAddress[];
+	account: string;
 }
 
 export default class AddressCard extends React.PureComponent<IProps> {
 	public render() {
-		const { addresses, addressPool } = this.props;
+		const { addresses, addressPool, account } = this.props;
 		const data: object[] = [];
+		const isInPool = addressPool.findIndex(a => a.address === account) >= 0;
+		const isPoolManager = account === addresses.poolManager.address;
 		for (const role in addresses) {
 			const addr: IAddress = addresses[role];
 			data.push({
 				key: role,
 				[CST.TH_ROLE]: role,
 				[CST.TH_ADDRESS]: addr.address,
-				[CST.TH_BALANCE]: addr.balance,
+				[CST.TH_BALANCE]: util.formatBalance(addr.balance),
 				[CST.TH_LINK]:
 					'https://' +
 					(__KOVAN__ ? 'kovan.' : '') +
 					'etherscan.io/address/' +
 					addr.address,
-				[CST.TH_ACTION]: role === 'poolManager' ? '' : <button>{CST.TH_UPDATE_ROLE}</button>
+				[CST.TH_ACTION]:
+					role === 'poolManager' ? (
+						''
+					) : (
+						<button
+							className="form-button"
+							disabled={!isInPool}
+							onClick={() => contractUtil.updateAddress(account, addr.address)}
+						>
+							{CST.TH_UPDATE_ROLE}
+						</button>
+					)
 			});
 		}
-		addressPool.forEach((addr, i) => data.push({
-			key: CST.TH_POOL + i,
-			[CST.TH_ROLE]: CST.TH_POOL + i,
-			[CST.TH_ADDRESS]: addr.address,
-			[CST.TH_BALANCE]: addr.balance,
-			[CST.TH_LINK]:
-				'https://' +
-				(__KOVAN__ ? 'kovan.' : '') +
-				'etherscan.io/address/' +
-				addr.address,
-			[CST.TH_ACTION]: <button>{CST.TH_RM_ADDR}</button>
-		}))
+		addressPool.forEach((addr, i) =>
+			data.push({
+				key: CST.TH_POOL + i,
+				[CST.TH_ROLE]: CST.TH_POOL + i,
+				[CST.TH_ADDRESS]: addr.address,
+				[CST.TH_BALANCE]: util.formatBalance(addr.balance),
+				[CST.TH_LINK]:
+					'https://' +
+					(__KOVAN__ ? 'kovan.' : '') +
+					'etherscan.io/address/' +
+					addr.address,
+				[CST.TH_ACTION]: (
+					<button
+						className="form-button"
+						disabled={!isPoolManager}
+						onClick={() => contractUtil.removeAddress(account, addr.address)}
+					>
+						{CST.TH_RM_ADDR}
+					</button>
+				)
+			})
+		);
 
 		return (
 			<SCard

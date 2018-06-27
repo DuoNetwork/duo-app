@@ -1,5 +1,4 @@
 import { Tooltip } from 'antd';
-import * as d3 from 'd3';
 import * as React from 'react';
 import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
@@ -8,6 +7,7 @@ import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
 import { IBalances } from '../../common/types';
+import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardAssetTag, SCardExtendExtraDiv, SCardTitle } from './_styled';
 
@@ -30,18 +30,12 @@ const BalanceInfo = (props: { icon: string; name: string; value: number; allowan
 				<div>
 					<div>
 						<div className={'tag-price'}>
-							{d3
-								.format(value > 1 ? ',.4s' : ',.4n')(value)
-								.toUpperCase()
-								.replace(/G/g, 'B')}
+							{util.formatBalance(value)}
 						</div>
 						{allowance !== undefined ? (
 							<Tooltip title={'Allowance for ' + CST.TH_BEETHOVEN}>
 								<div className="tag-subtext">
-									{d3
-										.format(allowance > 1 ? ',.4s' : ',.4n')(allowance)
-										.toUpperCase()
-										.replace(/G/g, 'B') + ' allowance'}
+									{util.formatBalance(allowance) + ' allowance'}
 								</div>
 							</Tooltip>
 						) : null}
