@@ -2,6 +2,7 @@ import * as CST from '../common/constants';
 import contractUtil from '../common/contractUtil';
 import {
 	IAccountBalances,
+	IAddress,
 	IAddresses,
 	IBalances,
 	ICustodianPrices,
@@ -100,6 +101,33 @@ export function addressesUpdate(addr: IAddresses) {
 	};
 }
 
+export function addressPoolUpdate(address: IAddress, index: number) {
+	return {
+		type: CST.AC_ADDR_POOL,
+		value: {
+			[index]: address
+		}
+	};
+}
+
 export function getAddresses(): VoidThunkAction {
-	return async dispatch => dispatch(addressesUpdate(await contractUtil.getSystemAddresses()));
+	return async (dispatch, getState) => {
+		dispatch(addressesUpdate(await contractUtil.getSystemAddresses()));
+		const poolLength = getState().contract.states.addrPoolLength;
+		for (let i = 0; i < poolLength; i++)
+			contractUtil.getPoolAddress(i).then(address => {
+				if (address)
+					contractUtil.getEthBalance(address).then(balance =>
+						dispatch(
+							addressPoolUpdate(
+								{
+									address: address,
+									balance: balance
+								},
+								i
+							)
+						)
+					);
+			});
+	};
 }

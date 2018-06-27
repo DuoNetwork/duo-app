@@ -8,17 +8,27 @@ const { Column } = Table;
 
 interface IProps {
 	addresses: IAddresses;
+	addressPool: {[index: number]: IAddress}
 }
 
-export default class StatusCard extends React.PureComponent<IProps> {
+export default class AddressCard extends React.PureComponent<IProps> {
 	public render() {
-		const { addresses } = this.props;
+		const { addresses, addressPool } = this.props;
 		const data: object[] = [];
 		for (const role in addresses) {
 			const addr: IAddress = addresses[role];
 			data.push({
 				key: role,
 				[CST.TH_ROLE]: role,
+				[CST.TH_ADDRESS]: addr.address,
+				[CST.TH_BALANCE]: addr.balance
+			});
+		}
+		for (const index in addressPool) {
+			const addr: IAddress = addressPool[index];
+			data.push({
+				key: CST.TH_POOL + index,
+				[CST.TH_ROLE]: CST.TH_POOL + index,
 				[CST.TH_ADDRESS]: addr.address,
 				[CST.TH_BALANCE]: addr.balance
 			});

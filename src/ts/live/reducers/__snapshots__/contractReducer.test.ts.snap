@@ -3,6 +3,7 @@
 exports[`ui reducer account 1`] = `
 Object {
   "account": "test",
+  "addressPool": Object {},
   "addresses": Object {
     "test": "test",
   },
@@ -21,9 +22,40 @@ Object {
 }
 `;
 
+exports[`ui reducer addressPool 1`] = `
+Object {
+  "account": "test",
+  "addressPool": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+  "addresses": Object {
+    "test": "test",
+  },
+  "allBalances": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+  "balances": Object {
+    "test": "test",
+  },
+  "network": 123,
+  "prices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "states": Object {
+    "test": "test",
+  },
+}
+`;
+
 exports[`ui reducer addresses 1`] = `
 Object {
   "account": "0x0",
+  "addressPool": Object {},
   "addresses": Object {
     "test": "test",
   },
@@ -45,6 +77,7 @@ Object {
 exports[`ui reducer allBalances 1`] = `
 Object {
   "account": "test",
+  "addressPool": Object {},
   "addresses": Object {
     "test": "test",
   },
@@ -70,6 +103,7 @@ Object {
 exports[`ui reducer balances 1`] = `
 Object {
   "account": "0x0",
+  "addressPool": Object {},
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -114,6 +148,7 @@ Object {
 exports[`ui reducer custodianPrices 1`] = `
 Object {
   "account": "0x0",
+  "addressPool": Object {},
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -162,6 +197,7 @@ Object {
 exports[`ui reducer custodianStates 1`] = `
 Object {
   "account": "0x0",
+  "addressPool": Object {},
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -228,6 +264,7 @@ Object {
 exports[`ui reducer default 1`] = `
 Object {
   "account": "0x0",
+  "addressPool": Object {},
   "addresses": Object {
     "feeCollector": Object {
       "address": "0x0",
@@ -322,6 +359,7 @@ Object {
 exports[`ui reducer network 1`] = `
 Object {
   "account": "test",
+  "addressPool": Object {},
   "addresses": Object {
     "test": "test",
   },

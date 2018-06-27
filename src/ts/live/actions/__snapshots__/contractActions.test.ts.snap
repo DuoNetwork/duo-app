@@ -7,6 +7,17 @@ Object {
 }
 `;
 
+exports[`actions addressPoolUpdate 1`] = `
+Object {
+  "type": "addressPool",
+  "value": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+}
+`;
+
 exports[`actions addressesUpdate 1`] = `
 Object {
   "type": "addresses",
@@ -60,6 +71,15 @@ Array [
     "type": "addresses",
     "value": Object {
       "test": "test",
+    },
+  },
+  Object {
+    "type": "addressPool",
+    "value": Object {
+      "0": Object {
+        "address": "0x0",
+        "balance": 123,
+      },
     },
   },
 ]

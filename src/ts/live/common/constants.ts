@@ -15,6 +15,7 @@ export const AC_TOTAL_SUPPLY = 'totalSupply';
 export const AC_CONVERSION = 'conversion';
 export const AC_UI_CONVERSION = 'uiConversion';
 export const AC_REFRESH = 'refresh';
+export const AC_ADDR_POOL = 'addressPool';
 
 export const ETH_MAINNET_ID = 1;
 export const ETH_KOVAN_ID = 42;
@@ -74,3 +75,4 @@ export const TH_ADD_ADDR = 'Add Address';
 export const TH_RM_ADDR = 'Remove Address';
 export const TH_UPDATE_ROLE = 'Update Role';
 export const TH_SET_VALUE = 'Set Value';
+export const TH_POOL = 'Pool';

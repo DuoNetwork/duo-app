@@ -17,6 +17,13 @@ Array [
     },
   },
   Object {
+    "type": "custodianPrices",
+    "value": Array [
+      "reset",
+      "last",
+    ],
+  },
+  Object {
     "type": "dynamoStatus",
     "value": Object {
       "test": "test",
@@ -30,13 +37,6 @@ Array [
     "value": Object {
       "test": "test",
     },
-  },
-  Object {
-    "type": "custodianPrices",
-    "value": Array [
-      "reset",
-      "last",
-    ],
   },
   Object {
     "type": "dynamoPrice",

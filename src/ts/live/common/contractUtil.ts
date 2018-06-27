@@ -182,6 +182,10 @@ class ContractUtil {
 		return this.custodian.methods.users(index).call();
 	}
 
+	public getPoolAddress(index: number) {
+		return this.custodian.methods.addrPool(index).call();
+	}
+
 	public async getGasPrice(): Promise<number> {
 		return await this.web3.eth.getGasPrice();
 	}
@@ -194,7 +198,7 @@ class ContractUtil {
 		return this.web3.eth.net.getId();
 	}
 
-	private async getEthBalance(address: string): Promise<number> {
+	public async getEthBalance(address: string): Promise<number> {
 		return this.fromWei(await this.web3.eth.getBalance(address));
 	}
 

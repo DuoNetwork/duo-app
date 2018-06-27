@@ -11,8 +11,7 @@ describe('store', () => {
 	test('actions', () => {
 		contractUtil.getSystemStates = jest.fn(() =>
 			Promise.resolve({
-				test: 'test',
-				usersLength: 1
+				test: 'test'
 			})
 		);
 		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));

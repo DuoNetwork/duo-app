@@ -77,4 +77,16 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('addressPool', () => {
+		state = contractReducer(state, {
+			type: CST.AC_ADDR_POOL,
+			value: {
+				123: {
+					test: 'test'
+				}
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
 });

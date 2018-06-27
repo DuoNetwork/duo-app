@@ -88,9 +88,15 @@ describe('actions', () => {
 		expect(contractActions.addressesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
 
+	test('addressPoolUpdate', () => {
+		expect(contractActions.addressPoolUpdate({ test: 'test' } as any, 123)).toMatchSnapshot();
+	});
+
 	test('getAddresses', () => {
-		const store = mockStore({});
+		const store = mockStore({ contract: { states: { addrPoolLength: 1 } } });
 		contractUtil.getSystemAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+		contractUtil.getPoolAddress = jest.fn(() => Promise.resolve('0x0'));
+		contractUtil.getEthBalance = jest.fn(() => Promise.resolve(123));
 		store.dispatch(contractActions.getAddresses() as any);
 		return new Promise(resolve =>
 			setTimeout(() => {

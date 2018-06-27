@@ -4,6 +4,7 @@ exports[`store actions 1`] = `
 Object {
   "contract": Object {
     "account": "test",
+    "addressPool": Object {},
     "addresses": Object {
       "test": "test",
     },
@@ -27,7 +28,6 @@ Object {
     ],
     "states": Object {
       "test": "test",
-      "usersLength": 1,
     },
   },
   "dynamo": Object {
