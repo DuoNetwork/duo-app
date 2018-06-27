@@ -6,6 +6,8 @@ function mapStateToProps(state: IState) {
 	return {
 		network: state.contract.network,
 		addresses: state.contract.addresses,
+		states: state.contract.states,
+		prices: state.contract.prices,
 	};
 }
 

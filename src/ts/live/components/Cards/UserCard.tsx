@@ -48,7 +48,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 			<SCard
 				title={<SCardTitle>{CST.TH_USER.toUpperCase()}</SCardTitle>}
 				width="1000px"
-				margin="0 10px 0 0"
+				margin="0 0px 0 0"
 				inlinetype="table"
 			>
 				<STableWrapper>

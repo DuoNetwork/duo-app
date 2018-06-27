@@ -15,10 +15,10 @@ export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 		dispatch(contractActions.accountUpdate(await contractUtil.getCurrentAddress()));
 		await dispatch(contractActions.getNetwork());
 		await dispatch(contractActions.getCustodianStates());
+		dispatch(contractActions.getCustodianPrices());
 		if (!isAdminPage) {
 			await dispatch(dynamoActions.scanStatus());
 			dispatch(contractActions.getBalances());
-			dispatch(contractActions.getCustodianPrices());
 			dispatch(dynamoActions.fetchHourly());
 			dispatch(dynamoActions.fetchMinutely());
 			dispatch(dynamoActions.fetchPrice());

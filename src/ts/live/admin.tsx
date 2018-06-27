@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import '../../css/liveStyle.css';
-import '../../static/GettingStarted.pdf';
 import * as uiActions from './actions/uiActions';
 import contractUtil from './common/contractUtil';
 import Admin from './containers/AdminContainer';
