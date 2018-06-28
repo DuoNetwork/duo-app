@@ -5,6 +5,8 @@ import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
 import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import * as CST from './constants';
+const abiDecoder = require('abi-decoder');
+const ABI = require('../../../../../duo-admin/src/static/Custodian.json');
 //import util from './util';
 
 class ContractUtil {
@@ -331,6 +333,11 @@ class ContractUtil {
 		return this.custodian.methods.addAddress(currentRole).send({
 			from: address
 		});
+	}
+
+	public decode(input: string): any {
+		abiDecoder.addABI(ABI.abi);
+		return abiDecoder.decodeMethod(input);
 	}
 }
 

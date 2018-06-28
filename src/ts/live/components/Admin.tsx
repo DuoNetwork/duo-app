@@ -5,6 +5,7 @@ import { IAddress, IAddresses, ICustodianPrices, ICustodianStates } from '../com
 import { SContent, SDivFlexCenter } from './_styled';
 import AddressCard from './Cards/AddressCard';
 import AdminCard from './Cards/AdminCard';
+import DecodeCard from './Cards/DecodeCard';
 import Header from './Header';
 
 interface IProps {
@@ -27,6 +28,7 @@ export default class Admin extends React.PureComponent<IProps> {
 						<AdminCard addresses={addresses} states={states} account={account}/>
 					</SDivFlexCenter>
 					<AddressCard addresses={addresses} addressPool={addressPool} account={account}/>
+					<DecodeCard />
 				</SContent>
 			</Layout>
 		);
