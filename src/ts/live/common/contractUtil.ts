@@ -6,7 +6,6 @@ import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
 import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import * as CST from './constants';
 const abiDecoder = require('abi-decoder');
-const ABI = require('../../../../../duo-admin/src/static/Custodian.json');
 //import util from './util';
 
 class ContractUtil {
@@ -336,7 +335,7 @@ class ContractUtil {
 	}
 
 	public decode(input: string): any {
-		abiDecoder.addABI(ABI.abi);
+		abiDecoder.addABI(custodianAbi.abi);
 		return abiDecoder.decodeMethod(input);
 	}
 }
