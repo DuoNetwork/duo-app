@@ -13,18 +13,15 @@ import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
-
 interface IProps {
 	last: ICustodianPrice;
 	reset: ICustodianPrice;
 	states: ICustodianStates;
 	sourceLast: ISourceData<ICustodianPrice>;
 }
-
 interface IState {
 	source: string;
 }
-
 export default class PriceCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
@@ -32,7 +29,6 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			source: ''
 		};
 	}
-
 	public render() {
 		const { reset, states } = this.props;
 		const { source } = this.state;
@@ -78,11 +74,9 @@ export default class PriceCard extends React.Component<IProps, IState> {
 						<div className="bg-logo">
 							<img src={ethIcon} />
 						</div>
-
 						<div className="tag-title">
 							<h3>{CST.TH_ETH}</h3>
 						</div>
-
 						<div className="tag-content">
 							<div style={{ display: 'flex', flexDirection: 'row' }}>
 								<div className={'tag-price USD'}>
@@ -90,7 +84,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								</div>
 								<div className={'tag-unit'}>USD</div>
 							</div>
-							<div className='tag-subtext'>
+							<div className="tag-subtext">
 								<div
 									style={{
 										color:
@@ -109,20 +103,31 @@ export default class PriceCard extends React.Component<IProps, IState> {
 						<div className="bg-logo">
 							<img src={classAIcon} />
 						</div>
-
 						<div className="tag-title">
-							<h3>{CST.TH_TOKEN_A}</h3>
+							<a
+								className="tag-content"
+								href={
+									'https://' +
+									(__KOVAN__ ? 'kovan.' : '') +
+									'etherscan.io/tokens?q=' +
+									(__KOVAN__
+										? CST.A_CONTRACT_ADDR_KOVAN
+										: CST.A_CONTRACT_ADDR_MAIN)
+								}
+								target="_blank"
+							>
+								{CST.TH_TOKEN_A}
+							</a>
 							<Tooltip title={tooltipText}>
 								<img src={infoIcon} />
 							</Tooltip>
 						</div>
-
 						<div className="tag-content">
 							<div style={{ display: 'flex', flexDirection: 'row' }}>
 								<div className={'tag-price-1 USD'}>{d3.format(',.6f')(navA)}</div>
 								<div className={'tag-unit-1'}>USD</div>
 							</div>
-							<div className='tag-subtext'>
+							<div className="tag-subtext">
 								{d3.format('.2%')(
 									(states.periodCoupon * 365 * 24 * 3600) / states.period || 0
 								) + ' p.a.'}
@@ -133,20 +138,31 @@ export default class PriceCard extends React.Component<IProps, IState> {
 						<div className="bg-logo">
 							<img src={classBIcon} />
 						</div>
-
 						<div className="tag-title">
-							<h3>{CST.TH_TOKEN_B}</h3>
+							<a
+								className="tag-content"
+								href={
+									'https://' +
+									(__KOVAN__ ? 'kovan.' : '') +
+									'etherscan.io/tokens?q=' +
+									(__KOVAN__
+										? CST.B_CONTRACT_ADDR_KOVAN
+										: CST.B_CONTRACT_ADDR_MAIN)
+								}
+								target="_blank"
+							>
+								{CST.TH_TOKEN_B}
+							</a>
 							<Tooltip title={tooltipText}>
 								<img src={infoIcon} />
 							</Tooltip>
 						</div>
-
 						<div className="tag-content">
 							<div style={{ display: 'flex', flexDirection: 'row' }}>
 								<div className={'tag-price-2 USD'}>{d3.format(',.6f')(navB)}</div>
 								<div className={'tag-unit-2'}>USD</div>
 							</div>
-							<div className='tag-subtext'>
+							<div className="tag-subtext">
 								{d3.format('.2f')((navA + navB) / (navB || 1)) + 'x leverage'}
 							</div>
 						</div>

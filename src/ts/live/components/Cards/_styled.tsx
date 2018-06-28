@@ -142,13 +142,18 @@ export const SCardPriceTag = styled.div`
 			opacity: 0.6;
 		}
 	}
-	.tag-title > h3 {
+	.tag-title > a {
+		margin: 0;
+	}
+	.tag-title > a, .tag-title > h3 {
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
 		color: ${ColorStyles.TextWhiteAlphaL};
 		margin: 0;
+		z-index: 99;
+		text-decoration: none;
 	}
 	.tag-content {
 		width: 120px;
@@ -158,7 +163,7 @@ export const SCardPriceTag = styled.div`
 			font-size: 12px;
 			display: flex;
 			flex-direction: row;
-			color: ${ColorStyles.TextWhiteAlphaL}
+			color: ${ColorStyles.TextWhiteAlphaL};
 		}
 	}
 	.tag-price {
