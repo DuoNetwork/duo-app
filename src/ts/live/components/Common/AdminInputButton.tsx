@@ -74,6 +74,7 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 					<SInput
 						className={value1Error ? 'input-error' : ''}
 						value={value1}
+						disabled={disabled}
 						onChange={e => this.handleChange(e.target.value, 1)}
 						right
 					/>

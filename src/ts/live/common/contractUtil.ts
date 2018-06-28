@@ -305,7 +305,7 @@ class ContractUtil {
 		return this.custodian.methods
 			.setValue(
 				index,
-				index === 4 || index === 5 ? Number(newValue) * 10000 : Number(newValue)
+				index === 4 || index === 5 ? newValue * 10000 : newValue
 			)
 			.send({
 				from: address
