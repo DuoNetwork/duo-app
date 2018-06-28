@@ -15,7 +15,10 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		load: (start: number, end: number) => dispatch(contractActions.getAllBalances(start, end))
+		load: (start: number, end: number) => {
+			dispatch(contractActions.getCustodianStates());
+			dispatch(contractActions.getAllBalances(start, end));
+		}
 	};
 }
 
