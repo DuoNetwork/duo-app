@@ -224,7 +224,7 @@ class ContractUtil {
 
 	public checkAddress(addr: string) {
 		if (!addr.startsWith('0x') || addr.length !== 42) return false;
-		return this.web3.utils.checkAddressChecksum(addr);
+		return this.web3.utils.checkAddressChecksum(this.web3.utils.toChecksumAddress(addr));
 	}
 
 	public create(
