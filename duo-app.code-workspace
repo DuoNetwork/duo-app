@@ -14,7 +14,7 @@
 		"vsicons.presets.angular": false,
 		"javascript.validate.enable": false,
 		"solidity.validationDelay": 500,
-		"solidity.compileUsingRemoteVersion": "0.4.21",
+		"solidity.compileUsingRemoteVersion": "latest",
 		"solidity.soliumRules": {
 			"imports-on-top": 0,
 			"variable-declarations": 0,
