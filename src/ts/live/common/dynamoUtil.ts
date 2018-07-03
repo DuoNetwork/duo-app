@@ -1,5 +1,6 @@
 import AWS from 'aws-sdk';
 import {
+	AttributeMap,
 	DeleteItemInput,
 	PutItemInput,
 	QueryInput,
@@ -193,7 +194,7 @@ export class DynamoUtil {
 		hour: string,
 		minute: number,
 		volume: number,
-		ohlc: object
+		ohlc: AttributeMap
 	): IPriceBar {
 		return {
 			source: source,

@@ -22,7 +22,7 @@ interface IState {
 }
 
 export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
-	constructor(props) {
+	constructor(props: IProp) {
 		super(props);
 		this.state = {
 			datetime: props.datetime || 0,

@@ -188,7 +188,7 @@ export default class TransactionForm extends React.Component<IProps, IState> {
 			visible: false
 		};
 	}
-	public round = num => {
+	public round = (num: number) => {
 		return +(Math.round((num + 'e+2') as any) + 'e-2');
 	};
 

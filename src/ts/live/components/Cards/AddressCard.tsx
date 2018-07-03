@@ -2,7 +2,7 @@ import { Table } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
-import { IAddress, IAddresses } from '../../common/types';
+import { IAddress, IAddresses, ITableRecord } from '../../common/types';
 import util from '../../common/util';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
@@ -83,7 +83,7 @@ export default class AddressCard extends React.PureComponent<IProps> {
 								title={th}
 								dataIndex={th}
 								key={th}
-								onCell={record => ({
+								onCell={(record: ITableRecord) => ({
 									onClick: () => window.open(record[CST.TH_LINK])
 								})}
 							/>

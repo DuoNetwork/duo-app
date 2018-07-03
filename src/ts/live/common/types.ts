@@ -71,6 +71,7 @@ export interface IAddresses {
 	priceFeed2: IAddress;
 	priceFeed3: IAddress;
 	poolManager: IAddress;
+	[role: string]: IAddress;
 }
 
 export interface IStatus {
@@ -94,6 +95,7 @@ export interface ISourceData<T> {
 	gemini: T;
 	kraken: T;
 	gdax: T;
+	[source: string]: T;
 }
 
 export interface IBaseEvent {
@@ -155,3 +157,7 @@ export interface IUIState {
 }
 
 export type VoidThunkAction = ThunkAction<void, IState, undefined, AnyAction>;
+
+export interface ITableRecord {
+	[key: string]: any
+}

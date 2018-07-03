@@ -3,7 +3,7 @@ import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import { IConversion } from '../../common/types';
+import { IConversion, ITableRecord } from '../../common/types';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
@@ -57,7 +57,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							title={CST.TH_TIME}
 							dataIndex={CST.TH_TIME}
 							key={CST.TH_TIME}
-							sorter={(a, b) =>
+							sorter={(a: ITableRecord, b: ITableRecord) =>
 								-(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME])
 							}
 							width={160}
@@ -71,7 +71,9 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								value: f
 							}))}
 							filterMultiple={false}
-							onFilter={(value, record) => record[CST.TH_STATUS] === value}
+							onFilter={(value, record: ITableRecord) =>
+								record[CST.TH_STATUS] === value
+							}
 							width={90}
 							render={(text, record) =>
 								record[CST.TH_TOOLTIP] ? (
@@ -90,7 +92,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								value: f
 							}))}
 							filterMultiple={false}
-							onFilter={(value, record) => record[CST.TH_TYPE] === value}
+							onFilter={(value, record: ITableRecord) => record[CST.TH_TYPE] === value}
 							width={90}
 						/>
 						<Column

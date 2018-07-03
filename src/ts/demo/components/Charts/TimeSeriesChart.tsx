@@ -31,7 +31,7 @@ function create(
 		.attr('height', height + margin.top + margin.bottom);
 	// Zoom step
 	const zoomStep = 8.64e7;
-	const zoomFormat = date => moment(date).format('DD MMM');
+	const zoomFormat = (date: number) => moment(date).format('DD MMM');
 
 	// Date range
 	let minDate = timeseries[0].data[0].datetime;
@@ -113,7 +113,7 @@ function create(
 	const xAxis = d3
 		.axisBottom(xScale)
 		.ticks(6)
-		.tickFormat(zoomFormat);
+		.tickFormat(zoomFormat as any);
 
 	const lyAxis = d3.axisLeft(ly).ticks(5);
 
@@ -292,7 +292,7 @@ interface IState {
 
 export default class TimeSeriesChart extends React.Component<IProps, IState> {
 	private chartRef: any;
-	constructor(props) {
+	constructor(props: IProps) {
 		super(props);
 		this.state = {
 			windowWidth: window.innerWidth,

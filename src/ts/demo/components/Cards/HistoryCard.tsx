@@ -13,7 +13,7 @@ interface IStates {
 }
 
 export default class HistoryCard extends React.Component<IProps, IStates> {
-	constructor(props) {
+	constructor(props: IProps) {
 		super(props);
 		this.state = {
 			page: 0,

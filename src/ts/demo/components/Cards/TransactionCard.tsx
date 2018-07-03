@@ -20,14 +20,14 @@ interface IState {
 }
 
 export default class TransactionCard extends React.PureComponent<IProps, IState> {
-	constructor(props) {
+	constructor(props: IProps) {
 		super(props);
 		this.state = {
 			type: ''
 		};
 	}
 
-	public round = num => {
+	public round = (num: number) => {
 		return +(Math.round((num + 'e+2') as any) + 'e-2');
 	};
 

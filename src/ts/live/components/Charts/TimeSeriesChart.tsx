@@ -50,7 +50,7 @@ function drawLines(
 				return moment(date).format('HH') === '00' ? 'MM-DD' : 'hh a';
 		}
 	};
-	const zoomFormat = date => moment(date).format(formatString(timeStep, date));
+	const zoomFormat = (date: number) => moment(date).format(formatString(timeStep, date));
 	const displayColums = (step: number) => {
 		switch (step) {
 			case 300000:
@@ -157,7 +157,7 @@ function drawLines(
 	const xAxis = d3
 		.axisBottom(xScale)
 		.ticks(6)
-		.tickFormat(zoomFormat);
+		.tickFormat(zoomFormat as any);
 	const lyAxis = d3.axisLeft(ethYScale).ticks(5);
 	const ryAxis = d3.axisRight(navYScale).ticks(5);
 	//Grid

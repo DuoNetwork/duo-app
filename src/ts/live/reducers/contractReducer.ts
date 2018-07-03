@@ -98,7 +98,7 @@ export function contractReducer(
 			});
 		case CST.AC_ALL_BALANCES:
 			return Object.assign({}, state, {
-				[action.type]: Object.assign({}, state[action.type], action.value)
+				[action.type]: Object.assign({}, state.allBalances, action.value)
 			});
 		case CST.AC_BALANCES:
 		case CST.AC_ADDRESSES:
