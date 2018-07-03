@@ -1,15 +1,14 @@
-import TransportU2F from '@ledgerhq/hw-transport-u2f';
-import createLedgerSubprovider from '@ledgerhq/web3-subprovider';
-// import createContract from 'truffle-contract';
 import Web3 from 'web3';
-import ProviderEngine from 'web3-provider-engine';
-import FetchSubprovider from 'web3-provider-engine/subproviders/fetch';
 import { Contract } from 'web3/types';
 import infura from '../../../../../duo-admin/src/keys/infura.json';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
 import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../common/types';
 import * as CST from './constants';
+const ProviderEngine = require('web3-provider-engine');
+const FetchSubprovider = require('web3-provider-engine/subproviders/fetch');
+const createLedgerSubprovider = require('@ledgerhq/web3-subprovider');
+const TransportU2F = require('@ledgerhq/hw-transport-u2f');
 const abiDecoder = require('abi-decoder');
 //import util from './util';
 
@@ -50,8 +49,6 @@ class ContractUtil {
 	public switchToMetaMask() {
 		this.web3 = new Web3((window as any).web3.currentProvider);
 		this.wallet = Wallet.MetaMask;
-		// this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
-		// this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 	}
 
 	public async switchToLedger() {
@@ -68,12 +65,6 @@ class ContractUtil {
 		engine.start();
 		this.web3 = new Web3(engine);
 		this.wallet = Wallet.Ledger;
-		// const Custodian = createContract(custodianAbi);
-		// Custodian.setProvider(this.web3.currentProvider);
-		// this.custodian = await Custodian.at(this.custodianAddr);
-		// const DUO = createContract(duoAbi);
-		// DUO.setProvider(this.web3.currentProvider);
-		// this.duo = await DUO.at(this.duoContractAddr);
 	}
 
 	public isReadOnly() {
@@ -278,8 +269,6 @@ class ContractUtil {
 	public create(
 		address: string,
 		value: number,
-		gasPrice: number,
-		gasCost: number,
 		payFeeInEth: boolean,
 		onTxHash: (hash: string) => any
 	) {
@@ -293,17 +282,16 @@ class ContractUtil {
 					})
 					.on('transactionHash', onTxHash);
 			case Wallet.Ledger:
-				return this.custodian.create(payFeeInEth, {
-					from: address,
-					gasPrice,
-					gasCost,
-					value: this.toWei(value)
-				});
-
+				return this.custodian
+					.create(payFeeInEth, {
+						from: address,
+						gas: CST.CREATE_GAS,
+						value: this.toWei(value)
+					})
+					.on('transactionHash', onTxHash);
 			default:
 				return Promise.reject('Read Only Mode');
 		}
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
 	}
 
 	public redeem(
@@ -313,14 +301,24 @@ class ContractUtil {
 		payFeeInEth: boolean,
 		onTxHash: (hash: string) => any
 	) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
-
-		return this.custodian.methods
-			.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth)
-			.send({
-				from: address
-			})
-			.on('transactionHash', onTxHash);
+		switch (this.wallet) {
+			case Wallet.MetaMask:
+				return this.custodian.methods
+					.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth)
+					.send({
+						from: address
+					})
+					.on('transactionHash', onTxHash);
+			case Wallet.Ledger:
+				return this.custodian
+					.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth, {
+						from: address,
+						gas: CST.REDEEM_GAS
+					})
+					.on('transactionHash', onTxHash);
+			default:
+				return Promise.reject('Read Only Mode');
+		}
 	}
 
 	public duoApprove(address: string, spender: string, value: number) {

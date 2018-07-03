@@ -77,7 +77,7 @@ export function allBalancesUpdate(balance: IAccountBalances, index: number) {
 export function getAllBalances(start: number, end: number): VoidThunkAction {
 	return async dispatch => {
 		for (let i = start; i < end; i++)
-			contractUtil.getUserAddress(i).then(account => {
+			contractUtil.getUserAddress(i).then((account: any) => {
 				if (account)
 					contractUtil.getBalances(account).then(balance =>
 						dispatch(
