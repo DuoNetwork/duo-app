@@ -79,6 +79,9 @@
     "webpack-dev-server": "^3.1.4"
   },
   "dependencies": {
+    "@ledgerhq/hw-transport-u2f": "^4.0.0",
+    "@ledgerhq/web3-subprovider": "^4.1.0",
+    "truffle-contract": "^3.0.3",
     "abi-decoder": "^1.1.0",
     "antd": "^3.6.3",
     "aws-sdk": "^2.259.1",

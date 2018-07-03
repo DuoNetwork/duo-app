@@ -1,4 +1,9 @@
+import TransportU2F from '@ledgerhq/hw-transport-u2f';
+import createLedgerSubprovider from '@ledgerhq/web3-subprovider';
+import createContract from 'truffle-contract';
 import Web3 from 'web3';
+import ProviderEngine from 'web3-provider-engine';
+import FetchSubprovider from 'web3-provider-engine/subproviders/fetch';
 import { Contract } from 'web3/types';
 import infura from '../../../../../duo-admin/src/keys/infura.json';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
@@ -17,12 +22,14 @@ enum Wallet {
 class ContractUtil {
 	private web3: Web3;
 	private duo: Contract;
-	private custodian: Contract;
+	private custodian: any;
 	private wallet: Wallet;
 	public readonly custodianAddr: string;
 	private readonly duoContractAddr: string;
 
 	constructor() {
+		this.custodianAddr = __KOVAN__ ? CST.CUSTODIAN_ADDR_KOVAN : CST.CUSTODIAN_ADDR_MAIN;
+		this.duoContractAddr = __KOVAN__ ? CST.DUO_CONTRACT_ADDR_KOVAN : CST.DUO_CONTRACT_ADDR_MAIN;
 		if (typeof (window as any).web3 !== 'undefined') {
 			this.web3 = new Web3((window as any).web3.currentProvider);
 			this.wallet = Wallet.MetaMask;
@@ -36,10 +43,37 @@ class ContractUtil {
 			);
 			this.wallet = Wallet.None;
 		}
-		this.custodianAddr = __KOVAN__ ? CST.CUSTODIAN_ADDR_KOVAN : CST.CUSTODIAN_ADDR_MAIN;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
-		this.duoContractAddr = __KOVAN__ ? CST.DUO_CONTRACT_ADDR_KOVAN : CST.DUO_CONTRACT_ADDR_MAIN;
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
+	}
+
+	public switchToMetaMask() {
+		this.web3 = new Web3((window as any).web3.currentProvider);
+		this.wallet = Wallet.MetaMask;
+		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
+		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
+	}
+
+	public async switchToLedger() {
+		this.wallet = Wallet.Ledger;
+		const engine = new ProviderEngine();
+		const getTransport = () => TransportU2F.create();
+		const networkId = __KOVAN__ ? CST.ETH_KOVAN_ID : CST.ETH_MAINNET_ID;
+		const rpcUrl = __KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_MYETHER_MAIN;
+		const ledger = createLedgerSubprovider(getTransport, {
+			networkId,
+			accountsLength: 5
+		});
+		engine.addProvider(ledger);
+		engine.addProvider(new FetchSubprovider({ rpcUrl }));
+		engine.start();
+		this.web3 = new Web3(engine);
+		const Custodian = createContract(custodianAbi);
+		Custodian.setProvider(this.web3.currentProvider);
+		this.custodian = await Custodian.at(this.custodianAddr);
+		const DUO = createContract(duoAbi);
+		DUO.setProvider(this.web3.currentProvider);
+		this.duo = await DUO.at(this.duoContractAddr);
 	}
 
 	public isReadOnly() {
@@ -244,18 +278,32 @@ class ContractUtil {
 	public create(
 		address: string,
 		value: number,
+		gasPrice: number,
+		gasCost: number,
 		payFeeInEth: boolean,
 		onTxHash: (hash: string) => any
 	) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		switch (this.wallet) {
+			case Wallet.MetaMask:
+				return this.custodian.methods
+					.create(payFeeInEth)
+					.send({
+						from: address,
+						value: this.toWei(value)
+					})
+					.on('transactionHash', onTxHash);
+			case Wallet.Ledger:
+				return this.custodian.create(payFeeInEth, {
+					from: address,
+					gasPrice,
+					gasCost,
+					value: this.toWei(value)
+				});
 
-		return this.custodian.methods
-			.create(payFeeInEth)
-			.send({
-				from: address,
-				value: this.toWei(value)
-			})
-			.on('transactionHash', onTxHash);
+			default:
+				return Promise.reject('Read Only Mode');
+		}
+		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
 	}
 
 	public redeem(
@@ -318,10 +366,7 @@ class ContractUtil {
 	public setValue(address: string, index: number, newValue: number) {
 		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
 		return this.custodian.methods
-			.setValue(
-				index,
-				index === 4 || index === 5 ? newValue * 10000 : newValue
-			)
+			.setValue(index, index === 4 || index === 5 ? newValue * 10000 : newValue)
 			.send({
 				from: address
 			});
