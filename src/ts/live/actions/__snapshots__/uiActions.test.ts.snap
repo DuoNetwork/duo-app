@@ -45,18 +45,13 @@ Array [
     ],
   },
   Object {
-    "type": "uiConversion",
-    "value": Array [
-      Object {
-        "transactionHash": "bbb",
-      },
-    ],
-  },
-  Object {
     "type": "conversion",
     "value": Array [
       Object {
         "transactionHash": "aaa",
+      },
+      Object {
+        "transactionHash": "bbb",
       },
     ],
   },

@@ -380,6 +380,14 @@ export class DynamoUtil {
 					})
 				)
 			);
+		for (const c of allData)
+			try {
+				const receipt = await contractUtil.getTransactionReceipt(c.transactionHash);
+				c.pending = !receipt || !receipt.status;
+			} catch (error) {
+				continue;
+			}
+
 		return allData;
 	}
 
@@ -394,7 +402,8 @@ export class DynamoUtil {
 			tokenA: Number(c[CST.DB_EV_UI_TOKEN_A].N),
 			tokenB: Number(c[CST.DB_EV_UI_TOKEN_B].N),
 			ethFee: Number(c[CST.DB_EV_UI_ETH_FEE].N),
-			duoFee: Number(c[CST.DB_EV_UI_DUO_FEE].N)
+			duoFee: Number(c[CST.DB_EV_UI_DUO_FEE].N),
+			pending: true
 		}));
 	}
 

@@ -55,14 +55,6 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('ui conversion', () => {
-		state = dynamoReducer(state, {
-			type: CST.AC_UI_CONVERSION,
-			value: ['test']
-		});
-		expect(state).toMatchSnapshot();
-	});
-
 	test('totalSupply', () => {
 		state = dynamoReducer(state, {
 			type: CST.AC_TOTAL_SUPPLY,

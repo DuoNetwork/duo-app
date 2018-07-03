@@ -35,6 +35,9 @@ Object {
       Object {
         "transactionHash": "aaa",
       },
+      Object {
+        "transactionHash": "bbb",
+      },
     ],
     "hourly": Object {
       "bitfinex": Object {
@@ -95,11 +98,6 @@ Object {
       },
     ],
     "totalSupply": Array [],
-    "uiConversion": Array [
-      Object {
-        "transactionHash": "bbb",
-      },
-    ],
   },
   "ui": Object {
     "refresh": 1234567890,

@@ -97,13 +97,6 @@ export function conversionUpdate(conversions: IConversion[]) {
 	};
 }
 
-export function uiConversionUpdate(conversions: IConversion[]) {
-	return {
-		type: CST.AC_UI_CONVERSION,
-		value: conversions
-	};
-}
-
 export function fetchConversion(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
@@ -112,16 +105,15 @@ export function fetchConversion(): VoidThunkAction {
 			getState().contract.account,
 			dates
 		);
-		const uiConversion: IConversion[] = [];
 		(await dynamoUtil.queryUIConversionEvent(account)).forEach(uc => {
 			if (
 				!dates.includes(moment.utc(uc.timestamp).format('YYYY-MM-DD')) ||
 				conversion.some(c => c.transactionHash === uc.transactionHash)
 			)
 				dynamoUtil.deleteUIConversionEvent(account, uc);
-			else uiConversion.push(uc);
+			else conversion.push(uc);
 		});
-		dispatch(uiConversionUpdate(uiConversion));
+		conversion.sort((a, b) => -a.timestamp + b.timestamp);
 		dispatch(conversionUpdate(conversion));
 	};
 }

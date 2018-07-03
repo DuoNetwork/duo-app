@@ -227,6 +227,10 @@ class ContractUtil {
 		return this.web3.utils.checkAddressChecksum(this.web3.utils.toChecksumAddress(addr));
 	}
 
+	public getTransactionReceipt(txHash: string) {
+		return this.web3.eth.getTransactionReceipt(txHash);
+	}
+
 	public create(
 		address: string,
 		value: number,

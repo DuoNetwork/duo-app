@@ -91,10 +91,6 @@ describe('actions', () => {
 		expect(dynamoActions.conversionUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
-	test('uiConversionUpdate', () => {
-		expect(dynamoActions.uiConversionUpdate(['test'] as any)).toMatchSnapshot();
-	});
-
 	test('fetchConversion', () => {
 		const store = mockStore({ contract: { account: '0x0' } });
 		util.getDates = jest.fn(() => ['1970-01-15']);

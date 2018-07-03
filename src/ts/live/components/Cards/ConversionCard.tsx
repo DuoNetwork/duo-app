@@ -10,41 +10,11 @@ const { Column } = Table;
 
 interface IProps {
 	conversion: IConversion[];
-	uiConversion: IConversion[];
 }
 
 export default class ConversionCard extends React.PureComponent<IProps> {
-	private formatData(conversion: IConversion) {
-		return {
-			[CST.TH_TIME]: moment(conversion.timestamp).format('YYYY-MM-DD HH:mm:ss'),
-			[CST.TH_TYPE]: conversion.type,
-			[CST.TH_ETH]: d3.format(',.8f')(conversion.eth),
-			[CST.TH_TOKEN_AB]: d3.format(',.8f')(conversion.tokenA),
-			[CST.TH_FEE]: conversion.duoFee
-				? d3.format(',.8f')(conversion.duoFee) + ' ' + CST.TH_DUO
-				: d3.format(',.8f')(conversion.ethFee) + ' ' + CST.TH_ETH,
-			[CST.TH_LINK]:
-				'https://' +
-				(__KOVAN__ ? 'kovan.' : '') +
-				'etherscan.io/tx/' +
-				conversion.transactionHash
-		};
-	}
 	public render() {
-		const { conversion, uiConversion } = this.props;
-		const pending = uiConversion.map(c => ({
-			key: 'ui' + c.transactionHash,
-			[CST.TH_STATUS]: CST.TH_PENDING,
-			[CST.TH_TOOLTIP]: 'Delayed up to 10 minutes. Click to open tx in etherscan.io',
-			...this.formatData(c)
-		}));
-		pending.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
-		const confirmed = conversion.map(c => ({
-			key: c.transactionHash,
-			[CST.TH_STATUS]: CST.TH_MINED,
-			...this.formatData(c)
-		}));
-		confirmed.sort((a, b) => -(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME]));
+		const { conversion } = this.props;
 		return (
 			<SCard
 				title={<SCardTitle>{CST.TH_CONVERSION.toUpperCase()}</SCardTitle>}
@@ -54,7 +24,22 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 			>
 				<STableWrapper>
 					<Table
-						dataSource={[...pending, ...confirmed]}
+						dataSource={conversion.map(c => ({
+							key: c.transactionHash,
+							[CST.TH_TIME]: moment(c.timestamp).format('YYYY-MM-DD HH:mm:ss'),
+							[CST.TH_STATUS]: c.pending ? CST.TH_PENDING : CST.TH_MINED,
+							[CST.TH_TYPE]: c.type,
+							[CST.TH_ETH]: d3.format(',.8f')(c.eth),
+							[CST.TH_TOKEN_AB]: d3.format(',.8f')(c.tokenA),
+							[CST.TH_FEE]: c.duoFee
+								? d3.format(',.8f')(c.duoFee) + ' ' + CST.TH_DUO
+								: d3.format(',.8f')(c.ethFee) + ' ' + CST.TH_ETH,
+							[CST.TH_LINK]:
+								'https://' +
+								(__KOVAN__ ? 'kovan.' : '') +
+								'etherscan.io/tx/' +
+								c.transactionHash
+						}))}
 						pagination={{
 							showSizeChanger: true,
 							showQuickJumper: true,

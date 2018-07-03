@@ -120,6 +120,7 @@ export interface IConversion extends IBaseEvent {
 	tokenB: number;
 	ethFee: number;
 	duoFee: number;
+	pending?: boolean;
 }
 
 export interface IState {
@@ -146,7 +147,6 @@ export interface IDynamoState {
 	readonly price: IAcceptedPrice[];
 	readonly last: ISourceData<ICustodianPrice>;
 	readonly conversion: IConversion[];
-	readonly uiConversion: IConversion[];
 	readonly totalSupply: ITotalSupply[]
 }
 
