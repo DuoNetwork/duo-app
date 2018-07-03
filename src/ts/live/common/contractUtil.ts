@@ -1,6 +1,6 @@
 import TransportU2F from '@ledgerhq/hw-transport-u2f';
 import createLedgerSubprovider from '@ledgerhq/web3-subprovider';
-import createContract from 'truffle-contract';
+// import createContract from 'truffle-contract';
 import Web3 from 'web3';
 import ProviderEngine from 'web3-provider-engine';
 import FetchSubprovider from 'web3-provider-engine/subproviders/fetch';
@@ -50,12 +50,11 @@ class ContractUtil {
 	public switchToMetaMask() {
 		this.web3 = new Web3((window as any).web3.currentProvider);
 		this.wallet = Wallet.MetaMask;
-		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
-		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
+		// this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
+		// this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 	}
 
 	public async switchToLedger() {
-		this.wallet = Wallet.Ledger;
 		const engine = new ProviderEngine();
 		const getTransport = () => TransportU2F.create();
 		const networkId = __KOVAN__ ? CST.ETH_KOVAN_ID : CST.ETH_MAINNET_ID;
@@ -68,12 +67,13 @@ class ContractUtil {
 		engine.addProvider(new FetchSubprovider({ rpcUrl }));
 		engine.start();
 		this.web3 = new Web3(engine);
-		const Custodian = createContract(custodianAbi);
-		Custodian.setProvider(this.web3.currentProvider);
-		this.custodian = await Custodian.at(this.custodianAddr);
-		const DUO = createContract(duoAbi);
-		DUO.setProvider(this.web3.currentProvider);
-		this.duo = await DUO.at(this.duoContractAddr);
+		this.wallet = Wallet.Ledger;
+		// const Custodian = createContract(custodianAbi);
+		// Custodian.setProvider(this.web3.currentProvider);
+		// this.custodian = await Custodian.at(this.custodianAddr);
+		// const DUO = createContract(duoAbi);
+		// DUO.setProvider(this.web3.currentProvider);
+		// this.duo = await DUO.at(this.duoContractAddr);
 	}
 
 	public isReadOnly() {
