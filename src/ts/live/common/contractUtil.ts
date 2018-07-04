@@ -13,9 +13,9 @@ const abiDecoder = require('abi-decoder');
 //import util from './util';
 
 enum Wallet {
+	None,
 	MetaMask,
-	Ledger,
-	None
+	Ledger
 }
 
 class ContractUtil {
@@ -71,7 +71,14 @@ class ContractUtil {
 		return this.wallet === Wallet.None;
 	}
 
+	private ReadOnlyReject() {
+		return Promise.reject('Read Only Mode');
+	}
+
 	public onWeb3AccountUpdate(onUpdate: (addr: string, network: number) => any) {
+		if (this.wallet !== Wallet.MetaMask)
+			return;
+
 		const store = (this.web3.currentProvider as any).publicConfigStore;
 		if (store)
 			store.on('update', () => {
@@ -290,7 +297,7 @@ class ContractUtil {
 					})
 					.on('transactionHash', onTxHash);
 			default:
-				return Promise.reject('Read Only Mode');
+				return this.ReadOnlyReject();
 		}
 	}
 
@@ -317,12 +324,12 @@ class ContractUtil {
 					})
 					.on('transactionHash', onTxHash);
 			default:
-				return Promise.reject('Read Only Mode');
+				return this.ReadOnlyReject();
 		}
 	}
 
 	public duoApprove(address: string, spender: string, value: number) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 
 		return this.duo.methods.approve(spender, this.toWei(value)).send({
 			from: address
@@ -330,7 +337,7 @@ class ContractUtil {
 	}
 
 	public duoTransfer(address: string, to: string, value: number) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 
 		return this.duo.methods.transfer(to, this.toWei(value)).send({
 			from: address
@@ -338,7 +345,7 @@ class ContractUtil {
 	}
 
 	public approve(address: string, spender: string, value: number, isA: boolean) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 
 		return this.custodian.methods.approve(isA ? 0 : 1, spender, this.toWei(value)).send({
 			from: address
@@ -346,7 +353,7 @@ class ContractUtil {
 	}
 
 	public transfer(address: string, to: string, value: number, isA: boolean) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 
 		// dummy from address
 		return this.custodian.methods.transfer(isA ? 0 : 1, address, to, this.toWei(value)).send({
@@ -355,14 +362,14 @@ class ContractUtil {
 	}
 
 	public collectFee(address: string, amount: number) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 		return this.custodian.methods.collectFee(this.toWei(amount)).send({
 			from: address
 		});
 	}
 
 	public setValue(address: string, index: number, newValue: number) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 		return this.custodian.methods
 			.setValue(index, index === 4 || index === 5 ? newValue * 10000 : newValue)
 			.send({
@@ -371,21 +378,21 @@ class ContractUtil {
 	}
 
 	public addAddress(address: string, addr1: string, addr2: string) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 		return this.custodian.methods.addAddress(addr1, addr2).send({
 			from: address
 		});
 	}
 
 	public removeAddress(address: string, addr: string) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 		return this.custodian.methods.addAddress(addr).send({
 			from: address
 		});
 	}
 
 	public updateAddress(address: string, currentRole: string) {
-		if (this.isReadOnly()) return Promise.reject('Read Only Mode');
+		if (this.isReadOnly()) return this.ReadOnlyReject();
 		return this.custodian.methods.addAddress(currentRole).send({
 			from: address
 		});
