@@ -1,48 +1,92 @@
 //import * as d3 from 'd3';
 //import moment from 'moment';
-import { Modal, Radio } from 'antd';
+import { Button, Modal, Radio } from 'antd';
 import * as React from 'react';
-//import * as CST from '../../common/constants';
+import * as CST from '../../common/constants';
 import contractUtil, { Wallet } from '../../common/contractUtil';
 import { SRadioGroup } from '../Cards/_styled';
 
+const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
 
 interface IProps {
-	refresh: () => any;
+	refresh: () => Promise<void>;
 }
 
 interface IState {
+	loading: boolean;
+	accounts: string[];
 	value: Wallet;
 	visible: boolean;
+	msg: string;
+	accountIndex: number;
 }
 
 export default class ProviderRadio extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
+			loading: false,
+			accounts: [],
 			value: contractUtil.wallet,
-			visible: false
+			visible: false,
+			msg: 'Please make sure Ledger is connected.',
+			accountIndex: 0
 		};
 	}
 
-	private handleCancel = () => this.setState({ visible: false });
-
-	private handleChange = async (value: number) => {
-		if (value === Wallet.MetaMask) contractUtil.switchToMetaMask();
-		else if (value === Wallet.Ledger)
-			await contractUtil.switchToLedger();
+	private handleCancel = () =>
 		this.setState({
+			loading: false,
+			accounts: [],
+			visible: false,
+			msg: 'Please make sure Ledger is connected.',
+			accountIndex: 0
+		});
+
+	private handleChange = (value: number) => {
+		if (value === Wallet.MetaMask) {
+			contractUtil.switchToMetaMask();
+			this.setState({
+				value: contractUtil.wallet
+			});
+			this.props.refresh();
+		} else if (value === Wallet.Ledger) this.setState({ visible: true });
+	};
+
+	private handleConnect = () => {
+		this.setState({ msg: 'Connecting to Leger', loading: true });
+		const timer = setTimeout(() => {
+			this.setState({ msg: 'Failed to connect.', loading: false });
+		}, 15000);
+		contractUtil.switchToLedger().then(accounts => {
+			clearTimeout(timer);
+			this.setState({
+				msg: 'Select an account',
+				accounts: accounts,
+				loading: false
+			});
+		});
+	};
+
+	private handleSelect = (index: number) => this.setState({ accountIndex: index });
+
+	private handleSubmit = async () => {
+		this.setState({
+			loading: true,
 			value: contractUtil.wallet
-		})
-		this.props.refresh();
+		});
+		contractUtil.accountIndex = this.state.accountIndex;
+		await this.props.refresh();
+		this.handleCancel();
 	};
 
 	public render() {
+		const { accounts, loading, visible, value, msg, accountIndex } = this.state;
 		return (
 			<div>
 				<SRadioGroup
-					value={this.state.value}
+					value={value}
 					size="small"
 					onChange={e => this.handleChange(e.target.value)}
 				>
@@ -50,14 +94,34 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					<RadioButton value={Wallet.Ledger}>{'Ledger'}</RadioButton>
 				</SRadioGroup>
 				<Modal
-					title="Select Ledger Account"
-					visible={this.state.visible}
-					onOk={this.handleCancel}
+					title="Ledger"
+					visible={visible}
+					maskClosable={false}
 					onCancel={this.handleCancel}
+					footer={[
+						<Button
+							key="submit"
+							type="primary"
+							loading={loading}
+							onClick={accounts.length ? this.handleSubmit : this.handleConnect}
+						>
+							{accounts.length ? CST.TH_SUBMIT : CST.TH_CONNECT}
+						</Button>
+					]}
 				>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
-					<p>Some contents...</p>
+					{msg ? msg : null}
+					{accounts.length ? (
+						<RadioGroup
+							onChange={e => this.handleSelect(e.target.value)}
+							value={accountIndex}
+						>
+							{accounts.map((a, i) => (
+								<Radio key={i} value={i}>
+									{a}
+								</Radio>
+							))}
+						</RadioGroup>
+					) : null}
 				</Modal>
 			</div>
 		);

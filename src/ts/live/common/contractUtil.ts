@@ -23,7 +23,7 @@ class ContractUtil {
 	private duo: Contract;
 	private custodian: any;
 	public wallet: Wallet;
-	private accountIndex: number;
+	public accountIndex: number;
 	public readonly custodianAddr: string;
 	private readonly duoContractAddr: string;
 
@@ -69,11 +69,12 @@ class ContractUtil {
 		engine.addProvider(new FetchSubprovider({ rpcUrl }));
 		engine.start();
 		const newWeb3 = new Web3(engine);
-		await newWeb3.eth.getAccounts();
+		const accounts = await newWeb3.eth.getAccounts();
 		this.web3 = newWeb3;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 		this.wallet = Wallet.Ledger;
+		return accounts;
 	}
 
 	public isReadOnly() {

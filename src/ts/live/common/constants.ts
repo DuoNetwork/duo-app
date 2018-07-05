@@ -83,3 +83,4 @@ export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
 export const TH_REVERTED = 'Reverted';
+export const TH_CONNECT = 'Connect';
