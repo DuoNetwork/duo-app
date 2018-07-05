@@ -11,7 +11,6 @@ import {
 } from '../common/types';
 import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
-import AccountCard from './Cards/AccountCard';
 import BalanceCard from './Cards/BalanceCard';
 import ConversionCard from './Cards/ConversionCard';
 import OperationCard from './Cards/OperationCard';
@@ -46,7 +45,7 @@ export default class Duo extends React.PureComponent<IProps> {
 		} = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_STATUS} />
+				<Header network={network} to={CST.TH_STATUS} refresh={refresh}/>
 				<SContent>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<TimeSeriesCard />
@@ -62,10 +61,7 @@ export default class Duo extends React.PureComponent<IProps> {
 						<BalanceCard account={account} balances={balances} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<div>
-						<AccountCard account={account} refresh={refresh}/>
 						<ConversionCard conversion={conversion} />
-						</div>
 						<OperationCard
 							reset={prices.reset}
 							states={states}

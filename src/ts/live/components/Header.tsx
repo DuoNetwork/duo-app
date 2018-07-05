@@ -2,16 +2,18 @@ import * as React from 'react';
 import duoIcon from '../../../images/DUO_icon.png';
 import * as CST from '../common/constants';
 import { SDivFlexCenter, SHeader } from './_styled';
+import ProviderRadio from './Common/ProviderRadio';
 
 interface IProps {
 	network: number;
 	to: string;
 	width?: string;
+	refresh?: () => any;
 }
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
-		const { network, to, width } = this.props;
+		const { network, to, width, refresh } = this.props;
 		return (
 			<SHeader>
 				<SDivFlexCenter horizontal width={width ? width : '1200px'}>
@@ -51,6 +53,7 @@ export default class Header extends React.PureComponent<IProps> {
 								{to.toUpperCase()}
 							</a>
 						</div>
+						{refresh ? <ProviderRadio refresh={refresh}/> : null}
 					</SDivFlexCenter>
 				</SDivFlexCenter>
 			</SHeader>

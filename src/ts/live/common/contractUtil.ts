@@ -12,7 +12,7 @@ const TransportU2F = require('@ledgerhq/hw-transport-u2f').default;
 const abiDecoder = require('abi-decoder');
 //import util from './util';
 
-enum Wallet {
+export enum Wallet {
 	None,
 	MetaMask,
 	Ledger
@@ -22,7 +22,7 @@ class ContractUtil {
 	private web3: Web3;
 	private duo: Contract;
 	private custodian: any;
-	private wallet: Wallet;
+	public wallet: Wallet;
 	private accountIndex: number;
 	public readonly custodianAddr: string;
 	private readonly duoContractAddr: string;
@@ -68,7 +68,9 @@ class ContractUtil {
 		engine.addProvider(ledger);
 		engine.addProvider(new FetchSubprovider({ rpcUrl }));
 		engine.start();
-		this.web3 = new Web3(engine);
+		const newWeb3 = new Web3(engine);
+		await newWeb3.eth.getAccounts();
+		this.web3 = newWeb3;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 		this.wallet = Wallet.Ledger;
