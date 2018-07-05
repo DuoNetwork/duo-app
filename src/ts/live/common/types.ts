@@ -123,6 +123,7 @@ export interface IConversion extends IBaseEvent {
 	ethFee: number;
 	duoFee: number;
 	pending?: boolean;
+	reverted?: boolean;
 }
 
 export interface IState {

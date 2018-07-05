@@ -7,8 +7,8 @@ import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from '../co
 import * as CST from './constants';
 const ProviderEngine = require('web3-provider-engine');
 const FetchSubprovider = require('web3-provider-engine/subproviders/fetch');
-const createLedgerSubprovider = require('@ledgerhq/web3-subprovider');
-const TransportU2F = require('@ledgerhq/hw-transport-u2f');
+const createLedgerSubprovider = require('@ledgerhq/web3-subprovider').default;
+const TransportU2F = require('@ledgerhq/hw-transport-u2f').default;
 const abiDecoder = require('abi-decoder');
 //import util from './util';
 
@@ -23,6 +23,7 @@ class ContractUtil {
 	private duo: Contract;
 	private custodian: any;
 	private wallet: Wallet;
+	private accountIndex: number;
 	public readonly custodianAddr: string;
 	private readonly duoContractAddr: string;
 
@@ -42,12 +43,16 @@ class ContractUtil {
 			);
 			this.wallet = Wallet.None;
 		}
+		this.accountIndex = 0;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 	}
 
 	public switchToMetaMask() {
 		this.web3 = new Web3((window as any).web3.currentProvider);
+		this.accountIndex = 0;
+		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
+		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 		this.wallet = Wallet.MetaMask;
 	}
 
@@ -64,6 +69,8 @@ class ContractUtil {
 		engine.addProvider(new FetchSubprovider({ rpcUrl }));
 		engine.start();
 		this.web3 = new Web3(engine);
+		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
+		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
 		this.wallet = Wallet.Ledger;
 	}
 
@@ -76,8 +83,7 @@ class ContractUtil {
 	}
 
 	public onWeb3AccountUpdate(onUpdate: (addr: string, network: number) => any) {
-		if (this.wallet !== Wallet.MetaMask)
-			return;
+		if (this.wallet !== Wallet.MetaMask) return;
 
 		const store = (this.web3.currentProvider as any).publicConfigStore;
 		if (store)
@@ -233,7 +239,8 @@ class ContractUtil {
 	}
 
 	public async getCurrentAddress(): Promise<string> {
-		return (await this.web3.eth.getAccounts())[0];
+		const accounts = await this.web3.eth.getAccounts();
+		return accounts[this.accountIndex] || '0x0';
 	}
 
 	public getCurrentNetwork(): Promise<number> {
@@ -279,26 +286,15 @@ class ContractUtil {
 		payFeeInEth: boolean,
 		onTxHash: (hash: string) => any
 	) {
-		switch (this.wallet) {
-			case Wallet.MetaMask:
-				return this.custodian.methods
-					.create(payFeeInEth)
-					.send({
-						from: address,
-						value: this.toWei(value)
-					})
-					.on('transactionHash', onTxHash);
-			case Wallet.Ledger:
-				return this.custodian
-					.create(payFeeInEth, {
-						from: address,
-						gas: CST.CREATE_GAS,
-						value: this.toWei(value)
-					})
-					.on('transactionHash', onTxHash);
-			default:
-				return this.ReadOnlyReject();
-		}
+		if (this.isReadOnly()) return this.ReadOnlyReject();
+
+		return this.custodian.methods
+			.create(payFeeInEth)
+			.send({
+				from: address,
+				value: this.toWei(value)
+			})
+			.on('transactionHash', onTxHash);
 	}
 
 	public redeem(
@@ -308,24 +304,14 @@ class ContractUtil {
 		payFeeInEth: boolean,
 		onTxHash: (hash: string) => any
 	) {
-		switch (this.wallet) {
-			case Wallet.MetaMask:
-				return this.custodian.methods
-					.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth)
-					.send({
-						from: address
-					})
-					.on('transactionHash', onTxHash);
-			case Wallet.Ledger:
-				return this.custodian
-					.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth, {
-						from: address,
-						gas: CST.REDEEM_GAS
-					})
-					.on('transactionHash', onTxHash);
-			default:
-				return this.ReadOnlyReject();
-		}
+		if (this.isReadOnly()) return this.ReadOnlyReject();
+
+		return this.custodian.methods
+			.redeem(this.toWei(amtA), this.toWei(amtB), payFeeInEth)
+			.send({
+				from: address
+			})
+			.on('transactionHash', onTxHash);
 	}
 
 	public duoApprove(address: string, spender: string, value: number) {

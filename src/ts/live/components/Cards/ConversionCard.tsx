@@ -27,7 +27,11 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 						dataSource={conversion.map(c => ({
 							key: c.transactionHash,
 							[CST.TH_TIME]: moment(c.timestamp).format('YYYY-MM-DD HH:mm:ss'),
-							[CST.TH_STATUS]: c.pending ? CST.TH_PENDING : CST.TH_MINED,
+							[CST.TH_STATUS]: c.pending
+								? CST.TH_PENDING
+								: c.reverted
+									? CST.TH_REVERTED
+									: CST.TH_MINED,
 							[CST.TH_TYPE]: c.type,
 							[CST.TH_ETH]: d3.format(',.8f')(c.eth),
 							[CST.TH_TOKEN_AB]: d3.format(',.8f')(c.tokenA),
@@ -66,7 +70,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							title={CST.TH_STATUS}
 							dataIndex={CST.TH_STATUS}
 							key={CST.TH_STATUS}
-							filters={[CST.TH_MINED, CST.TH_PENDING].map(f => ({
+							filters={[CST.TH_MINED, CST.TH_PENDING, CST.TH_REVERTED].map(f => ({
 								text: f,
 								value: f
 							}))}
@@ -92,7 +96,9 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								value: f
 							}))}
 							filterMultiple={false}
-							onFilter={(value, record: ITableRecord) => record[CST.TH_TYPE] === value}
+							onFilter={(value, record: ITableRecord) =>
+								record[CST.TH_TYPE] === value
+							}
 							width={90}
 						/>
 						<Column

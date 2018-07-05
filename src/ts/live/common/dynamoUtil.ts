@@ -384,7 +384,8 @@ export class DynamoUtil {
 		for (const c of allData)
 			try {
 				const receipt = await contractUtil.getTransactionReceipt(c.transactionHash);
-				c.pending = !receipt || !receipt.status;
+				c.pending = !receipt;
+				c.reverted = !receipt.status;
 			} catch (error) {
 				continue;
 			}

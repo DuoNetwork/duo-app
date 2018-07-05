@@ -81,3 +81,5 @@ export const TH_STATE = 'State';
 export const TH_VALUE = 'Value';
 export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
+export const TH_ACCOUNT = 'Account';
+export const TH_REVERTED = 'Reverted';

@@ -16,6 +16,7 @@ module.exports = {
 		filename: "[name].js",
 	},
 	devServer: {
+		https: true,
 		contentBase: "./dist",
 		hot: true,
 		historyApiFallback: true,
