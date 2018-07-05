@@ -13,6 +13,7 @@ export function refreshUpdate() {
 export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 	return async dispatch => {
 		dispatch(contractActions.accountUpdate(await contractUtil.getCurrentAddress()));
+		dispatch(contractActions.getGasPrice());
 		await dispatch(contractActions.getNetwork());
 		await dispatch(contractActions.getCustodianStates());
 		dispatch(contractActions.getCustodianPrices());

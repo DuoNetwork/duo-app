@@ -11,6 +11,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "gasPrice": 0,
   "network": 0,
   "prices": Object {
     "last": "last",
@@ -41,6 +42,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "gasPrice": 0,
   "network": 123,
   "prices": Object {
     "last": "last",
@@ -63,6 +65,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "gasPrice": 0,
   "network": 0,
   "prices": Object {
     "last": "last",
@@ -89,6 +92,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "gasPrice": 0,
   "network": 123,
   "prices": Object {
     "last": "last",
@@ -134,6 +138,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "gasPrice": 0,
   "network": 0,
   "prices": Object {
     "last": "last",
@@ -183,6 +188,7 @@ Object {
     "tokenA": 0,
     "tokenB": 0,
   },
+  "gasPrice": 0,
   "network": 0,
   "prices": Object {
     "last": "last",
@@ -232,6 +238,7 @@ Object {
     "tokenA": 0,
     "tokenB": 0,
   },
+  "gasPrice": 0,
   "network": 0,
   "prices": Object {
     "first": Object {
@@ -299,6 +306,7 @@ Object {
     "tokenA": 0,
     "tokenB": 0,
   },
+  "gasPrice": 0,
   "network": 0,
   "prices": Object {
     "first": Object {
@@ -367,6 +375,7 @@ Object {
   "balances": Object {
     "test": "test",
   },
+  "gasPrice": 0,
   "network": 123,
   "prices": Object {
     "last": "last",

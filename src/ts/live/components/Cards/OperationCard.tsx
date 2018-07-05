@@ -12,13 +12,21 @@ import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types
 import { SDivFlexCenter } from '../_styled';
 import RadioExtra from '../Common/RadioExtra';
 import Erc20Form from '../Forms/Erc20Form';
-import { SCard, SCardConversionForm, SCardList, SCardTitle, SInput } from './_styled';
+import {
+	SCard,
+	SCardConversionForm,
+	SCardExtraDiv,
+	SCardList,
+	SCardTitle,
+	SInput
+} from './_styled';
 
 interface IProps {
 	reset: ICustodianPrice;
 	states: ICustodianStates;
 	balances: IBalances;
 	account: string;
+	gasPrice: number;
 	refresh: () => any;
 }
 
@@ -178,7 +186,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		});
 
 	public render() {
-		const { states, reset, account, balances } = this.props;
+		const { states, reset, account, balances, gasPrice } = this.props;
 		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = isCreate ? eth : Math.min(tokenA, tokenB);
@@ -203,6 +211,13 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 					width="440px"
 					margin="0 0 0 10px"
 					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
+					extra={
+						<SCardExtraDiv>
+							{'Network Gas Price: ' + (gasPrice
+								?  + (gasPrice * 1e9) + ' Gwei'
+								: 'Loading')}
+						</SCardExtraDiv>
+					}
 				>
 					<SCardConversionForm>
 						<SCardList>
@@ -255,8 +270,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 									</li>
 									<li
 										className={
-											'input-line' +
-											(limit <= 0 ? ' input-disabled' : '')
+											'input-line' + (limit <= 0 ? ' input-disabled' : '')
 										}
 									>
 										<SDivFlexCenter horizontal width="50%" padding="0">

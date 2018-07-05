@@ -26,6 +26,7 @@ interface IProps {
 	account: string;
 	sourceLast: ISourceData<ICustodianPrice>;
 	conversion: IConversion[];
+	gasPrice: number;
 	refresh: () => any;
 }
 
@@ -39,6 +40,7 @@ export default class Duo extends React.PureComponent<IProps> {
 			account,
 			sourceLast,
 			conversion,
+			gasPrice,
 			refresh
 		} = this.props;
 		return (
@@ -66,6 +68,7 @@ export default class Duo extends React.PureComponent<IProps> {
 							balances={balances}
 							account={account}
 							refresh={refresh}
+							gasPrice={gasPrice}
 						/>
 					</SDivFlexCenter>
 				</SContent>

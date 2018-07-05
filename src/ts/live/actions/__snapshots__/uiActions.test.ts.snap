@@ -7,6 +7,10 @@ Array [
     "value": "test",
   },
   Object {
+    "type": "gasPrice",
+    "value": 123,
+  },
+  Object {
     "type": "network",
     "value": 123,
   },
@@ -37,23 +41,6 @@ Array [
     "value": Object {
       "test": "test",
     },
-  },
-  Object {
-    "type": "dynamoPrice",
-    "value": Array [
-      "test",
-    ],
-  },
-  Object {
-    "type": "conversion",
-    "value": Array [
-      Object {
-        "transactionHash": "aaa",
-      },
-      Object {
-        "transactionHash": "bbb",
-      },
-    ],
   },
   Object {
     "type": "dynamoHourly",
@@ -88,6 +75,23 @@ Array [
         "test": "test",
       },
     },
+  },
+  Object {
+    "type": "dynamoPrice",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "conversion",
+    "value": Array [
+      Object {
+        "transactionHash": "aaa",
+      },
+      Object {
+        "transactionHash": "bbb",
+      },
+    ],
   },
 ]
 `;

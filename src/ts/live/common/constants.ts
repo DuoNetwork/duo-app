@@ -15,6 +15,7 @@ export const AC_TOTAL_SUPPLY = 'totalSupply';
 export const AC_CONVERSION = 'conversion';
 export const AC_REFRESH = 'refresh';
 export const AC_ADDR_POOL = 'addressPool';
+export const AC_GAS_PX = 'gasPrice';
 
 export const ETH_MAINNET_ID = 1;
 export const ETH_KOVAN_ID = 42;

@@ -21,6 +21,7 @@ Object {
     "balances": Object {
       "test": "test",
     },
+    "gasPrice": 123,
     "network": 123,
     "prices": Array [
       "reset",

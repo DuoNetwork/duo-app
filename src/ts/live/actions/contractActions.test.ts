@@ -123,4 +123,20 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
+
+	test('gasPriceUpdate', () => {
+		expect(contractActions.gasPriceUpdate(123)).toMatchSnapshot();
+	});
+
+	test('getGasPrice', () => {
+		const store = mockStore({});
+		contractUtil.getGasPrice = jest.fn(() => Promise.resolve(456));
+		store.dispatch(contractActions.getGasPrice() as any);
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 1000)
+		);
+	});
 });

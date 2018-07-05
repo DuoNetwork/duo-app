@@ -124,3 +124,15 @@ export function getAddresses(): VoidThunkAction {
 		dispatch(addressPoolUpdate(addrPool));
 	};
 }
+
+export function gasPriceUpdate(gasPrice: number) {
+	return {
+		type: CST.AC_GAS_PX,
+		value: gasPrice
+	}
+}
+
+export function getGasPrice(): VoidThunkAction {
+	return async (dispatch) =>
+		dispatch(gasPriceUpdate(await contractUtil.getGasPrice()));
+}

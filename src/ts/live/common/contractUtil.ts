@@ -229,7 +229,7 @@ class ContractUtil {
 	}
 
 	public async getGasPrice(): Promise<number> {
-		return await this.web3.eth.getGasPrice();
+		return this.fromWei(await this.web3.eth.getGasPrice());
 	}
 
 	public async getCurrentAddress(): Promise<string> {

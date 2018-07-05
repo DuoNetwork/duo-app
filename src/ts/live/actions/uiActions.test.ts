@@ -19,6 +19,7 @@ describe('actions', () => {
 		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
 		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
 		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
+		contractUtil.getGasPrice = jest.fn(() => Promise.resolve(123));
 		contractUtil.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'

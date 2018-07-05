@@ -139,6 +139,7 @@ export interface IContractState {
 	readonly addressPool: IAddress[];
 	readonly account: string;
 	readonly network: number;
+	readonly gasPrice: number;
 	readonly allBalances: {[index: number]: IAccountBalances}
 }
 

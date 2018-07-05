@@ -13,7 +13,8 @@ function mapStateToProps(state: IState) {
 		network: state.contract.network,
 		account: state.contract.account,
 		sourceLast: state.dynamo.last,
-		conversion: state.dynamo.conversion
+		conversion: state.dynamo.conversion,
+		gasPrice: state.contract.gasPrice
 	};
 }
 

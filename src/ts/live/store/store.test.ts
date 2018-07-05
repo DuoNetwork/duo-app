@@ -19,6 +19,7 @@ describe('store', () => {
 		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
 		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
 		contractUtil.getUserAddress = jest.fn(() => Promise.resolve('0x0'));
+		contractUtil.getGasPrice = jest.fn(() => Promise.resolve(123));
 		contractUtil.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
