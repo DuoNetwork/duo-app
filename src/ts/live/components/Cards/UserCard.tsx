@@ -2,7 +2,7 @@ import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import { IAccountBalances } from '../../common/types';
+import { IAccountBalances, ITableRecord } from '../../common/types';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
@@ -18,7 +18,7 @@ const format = d3.format(',.4f');
 export default class UserCard extends React.PureComponent<IProps> {
 	public render() {
 		const { allBalances, userLength, load } = this.props;
-		const data: object[] = [];
+		const data: ITableRecord[] = [];
 		for (let i = 0; i < userLength; i++) {
 			const b = allBalances[i];
 			if (b)
@@ -30,7 +30,12 @@ export default class UserCard extends React.PureComponent<IProps> {
 					[CST.TH_DUO]: format(b.duo),
 					[CST.TH_TOKEN_A]: format(b.tokenA),
 					[CST.TH_TOKEN_B]: format(b.tokenB),
-					[CST.TH_ALLOWANCE]: format(b.allowance)
+					[CST.TH_ALLOWANCE]: format(b.allowance),
+					[CST.TH_LINK]:
+						'https://' +
+						(__KOVAN__ ? 'kovan.' : '') +
+						'etherscan.io/address/' +
+						b.account
 				});
 			else
 				data.push({
@@ -41,7 +46,8 @@ export default class UserCard extends React.PureComponent<IProps> {
 					[CST.TH_DUO]: 'Loading',
 					[CST.TH_TOKEN_A]: 'Loading',
 					[CST.TH_TOKEN_B]: 'Loading',
-					[CST.TH_ALLOWANCE]: 'Loading'
+					[CST.TH_ALLOWANCE]: 'Loading',
+					[CST.TH_LINK]: 'https://' + (__KOVAN__ ? 'kovan.' : '') + 'etherscan.io'
 				});
 		}
 		return (
@@ -60,8 +66,14 @@ export default class UserCard extends React.PureComponent<IProps> {
 							pageSize: 20,
 							size: 'small',
 							onChange: (page: number, pageSize?: number) =>
-								load((page - 1) * (pageSize || 20), Math.min(userLength, page * (pageSize || 20)))
+								load(
+									(page - 1) * (pageSize || 20),
+									Math.min(userLength, page * (pageSize || 20))
+								)
 						}}
+						onRow={record => ({
+							onClick: () => window.open(record[CST.TH_LINK])
+						})}
 					>
 						<Column title={CST.TH_NO} dataIndex={CST.TH_NO} width={60} />
 						<Column title={CST.TH_ADDRESS} dataIndex={CST.TH_ADDRESS} width={455} />
