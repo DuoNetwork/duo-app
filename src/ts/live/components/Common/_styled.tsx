@@ -1,4 +1,4 @@
-import { Menu } from 'antd';
+import { Menu, Modal } from 'antd';
 import styled, { injectGlobal } from 'styled-components';
 import { ColorStyles } from '../../common/styles';
 
@@ -26,6 +26,34 @@ export const SItem = styled(Menu.Item)`
 	}
 	&:hover {
 		background: ${ColorStyles.HoverBackgroundSolid};
+	}
+`;
+
+export const SModal = styled(Modal)`
+	color: ${ColorStyles.TextWhiteAlpha};
+	.ant-modal-content {
+		border-radius: 0;
+		background: ${ColorStyles.CardBackgroundDarkSolid};
+	}
+	.ant-modal-header {
+		border-radius: 0;
+		background: transparent;
+		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	.ant-modal-footer {
+		border-radius: 0;
+		background: transparent;
+		border-top: 1px solid rgba(255, 255, 255, 0.05);
+	}
+	.ant-modal-title {
+		color: ${ColorStyles.TextWhiteAlpha};
+	}
+	.ant-modal-close {
+		color: ${ColorStyles.TextWhiteAlphaLL};
+	}
+	.ant-modal-close:focus,
+	.ant-modal-close:hover {
+		color: ${ColorStyles.TextWhiteAlphaL};
 	}
 `;
 
@@ -59,6 +87,44 @@ injectGlobal([
 		}
 		.ant-dropdown-trigger .anticon-down {
 			color: ${ColorStyles.TextWhiteAlphaLLL};
+		}
+		.ant-btn {
+			border-radius: 0;
+			line-height: 14px;
+		}
+		.ant-btn:before {
+			background: ${ColorStyles.BorderWhite2};
+		}
+		.ant-btn-ghost {
+			background-color: transparent;
+			color: ${ColorStyles.TextWhiteAlphaL};
+			border: 1px solid;
+			border-color: ${ColorStyles.BorderWhite4};
+			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
+				background-color 0.2s ease-in-out;
+		}
+		.ant-btn-ghost:hover, .ant-btn-ghost:focus {
+			color: ${ColorStyles.TextWhiteAlpha};
+			border-color: ${ColorStyles.BorderWhite6};
+			background-color: ${ColorStyles.ButtonHoverWhite1};
+		}
+		.ant-radio-group {
+			padding-top: 10px;
+		}
+		.ant-radio-wrapper {
+			color: ${ColorStyles.TextWhiteAlphaL};
+			width: 100%;
+			padding: 2px 0;
+		}
+		.ant-radio-wrapper:nth-child(odd) {
+			background: ${ColorStyles.ListHighlight};
+		}
+		.ant-radio-wrapper:hover {
+			background: ${ColorStyles.HoverBackgroundSolid};
+		}
+		.ant-radio-wrapper-checked {
+			background: ${ColorStyles.SelectBackgroundSolid} !important;
+			box-shadow:inset 0px 0px 0px 1px ${ColorStyles.BorderWhite3};
 		}
 	}
 `

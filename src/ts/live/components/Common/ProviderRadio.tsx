@@ -1,10 +1,11 @@
 //import * as d3 from 'd3';
 //import moment from 'moment';
-import { Button, Modal, Radio } from 'antd';
+import { Button, Radio } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import contractUtil, { Wallet } from '../../common/contractUtil';
 import { SRadioGroup } from '../Cards/_styled';
+import { SModal } from './_styled';
 
 const RadioGroup = Radio.Group;
 const RadioButton = Radio.Button;
@@ -93,15 +94,15 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					<RadioButton value={Wallet.MetaMask}>{'MetaMask'}</RadioButton>
 					<RadioButton value={Wallet.Ledger}>{'Ledger'}</RadioButton>
 				</SRadioGroup>
-				<Modal
-					title="Ledger"
+				<SModal
+					title="LEDGER ACCOUNT MANAGE"
 					visible={visible}
 					maskClosable={false}
 					onCancel={this.handleCancel}
 					footer={[
 						<Button
 							key="submit"
-							type="primary"
+							type="ghost"
 							loading={loading}
 							onClick={accounts.length ? this.handleSubmit : this.handleConnect}
 						>
@@ -122,7 +123,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 							))}
 						</RadioGroup>
 					) : null}
-				</Modal>
+				</SModal>
 			</div>
 		);
 	}
