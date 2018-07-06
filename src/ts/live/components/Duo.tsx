@@ -45,7 +45,7 @@ export default class Duo extends React.PureComponent<IProps> {
 		} = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_STATUS} refresh={refresh}/>
+				<Header account={account} network={network} to={CST.TH_STATUS} refresh={refresh}/>
 				<SContent>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<TimeSeriesCard />

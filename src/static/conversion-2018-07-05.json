@@ -1,0 +1,107 @@
+{
+    "day": "2018-07-05",
+    "start": 7876617,
+    "end": 7887250,
+    "conversion": {
+        "0xFB134e9417Db5Ffb05B0a281f155be6C33c960B9": {
+            "rank": 4,
+            "ethFeeVolume": 0,
+            "duoFeeVolume": 3.012629840390625,
+            "totalVolume": 4.518944760585938,
+            "dailyEthFeeVolume": 0,
+            "dailyDuoFeeVolume": 3.012629840390625,
+            "dailyTotalVolume": 4.518944760585938,
+            "dailyRank": 4
+        },
+        "0xc1cE932ef57b9756B1C06AA5073c262b491478a6": {
+            "rank": 5,
+            "ethFeeVolume": 2.8172286273708638,
+            "duoFeeVolume": 0.995,
+            "totalVolume": 4.3097286273708635,
+            "dailyEthFeeVolume": 2.8172286273708638,
+            "dailyDuoFeeVolume": 0.995,
+            "dailyTotalVolume": 4.3097286273708635,
+            "dailyRank": 5
+        },
+        "0xf5921ff118e7Fb7fE74559A3632fB2d0bcc35AF2": {
+            "rank": 7,
+            "ethFeeVolume": 0.85459062913712,
+            "duoFeeVolume": 0,
+            "totalVolume": 0.85459062913712,
+            "dailyEthFeeVolume": 0.85459062913712,
+            "dailyDuoFeeVolume": 0,
+            "dailyTotalVolume": 0.85459062913712,
+            "dailyRank": 7
+        },
+        "0x8E0E4DE505ee21ECA63fAF762B48D774E8BB8f51": {
+            "rank": 3,
+            "ethFeeVolume": 4.750686479846742,
+            "duoFeeVolume": 0,
+            "totalVolume": 4.750686479846742,
+            "dailyEthFeeVolume": 4.750686479846742,
+            "dailyDuoFeeVolume": 0,
+            "dailyTotalVolume": 4.750686479846742,
+            "dailyRank": 3
+        },
+        "0x1dB6e56794bf4ECF61c02fa7a72F1Ca359f04DE5": {
+            "rank": 10,
+            "ethFeeVolume": 0.004455104445,
+            "duoFeeVolume": 0,
+            "totalVolume": 0.004455104445,
+            "dailyEthFeeVolume": 0.004455104445,
+            "dailyDuoFeeVolume": 0,
+            "dailyTotalVolume": 0.004455104445,
+            "dailyRank": 10
+        },
+        "0x3fd45E12A2EEa668cBe28F6F0896e936101458ca": {
+            "rank": 6,
+            "ethFeeVolume": 2.0235563188829997,
+            "duoFeeVolume": 0.73767649597075,
+            "totalVolume": 3.1300710628391246,
+            "dailyEthFeeVolume": 2.0235563188829997,
+            "dailyDuoFeeVolume": 0.73767649597075,
+            "dailyTotalVolume": 3.1300710628391246,
+            "dailyRank": 6
+        },
+        "0xcfcb548e019aD88d27B7B4904329906Ba8737Ef8": {
+            "rank": 8,
+            "ethFeeVolume": 0.2474948025,
+            "duoFeeVolume": 0,
+            "totalVolume": 0.2474948025,
+            "dailyEthFeeVolume": 0.2474948025,
+            "dailyDuoFeeVolume": 0,
+            "dailyTotalVolume": 0.2474948025,
+            "dailyRank": 8
+        },
+        "0xdB82442e01471C5b89EDf0d663faFC061BE073FD": {
+            "rank": 1,
+            "ethFeeVolume": 4.711230324652499,
+            "duoFeeVolume": 7.062078768450002,
+            "totalVolume": 15.304348477327503,
+            "dailyEthFeeVolume": 4.711230324652499,
+            "dailyDuoFeeVolume": 7.062078768450002,
+            "dailyTotalVolume": 15.304348477327503,
+            "dailyRank": 1
+        },
+        "0x5c14b290A04a4C0A20093ECA10dB1B2536691C25": {
+            "rank": 9,
+            "ethFeeVolume": 0.14793570891,
+            "duoFeeVolume": 0,
+            "totalVolume": 0.14793570891,
+            "dailyEthFeeVolume": 0.14793570891,
+            "dailyDuoFeeVolume": 0,
+            "dailyTotalVolume": 0.14793570891,
+            "dailyRank": 9
+        },
+        "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4": {
+            "rank": 2,
+            "ethFeeVolume": 5.585650976168047,
+            "duoFeeVolume": 0.5979750925038062,
+            "totalVolume": 6.482613614923756,
+            "dailyEthFeeVolume": 5.585650976168047,
+            "dailyDuoFeeVolume": 0.5979750925038062,
+            "dailyTotalVolume": 6.482613614923756,
+            "dailyRank": 2
+        }
+    }
+}

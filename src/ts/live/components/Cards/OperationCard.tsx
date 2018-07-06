@@ -189,7 +189,8 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		const { states, reset, account, balances, gasPrice } = this.props;
 		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
-		const limit = isCreate ? eth : Math.min(tokenA, tokenB);
+		let limit = isCreate ? eth : Math.min(tokenA, tokenB);
+		limit = Math.floor(limit * 1e8) / 1e8;
 
 		const fee =
 			(isCreate
@@ -213,9 +214,8 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
 					extra={
 						<SCardExtraDiv>
-							{'Network Gas Price: ' + (gasPrice
-								?  + (gasPrice * 1e9) + ' Gwei'
-								: 'Loading')}
+							{'Network Gas Price: ' +
+								(gasPrice ? +(gasPrice * 1e9) + ' Gwei' : 'Loading')}
 						</SCardExtraDiv>
 					}
 				>
@@ -274,13 +274,13 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 										}
 									>
 										<SDivFlexCenter horizontal width="50%" padding="0">
-											{[0.25, 0.5, 0.75, 1].map(pct => (
+											{[0.25, 0.5, 0.75, 0.99].map(pct => (
 												<button
 													key={pct + ''}
 													className="percent-button"
 													onClick={() =>
 														this.handleAmountButtonClick(
-															limit * pct + ''
+															Math.floor(limit * pct * 1e8) / 1e8 + ''
 														)
 													}
 												>

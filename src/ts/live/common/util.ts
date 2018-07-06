@@ -50,8 +50,10 @@ class Util {
 	}
 
 	public formatBalance(num: number) {
+		if (Math.abs(num) < 1e-8)
+			return '0.000';
 		return d3
-			.format(num > 1 ? ',.4s' : ',.4n')(num)
+			.format(Math.abs(num) > 1 ? ',.4s' : ',.4n')(num)
 			.toUpperCase()
 			.replace(/G/g, 'B')
 	}
