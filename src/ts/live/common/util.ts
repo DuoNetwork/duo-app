@@ -46,7 +46,7 @@ class Util {
 	}
 
 	public round(num: number) {
-		return +(Math.round((num + 'e+8') as any) + 'e-8');
+		return +(Math.floor((num + 'e+8') as any) + 'e-8');
 	}
 
 	public formatBalance(num: number) {

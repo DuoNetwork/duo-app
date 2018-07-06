@@ -9,6 +9,7 @@ import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
 import dynamoUtil from '../../common/dynamoUtil';
 import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
+import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import RadioExtra from '../Common/RadioExtra';
 import Erc20Form from '../Forms/Erc20Form';
@@ -189,8 +190,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		const { states, reset, account, balances, gasPrice } = this.props;
 		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
-		let limit = isCreate ? eth : Math.min(tokenA, tokenB);
-		limit = Math.floor(limit * 1e8) / 1e8;
+		const limit = util.round(isCreate ? eth : Math.min(tokenA, tokenB));
 
 		const fee =
 			(isCreate
@@ -280,7 +280,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 													className="percent-button"
 													onClick={() =>
 														this.handleAmountButtonClick(
-															Math.floor(limit * pct * 1e8) / 1e8 + ''
+															util.round(limit * pct) + ''
 														)
 													}
 												>
