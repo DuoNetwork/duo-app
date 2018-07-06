@@ -2,6 +2,7 @@ import * as React from 'react';
 import duoIcon from '../../../images/DUO_icon.png';
 import conversion from '../../../static/conversion-2018-07-05.json';
 import * as CST from '../common/constants';
+import util from '../common/util';
 import { SDivFlexCenter, SHeader } from './_styled';
 import ProviderRadio from './Common/ProviderRadio';
 
@@ -33,7 +34,11 @@ export default class Header extends React.PureComponent<IProps> {
 								choose the corret network in Metamask
 							</span>
 						) : accountConversion ? (
-							'Rank for your address as of 06 Jul 00:00 : ' + accountConversion.rank
+							'As of 06 Jul 00:00:00 UTC, rank for your address  : ' +
+							accountConversion.rank +
+							', Total Volume: ' +
+							util.formatBalance(accountConversion.volume) +
+							' ETH'
 						) : (
 							''
 						)
