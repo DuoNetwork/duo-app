@@ -108,9 +108,6 @@ injectGlobal([
 			border-color: ${ColorStyles.BorderWhite6};
 			background-color: ${ColorStyles.ButtonHoverWhite1};
 		}
-		.ant-radio-group {
-			padding-top: 10px;
-		}
 		.ant-radio-wrapper {
 			color: ${ColorStyles.TextWhiteAlphaL};
 			width: 100%;

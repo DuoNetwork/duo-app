@@ -2,6 +2,7 @@ import * as React from 'react';
 import duoIcon from '../../../images/DUO_icon.png';
 import conversion from '../../../static/conversion-2018-07-05.json';
 import * as CST from '../common/constants';
+import { ColorStyles } from '../common/styles';
 import util from '../common/util';
 import { SDivFlexCenter, SHeader } from './_styled';
 import ProviderRadio from './Common/ProviderRadio';
@@ -13,6 +14,19 @@ interface IProps {
 	account?: string;
 	refresh?: () => any;
 }
+
+const RankDiv = (props: { rank: number; volume: string }) => {
+	const { rank, volume } = props;
+	return (
+		<div style={{ color: ColorStyles.TextWhiteAlphaL, fontWeight: 200 }}>
+			Rank:<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>
+				{' ' + rank}
+			</span>, Total Volume:{' '}
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{volume}</span> ETH
+			(updated daily)
+		</div>
+	);
+};
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
@@ -34,11 +48,10 @@ export default class Header extends React.PureComponent<IProps> {
 								choose the corret network in Metamask
 							</span>
 						) : accountConversion ? (
-							'As of 06 Jul 00:00:00 UTC, rank for your address  : ' +
-							accountConversion.rank +
-							', Total Volume: ' +
-							util.formatBalance(accountConversion.volume) +
-							' ETH'
+							<RankDiv
+								rank={accountConversion.rank}
+								volume={util.formatBalance(accountConversion.volume)}
+							/>
 						) : (
 							''
 						)
