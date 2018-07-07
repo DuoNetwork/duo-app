@@ -1,6 +1,6 @@
 import * as React from 'react';
 import duoIcon from '../../../images/DUO_icon.png';
-import conversion from '../../../static/conversion-2018-07-05.json';
+import conversion from '../../../static/conversion.json';
 import * as CST from '../common/constants';
 import { ColorStyles } from '../common/styles';
 import util from '../common/util';
