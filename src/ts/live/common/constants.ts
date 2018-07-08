@@ -32,6 +32,8 @@ export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
 export const RX_INTEGER = /^[0-9]+?$/;
 
+export const PENDING_TX_TIMEOUT = 1200000;
+
 export const TH_CREATE = 'Create';
 export const TH_REDEEM = 'Redeem';
 export const TH_ETH = 'ETH';

@@ -99,6 +99,7 @@ export function conversionUpdate(conversions: IConversion[]) {
 
 export function fetchConversion(): VoidThunkAction {
 	return async (dispatch, getState) => {
+		const nowTimestamp = util.getNowTimestamp();
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		const account = getState().contract.account;
 		const conversion = await dynamoUtil.queryConversionEvent(
@@ -108,7 +109,8 @@ export function fetchConversion(): VoidThunkAction {
 		(await dynamoUtil.queryUIConversionEvent(account)).forEach(uc => {
 			if (
 				!dates.includes(moment.utc(uc.timestamp).format('YYYY-MM-DD')) ||
-				conversion.some(c => c.transactionHash === uc.transactionHash)
+				conversion.some(c => c.transactionHash === uc.transactionHash) ||
+				(uc.pending && nowTimestamp - uc.timestamp > CST.PENDING_TX_TIMEOUT)
 			)
 				dynamoUtil.deleteUIConversionEvent(account, uc);
 			else conversion.push(uc);
