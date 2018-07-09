@@ -115,6 +115,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					]}
 				>
 					{msg ? msg : null}
+					<br />
 					{showTip ? (
 						<p className="ledger-reminder">
 							<b>Contract data</b> and <b>Browswe support</b> must be set to{' '}
@@ -123,6 +124,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					) : null}
 					{accounts.length ? (
 						<RadioGroup
+							className='ledger-account-selector'
 							onChange={e => this.handleSelect(e.target.value)}
 							value={accountIndex}
 						>
