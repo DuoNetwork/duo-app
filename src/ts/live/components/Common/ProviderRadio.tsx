@@ -21,6 +21,7 @@ interface IState {
 	visible: boolean;
 	msg: string;
 	accountIndex: number;
+	showTip: boolean;
 }
 
 export default class ProviderRadio extends React.Component<IProps, IState> {
@@ -32,7 +33,8 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 			value: contractUtil.wallet,
 			visible: false,
 			msg: 'Please make sure Ledger is connected.',
-			accountIndex: 0
+			accountIndex: 0,
+			showTip: true
 		};
 	}
 
@@ -42,7 +44,8 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 			accounts: [],
 			visible: false,
 			msg: 'Please make sure Ledger is connected.',
-			accountIndex: 0
+			accountIndex: 0,
+			showTip: true
 		});
 
 	private handleChange = (value: number) => {
@@ -65,7 +68,8 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 			this.setState({
 				msg: 'Select an account',
 				accounts: accounts,
-				loading: false
+				loading: false,
+				showTip: false
 			});
 		});
 	};
@@ -83,7 +87,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 	};
 
 	public render() {
-		const { accounts, loading, visible, value, msg, accountIndex } = this.state;
+		const { accounts, loading, visible, value, msg, accountIndex, showTip } = this.state;
 		return (
 			<div>
 				<SRadioGroup
@@ -111,9 +115,10 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					]}
 				>
 					{msg ? msg : null}
-					{msg === 'Please make sure Ledger is connected.' ? (
-						<p className='ledger-reminder'>
-							Please set 'Contract data' and 'Browswe support' to true on your Ledger
+					{showTip ? (
+						<p className="ledger-reminder">
+							<b>Contract data</b> and <b>Browswe support</b> must be set to{' '}
+							<b>Yes</b>
 						</p>
 					) : null}
 					{accounts.length ? (
