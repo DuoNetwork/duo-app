@@ -1,4 +1,4 @@
-import { Tooltip } from 'antd';
+import { Button, Tooltip } from 'antd';
 import * as React from 'react';
 import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
@@ -14,6 +14,7 @@ import { SCard, SCardAssetTag, SCardExtendExtraDiv, SCardTitle } from './_styled
 interface IProps {
 	account: string;
 	balances: IBalances;
+	refreshBalance: () => any;
 }
 
 const BalanceInfo = (props: { icon: string; name: string; value: number; allowance?: number }) => {
@@ -29,9 +30,7 @@ const BalanceInfo = (props: { icon: string; name: string; value: number; allowan
 			<div className="tag-content">
 				<div>
 					<div>
-						<div className={'tag-price'}>
-							{util.formatBalance(value)}
-						</div>
+						<div className={'tag-price'}>{util.formatBalance(value)}</div>
 						{allowance !== undefined ? (
 							<Tooltip title={'Allowance for ' + CST.TH_BEETHOVEN}>
 								<div className="tag-subtext">
@@ -73,10 +72,15 @@ const ExtendExtraDiv = (props: { accountShow: string; account: string }) => {
 
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
-		const { balances, account } = this.props;
+		const { balances, account, refreshBalance } = this.props;
 		return (
 			<SCard
-				title={<SCardTitle>{CST.TH_BALANCE.toUpperCase()}</SCardTitle>}
+				title={
+					<SCardTitle>
+						{CST.TH_BALANCE.toUpperCase()}{' '}
+						<Button icon="reload" onClick={refreshBalance} />
+					</SCardTitle>
+				}
 				width="640px"
 				margin="0 0 0 10px"
 				extra={

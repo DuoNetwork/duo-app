@@ -28,6 +28,7 @@ interface IProps {
 	conversion: IConversion[];
 	gasPrice: number;
 	refresh: () => any;
+	refreshBalance: () => any;
 }
 
 export default class Duo extends React.PureComponent<IProps> {
@@ -41,11 +42,12 @@ export default class Duo extends React.PureComponent<IProps> {
 			sourceLast,
 			conversion,
 			gasPrice,
-			refresh
+			refresh,
+			refreshBalance
 		} = this.props;
 		return (
 			<Layout>
-				<Header account={account} network={network} to={CST.TH_STATUS} refresh={refresh}/>
+				<Header account={account} network={network} to={CST.TH_STATUS} refresh={refresh} />
 				<SContent>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<TimeSeriesCard />
@@ -58,7 +60,11 @@ export default class Duo extends React.PureComponent<IProps> {
 							states={states}
 							sourceLast={sourceLast}
 						/>
-						<BalanceCard account={account} balances={balances} />
+						<BalanceCard
+							account={account}
+							balances={balances}
+							refreshBalance={refreshBalance}
+						/>
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<ConversionCard conversion={conversion} />

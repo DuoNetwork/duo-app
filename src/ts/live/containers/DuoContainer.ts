@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
+import * as contractActions from '../actions/contractActions';
 import * as uiActions from '../actions/uiActions';
 import { IState } from '../common/types';
 import Duo from '../components/Duo';
@@ -20,7 +21,8 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		refresh: () => dispatch(uiActions.refresh())
+		refresh: () => dispatch(uiActions.refresh()),
+		refreshBalance: () => dispatch(contractActions.getBalances())
 	};
 }
 
