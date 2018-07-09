@@ -1,4 +1,4 @@
-import { Button, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 import * as React from 'react';
 import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
@@ -9,7 +9,7 @@ import { ColorStyles } from '../../common/styles';
 import { IBalances } from '../../common/types';
 import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
-import { SCard, SCardAssetTag, SCardExtendExtraDiv, SCardTitle } from './_styled';
+import { SCard, SCardAssetTag, SCardExtendExtraDiv, SCardTitle, SRefreshButton } from './_styled';
 
 interface IProps {
 	account: string;
@@ -78,7 +78,7 @@ export default class BalanceCard extends React.Component<IProps> {
 				title={
 					<SCardTitle>
 						{CST.TH_BALANCE.toUpperCase()}{' '}
-						<Button icon="reload" onClick={refreshBalance} />
+						<SRefreshButton icon="reload" onClick={refreshBalance} />
 					</SCardTitle>
 				}
 				width="640px"

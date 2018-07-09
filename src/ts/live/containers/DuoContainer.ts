@@ -22,7 +22,10 @@ function mapStateToProps(state: IState) {
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
 		refresh: () => dispatch(uiActions.refresh()),
-		refreshBalance: () => dispatch(contractActions.getBalances())
+		refreshBalance: () => {
+			dispatch(contractActions.getBalances());
+			dispatch(contractActions.getCustodianStates());
+		}
 	};
 }
 

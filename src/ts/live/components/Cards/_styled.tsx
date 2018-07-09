@@ -1,4 +1,4 @@
-import { Card, Radio, Select } from 'antd';
+import { Button, Card, Radio, Select } from 'antd';
 import styled, { injectGlobal } from 'styled-components';
 import { ColorStyles } from '../../common/styles';
 
@@ -1024,3 +1024,18 @@ export const SChartWrapper = styled.div`
 	border: 1px dashed;
 	border-color: ${ColorStyles.BorderWhite1};
 `;
+
+export const SRefreshButton = styled(Button as any)`
+	color: ${ColorStyles.TextWhiteAlphaLL};
+	border: none!important;
+	background: transparent!important;
+	&:hover {
+		color: ${ColorStyles.TextWhiteAlpha};
+	}
+	&:focus {
+		color: ${ColorStyles.TextWhiteAlphaL};
+	}
+	&:after {
+		border: 0 solid ${ColorStyles.BorderWhite5};
+	}
+`
