@@ -111,6 +111,11 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					]}
 				>
 					{msg ? msg : null}
+					{msg === 'Please make sure Ledger is connected.' ? (
+						<p className='ledger-reminder'>
+							Please set 'Contract data' and 'Browswe support' to true on your Ledger
+						</p>
+					) : null}
 					{accounts.length ? (
 						<RadioGroup
 							onChange={e => this.handleSelect(e.target.value)}

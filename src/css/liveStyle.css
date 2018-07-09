@@ -120,3 +120,7 @@ path.domain {
 	stroke-dasharray: 2 4;
 	opacity: 0.4;
 }
+.ledger-reminder {
+	color: rgba(250, 250, 250, 0.6);
+	margin-top: 12px;
+}
