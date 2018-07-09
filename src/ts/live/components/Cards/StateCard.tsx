@@ -12,11 +12,12 @@ import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle 
 interface IProps {
 	reset: ICustodianPrice;
 	states: ICustodianStates;
+	mobile?: boolean;
 }
 
 export default class StateCard extends React.PureComponent<IProps> {
 	public render() {
-		const { states, reset } = this.props;
+		const { states, reset, mobile } = this.props;
 		const tooltioText =
 			states.state === CST.CTD_TRADING
 				? 'Trading state, operations are permitted during current state.'
@@ -42,8 +43,8 @@ export default class StateCard extends React.PureComponent<IProps> {
 						</a>
 					</SCardTitle>
 				}
-				width="420px"
-				margin="0 0 0 10px"
+				width={mobile ? '100%' : '420px'}
+				margin={mobile ? '0' : '0 0 0 10px'}
 				extra={
 					<SCardExtraDivSolid>
 						<Tooltip title={tooltioText}>

@@ -1,5 +1,6 @@
 import { Layout } from 'antd';
 import * as React from 'react';
+import MediaQuery from 'react-responsive';
 import * as CST from '../common/constants';
 import {
 	IBalances,
@@ -46,39 +47,58 @@ export default class Duo extends React.PureComponent<IProps> {
 			refreshBalance
 		} = this.props;
 		return (
-			<Layout>
-				<Header account={account} network={network} to={CST.TH_STATUS} refresh={refresh} />
-				<SContent>
-					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<TimeSeriesCard />
-						<StateCard states={states} reset={prices.reset} />
-					</SDivFlexCenter>
-					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<PriceCard
-							last={prices.last}
-							reset={prices.reset}
-							states={states}
-							sourceLast={sourceLast}
-						/>
-						<BalanceCard
+			<div>
+				<MediaQuery minDeviceWidth={900}>
+					<Layout>
+						<Header
 							account={account}
-							balances={balances}
-							refreshBalance={refreshBalance}
-						/>
-					</SDivFlexCenter>
-					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<ConversionCard conversion={conversion} />
-						<OperationCard
-							reset={prices.reset}
-							states={states}
-							balances={balances}
-							account={account}
+							network={network}
+							to={CST.TH_STATUS}
 							refresh={refresh}
-							gasPrice={gasPrice}
 						/>
-					</SDivFlexCenter>
-				</SContent>
-			</Layout>
+						<SContent>
+							<SDivFlexCenter center horizontal marginBottom="20px;">
+								<TimeSeriesCard />
+								<StateCard states={states} reset={prices.reset} />
+							</SDivFlexCenter>
+							<SDivFlexCenter center horizontal marginBottom="20px;">
+								<PriceCard
+									last={prices.last}
+									reset={prices.reset}
+									states={states}
+									sourceLast={sourceLast}
+								/>
+								<BalanceCard
+									account={account}
+									balances={balances}
+									refreshBalance={refreshBalance}
+								/>
+							</SDivFlexCenter>
+							<SDivFlexCenter center horizontal marginBottom="20px;">
+								<ConversionCard conversion={conversion} />
+								<OperationCard
+									reset={prices.reset}
+									states={states}
+									balances={balances}
+									account={account}
+									refresh={refresh}
+									gasPrice={gasPrice}
+								/>
+							</SDivFlexCenter>
+						</SContent>
+					</Layout>
+				</MediaQuery>
+				<MediaQuery maxDeviceWidth={899}>
+					<StateCard states={states} reset={prices.reset} mobile/>
+					<PriceCard
+						last={prices.last}
+						reset={prices.reset}
+						states={states}
+						sourceLast={sourceLast}
+						mobile
+					/>
+				</MediaQuery>
+			</div>
 		);
 	}
 }

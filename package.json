@@ -81,6 +81,7 @@
   "dependencies": {
     "@ledgerhq/hw-transport-u2f": "^4.0.0",
     "@ledgerhq/web3-subprovider": "^4.1.0",
+    "@types/react-responsive": "^3.0.1",
     "abi-decoder": "^1.1.0",
     "antd": "^3.6.3",
     "aws-sdk": "^2.259.1",
@@ -90,6 +91,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
+    "react-responsive": "^4.1.0",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",

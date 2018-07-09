@@ -19,7 +19,7 @@ export default class StatusCard extends React.PureComponent<IProps> {
 				title={
 					<SCardTitle>{(CST.TH_PROCESS + ' ' + CST.TH_STATUS).toUpperCase()}</SCardTitle>
 				}
-				width="1000px"
+				width="100%"
 				margin="0 0px 0 0"
 				inlinetype="table"
 			>

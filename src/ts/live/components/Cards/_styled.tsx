@@ -12,6 +12,7 @@ export interface ICardProps {
 
 export const SCard = styled(Card)`
 	overflow: hidden;
+	max-width: 1000px;
 	width: ${(props: ICardProps) => props.width};
 	margin: ${(props: ICardProps) => props.margin};
 	display: ${(props: ICardProps) => (props.inlinetype ? 'inline-table' : '')};
@@ -106,10 +107,12 @@ injectGlobal([
 	}
 `
 ] as any);
-
+export interface ICardPriceTagProps {
+	mobile?: boolean;
+}
 export const SCardPriceTag = styled.div`
 	height: 100px;
-	width: 155px;
+	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '155px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -120,7 +123,8 @@ export const SCardPriceTag = styled.div`
 		height: 100px;
 		width: 100px;
 		position: absolute;
-		left: -35px;
+		left: ${(props: ICardPriceTagProps) => (props.mobile ? '' : '-35px')};
+		right: ${(props: ICardPriceTagProps) => (props.mobile ? '-15px' : '')};
 		top: 10px;
 	}
 	.bg-logo > img {
@@ -145,7 +149,8 @@ export const SCardPriceTag = styled.div`
 	.tag-title > a {
 		margin: 0;
 	}
-	.tag-title > a, .tag-title > h3 {
+	.tag-title > a,
+	.tag-title > h3 {
 		font-family: 'Roboto';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -1027,8 +1032,8 @@ export const SChartWrapper = styled.div`
 
 export const SRefreshButton = styled(Button as any)`
 	color: ${ColorStyles.TextWhiteAlphaLL};
-	border: none!important;
-	background: transparent!important;
+	border: none !important;
+	background: transparent !important;
 	&:hover {
 		color: ${ColorStyles.TextWhiteAlpha};
 	}
@@ -1038,4 +1043,4 @@ export const SRefreshButton = styled(Button as any)`
 	&:after {
 		border: 0 solid ${ColorStyles.BorderWhite5};
 	}
-`
+`;

@@ -18,6 +18,7 @@ interface IProps {
 	reset: ICustodianPrice;
 	states: ICustodianStates;
 	sourceLast: ISourceData<ICustodianPrice>;
+	mobile?: boolean;
 }
 interface IState {
 	source: string;
@@ -30,7 +31,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 		};
 	}
 	public render() {
-		const { reset, states } = this.props;
+		const { reset, states, mobile } = this.props;
 		const { source } = this.state;
 		const last: ICustodianPrice = CST.EXCHANGES.includes(source.toUpperCase())
 			? this.props.sourceLast[source]
@@ -45,7 +46,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					states.beta,
 					states.period,
 					states.periodCoupon
-			)
+				)
 			: [states.navA, states.navB];
 		const ethChange = last.price / reset.price - 1;
 		const tooltipText = !CST.EXCHANGES.includes(source.toUpperCase())
@@ -66,11 +67,11 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							: 'Loading Prices'}
 					</SCardExtraDiv>
 				}
-				width="540px"
-				margin="0 10px 0 0"
+				width={mobile ? '100%' : '540px'}
+				margin={mobile ? '0' : '0 10px 0 0'}
 			>
-				<SDivFlexCenter horizontal padding="0 10px">
-					<SCardPriceTag>
+				<SDivFlexCenter horizontal={!mobile} padding="0 10px">
+					<SCardPriceTag mobile={mobile}>
 						<div className="bg-logo">
 							<img src={ethIcon} />
 						</div>
@@ -99,7 +100,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardPriceTag>
-					<SCardPriceTag>
+					<SCardPriceTag mobile={mobile}>
 						<div className="bg-logo">
 							<img src={classAIcon} />
 						</div>
@@ -134,7 +135,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardPriceTag>
-					<SCardPriceTag>
+					<SCardPriceTag mobile={mobile}>
 						<div className="bg-logo">
 							<img src={classBIcon} />
 						</div>
