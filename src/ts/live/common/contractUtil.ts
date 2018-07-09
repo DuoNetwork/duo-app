@@ -49,11 +49,22 @@ class ContractUtil {
 	}
 
 	public switchToMetaMask() {
-		this.web3 = new Web3((window as any).web3.currentProvider);
+		if (typeof (window as any).web3 !== 'undefined') {
+			this.web3 = new Web3((window as any).web3.currentProvider);
+			this.wallet = Wallet.MetaMask;
+		} else {
+			this.web3 = new Web3(
+				new Web3.providers.HttpProvider(
+					(__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN) +
+						'/' +
+						infura.token
+				)
+			);
+			this.wallet = Wallet.None;
+		}
 		this.accountIndex = 0;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
-		this.wallet = Wallet.MetaMask;
 	}
 
 	public async switchToLedger() {
