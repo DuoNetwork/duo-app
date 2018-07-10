@@ -229,7 +229,7 @@ export const TH_TOTAL_USERS: { [key: string]: string } = {
 	[LOCALE_EN]: 'Total Users'
 };
 export const TH_SINCE_RESET: { [key: string]: string } = {
-	[LOCALE_CN]: '于折算相比',
+	[LOCALE_CN]: '与折算相比',
 	[LOCALE_EN]: 'Since Reset'
 };
 export const TH_PA: { [key: string]: string } = {

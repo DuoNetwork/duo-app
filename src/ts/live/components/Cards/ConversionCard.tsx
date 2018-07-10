@@ -105,9 +105,9 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							<Column
 								title={CST.TH_TYPE[locale]}
 								dataIndex={CST.TH_TYPE[CST.LOCALE_EN]}
-								filters={[CST.TH_CREATE[locale], CST.TH_REDEEM[locale]].map(f => ({
-									text: f,
-									value: f
+								filters={[CST.TH_CREATE, CST.TH_REDEEM].map(f => ({
+									text: f[locale],
+									value: f[CST.LOCALE_EN]
 								}))}
 								filterMultiple={false}
 								onFilter={(value, record: ITableRecord) =>
