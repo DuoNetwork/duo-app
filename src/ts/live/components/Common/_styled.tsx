@@ -108,20 +108,25 @@ injectGlobal([
 			border-color: ${ColorStyles.BorderWhite6};
 			background-color: ${ColorStyles.ButtonHoverWhite1};
 		}
-		.ant-radio-wrapper {
+		.ledger-account-selector > .ant-radio-wrapper {
 			color: ${ColorStyles.TextWhiteAlphaL};
 			width: 100%;
 			padding: 2px 0;
 		}
-		.ant-radio-wrapper:nth-child(odd) {
+		.ledger-account-selector > .ant-radio-wrapper:nth-child(odd) {
 			background: ${ColorStyles.ListHighlight};
 		}
-		.ant-radio-wrapper:hover {
+		.ledger-account-selector > .ant-radio-wrapper:hover {
 			background: ${ColorStyles.HoverBackgroundSolid};
 		}
-		.ant-radio-wrapper-checked {
+		.ledger-account-selector > .ant-radio-wrapper-checked {
 			background: ${ColorStyles.SelectBackgroundSolid} !important;
 			box-shadow:inset 0px 0px 0px 1px ${ColorStyles.BorderWhite3};
+		}
+		.locale-select {
+			display: flex;
+			align-items: center;
+    		margin-left: 10px;
 		}
 	}
 `

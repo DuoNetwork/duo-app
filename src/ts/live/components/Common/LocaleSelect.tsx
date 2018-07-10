@@ -20,6 +20,7 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 				value={locale}
 				size="small"
 				onSelect={value => onSelect(value + '')}
+				className='locale-select'
 			>
 				<Option value={CST.LOCALE_EN}>{CST.LOCALE_EN}</Option>
 				<Option value={CST.LOCALE_CN}>{CST.LOCALE_CN_CN}</Option>
