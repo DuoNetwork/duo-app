@@ -5,7 +5,7 @@ import util from '../common/util';
 
 export const initialState: IUIState = {
 	refresh: 0,
-	locale: CST.LOCALE_EN
+	locale: navigator.language.toUpperCase().includes(CST.LOCALE_CN) ? CST.LOCALE_CN : CST.LOCALE_EN
 };
 
 export function uiReducer(state: IUIState = initialState, action: AnyAction): IUIState {
