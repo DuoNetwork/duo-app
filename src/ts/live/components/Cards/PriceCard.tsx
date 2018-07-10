@@ -51,9 +51,9 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			)
 			: [states.navA, states.navB];
 		const ethChange = last.price / reset.price - 1;
-		const tooltipText = !CST.EXCHANGES.includes(source.toUpperCase())
-			? 'Nav as currently in Smart Contract'
-			: 'Estimated nav based selected ETH price';
+		const tooltipText = (!CST.EXCHANGES.includes(source.toUpperCase())
+			? CST.TT_CTD_NAV
+			: CST.TT_EST_NAV)[locale];
 		return (
 			<SCard
 				title={
@@ -100,7 +100,9 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								>
 									{d3.format('+.2%')(ethChange)}
 								</div>
-								<div style={{ marginLeft: 5 }}>since reset</div>
+								<div style={{ marginLeft: 5 }}>
+									{CST.TH_SINCE_RESET[locale].toLowerCase()}
+								</div>
 							</div>
 						</div>
 					</SCardPriceTag>
@@ -135,7 +137,9 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							<div className="tag-subtext">
 								{d3.format('.2%')(
 									(states.periodCoupon * 365 * 24 * 3600) / states.period || 0
-								) + ' p.a.'}
+								) +
+									' ' +
+									CST.TH_PA[locale].toLowerCase()}
 							</div>
 						</div>
 					</SCardPriceTag>
@@ -168,7 +172,9 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-unit-2'}>USD</div>
 							</div>
 							<div className="tag-subtext">
-								{d3.format('.2f')((navA + navB) / (navB || 1)) + 'x leverage'}
+								{d3.format('.2f')((navA + navB) / (navB || 1)) +
+									'x ' +
+									CST.TH_LEVERAGE[locale].toLowerCase()}
 							</div>
 						</div>
 					</SCardPriceTag>

@@ -38,6 +38,7 @@ interface IState {
 	amount: string;
 	amountError: string;
 	description: string;
+	locale: string;
 }
 
 export default class OperationCard extends React.PureComponent<IProps, IState> {
@@ -48,8 +49,21 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			isCreate: true,
 			amount: '',
 			amountError: '',
-			description: 'Estimated outcome'
+			description: '',
+			locale: props.locale
 		};
+	}
+
+	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+		if (nextProps.locale !== prevState.locale)
+			return {
+				amount: '',
+				amountError: '',
+				description: '',
+				locale: nextProps.locale
+			};
+
+		return null;
 	}
 
 	private handleFeeTypeChange = () => {
@@ -63,14 +77,16 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			isCreate: !this.state.isCreate,
 			amount: '',
 			amountError: '',
-			description: 'Estimated outcome'
+			description: ''
 		});
 
 	private handleAmountInputChange = (value: string) =>
 		this.setState({
 			amount: value,
 			amountError:
-				!value || (value.match(CST.RX_NUM_P) && Number(value) > 0) ? '' : 'Invalid number'
+				!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
+					? ''
+					: CST.TT_INVALID_NUMBER[this.props.locale]
 		});
 
 	private handleAmountButtonClick = (amount: string) =>
@@ -79,36 +95,60 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			description: this.getDescription(amount)
 		});
 
-	private getConversionDescription = (eth: number, ab: number, isCreate: boolean) => {
-		return isCreate
-			? 'Create ' +
-					d3.formatPrefix(',.8', 1)(ab) +
-					' Token A/B from ' +
-					d3.formatPrefix(',.8', 1)(eth) +
-					' ' +
-					CST.TH_ETH
-			: 'Redeem ' +
-					d3.formatPrefix(',.8', 1)(eth) +
-					' ' +
-					CST.TH_ETH +
-					' from ' +
-					d3.formatPrefix(',.8', 1)(ab) +
-					' Token A/B';
+	private getConversionDescription = (
+		eth: number,
+		ab: number,
+		isCreate: boolean,
+		locale: string
+	) => {
+		switch (locale) {
+			case CST.LOCALE_CN:
+				return isCreate
+					? '从 ' +
+							d3.formatPrefix(',.8', 1)(eth) +
+							' ' +
+							CST.TH_ETH +
+							' 拆分出 ' +
+							d3.formatPrefix(',.8', 1)(ab) +
+							' Token A/B '
+					: '把 ' +
+							d3.formatPrefix(',.8', 1)(ab) +
+							' Token A/B 合并成 ' +
+							d3.formatPrefix(',.8', 1)(eth) +
+							' ' +
+							CST.TH_ETH;
+			default:
+				return isCreate
+					? 'Create ' +
+							d3.formatPrefix(',.8', 1)(ab) +
+							' Token A/B from ' +
+							d3.formatPrefix(',.8', 1)(eth) +
+							' ' +
+							CST.TH_ETH
+					: 'Redeem ' +
+							d3.formatPrefix(',.8', 1)(eth) +
+							' ' +
+							CST.TH_ETH +
+							' from ' +
+							d3.formatPrefix(',.8', 1)(ab) +
+							' Token A/B';
+		}
 	};
 
 	private getDescription = (amount: string) => {
-		const { states } = this.props;
+		const { states, locale } = this.props;
 		const { isCreate } = this.state;
 		const amtNum = Number(amount);
 		return !amtNum
-			? 'Estimated outcome'
+			? ''
 			: isCreate
 				? this.getConversionDescription(
 						amtNum * (1 - states.commissionRate),
 						this.getABFromEth(amtNum)[0],
-						true
+						true,
+						locale
 				)
-				: this.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false);
+				: this.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false, locale);
 	};
 
 	private getABFromEth = (amount: number) => {
@@ -176,7 +216,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		this.setState({
 			amount: '',
 			amountError: '',
-			description: 'Estimated outcome'
+			description: ''
 		});
 	};
 
@@ -184,7 +224,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		this.setState({
 			amount: '',
 			amountError: '',
-			description: 'Estimated outcome'
+			description: ''
 		});
 
 	public render() {
@@ -200,14 +240,16 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			(ethFee ? 1 : states.ethDuoFeeRatio);
 		const duoIsSuffient = ethFee ? true : fee < allowance || fee < duo;
 
-		const tooltipText = 'May vary from actual result';
+		const tooltipText = CST.TT_RESULT_VARY[locale];
 		return (
 			<Affix offsetTop={20}>
 				<SCard
 					title={
 						<SCardTitle>
 							{CST.TH_OPERATION[locale].toUpperCase() +
-								(states.state !== CST.CTD_TRADING ? ' (Disabled)' : '')}
+								(states.state !== CST.CTD_TRADING
+									? ' (' + CST.TH_DISABLED[locale] + ')'
+									: '')}
 						</SCardTitle>
 					}
 					width="440px"
@@ -215,8 +257,10 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
 					extra={
 						<SCardExtraDiv>
-							{'Network Gas Price: ' +
-								(gasPrice ? + Math.round(gasPrice * 1e9) + ' Gwei' : 'Loading')}
+							{CST.TH_NETWORK_GAS_PRICE[locale] + ': ' +
+								(gasPrice
+									? +Math.round(gasPrice * 1e9) + ' Gwei'
+									: CST.TH_LOADING[locale])}
 						</SCardExtraDiv>
 					}
 				>
@@ -296,7 +340,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 												this.handleAmountInputChange(e.target.value)
 											}
 											onBlur={() => this.handleAmountBlur(limit)}
-											placeholder="Please input amount"
+											placeholder={CST.TT_INPUT_AMOUNT[locale]}
 											right
 										/>
 									</li>
@@ -309,8 +353,10 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 									<li>
 										<div className="align-right">
 											{states.commissionRate * 100 +
-												'% Conversion Fee: ' +
-												d3.formatPrefix(',.8', 1)(fee) +
+												'% ' +
+												CST.TH_CONVERSION_FEE[locale] +
+												': ' +
+												d3.formatPrefix(',.8', 1)(isNaN(fee) ? 0 : fee) +
 												' ' +
 												(ethFee ? CST.TH_ETH : CST.TH_DUO)}
 										</div>
@@ -324,7 +370,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 										>
 											{!duoIsSuffient ? (
 												<Popconfirm
-													title="Insufficient DUO Allowance balance, transaction may fail"
+													title={CST.TT_DUO_FEE_CHECK[locale]}
 													onConfirm={this.handleSubmit}
 													onCancel={this.handleClear}
 													okText="Submit"

@@ -1,4 +1,3 @@
-import { Tooltip } from 'antd';
 import * as React from 'react';
 import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
@@ -11,8 +10,14 @@ import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardAssetTag, SCardExtendExtraDiv, SCardTitle, SRefreshButton } from './_styled';
 
-const BalanceInfo = (props: { icon: string; name: string; value: number; allowance?: number }) => {
-	const { icon, name, value, allowance } = props;
+const BalanceInfo = (props: {
+	icon: string;
+	name: string;
+	value: number;
+	allowance?: number;
+	locale?: string;
+}) => {
+	const { icon, name, value, allowance, locale } = props;
 	return (
 		<SCardAssetTag>
 			<div className="bg-logo">
@@ -26,11 +31,11 @@ const BalanceInfo = (props: { icon: string; name: string; value: number; allowan
 					<div>
 						<div className={'tag-price'}>{util.formatBalance(value)}</div>
 						{allowance !== undefined ? (
-							<Tooltip title={'Allowance for ' + CST.TH_BEETHOVEN}>
-								<div className="tag-subtext">
-									{util.formatBalance(allowance) + ' allowance'}
-								</div>
-							</Tooltip>
+							<div className="tag-subtext">
+								{util.formatBalance(allowance) +
+									' ' +
+									CST.TH_ALLOWANCE[locale || CST.LOCALE_EN]}
+							</div>
 						) : null}
 					</div>
 				</div>
@@ -39,14 +44,14 @@ const BalanceInfo = (props: { icon: string; name: string; value: number; allowan
 	);
 };
 
-const ExtendExtraDiv = (props: { accountShow: string; account: string }) => {
-	const { account, accountShow } = props;
+const ExtendExtraDiv = (props: { accountShow: string; account: string; locale: string }) => {
+	const { account, accountShow, locale } = props;
 	return (
 		<SCardExtendExtraDiv
 			color={accountShow === 'Unknown' ? ColorStyles.TextRedAlpha : undefined}
 		>
 			<div className="extend-extra-wrapper">
-				<div className="tag-title">Address</div>
+				<div className="tag-title">{CST.TH_ADDRESS[locale]}</div>
 				<a
 					className="tag-content"
 					href={
@@ -85,7 +90,11 @@ export default class BalanceCard extends React.Component<IProps> {
 				width="640px"
 				margin="0 0 0 10px"
 				extra={
-					<ExtendExtraDiv accountShow={account ? account : 'Unknown'} account={account} />
+					<ExtendExtraDiv
+						accountShow={account ? account : 'Unknown'}
+						account={account}
+						locale={locale}
+					/>
 				}
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
@@ -95,6 +104,7 @@ export default class BalanceCard extends React.Component<IProps> {
 						name={CST.TH_DUO}
 						value={balances.duo}
 						allowance={balances.allowance}
+						locale={locale}
 					/>
 					<BalanceInfo icon={classAIcon} name={CST.TH_TOKEN_A} value={balances.tokenA} />
 					<BalanceInfo icon={classBIcon} name={CST.TH_TOKEN_B} value={balances.tokenB} />

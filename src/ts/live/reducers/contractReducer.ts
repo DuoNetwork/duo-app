@@ -4,7 +4,7 @@ import { IContractState } from '../common/types';
 
 export const initialState: IContractState = {
 	states: {
-		state: 'Loading',
+		state: CST.CTD_LOADING,
 		navA: 0,
 		navB: 0,
 		totalSupplyA: 0,

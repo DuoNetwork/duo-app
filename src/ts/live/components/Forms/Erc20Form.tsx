@@ -103,12 +103,6 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		const { token, address, amount, addressError, amountError } = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
 		const noTransferAddr = address === contractUtil.custodianAddr;
-		const tooltipText =
-			'Click to auto fill in ' +
-			CST.TH_BEETHOVEN +
-			' address. Transfer to ' +
-			CST.TH_BEETHOVEN +
-			' is disabled.';
 		return (
 			<SCardTransactionForm>
 				<SCardList>
@@ -137,7 +131,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 							<li className="input-line">
 								<span className="title">{CST.TH_ADDRESS[locale]}</span>
 								{token === CST.TH_DUO ? (
-									<Tooltip title={tooltipText} mouseEnterDelay={1.2}>
+									<Tooltip title={CST.TT_BEETHOVEN_ADDR[locale]} mouseEnterDelay={1.2}>
 										<div
 											className="default-button"
 											onClick={() =>
@@ -150,7 +144,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 								) : null}
 								<SInput
 									className={addressError ? 'input-error' : ''}
-									placeholder="Please input address"
+									placeholder={CST.TT_INPUT_ADDR[locale]}
 									width={token === CST.TH_DUO ? '240px' : '300px'}
 									value={address}
 									onChange={e => this.handleAddressChange(e.target.value)}
@@ -178,7 +172,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 								</SDivFlexCenter>
 								<SInput
 									className={amountError ? 'input-error' : ''}
-									placeholder="Please input amount"
+									placeholder={CST.TT_INPUT_AMOUNT[locale]}
 									right
 									value={amount}
 									onChange={e => this.handleAmountInputChange(e.target.value)}

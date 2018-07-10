@@ -30,7 +30,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 					[CST.TH_DUO]: format(b.duo),
 					[CST.TH_TOKEN_A]: format(b.tokenA),
 					[CST.TH_TOKEN_B]: format(b.tokenB),
-					[CST.TH_ALLOWANCE]: format(b.allowance),
+					[CST.TH_ALLOWANCE[CST.LOCALE_EN]]: format(b.allowance),
 					[CST.TH_LINK]:
 						'https://' +
 						(__KOVAN__ ? 'kovan.' : '') +
@@ -41,12 +41,12 @@ export default class UserCard extends React.PureComponent<IProps> {
 				data.push({
 					key: i,
 					[CST.TH_NO]: i + 1,
-					[CST.TH_ADDRESS[CST.LOCALE_EN]]: 'Loading',
-					[CST.TH_ETH]: 'Loading',
-					[CST.TH_DUO]: 'Loading',
-					[CST.TH_TOKEN_A]: 'Loading',
-					[CST.TH_TOKEN_B]: 'Loading',
-					[CST.TH_ALLOWANCE]: 'Loading',
+					[CST.TH_ADDRESS[CST.LOCALE_EN]]: CST.TH_LOADING[CST.LOCALE_EN],
+					[CST.TH_ETH]: CST.TH_LOADING[CST.LOCALE_EN],
+					[CST.TH_DUO]: CST.TH_LOADING[CST.LOCALE_EN],
+					[CST.TH_TOKEN_A]: CST.TH_LOADING[CST.LOCALE_EN],
+					[CST.TH_TOKEN_B]: CST.TH_LOADING[CST.LOCALE_EN],
+					[CST.TH_ALLOWANCE[CST.LOCALE_EN]]: CST.TH_LOADING[CST.LOCALE_EN],
 					[CST.TH_LINK]: 'https://' + (__KOVAN__ ? 'kovan.' : '') + 'etherscan.io'
 				});
 		}
@@ -86,7 +86,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 							CST.TH_DUO,
 							CST.TH_TOKEN_A,
 							CST.TH_TOKEN_B,
-							CST.TH_ALLOWANCE
+							CST.TH_ALLOWANCE[CST.LOCALE_EN]
 						].map(th => <Column title={th} dataIndex={th} key={th} width={90} />)}
 					</Table>
 				</STableWrapper>

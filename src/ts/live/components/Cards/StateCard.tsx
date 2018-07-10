@@ -18,13 +18,13 @@ interface IProps {
 
 export default class StateCard extends React.PureComponent<IProps> {
 	public render() {
-		const { states, reset, mobile } = this.props;
+		const { states, reset, mobile, locale } = this.props;
 		const tooltioText =
 			states.state === CST.CTD_TRADING
-				? 'Trading state, operations are permitted during current state.'
+				? CST.TT_TRADING_STATE[locale]
 				: states.state === CST.CTD_INCEPTION
-					? 'Inception ongoing, please wait until the system is ready.'
-					: 'Reset ongoing, operations are prohibited during current state.';
+					? 'Inception state, please wait until the system is started.'
+					: CST.TT_RESET_STATE[locale];
 		return (
 			<SCard
 				title={
@@ -65,20 +65,20 @@ export default class StateCard extends React.PureComponent<IProps> {
 									{states.state !== CST.CTD_LOADING ? (
 										states.state === CST.CTD_TRADING ? (
 											<div className="last-reset-title">
-												<span>Last Reset</span>
+												<span>{CST.TH_LAST_RESET[locale]}</span>
 												<span className="last-reset-title-span">
 													{reset.timestamp
 														? moment(reset.timestamp).format(
 																'YYYY-MM-DD HH:mm'
-															)
-														: 'Loading'}
+														)
+														: CST.TH_LOADING[locale]}
 												</span>
 											</div>
 										) : (
-											'Reset Progress'
+											CST.TH_RESET_PROGRESS[locale]
 										)
 									) : (
-										CST.CTD_LOADING
+										CST.TH_LOADING[locale]
 									)}
 								</li>
 								{states.state !== CST.CTD_LOADING ? (
@@ -109,64 +109,66 @@ export default class StateCard extends React.PureComponent<IProps> {
 									)
 								) : (
 									<li>
-										<span className="title">Loading</span>
+										<span className="title">{CST.TH_LOADING[locale]}</span>
 									</li>
 								)}
 							</ul>
 							<ul>
-								<li className="block-title">Contract States</li>
+								<li className="block-title">{CST.TH_CONTRACT_STATES[locale]}</li>
 								<li>
-									<span className="title">Period Length</span>
+									<span className="title">{CST.TH_PERIOD_LENGTH[locale]}</span>
 									<span className="content">{states.period / 60 + ' mins'}</span>
 								</li>
 								<li>
-									<span className="title">Coupon per Period</span>
+									<span className="title">
+										{CST.TH_COUPON_PER_PERIOD[locale]}
+									</span>
 									<span className="content">
 										{d3.format('.4%')(states.periodCoupon)}
 									</span>
 								</li>
 								<li>
-									<span className="title">Upper Limit for Token A</span>
+									<span className="title">{CST.TH_UPPER_A[locale]}</span>
 									<span className="content">
 										{d3.format(',.4f')(states.limitPeriodic)} USD
 									</span>
 								</li>
 								<li>
-									<span className="title">Upper Limit for Token B</span>
+									<span className="title">{CST.TH_UPPER_B[locale]}</span>
 									<span className="content">
 										{d3.format(',.4f')(states.limitUpper)} USD
 									</span>
 								</li>
 								<li>
-									<span className="title">Lower Limit for Token B</span>
+									<span className="title">{CST.TH_LOWER_B[locale]}</span>
 									<span className="content">
 										{d3.format(',.4f')(states.limitLower)} USD
 									</span>
 								</li>
 								<li>
-									<span className="title">Leverage Factor (Alpha)</span>
+									<span className="title">{CST.TH_LEVERAGE_FACTOR[locale] + ' (Alpha)'}</span>
 									<span className="content">
 										{d3.format(',.2f')(states.alpha)}
 									</span>
 								</li>
 								<li>
-									<span className="title">Conversion Factor (Beta)</span>
+									<span className="title">{CST.TH_CONVERSION_FACTOR[locale] + ' (Beta)'}</span>
 									<span className="content">
 										{d3.format(',.2f')(states.beta)}
 									</span>
 								</li>
 								<li>
-									<span className="title">ETH:DUO Fee Ratio</span>
+									<span className="title">{'ETH:DUO ' + CST.TH_FEE_RATIO[locale]}</span>
 									<span className="content">1:{states.ethDuoFeeRatio}</span>
 								</li>
 								<li>
-									<span className="title">DUO Received</span>
+									<span className="title">{CST.TH_DUO_RECEIVED[locale]}</span>
 									<span className="content">
 										{d3.format(',.2f')(states.duoBalance)}
 									</span>
 								</li>
 								<li>
-									<span className="title">Net ETH Balance</span>
+									<span className="title">{CST.TH_ETH_BALANCE[locale]}</span>
 									<span className="content">
 										{d3.format(',.2f')(
 											states.ethBalance - states.feeAccumulated
@@ -174,19 +176,19 @@ export default class StateCard extends React.PureComponent<IProps> {
 									</span>
 								</li>
 								<li>
-									<span className="title">Token A Total Supply</span>
+									<span className="title">{CST.TH_A_SUPPLY[locale]}</span>
 									<span className="content">
 										{d3.format(',.2f')(states.totalSupplyA)}
 									</span>
 								</li>
 								<li>
-									<span className="title">Token B Total Supply</span>
+									<span className="title">{CST.TH_B_SUPPLY[locale]}</span>
 									<span className="content">
 										{d3.format(',.2f')(states.totalSupplyB)}
 									</span>
 								</li>
 								<li>
-									<span className="title">Total Users</span>
+									<span className="title">{CST.TH_TOTAL_USERS[locale]}</span>
 									<span className="content">{states.usersLength}</span>
 								</li>
 							</ul>
