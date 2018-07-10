@@ -318,3 +318,11 @@ export const TT_DUO_FEE_CHECK: { [key: string]: string } = {
 	[LOCALE_CN]: '由于DUO授权余额不足，操作可能失败。',
 	[LOCALE_EN]: 'Insufficient DUO Allowance balance, transaction may fail.'
 };
+export const TT_NETWORK_CHECK: { [key: string]: string } = {
+	[LOCALE_CN]:
+		'此页面只支持' + (__KOVAN__ ? 'KOVAN' : 'MainNet') + '，请在MetaMask中选择正确的网络',
+	[LOCALE_EN]:
+		'This page is built for ' +
+		(__KOVAN__ ? 'KOVAN' : 'MainNet') +
+		', please choose the corret network in Metamask'
+};

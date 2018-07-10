@@ -34,7 +34,8 @@ const RankDiv = (props: { rank: number; volume: string; locale: string }) => {
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
-		const { network, toText, to, width, refresh, account, locale, updateLocale } = this.props;
+		const { network, toText, to, width, refresh, account, updateLocale } = this.props;
+		const locale = this.props.locale || CST.LOCALE_EN;
 		const accountConversion =
 			account && conversion.conversion[account] ? conversion.conversion[account] : null;
 		return (
@@ -49,15 +50,13 @@ export default class Header extends React.PureComponent<IProps> {
 						(__KOVAN__ && network !== CST.ETH_KOVAN_ID) ||
 						(!__KOVAN__ && network !== CST.ETH_MAINNET_ID) ? (
 							<span className="error-msg">
-								{' '}
-								This page is built for {__KOVAN__ ? 'KOVAN' : 'MainNet'}, pleas
-								choose the corret network in Metamask
+								{CST.TT_NETWORK_CHECK[locale]}
 							</span>
 						) : accountConversion ? (
 							<RankDiv
 								rank={accountConversion.rank}
 								volume={util.formatBalance(accountConversion.volume)}
-								locale={locale || CST.LOCALE_EN}
+								locale={locale}
 							/>
 						) : (
 							''
@@ -66,7 +65,7 @@ export default class Header extends React.PureComponent<IProps> {
 					<SDivFlexCenter horizontal>
 						<div className="nav-button-wrapper">
 							<a href={'./GettingStarted' + (locale === CST.LOCALE_CN ? '_CN' : '') + '.pdf'} target="_blank">
-								{CST.TH_GUIDE[locale || CST.LOCALE_EN].toUpperCase()}
+								{CST.TH_GUIDE[locale].toUpperCase()}
 							</a>
 						</div>
 						<div className="nav-button-wrapper">
@@ -81,7 +80,7 @@ export default class Header extends React.PureComponent<IProps> {
 							</a>
 						</div>
 						{refresh ? <ProviderRadio refresh={refresh} /> : null}
-						{locale && updateLocale ? (
+						{updateLocale ? (
 							<LocaleSelect locale={locale} onSelect={updateLocale} />
 						) : null}
 					</SDivFlexCenter>
