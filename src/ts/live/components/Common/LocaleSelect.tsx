@@ -2,6 +2,8 @@
 //import moment from 'moment';
 import { Select } from 'antd';
 import * as React from 'react';
+import cnImg from '../../../../images/locale/cn.png';
+import enImg from '../../../../images/locale/en.png';
 import * as CST from '../../common/constants';
 import { SCardTitleSelector } from '../Cards/_styled';
 
@@ -22,8 +24,8 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 				onSelect={value => onSelect(value + '')}
 				className='locale-select'
 			>
-				<Option value={CST.LOCALE_EN}>{CST.LOCALE_EN}</Option>
-				<Option value={CST.LOCALE_CN}>{CST.LOCALE_CN_CN}</Option>
+				<Option value={CST.LOCALE_EN}><img className='locale-img' src={enImg}/>{CST.LOCALE_EN}</Option>
+				<Option value={CST.LOCALE_CN}><img className='locale-img' src={cnImg}/>{CST.LOCALE_CN_CN}</Option>
 			</SCardTitleSelector>
 		);
 	}

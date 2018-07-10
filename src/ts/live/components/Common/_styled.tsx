@@ -128,8 +128,13 @@ injectGlobal([
 			align-items: center;
 			margin-left: 10px;
 			.ant-select-selection-selected-value {
-				width: 40px;
+				width: 56px;
 			}
+		}
+		.locale-img {
+			width: 14px;
+			height: 14px;
+			margin-right: 2px;
 		}
 	}
 `
