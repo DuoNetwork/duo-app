@@ -11,6 +11,7 @@ import ProviderRadio from './Common/ProviderRadio';
 interface IProps {
 	network: number;
 	to: string;
+	toText?: string
 	width?: string;
 	account?: string;
 	locale?: string;
@@ -33,7 +34,7 @@ const RankDiv = (props: { rank: number; volume: string; locale: string }) => {
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
-		const { network, to, width, refresh, account, locale, updateLocale } = this.props;
+		const { network, toText, to, width, refresh, account, locale, updateLocale } = this.props;
 		const accountConversion =
 			account && conversion.conversion[account] ? conversion.conversion[account] : null;
 		return (
@@ -76,7 +77,7 @@ export default class Header extends React.PureComponent<IProps> {
 									'.html'
 								}
 							>
-								{to.toUpperCase()}
+								{(toText || to).toUpperCase()}
 							</a>
 						</div>
 						{refresh ? <ProviderRadio refresh={refresh} /> : null}
