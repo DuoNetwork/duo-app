@@ -15,7 +15,7 @@ export const SItem = styled(Menu.Item)`
 	color: ${ColorStyles.TextWhiteAlphaLL};
 	font-size: 10px;
 	font-weight: 400;
-	font-family: 'Roboto';
+	font-family: 'Roboto', 'Yahei';
 	padding: 5px 10px;
 	.picker-box {
 		width: 12px;

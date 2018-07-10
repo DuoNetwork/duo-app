@@ -260,6 +260,18 @@ export const TH_NETWORK_GAS_PRICE: { [key: string]: string } = {
 	[LOCALE_CN]: '网络Gas价格',
 	[LOCALE_EN]: 'Network Gas Price'
 };
+export const TH_RANK: { [key: string]: string } = {
+	[LOCALE_CN]: '排名',
+	[LOCALE_EN]: 'Rank'
+};
+export const TH_TOTAL_VOL: { [key: string]: string } = {
+	[LOCALE_CN]: '总交易量',
+	[LOCALE_EN]: 'Total Volume'
+};
+export const TH_UPDATE_DAILY: { [key: string]: string } = {
+	[LOCALE_CN]: '每日更新',
+	[LOCALE_EN]: 'update daily'
+};
 
 export const TT_TRADING_STATE: { [key: string]: string } = {
 	[LOCALE_CN]: '交易状态， 可执行所有操作',

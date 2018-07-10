@@ -52,7 +52,7 @@ injectGlobal([
 
 export const SCardTitle = styled.div`
 	color: ${ColorStyles.TextWhiteAlpha};
-	font-family: 'Roboto';
+	font-family: 'Roboto', 'Yahei';
 	font-weight: 500;
 	letter-spacing: 2px;
 	font-size: 18px;
@@ -67,7 +67,7 @@ export const SCardTitleSelector = styled(Select)`
 		border: 1px solid;
 		border-color: ${ColorStyles.BorderWhite1};
 		font-size: 10px;
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 400;
 		letter-spacing: 0;
 		span {
@@ -86,7 +86,7 @@ injectGlobal([
 		.ant-select-dropdown {
 			border-radius: 0;
 			font-size: 10px;
-			font-family: 'Roboto';
+			font-family: 'Roboto', 'Yahei';
 			background: ${ColorStyles.CardBackgroundSolid};
 			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
 		}
@@ -151,7 +151,7 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-title > a,
 	.tag-title > h3 {
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
@@ -173,7 +173,7 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-price {
 		color: white;
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 16px;
@@ -182,7 +182,7 @@ export const SCardPriceTag = styled.div`
 	.tag-unit {
 		margin-left: 2px;
 		color: ${ColorStyles.TextWhiteAlphaL};
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 10px;
@@ -190,7 +190,7 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-price-1 {
 		color: ${ColorStyles.TextTokenA};
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 16px;
@@ -198,7 +198,7 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-price-2 {
 		color: ${ColorStyles.TextTokenB};
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 16px;
@@ -206,7 +206,7 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-price-3 {
 		color: white;
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
@@ -219,7 +219,7 @@ export const SCardPriceTag = styled.div`
 	.tag-unit-2 {
 		margin-left: 2px;
 		color: ${ColorStyles.TextWhiteAlphaL};
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 10px;
@@ -227,7 +227,7 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-unit-3 {
 		color: ${ColorStyles.TextWhiteAlphaL};
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 10px;
@@ -265,7 +265,7 @@ export const SCardAssetTag = styled.div`
 		margin-left: 15px;
 	}
 	.tag-title > h3 {
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
@@ -283,7 +283,7 @@ export const SCardAssetTag = styled.div`
 	}
 	.tag-price {
 		color: ${ColorStyles.TextWhiteAlpha};
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 18px;
@@ -324,7 +324,7 @@ injectGlobal([
 			max-width: 400px;
 			border-radius: 0;
 			font-size: 12px;
-			font-family: 'Roboto';
+			font-family: 'Roboto', 'Yahei';
 			background: ${ColorStyles.CardBackgroundSolid};
 			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
 			color: ${ColorStyles.TextWhiteAlpha};
@@ -338,7 +338,7 @@ export interface ICardExtraProps {
 }
 
 export const SCardExtendExtraDiv = styled.div`
-	font-family: 'Roboto';
+	font-family: 'Roboto', 'Yahei';
 	color: ${ColorStyles.TextWhiteAlphaLL};
 	font-size: 10px;
 	padding-right: 10px;
@@ -370,7 +370,7 @@ export const SCardExtendExtraDiv = styled.div`
 `;
 
 export const SCardRadioExtraDiv = styled.div`
-	font-family: 'Roboto';
+	font-family: 'Roboto', 'Yahei';
 	color: ${ColorStyles.TextWhiteAlphaLL};
 	font-size: 10px;
 	line-height: 24px;
@@ -469,7 +469,7 @@ export const SCardList = styled.div`
 			.percent-button {
 				outline: none;
 				cursor: pointer;
-				font-family: 'Roboto';
+				font-family: 'Roboto', 'Yahei';
 				background-color: transparent;
 				color: ${ColorStyles.TextWhiteAlphaLL};
 				border: 1px dashed;
@@ -621,7 +621,7 @@ export const SCardConversionForm = styled.div`
 		outline: none;
 		cursor: pointer;
 		width: 180px;
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		background-color: transparent;
 		color: ${ColorStyles.TextWhiteAlphaLL};
 		border: 1px dashed;
@@ -652,7 +652,7 @@ injectGlobal([
 			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
 		}
 		.ant-popover {
-			font-family: 'Roboto';
+			font-family: 'Roboto', 'Yahei';
 		}
 		.ant-popover-inner {
 			background: ${ColorStyles.CardBackgroundSolid};
@@ -687,7 +687,7 @@ injectGlobal([
 			outline: none;
 			cursor: pointer;
 			width: 180px;
-			font-family: 'Roboto';
+			font-family: 'Roboto', 'Yahei';
 			background-color: transparent;
 			color: ${ColorStyles.TextWhiteAlphaL};
 			border: 1px solid;
@@ -718,7 +718,7 @@ export const SCardTransactionForm = styled.div`
 		outline: none;
 		cursor: pointer;
 		width: 60px;
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		font-size: 10px;
 		background-color: transparent;
 		color: ${ColorStyles.TextWhiteAlphaLL};
@@ -736,7 +736,7 @@ export const SCardTransactionForm = styled.div`
 		outline: none;
 		cursor: pointer;
 		width: 115px;
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		background-color: transparent;
 		color: ${ColorStyles.TextWhiteAlphaLL};
 		border: 1px dashed;
@@ -766,7 +766,7 @@ export const SCardTransactionForm = styled.div`
 		outline: none;
 		cursor: pointer;
 		width: 120px;
-		font-family: 'Roboto';
+		font-family: 'Roboto', 'Yahei';
 		background-color: transparent;
 		color: ${ColorStyles.TextWhiteAlphaL};
 		border: 1px solid;

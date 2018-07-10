@@ -1,6 +1,10 @@
 @import '~antd/dist/antd.css';
+@font-face {
+	font-family: 'Yahei';
+	src: local('Yahei'), url('../fonts/msyh.ttc') format('ttc');
+  }
 body {
-	font-family: 'Roboto';
+	font-family: 'Roboto', 'Yahei';
 	background: #121416;
 }
 .ant-layout {
@@ -20,7 +24,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
-	font-family: 'Roboto';
+	font-family: 'Roboto', 'Yahei';
 	font-weight: bold;
 	font-size: 13px;
 	letter-spacing: 1px;
@@ -56,7 +60,7 @@ body {
 	width: 100%;
     height: 100%;
 	display: flex;
-	font: 14px 'Roboto';
+	font: 14px 'Roboto', 'Yahei';
 	font-weight: 400;
     flex-direction: row;
     justify-content: center;
@@ -81,7 +85,7 @@ body {
 .x-axis text,
 .ly-axis text,
 .ry-axis text {
-	font: 10px 'Roboto';
+	font: 10px 'Roboto', 'Yahei';
 	fill: #474849;
 	pointer-events: none;
 }

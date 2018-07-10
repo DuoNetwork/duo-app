@@ -118,7 +118,7 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|woff|woff2|pdf)(\?.*)?$/,
+				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|ttc|woff|woff2|pdf)(\?.*)?$/,
 				exclude: /node_modules/,
 				use: "file-loader?name=[name].[ext]",
 			},

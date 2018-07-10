@@ -18,15 +18,15 @@ interface IProps {
 	updateLocale?: (locale: string) => any;
 }
 
-const RankDiv = (props: { rank: number; volume: string }) => {
-	const { rank, volume } = props;
+const RankDiv = (props: { rank: number; volume: string; locale: string }) => {
+	const { rank, volume, locale} = props;
 	return (
 		<div style={{ color: ColorStyles.TextWhiteAlphaL, fontWeight: 200 }}>
-			Rank:<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>
+			{CST.TH_RANK[locale] + ':'}<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>
 				{' ' + rank}
-			</span>, Total Volume:{' '}
+			</span>, {CST.TH_TOTAL_VOL[locale]}:{' '}
 			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{volume}</span> ETH
-			(updated daily)
+			({CST.TH_UPDATE_DAILY[locale]})
 		</div>
 	);
 };
@@ -56,6 +56,7 @@ export default class Header extends React.PureComponent<IProps> {
 							<RankDiv
 								rank={accountConversion.rank}
 								volume={util.formatBalance(accountConversion.volume)}
+								locale={locale || CST.LOCALE_EN}
 							/>
 						) : (
 							''
