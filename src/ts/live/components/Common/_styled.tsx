@@ -126,7 +126,10 @@ injectGlobal([
 		.locale-select {
 			display: flex;
 			align-items: center;
-    		margin-left: 10px;
+			margin-left: 10px;
+			.ant-select-selection-selected-value {
+				width: 40px;
+			}
 		}
 	}
 `
