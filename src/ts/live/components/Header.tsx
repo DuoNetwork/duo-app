@@ -65,7 +65,7 @@ export default class Header extends React.PureComponent<IProps> {
 					) : null}
 					<SDivFlexCenter horizontal>
 						<div className="nav-button-wrapper">
-							<a href="./GettingStarted.pdf" target="_blank">
+							<a href={'./GettingStarted' + (locale === CST.LOCALE_CN ? '_CN' : '') + '.pdf'} target="_blank">
 								{CST.TH_GUIDE[locale || CST.LOCALE_EN].toUpperCase()}
 							</a>
 						</div>
