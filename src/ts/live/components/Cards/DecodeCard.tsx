@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as CST from '../../common/constants';
 import contractUtil from '../../common/contractUtil';
 import { ColorStyles } from '../../common/styles';
-import { SDivFlexCenter } from './../_styled';
+import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SInput } from './_styled';
 
 interface IState {

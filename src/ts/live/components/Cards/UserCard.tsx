@@ -25,7 +25,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 				data.push({
 					key: b.account,
 					[CST.TH_NO]: i + 1,
-					[CST.TH_ADDRESS]: b.account,
+					[CST.TH_ADDRESS[CST.LOCALE_EN]]: b.account,
 					[CST.TH_ETH]: format(b.eth),
 					[CST.TH_DUO]: format(b.duo),
 					[CST.TH_TOKEN_A]: format(b.tokenA),
@@ -41,7 +41,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 				data.push({
 					key: i,
 					[CST.TH_NO]: i + 1,
-					[CST.TH_ADDRESS]: 'Loading',
+					[CST.TH_ADDRESS[CST.LOCALE_EN]]: 'Loading',
 					[CST.TH_ETH]: 'Loading',
 					[CST.TH_DUO]: 'Loading',
 					[CST.TH_TOKEN_A]: 'Loading',
@@ -76,7 +76,11 @@ export default class UserCard extends React.PureComponent<IProps> {
 						})}
 					>
 						<Column title={CST.TH_NO} dataIndex={CST.TH_NO} width={60} />
-						<Column title={CST.TH_ADDRESS} dataIndex={CST.TH_ADDRESS} width={455} />
+						<Column
+							title={CST.TH_ADDRESS}
+							dataIndex={CST.TH_ADDRESS[CST.LOCALE_EN]}
+							width={455}
+						/>
 						{[
 							CST.TH_ETH,
 							CST.TH_DUO,

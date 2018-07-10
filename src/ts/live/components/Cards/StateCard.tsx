@@ -10,6 +10,7 @@ import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
 
 interface IProps {
+	locale: string;
 	reset: ICustodianPrice;
 	states: ICustodianStates;
 	mobile?: boolean;

@@ -25,8 +25,8 @@ export default class AddressCard extends React.PureComponent<IProps> {
 			data.push({
 				key: role,
 				[CST.TH_ROLE]: role,
-				[CST.TH_ADDRESS]: addr.address,
-				[CST.TH_BALANCE]: util.formatBalance(addr.balance),
+				[CST.TH_ADDRESS[CST.LOCALE_EN]]: addr.address,
+				[CST.TH_BALANCE[CST.LOCALE_EN]]: util.formatBalance(addr.balance),
 				[CST.TH_LINK]:
 					'https://' +
 					(__KOVAN__ ? 'kovan.' : '') +
@@ -50,8 +50,8 @@ export default class AddressCard extends React.PureComponent<IProps> {
 			data.push({
 				key: CST.TH_POOL + i,
 				[CST.TH_ROLE]: CST.TH_POOL + i,
-				[CST.TH_ADDRESS]: addr.address,
-				[CST.TH_BALANCE]: util.formatBalance(addr.balance),
+				[CST.TH_ADDRESS[CST.LOCALE_EN]]: addr.address,
+				[CST.TH_BALANCE[CST.LOCALE_EN]]: util.formatBalance(addr.balance),
 				[CST.TH_LINK]:
 					'https://' +
 					(__KOVAN__ ? 'kovan.' : '') +
@@ -71,14 +71,18 @@ export default class AddressCard extends React.PureComponent<IProps> {
 
 		return (
 			<SCard
-				title={<SCardTitle>{CST.TH_ADDRESS.toUpperCase()}</SCardTitle>}
+				title={<SCardTitle>{CST.TH_ADDRESS[CST.LOCALE_EN].toUpperCase()}</SCardTitle>}
 				width="1000px"
 				margin="0 0 0 0"
 				inlinetype="table"
 			>
 				<STableWrapper>
 					<Table dataSource={data} pagination={false}>
-						{[CST.TH_ROLE, CST.TH_ADDRESS, CST.TH_BALANCE].map(th => (
+						{[
+							CST.TH_ROLE,
+							CST.TH_ADDRESS[CST.LOCALE_EN],
+							CST.TH_BALANCE[CST.LOCALE_EN]
+						].map(th => (
 							<Column
 								title={th}
 								dataIndex={th}

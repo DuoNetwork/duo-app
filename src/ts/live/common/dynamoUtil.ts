@@ -11,6 +11,8 @@ import {
 import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
+import * as CST from './constants';
+import contractUtil from './contractUtil';
 import {
 	IAcceptedPrice,
 	IConversion,
@@ -20,9 +22,7 @@ import {
 	ISourceData,
 	IStatus,
 	ITotalSupply
-} from '../common/types';
-import * as CST from './constants';
-import contractUtil from './contractUtil';
+} from './types';
 import util from './util';
 
 export class DynamoUtil {

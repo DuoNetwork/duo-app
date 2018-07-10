@@ -5,6 +5,7 @@ import * as CST from '../common/constants';
 import { ColorStyles } from '../common/styles';
 import util from '../common/util';
 import { SDivFlexCenter, SHeader } from './_styled';
+import LocaleSelect from './Common/LocaleSelect';
 import ProviderRadio from './Common/ProviderRadio';
 
 interface IProps {
@@ -12,7 +13,9 @@ interface IProps {
 	to: string;
 	width?: string;
 	account?: string;
+	locale?: string;
 	refresh?: () => any;
+	updateLocale?: (locale: string) => any;
 }
 
 const RankDiv = (props: { rank: number; volume: string }) => {
@@ -30,14 +33,16 @@ const RankDiv = (props: { rank: number; volume: string }) => {
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
-		const { network, to, width, refresh, account } = this.props;
+		const { network, to, width, refresh, account, locale, updateLocale } = this.props;
 		const accountConversion =
 			account && conversion.conversion[account] ? conversion.conversion[account] : null;
 		return (
 			<SHeader>
 				<SDivFlexCenter horizontal width={width ? width : '1200px'}>
 					<div className="icon-wrapper">
-						<img src={duoIcon} />
+						<a href="https://duo.network">
+							<img src={duoIcon} />
+						</a>
 					</div>
 					{network ? (
 						(__KOVAN__ && network !== CST.ETH_KOVAN_ID) ||
@@ -58,13 +63,8 @@ export default class Header extends React.PureComponent<IProps> {
 					) : null}
 					<SDivFlexCenter horizontal>
 						<div className="nav-button-wrapper">
-							<a href="https://duo.network" target="_blank">
-								HOME
-							</a>
-						</div>
-						<div className="nav-button-wrapper">
 							<a href="./GettingStarted.pdf" target="_blank">
-								GUIDE
+								{CST.TH_GUIDE[locale || CST.LOCALE_EN].toUpperCase()}
 							</a>
 						</div>
 						<div className="nav-button-wrapper">
@@ -74,12 +74,14 @@ export default class Header extends React.PureComponent<IProps> {
 									(to === CST.TH_APP ? 'index' : to.toLowerCase()) +
 									'.html'
 								}
-								target="_blank"
 							>
 								{to.toUpperCase()}
 							</a>
 						</div>
 						{refresh ? <ProviderRadio refresh={refresh} /> : null}
+						{locale && updateLocale ? (
+							<LocaleSelect locale={locale} onSelect={updateLocale} />
+						) : null}
 					</SDivFlexCenter>
 				</SDivFlexCenter>
 			</SHeader>

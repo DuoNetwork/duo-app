@@ -20,6 +20,7 @@ import StateCard from './Cards/StateCard';
 import Header from './Header';
 
 interface IProps {
+	locale: string;
 	states: ICustodianStates;
 	prices: ICustodianPrices;
 	balances: IBalances;
@@ -30,11 +31,13 @@ interface IProps {
 	gasPrice: number;
 	refresh: () => any;
 	refreshBalance: () => any;
+	updateLocale: (locale: string) => any
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
 		const {
+			locale,
 			states,
 			prices,
 			balances,
@@ -44,39 +47,45 @@ export default class Duo extends React.PureComponent<IProps> {
 			conversion,
 			gasPrice,
 			refresh,
-			refreshBalance
+			refreshBalance,
+			updateLocale
 		} = this.props;
 		return (
 			<div>
 				<MediaQuery minDeviceWidth={900}>
 					<Layout>
 						<Header
+							locale={locale}
 							account={account}
 							network={network}
-							to={CST.TH_STATUS}
+							to={CST.TH_STATUS[locale]}
 							refresh={refresh}
+							updateLocale={updateLocale}
 						/>
 						<SContent>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<TimeSeriesCard />
-								<StateCard states={states} reset={prices.reset} />
+								<StateCard locale={locale} states={states} reset={prices.reset} />
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<PriceCard
+									locale={locale}
 									last={prices.last}
 									reset={prices.reset}
 									states={states}
 									sourceLast={sourceLast}
 								/>
 								<BalanceCard
+									locale={locale}
 									account={account}
 									balances={balances}
 									refreshBalance={refreshBalance}
 								/>
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
-								<ConversionCard conversion={conversion} />
+								<ConversionCard locale={locale} conversion={conversion} />
 								<OperationCard
+									locale={locale}
 									reset={prices.reset}
 									states={states}
 									balances={balances}
@@ -89,8 +98,9 @@ export default class Duo extends React.PureComponent<IProps> {
 					</Layout>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={899}>
-					<StateCard states={states} reset={prices.reset} mobile/>
+					<StateCard locale={CST.LOCALE_EN} states={states} reset={prices.reset} mobile />
 					<PriceCard
+						locale={CST.LOCALE_EN}
 						last={prices.last}
 						reset={prices.reset}
 						states={states}

@@ -8,6 +8,7 @@ import RadioExtra from '../Common/RadioExtra';
 import { SCard } from './_styled';
 
 interface IProps {
+	locale: string;
 	hourly: ISourceData<IPriceBar[]>;
 	minutely: ISourceData<IPriceBar[]>;
 	prices: IAcceptedPrice[];
@@ -32,13 +33,13 @@ export default class TimeSeriesCard extends React.Component<IProps, IState> {
 	private handleIntervalToggle = () => this.setState({ isHourly: !this.state.isHourly });
 
 	public render() {
-		const { hourly, minutely, prices } = this.props;
+		const { locale, hourly, minutely, prices } = this.props;
 		const { source, isHourly } = this.state;
 		return (
 			<SCard
 				title={
 					<CardTitleSelect
-						name={CST.TH_TIMESERIES.toUpperCase()}
+						name={CST.TH_CHART[locale].toUpperCase()}
 						onSelect={this.handleSelect}
 						onlySource
 					/>

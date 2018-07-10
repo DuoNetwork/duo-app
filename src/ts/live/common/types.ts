@@ -156,6 +156,7 @@ export interface IDynamoState {
 
 export interface IUIState {
 	readonly refresh: number;
+	readonly locale: string
 }
 
 export type VoidThunkAction = ThunkAction<void, IState, undefined, AnyAction>;

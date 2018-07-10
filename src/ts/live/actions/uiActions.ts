@@ -30,3 +30,10 @@ export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 		dispatch(refreshUpdate());
 	};
 }
+
+export function localeUpdate(locale: string) {
+	return {
+		type: CST.AC_LOCALE,
+		value: locale
+	}
+}

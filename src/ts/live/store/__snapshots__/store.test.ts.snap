@@ -101,6 +101,7 @@ Object {
     "totalSupply": Array [],
   },
   "ui": Object {
+    "locale": "EN",
     "refresh": 1234567890,
   },
 }

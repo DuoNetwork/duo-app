@@ -9,15 +9,16 @@ import { SCard, SCardTitle, STableWrapper } from './_styled';
 const { Column } = Table;
 
 interface IProps {
+	locale: string;
 	conversion: IConversion[];
 }
 
 export default class ConversionCard extends React.PureComponent<IProps> {
 	public render() {
-		const { conversion } = this.props;
+		const { conversion, locale } = this.props;
 		return (
 			<SCard
-				title={<SCardTitle>{CST.TH_CONVERSION.toUpperCase()}</SCardTitle>}
+				title={<SCardTitle>{CST.TH_CONVERSION[locale].toUpperCase()}</SCardTitle>}
 				width="740px"
 				margin="0 10px 0 0"
 				inlinetype="table"
@@ -26,16 +27,18 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 					<Table
 						dataSource={conversion.map(c => ({
 							key: c.transactionHash,
-							[CST.TH_TIME]: moment(c.timestamp).format('YYYY-MM-DD HH:mm:ss'),
-							[CST.TH_STATUS]: c.pending
+							[CST.TH_TIME[CST.LOCALE_EN]]: moment(c.timestamp).format(
+								'YYYY-MM-DD HH:mm:ss'
+							),
+							[CST.TH_STATUS[CST.LOCALE_EN]]: c.pending
 								? CST.TH_PENDING
 								: c.reverted
 									? CST.TH_REVERTED
 									: CST.TH_MINED,
-							[CST.TH_TYPE]: c.type,
+							[CST.TH_TYPE[CST.LOCALE_EN]]: c.type,
 							[CST.TH_ETH]: d3.format(',.8f')(c.eth),
 							[CST.TH_TOKEN_AB]: d3.format(',.8f')(c.tokenA),
-							[CST.TH_FEE]: c.duoFee
+							[CST.TH_FEE[CST.LOCALE_EN]]: c.duoFee
 								? d3.format(',.8f')(c.duoFee) + ' ' + CST.TH_DUO
 								: d3.format(',.8f')(c.ethFee) + ' ' + CST.TH_ETH,
 							[CST.TH_LINK]:
@@ -55,28 +58,32 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 						onRow={record => ({
 							onClick: () => window.open(record[CST.TH_LINK])
 						})}
-						rowClassName={record => record[CST.TH_TYPE]}
+						rowClassName={record => record[CST.TH_TYPE[CST.LOCALE_EN]] + ''}
 					>
 						<Column
-							title={CST.TH_TIME}
-							dataIndex={CST.TH_TIME}
-							key={CST.TH_TIME}
+							title={CST.TH_TIME[locale]}
+							dataIndex={CST.TH_TIME[CST.LOCALE_EN]}
 							sorter={(a: ITableRecord, b: ITableRecord) =>
-								-(a[CST.TH_TIME] as string).localeCompare(b[CST.TH_TIME])
+								-(a[CST.TH_TIME[CST.LOCALE_EN]] as string).localeCompare(
+									b[CST.TH_TIME[CST.LOCALE_EN]]
+								)
 							}
 							width={160}
 						/>
 						<Column
-							title={CST.TH_STATUS}
-							dataIndex={CST.TH_STATUS}
-							key={CST.TH_STATUS}
-							filters={[CST.TH_MINED, CST.TH_PENDING, CST.TH_REVERTED].map(f => ({
+							title={CST.TH_STATUS[locale]}
+							dataIndex={CST.TH_STATUS[CST.LOCALE_EN]}
+							filters={[
+								CST.TH_MINED[locale],
+								CST.TH_PENDING[locale],
+								CST.TH_REVERTED[locale]
+							].map(f => ({
 								text: f,
 								value: f
 							}))}
 							filterMultiple={false}
 							onFilter={(value, record: ITableRecord) =>
-								record[CST.TH_STATUS] === value
+								record[CST.TH_STATUS[CST.LOCALE_EN]] === value
 							}
 							width={90}
 							render={(text, record) =>
@@ -88,35 +95,31 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							}
 						/>
 						<Column
-							title={CST.TH_TYPE}
-							dataIndex={CST.TH_TYPE}
-							key={CST.TH_TYPE}
+							title={CST.TH_TYPE[locale]}
+							dataIndex={CST.TH_TYPE[CST.LOCALE_EN]}
 							filters={[CST.EVENT_CREATE, CST.EVENT_REDEEM].map(f => ({
 								text: f,
 								value: f
 							}))}
 							filterMultiple={false}
 							onFilter={(value, record: ITableRecord) =>
-								record[CST.TH_TYPE] === value
+								record[CST.TH_TYPE[CST.LOCALE_EN]] === value
 							}
 							width={90}
 						/>
 						<Column
 							title={CST.TH_ETH}
 							dataIndex={CST.TH_ETH}
-							key={CST.TH_ETH}
 							className="eth"
 						/>
 						<Column
 							title={CST.TH_TOKEN_AB}
 							dataIndex={CST.TH_TOKEN_AB}
-							key={CST.TH_TOKEN_AB}
 							className="token-ab"
 						/>
 						<Column
-							title={CST.TH_FEE}
-							dataIndex={CST.TH_FEE}
-							key={CST.TH_FEE}
+							title={CST.TH_FEE[locale]}
+							dataIndex={CST.TH_FEE[CST.LOCALE_EN]}
 							className="fee"
 							width={140}
 						/>

@@ -25,6 +25,7 @@ function mapStateToProps(state: IState) {
 		state.contract.prices.last
 	);
 	return {
+		locale: state.ui.locale,
 		hourly: {
 			bitfinex: chartUtil.mergeLastToPriceBar(
 				state.dynamo.hourly.bitfinex,

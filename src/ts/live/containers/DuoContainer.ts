@@ -8,6 +8,7 @@ import Duo from '../components/Duo';
 
 function mapStateToProps(state: IState) {
 	return {
+		locale: state.ui.locale,
 		states: state.contract.states,
 		prices: state.contract.prices,
 		balances: state.contract.balances,
@@ -25,7 +26,8 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 		refreshBalance: () => {
 			dispatch(contractActions.getBalances());
 			dispatch(contractActions.getCustodianStates());
-		}
+		},
+		updateLocale: (locale: string) => dispatch(uiActions.localeUpdate(locale))
 	};
 }
 

@@ -74,4 +74,8 @@ describe('actions', () => {
 			}, 2000)
 		);
 	});
+
+	test('localeUpdate', () => {
+		expect(uiActions.localeUpdate('test')).toMatchSnapshot();
+	});
 });

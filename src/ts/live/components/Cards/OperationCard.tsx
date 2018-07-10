@@ -23,6 +23,7 @@ import {
 } from './_styled';
 
 interface IProps {
+	locale: string;
 	reset: ICustodianPrice;
 	states: ICustodianStates;
 	balances: IBalances;
@@ -39,7 +40,7 @@ interface IState {
 	description: string;
 }
 
-export default class ConversionCard extends React.PureComponent<IProps, IState> {
+export default class OperationCard extends React.PureComponent<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -187,7 +188,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 		});
 
 	public render() {
-		const { states, reset, account, balances, gasPrice } = this.props;
+		const { states, reset, account, balances, gasPrice, locale } = this.props;
 		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = util.round(isCreate ? eth : Math.min(tokenA, tokenB));
@@ -205,7 +206,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 				<SCard
 					title={
 						<SCardTitle>
-							{CST.TH_OPERATION.toUpperCase() +
+							{CST.TH_OPERATION[locale].toUpperCase() +
 								(states.state !== CST.CTD_TRADING ? ' (Disabled)' : '')}
 						</SCardTitle>
 					}
@@ -215,7 +216,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 					extra={
 						<SCardExtraDiv>
 							{'Network Gas Price: ' +
-								(gasPrice ? +(gasPrice * 1e9) + ' Gwei' : 'Loading')}
+								(gasPrice ? + Math.round(gasPrice * 1e9) + ' Gwei' : 'Loading')}
 						</SCardExtraDiv>
 					}
 				>
@@ -224,7 +225,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 							<div className="status-list-wrapper">
 								<ul>
 									<li className="block-title">
-										<span>{CST.TH_CONVERSION}</span>
+										<span>{CST.TH_CONVERSION[locale]}</span>
 										<RadioExtra
 											text="Fee in"
 											onChange={this.handleFeeTypeChange}
@@ -254,7 +255,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 												}
 												onClick={() => !isCreate && this.handleTypeChange()}
 											>
-												{CST.TH_CREATE}
+												{CST.TH_CREATE[locale]}
 											</button>
 											<button
 												className={
@@ -264,7 +265,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 												}
 												onClick={() => isCreate && this.handleTypeChange()}
 											>
-												{CST.TH_REDEEM}
+												{CST.TH_REDEEM[locale]}
 											</button>
 										</SDivFlexCenter>
 									</li>
@@ -333,7 +334,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 														className="form-button"
 														disabled={!amount || !!amountError}
 													>
-														{CST.TH_SUBMIT}
+														{CST.TH_SUBMIT[locale]}
 													</button>
 												</Popconfirm>
 											) : (
@@ -342,14 +343,14 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 													disabled={!amount || !!amountError}
 													onClick={this.handleSubmit}
 												>
-													{CST.TH_SUBMIT}
+													{CST.TH_SUBMIT[locale]}
 												</button>
 											)}
 											<button
 												className="form-button"
 												onClick={this.handleClear}
 											>
-												{CST.TH_CLEAR}
+												{CST.TH_CLEAR[locale]}
 											</button>
 										</SDivFlexCenter>
 									</li>
@@ -357,7 +358,7 @@ export default class ConversionCard extends React.PureComponent<IProps, IState> 
 							</div>
 						</SCardList>
 					</SCardConversionForm>
-					<Erc20Form balances={balances} account={account} />
+					<Erc20Form balances={balances} account={account} locale={locale} />
 				</SCard>
 			</Affix>
 		);

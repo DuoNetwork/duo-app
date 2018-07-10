@@ -8,6 +8,7 @@ import { SDivFlexCenter } from '../_styled';
 import { SCardList, SCardTransactionForm, SInput } from '../Cards/_styled';
 
 interface IProps {
+	locale: string;
 	account: string;
 	balances: IBalances;
 }
@@ -97,11 +98,17 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		});
 
 	public render() {
-		const { duo, tokenA, tokenB } = this.props.balances;
+		const { balances, locale } = this.props;
+		const { duo, tokenA, tokenB } = balances;
 		const { token, address, amount, addressError, amountError } = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
 		const noTransferAddr = address === contractUtil.custodianAddr;
-		const tooltipText = 'Click to auto fill in ' + CST.TH_BEETHOVEN + ' address. Transfer to ' + CST.TH_BEETHOVEN + ' is disabled.'
+		const tooltipText =
+			'Click to auto fill in ' +
+			CST.TH_BEETHOVEN +
+			' address. Transfer to ' +
+			CST.TH_BEETHOVEN +
+			' is disabled.';
 		return (
 			<SCardTransactionForm>
 				<SCardList>
@@ -128,17 +135,19 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 								</SDivFlexCenter>
 							</li>
 							<li className="input-line">
-								<span className="title">{CST.TH_ADDRESS}</span>
-								{token === CST.TH_DUO ? <Tooltip title={tooltipText} mouseEnterDelay={1.2}>
-									<div
-										className="default-button"
-										onClick={() =>
-											this.handleAddressChange(contractUtil.custodianAddr)
-										}
-									>
-										{CST.TH_BEETHOVEN}
-									</div>
-								</Tooltip> : null}
+								<span className="title">{CST.TH_ADDRESS[locale]}</span>
+								{token === CST.TH_DUO ? (
+									<Tooltip title={tooltipText} mouseEnterDelay={1.2}>
+										<div
+											className="default-button"
+											onClick={() =>
+												this.handleAddressChange(contractUtil.custodianAddr)
+											}
+										>
+											{CST.TH_BEETHOVEN}
+										</div>
+									</Tooltip>
+								) : null}
 								<SInput
 									className={addressError ? 'input-error' : ''}
 									placeholder="Please input address"
@@ -176,16 +185,20 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 									onBlur={() => this.handleAmountBlur(limit)}
 								/>
 							</li>
-							<li className='no-bg'>
+							<li className="no-bg">
 								<SDivFlexCenter horizontal width="100%" padding="0">
 									<button
 										className="form-button"
 										disabled={
-											!address || !amount || !!addressError || !!amountError || noTransferAddr
+											!address ||
+											!amount ||
+											!!addressError ||
+											!!amountError ||
+											noTransferAddr
 										}
 										onClick={this.handleTransfer}
 									>
-										{CST.TH_TRANSFER}
+										{CST.TH_TRANSFER[locale]}
 									</button>
 									<button
 										className="form-button"
@@ -194,10 +207,10 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 										}
 										onClick={this.handleApprove}
 									>
-										{CST.TH_APPROVE}
+										{CST.TH_APPROVE[locale]}
 									</button>
 									<button className="form-button" onClick={this.handleClear}>
-										{CST.TH_CLEAR}
+										{CST.TH_CLEAR[locale]}
 									</button>
 								</SDivFlexCenter>
 							</li>

@@ -13,7 +13,9 @@ import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
+
 interface IProps {
+	locale: string;
 	last: ICustodianPrice;
 	reset: ICustodianPrice;
 	states: ICustodianStates;
@@ -31,7 +33,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 		};
 	}
 	public render() {
-		const { reset, states, mobile } = this.props;
+		const { locale, reset, states, mobile } = this.props;
 		const { source } = this.state;
 		const last: ICustodianPrice = CST.EXCHANGES.includes(source.toUpperCase())
 			? this.props.sourceLast[source]
@@ -46,7 +48,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					states.beta,
 					states.period,
 					states.periodCoupon
-				)
+			)
 			: [states.navA, states.navB];
 		const ethChange = last.price / reset.price - 1;
 		const tooltipText = !CST.EXCHANGES.includes(source.toUpperCase())
@@ -56,15 +58,17 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			<SCard
 				title={
 					<CardTitleSelect
-						name={CST.TH_PRICE.toUpperCase()}
+						name={CST.TH_PRICE[locale].toUpperCase()}
 						onSelect={(src: string) => this.setState({ source: src })}
 					/>
 				}
 				extra={
 					<SCardExtraDiv>
 						{last.timestamp
-							? 'Last Updated: ' + moment(last.timestamp).format('YYYY-MM-DD HH:mm')
-							: 'Loading Prices'}
+							? CST.TH_LAST_UPDATED[locale] +
+							': ' +
+							moment(last.timestamp).format('YYYY-MM-DD HH:mm')
+							: CST.TH_LOADING[locale]}
 					</SCardExtraDiv>
 				}
 				width={mobile ? '100%' : '540px'}

@@ -11,12 +11,6 @@ import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardAssetTag, SCardExtendExtraDiv, SCardTitle, SRefreshButton } from './_styled';
 
-interface IProps {
-	account: string;
-	balances: IBalances;
-	refreshBalance: () => any;
-}
-
 const BalanceInfo = (props: { icon: string; name: string; value: number; allowance?: number }) => {
 	const { icon, name, value, allowance } = props;
 	return (
@@ -70,14 +64,21 @@ const ExtendExtraDiv = (props: { accountShow: string; account: string }) => {
 	);
 };
 
+interface IProps {
+	locale: string;
+	account: string;
+	balances: IBalances;
+	refreshBalance: () => any;
+}
+
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
-		const { balances, account, refreshBalance } = this.props;
+		const { balances, account, refreshBalance, locale } = this.props;
 		return (
 			<SCard
 				title={
 					<SCardTitle>
-						{CST.TH_BALANCE.toUpperCase()}{' '}
+						{CST.TH_BALANCE[locale].toUpperCase()}{' '}
 						<SRefreshButton icon="reload" onClick={refreshBalance} />
 					</SCardTitle>
 				}

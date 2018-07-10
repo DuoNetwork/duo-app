@@ -2,12 +2,14 @@
 
 exports[`ui reducer default 1`] = `
 Object {
+  "locale": "EN",
   "refresh": 0,
 }
 `;
 
 exports[`ui reducer refresh 1`] = `
 Object {
+  "locale": "EN",
   "refresh": 1234567890,
 }
 `;
