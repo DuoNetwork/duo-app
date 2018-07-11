@@ -17,7 +17,7 @@ export default class StatusCard extends React.PureComponent<IProps> {
 		return (
 			<SCard
 				title={
-					<SCardTitle>{(CST.TH_PROCESS + ' ' + CST.TH_STATUS[CST.LOCALE_EN]).toUpperCase()}</SCardTitle>
+					<SCardTitle>{(CST.TH_PROCESS + ' ' + CST.TH_STATUS.EN).toUpperCase()}</SCardTitle>
 				}
 				width="100%"
 				margin="0 0px 0 0"
@@ -29,7 +29,7 @@ export default class StatusCard extends React.PureComponent<IProps> {
 							key: s.process,
 							[CST.TH_PROCESS]: s.process,
 							[CST.TH_UPDATED]: util.convertUpdateTime(s.timestamp),
-							[CST.TH_PRICE[CST.LOCALE_EN]]: (s as IPriceStatus).price || '',
+							[CST.TH_PRICE.EN]: (s as IPriceStatus).price || '',
 							[CST.TH_VOLUME]: (s as IPriceStatus).volume || '',
 							[CST.TH_BLOCK]: (s as INodeStatus).block || ''
 						}))}
@@ -38,7 +38,7 @@ export default class StatusCard extends React.PureComponent<IProps> {
 						{[
 							CST.TH_PROCESS,
 							CST.TH_UPDATED,
-							CST.TH_PRICE[CST.LOCALE_EN],
+							CST.TH_PRICE.EN,
 							CST.TH_VOLUME,
 							CST.TH_BLOCK
 						].map(th => <Column title={th} dataIndex={th} key={th} />)}

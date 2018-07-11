@@ -110,7 +110,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 							loading={loading}
 							onClick={accounts.length ? this.handleSubmit : this.handleConnect}
 						>
-							{accounts.length ? CST.TH_SUBMIT[CST.LOCALE_EN] : CST.TH_CONNECT}
+							{accounts.length ? CST.TH_SUBMIT.EN : CST.TH_CONNECT}
 						</Button>
 					]}
 				>

@@ -30,18 +30,18 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 						<Table
 							dataSource={conversion.map(c => ({
 								key: c.transactionHash,
-								[CST.TH_TIME[CST.LOCALE_EN]]: moment(c.timestamp).format(
+								[CST.TH_TIME.EN]: moment(c.timestamp).format(
 									'YYYY-MM-DD HH:mm:ss'
 								),
-								[CST.TH_STATUS[CST.LOCALE_EN]]: c.pending
+								[CST.TH_STATUS.EN]: c.pending
 									? CST.TH_PENDING[locale]
 									: c.reverted
 										? CST.TH_REVERTED[locale]
 										: CST.TH_MINED[locale],
-								[CST.TH_TYPE[CST.LOCALE_EN]]: c.type,
+								[CST.TH_TYPE.EN]: c.type,
 								[CST.TH_ETH]: d3.format(',.8f')(c.eth),
 								[CST.TH_TOKEN_AB]: d3.format(',.8f')(c.tokenA),
-								[CST.TH_FEE[CST.LOCALE_EN]]: c.duoFee
+								[CST.TH_FEE.EN]: c.duoFee
 									? d3.format(',.8f')(c.duoFee) + ' ' + CST.TH_DUO
 									: d3.format(',.8f')(c.ethFee) + ' ' + CST.TH_ETH,
 								[CST.TH_LINK]:
@@ -66,21 +66,21 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							onRow={record => ({
 								onClick: () => window.open(record[CST.TH_LINK])
 							})}
-							rowClassName={record => record[CST.TH_TYPE[CST.LOCALE_EN]] + ''}
+							rowClassName={record => record[CST.TH_TYPE.EN] + ''}
 						>
 							<Column
 								title={CST.TH_TIME[locale]}
-								dataIndex={CST.TH_TIME[CST.LOCALE_EN]}
+								dataIndex={CST.TH_TIME.EN}
 								sorter={(a: ITableRecord, b: ITableRecord) =>
-									-(a[CST.TH_TIME[CST.LOCALE_EN]] as string).localeCompare(
-										b[CST.TH_TIME[CST.LOCALE_EN]]
+									-(a[CST.TH_TIME.EN] as string).localeCompare(
+										b[CST.TH_TIME.EN]
 									)
 								}
 								width={160}
 							/>
 							<Column
 								title={CST.TH_STATUS[locale]}
-								dataIndex={CST.TH_STATUS[CST.LOCALE_EN]}
+								dataIndex={CST.TH_STATUS.EN}
 								filters={[
 									CST.TH_MINED[locale],
 									CST.TH_PENDING[locale],
@@ -91,7 +91,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								}))}
 								filterMultiple={false}
 								onFilter={(value, record: ITableRecord) =>
-									record[CST.TH_STATUS[CST.LOCALE_EN]] === value
+									record[CST.TH_STATUS.EN] === value
 								}
 								width={90}
 								render={(text, record) =>
@@ -104,14 +104,14 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							/>
 							<Column
 								title={CST.TH_TYPE[locale]}
-								dataIndex={CST.TH_TYPE[CST.LOCALE_EN]}
+								dataIndex={CST.TH_TYPE.EN}
 								filters={[CST.TH_CREATE, CST.TH_REDEEM].map(f => ({
 									text: f[locale],
-									value: f[CST.LOCALE_EN]
+									value: f.EN
 								}))}
 								filterMultiple={false}
 								onFilter={(value, record: ITableRecord) =>
-									record[CST.TH_TYPE[CST.LOCALE_EN]] === value
+									record[CST.TH_TYPE.EN] === value
 								}
 								width={90}
 								render={text =>
@@ -128,7 +128,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 							/>
 							<Column
 								title={CST.TH_FEE[locale]}
-								dataIndex={CST.TH_FEE[CST.LOCALE_EN]}
+								dataIndex={CST.TH_FEE.EN}
 								className="fee"
 								width={140}
 							/>

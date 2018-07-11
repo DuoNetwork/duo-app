@@ -25,12 +25,12 @@ export default class UserCard extends React.PureComponent<IProps> {
 				data.push({
 					key: b.account,
 					[CST.TH_NO]: i + 1,
-					[CST.TH_ADDRESS[CST.LOCALE_EN]]: b.account,
+					[CST.TH_ADDRESS.EN]: b.account,
 					[CST.TH_ETH]: format(b.eth),
 					[CST.TH_DUO]: format(b.duo),
 					[CST.TH_TOKEN_A]: format(b.tokenA),
 					[CST.TH_TOKEN_B]: format(b.tokenB),
-					[CST.TH_ALLOWANCE[CST.LOCALE_EN]]: format(b.allowance),
+					[CST.TH_ALLOWANCE.EN]: format(b.allowance),
 					[CST.TH_LINK]:
 						'https://' +
 						(__KOVAN__ ? 'kovan.' : '') +
@@ -41,12 +41,12 @@ export default class UserCard extends React.PureComponent<IProps> {
 				data.push({
 					key: i,
 					[CST.TH_NO]: i + 1,
-					[CST.TH_ADDRESS[CST.LOCALE_EN]]: CST.TH_LOADING[CST.LOCALE_EN],
-					[CST.TH_ETH]: CST.TH_LOADING[CST.LOCALE_EN],
-					[CST.TH_DUO]: CST.TH_LOADING[CST.LOCALE_EN],
-					[CST.TH_TOKEN_A]: CST.TH_LOADING[CST.LOCALE_EN],
-					[CST.TH_TOKEN_B]: CST.TH_LOADING[CST.LOCALE_EN],
-					[CST.TH_ALLOWANCE[CST.LOCALE_EN]]: CST.TH_LOADING[CST.LOCALE_EN],
+					[CST.TH_ADDRESS.EN]: CST.TH_LOADING.EN,
+					[CST.TH_ETH]: CST.TH_LOADING.EN,
+					[CST.TH_DUO]: CST.TH_LOADING.EN,
+					[CST.TH_TOKEN_A]: CST.TH_LOADING.EN,
+					[CST.TH_TOKEN_B]: CST.TH_LOADING.EN,
+					[CST.TH_ALLOWANCE.EN]: CST.TH_LOADING.EN,
 					[CST.TH_LINK]: 'https://' + (__KOVAN__ ? 'kovan.' : '') + 'etherscan.io'
 				});
 		}
@@ -78,7 +78,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 						<Column title={CST.TH_NO} dataIndex={CST.TH_NO} width={60} />
 						<Column
 							title={CST.TH_ADDRESS}
-							dataIndex={CST.TH_ADDRESS[CST.LOCALE_EN]}
+							dataIndex={CST.TH_ADDRESS.EN}
 							width={455}
 						/>
 						{[
@@ -86,7 +86,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 							CST.TH_DUO,
 							CST.TH_TOKEN_A,
 							CST.TH_TOKEN_B,
-							CST.TH_ALLOWANCE[CST.LOCALE_EN]
+							CST.TH_ALLOWANCE.EN
 						].map(th => <Column title={th} dataIndex={th} key={th} width={90} />)}
 					</Table>
 				</STableWrapper>

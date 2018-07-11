@@ -26,7 +26,7 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 				showArrow={false}
 			>
 				<Option value={CST.LOCALE_EN}><img className='locale-img' src={enImg}/>{CST.LOCALE_EN}</Option>
-				<Option value={CST.LOCALE_CN}><img className='locale-img' src={cnImg}/>{CST.LOCALE_CN_CN}</Option>
+				<Option value={CST.LOCALE_CN}><img className='locale-img' src={cnImg}/>中文</Option>
 			</SCardTitleSelector>
 		);
 	}
