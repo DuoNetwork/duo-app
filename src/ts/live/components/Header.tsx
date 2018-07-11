@@ -11,7 +11,7 @@ import ProviderRadio from './Common/ProviderRadio';
 interface IProps {
 	network: number;
 	to: string;
-	toText?: string
+	toText?: string;
 	width?: string;
 	account?: string;
 	locale?: string;
@@ -20,14 +20,16 @@ interface IProps {
 }
 
 const RankDiv = (props: { rank: number; volume: string; locale: string }) => {
-	const { rank, volume, locale} = props;
+	const { rank, volume, locale } = props;
 	return (
 		<div style={{ color: ColorStyles.TextWhiteAlphaL, fontWeight: 200 }}>
-			{CST.TH_RANK[locale] + ':'}<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>
+			{CST.TH_RANK[locale] + ':'}
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>
 				{' ' + rank}
 			</span>, {CST.TH_TOTAL_VOL[locale]}:{' '}
-			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{volume}</span> ETH
-			({CST.TH_UPDATE_DAILY[locale]})
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{volume}</span> ETH ({
+				CST.TH_UPDATE_DAILY[locale]
+			})
 		</div>
 	);
 };
@@ -42,16 +44,18 @@ export default class Header extends React.PureComponent<IProps> {
 			<SHeader>
 				<SDivFlexCenter horizontal width={width ? width : '1200px'}>
 					<div className="icon-wrapper">
-						<a href="https://duo.network">
+						<a
+							href={
+								'https://duo.network' + (locale === CST.LOCALE_CN ? '/cn.html' : '')
+							}
+						>
 							<img src={duoIcon} />
 						</a>
 					</div>
 					{network ? (
 						(__KOVAN__ && network !== CST.ETH_KOVAN_ID) ||
 						(!__KOVAN__ && network !== CST.ETH_MAINNET_ID) ? (
-							<span className="error-msg">
-								{CST.TT_NETWORK_CHECK[locale]}
-							</span>
+							<span className="error-msg">{CST.TT_NETWORK_CHECK[locale]}</span>
 						) : accountConversion ? (
 							<RankDiv
 								rank={accountConversion.rank}
@@ -64,7 +68,14 @@ export default class Header extends React.PureComponent<IProps> {
 					) : null}
 					<SDivFlexCenter horizontal>
 						<div className="nav-button-wrapper">
-							<a href={'./GettingStarted' + (locale === CST.LOCALE_CN ? '_CN' : '') + '.pdf'} target="_blank">
+							<a
+								href={
+									'./GettingStarted' +
+									(locale === CST.LOCALE_CN ? '_CN' : '') +
+									'.pdf'
+								}
+								target="_blank"
+							>
 								{CST.TH_GUIDE[locale].toUpperCase()}
 							</a>
 						</div>
