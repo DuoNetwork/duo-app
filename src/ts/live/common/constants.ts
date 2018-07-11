@@ -44,17 +44,19 @@ export interface ILocaleText {
 	EN: string;
 	CN: string;
 	// RU: string;
-	// JP: string;
+	JP: string;
 	[key: string]: string;
 }
 
 export const TH_CREATE: ILocaleText = {
 	[LOCALE_CN]: '拆分',
-	[LOCALE_EN]: 'Create'
+	[LOCALE_EN]: 'Create',
+	[LOCALE_JP]: '分割'
 };
 export const TH_REDEEM: ILocaleText = {
 	[LOCALE_CN]: '合并',
-	[LOCALE_EN]: 'Redeem'
+	[LOCALE_EN]: 'Redeem',
+	[LOCALE_JP]: '合併'
 };
 export const TH_ETH = 'ETH';
 export const TH_DUO = 'DUO';
@@ -62,72 +64,88 @@ export const TH_TOKEN_A = 'Token A';
 export const TH_TOKEN_B = 'Token B';
 export const TH_APPROVE: ILocaleText = {
 	[LOCALE_CN]: '授权',
-	[LOCALE_EN]: 'Approve'
+	[LOCALE_EN]: 'Approve',
+	[LOCALE_JP]: '承認'
 };
 export const TH_TRANSFER: ILocaleText = {
 	[LOCALE_CN]: '转账',
-	[LOCALE_EN]: 'Transfer'
+	[LOCALE_EN]: 'Transfer',
+	[LOCALE_JP]: '転送'
 };
 export const TH_SUBMIT: ILocaleText = {
 	[LOCALE_CN]: '提交',
-	[LOCALE_EN]: 'Submit'
+	[LOCALE_EN]: 'Submit',
+	[LOCALE_JP]: '確認'
 };
 export const TH_CLEAR: ILocaleText = {
 	[LOCALE_CN]: '清空',
-	[LOCALE_EN]: 'Clear'
+	[LOCALE_EN]: 'Clear',
+	[LOCALE_JP]: 'クリア'
 };
 export const TH_ADDRESS: ILocaleText = {
 	[LOCALE_CN]: '地址',
-	[LOCALE_EN]: 'Address'
+	[LOCALE_EN]: 'Address',
+	[LOCALE_JP]: 'アドレス'
 };
 export const TH_TIME: ILocaleText = {
 	[LOCALE_CN]: '时间',
-	[LOCALE_EN]: 'Time'
+	[LOCALE_EN]: 'Time',
+	[LOCALE_JP]: '時間'
 };
 export const TH_STATUS: ILocaleText = {
 	[LOCALE_CN]: '状态',
-	[LOCALE_EN]: 'Status'
+	[LOCALE_EN]: 'Status',
+	[LOCALE_JP]: '状態'
 };
 export const TH_MINED: ILocaleText = {
 	[LOCALE_CN]: '已确认',
-	[LOCALE_EN]: 'Mined'
+	[LOCALE_EN]: 'Mined',
+	[LOCALE_JP]: '確認済み'
 };
 export const TH_PENDING: ILocaleText = {
 	[LOCALE_CN]: '待定',
-	[LOCALE_EN]: 'Pending'
+	[LOCALE_EN]: 'Pending',
+	[LOCALE_JP]: '保留中'
 };
 export const TH_CONVERSION: ILocaleText = {
 	[LOCALE_CN]: '转化',
-	[LOCALE_EN]: 'Conversion'
+	[LOCALE_EN]: 'Conversion',
+	[LOCALE_JP]: '変換'
 };
 export const TH_OPERATION: ILocaleText = {
 	[LOCALE_CN]: '操作',
-	[LOCALE_EN]: 'Operation'
+	[LOCALE_EN]: 'Operation',
+	[LOCALE_JP]: '操作'
 };
 export const TH_PRICE: ILocaleText = {
 	[LOCALE_CN]: '价格',
-	[LOCALE_EN]: 'Price'
+	[LOCALE_EN]: 'Price',
+	[LOCALE_JP]: '価格'
 };
 export const TH_BALANCE: ILocaleText = {
 	[LOCALE_CN]: '余额',
-	[LOCALE_EN]: 'Balance'
+	[LOCALE_EN]: 'Balance',
+	[LOCALE_JP]: '残高'
 };
 export const TH_ERC20 = 'ERC20';
 export const TH_TYPE: ILocaleText = {
 	[LOCALE_CN]: '类别',
-	[LOCALE_EN]: 'Type'
+	[LOCALE_EN]: 'Type',
+	[LOCALE_JP]: 'タイプ'
 };
 export const TH_TOKEN_AB = 'Token A/B';
 export const TH_FEE: ILocaleText = {
 	[LOCALE_CN]: '手续费',
-	[LOCALE_EN]: 'Fee'
+	[LOCALE_EN]: 'Fee',
+	[LOCALE_JP]: '費用'
 };
 export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
 export const TH_BEETHOVEN = 'Beethoven';
 export const TH_CHART: ILocaleText = {
 	[LOCALE_CN]: '图表',
-	[LOCALE_EN]: 'Chart'
+	[LOCALE_EN]: 'Chart',
+	[LOCALE_JP]: 'チャート'
 };
 export const TH_1H = '1h';
 export const TH_5M = '5m';
@@ -139,7 +157,8 @@ export const TH_ROLE = 'Role';
 export const TH_APP = 'App';
 export const TH_ALLOWANCE: ILocaleText = {
 	[LOCALE_CN]: '授权额度',
-	[LOCALE_EN]: 'Allowance'
+	[LOCALE_EN]: 'Allowance',
+	[LOCALE_JP]: '時間'
 };
 export const TH_USER = 'User';
 export const TH_NO = 'No';
@@ -157,161 +176,200 @@ export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
 export const TH_REVERTED: ILocaleText = {
 	[LOCALE_CN]: '失败',
-	[LOCALE_EN]: 'Reverted'
+	[LOCALE_EN]: 'Reverted',
+	[LOCALE_JP]: '認可上限'
 };
 export const TH_CONNECT = 'Connect';
 export const TH_GUIDE: ILocaleText = {
 	[LOCALE_CN]: '指南',
-	[LOCALE_EN]: 'Guide'
+	[LOCALE_EN]: 'Guide',
+	[LOCALE_JP]: 'ガイド'
 };
 export const TH_LAST_UPDATED: ILocaleText = {
 	[LOCALE_CN]: '更新于',
-	[LOCALE_EN]: 'Last Updated'
+	[LOCALE_EN]: 'Last Updated',
+	[LOCALE_JP]: '最終更新'
 };
 export const TH_LOADING: ILocaleText = {
 	[LOCALE_CN]: '载入中',
-	[LOCALE_EN]: 'Loading'
+	[LOCALE_EN]: 'Loading',
+	[LOCALE_JP]: 'ローディング'
 };
 export const TH_LAST_RESET: ILocaleText = {
 	[LOCALE_CN]: '前次折算',
-	[LOCALE_EN]: 'Last Reset'
+	[LOCALE_EN]: 'Last Reset',
+	[LOCALE_JP]: 'ラーストリセット'
 };
 export const TH_RESET_PROGRESS: ILocaleText = {
 	[LOCALE_CN]: '折算进度',
-	[LOCALE_EN]: 'Reset Progress'
+	[LOCALE_EN]: 'Reset Progress',
+	[LOCALE_JP]: 'リセット進度'
 };
 export const TH_CONTRACT_STATES: ILocaleText = {
 	[LOCALE_CN]: '合约详情',
-	[LOCALE_EN]: 'Contract States'
+	[LOCALE_EN]: 'Contract States',
+	[LOCALE_JP]: '契約詳細'
 };
 export const TH_PERIOD_LENGTH: ILocaleText = {
 	[LOCALE_CN]: '周期',
-	[LOCALE_EN]: 'Period Length'
+	[LOCALE_EN]: 'Period Length',
+	[LOCALE_JP]: '期間'
 };
 export const TH_COUPON_PER_PERIOD: ILocaleText = {
 	[LOCALE_CN]: '周期利率',
-	[LOCALE_EN]: 'Coupon per Period'
+	[LOCALE_EN]: 'Coupon per Period',
+	[LOCALE_JP]: '期間金利'
 };
 export const TH_UPPER_A: ILocaleText = {
 	[LOCALE_CN]: 'A级上限',
-	[LOCALE_EN]: 'Upper Limit for Token A'
+	[LOCALE_EN]: 'Upper Limit for Token A',
+	[LOCALE_JP]: 'Token A 上限'
 };
 export const TH_UPPER_B: ILocaleText = {
 	[LOCALE_CN]: 'B级上限',
-	[LOCALE_EN]: 'Upper Limit for Token B'
+	[LOCALE_EN]: 'Upper Limit for Token B',
+	[LOCALE_JP]: 'Token B 上限'
 };
 export const TH_LOWER_B: ILocaleText = {
 	[LOCALE_CN]: 'B级下限',
-	[LOCALE_EN]: 'Lower Limit for Token B'
+	[LOCALE_EN]: 'Lower Limit for Token B',
+	[LOCALE_JP]: 'Token B 下限'
 };
 export const TH_LEVERAGE_FACTOR: ILocaleText = {
 	[LOCALE_CN]: '杠杆因子',
-	[LOCALE_EN]: 'Leverage Factor'
+	[LOCALE_EN]: 'Leverage Factor',
+	[LOCALE_JP]: 'レバレッジ因子'
 };
 export const TH_CONVERSION_FACTOR: ILocaleText = {
 	[LOCALE_CN]: '转化因子',
-	[LOCALE_EN]: 'Conversion Factor'
+	[LOCALE_EN]: 'Conversion Factor',
+	[LOCALE_JP]: '変換因子'
 };
 export const TH_FEE_RATIO: ILocaleText = {
 	[LOCALE_CN]: '费用比例',
-	[LOCALE_EN]: 'Fee Ratio'
+	[LOCALE_EN]: 'Fee Ratio',
+	[LOCALE_JP]: '費用比率'
 };
 export const TH_DUO_RECEIVED: ILocaleText = {
 	[LOCALE_CN]: '累计DUO手续费',
-	[LOCALE_EN]: 'DUO Received'
+	[LOCALE_EN]: 'DUO Received',
+	[LOCALE_JP]: '累積DUO'
 };
 export const TH_ETH_BALANCE: ILocaleText = {
 	[LOCALE_CN]: 'ETH净余额',
-	[LOCALE_EN]: 'Net ETH Balance'
+	[LOCALE_EN]: 'Net ETH Balance',
+	[LOCALE_JP]: 'ETH残高'
 };
 export const TH_A_SUPPLY: ILocaleText = {
 	[LOCALE_CN]: 'A级总量',
-	[LOCALE_EN]: 'Token A Total Supply'
+	[LOCALE_EN]: 'Token A Total Supply',
+	[LOCALE_JP]: 'Token A 合計供給'
 };
 export const TH_B_SUPPLY: ILocaleText = {
 	[LOCALE_CN]: 'B级总量',
-	[LOCALE_EN]: 'Token B Total Supply'
+	[LOCALE_EN]: 'Token B Total Supply',
+	[LOCALE_JP]: 'Token B 合計供給'
 };
 export const TH_TOTAL_USERS: ILocaleText = {
 	[LOCALE_CN]: '用户总数',
-	[LOCALE_EN]: 'Total Users'
+	[LOCALE_EN]: 'Total Users',
+	[LOCALE_JP]: 'ユーザー総数'
 };
 export const TH_SINCE_RESET: ILocaleText = {
 	[LOCALE_CN]: '与折算相比',
-	[LOCALE_EN]: 'Since Reset'
+	[LOCALE_EN]: 'Since Reset',
+	[LOCALE_JP]: 'リセット以来'
 };
 export const TH_PA: ILocaleText = {
 	[LOCALE_CN]: '年化',
-	[LOCALE_EN]: 'p.a.'
+	[LOCALE_EN]: 'p.a.',
+	[LOCALE_JP]: '年間'
 };
 export const TH_LEVERAGE: ILocaleText = {
 	[LOCALE_CN]: '杠杆',
-	[LOCALE_EN]: 'Leverage'
+	[LOCALE_EN]: 'Leverage',
+	[LOCALE_JP]: 'レバレッジ'
 };
 export const TH_TOTAL: ILocaleText = {
 	[LOCALE_CN]: '总共',
-	[LOCALE_EN]: 'Total'
+	[LOCALE_EN]: 'Total',
+	[LOCALE_JP]: '合計'
 };
 export const TH_CONVERSIONS: ILocaleText = {
 	[LOCALE_CN]: '转化',
-	[LOCALE_EN]: 'Conversions'
+	[LOCALE_EN]: 'Conversions',
+	[LOCALE_JP]: '変換'
 };
 export const TH_CONVERSION_FEE: ILocaleText = {
 	[LOCALE_CN]: '手续费',
-	[LOCALE_EN]: 'Conversion Fee'
+	[LOCALE_EN]: 'Conversion Fee',
+	[LOCALE_JP]: '費用'
 };
 export const TH_DISABLED: ILocaleText = {
 	[LOCALE_CN]: '禁用',
-	[LOCALE_EN]: 'Disabled'
+	[LOCALE_EN]: 'Disabled',
+	[LOCALE_JP]: '無効'
 };
 export const TH_NETWORK_GAS_PRICE: ILocaleText = {
 	[LOCALE_CN]: '网络Gas价格',
-	[LOCALE_EN]: 'Network Gas Price'
+	[LOCALE_EN]: 'Network Gas Price',
+	[LOCALE_JP]: 'Gas価格'
 };
 export const TH_RANK: ILocaleText = {
 	[LOCALE_CN]: '排名',
-	[LOCALE_EN]: 'Rank'
+	[LOCALE_EN]: 'Rank',
+	[LOCALE_JP]: 'ランク'
 };
 export const TH_TOTAL_VOL: ILocaleText = {
 	[LOCALE_CN]: '总量',
-	[LOCALE_EN]: 'Total Volume'
+	[LOCALE_EN]: 'Total Volume',
+	[LOCALE_JP]: '合計'
 };
 export const TH_UPDATE_DAILY: ILocaleText = {
 	[LOCALE_CN]: '每日更新',
-	[LOCALE_EN]: 'update daily'
+	[LOCALE_EN]: 'update daily',
+	[LOCALE_JP]: '毎日更新'
 };
 
 export const TT_TRADING_STATE: ILocaleText = {
 	[LOCALE_CN]: '交易状态， 可执行所有操作',
-	[LOCALE_EN]: 'Trading state, operations are permitted during current state.'
+	[LOCALE_EN]: 'Trading state, operations are permitted during current state.',
+	[LOCALE_JP]: 'Trading状態，現在の状態で操作が許可されます。'
 };
 export const TT_RESET_STATE: ILocaleText = {
 	[LOCALE_CN]: '折算中，无法执行任何操作',
-	[LOCALE_EN]: 'Reset in progress, operations are prohibited during current state.'
+	[LOCALE_EN]: 'Reset in progress, operations are prohibited during current state.',
+	[LOCALE_JP]: 'リセット中，現在の状態で操作が許可されません。'
 };
 export const TT_CTD_NAV: ILocaleText = {
 	[LOCALE_CN]: '合约中显示的净值',
-	[LOCALE_EN]: 'Nav as currently in Smart Contract.'
+	[LOCALE_EN]: 'Nav as currently in Smart Contract.',
+	[LOCALE_JP]: ''
 };
 export const TT_EST_NAV: ILocaleText = {
 	[LOCALE_CN]: '以所选价格估算的净值',
-	[LOCALE_EN]: 'Estimated nav based selected ETH price.'
+	[LOCALE_EN]: 'Estimated nav based selected ETH price.',
+	[LOCALE_JP]: ''
 };
 export const TT_RESULT_VARY: ILocaleText = {
 	[LOCALE_CN]: '可能与实际结果存在误差',
-	[LOCALE_EN]: 'May vary from actual result.'
+	[LOCALE_EN]: 'May vary from actual result.',
+	[LOCALE_JP]: ''
 };
 export const TT_INPUT_AMOUNT: ILocaleText = {
 	[LOCALE_CN]: '请输入数量',
-	[LOCALE_EN]: 'Please input amount'
+	[LOCALE_EN]: 'Please input amount',
+	[LOCALE_JP]: '入力してください'
 };
 export const TT_INPUT_ADDR: ILocaleText = {
 	[LOCALE_CN]: '请输入地址',
-	[LOCALE_EN]: 'Please input address'
+	[LOCALE_EN]: 'Please input address',
+	[LOCALE_JP]: '入力してください'
 };
 export const TT_INVALID_NUMBER: ILocaleText = {
 	[LOCALE_CN]: '输入有误',
-	[LOCALE_EN]: 'Invalid Number'
+	[LOCALE_EN]: 'Invalid Number',
+	[LOCALE_JP]: '無効な入力'
 };
 export const TT_BEETHOVEN_ADDR: ILocaleText = {
 	[LOCALE_CN]: '点击输入' + TH_BEETHOVEN + '地址。无法往' + TH_BEETHOVEN + '地址转账。',
@@ -320,11 +378,13 @@ export const TT_BEETHOVEN_ADDR: ILocaleText = {
 		TH_BEETHOVEN +
 		' address. Transfer to ' +
 		TH_BEETHOVEN +
-		' is disabled.'
+		' is disabled.',
+	[LOCALE_JP]: ''
 };
 export const TT_DUO_FEE_CHECK: ILocaleText = {
 	[LOCALE_CN]: '由于DUO授权余额不足，操作可能失败。',
-	[LOCALE_EN]: 'Insufficient DUO Allowance balance, transaction may fail.'
+	[LOCALE_EN]: 'Insufficient DUO Allowance balance, transaction may fail.',
+	[LOCALE_JP]: ''
 };
 export const TT_NETWORK_CHECK: ILocaleText = {
 	[LOCALE_CN]:
@@ -332,5 +392,6 @@ export const TT_NETWORK_CHECK: ILocaleText = {
 	[LOCALE_EN]:
 		'This page is built for ' +
 		(__KOVAN__ ? 'KOVAN' : 'MainNet') +
-		', please choose the corret network in Metamask'
+		', please choose the corret network in Metamask',
+	[LOCALE_JP]: ''
 };
