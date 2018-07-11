@@ -99,9 +99,9 @@ export default class Duo extends React.PureComponent<IProps> {
 					</Layout>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={899}>
-					<StateCard locale={CST.LOCALE_EN} states={states} reset={prices.reset} mobile />
+					<StateCard locale={locale} states={states} reset={prices.reset} mobile />
 					<PriceCard
-						locale={CST.LOCALE_EN}
+						locale={locale}
 						last={prices.last}
 						reset={prices.reset}
 						states={states}
