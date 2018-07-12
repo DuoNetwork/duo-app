@@ -370,11 +370,9 @@ class ContractUtil {
 
 	public setValue(address: string, index: number, newValue: number) {
 		if (this.isReadOnly()) return this.ReadOnlyReject();
-		return this.custodian.methods
-			.setValue(index, index === 4 || index === 5 ? newValue * 10000 : newValue)
-			.send({
-				from: address
-			});
+		return this.custodian.methods.setValue(index, newValue).send({
+			from: address
+		});
 	}
 
 	public addAddress(address: string, addr1: string, addr2: string) {

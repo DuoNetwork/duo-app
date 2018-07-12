@@ -15,6 +15,9 @@ interface IProps {
 	account: string;
 }
 
+const validatePosInt = (value: string) =>
+	!value || (value.match(CST.RX_INTEGER) && Number(value) > 0) ? '' : 'Invalid number';
+
 export default class AdminCard extends React.PureComponent<IProps> {
 	public render() {
 		const { states, account, addresses } = this.props;
@@ -38,6 +41,20 @@ export default class AdminCard extends React.PureComponent<IProps> {
 		});
 		data.push({
 			key: 1,
+			[CST.TH_STATE]: 'Commission Rate BP',
+			[CST.TH_VALUE]: states.commissionRate * 10000,
+			[CST.TH_ACTION]: (
+				<AdminInputButton
+					account={account}
+					type={CST.TH_SET_VALUE}
+					disabled={account === '0x0' || addresses.operator.address !== account}
+					index={0}
+					validateInput={validatePosInt}
+				/>
+			)
+		});
+		data.push({
+			key: 2,
 			[CST.TH_STATE]: 'ETH:DUO Fee Ratio',
 			[CST.TH_VALUE]: states.ethDuoFeeRatio,
 			[CST.TH_ACTION]: (
@@ -46,16 +63,12 @@ export default class AdminCard extends React.PureComponent<IProps> {
 					type={CST.TH_SET_VALUE}
 					disabled={account === '0x0' || addresses.operator.address !== account}
 					index={1}
-					validateInput={(value: string) =>
-						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
-							? ''
-							: 'Invalid number'
-					}
+					validateInput={validatePosInt}
 				/>
 			)
 		});
 		data.push({
-			key: 2,
+			key: 3,
 			[CST.TH_STATE]: 'Iteration Gas Threshold',
 			[CST.TH_VALUE]: states.iterationGasThreshold,
 			[CST.TH_ACTION]: (
@@ -64,16 +77,12 @@ export default class AdminCard extends React.PureComponent<IProps> {
 					type={CST.TH_SET_VALUE}
 					disabled={account === '0x0' || addresses.operator.address !== account}
 					index={2}
-					validateInput={(value: string) =>
-						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
-							? ''
-							: 'Invalid number'
-					}
+					validateInput={validatePosInt}
 				/>
 			)
 		});
 		data.push({
-			key: 3,
+			key: 4,
 			[CST.TH_STATE]: 'PreReset Waiting Blocks',
 			[CST.TH_VALUE]: states.preResetWaitingBlocks,
 			[CST.TH_ACTION]: (
@@ -82,52 +91,40 @@ export default class AdminCard extends React.PureComponent<IProps> {
 					type={CST.TH_SET_VALUE}
 					disabled={account === '0x0' || addresses.operator.address !== account}
 					index={3}
-					validateInput={(value: string) =>
-						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
-							? ''
-							: 'Invalid number'
-					}
+					validateInput={validatePosInt}
 				/>
 			)
 		});
 		data.push({
-			key: 4,
-			[CST.TH_STATE]: 'Price Tolerance',
-			[CST.TH_VALUE]: states.priceTol,
+			key: 5,
+			[CST.TH_STATE]: 'Price Tolerance BP',
+			[CST.TH_VALUE]: states.priceTol * 10000,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
 					disabled={account === '0x0' || addresses.operator.address !== account}
 					index={4}
-					validateInput={(value: string) =>
-						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
-							? ''
-							: 'Invalid number'
-					}
+					validateInput={validatePosInt}
 				/>
 			)
 		});
 		data.push({
-			key: 5,
-			[CST.TH_STATE]: 'Price Feed Tolerance',
-			[CST.TH_VALUE]: states.priceFeedTol,
+			key: 6,
+			[CST.TH_STATE]: 'Price Feed Tolerance BP',
+			[CST.TH_VALUE]: states.priceFeedTol * 10000,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
 					disabled={account === '0x0' || addresses.operator.address !== account}
 					index={5}
-					validateInput={(value: string) =>
-						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
-							? ''
-							: 'Invalid number'
-					}
+					validateInput={validatePosInt}
 				/>
 			)
 		});
 		data.push({
-			key: 6,
+			key: 7,
 			[CST.TH_STATE]: 'Price Feed Time Tolerance',
 			[CST.TH_VALUE]: states.priceFeedTimeTol,
 			[CST.TH_ACTION]: (
@@ -136,16 +133,12 @@ export default class AdminCard extends React.PureComponent<IProps> {
 					type={CST.TH_SET_VALUE}
 					disabled={account === '0x0' || addresses.operator.address !== account}
 					index={6}
-					validateInput={(value: string) =>
-						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
-							? ''
-							: 'Invalid number'
-					}
+					validateInput={validatePosInt}
 				/>
 			)
 		});
 		data.push({
-			key: 7,
+			key: 8,
 			[CST.TH_STATE]: 'Price Update Cool Down',
 			[CST.TH_VALUE]: states.priceUpdateCoolDown,
 			[CST.TH_ACTION]: (
@@ -154,16 +147,12 @@ export default class AdminCard extends React.PureComponent<IProps> {
 					type={CST.TH_SET_VALUE}
 					disabled={account === '0x0' || addresses.operator.address !== account}
 					index={7}
-					validateInput={(value: string) =>
-						!value || (value.match(CST.RX_INTEGER) && Number(value) > 0)
-							? ''
-							: 'Invalid number'
-					}
+					validateInput={validatePosInt}
 				/>
 			)
 		});
 		data.push({
-			key: 8,
+			key: 9,
 			[CST.TH_STATE]: 'Address Pool Length',
 			[CST.TH_VALUE]: states.addrPoolLength,
 			[CST.TH_ACTION]: (
@@ -178,22 +167,22 @@ export default class AdminCard extends React.PureComponent<IProps> {
 			)
 		});
 		data.push({
-			key: 9,
+			key: 10,
 			[CST.TH_STATE]: 'Staged Prices',
 			[CST.TH_VALUE]: states.numOfPrices
 		});
 		data.push({
-			key: 10,
+			key: 11,
 			[CST.TH_STATE]: 'Next Reset Addr Index',
 			[CST.TH_VALUE]: states.nextResetAddrIndex
 		});
 		data.push({
-			key: 11,
+			key: 12,
 			[CST.TH_STATE]: 'Last Admin Time',
 			[CST.TH_VALUE]: states.lastAdminTime
 		});
 		data.push({
-			key: 12,
+			key: 13,
 			[CST.TH_STATE]: 'Admin Cool Down',
 			[CST.TH_VALUE]: states.adminCoolDown
 		});

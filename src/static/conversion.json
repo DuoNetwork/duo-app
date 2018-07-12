@@ -1,170 +1,2770 @@
 {
-    "day": "2018-07-10",
-    "start": 7936141,
-    "end": 7947858,
-    "volume": 55220.92951150024,
-    "users": 136,
-    "dailyVolume": 25159.82906723317,
+    "day": "2018-07-11",
+    "start": 7947859,
+    "end": 7960490,
+    "volume": 95528.67115645006,
+    "users": 383,
+    "dailyVolume": 40307.74164494894,
     "conversion": {
-        "0x98c7a0c5ec68939D43F30488E673F59B668967Ea": {
-            "rank": 2,
-            "ethFeeVolume": 18.960164778334487,
-            "duoFeeVolume": 2889.660184093885,
-            "volume": 4353.450440919162,
-            "dailyEthFeeVolume": 3.067138333320273,
-            "dailyDuoFeeVolume": 2851.508748170148,
-            "dailyVolume": 4280.330260588542,
-            "dailyRank": 2
-        },
-        "0xFB134e9417Db5Ffb05B0a281f155be6C33c960B9": {
-            "rank": 8,
-            "ethFeeVolume": 134.6850968661181,
-            "duoFeeVolume": 123.12833552977827,
-            "volume": 319.3776001607855,
-            "dailyEthFeeVolume": 128.07355894753908,
-            "dailyDuoFeeVolume": 46.64351097255517,
-            "dailyVolume": 198.03882540637184,
-            "dailyRank": 6
-        },
-        "0x7D3A40CEd915fF51727e942bC2D00eE00fAb1694": {
+        "0x3474143328236D26fE7095684eAE64C63CC19d78": {
             "rank": 13,
-            "ethFeeVolume": 3.9941929613657563,
-            "duoFeeVolume": 6.199466091307771,
-            "volume": 13.293392098327415,
+            "ethFeeVolume": 2.448469353355598,
+            "duoFeeVolume": 11.120541168931853,
+            "volume": 19.12928110675338,
             "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 2.05561506791445,
-            "dailyVolume": 3.083422601871675,
-            "dailyRank": 13
+            "dailyDuoFeeVolume": 5.74102547068189,
+            "dailyVolume": 8.611538206022836,
+            "dailyRank": 12
         },
         "0x0B83d0C0976b71724054E9F74A471F7d1c7AbDc4": {
-            "rank": 9,
-            "ethFeeVolume": 0.74230744005,
-            "duoFeeVolume": 57.79355992287808,
-            "volume": 87.43264732436712,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 39.14163929969133,
-            "dailyVolume": 58.712458949536995,
-            "dailyRank": 8
-        },
-        "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4": {
-            "rank": 5,
-            "ethFeeVolume": 304.22047898948347,
-            "duoFeeVolume": 725.4219199599798,
-            "volume": 1392.3533589294534,
-            "dailyEthFeeVolume": 248.4863365681362,
-            "dailyDuoFeeVolume": 289.5323156611894,
-            "dailyVolume": 682.7848100599203,
-            "dailyRank": 5
-        },
-        "0x141C32165C63727F392e2Adb83A9f255849230f2": {
             "rank": 10,
-            "ethFeeVolume": 4.931173564714246,
-            "duoFeeVolume": 34.55603799488158,
-            "volume": 56.76523055703662,
-            "dailyEthFeeVolume": 1.810710882876908,
-            "dailyDuoFeeVolume": 26.750914418206264,
-            "dailyVolume": 41.93708251018631,
+            "ethFeeVolume": 0.74230744005,
+            "duoFeeVolume": 74.71041696658199,
+            "volume": 112.80793288992298,
+            "dailyEthFeeVolume": 0,
+            "dailyDuoFeeVolume": 16.9168570437039,
+            "dailyVolume": 25.37528556555585,
+            "dailyRank": 10
+        },
+        "0x7D3A40CEd915fF51727e942bC2D00eE00fAb1694": {
+            "rank": 12,
+            "ethFeeVolume": 4.461822682873092,
+            "duoFeeVolume": 28.01089297074774,
+            "volume": 46.478162138994705,
+            "dailyEthFeeVolume": 0.4676297215073359,
+            "dailyDuoFeeVolume": 21.81142687943997,
+            "dailyVolume": 33.18477004066729,
             "dailyRank": 9
         },
-        "0x89Ba87d7c6d9958BBe38cECa611E88090D1fC747": {
-            "rank": 24,
-            "ethFeeVolume": 2.2275,
-            "duoFeeVolume": 0,
-            "volume": 2.2275,
-            "dailyEthFeeVolume": 2.2275,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 2.2275,
-            "dailyRank": 15
-        },
-        "0xdB82442e01471C5b89EDf0d663faFC061BE073FD": {
-            "rank": 3,
-            "ethFeeVolume": 4.711230324652499,
-            "duoFeeVolume": 2460.825015078991,
-            "volume": 3695.948752943139,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 114.9909990104632,
-            "dailyVolume": 172.4864985156948,
-            "dailyRank": 7
-        },
-        "0x3474143328236D26fE7095684eAE64C63CC19d78": {
-            "rank": 14,
-            "ethFeeVolume": 2.448469353355598,
-            "duoFeeVolume": 5.379515698249962,
-            "volume": 10.517742900730543,
-            "dailyEthFeeVolume": 2.448469353355598,
-            "dailyDuoFeeVolume": 5.379515698249962,
-            "dailyVolume": 10.517742900730543,
-            "dailyRank": 11
+        "0xB4B95273645FE1CC4a95d6540eC70b663312B0C9": {
+            "rank": 2,
+            "ethFeeVolume": 3197.296078548674,
+            "duoFeeVolume": 7436.699406297688,
+            "volume": 14352.345187995206,
+            "dailyEthFeeVolume": 998.7245276335773,
+            "dailyDuoFeeVolume": 7436.699406297688,
+            "dailyVolume": 12153.77363708011,
+            "dailyRank": 2
         },
         "0x4Ff21b359dEFDA6060855643f3177c6a4300E847": {
             "rank": 7,
             "ethFeeVolume": 50.46018661494775,
-            "duoFeeVolume": 520.3806501312864,
-            "volume": 831.0311618118773,
+            "duoFeeVolume": 535.3067880013733,
+            "volume": 853.4203686170077,
             "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 7.5396138,
-            "dailyVolume": 11.3094207,
-            "dailyRank": 10
+            "dailyDuoFeeVolume": 14.926137870086924,
+            "dailyVolume": 22.389206805130385,
+            "dailyRank": 11
         },
-        "0x9679FfC65C4BC8c46B8CB590c45916ad11963633": {
-            "rank": 18,
-            "ethFeeVolume": 2.9523361824,
-            "duoFeeVolume": 1.4761680911748432,
-            "volume": 5.166588319162265,
-            "dailyEthFeeVolume": 2.9523361824,
-            "dailyDuoFeeVolume": 1.4761680911748432,
-            "dailyVolume": 5.166588319162265,
-            "dailyRank": 12
+        "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4": {
+            "rank": 5,
+            "ethFeeVolume": 684.0767261650664,
+            "duoFeeVolume": 1246.3894587724426,
+            "volume": 2553.66091432373,
+            "dailyEthFeeVolume": 379.8562471755829,
+            "dailyDuoFeeVolume": 520.9675388124627,
+            "dailyVolume": 1161.307555394277,
+            "dailyRank": 5
         },
-        "0xa4f6CF339221A2375D36b0074ed7337DaD382a08": {
-            "rank": 101,
-            "ethFeeVolume": 0.4957568597582827,
-            "duoFeeVolume": 0,
-            "volume": 0.4957568597582827,
-            "dailyEthFeeVolume": 0.4957568597582827,
+        "0xFB134e9417Db5Ffb05B0a281f155be6C33c960B9": {
+            "rank": 8,
+            "ethFeeVolume": 134.8379702352927,
+            "duoFeeVolume": 123.12833552977827,
+            "volume": 319.5304735299601,
+            "dailyEthFeeVolume": 0.15287336917459282,
             "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0.4957568597582827,
+            "dailyVolume": 0.15287336917459282,
+            "dailyRank": 273
+        },
+        "0x141C32165C63727F392e2Adb83A9f255849230f2": {
+            "rank": 9,
+            "ethFeeVolume": 19.882045359695233,
+            "duoFeeVolume": 119.90696294486538,
+            "volume": 199.74248977699332,
+            "dailyEthFeeVolume": 14.950871794980985,
+            "dailyDuoFeeVolume": 85.3509249499838,
+            "dailyVolume": 142.97725921995672,
+            "dailyRank": 7
+        },
+        "0xFE20717FD2547Fe53ed46eD76e6c89226337C9f1": {
+            "rank": 147,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 129
+        },
+        "0x47cD6f7f657BA1bAffBCCEdda1867A139CE0fcC8": {
+            "rank": 164,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 135
+        },
+        "0xbdAf0EB2c06cdA71EdACEED1e78E09b4FEb5FEB0": {
+            "rank": 118,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 99
+        },
+        "0xeBCd3CdCfa9b3D43355997C8a5Bd9ED6b7B2Fa32": {
+            "rank": 127,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 110
+        },
+        "0xC150596d1D255116769D9A033775d46331323fdf": {
+            "rank": 135,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 118
+        },
+        "0x06c86aFBf4b37c66ABe841cE2E5AB54124d5B554": {
+            "rank": 126,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 109
+        },
+        "0xAD2D9bc43ED7b55580fE012949Ca413A15D8d7D8": {
+            "rank": 79,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 62
+        },
+        "0x77e5475b445Ff9948b39f891a7b977Ce60A0AEbc": {
+            "rank": 355,
+            "ethFeeVolume": 0.36927,
+            "duoFeeVolume": 0,
+            "volume": 0.36927,
+            "dailyEthFeeVolume": 0.36927,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.36927,
+            "dailyRank": 258
+        },
+        "0x63ec6d4E54A09D5C809537d3A5CA47CCcB23BD57": {
+            "rank": 313,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 238
+        },
+        "0xAA3758E04DFdd911738aBeb099f72AB5447E11b9": {
+            "rank": 140,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 130
+        },
+        "0xb65d306956b26b2C7B42aB3616Cf52f0C8ad4ffb": {
+            "rank": 270,
+            "ethFeeVolume": 0.5148,
+            "duoFeeVolume": 0,
+            "volume": 0.5148,
+            "dailyEthFeeVolume": 0.5148,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.5148,
+            "dailyRank": 215
+        },
+        "0xdf08165896291487336309b26b40f0007fe6F53d": {
+            "rank": 49,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 20
+        },
+        "0x3C2c53A5322e0f3bfBF6d25dc1c9876FAfBa811f": {
+            "rank": 113,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 94
+        },
+        "0x1614329D991085754F9b4DFA2E37eA7aA42185b0": {
+            "rank": 72,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 48
+        },
+        "0x126b5483c2f25Ac5f1bb2D9f118D189ba78C727f": {
+            "rank": 97,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 88
+        },
+        "0x860C49d43133Ca078a45b79418B76BfbE76BB2a8": {
+            "rank": 286,
+            "ethFeeVolume": 0.51183,
+            "duoFeeVolume": 0,
+            "volume": 0.51183,
+            "dailyEthFeeVolume": 0.51183,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51183,
+            "dailyRank": 224
+        },
+        "0x290FC07db2BF4b385987059E919B78898941102e": {
+            "rank": 33,
+            "ethFeeVolume": 1.01871,
+            "duoFeeVolume": 0,
+            "volume": 1.01871,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 55
+        },
+        "0x2C581421a6E49CdACFb1A54a3321032de22B010b": {
+            "rank": 218,
+            "ethFeeVolume": 0.56628,
+            "duoFeeVolume": 0,
+            "volume": 0.56628,
+            "dailyEthFeeVolume": 0.56628,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.56628,
+            "dailyRank": 193
+        },
+        "0x7a1cAaF3249D92F6F48579B1ad3f4b2323f1dA91": {
+            "rank": 69,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 45
+        },
+        "0x45E019f04C9b5bbDcA6a9788f18825C81eC27cfa": {
+            "rank": 105,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 72
+        },
+        "0x1e5b730b90873a5e80E95Af5A20413F902bd2EDa": {
+            "rank": 325,
+            "ethFeeVolume": 0.50787,
+            "duoFeeVolume": 0,
+            "volume": 0.50787,
+            "dailyEthFeeVolume": 0.50787,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50787,
+            "dailyRank": 243
+        },
+        "0xe22A164dA137AE7cF1e9e1f7B13a9375b0bc0D9c": {
+            "rank": 260,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 211
+        },
+        "0x37412B491F356Cc6bDC5290BdECb98DB7E67303c": {
+            "rank": 47,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 18
+        },
+        "0xcF045Ad33660e2164618E6465a44b1560d636DEA": {
+            "rank": 43,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 28
+        },
+        "0x7088877E7A35c765c7efFAf6C6782332AD53EcF7": {
+            "rank": 374,
+            "ethFeeVolume": 0.23661,
+            "duoFeeVolume": 0,
+            "volume": 0.23661,
+            "dailyEthFeeVolume": 0.23661,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.23661,
+            "dailyRank": 267
+        },
+        "0xb29445C0C1315866eA7a6BfD7Eb6D6AA26F7E0fd": {
+            "rank": 134,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 117
+        },
+        "0xc86AB3d4c06C8eb17BC3E1676224A5b82Ad18375": {
+            "rank": 196,
+            "ethFeeVolume": 0.85437,
+            "duoFeeVolume": 0,
+            "volume": 0.85437,
+            "dailyEthFeeVolume": 0.85437,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85437,
+            "dailyRank": 176
+        },
+        "0x9DC78dE4D547EB4007a15185e4a056b3B874ed83": {
+            "rank": 39,
+            "ethFeeVolume": 0.96921,
+            "duoFeeVolume": 0,
+            "volume": 0.96921,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 103
+        },
+        "0x2af8Cbb8ee136fa72651e3397cF1eb1248732B9C": {
+            "rank": 48,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 19
+        },
+        "0xd0f4aCa3f38c0e6159008Dd52366F561E2Ea6A56": {
+            "rank": 96,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 71
+        },
+        "0xF8ae75bAe5444C6B531D1D9d924E7e05C4aa54F5": {
+            "rank": 326,
+            "ethFeeVolume": 0.50787,
+            "duoFeeVolume": 0,
+            "volume": 0.50787,
+            "dailyEthFeeVolume": 0.50787,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50787,
+            "dailyRank": 245
+        },
+        "0x115BD9dCe77a81E95e8A332a8543E770e11e2E93": {
+            "rank": 378,
+            "ethFeeVolume": 0.2178,
+            "duoFeeVolume": 0,
+            "volume": 0.2178,
+            "dailyEthFeeVolume": 0.2178,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.2178,
+            "dailyRank": 271
+        },
+        "0x91023faf59f1EF49ad8240fFC3f71cF6A2D37a76": {
+            "rank": 77,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 53
+        },
+        "0xea1Afe231d4fEba447ADEFe16449ec20B7D19A47": {
+            "rank": 372,
+            "ethFeeVolume": 0.23859,
+            "duoFeeVolume": 0,
+            "volume": 0.23859,
+            "dailyEthFeeVolume": 0.23859,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.23859,
+            "dailyRank": 266
+        },
+        "0x3b17dE4fB7415c597bC79B56d88C84671bf0C209": {
+            "rank": 142,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 124
+        },
+        "0xb7b07e585B4f312a0b1B1Bdca1bB3995e7BDe258": {
+            "rank": 123,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 106
+        },
+        "0x44A6a889bdF40f3a73FAA4f1b63Ca678bb1690A5": {
+            "rank": 175,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 169
+        },
+        "0x886B3080b36B31360a964206CE99ae40C925Ac8a": {
+            "rank": 73,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 49
+        },
+        "0x5E36596178234495631B66Fd459d0801B4B99976": {
+            "rank": 158,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 141
+        },
+        "0xd2C1Eb215C8D54326b7247fe2F26f124d883927D": {
+            "rank": 192,
+            "ethFeeVolume": 0.85437,
+            "duoFeeVolume": 0,
+            "volume": 0.85437,
+            "dailyEthFeeVolume": 0.85437,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85437,
+            "dailyRank": 175
+        },
+        "0xF37117712668A47d2Fa997e3dff251a2C78EDA12": {
+            "rank": 125,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 108
+        },
+        "0x53E9405b0096Ae0af667DAB6A96A8c0BEcDb1e25": {
+            "rank": 248,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 201
+        },
+        "0x32a5e87Ffb93C9f21d311e82658051739a89621D": {
+            "rank": 227,
+            "ethFeeVolume": 0.53559,
+            "duoFeeVolume": 0,
+            "volume": 0.53559,
+            "dailyEthFeeVolume": 0.53559,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.53559,
+            "dailyRank": 197
+        },
+        "0xC074c86C11023F3F084F6C68Fa4a8fABcb69aFa0": {
+            "rank": 122,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 105
+        },
+        "0x6f59199Ad644b245B9B8B8ad6D87EE9531dA9d0f": {
+            "rank": 102,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 75
+        },
+        "0x27963b237140bC255ED0070dFDCdb34c933B4D7E": {
+            "rank": 156,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 139
+        },
+        "0x5dDE341e9D15Ab6A61C5C79Fd3724DA8edF4b022": {
+            "rank": 256,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 209
+        },
+        "0x67DeF5A4C05a32FD670369e9D390Fd1aFd0CA8C0": {
+            "rank": 132,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 115
+        },
+        "0xCcCA782A29af5bcC65Ba2556a187f8CD84048eD9": {
+            "rank": 311,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 235
+        },
+        "0xd1E5a2Fe6B4FdBE04000Abfc3952724D9EC61aA4": {
+            "rank": 329,
+            "ethFeeVolume": 0.50787,
+            "duoFeeVolume": 0,
+            "volume": 0.50787,
+            "dailyEthFeeVolume": 0.50787,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50787,
+            "dailyRank": 244
+        },
+        "0x9C0576Ed401b684033fBc0514f99671e7667dfef": {
+            "rank": 90,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 66
+        },
+        "0xd066FbAc54838c1d3c3113fc4390B9F99fEb7678": {
+            "rank": 36,
+            "ethFeeVolume": 0.99792,
+            "duoFeeVolume": 0,
+            "volume": 0.99792,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 84
+        },
+        "0x116E65260D3d5569466d5C0c9543AEdBD7Ce242A": {
+            "rank": 93,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 69
+        },
+        "0xebEEf84cecF77508001238Af1FF06384474Ad563": {
+            "rank": 169,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 163
+        },
+        "0x7d2906f0554BFC1285dE43d87Eeb717804bb0500": {
+            "rank": 55,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 26
+        },
+        "0xa490Cfd7914BfdB4bd9D07eD1Ba6445c6154CAce": {
+            "rank": 133,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 116
+        },
+        "0x054e2Ba590249da47A320C7D058c927fC9c1AB43": {
+            "rank": 221,
+            "ethFeeVolume": 0.55242,
+            "duoFeeVolume": 0,
+            "volume": 0.55242,
+            "dailyEthFeeVolume": 0.55242,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.55242,
+            "dailyRank": 194
+        },
+        "0xB0f396d1fba9a5C699695B69337635Fad6547B13": {
+            "rank": 34,
+            "ethFeeVolume": 1.00485,
+            "duoFeeVolume": 0,
+            "volume": 1.00485,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 70
+        },
+        "0x14b254C8DB7f1d1d1fe2a55f7E740b35FDb1C23F": {
+            "rank": 152,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 147
+        },
+        "0xCf3FE47Bd95952Ef22112580d07757191DbD330c": {
+            "rank": 262,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 200
+        },
+        "0x8C4AfB5806CFfd69De778652Bb1115fc56E216d6": {
+            "rank": 148,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 131
+        },
+        "0xeA614D632a1E8647348141df716BC36E718fc91c": {
+            "rank": 265,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 203
+        },
+        "0xC455F5631b378999170289a288d2F23c71494117": {
+            "rank": 92,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 68
+        },
+        "0x78f92A7112D8dBfA1b092732c40b01fAfAB51d0c": {
+            "rank": 128,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 111
+        },
+        "0x38De3BcF83BEc9757637fC726085f644421960C1": {
+            "rank": 217,
+            "ethFeeVolume": 0.57519,
+            "duoFeeVolume": 0,
+            "volume": 0.57519,
+            "dailyEthFeeVolume": 0.57519,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.57519,
+            "dailyRank": 192
+        },
+        "0x4fD5091163AD969eB9a551F3B5902fF798bB14a8": {
+            "rank": 80,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 56
+        },
+        "0xe151ac651c930eb3A79B9B17109C7744f34a72b6": {
+            "rank": 281,
+            "ethFeeVolume": 0.51282,
+            "duoFeeVolume": 0,
+            "volume": 0.51282,
+            "dailyEthFeeVolume": 0.51282,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51282,
+            "dailyRank": 219
+        },
+        "0xeFf6a67Fe194430fcc84C9cc1e13bAC4EE484775": {
+            "rank": 159,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 142
+        },
+        "0xcfeE16cd586BA60f9E3b2f05CF57B29EB03FD230": {
+            "rank": 189,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 156
+        },
+        "0x08cc329296394baB0f38cc65A93d7C99B45fE2Db": {
+            "rank": 310,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 237
+        },
+        "0xBe89581070b7E9883bC65A13E5cbE751C452b80c": {
+            "rank": 349,
+            "ethFeeVolume": 0.41283,
+            "duoFeeVolume": 0,
+            "volume": 0.41283,
+            "dailyEthFeeVolume": 0.41283,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.41283,
+            "dailyRank": 253
+        },
+        "0x2d7FA0C5a63543e9627c29a24C92A30f058262ec": {
+            "rank": 56,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 27
+        },
+        "0xa8557c171Bb0EEa8b528C0D0d785Ac30948ADF9a": {
+            "rank": 62,
+            "ethFeeVolume": 0.86328,
+            "duoFeeVolume": 0,
+            "volume": 0.86328,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 32
+        },
+        "0x0Edf5b02aB709E2A2603d035D0c2377ed25F8Ae1": {
+            "rank": 61,
+            "ethFeeVolume": 0.86328,
+            "duoFeeVolume": 0,
+            "volume": 0.86328,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 38
+        },
+        "0x3F80760f7a280bbF39CfBeeD0900678e3eCf2F5a": {
+            "rank": 312,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 236
+        },
+        "0xE90b77466512551e2Cf168c50b0c05b7044Dc97e": {
+            "rank": 269,
+            "ethFeeVolume": 0.5148,
+            "duoFeeVolume": 0,
+            "volume": 0.5148,
+            "dailyEthFeeVolume": 0.5148,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.5148,
+            "dailyRank": 214
+        },
+        "0x7D1e61B1b6a1d126c2596442a1f9d6555560F8e5": {
+            "rank": 104,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 73
+        },
+        "0x7a69Cd5Faa1b1cF0f07A3F5d041278be65d46fe1": {
+            "rank": 177,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 171
+        },
+        "0xa2a4e88B03961Dc3E4EC075EAC4bb4fB587926b0": {
+            "rank": 107,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 81
+        },
+        "0xE661770b92D11Ad4BC40aE0C9076AbA6309d3910": {
+            "rank": 68,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 44
+        },
+        "0x792D8C0Be4c40F268f3A72357CB9E3A4BDc1D0f9": {
+            "rank": 106,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 82
+        },
+        "0xD9d802CbaD6be6a440AC2fc7FCA165e5E2dB2ccc": {
+            "rank": 70,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 46
+        },
+        "0xF793Fe56D867bcaaE8e89B60826b5C42f7210d6c": {
+            "rank": 365,
+            "ethFeeVolume": 0.2871,
+            "duoFeeVolume": 0,
+            "volume": 0.2871,
+            "dailyEthFeeVolume": 0.2871,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.2871,
+            "dailyRank": 264
+        },
+        "0xf143dFB4765f3d6E883226dBb4eA5ab09a168A1E": {
+            "rank": 64,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 40
+        },
+        "0x4cf14409e1045c6b78ec9f6c18f1d68376C337e7": {
+            "rank": 59,
+            "ethFeeVolume": 0.86328,
+            "duoFeeVolume": 0,
+            "volume": 0.86328,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 35
+        },
+        "0x55525DcD80e42D121eb229c691952D845dCC3834": {
+            "rank": 115,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 96
+        },
+        "0x0E555ED8cdC11F94621fAD0583Ef747C0bba7b36": {
+            "rank": 32,
+            "ethFeeVolume": 1.05237,
+            "duoFeeVolume": 0,
+            "volume": 1.05237,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 30
+        },
+        "0x57FdB64bA393590Bf0BEbabddBab2ED698c76A25": {
+            "rank": 143,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 125
+        },
+        "0xD91504522024016bD793179F4FeD98442EDB2135": {
+            "rank": 100,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 77
+        },
+        "0xDbB9d0fed394f5DC748728D234778d909B5411DD": {
+            "rank": 37,
+            "ethFeeVolume": 0.99099,
+            "duoFeeVolume": 0,
+            "volume": 0.99099,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 85
+        },
+        "0xB18432b0E6EB3AfebB64C04680ad290284600580": {
+            "rank": 88,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 64
+        },
+        "0x2012c588169884687ef53E2F7F88Ff091d48a82F": {
+            "rank": 276,
+            "ethFeeVolume": 0.51381,
+            "duoFeeVolume": 0,
+            "volume": 0.51381,
+            "dailyEthFeeVolume": 0.51381,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51381,
+            "dailyRank": 217
+        },
+        "0x2da2093Abc992559C72276d2bD81eCbd7c2f152F": {
+            "rank": 84,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 60
+        },
+        "0x9F034D7904450ee51cC5f3494Ba2945cD1e8ed81": {
+            "rank": 319,
+            "ethFeeVolume": 0.50886,
+            "duoFeeVolume": 0,
+            "volume": 0.50886,
+            "dailyEthFeeVolume": 0.50886,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50886,
+            "dailyRank": 240
+        },
+        "0x9FE9FEb53194700b94D4c189FdFe38072C892f44": {
+            "rank": 216,
+            "ethFeeVolume": 0.57717,
+            "duoFeeVolume": 0,
+            "volume": 0.57717,
+            "dailyEthFeeVolume": 0.57717,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.57717,
+            "dailyRank": 191
+        },
+        "0xdeD8F5DAeb6187484285165c77dAAC39ac63B9Bc": {
+            "rank": 151,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 134
+        },
+        "0x51Fff4a60b8cc2645195D736046a0A5925585058": {
+            "rank": 252,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 210
+        },
+        "0x3d0c3414A36577B565558F5612a7660b7B04352F": {
+            "rank": 195,
+            "ethFeeVolume": 0.85437,
+            "duoFeeVolume": 0,
+            "volume": 0.85437,
+            "dailyEthFeeVolume": 0.85437,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85437,
+            "dailyRank": 177
+        },
+        "0x959c63303737c475306c7A7d2D434329e189a134": {
+            "rank": 320,
+            "ethFeeVolume": 0.50886,
+            "duoFeeVolume": 0,
+            "volume": 0.50886,
+            "dailyEthFeeVolume": 0.50886,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50886,
+            "dailyRank": 242
+        },
+        "0x42409c1b01DC73145CAc71ba759aAEC490C5b4f2": {
+            "rank": 108,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 80
+        },
+        "0x7C022ce01ea2b2c301c7CD67AaaE05592F3D0D2f": {
+            "rank": 318,
+            "ethFeeVolume": 0.50886,
+            "duoFeeVolume": 0,
+            "volume": 0.50886,
+            "dailyEthFeeVolume": 0.50886,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50886,
+            "dailyRank": 241
+        },
+        "0xDEbf0F101FEc7340A9B439B34869DC47dAb4C402": {
+            "rank": 65,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 41
+        },
+        "0xa819eBdBdBcDC48d906D7f874D24bc8B0E58Ce8c": {
+            "rank": 42,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 21
+        },
+        "0xa33a54bC13fd959b05014f1F9998B338610b1bB5": {
+            "rank": 180,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 174
+        },
+        "0xac9eb855d8dD45708246741e0b1b6F80E97E5293": {
+            "rank": 75,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 51
+        },
+        "0x6129e6F6dEd712E5a2bBa15DaCa5cA452f467269": {
+            "rank": 157,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 140
+        },
+        "0xD18EFBf53B3f002DB1ee18442faAFC93cc37c7ba": {
+            "rank": 361,
+            "ethFeeVolume": 0.33363,
+            "duoFeeVolume": 0,
+            "volume": 0.33363,
+            "dailyEthFeeVolume": 0.33363,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.33363,
+            "dailyRank": 262
+        },
+        "0x97bCeF60741fc44483a543094edD92fA3f7AB536": {
+            "rank": 166,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 160
+        },
+        "0xD4807DAF3Ac000e8Eb339B08c549B1f98Ff3A1F7": {
+            "rank": 222,
+            "ethFeeVolume": 0.54846,
+            "duoFeeVolume": 0,
+            "volume": 0.54846,
+            "dailyEthFeeVolume": 0.54846,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.54846,
+            "dailyRank": 195
+        },
+        "0xC5D435Be593844D6E9edCe760Cbbc406503F81a2": {
+            "rank": 244,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 204
+        },
+        "0x957f129297cB127E18a96B74c2933e2213c3c60e": {
+            "rank": 29,
+            "ethFeeVolume": 1.16028,
+            "duoFeeVolume": 0,
+            "volume": 1.16028,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 121
+        },
+        "0x076EBBbF28415cd1FDF1bE4D45c0d9cdC8F309a3": {
+            "rank": 63,
+            "ethFeeVolume": 0.86328,
+            "duoFeeVolume": 0,
+            "volume": 0.86328,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 31
+        },
+        "0x5fEA64fF26d9C8ff4Af64b03565ee907E82370b2": {
+            "rank": 375,
+            "ethFeeVolume": 0.23364,
+            "duoFeeVolume": 0,
+            "volume": 0.23364,
+            "dailyEthFeeVolume": 0.23364,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.23364,
+            "dailyRank": 268
+        },
+        "0x42949a81a94a8970f51865308d1c28913432cF1e": {
+            "rank": 138,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 119
+        },
+        "0xcDA158609268da36776920d4D0a5EC5F685F5D93": {
+            "rank": 121,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 102
+        },
+        "0x209431B9CeaAC037C81745ec6013Bc1cCd568426": {
+            "rank": 153,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 136
+        },
+        "0x874a61D6e4382661eE556347734E0dA0f776BE71": {
+            "rank": 215,
+            "ethFeeVolume": 0.57915,
+            "duoFeeVolume": 0,
+            "volume": 0.57915,
+            "dailyEthFeeVolume": 0.57915,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.57915,
+            "dailyRank": 190
+        },
+        "0x86fD403A42266856396a11EE6b20972128Fef697": {
+            "rank": 109,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 79
+        },
+        "0x43F289FbA3ce06F39ff0d915518209B6c4b68Af3": {
+            "rank": 352,
+            "ethFeeVolume": 0.37818,
+            "duoFeeVolume": 0,
+            "volume": 0.37818,
+            "dailyEthFeeVolume": 0.37818,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.37818,
+            "dailyRank": 255
+        },
+        "0x629b762A74F40a9e96Fb51a2e7406CC2dd7eA4EF": {
+            "rank": 112,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 93
+        },
+        "0x0eef09B4393db1cc19865bED9Bb1C1557Dc46a40": {
+            "rank": 89,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 65
+        },
+        "0x7DC7Eb1151A81A30e060cfAe48D89fd3AD5F49b9": {
+            "rank": 212,
+            "ethFeeVolume": 0.62172,
+            "duoFeeVolume": 0,
+            "volume": 0.62172,
+            "dailyEthFeeVolume": 0.62172,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.62172,
+            "dailyRank": 189
+        },
+        "0x64742D58cfC6927057c7Be2f0EB0d9593261a327": {
+            "rank": 178,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 172
+        },
+        "0x3B3906aa3a71889d6B617bd66a34e14f99c05315": {
+            "rank": 191,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 158
+        },
+        "0x6539f11Dc12fFAd9Ee8d46d21D63b554D1BF7286": {
+            "rank": 86,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 54
+        },
+        "0x89258314fBdB373D82460053cCEAD9188ad5E3fd": {
+            "rank": 30,
+            "ethFeeVolume": 1.06821,
+            "duoFeeVolume": 0,
+            "volume": 1.06821,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 17
+        },
+        "0x269A3D1F185B7f2A5C93B02d64ccFDd9F6d450F0": {
+            "rank": 66,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 42
+        },
+        "0xCa2f1C8D2A1e825aB5425c60884219214a47e9f5": {
+            "rank": 290,
+            "ethFeeVolume": 0.51183,
+            "duoFeeVolume": 0,
+            "volume": 0.51183,
+            "dailyEthFeeVolume": 0.51183,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51183,
+            "dailyRank": 223
+        },
+        "0x0d805eFc846677e207574f76214DBe8A5a92C745": {
+            "rank": 300,
+            "ethFeeVolume": 0.51084,
+            "duoFeeVolume": 0,
+            "volume": 0.51084,
+            "dailyEthFeeVolume": 0.51084,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51084,
+            "dailyRank": 229
+        },
+        "0xc4Ce2fccA2548EDEdB81aEdE6f119B9321a61C6a": {
+            "rank": 58,
+            "ethFeeVolume": 0.86328,
+            "duoFeeVolume": 0,
+            "volume": 0.86328,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 34
+        },
+        "0x7Fe000404d20e86d8973535D2553537eCbe8F1ab": {
+            "rank": 176,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 170
+        },
+        "0x309497fd5bCB52A5a34daFe1CD234086827ddb4d": {
+            "rank": 95,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 89
+        },
+        "0x1f51668F8C73056A3650132C2Fa805809B6c7164": {
+            "rank": 344,
+            "ethFeeVolume": 0.43659,
+            "duoFeeVolume": 0,
+            "volume": 0.43659,
+            "dailyEthFeeVolume": 0.43659,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.43659,
+            "dailyRank": 250
+        },
+        "0x486c7898bCee65a8FBF1c48CCBa47afc0178f6B5": {
+            "rank": 130,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 113
+        },
+        "0x1D35D38A95c4F66Ba99E0E57E8206365e2DAeBd9": {
+            "rank": 206,
+            "ethFeeVolume": 0.68013,
+            "duoFeeVolume": 0,
+            "volume": 0.68013,
+            "dailyEthFeeVolume": 0.68013,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.68013,
+            "dailyRank": 186
+        },
+        "0x3A676F445591524de8FE03BB2AD130C8b2C3dc7A": {
+            "rank": 376,
+            "ethFeeVolume": 0.22275,
+            "duoFeeVolume": 0,
+            "volume": 0.22275,
+            "dailyEthFeeVolume": 0.22275,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.22275,
+            "dailyRank": 269
+        },
+        "0x9e109EB24629C0d7074611FDBeA0c393F8b493AA": {
+            "rank": 173,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 167
+        },
+        "0xb0d93Df42eA6b851A3f20b883A66eC85C32656d5": {
+            "rank": 357,
+            "ethFeeVolume": 0.3564,
+            "duoFeeVolume": 0,
+            "volume": 0.3564,
+            "dailyEthFeeVolume": 0.3564,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.3564,
+            "dailyRank": 260
+        },
+        "0x3aC8beE0961B957C2b2316c4317400448B13d0a8": {
+            "rank": 114,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 95
+        },
+        "0xbCefa9522e507Eaba819a485a6A139a83c3399d0": {
+            "rank": 179,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 173
+        },
+        "0x8B101A3A5a157abE707b58543a590D0894a60076": {
+            "rank": 67,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 43
+        },
+        "0x4C514eB387920CCe4c7d43f947da4325AB52Dd78": {
+            "rank": 139,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 122
+        },
+        "0x110bCC31D866a3be08eF09EAfD12CaA6fE387031": {
+            "rank": 295,
+            "ethFeeVolume": 0.51084,
+            "duoFeeVolume": 0,
+            "volume": 0.51084,
+            "dailyEthFeeVolume": 0.51084,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51084,
+            "dailyRank": 225
+        },
+        "0xF25c5651217BAb1683a81C9C8d3F9D7217b02f61": {
+            "rank": 116,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 90
+        },
+        "0xA2cd83f2f1cCb75fb985A9c85e96d692F034467d": {
+            "rank": 46,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 29
+        },
+        "0x58B94aFdd3169c73eB3aaD572b981Da67933D5f4": {
+            "rank": 211,
+            "ethFeeVolume": 0.6237,
+            "duoFeeVolume": 0,
+            "volume": 0.6237,
+            "dailyEthFeeVolume": 0.6237,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.6237,
+            "dailyRank": 188
+        },
+        "0x728a69FCBa36a9394B4Db4C5962BF64CAf86Fa81": {
+            "rank": 346,
+            "ethFeeVolume": 0.41976,
+            "duoFeeVolume": 0,
+            "volume": 0.41976,
+            "dailyEthFeeVolume": 0.41976,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.41976,
+            "dailyRank": 252
+        },
+        "0x442E3cf26eE76c370C85d0499A5b2CD69d7d90BE": {
+            "rank": 155,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 138
+        },
+        "0x66485b451885dC0068e781D64f266A9c820f8aBe": {
+            "rank": 328,
+            "ethFeeVolume": 0.50787,
+            "duoFeeVolume": 0,
+            "volume": 0.50787,
+            "dailyEthFeeVolume": 0.50787,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50787,
+            "dailyRank": 247
+        },
+        "0xEE262E8648f3f3966C975cF8a0dB9fb7Ac2094c5": {
+            "rank": 306,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 232
+        },
+        "0x686E01dAE2F2cCD5eD150E60464627D88B870b7C": {
+            "rank": 275,
+            "ethFeeVolume": 0.51381,
+            "duoFeeVolume": 0,
+            "volume": 0.51381,
+            "dailyEthFeeVolume": 0.51381,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51381,
+            "dailyRank": 216
+        },
+        "0x032b77bA7f826420966524683F968Db6fF54230D": {
+            "rank": 99,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 86
+        },
+        "0xB844B1A5DFB94b785b61797B759950bBE9e6402E": {
+            "rank": 379,
+            "ethFeeVolume": 0.21087,
+            "duoFeeVolume": 0,
+            "volume": 0.21087,
+            "dailyEthFeeVolume": 0.21087,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.21087,
+            "dailyRank": 272
+        },
+        "0x9db7a9429c8a5d8606E3516041498dCA4e47B4eF": {
+            "rank": 149,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 132
+        },
+        "0x130326Ab7c0deAEDe43534a9231720e793a4ba15": {
+            "rank": 76,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 52
+        },
+        "0xa4300581e73d3577E103658F802460BEB4db6f81": {
+            "rank": 185,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 152
+        },
+        "0x7c35c10c2371d9F6BBb58B27A9CA51d126C36262": {
+            "rank": 94,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 78
+        },
+        "0x9d89af3149087c2B783946Cac005eA47255d8b17": {
+            "rank": 165,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 159
+        },
+        "0x14fAe10E10810db97542C3eD265D285ca2B180a7": {
+            "rank": 51,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 22
+        },
+        "0x8D4d31c618c6b3feD2E00b275d132Be798146866": {
+            "rank": 284,
+            "ethFeeVolume": 0.51282,
+            "duoFeeVolume": 0,
+            "volume": 0.51282,
+            "dailyEthFeeVolume": 0.51282,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51282,
+            "dailyRank": 220
+        },
+        "0x65538cDd5506F6be9405E75BfB5D72FBDcBC86b6": {
+            "rank": 110,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 97
+        },
+        "0xa89a85cd370a28A63bDc4397527C246eC589d451": {
+            "rank": 202,
+            "ethFeeVolume": 0.71577,
+            "duoFeeVolume": 0,
+            "volume": 0.71577,
+            "dailyEthFeeVolume": 0.71577,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.71577,
+            "dailyRank": 184
+        },
+        "0x7051D33470DE40401b3998289534F528E41395aF": {
+            "rank": 98,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 87
+        },
+        "0xEa31AC97Db40d6c332C21540E8d4FbAb83757fBa": {
+            "rank": 224,
+            "ethFeeVolume": 0.54549,
+            "duoFeeVolume": 0,
+            "volume": 0.54549,
+            "dailyEthFeeVolume": 0.54549,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.54549,
+            "dailyRank": 196
+        },
+        "0x1327A05850d05916cFC5965743A2ef5F249Fe160": {
+            "rank": 204,
+            "ethFeeVolume": 0.69399,
+            "duoFeeVolume": 0,
+            "volume": 0.69399,
+            "dailyEthFeeVolume": 0.69399,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.69399,
+            "dailyRank": 185
+        },
+        "0x0469533639b427f7f966Eafbf6E3FA0B8a72624B": {
+            "rank": 101,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 76
+        },
+        "0x70a9c98c21a17C50F5B240a5290b971844049cca": {
+            "rank": 174,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 168
+        },
+        "0x7C6531B0274aa676Edc9da933B94bEe12EB62D1e": {
+            "rank": 255,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 208
+        },
+        "0x491eBEfED95569947DbBdE2f3600d214ee8F1244": {
+            "rank": 198,
+            "ethFeeVolume": 0.7425,
+            "duoFeeVolume": 0,
+            "volume": 0.7425,
+            "dailyEthFeeVolume": 0.7425,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.7425,
+            "dailyRank": 181
+        },
+        "0x1b6208cc9732E4d82a9f02d53d5F552582c1dF82": {
+            "rank": 40,
+            "ethFeeVolume": 0.96228,
+            "duoFeeVolume": 0,
+            "volume": 0.96228,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 91
+        },
+        "0x9B422c7c64C7816b968f35F60Ed60e109C16A761": {
+            "rank": 296,
+            "ethFeeVolume": 0.51084,
+            "duoFeeVolume": 0,
+            "volume": 0.51084,
+            "dailyEthFeeVolume": 0.51084,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51084,
+            "dailyRank": 226
+        },
+        "0x5c3aBe90547f1CA363e53a87073650Ef809eD935": {
+            "rank": 87,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 63
+        },
+        "0xfB05dA0539db445fAeAEe5bb6BF7FdAFc7D29F70": {
+            "rank": 298,
+            "ethFeeVolume": 0.51084,
+            "duoFeeVolume": 0,
+            "volume": 0.51084,
+            "dailyEthFeeVolume": 0.51084,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51084,
+            "dailyRank": 227
+        },
+        "0x5f7893542Fe582594fc31Fe6cA766569fB6d8C8b": {
+            "rank": 181,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 149
+        },
+        "0xAe84F3e1a0E332960189d8dEFE4C4B5842f746Ec": {
+            "rank": 322,
+            "ethFeeVolume": 0.50886,
+            "duoFeeVolume": 0,
+            "volume": 0.50886,
+            "dailyEthFeeVolume": 0.50886,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50886,
+            "dailyRank": 239
+        },
+        "0x7e122E321b45C6cA84abbFE1E59980F9Cb77962c": {
+            "rank": 193,
+            "ethFeeVolume": 0.85437,
+            "duoFeeVolume": 0,
+            "volume": 0.85437,
+            "dailyEthFeeVolume": 0.85437,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85437,
+            "dailyRank": 180
+        },
+        "0x1937e39986CdCb1352c232c5412de9f6278D57B0": {
+            "rank": 263,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 202
+        },
+        "0x06059336fa01Eb0212ad562AE533e2Aacc21Fa99": {
+            "rank": 60,
+            "ethFeeVolume": 0.86328,
+            "duoFeeVolume": 0,
+            "volume": 0.86328,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 36
+        },
+        "0xaBeA87Fcc5d2225b7e780875F8C1ac9FC7cE7A71": {
+            "rank": 354,
+            "ethFeeVolume": 0.37026,
+            "duoFeeVolume": 0,
+            "volume": 0.37026,
+            "dailyEthFeeVolume": 0.37026,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.37026,
+            "dailyRank": 257
+        },
+        "0x6dCf4e93a051D77411Bd0Fb5D5cAf66268CE2c76": {
+            "rank": 187,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 154
+        },
+        "0xfE1fA323D49EB077094f688A746BB5B30210Ad36": {
+            "rank": 188,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 155
+        },
+        "0x07f88b050dBafefaE1B2F5f5E0225e9e0C74014f": {
+            "rank": 208,
+            "ethFeeVolume": 0.67122,
+            "duoFeeVolume": 0,
+            "volume": 0.67122,
+            "dailyEthFeeVolume": 0.67122,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.67122,
+            "dailyRank": 187
+        },
+        "0x0FFe15237601db0059FF09BD2e753445714f9C8D": {
+            "rank": 35,
+            "ethFeeVolume": 0.99792,
+            "duoFeeVolume": 0,
+            "volume": 0.99792,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 83
+        },
+        "0x67fbc6F38D0378A93B272FCf01BC19Fc8163Db42": {
+            "rank": 199,
+            "ethFeeVolume": 0.73854,
+            "duoFeeVolume": 0,
+            "volume": 0.73854,
+            "dailyEthFeeVolume": 0.73854,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.73854,
+            "dailyRank": 182
+        },
+        "0x399C37b2E04CEC6AA9967d3DfAEcfCA45C435cA6": {
+            "rank": 146,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 128
+        },
+        "0x918f2791B8806CBB76e728A1Ba3928F7e199813b": {
+            "rank": 82,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 58
+        },
+        "0xa09F84E5E5C737cF514CdE0f87a9321B651dbAd9": {
+            "rank": 81,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 57
+        },
+        "0xA7EC72eCD03faAE8014Bc5A53FC78EFBe3560830": {
+            "rank": 120,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 101
+        },
+        "0x55233909989079f1B47592AF034166FE5F656BFc": {
+            "rank": 150,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 133
+        },
+        "0xE0BFA6d95aF7a14c65C1fa0eD4BD59769FaA6aae": {
+            "rank": 304,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 233
+        },
+        "0x826513e5C1689AAf837148a9F60BB495016FD931": {
+            "rank": 57,
+            "ethFeeVolume": 0.86328,
+            "duoFeeVolume": 0,
+            "volume": 0.86328,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 33
+        },
+        "0xEb1De537b07100f87bc5E9496365cB060fb3507B": {
+            "rank": 239,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 205
+        },
+        "0x6d1399a24e7443a3752e0A35020588F0618907EC": {
+            "rank": 137,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 120
+        },
+        "0x64f76A8656dc6FdF7bD16335A9847A711f74F16C": {
+            "rank": 50,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 14
+        },
+        "0xabC4915171f2d5cE09A49f1b3d51327593A037fF": {
+            "rank": 117,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 98
+        },
+        "0x321eACa43Ae50B372399d23B06F3332eF0d84881": {
+            "rank": 162,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 145
+        },
+        "0x719d379f38dEbEb297Ab15DFEc4b8373474D6a2E": {
+            "rank": 277,
+            "ethFeeVolume": 0.51381,
+            "duoFeeVolume": 0,
+            "volume": 0.51381,
+            "dailyEthFeeVolume": 0.51381,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51381,
+            "dailyRank": 218
+        },
+        "0xf612DbdE53284EECdd9dE00f6F30DDDe0744f413": {
+            "rank": 145,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 127
+        },
+        "0x1909053EAf03362A8F28A15Bc25e3b2177664083": {
+            "rank": 267,
+            "ethFeeVolume": 0.51579,
+            "duoFeeVolume": 0,
+            "volume": 0.51579,
+            "dailyEthFeeVolume": 0.51579,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51579,
+            "dailyRank": 212
+        },
+        "0x2A591A951a47740E1645eBf34Bd56766C8a0D0E1": {
+            "rank": 377,
+            "ethFeeVolume": 0.2178,
+            "duoFeeVolume": 0,
+            "volume": 0.2178,
+            "dailyEthFeeVolume": 0.2178,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.2178,
+            "dailyRank": 270
+        },
+        "0xE9f14e342df1FcFbD873bBFbbe66B3b2424DE2E1": {
+            "rank": 194,
+            "ethFeeVolume": 0.85437,
+            "duoFeeVolume": 0,
+            "volume": 0.85437,
+            "dailyEthFeeVolume": 0.85437,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85437,
+            "dailyRank": 179
+        },
+        "0x8df776f6331e5e370D1B71d16b181663F967774B": {
+            "rank": 305,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 231
+        },
+        "0xab26Dd5963FCcb09Ca02DE8a8FE722b0eA1Ce98F": {
+            "rank": 103,
+            "ethFeeVolume": 0.86031,
+            "duoFeeVolume": 0,
+            "volume": 0.86031,
+            "dailyEthFeeVolume": 0.86031,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86031,
+            "dailyRank": 74
+        },
+        "0x9EfDd63FfEd79a4b5516A9F70A08D84649FFf592": {
+            "rank": 353,
+            "ethFeeVolume": 0.37719,
+            "duoFeeVolume": 0,
+            "volume": 0.37719,
+            "dailyEthFeeVolume": 0.37719,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.37719,
+            "dailyRank": 256
+        },
+        "0x9597306276F55aCe078ae00e57D0c638fDECb366": {
+            "rank": 136,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 104
+        },
+        "0x431193d84b8b3d69C2D82184edbE2c788545E060": {
+            "rank": 363,
+            "ethFeeVolume": 0.31383,
+            "duoFeeVolume": 0,
+            "volume": 0.31383,
+            "dailyEthFeeVolume": 0.31383,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.31383,
+            "dailyRank": 263
+        },
+        "0x7Ac702bF32206E667A2a6521e925a3697704F6Ba": {
+            "rank": 381,
+            "ethFeeVolume": 0.12078,
+            "duoFeeVolume": 0,
+            "volume": 0.12078,
+            "dailyEthFeeVolume": 0.12078,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.12078,
+            "dailyRank": 274
+        },
+        "0x5c48b64573b6a3E546e1DC3b9842433c06f1fbC0": {
+            "rank": 54,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 25
+        },
+        "0x675485fA6AFbe2eA347f1E01ea985C1a41287557": {
+            "rank": 201,
+            "ethFeeVolume": 0.72666,
+            "duoFeeVolume": 0,
+            "volume": 0.72666,
+            "dailyEthFeeVolume": 0.72666,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.72666,
+            "dailyRank": 183
+        },
+        "0xFcD391827Ecee0E634e9F119B785a9d7C7f98D79": {
+            "rank": 341,
+            "ethFeeVolume": 0.45639,
+            "duoFeeVolume": 0,
+            "volume": 0.45639,
+            "dailyEthFeeVolume": 0.45639,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.45639,
+            "dailyRank": 248
+        },
+        "0xFEc6560e874f37FcC2EFB0BE860b8ab01B6d05E6": {
+            "rank": 154,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 137
+        },
+        "0x22433C19dCD509329992d40A1582F96D36f77B07": {
+            "rank": 78,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 39
+        },
+        "0x19216589f66fDB4ebe459ea28B48dE0A436Bb04C": {
+            "rank": 167,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 161
+        },
+        "0xDf02b6A09660E1Dfb41d58d74480160e73D5caA1": {
+            "rank": 52,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 23
+        },
+        "0xcB1c3A7eF6D76E221c50366e77b4A0ce9011518a": {
+            "rank": 161,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 144
+        },
+        "0xA2b1d5573dc0a8d738e94272454fB63773DCF700": {
+            "rank": 160,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 143
+        },
+        "0x7bA666b699B4EeF33E1F96D2A1Fb60269D889D11": {
+            "rank": 74,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 50
+        },
+        "0x9A9865C37D917F46664F3E3F14BFc8116e4B751b": {
+            "rank": 171,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 165
+        },
+        "0x2ff66BD46f7da96053E478395234927BaE8222c1": {
+            "rank": 343,
+            "ethFeeVolume": 0.43758,
+            "duoFeeVolume": 0,
+            "volume": 0.43758,
+            "dailyEthFeeVolume": 0.43758,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.43758,
+            "dailyRank": 249
+        },
+        "0xFC5953Ab3dcCa22EA62a09ced7A0c799612F3DC1": {
+            "rank": 170,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 164
+        },
+        "0x0fc9BDA01e3fFEe21e259F03B26811B3D066f23B": {
+            "rank": 273,
+            "ethFeeVolume": 0.5148,
+            "duoFeeVolume": 0,
+            "volume": 0.5148,
+            "dailyEthFeeVolume": 0.5148,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.5148,
+            "dailyRank": 213
+        },
+        "0x226077862791b50D8B0873b32f49D864D0295aba": {
+            "rank": 111,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 92
+        },
+        "0xE0397443A31929b6b9E972a8E9D2284A1E9Fa765": {
+            "rank": 197,
+            "ethFeeVolume": 0.85437,
+            "duoFeeVolume": 0,
+            "volume": 0.85437,
+            "dailyEthFeeVolume": 0.85437,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85437,
+            "dailyRank": 178
+        },
+        "0x2332098b4b25ed2C7a412A8c69a33450C872Ed0f": {
+            "rank": 184,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 151
+        },
+        "0xCB0F87cbe0b5E34AB93f85c41dd6f46Af71A752f": {
+            "rank": 183,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 150
+        },
+        "0xb318A52CD89C9cC372bDCF10f52CBEe9Cb13Ea8A": {
+            "rank": 131,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 114
+        },
+        "0xde6E9e035E8e7e99dd4022043dee67b1506A2BD6": {
+            "rank": 232,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 207
+        },
+        "0x78c3bF392aB079EfB615b062339C64695f65a9D2": {
+            "rank": 119,
+            "ethFeeVolume": 0.85932,
+            "duoFeeVolume": 0,
+            "volume": 0.85932,
+            "dailyEthFeeVolume": 0.85932,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85932,
+            "dailyRank": 100
+        },
+        "0x25a5a6652E583036896CF2eD1d8405e491036FB4": {
+            "rank": 234,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 206
+        },
+        "0xB026731E934897aC530e52c0dD9D6D32DAe4B48d": {
+            "rank": 83,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 59
+        },
+        "0xcBDEc613B578fcd5B36aE0A0eBed10062035BAB2": {
+            "rank": 163,
+            "ethFeeVolume": 0.85635,
+            "duoFeeVolume": 0,
+            "volume": 0.85635,
+            "dailyEthFeeVolume": 0.85635,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85635,
+            "dailyRank": 146
+        },
+        "0x41bb3F315a0cF3649902ea645B3312Ba1191f063": {
+            "rank": 356,
+            "ethFeeVolume": 0.36432,
+            "duoFeeVolume": 0,
+            "volume": 0.36432,
+            "dailyEthFeeVolume": 0.36432,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.36432,
+            "dailyRank": 259
+        },
+        "0xb5A1a8416ae724F37493d6f71CB32F150F769AB6": {
+            "rank": 299,
+            "ethFeeVolume": 0.51084,
+            "duoFeeVolume": 0,
+            "volume": 0.51084,
+            "dailyEthFeeVolume": 0.51084,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51084,
+            "dailyRank": 228
+        },
+        "0x1a7932959d7c621C0FfC855A3d4F151c38495F02": {
+            "rank": 324,
+            "ethFeeVolume": 0.50787,
+            "duoFeeVolume": 0,
+            "volume": 0.50787,
+            "dailyEthFeeVolume": 0.50787,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50787,
+            "dailyRank": 246
+        },
+        "0xe2E745BCfEe19dc0558249Bb62bb9657449b80BD": {
+            "rank": 182,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 148
+        },
+        "0x3faBB2197BA5D07050ff3983ceC349ADD94Ef1E8": {
+            "rank": 124,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 107
+        },
+        "0x00ac40036821527de0c4594e69976CC052A540Ab": {
+            "rank": 91,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 67
+        },
+        "0x9DF7a5Fb0745f128dFbbdCc8aFfF0D2b10A1d32c": {
+            "rank": 282,
+            "ethFeeVolume": 0.51282,
+            "duoFeeVolume": 0,
+            "volume": 0.51282,
+            "dailyEthFeeVolume": 0.51282,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51282,
+            "dailyRank": 221
+        },
+        "0x7E23B3C3DF61c3ef2dC97E1D26632307888c5E18": {
+            "rank": 31,
+            "ethFeeVolume": 1.05237,
+            "duoFeeVolume": 0,
+            "volume": 1.05237,
+            "dailyEthFeeVolume": 0.86328,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86328,
+            "dailyRank": 37
+        },
+        "0x37c5Acf8041Dc12558fA59745A659BC5c5626dEE": {
+            "rank": 358,
+            "ethFeeVolume": 0.35541,
+            "duoFeeVolume": 0,
+            "volume": 0.35541,
+            "dailyEthFeeVolume": 0.35541,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.35541,
+            "dailyRank": 261
+        },
+        "0x81797b2CA12ae22544b73C610ED4e008a95da69e": {
+            "rank": 190,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 157
+        },
+        "0xeE041Efa627C6f1c3105d2611B4C23a98372f748": {
+            "rank": 228,
+            "ethFeeVolume": 0.52866,
+            "duoFeeVolume": 0,
+            "volume": 0.52866,
+            "dailyEthFeeVolume": 0.52866,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.52866,
+            "dailyRank": 198
+        },
+        "0xcbE8edd77b4Bef8E90B3430e348441B57AB7B3A0": {
+            "rank": 85,
+            "ethFeeVolume": 0.8613,
+            "duoFeeVolume": 0,
+            "volume": 0.8613,
+            "dailyEthFeeVolume": 0.8613,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.8613,
+            "dailyRank": 61
+        },
+        "0xf1cc58baEe89Afcd7e717D881406781af700818f": {
+            "rank": 291,
+            "ethFeeVolume": 0.51183,
+            "duoFeeVolume": 0,
+            "volume": 0.51183,
+            "dailyEthFeeVolume": 0.51183,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51183,
+            "dailyRank": 222
+        },
+        "0x74b67d97c8e23CcC951A6875128c9bd57c60E8CA": {
+            "rank": 293,
+            "ethFeeVolume": 0.51084,
+            "duoFeeVolume": 0,
+            "volume": 0.51084,
+            "dailyEthFeeVolume": 0.51084,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51084,
+            "dailyRank": 230
+        },
+        "0x5EC85DF2fdA8644C6Fa86eB4c45Aa7833864ED9f": {
+            "rank": 44,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 15
+        },
+        "0xA72BDFCfbAE6a521Cc2E6c9cfDd3a9f74655E0a4": {
+            "rank": 141,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 123
+        },
+        "0x4FDD61245DAC99b51906d88206b2924F6288D097": {
+            "rank": 308,
+            "ethFeeVolume": 0.50985,
+            "duoFeeVolume": 0,
+            "volume": 0.50985,
+            "dailyEthFeeVolume": 0.50985,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.50985,
+            "dailyRank": 234
+        },
+        "0x1103df9Be9d21187991bd1ECC31439Fc3F84bc03": {
+            "rank": 168,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 162
+        },
+        "0xCa4eEE5ccC7EEC3E52d5DCadCb4c17D38e3f0E6c": {
+            "rank": 129,
+            "ethFeeVolume": 0.85833,
+            "duoFeeVolume": 0,
+            "volume": 0.85833,
+            "dailyEthFeeVolume": 0.85833,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85833,
+            "dailyRank": 112
+        },
+        "0x8D790d703474Cf9bEC9aFE7dEF5Bf61601a68440": {
+            "rank": 345,
+            "ethFeeVolume": 0.42669,
+            "duoFeeVolume": 0,
+            "volume": 0.42669,
+            "dailyEthFeeVolume": 0.42669,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.42669,
+            "dailyRank": 251
+        },
+        "0xd03BB80580F6b9D307eb1c6F3B0450A443BAF7D8": {
+            "rank": 53,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
+            "dailyRank": 24
+        },
+        "0x275E9478E50168da99519c7034D977c12B0D07AE": {
+            "rank": 172,
+            "ethFeeVolume": 0.85536,
+            "duoFeeVolume": 0,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85536,
+            "dailyRank": 166
+        },
+        "0x366e3fa7de411Bb7dd99d92befe7354F56657bb8": {
+            "rank": 71,
+            "ethFeeVolume": 0.86229,
+            "duoFeeVolume": 0,
+            "volume": 0.86229,
+            "dailyEthFeeVolume": 0.86229,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86229,
+            "dailyRank": 47
+        },
+        "0x5aDa5A555A2097195D40c12dE35e9b14d8C4855D": {
+            "rank": 144,
+            "ethFeeVolume": 0.85734,
+            "duoFeeVolume": 0,
+            "volume": 0.85734,
+            "dailyEthFeeVolume": 0.85734,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.85734,
+            "dailyRank": 126
+        },
+        "0x2d6e2fE8233CD5C181f3bdC9EEBd12A1208a7061": {
+            "rank": 11,
+            "ethFeeVolume": 93.3669,
+            "duoFeeVolume": 0,
+            "volume": 93.3669,
+            "dailyEthFeeVolume": 79.596,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 79.596,
+            "dailyRank": 8
+        },
+        "0x9576D3C217b4A4f37289691f84a0E27c9cEb5A16": {
+            "rank": 45,
+            "ethFeeVolume": 0.86427,
+            "duoFeeVolume": 0,
+            "volume": 0.86427,
+            "dailyEthFeeVolume": 0.86427,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.86427,
             "dailyRank": 16
         },
-        "0xB4B95273645FE1CC4a95d6540eC70b663312B0C9": {
-            "rank": 4,
-            "ethFeeVolume": 2198.571550915097,
+        "0xc8516f5ecFc5B9507268bAe8dD6b2465d3A94d93": {
+            "rank": 186,
+            "ethFeeVolume": 0.85536,
             "duoFeeVolume": 0,
-            "volume": 2198.571550915097,
-            "dailyEthFeeVolume": 2198.571550915097,
+            "volume": 0.85536,
+            "dailyEthFeeVolume": 0.85536,
             "dailyDuoFeeVolume": 0,
-            "dailyVolume": 2198.571550915097,
+            "dailyVolume": 0.85536,
+            "dailyRank": 153
+        },
+        "0x9010224eFc0Ee32ff9B9fCF3626e5e9bB3a60639": {
+            "rank": 261,
+            "ethFeeVolume": 0.51678,
+            "duoFeeVolume": 0,
+            "volume": 0.51678,
+            "dailyEthFeeVolume": 0.51678,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0.51678,
+            "dailyRank": 199
+        },
+        "0x89Ba87d7c6d9958BBe38cECa611E88090D1fC747": {
+            "rank": 16,
+            "ethFeeVolume": 4.6264381812,
+            "duoFeeVolume": 2.2052249999569966,
+            "volume": 7.934275681135495,
+            "dailyEthFeeVolume": 2.3989381812,
+            "dailyDuoFeeVolume": 2.2052249999569966,
+            "dailyVolume": 5.706775681135495,
+            "dailyRank": 13
+        },
+        "0xdB82442e01471C5b89EDf0d663faFC061BE073FD": {
+            "rank": 4,
+            "ethFeeVolume": 4.711230324652499,
+            "duoFeeVolume": 5260.976439311424,
+            "volume": 7896.175889291788,
+            "dailyEthFeeVolume": 0,
+            "dailyDuoFeeVolume": 2800.151424232433,
+            "dailyVolume": 4200.227136348649,
+            "dailyRank": 4
+        },
+        "0x240b6e0B33aa3b2b572e30688f59Ff6369d2E709": {
+            "rank": 359,
+            "ethFeeVolume": 0.0494636175,
+            "duoFeeVolume": 0.20067280653148944,
+            "volume": 0.35047282729723417,
+            "dailyEthFeeVolume": 0,
+            "dailyDuoFeeVolume": 0.16398905653148946,
+            "dailyVolume": 0.2459835847972342,
+            "dailyRank": 265
+        },
+        "0x98c7a0c5ec68939D43F30488E673F59B668967Ea": {
+            "rank": 3,
+            "ethFeeVolume": 36.35285362235773,
+            "duoFeeVolume": 5723.430843463928,
+            "volume": 8621.49911881825,
+            "dailyEthFeeVolume": 17.392688844023244,
+            "dailyDuoFeeVolume": 2833.7706593700423,
+            "dailyVolume": 4268.048677899086,
             "dailyRank": 3
         },
-        "0x85eAAD9b0726B9701a1Bb78C1A70EB6A451dA6ea": {
-            "rank": 23,
-            "ethFeeVolume": 2.9393199,
+        "0xa4f6CF339221A2375D36b0074ed7337DaD382a08": {
+            "rank": 41,
+            "ethFeeVolume": 0.8741867388996292,
             "duoFeeVolume": 0,
-            "volume": 2.9393199,
-            "dailyEthFeeVolume": 2.9393199,
+            "volume": 0.8741867388996292,
+            "dailyEthFeeVolume": 0.3784298791413464,
             "dailyDuoFeeVolume": 0,
-            "dailyVolume": 2.9393199,
-            "dailyRank": 14
+            "dailyVolume": 0.3784298791413464,
+            "dailyRank": 254
+        },
+        "0xb45Eba362410981bBAb56586C1e2977E4D89a481": {
+            "rank": 1,
+            "ethFeeVolume": 2190.939014992268,
+            "duoFeeVolume": 37835.89869491042,
+            "volume": 58944.7870573579,
+            "dailyEthFeeVolume": 1089.7754064665862,
+            "dailyDuoFeeVolume": 11116.236399691585,
+            "dailyVolume": 17764.130006003965,
+            "dailyRank": 1
         },
         "0xFb6f9D0b0e42FA56E220aBE0Fcd1b7B42ADb2Ba6": {
             "rank": 6,
             "ethFeeVolume": 0.495,
-            "duoFeeVolume": 629.9999315904083,
-            "volume": 945.4948973856125,
+            "duoFeeVolume": 799.3410715045986,
+            "volume": 1199.506607256898,
             "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 629.9999315904083,
-            "dailyVolume": 944.9998973856125,
-            "dailyRank": 4
+            "dailyDuoFeeVolume": 169.3411399141903,
+            "dailyVolume": 254.01170987128546,
+            "dailyRank": 6
         },
-        "0xb45Eba362410981bBAb56586C1e2977E4D89a481": {
-            "rank": 1,
-            "ethFeeVolume": 1101.1636085256816,
-            "duoFeeVolume": 26719.662295218837,
-            "volume": 41180.65705135394,
+        "0x9679FfC65C4BC8c46B8CB590c45916ad11963633": {
+            "rank": 19,
+            "ethFeeVolume": 2.9523361824,
+            "duoFeeVolume": 1.4761680911748432,
+            "volume": 5.166588319162265,
             "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 11030.818621080456,
-            "dailyVolume": 16546.227931620684,
-            "dailyRank": 1
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0,
+            "dailyRank": 325
+        },
+        "0x85eAAD9b0726B9701a1Bb78C1A70EB6A451dA6ea": {
+            "rank": 24,
+            "ethFeeVolume": 2.9393199,
+            "duoFeeVolume": 0,
+            "volume": 2.9393199,
+            "dailyEthFeeVolume": 0,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0,
+            "dailyRank": 343
         },
         "0xf5921ff118e7Fb7fE74559A3632fB2d0bcc35AF2": {
             "rank": 26,
@@ -174,577 +2774,507 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 26
+            "dailyRank": 345
         },
         "0xDE5bD9675cc2Ab3938fBC0D56C2C26555c15f993": {
-            "rank": 83,
+            "rank": 301,
             "ethFeeVolume": 0.51084,
             "duoFeeVolume": 0,
             "volume": 0.51084,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 83
+            "dailyRank": 301
         },
         "0xA81F1984B5bF9fe17b7C1DDFBeA60E8Dd33E466d": {
-            "rank": 77,
+            "rank": 288,
             "ethFeeVolume": 0.51183,
             "duoFeeVolume": 0,
             "volume": 0.51183,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 77
+            "dailyRank": 288
         },
         "0xE6dDf3088B73FfF821Da19f3a11362FB128af09c": {
-            "rank": 81,
+            "rank": 297,
             "ethFeeVolume": 0.51084,
             "duoFeeVolume": 0,
             "volume": 0.51084,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 81
+            "dailyRank": 297
         },
         "0xCfF7A3F61cFe30D6879f4A7982363380D7528E50": {
-            "rank": 104,
+            "rank": 338,
             "ethFeeVolume": 0.48312,
             "duoFeeVolume": 0,
             "volume": 0.48312,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 104
+            "dailyRank": 338
         },
         "0xD99117BA7714824508e88187E012baEA57181994": {
-            "rank": 97,
+            "rank": 323,
             "ethFeeVolume": 0.50787,
             "duoFeeVolume": 0,
             "volume": 0.50787,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 97
+            "dailyRank": 323
         },
         "0x8C2ff55d1939a988AB184a5c1ed79707bF3c215e": {
-            "rank": 122,
+            "rank": 373,
             "ethFeeVolume": 0.23661,
             "duoFeeVolume": 0,
             "volume": 0.23661,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 122
+            "dailyRank": 373
         },
         "0x24081addA9eD763F2409A16181b8E8215bb41d95": {
-            "rank": 48,
+            "rank": 249,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 48
+            "dailyRank": 357
         },
         "0x47aD7dAC3597c7aD9850E03452dE962481bf3E8f": {
-            "rank": 70,
+            "rank": 272,
             "ethFeeVolume": 0.5148,
             "duoFeeVolume": 0,
             "volume": 0.5148,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 70
-        },
-        "0x0FFe15237601db0059FF09BD2e753445714f9C8D": {
-            "rank": 129,
-            "ethFeeVolume": 0.13761,
-            "duoFeeVolume": 0,
-            "volume": 0.13761,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 129
+            "dailyRank": 377
         },
         "0x69DB48206023579D99f08dbd64324E5BdE0687f5": {
-            "rank": 41,
+            "rank": 225,
             "ethFeeVolume": 0.54351,
             "duoFeeVolume": 0,
             "volume": 0.54351,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 41
+            "dailyRank": 296
         },
         "0x94e35F296b9d9a776ac36986631d0F115cb768A6": {
-            "rank": 115,
+            "rank": 364,
             "ethFeeVolume": 0.29205,
             "duoFeeVolume": 0,
             "volume": 0.29205,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 115
+            "dailyRank": 364
         },
         "0xD61da0c1cf5A409D96fF7280eb47995a7c5b2882": {
-            "rank": 106,
+            "rank": 340,
             "ethFeeVolume": 0.47718,
             "duoFeeVolume": 0,
             "volume": 0.47718,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 106
+            "dailyRank": 340
         },
         "0xD686851Aa43BF00df77CC0243F1B3AEE55848807": {
-            "rank": 43,
+            "rank": 229,
             "ethFeeVolume": 0.52767,
             "duoFeeVolume": 0,
             "volume": 0.52767,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 43
-        },
-        "0xB0f396d1fba9a5C699695B69337635Fad6547B13": {
-            "rank": 128,
-            "ethFeeVolume": 0.14355,
-            "duoFeeVolume": 0,
-            "volume": 0.14355,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 128
+            "dailyRank": 293
         },
         "0xb97Ba822Ec09bd0809cfb7800897D1b05A350FaB": {
-            "rank": 98,
+            "rank": 333,
             "ethFeeVolume": 0.50787,
             "duoFeeVolume": 0,
             "volume": 0.50787,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 98
+            "dailyRank": 333
         },
         "0x78A952487Ec7cd4569cE85c91c66daaD13E11e47": {
-            "rank": 39,
+            "rank": 220,
             "ethFeeVolume": 0.55341,
             "duoFeeVolume": 0,
             "volume": 0.55341,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 39
+            "dailyRank": 299
         },
         "0x14E8385d3d6fE3792393B7E8ea896a6612540F1C": {
-            "rank": 91,
+            "rank": 315,
             "ethFeeVolume": 0.50886,
             "duoFeeVolume": 0,
             "volume": 0.50886,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 91
+            "dailyRank": 315
         },
         "0x492F79D01723dE584d3dceD764F72f06592E9C18": {
-            "rank": 82,
+            "rank": 294,
             "ethFeeVolume": 0.51084,
             "duoFeeVolume": 0,
             "volume": 0.51084,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 82
+            "dailyRank": 294
         },
         "0xB58ACeCa7649589f43F7e39C867ac5216A9486f2": {
-            "rank": 94,
+            "rank": 332,
             "ethFeeVolume": 0.50787,
             "duoFeeVolume": 0,
             "volume": 0.50787,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 94
+            "dailyRank": 332
         },
         "0x7FA23F6462C9b803d20BD94ca70B48B3aB9FB6a5": {
-            "rank": 96,
+            "rank": 331,
             "ethFeeVolume": 0.50787,
             "duoFeeVolume": 0,
             "volume": 0.50787,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 96
-        },
-        "0xDbB9d0fed394f5DC748728D234778d909B5411DD": {
-            "rank": 131,
-            "ethFeeVolume": 0.13068,
-            "duoFeeVolume": 0,
-            "volume": 0.13068,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 131
+            "dailyRank": 331
         },
         "0xcdd0c8F3BD2A0F45492b7c4bC376319f9cD74BfA": {
-            "rank": 80,
+            "rank": 287,
             "ethFeeVolume": 0.51183,
             "duoFeeVolume": 0,
             "volume": 0.51183,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 80
+            "dailyRank": 287
         },
         "0xC61C1c9B5410E4426969496883255A93beb83954": {
-            "rank": 32,
+            "rank": 205,
             "ethFeeVolume": 0.693,
             "duoFeeVolume": 0,
             "volume": 0.693,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 32
+            "dailyRank": 311
         },
         "0x03E2b3b43CEa3b51D2c6FAcF8cC2481159A1A5d7": {
-            "rank": 105,
+            "rank": 339,
             "ethFeeVolume": 0.48213,
             "duoFeeVolume": 0,
             "volume": 0.48213,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 105
+            "dailyRank": 339
         },
         "0x74B045c087Ff3dc35d3DE7A0932f28945a88Ce8c": {
-            "rank": 88,
+            "rank": 307,
             "ethFeeVolume": 0.50985,
             "duoFeeVolume": 0,
             "volume": 0.50985,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 88
+            "dailyRank": 307
         },
         "0x69cA570817A308Ec984c1D0837ba255B8FDb6f1C": {
-            "rank": 107,
+            "rank": 342,
             "ethFeeVolume": 0.45045,
             "duoFeeVolume": 0,
             "volume": 0.45045,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 107
+            "dailyRank": 342
         },
         "0xd34d743B5bfDF21e0D8829f0eEA52cC493628610": {
-            "rank": 33,
+            "rank": 207,
             "ethFeeVolume": 0.67221,
             "duoFeeVolume": 0,
             "volume": 0.67221,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 33
-        },
-        "0x290FC07db2BF4b385987059E919B78898941102e": {
-            "rank": 126,
-            "ethFeeVolume": 0.15741,
-            "duoFeeVolume": 0,
-            "volume": 0.15741,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 126
+            "dailyRank": 310
         },
         "0x9Fd06F029AE358EA633f978C0C441469869De3aB": {
-            "rank": 51,
+            "rank": 253,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 51
+            "dailyRank": 319
         },
         "0xf666C108D0ed4F12993CA49328e0c434466BCd90": {
-            "rank": 113,
+            "rank": 362,
             "ethFeeVolume": 0.32373,
             "duoFeeVolume": 0,
             "volume": 0.32373,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 113
+            "dailyRank": 362
         },
         "0xaeb8B10D8ea11BC0B3FBd2aA33b200f1D6B31238": {
-            "rank": 50,
+            "rank": 245,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 50
+            "dailyRank": 365
         },
         "0x1ca61174888b60579fd15FE720D5DF0dA60E032F": {
-            "rank": 46,
+            "rank": 243,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 46
+            "dailyRank": 374
         },
         "0xFCe0B5eAb0F21D23fCf11AfE1144dCa1F305B6ab": {
-            "rank": 71,
+            "rank": 274,
             "ethFeeVolume": 0.51381,
             "duoFeeVolume": 0,
             "volume": 0.51381,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 71
+            "dailyRank": 379
         },
         "0x9B9Bed5813CbabA76DF54c6b84a45c03175D745F": {
-            "rank": 117,
+            "rank": 367,
             "ethFeeVolume": 0.27918,
             "duoFeeVolume": 0,
             "volume": 0.27918,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 117
+            "dailyRank": 367
         },
         "0x7F6ad4b0698Dd5A9B4d62c9005c314BfF4964f91": {
-            "rank": 89,
+            "rank": 316,
             "ethFeeVolume": 0.50886,
             "duoFeeVolume": 0,
             "volume": 0.50886,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 89
+            "dailyRank": 316
         },
         "0x40802A76256F14950677E6815B75AE8c61FDdbdF": {
-            "rank": 21,
+            "rank": 23,
             "ethFeeVolume": 2.9403,
             "duoFeeVolume": 0,
             "volume": 2.9403,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 21
-        },
-        "0x7E23B3C3DF61c3ef2dC97E1D26632307888c5E18": {
-            "rank": 125,
-            "ethFeeVolume": 0.18909,
-            "duoFeeVolume": 0,
-            "volume": 0.18909,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 125
+            "dailyRank": 341
         },
         "0x8443E81B793A1052829cD87E6f30fC2DCccD858c": {
-            "rank": 86,
+            "rank": 302,
             "ethFeeVolume": 0.50985,
             "duoFeeVolume": 0,
             "volume": 0.50985,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 86
+            "dailyRank": 302
         },
         "0xB6Bd314FBDbf12b77960f224e02094341F104D33": {
-            "rank": 53,
+            "rank": 247,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 53
+            "dailyRank": 358
         },
         "0x9BE6bAfcBFDf923f6Dfe4Ccb7415902756eb6Ea3": {
-            "rank": 73,
+            "rank": 280,
             "ethFeeVolume": 0.51381,
             "duoFeeVolume": 0,
             "volume": 0.51381,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 73
+            "dailyRank": 280
         },
         "0xA2a3346CFD8cF3CA2badc3c6BF91e74A2781ea5f": {
-            "rank": 100,
+            "rank": 335,
             "ethFeeVolume": 0.50391,
             "duoFeeVolume": 0,
             "volume": 0.50391,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 100
+            "dailyRank": 335
         },
         "0x8eEB3CD4cEF154D866c4ab07D0A1b75356749330": {
-            "rank": 112,
+            "rank": 360,
             "ethFeeVolume": 0.34353,
             "duoFeeVolume": 0,
             "volume": 0.34353,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 112
+            "dailyRank": 360
         },
         "0x26a0a0C5a1A3237466907A3176C6ca3771883F60": {
-            "rank": 108,
+            "rank": 347,
             "ethFeeVolume": 0.41976,
             "duoFeeVolume": 0,
             "volume": 0.41976,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 108
+            "dailyRank": 347
         },
         "0xeb4Ae407e5eA10729fb87142FC763084a5aF83FB": {
-            "rank": 58,
+            "rank": 240,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 58
+            "dailyRank": 381
         },
         "0x5B46D813AD7487A30621451895eF6eA706390CAe": {
-            "rank": 34,
+            "rank": 209,
             "ethFeeVolume": 0.6633,
             "duoFeeVolume": 0,
             "volume": 0.6633,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 34
+            "dailyRank": 308
         },
         "0x2EFA6568a8DB8D92788776f28cd1cc3f73fDe0C2": {
-            "rank": 79,
+            "rank": 292,
             "ethFeeVolume": 0.51183,
             "duoFeeVolume": 0,
             "volume": 0.51183,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 79
+            "dailyRank": 292
         },
         "0x02D8a8C1F51C48469394e2Ae8Eb40de010A874ce": {
-            "rank": 60,
+            "rank": 236,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 60
+            "dailyRank": 281
         },
         "0xAC161c5E668843529d77a235e752e13784e58A70": {
-            "rank": 74,
+            "rank": 279,
             "ethFeeVolume": 0.51381,
             "duoFeeVolume": 0,
             "volume": 0.51381,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 74
-        },
-        "0x957f129297cB127E18a96B74c2933e2213c3c60e": {
-            "rank": 114,
-            "ethFeeVolume": 0.30195,
-            "duoFeeVolume": 0,
-            "volume": 0.30195,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 114
+            "dailyRank": 279
         },
         "0x12d4f551271434310b3175bF73999a346b45502C": {
-            "rank": 63,
+            "rank": 257,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 63
+            "dailyRank": 352
         },
         "0x06C59e1aD2299EA99631850291021eda772715eb": {
-            "rank": 35,
+            "rank": 210,
             "ethFeeVolume": 0.62469,
             "duoFeeVolume": 0,
             "volume": 0.62469,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 35
+            "dailyRank": 306
         },
         "0x8133607a4b42a1575Bf7b38197dD7bA0F4Ff2B59": {
-            "rank": 78,
+            "rank": 289,
             "ethFeeVolume": 0.51183,
             "duoFeeVolume": 0,
             "volume": 0.51183,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 78
+            "dailyRank": 289
         },
         "0xc3bc45a46988D01E7320643d3eb47d493eE8984c": {
-            "rank": 66,
+            "rank": 242,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 66
+            "dailyRank": 375
         },
         "0xbd6055b7e6653908AFAB1AE17c8fbF1C0a87c18A": {
-            "rank": 64,
+            "rank": 246,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 64
+            "dailyRank": 361
         },
         "0x2B3F9164FB41003436D423b839f4d27108C6DBe5": {
-            "rank": 61,
+            "rank": 241,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 61
+            "dailyRank": 378
         },
         "0xb170BedA126af04b3949592Ce2175d5374E6166B": {
-            "rank": 44,
+            "rank": 230,
             "ethFeeVolume": 0.52371,
             "duoFeeVolume": 0,
             "volume": 0.52371,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 44
-        },
-        "0x1b6208cc9732E4d82a9f02d53d5F552582c1dF82": {
-            "rank": 134,
-            "ethFeeVolume": 0.10296,
-            "duoFeeVolume": 0,
-            "volume": 0.10296,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 134
+            "dailyRank": 291
         },
         "0x6c0D4C1a2034cbdF5c40bF7A49C24827029D442A": {
             "rank": 15,
@@ -754,467 +3284,417 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 69
+            "dailyRank": 320
         },
         "0xc2B08203dfCFf83BdBc44Ed9251604A98e2f1BE5": {
-            "rank": 36,
+            "rank": 213,
             "ethFeeVolume": 0.58509,
             "duoFeeVolume": 0,
             "volume": 0.58509,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 36
+            "dailyRank": 305
         },
         "0x50fa9509D76E21B68015906A1991c2bb10466a5b": {
-            "rank": 92,
+            "rank": 321,
             "ethFeeVolume": 0.50886,
             "duoFeeVolume": 0,
             "volume": 0.50886,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 92
+            "dailyRank": 321
         },
         "0x7a581e9c1ECDA9D53C3819e94611802982b9bD5C": {
-            "rank": 118,
+            "rank": 368,
             "ethFeeVolume": 0.26928,
             "duoFeeVolume": 0,
             "volume": 0.26928,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 118
-        },
-        "0x2d6e2fE8233CD5C181f3bdC9EEBd12A1208a7061": {
-            "rank": 12,
-            "ethFeeVolume": 13.7709,
-            "duoFeeVolume": 0,
-            "volume": 13.7709,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 18
+            "dailyRank": 368
         },
         "0x6166eA9Aa367958B1aD7484Ca4FCee9902361EDB": {
-            "rank": 47,
+            "rank": 233,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 47
+            "dailyRank": 286
         },
         "0x008eFC67d07C9318BF758304Df07D964473bE3B9": {
-            "rank": 49,
+            "rank": 235,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 49
-        },
-        "0x0E555ED8cdC11F94621fAD0583Ef747C0bba7b36": {
-            "rank": 124,
-            "ethFeeVolume": 0.18909,
-            "duoFeeVolume": 0,
-            "volume": 0.18909,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 124
+            "dailyRank": 284
         },
         "0xE8FeBc6A70Bda0D2B9F6597EDa82cC8AaA3731d5": {
-            "rank": 38,
+            "rank": 219,
             "ethFeeVolume": 0.55539,
             "duoFeeVolume": 0,
             "volume": 0.55539,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 38
+            "dailyRank": 300
         },
         "0x14BCbA1E79D5E68a8d4CB3Db98052119a0ACb816": {
-            "rank": 30,
+            "rank": 200,
             "ethFeeVolume": 0.73458,
             "duoFeeVolume": 0,
             "volume": 0.73458,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 30
+            "dailyRank": 313
         },
         "0xb0305C78849D398ea6fE521e200611284D3DBC79": {
-            "rank": 87,
+            "rank": 303,
             "ethFeeVolume": 0.50985,
             "duoFeeVolume": 0,
             "volume": 0.50985,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 87
+            "dailyRank": 303
         },
         "0xa5E5f0C1b4f5c9721005A20dD4792a3442BE2574": {
-            "rank": 62,
+            "rank": 250,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 62
+            "dailyRank": 356
         },
         "0xAC5a1CE0c39dC868f62f777eD742c44Ec371A26d": {
-            "rank": 57,
+            "rank": 251,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 57
+            "dailyRank": 355
         },
         "0xC629A5BD3780380C8Fb86cF27920d843A187eBE9": {
-            "rank": 56,
+            "rank": 254,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 56
+            "dailyRank": 318
         },
         "0xC7b09EE48758A3B6da1d0D34Dd82Ba280768A063": {
-            "rank": 55,
+            "rank": 258,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 55
+            "dailyRank": 353
         },
         "0xd92CD9eCA23DEdBdE5187152901E38cCA132e463": {
-            "rank": 103,
+            "rank": 337,
             "ethFeeVolume": 0.49005,
             "duoFeeVolume": 0,
             "volume": 0.49005,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 103
+            "dailyRank": 337
         },
         "0x15DdF536c408DE50293E5a2820dA4377e965a7F9": {
-            "rank": 52,
+            "rank": 264,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 52
-        },
-        "0x9DC78dE4D547EB4007a15185e4a056b3B874ed83": {
-            "rank": 132,
-            "ethFeeVolume": 0.10989,
-            "duoFeeVolume": 0,
-            "volume": 0.10989,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 132
+            "dailyRank": 359
         },
         "0xD92E9Fa6029C7d506EE47Ac98a38281bEc2b5C56": {
-            "rank": 102,
+            "rank": 336,
             "ethFeeVolume": 0.4949428275,
             "duoFeeVolume": 0,
             "volume": 0.4949428275,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 102
+            "dailyRank": 336
         },
         "0x1Edd4a3383c7a21906C2246a2Ea4A555ffbb761E": {
-            "rank": 37,
+            "rank": 214,
             "ethFeeVolume": 0.58311,
             "duoFeeVolume": 0,
             "volume": 0.58311,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 37
+            "dailyRank": 304
         },
         "0xBB43202eFF0e5BA34959Ad44D70C8c1bb5BEb781": {
-            "rank": 68,
+            "rank": 266,
             "ethFeeVolume": 0.51579,
             "duoFeeVolume": 0,
             "volume": 0.51579,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 68
+            "dailyRank": 363
         },
         "0x900232Ba82C117AaEd81aBAe2e78d92Fbd06C572": {
-            "rank": 85,
+            "rank": 314,
             "ethFeeVolume": 0.50985,
             "duoFeeVolume": 0,
             "volume": 0.50985,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 85
+            "dailyRank": 314
         },
         "0x7d737F88B035c183ab29Acf664cE8cE3e4c0aD68": {
-            "rank": 76,
+            "rank": 285,
             "ethFeeVolume": 0.51282,
             "duoFeeVolume": 0,
             "volume": 0.51282,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 76
+            "dailyRank": 285
         },
         "0x0af279e42084AEB4d08CDE5Fd37B4D8e6161fDBD": {
-            "rank": 31,
+            "rank": 203,
             "ethFeeVolume": 0.71478,
             "duoFeeVolume": 0,
             "volume": 0.71478,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 31
+            "dailyRank": 312
         },
         "0x3956aA32EE9A267e828d5E5B83f173A38a474abA": {
-            "rank": 75,
+            "rank": 283,
             "ethFeeVolume": 0.51282,
             "duoFeeVolume": 0,
             "volume": 0.51282,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 75
+            "dailyRank": 283
         },
         "0xf5C80Fd2cFB18da67048231Aa31cDd447BeeFFa3": {
-            "rank": 67,
+            "rank": 268,
             "ethFeeVolume": 0.51579,
             "duoFeeVolume": 0,
             "volume": 0.51579,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 67
+            "dailyRank": 372
         },
         "0x911AA608d8C3cDeAbDc722567584C9b4ddD0347b": {
-            "rank": 45,
+            "rank": 231,
             "ethFeeVolume": 0.52371,
             "duoFeeVolume": 0,
             "volume": 0.52371,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 45
+            "dailyRank": 290
         },
         "0x21Fcf1d85eb2f8Ed91c7089e337944a2d06B223E": {
-            "rank": 65,
+            "rank": 237,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 65
+            "dailyRank": 277
         },
         "0x7537426308A4d60Be24266a606A9071F1A1a7A13": {
-            "rank": 111,
+            "rank": 351,
             "ethFeeVolume": 0.3861,
             "duoFeeVolume": 0,
             "volume": 0.3861,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 111
+            "dailyRank": 351
         },
         "0x2cD8ee3ee734fa87F326a3059Fc38f8C4F218814": {
-            "rank": 72,
+            "rank": 278,
             "ethFeeVolume": 0.51381,
             "duoFeeVolume": 0,
             "volume": 0.51381,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 72
+            "dailyRank": 278
         },
         "0xb4b5d92fA89E7cC426cc31526549F5e26d5d6e77": {
-            "rank": 121,
+            "rank": 371,
             "ethFeeVolume": 0.23958,
             "duoFeeVolume": 0,
             "volume": 0.23958,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 121
+            "dailyRank": 371
         },
         "0x1195Ad79a8eEa02555F6dA7411fc3423B0a48760": {
-            "rank": 59,
+            "rank": 259,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 59
-        },
-        "0x89258314fBdB373D82460053cCEAD9188ad5E3fd": {
-            "rank": 123,
-            "ethFeeVolume": 0.20394,
-            "duoFeeVolume": 0,
-            "volume": 0.20394,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 123
+            "dailyRank": 354
         },
         "0x0e13763032F1A0357E9577bb28D5293A1e1deC40": {
-            "rank": 99,
+            "rank": 327,
             "ethFeeVolume": 0.50787,
             "duoFeeVolume": 0,
             "volume": 0.50787,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 99
+            "dailyRank": 327
         },
         "0xe256838F885E92b2Ab5bffDe808c0ad2d0E48a76": {
-            "rank": 120,
+            "rank": 370,
             "ethFeeVolume": 0.24453,
             "duoFeeVolume": 0,
             "volume": 0.24453,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 120
+            "dailyRank": 370
         },
         "0x2c29e67D7C2a76aaF1D90f5cbCa7105E5D162a98": {
-            "rank": 84,
+            "rank": 309,
             "ethFeeVolume": 0.50985,
             "duoFeeVolume": 0,
             "volume": 0.50985,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 84
+            "dailyRank": 309
         },
         "0x5AB5478f7a49D60072631dFBff38d7d32Ce5fc7F": {
-            "rank": 40,
+            "rank": 223,
             "ethFeeVolume": 0.54648,
             "duoFeeVolume": 0,
             "volume": 0.54648,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 40
+            "dailyRank": 298
         },
         "0xC41850E5052302017cfB2E09C8Cd183928204BF9": {
-            "rank": 90,
+            "rank": 317,
             "ethFeeVolume": 0.50886,
             "duoFeeVolume": 0,
             "volume": 0.50886,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 90
+            "dailyRank": 317
         },
         "0x682BBe773D2f28173f067DA1f91F04eEF4b19430": {
-            "rank": 69,
+            "rank": 271,
             "ethFeeVolume": 0.5148,
             "duoFeeVolume": 0,
             "volume": 0.5148,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 136
+            "dailyRank": 376
         },
         "0xe00390021eDa851213207ab7ed6bF24Bdf5bBEca": {
-            "rank": 110,
+            "rank": 350,
             "ethFeeVolume": 0.39996,
             "duoFeeVolume": 0,
             "volume": 0.39996,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 110
+            "dailyRank": 350
         },
         "0xAfa675FF2392EDcd7eD5d08B9999D27C2461c7b1": {
-            "rank": 116,
+            "rank": 366,
             "ethFeeVolume": 0.28215,
             "duoFeeVolume": 0,
             "volume": 0.28215,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 116
+            "dailyRank": 366
         },
         "0x44b162b25FbEA3756b896E0d7aaC982d9eD72234": {
-            "rank": 109,
+            "rank": 348,
             "ethFeeVolume": 0.4158,
             "duoFeeVolume": 0,
             "volume": 0.4158,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 109
+            "dailyRank": 348
         },
         "0x28d23C0E6F71a862743c299039e4382704fa8F61": {
-            "rank": 95,
+            "rank": 334,
             "ethFeeVolume": 0.50787,
             "duoFeeVolume": 0,
             "volume": 0.50787,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 95
+            "dailyRank": 334
         },
         "0xc42a8bb62c22f7ED0dFC37f28780941310F5c672": {
-            "rank": 42,
+            "rank": 226,
             "ethFeeVolume": 0.53757,
             "duoFeeVolume": 0,
             "volume": 0.53757,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 42
+            "dailyRank": 295
         },
         "0x97963ee81CE298d57f99fFce7220035905b60eE8": {
-            "rank": 93,
+            "rank": 330,
             "ethFeeVolume": 0.50787,
             "duoFeeVolume": 0,
             "volume": 0.50787,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 93
-        },
-        "0xd066FbAc54838c1d3c3113fc4390B9F99fEb7678": {
-            "rank": 130,
-            "ethFeeVolume": 0.13761,
-            "duoFeeVolume": 0,
-            "volume": 0.13761,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 130
+            "dailyRank": 330
         },
         "0x85e1316f35fB8967c2C49704774c5265ba95bF8D": {
-            "rank": 54,
+            "rank": 238,
             "ethFeeVolume": 0.51678,
             "duoFeeVolume": 0,
             "volume": 0.51678,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 54
+            "dailyRank": 276
         },
         "0x20D2D9546756100aCbCE66cdF755f0E195672Ca5": {
             "rank": 22,
@@ -1224,37 +3704,37 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 22
+            "dailyRank": 329
         },
         "0x3fd45E12A2EEa668cBe28F6F0896e936101458ca": {
-            "rank": 11,
+            "rank": 14,
             "ethFeeVolume": 14.674591894408056,
             "duoFeeVolume": 2.6094044968357104,
             "volume": 18.588698639661622,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 24
+            "dailyRank": 275
         },
         "0x5c857Bae94Da18542ecFbE7b7e2c70a392A39960": {
-            "rank": 16,
+            "rank": 17,
             "ethFeeVolume": 7.314389745269253,
             "duoFeeVolume": 0,
             "volume": 7.314389745269253,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 101
+            "dailyRank": 322
         },
         "0x490F23a3d978526F4a5F919027B834Ea22602349": {
-            "rank": 29,
+            "rank": 38,
             "ethFeeVolume": 0.9800794179,
             "duoFeeVolume": 0,
             "volume": 0.9800794179,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 29
+            "dailyRank": 282
         },
         "0x00D8d0660b243452fC2f996A892D3083A903576F": {
             "rank": 28,
@@ -1264,17 +3744,17 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 28
+            "dailyRank": 349
         },
         "0xBB1E208B2f0e63d88eCCB7af705433aAC82F4625": {
-            "rank": 136,
+            "rank": 383,
             "ethFeeVolume": 0.003784298791413464,
             "duoFeeVolume": 0,
             "volume": 0.003784298791413464,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 23
+            "dailyRank": 383
         },
         "0xDEcAeE00288826B7E04fc47c80C01f8aCb198116": {
             "rank": 27,
@@ -1284,17 +3764,7 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 27
-        },
-        "0x240b6e0B33aa3b2b572e30688f59Ff6369d2E709": {
-            "rank": 133,
-            "ethFeeVolume": 0.0494636175,
-            "duoFeeVolume": 0.03668375,
-            "volume": 0.1044892425,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0,
-            "dailyRank": 133
+            "dailyRank": 346
         },
         "0xC372B372e1190D766cD8a2e132AbBD67d7ABDb54": {
             "rank": 25,
@@ -1304,67 +3774,67 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 25
+            "dailyRank": 344
         },
         "0x77631E741F8cb17DFC82f1A210987d11a73eD928": {
-            "rank": 17,
+            "rank": 18,
             "ethFeeVolume": 7.303233572900586,
             "duoFeeVolume": 0,
             "volume": 7.303233572900586,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 17
+            "dailyRank": 324
         },
         "0xc1cE932ef57b9756B1C06AA5073c262b491478a6": {
-            "rank": 20,
+            "rank": 21,
             "ethFeeVolume": 2.8172286273708638,
             "duoFeeVolume": 0.995,
             "volume": 4.3097286273708635,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 20
+            "dailyRank": 328
         },
         "0x8E0E4DE505ee21ECA63fAF762B48D774E8BB8f51": {
-            "rank": 19,
+            "rank": 20,
             "ethFeeVolume": 4.750686479846742,
             "duoFeeVolume": 0,
             "volume": 4.750686479846742,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 19
+            "dailyRank": 326
         },
         "0x1dB6e56794bf4ECF61c02fa7a72F1Ca359f04DE5": {
-            "rank": 135,
+            "rank": 382,
             "ethFeeVolume": 0.004455104445,
             "duoFeeVolume": 0,
             "volume": 0.004455104445,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 135
+            "dailyRank": 382
         },
         "0xcfcb548e019aD88d27B7B4904329906Ba8737Ef8": {
-            "rank": 119,
+            "rank": 369,
             "ethFeeVolume": 0.2474948025,
             "duoFeeVolume": 0,
             "volume": 0.2474948025,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 119
+            "dailyRank": 369
         },
         "0x5c14b290A04a4C0A20093ECA10dB1B2536691C25": {
-            "rank": 127,
+            "rank": 380,
             "ethFeeVolume": 0.14793570891,
             "duoFeeVolume": 0,
             "volume": 0.14793570891,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 127
+            "dailyRank": 380
         }
     }
 }
