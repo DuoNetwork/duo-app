@@ -42,7 +42,8 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 			});
 
 	private handleClick = () => {
-		const { account, type, index } = this.props;
+		const { account, type } = this.props;
+		const index = this.props.index || -1;
 		const { value, valueError, value1, value1Error } = this.state;
 		if (valueError || value1Error) return;
 
@@ -50,7 +51,7 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 			case CST.TH_COLLLECT_FEE:
 				return contractUtil.collectFee(account, Number(value));
 			case CST.TH_SET_VALUE:
-				return index && contractUtil.setValue(account, index, Number(value));
+				return index >= 0 && contractUtil.setValue(account, index, Number(value));
 			case CST.TH_ADD_ADDR:
 				return contractUtil.addAddress(account, value, value1);
 			default:
