@@ -77,7 +77,7 @@ export default class UserCard extends React.PureComponent<IProps> {
 					>
 						<Column title={CST.TH_NO} dataIndex={CST.TH_NO} width={60} />
 						<Column
-							title={CST.TH_ADDRESS}
+							title={CST.TH_ADDRESS.EN}
 							dataIndex={CST.TH_ADDRESS.EN}
 							width={455}
 						/>
