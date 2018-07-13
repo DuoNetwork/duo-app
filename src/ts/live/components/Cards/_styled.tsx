@@ -1002,6 +1002,12 @@ injectGlobal([
 		.ant-pagination-options-quick-jumper input:hover {
 			border-color: ${ColorStyles.BorderWhite3};
 		}
+		.ant-pagination-jump-prev:after, .ant-pagination-jump-next:after {
+			color: ${ColorStyles.TextWhiteAlphaLLL};
+		}
+		.ant-pagination-jump-prev:focus:after, .ant-pagination-jump-next:focus:after, .ant-pagination-jump-prev:hover:after, .ant-pagination-jump-next:hover:after {
+			color: ${ColorStyles.TextWhiteAlphaL};
+		}
 		.ant-select-selection:hover, .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active{
 			border-color: ${ColorStyles.BorderWhite3};
 		}
