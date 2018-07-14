@@ -67,9 +67,15 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 	}
 
 	private handleFeeTypeChange = () => {
-		this.setState({
-			ethFee: !this.state.ethFee
-		});
+		this.setState(
+			{
+				ethFee: !this.state.ethFee
+			},
+			() =>
+				this.setState({
+					description: this.getDescription(this.state.amount)
+				})
+		);
 	};
 
 	private handleTypeChange = () =>
@@ -137,30 +143,34 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 
 	private getDescription = (amount: string) => {
 		const { states, locale } = this.props;
-		const { isCreate } = this.state;
+		const { isCreate, ethFee } = this.state;
 		const amtNum = Number(amount);
-		return !amtNum
-			? ''
-			: isCreate
-				? this.getConversionDescription(
-						amtNum * (1 - states.commissionRate),
-						this.getABFromEth(amtNum)[0],
-						true,
-						locale
-				)
-				: this.getConversionDescription(this.getEthFromAB(amtNum), amtNum, false, locale);
+		if (!amtNum) return '';
+
+		return isCreate
+			? this.getConversionDescription(
+					amtNum,
+					this.getABFromEth(ethFee ? amtNum * (1 - states.commissionRate) : amtNum)[0],
+					true,
+					locale
+			)
+			: this.getConversionDescription(
+					this.getEthFromAB(amtNum) * (ethFee ? 1 - states.commissionRate : 1),
+					amtNum,
+					false,
+					locale
+			);
 	};
 
 	private getABFromEth = (amount: number) => {
 		const { states, reset } = this.props;
-		const tokenB =
-			(amount * (1 - states.commissionRate) * reset.price * states.beta) / (1 + states.alpha);
+		const tokenB = (amount * reset.price * states.beta) / (1 + states.alpha);
 		return [tokenB * states.alpha, tokenB];
 	};
 
 	private getEthFromAB = (amount: number) => {
 		const { states, reset } = this.props;
-		return ((2 * amount) / reset.price / states.beta) * (1 - states.commissionRate);
+		return (2 * amount) / reset.price / states.beta;
 	};
 
 	private handleAmountBlur = (limit: number) => {
@@ -180,14 +190,15 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		const amtNum = Number(amount);
 		if (isCreate) {
 			const fee = amtNum * states.commissionRate;
-			const [tokenA, tokenB] = this.getABFromEth(amtNum);
+			const ethNetOfFee = ethFee ? amtNum - fee : amtNum;
+			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
 			contractUtil.create(account, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						account,
 						txHash,
 						true,
-						amtNum - fee,
+						ethNetOfFee,
 						tokenA,
 						tokenB,
 						ethFee ? fee : 0,
@@ -197,14 +208,15 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			);
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
-			const fee = (ethAmount / (1 - states.commissionRate)) * states.commissionRate;
+			const fee = ethAmount * states.commissionRate;
+			const ethNetOfFee = ethFee ? ethAmount - fee : ethAmount;
 			contractUtil.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						account,
 						txHash,
 						false,
-						ethAmount,
+						ethNetOfFee,
 						amtNum,
 						amtNum,
 						ethFee ? fee : 0,
@@ -257,7 +269,8 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
 					extra={
 						<SCardExtraDiv>
-							{CST.TH_NETWORK_GAS_PRICE[locale] + ': ' +
+							{CST.TH_NETWORK_GAS_PRICE[locale] +
+								': ' +
 								(gasPrice
 									? +Math.round(gasPrice * 1e9) + ' Gwei'
 									: CST.TH_LOADING[locale])}
