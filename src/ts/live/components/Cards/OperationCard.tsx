@@ -104,45 +104,24 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 	private getConversionDescription = (
 		eth: number,
 		ab: number,
-		isCreate: boolean,
-		locale: string
+		isCreate: boolean
 	) => {
-		switch (locale) {
-			case CST.LOCALE_CN:
-				return isCreate
-					? '从 ' +
-							d3.formatPrefix(',.8', 1)(eth) +
-							' ' +
-							CST.TH_ETH +
-							' 拆分出 ' +
-							d3.formatPrefix(',.8', 1)(ab) +
-							' Token A/B '
-					: '把 ' +
-							d3.formatPrefix(',.8', 1)(ab) +
-							' Token A/B 合并成 ' +
-							d3.formatPrefix(',.8', 1)(eth) +
-							' ' +
-							CST.TH_ETH;
-			default:
-				return isCreate
-					? 'Create ' +
-							d3.formatPrefix(',.8', 1)(ab) +
-							' Token A/B from ' +
-							d3.formatPrefix(',.8', 1)(eth) +
-							' ' +
-							CST.TH_ETH
-					: 'Redeem ' +
-							d3.formatPrefix(',.8', 1)(eth) +
-							' ' +
-							CST.TH_ETH +
-							' from ' +
-							d3.formatPrefix(',.8', 1)(ab) +
-							' Token A/B';
-		}
+		return isCreate
+			? d3.formatPrefix(',.8', 1)(eth) +
+					' ' +
+					CST.TH_ETH +
+					' --> ' +
+					d3.formatPrefix(',.8', 1)(ab) +
+					' Token A/B '
+			: d3.formatPrefix(',.8', 1)(ab) +
+					' Token A/B --> ' +
+					d3.formatPrefix(',.8', 1)(eth) +
+					' ' +
+					CST.TH_ETH;
 	};
 
 	private getDescription = (amount: string) => {
-		const { states, locale } = this.props;
+		const { states } = this.props;
 		const { isCreate, ethFee } = this.state;
 		const amtNum = Number(amount);
 		if (!amtNum) return '';
@@ -151,14 +130,12 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			? this.getConversionDescription(
 					amtNum,
 					this.getABFromEth(ethFee ? amtNum * (1 - states.commissionRate) : amtNum)[0],
-					true,
-					locale
+					true
 			)
 			: this.getConversionDescription(
 					this.getEthFromAB(amtNum) * (ethFee ? 1 - states.commissionRate : 1),
 					amtNum,
-					false,
-					locale
+					false
 			);
 	};
 
