@@ -4,6 +4,7 @@ import classBIcon from '../../../../images/ClassB_white.png';
 import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
+import contractUtil from '../../common/contractUtil';
 import { ColorStyles } from '../../common/styles';
 import { IBalances } from '../../common/types';
 import util from '../../common/util';
@@ -16,8 +17,9 @@ const BalanceInfo = (props: {
 	value: number;
 	allowance?: number;
 	locale?: string;
+	account?: string;
 }) => {
-	const { icon, name, value, allowance, locale } = props;
+	const { icon, name, value, allowance, locale, account } = props;
 	return (
 		<SCardAssetTag>
 			<div className="bg-logo">
@@ -32,9 +34,22 @@ const BalanceInfo = (props: {
 						<div className={'tag-price'}>{util.formatBalance(value)}</div>
 						{allowance !== undefined ? (
 							<div className="tag-subtext">
-								{util.formatBalance(allowance) +
+								{util.formatBalance(Math.min(value, allowance)) +
 									' ' +
 									CST.TH_ALLOWANCE[locale || CST.LOCALE_EN]}
+								<SRefreshButton
+									icon="plus-square-o"
+									onClick={() =>
+										account &&
+										contractUtil.duoApprove(
+											account,
+											__KOVAN__
+												? CST.CUSTODIAN_ADDR_KOVAN
+												: CST.CUSTODIAN_ADDR_MAIN,
+											1e8
+										)
+									}
+								/>
 							</div>
 						) : null}
 					</div>
@@ -105,6 +120,7 @@ export default class BalanceCard extends React.Component<IProps> {
 						value={balances.duo}
 						allowance={balances.allowance}
 						locale={locale}
+						account={account}
 					/>
 					<BalanceInfo icon={classAIcon} name={CST.TH_TOKEN_A} value={balances.tokenA} />
 					<BalanceInfo icon={classBIcon} name={CST.TH_TOKEN_B} value={balances.tokenB} />
