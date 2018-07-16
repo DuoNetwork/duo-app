@@ -2,7 +2,7 @@
 Web App for DUO Network
 
 ## Demo App
-(https://finbook.co/demo/)
+[DUO Network Demo](https://duo.network/demo/)
 Demo app based on historical ETH daily prices from May 01, 2017
 
 ## Live App
