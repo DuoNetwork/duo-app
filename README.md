@@ -2,7 +2,8 @@
 Web App for DUO Network
 
 ## Demo App
-Demo app based on historical ETH daily prices
+(https://finbook.co/demo/)
+Demo app based on historical ETH daily prices from May 01, 2017
 
 ## Live App
 Actual DApp connects to ETH blockchain
