@@ -1024,6 +1024,9 @@ injectGlobal([
 		.admin-table-row > td {
 			cursor: default !important;
 		}
+		.ant-btn.disabled, .ant-btn[disabled], .ant-btn.disabled:hover, .ant-btn[disabled]:hover, .ant-btn.disabled:focus, .ant-btn[disabled]:focus, .ant-btn.disabled:active, .ant-btn[disabled]:active, .ant-btn.disabled.active, .ant-btn[disabled].active {
+			color: ${ColorStyles.TextWhiteAlphaLLL};
+		}
 	}
 `
 ] as any);
@@ -1048,5 +1051,8 @@ export const SRefreshButton = styled(Button as any)`
 	}
 	&:after {
 		border: 0 solid ${ColorStyles.BorderWhite5};
+	}
+	&:disabled {
+		color: ${ColorStyles.TextWhiteAlphaLLL};
 	}
 `;
