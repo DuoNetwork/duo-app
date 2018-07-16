@@ -1,20 +1,70 @@
 {
-    "day": "2018-07-14",
-    "start": 7989005,
-    "end": 8003276,
-    "volume": 199419.18265744467,
+    "day": "2018-07-15",
+    "start": 8003277,
+    "end": 8017510,
+    "volume": 205520.63557972314,
     "users": 391,
-    "dailyVolume": 15912.838177085685,
+    "dailyVolume": 6101.452922278475,
     "conversion": {
         "0x993e32C9a2dFC662c76f9af44695c2580f7BF436": {
             "rank": 12,
-            "ethFeeVolume": 61.25022276658533,
-            "duoFeeVolume": 13.041856415400815,
-            "volume": 80.81300738968656,
-            "dailyEthFeeVolume": 56.37851792358356,
-            "dailyDuoFeeVolume": 7.369041269776648,
-            "dailyVolume": 67.43207982824853,
+            "ethFeeVolume": 66.31983162840643,
+            "duoFeeVolume": 17.39202999547762,
+            "volume": 92.40787662162286,
+            "dailyEthFeeVolume": 5.0696088618211,
+            "dailyDuoFeeVolume": 4.350173580076804,
+            "dailyVolume": 11.594869231936308,
+            "dailyRank": 4
+        },
+        "0x141C32165C63727F392e2Adb83A9f255849230f2": {
+            "rank": 9,
+            "ethFeeVolume": 80.2086872477413,
+            "duoFeeVolume": 157.92267826443916,
+            "volume": 317.09270464440004,
+            "dailyEthFeeVolume": 3.0439152216,
+            "dailyDuoFeeVolume": 15.370679666475999,
+            "dailyVolume": 26.099934721313996,
             "dailyRank": 3
+        },
+        "0x3474143328236D26fE7095684eAE64C63CC19d78": {
+            "rank": 14,
+            "ethFeeVolume": 2.448469353355598,
+            "duoFeeVolume": 22.681717120875675,
+            "volume": 36.47104503466911,
+            "dailyEthFeeVolume": 0,
+            "dailyDuoFeeVolume": 7.1432156698697575,
+            "dailyVolume": 10.714823504804636,
+            "dailyRank": 5
+        },
+        "0xdB82442e01471C5b89EDf0d663faFC061BE073FD": {
+            "rank": 5,
+            "ethFeeVolume": 4.711230324652499,
+            "duoFeeVolume": 12562.300137066213,
+            "volume": 18848.161435923976,
+            "dailyEthFeeVolume": 0,
+            "dailyDuoFeeVolume": 1242.3037612516998,
+            "dailyVolume": 1863.4556418775496,
+            "dailyRank": 2
+        },
+        "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4": {
+            "rank": 3,
+            "ethFeeVolume": 5190.344232085478,
+            "duoFeeVolume": 10389.771436190575,
+            "volume": 20775.00138637134,
+            "dailyEthFeeVolume": 1705.0535415557727,
+            "dailyDuoFeeVolume": 1655.0227409314653,
+            "dailyVolume": 4187.5876529529705,
+            "dailyRank": 1
+        },
+        "0xe22A2dC3A768c016E58A8B8518463F655062507b": {
+            "rank": 26,
+            "ethFeeVolume": 3.08999998989,
+            "duoFeeVolume": 0,
+            "volume": 3.08999998989,
+            "dailyEthFeeVolume": 1.9999999899,
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 1.9999999899,
+            "dailyRank": 6
         },
         "0x7D3A40CEd915fF51727e942bC2D00eE00fAb1694": {
             "rank": 13,
@@ -22,9 +72,9 @@
             "duoFeeVolume": 46.51067596162936,
             "volume": 74.22783662531712,
             "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 3.6650925309636104,
-            "dailyVolume": 5.497638796445416,
-            "dailyRank": 5
+            "dailyDuoFeeVolume": 0,
+            "dailyVolume": 0,
+            "dailyRank": 13
         },
         "0x48E68C6157E8DE6FA449A76719b92E430ebF0e67": {
             "rank": 25,
@@ -32,79 +82,29 @@
             "duoFeeVolume": 2.24828509,
             "volume": 3.372427635,
             "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 2.24828509,
-            "dailyVolume": 3.372427635,
-            "dailyRank": 6
-        },
-        "0xdB82442e01471C5b89EDf0d663faFC061BE073FD": {
-            "rank": 4,
-            "ethFeeVolume": 4.711230324652499,
-            "duoFeeVolume": 11319.996375814513,
-            "volume": 16984.705794046422,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 4091.344937871579,
-            "dailyVolume": 6137.017406807368,
-            "dailyRank": 2
-        },
-        "0xe22A2dC3A768c016E58A8B8518463F655062507b": {
-            "rank": 35,
-            "ethFeeVolume": 1.08999999999,
-            "duoFeeVolume": 0,
-            "volume": 1.08999999999,
-            "dailyEthFeeVolume": 0.09999999999,
             "dailyDuoFeeVolume": 0,
-            "dailyVolume": 0.09999999999,
-            "dailyRank": 9
-        },
-        "0x141C32165C63727F392e2Adb83A9f255849230f2": {
-            "rank": 9,
-            "ethFeeVolume": 77.16477202614129,
-            "duoFeeVolume": 142.55199859796315,
-            "volume": 290.99276992308603,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 15.40092629311469,
-            "dailyVolume": 23.101389439672033,
-            "dailyRank": 4
-        },
-        "0x3474143328236D26fE7095684eAE64C63CC19d78": {
-            "rank": 16,
-            "ethFeeVolume": 2.448469353355598,
-            "duoFeeVolume": 15.538501451005915,
-            "volume": 25.756221529864472,
-            "dailyEthFeeVolume": 0,
-            "dailyDuoFeeVolume": 0.9891505874944979,
-            "dailyVolume": 1.4837258812417469,
-            "dailyRank": 8
+            "dailyVolume": 0,
+            "dailyRank": 25
         },
         "0xFb6f9D0b0e42FA56E220aBE0Fcd1b7B42ADb2Ba6": {
             "rank": 6,
             "ethFeeVolume": 2.4410975363435075,
             "duoFeeVolume": 1060.7498843207604,
             "volume": 1593.5659240174841,
-            "dailyEthFeeVolume": 1.9460975363435074,
+            "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
-            "dailyVolume": 1.9460975363435074,
-            "dailyRank": 7
-        },
-        "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4": {
-            "rank": 5,
-            "ethFeeVolume": 3485.290690529706,
-            "duoFeeVolume": 8734.74869525911,
-            "volume": 16587.41373341837,
-            "dailyEthFeeVolume": 315.00648713102385,
-            "dailyDuoFeeVolume": 6238.587282686901,
-            "dailyVolume": 9672.887411161375,
-            "dailyRank": 1
+            "dailyVolume": 0,
+            "dailyRank": 14
         },
         "0xB4B95273645FE1CC4a95d6540eC70b663312B0C9": {
-            "rank": 3,
+            "rank": 4,
             "ethFeeVolume": 3631.1919327321884,
             "duoFeeVolume": 10499.709221060348,
             "volume": 19380.755764322712,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 25
+            "dailyRank": 9
         },
         "0xFB134e9417Db5Ffb05B0a281f155be6C33c960B9": {
             "rank": 8,
@@ -114,37 +114,37 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 16
+            "dailyRank": 8
         },
         "0x6348C2D894D17003218dd0E6b8247BcE43509ac9": {
-            "rank": 15,
+            "rank": 16,
             "ethFeeVolume": 6.238032160368473,
             "duoFeeVolume": 14.73145843001576,
             "volume": 28.33521980539211,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 15
+            "dailyRank": 16
         },
         "0xB089425c9C078b70cF96CC6051850f37f86B1426": {
-            "rank": 29,
+            "rank": 30,
             "ethFeeVolume": 2.7817619246999996,
             "duoFeeVolume": 0,
             "volume": 2.7817619246999996,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 29
+            "dailyRank": 30
         },
         "0x89Ba87d7c6d9958BBe38cECa611E88090D1fC747": {
-            "rank": 14,
+            "rank": 15,
             "ethFeeVolume": 11.673136714491758,
             "duoFeeVolume": 13.908122772041104,
             "volume": 32.53532087255341,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 14
+            "dailyRank": 15
         },
         "0x98c7a0c5ec68939D43F30488E673F59B668967Ea": {
             "rank": 1,
@@ -164,7 +164,7 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 13
+            "dailyRank": 26
         },
         "0x240b6e0B33aa3b2b572e30688f59Ff6369d2E709": {
             "rank": 19,
@@ -197,14 +197,14 @@
             "dailyRank": 11
         },
         "0x00D8d0660b243452fC2f996A892D3083A903576F": {
-            "rank": 30,
+            "rank": 31,
             "ethFeeVolume": 1.3684298791413463,
             "duoFeeVolume": 0.7077475968269228,
             "volume": 2.4300512743817304,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 30
+            "dailyRank": 31
         },
         "0x594578f06eB53d65C0aa2F409663EA2c15B5a657": {
             "rank": 48,
@@ -244,7 +244,7 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 35
+            "dailyRank": 10
         },
         "0xFE20717FD2547Fe53ed46eD76e6c89226337C9f1": {
             "rank": 149,
@@ -784,7 +784,7 @@
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 10
+            "dailyRank": 7
         },
         "0x7d2906f0554BFC1285dE43d87Eeb717804bb0500": {
             "rank": 56,
@@ -1347,14 +1347,14 @@
             "dailyRank": 243
         },
         "0x957f129297cB127E18a96B74c2933e2213c3c60e": {
-            "rank": 34,
+            "rank": 35,
             "ethFeeVolume": 1.16028,
             "duoFeeVolume": 0,
             "volume": 1.16028,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 34
+            "dailyRank": 35
         },
         "0x076EBBbF28415cd1FDF1bE4D45c0d9cdC8F309a3": {
             "rank": 67,
@@ -2847,24 +2847,24 @@
             "dailyRank": 22
         },
         "0x85eAAD9b0726B9701a1Bb78C1A70EB6A451dA6ea": {
-            "rank": 28,
+            "rank": 29,
             "ethFeeVolume": 2.9393199,
             "duoFeeVolume": 0,
             "volume": 2.9393199,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 28
+            "dailyRank": 29
         },
         "0xf5921ff118e7Fb7fE74559A3632fB2d0bcc35AF2": {
-            "rank": 32,
+            "rank": 33,
             "ethFeeVolume": 1.8458322538338336,
             "duoFeeVolume": 0,
             "volume": 1.8458322538338336,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 32
+            "dailyRank": 33
         },
         "0xDE5bD9675cc2Ab3938fBC0D56C2C26555c15f993": {
             "rank": 306,
@@ -3177,14 +3177,14 @@
             "dailyRank": 323
         },
         "0x40802A76256F14950677E6815B75AE8c61FDdbdF": {
-            "rank": 26,
+            "rank": 28,
             "ethFeeVolume": 2.9403,
             "duoFeeVolume": 0,
             "volume": 2.9403,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 26
+            "dailyRank": 28
         },
         "0x8443E81B793A1052829cD87E6f30fC2DCccD858c": {
             "rank": 318,
@@ -3837,24 +3837,24 @@
             "dailyRank": 391
         },
         "0xDEcAeE00288826B7E04fc47c80C01f8aCb198116": {
-            "rank": 33,
+            "rank": 34,
             "ethFeeVolume": 0.15437164111513776,
             "duoFeeVolume": 0.922900893948696,
             "volume": 1.5387229820381818,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 33
+            "dailyRank": 34
         },
         "0xC372B372e1190D766cD8a2e132AbBD67d7ABDb54": {
-            "rank": 31,
+            "rank": 32,
             "ethFeeVolume": 1.9254715227541241,
             "duoFeeVolume": 0,
             "volume": 1.9254715227541241,
             "dailyEthFeeVolume": 0,
             "dailyDuoFeeVolume": 0,
             "dailyVolume": 0,
-            "dailyRank": 31
+            "dailyRank": 32
         },
         "0x77631E741F8cb17DFC82f1A210987d11a73eD928": {
             "rank": 21,
