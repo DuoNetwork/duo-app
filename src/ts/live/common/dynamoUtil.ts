@@ -292,22 +292,22 @@ export class DynamoUtil {
 
 	public getLastPriceFromStatus(status: IStatus[]): ISourceData<ICustodianPrice> {
 		const bitfinex: ICustodianPrice = {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};
 		const kraken: ICustodianPrice = {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};
 		const gemini: ICustodianPrice = {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};
 		const gdax: ICustodianPrice = {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};

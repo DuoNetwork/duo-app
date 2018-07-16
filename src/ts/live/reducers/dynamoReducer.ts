@@ -7,22 +7,22 @@ export const initialState: IDynamoState = {
 	status: [],
 	last: {
 		bitfinex: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		},
 		kraken: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		},
 		gemini: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		},
 		gdax: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		}

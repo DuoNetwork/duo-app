@@ -35,10 +35,10 @@ export const initialState: IContractState = {
 		duoBalance: 0
 	},
 	prices: {
-		first: { address: '0x0', price: 0, timestamp: 0 },
-		second: { address: '0x0', price: 0, timestamp: 0 },
-		reset: { address: '0x0', price: 0, timestamp: 0 },
-		last: { address: '0x0', price: 0, timestamp: 0 }
+		first: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
+		second: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
+		reset: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
+		last: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 }
 	},
 	balances: {
 		eth: 0,
@@ -49,31 +49,31 @@ export const initialState: IContractState = {
 	},
 	addresses: {
 		operator: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			balance: 0
 		},
 		feeCollector: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			balance: 0
 		},
 		priceFeed1: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			balance: 0
 		},
 		priceFeed2: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			balance: 0
 		},
 		priceFeed3: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			balance: 0
 		},
 		poolManager: {
-			address: '0x0',
+			address: CST.DUMMY_ADDR,
 			balance: 0
 		}
 	},
-	account: '0x0',
+	account: CST.DUMMY_ADDR,
 	network: 0,
 	gasPrice: 0,
 	allBalances: {},

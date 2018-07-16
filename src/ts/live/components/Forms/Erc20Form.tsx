@@ -154,7 +154,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 							<li
 								className={
 									'input-line' +
-									(!address || !!addressError ? ' input-disabled' : '')
+									(!address || !!addressError || limit <= 0 ? ' input-disabled' : '')
 								}
 							>
 								<SDivFlexCenter horizontal width="50%" padding="0">

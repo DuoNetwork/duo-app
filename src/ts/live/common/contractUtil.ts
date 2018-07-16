@@ -254,7 +254,7 @@ class ContractUtil {
 
 	public async getCurrentAddress(): Promise<string> {
 		const accounts = await this.web3.eth.getAccounts();
-		return accounts[this.accountIndex] || '0x0';
+		return accounts[this.accountIndex] || CST.DUMMY_ADDR;
 	}
 
 	public getCurrentNetwork(): Promise<number> {

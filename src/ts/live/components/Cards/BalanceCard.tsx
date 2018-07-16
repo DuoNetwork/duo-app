@@ -39,6 +39,7 @@ const BalanceInfo = (props: {
 									CST.TH_ALLOWANCE[locale || CST.LOCALE_EN]}
 								<SRefreshButton
 									icon="plus-square-o"
+									disabled={!account || account === CST.DUMMY_ADDR}
 									onClick={() =>
 										account &&
 										contractUtil.duoApprove(

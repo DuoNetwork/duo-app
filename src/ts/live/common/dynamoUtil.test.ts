@@ -6,6 +6,7 @@ import status from '../samples/status.json';
 import totalSupply from '../samples/totalSupply.json';
 import uiCreate from '../samples/uiCreate.json';
 import uiRedeem from '../samples/uiRedeem.json';
+import { DUMMY_ADDR } from './constants';
 import dynamoUtil from './dynamoUtil';
 import util from './util';
 
@@ -54,7 +55,7 @@ test('parseAcceptedPrices', () => expect(dynamoUtil.parseAcceptedPrice(prices)).
 
 test('queryConversionEvent', async () => {
 	dynamoUtil.queryData = jest.fn(() => Promise.resolve({}));
-	await dynamoUtil.queryConversionEvent('0x0', ['date1', 'date2']);
+	await dynamoUtil.queryConversionEvent(DUMMY_ADDR, ['date1', 'date2']);
 	expect((dynamoUtil.queryData as jest.Mock<Promise<void>>).mock.calls.length).toBe(4);
 	expect((dynamoUtil.queryData as jest.Mock<Promise<void>>).mock.calls[0][0]).toMatchSnapshot();
 	expect((dynamoUtil.queryData as jest.Mock<Promise<void>>).mock.calls[1][0]).toMatchSnapshot();
@@ -76,7 +77,7 @@ test('parseTotalSupply', () => expect(dynamoUtil.parseTotalSupply(totalSupply)).
 
 test('queryUIConversionEvent', async () => {
 	dynamoUtil.queryData = jest.fn(() => Promise.resolve({}));
-	await dynamoUtil.queryUIConversionEvent('0x0');
+	await dynamoUtil.queryUIConversionEvent(DUMMY_ADDR);
 	expect((dynamoUtil.queryData as jest.Mock<Promise<void>>).mock.calls.length).toBe(2);
 	expect((dynamoUtil.queryData as jest.Mock<Promise<void>>).mock.calls[0][0]).toMatchSnapshot();
 	expect((dynamoUtil.queryData as jest.Mock<Promise<void>>).mock.calls[1][0]).toMatchSnapshot();
@@ -85,20 +86,20 @@ test('queryUIConversionEvent', async () => {
 test('parseUIConversion', () => {
 	expect(dynamoUtil.parseUIConversion(uiCreate)).toMatchSnapshot();
 	expect(dynamoUtil.parseUIConversion(uiRedeem)).toMatchSnapshot();
-})
+});
 
 test('insertUIConversion', async () => {
 	dynamoUtil.insertData = jest.fn(() => Promise.resolve());
 	util.getNowTimestamp = jest.fn(() => 1234567890);
-	await dynamoUtil.insertUIConversion('0x0', '0x123', true, 123, 456, 456, 0.123, 0);
-	await dynamoUtil.insertUIConversion('0x0', '0x123', false, 123, 456, 456, 0, 0.123);
+	await dynamoUtil.insertUIConversion(DUMMY_ADDR, '0x123', true, 123, 456, 456, 0.123, 0);
+	await dynamoUtil.insertUIConversion(DUMMY_ADDR, '0x123', false, 123, 456, 456, 0, 0.123);
 	expect((dynamoUtil.insertData as jest.Mock<Promise<void>>).mock.calls[0][0]).toMatchSnapshot();
 	expect((dynamoUtil.insertData as jest.Mock<Promise<void>>).mock.calls[1][0]).toMatchSnapshot();
 });
 
 test('deleteUIConversionEvent', async () => {
 	dynamoUtil.deleteData = jest.fn(() => Promise.resolve());
-	await dynamoUtil.deleteUIConversionEvent('0x0', {
+	await dynamoUtil.deleteUIConversionEvent(DUMMY_ADDR, {
 		type: 'type',
 		transactionHash: 'txHash',
 		eth: 0,

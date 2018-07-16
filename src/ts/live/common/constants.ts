@@ -35,6 +35,8 @@ export const RX_INTEGER = /^[0-9]+?$/;
 
 export const PENDING_TX_TIMEOUT = 1200000;
 
+export const DUMMY_ADDR = '0x0';
+
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';
 export const LOCALE_RU = 'RU';

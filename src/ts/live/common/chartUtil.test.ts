@@ -3,6 +3,7 @@ import hourly from '../samples/hourly.json';
 import minutely from '../samples/minutely.json';
 import prices from '../samples/prices.json';
 import chartUtil from './chartUtil';
+import { DUMMY_ADDR } from './constants';
 import dynamoUtil from './dynamoUtil';
 import util from './util';
 
@@ -177,7 +178,7 @@ test('merge last price to hourly correctly', () => {
 		chartUtil.mergeLastToPriceBar(
 			parsedHourly,
 			{
-				address: '0x0',
+				address: DUMMY_ADDR,
 				price: 600,
 				timestamp: 1528072200000
 			},
@@ -188,7 +189,7 @@ test('merge last price to hourly correctly', () => {
 		chartUtil.mergeLastToPriceBar(
 			parsedHourly,
 			{
-				address: '0x0',
+				address: DUMMY_ADDR,
 				price: 620,
 				timestamp: 1528074000000
 			},
@@ -203,7 +204,7 @@ test('merge last price to minutely correctly', () => {
 		chartUtil.mergeLastToPriceBar(
 			parsedMinutely,
 			{
-				address: '0x0',
+				address: DUMMY_ADDR,
 				price: 600,
 				timestamp: 1527839610000
 			},
@@ -214,7 +215,7 @@ test('merge last price to minutely correctly', () => {
 		chartUtil.mergeLastToPriceBar(
 			parsedMinutely,
 			{
-				address: '0x0',
+				address: DUMMY_ADDR,
 				price: 620,
 				timestamp: 1527839640000
 			},
@@ -229,7 +230,7 @@ test('merge last price to accepted price correctly', () => {
 		parsedAcceptedPrice,
 		{ navA: 1.23, navB: 1.45 } as any,
 		{
-			address: '0x0',
+			address: DUMMY_ADDR,
 			price: 620,
 			timestamp: 1529640000000
 		}
@@ -239,7 +240,7 @@ test('merge last price to accepted price correctly', () => {
 		parsedAcceptedPrice,
 		{ navA: 1.23, navB: 1.45 } as any,
 		{
-			address: '0x0',
+			address: DUMMY_ADDR,
 			price: 620,
 			timestamp: 1529640000000 + 1850000
 		}

@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-//import * as CST from '../common/constants';
 import chartUtil from '../common/chartUtil';
+import * as CST from '../common/constants';
 import contractUtil from '../common/contractUtil';
 import dynamoUtil from '../common/dynamoUtil';
 import * as uiActions from './uiActions';
@@ -10,7 +10,7 @@ const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
 	test('refresh', () => {
-		const store = mockStore({ contract: { account: '0x0' } });
+		const store: any = mockStore({ contract: { account: CST.DUMMY_ADDR } });
 		contractUtil.getSystemStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
@@ -66,7 +66,7 @@ describe('actions', () => {
 		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
 		chartUtil.interpolate = jest.fn(r => r);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
-		store.dispatch(uiActions.refresh() as any);
+		store.dispatch(uiActions.refresh());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

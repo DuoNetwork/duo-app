@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-//import * as CST from '../common/constants';
 import chartUtil from '../common/chartUtil';
+import * as CST from '../common/constants';
 import dynamoUtil from '../common/dynamoUtil';
 import util from '../common/util';
 import * as dynamoActions from './dynamoActions';
@@ -14,13 +14,13 @@ describe('actions', () => {
 	});
 
 	test('scanStatus', () => {
-		const store = mockStore({});
+		const store: any = mockStore({});
 		dynamoUtil.scanStatus = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
-		store.dispatch(dynamoActions.scanStatus() as any);
+		store.dispatch(dynamoActions.scanStatus());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -34,14 +34,14 @@ describe('actions', () => {
 	});
 
 	test('fetchHourly', () => {
-		const store = mockStore({});
+		const store: any = mockStore({});
 		dynamoUtil.queryHourlyOHLC = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
 		chartUtil.interpolate = jest.fn(r => r);
-		store.dispatch(dynamoActions.fetchHourly() as any);
+		store.dispatch(dynamoActions.fetchHourly());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -55,14 +55,14 @@ describe('actions', () => {
 	});
 
 	test('fetchMinutely', () => {
-		const store = mockStore({});
+		const store: any = mockStore({});
 		dynamoUtil.queryMinutelyOHLC = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
 		chartUtil.interpolate = jest.fn(r => r);
-		store.dispatch(dynamoActions.fetchMinutely() as any);
+		store.dispatch(dynamoActions.fetchMinutely());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -76,9 +76,9 @@ describe('actions', () => {
 	});
 
 	test('fetchPrice', () => {
-		const store = mockStore({});
+		const store: any = mockStore({});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchPrice() as any);
+		store.dispatch(dynamoActions.fetchPrice());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -92,7 +92,7 @@ describe('actions', () => {
 	});
 
 	test('fetchConversion', () => {
-		const store = mockStore({ contract: { account: '0x0' } });
+		const store: any = mockStore({ contract: { account: CST.DUMMY_ADDR } });
 		util.getDates = jest.fn(() => ['1970-01-15']);
 		dynamoUtil.queryConversionEvent = jest.fn(() =>
 			Promise.resolve([
@@ -118,7 +118,7 @@ describe('actions', () => {
 			])
 		);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
-		store.dispatch(dynamoActions.fetchConversion() as any);
+		store.dispatch(dynamoActions.fetchConversion());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -144,9 +144,9 @@ describe('actions', () => {
 	});
 
 	test('fetchTotalSupply', () => {
-		const store = mockStore({});
+		const store: any = mockStore({});
 		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchTotalSupply() as any);
+		store.dispatch(dynamoActions.fetchTotalSupply());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

@@ -30,7 +30,9 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_COLLLECT_FEE}
-					disabled={account === '0x0' || addresses.feeCollector.address !== account}
+					disabled={
+						account === CST.DUMMY_ADDR || addresses.feeCollector.address !== account
+					}
 					validateInput={(value: string) =>
 						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
 							? ''
@@ -47,7 +49,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={0}
 					validateInput={validatePosInt}
 				/>
@@ -61,7 +63,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={1}
 					validateInput={validatePosInt}
 				/>
@@ -75,7 +77,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={2}
 					validateInput={validatePosInt}
 				/>
@@ -89,7 +91,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={3}
 					validateInput={validatePosInt}
 				/>
@@ -103,7 +105,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={4}
 					validateInput={validatePosInt}
 				/>
@@ -117,7 +119,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={5}
 					validateInput={validatePosInt}
 				/>
@@ -131,7 +133,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={6}
 					validateInput={validatePosInt}
 				/>
@@ -145,7 +147,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === '0x0' || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
 					index={7}
 					validateInput={validatePosInt}
 				/>
@@ -159,7 +161,9 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_ADD_ADDR}
-					disabled={account === '0x0' || addresses.poolManager.address !== account}
+					disabled={
+						account === CST.DUMMY_ADDR || addresses.poolManager.address !== account
+					}
 					validateInput={(value: string) =>
 						contractUtil.checkAddress(value) ? '' : 'Invalid Address'
 					}
