@@ -3,6 +3,8 @@ import { Contract } from 'web3/types';
 import infura from '../../../../../duo-admin/src/keys/infura.json';
 import custodianAbi from '../../../../../duo-admin/src/static/Custodian.json';
 import duoAbi from '../../../../../duo-admin/src/static/DUO.json';
+import tokenAAbi from '../../../../../duo-admin/src/static/TokenA.json';
+import tokenBAbi from '../../../../../duo-admin/src/static/TokenB.json';
 import * as CST from './constants';
 import { IAddresses, IBalances, ICustodianPrices, ICustodianStates } from './types';
 const ProviderEngine = require('web3-provider-engine');
@@ -21,15 +23,21 @@ export enum Wallet {
 class ContractUtil {
 	private web3: Web3;
 	private duo: Contract;
-	private custodian: any;
+	private tokenA: Contract;
+	private tokenB: Contract;
+	private custodian: Contract;
 	public wallet: Wallet;
 	public accountIndex: number;
 	public readonly custodianAddr: string;
 	private readonly duoContractAddr: string;
+	private readonly tokenAContractAddr: string;
+	private readonly tokenBContractAddr: string;
 
 	constructor() {
 		this.custodianAddr = __KOVAN__ ? CST.CUSTODIAN_ADDR_KOVAN : CST.CUSTODIAN_ADDR_MAIN;
 		this.duoContractAddr = __KOVAN__ ? CST.DUO_CONTRACT_ADDR_KOVAN : CST.DUO_CONTRACT_ADDR_MAIN;
+		this.tokenAContractAddr = __KOVAN__ ? CST.A_CONTRACT_ADDR_KOVAN : CST.A_CONTRACT_ADDR_MAIN;
+		this.tokenBContractAddr = __KOVAN__ ? CST.B_CONTRACT_ADDR_KOVAN : CST.B_CONTRACT_ADDR_MAIN;
 		if (typeof (window as any).web3 !== 'undefined') {
 			this.web3 = new Web3((window as any).web3.currentProvider);
 			this.wallet = Wallet.MetaMask;
@@ -46,6 +54,8 @@ class ContractUtil {
 		this.accountIndex = 0;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
+		this.tokenA = new this.web3.eth.Contract(tokenAAbi.abi, this.tokenAContractAddr);
+		this.tokenB = new this.web3.eth.Contract(tokenBAbi.abi, this.tokenBContractAddr);
 	}
 
 	public switchToMetaMask() {
@@ -65,6 +75,8 @@ class ContractUtil {
 		this.accountIndex = 0;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
+		this.tokenA = new this.web3.eth.Contract(tokenAAbi.abi, this.tokenAContractAddr);
+		this.tokenB = new this.web3.eth.Contract(tokenBAbi.abi, this.tokenBContractAddr);
 	}
 
 	public async switchToLedger() {
@@ -84,6 +96,8 @@ class ContractUtil {
 		this.web3 = newWeb3;
 		this.custodian = new this.web3.eth.Contract(custodianAbi.abi, this.custodianAddr);
 		this.duo = new this.web3.eth.Contract(duoAbi.abi, this.duoContractAddr);
+		this.tokenA = new this.web3.eth.Contract(tokenAAbi.abi, this.tokenAContractAddr);
+		this.tokenB = new this.web3.eth.Contract(tokenBAbi.abi, this.tokenBContractAddr);
 		this.wallet = Wallet.Ledger;
 		return accounts;
 	}
@@ -347,18 +361,25 @@ class ContractUtil {
 	public approve(address: string, spender: string, value: number, isA: boolean) {
 		if (this.isReadOnly()) return this.ReadOnlyReject();
 
-		return this.custodian.methods.approve(isA ? 0 : 1, spender, this.toWei(value)).send({
-			from: address
-		});
+		return isA
+			? this.tokenA.methods.approve(spender, this.toWei(value)).send({
+					from: address
+			})
+			: this.tokenB.methods.approve(spender, this.toWei(value)).send({
+					from: address
+			});
 	}
 
 	public transfer(address: string, to: string, value: number, isA: boolean) {
 		if (this.isReadOnly()) return this.ReadOnlyReject();
 
-		// dummy from address
-		return this.custodian.methods.transfer(isA ? 0 : 1, address, to, this.toWei(value)).send({
-			from: address
-		});
+		return isA
+			? this.tokenA.methods.transfer(to, this.toWei(value)).send({
+					from: address
+			})
+			: this.tokenB.methods.transfer(to, this.toWei(value)).send({
+					from: address
+			});
 	}
 
 	public collectFee(address: string, amount: number) {
