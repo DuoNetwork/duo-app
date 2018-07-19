@@ -93,7 +93,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 				<SRadioGroup
 					value={value}
 					size="small"
-					onChange={e => this.handleChange(e.target.value)}
+					onChange={(e: any) => this.handleChange(e.target.value)}
 				>
 					<RadioButton value={Wallet.MetaMask}>{'MetaMask'}</RadioButton>
 					<RadioButton value={Wallet.Ledger}>{'Ledger'}</RadioButton>

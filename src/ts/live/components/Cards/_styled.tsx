@@ -387,7 +387,7 @@ export const SCardRadioExtraDiv = styled.div`
 	}
 `;
 
-export const SRadioGroup = styled(RadioGroup)`
+export const SRadioGroup = styled(RadioGroup as any)`
 	margin-left: 8px;
 	.ant-radio-button-wrapper:first-child,
 	.ant-radio-button-wrapper:last-child {
