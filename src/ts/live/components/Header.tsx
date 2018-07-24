@@ -19,15 +19,28 @@ interface IProps {
 	updateLocale?: (locale: string) => any;
 }
 
-const RankDiv = (props: { rank: number; volume: string; locale: string }) => {
-	const { rank, volume, locale } = props;
+const RankDiv = (props: {
+	rank: number;
+	volume: string;
+	locale: string;
+	bp: number;
+	rp: number;
+	total: number;
+}) => {
+	const { rank, volume, locale, bp, rp, total } = props;
 	return (
 		<div style={{ color: ColorStyles.TextWhiteAlphaL, fontWeight: 200 }}>
 			{CST.TH_RANK[locale] + ':'}
 			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>
 				{' ' + rank}
-			</span>, {CST.TH_TOTAL_VOL[locale]}:{' '}
-			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{volume}</span> ETH ({
+			</span>, {CST.TH_DAILY_VOL[locale]}:{' '}
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{volume}</span> ETH,{' '}
+			{CST.TH_DAILY_BP[locale]}:{' '}
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + bp}</span>,{' '}
+			{CST.TH_DAILY_RP[locale]}:{' '}
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + rp}</span>,{' '}
+			{CST.TH_TOTAL_POINT[locale]}:{' '}
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + total}</span>, ({
 				CST.TH_UPDATE_DAILY[locale]
 			})
 		</div>
@@ -58,9 +71,12 @@ export default class Header extends React.PureComponent<IProps> {
 							<span className="error-msg">{CST.TT_NETWORK_CHECK[locale]}</span>
 						) : accountConversion ? (
 							<RankDiv
-								rank={accountConversion.rank}
-								volume={util.formatBalance(accountConversion.volume)}
+								rank={accountConversion.pointRank}
+								volume={util.formatBalance(accountConversion.dailyVolume)}
 								locale={locale}
+								bp={accountConversion.dailyBasePoint}
+								rp={accountConversion.dailyBonusPoint}
+								total={accountConversion.totalPoint}
 							/>
 						) : (
 							''
