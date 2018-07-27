@@ -807,7 +807,7 @@ export const SInput = styled.input`
 	height: 28px;
 	padding: 0 8px;
 	text-align: ${(props: ISInputProps) => (props.right ? 'right' : 'left')};
-	transition: all 0.3s;
+	transition: box-shadow 0.3s;
 	&:focus {
 		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 255, 255, 0.05);
 	}
