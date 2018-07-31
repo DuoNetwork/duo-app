@@ -45,9 +45,9 @@
   },
   "devDependencies": {
     "@types/d3": "^5.0.0",
-    "@types/jest": "^23.3.0",
-    "@types/lodash": "^4.14.112",
-    "@types/react": "^16.4.6",
+    "@types/jest": "^23.3.1",
+    "@types/lodash": "^4.14.115",
+    "@types/react": "^16.4.7",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^5.0.7",
     "@types/redux-logger": "^3.0.6",
@@ -60,7 +60,7 @@
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.4.1",
+    "jest": "^23.4.2",
     "mini-css-extract-plugin": "^0.4.1",
     "optimize-css-assets-webpack-plugin": "^5.0.0",
     "react-test-renderer": "^16.4.1",
@@ -74,18 +74,18 @@
     "tslint-react": "^3.6.0",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "url-loader": "^1.0.1",
-    "webpack": "^4.16.1",
+    "webpack": "^4.16.3",
     "webpack-bundle-size-analyzer": "^2.7.0",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.5"
   },
   "dependencies": {
-    "@ledgerhq/hw-transport-u2f": "^4.20.0",
-    "@ledgerhq/web3-subprovider": "^4.20.0",
+    "@ledgerhq/hw-transport-u2f": "^4.21.0",
+    "@ledgerhq/web3-subprovider": "^4.21.0",
     "@types/react-responsive": "^3.0.1",
     "abi-decoder": "^1.1.0",
-    "antd": "^3.7.0",
-    "aws-sdk": "^2.277.1",
+    "antd": "^3.7.3",
+    "aws-sdk": "^2.283.1",
     "d3": "^5.5.0",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
@@ -97,7 +97,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^3.3.3",
-    "typescript": "^2.9.2",
-    "web3": "^1.0.0-beta.34"
+    "typescript": "^3.0.1",
+    "web3": "^1.0.0-beta.35"
   }
 }

@@ -161,7 +161,7 @@ class ContractUtil {
 			limitPeriodic: this.fromWei(states[10]),
 			limitUpper: this.fromWei(states[11]),
 			limitLower: this.fromWei(states[12]),
-			commissionRate: states[13] / 10000,
+			createCommRate: states[13] / 10000,
 			period: Number(states[14].valueOf()),
 			iterationGasThreshold: Number(states[15].valueOf()),
 			ethDuoFeeRatio: Number(states[16].valueOf()),
@@ -176,6 +176,7 @@ class ContractUtil {
 			adminCoolDown: Number(states[25]),
 			usersLength: Number(states[26].valueOf()),
 			addrPoolLength: Number(states[27].valueOf()),
+			redeemCommRate: states[states.length > 28 ? 28 : 13] / 10000,
 			duoBalance: duoBalance
 		};
 	}

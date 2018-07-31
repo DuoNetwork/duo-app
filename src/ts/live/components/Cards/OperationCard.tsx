@@ -101,11 +101,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			description: this.getDescription(amount)
 		});
 
-	private getConversionDescription = (
-		eth: number,
-		ab: number,
-		isCreate: boolean
-	) => {
+	private getConversionDescription = (eth: number, ab: number, isCreate: boolean) => {
 		return isCreate
 			? d3.formatPrefix(',.8', 1)(eth) +
 					' ' +
@@ -129,11 +125,11 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		return isCreate
 			? this.getConversionDescription(
 					amtNum,
-					this.getABFromEth(ethFee ? amtNum * (1 - states.commissionRate) : amtNum)[0],
+					this.getABFromEth(ethFee ? amtNum * (1 - states.createCommRate) : amtNum)[0],
 					true
 			)
 			: this.getConversionDescription(
-					this.getEthFromAB(amtNum) * (ethFee ? 1 - states.commissionRate : 1),
+					this.getEthFromAB(amtNum) * (ethFee ? 1 - states.redeemCommRate : 1),
 					amtNum,
 					false
 			);
@@ -166,7 +162,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		const { isCreate, amount, ethFee } = this.state;
 		const amtNum = Number(amount);
 		if (isCreate) {
-			const fee = amtNum * states.commissionRate;
+			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = ethFee ? amtNum - fee : amtNum;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
 			contractUtil.create(account, amtNum, ethFee, (txHash: string) =>
@@ -185,7 +181,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			);
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
-			const fee = ethAmount * states.commissionRate;
+			const fee = ethAmount * states.redeemCommRate;
 			const ethNetOfFee = ethFee ? ethAmount - fee : ethAmount;
 			contractUtil.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
@@ -221,11 +217,12 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = util.round(isCreate ? eth : Math.min(tokenA, tokenB));
+		const commissionRate = isCreate ? states.createCommRate : states.redeemCommRate;
 
 		const fee =
 			(isCreate
-				? Number(amount) * states.commissionRate
-				: (Number(amount) / reset.price / states.beta) * 2 * states.commissionRate) *
+				? Number(amount) * commissionRate
+				: (Number(amount) / reset.price / states.beta) * 2 * commissionRate) *
 			(ethFee ? 1 : states.ethDuoFeeRatio);
 		const duoIsSuffient = ethFee ? true : fee < allowance || fee < duo;
 
@@ -342,7 +339,8 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 									</li>
 									<li>
 										<div className="align-right">
-											{states.commissionRate * 100 +
+											{commissionRate *
+												100 +
 												'% ' +
 												CST.TH_CONVERSION_FEE[locale] +
 												': ' +

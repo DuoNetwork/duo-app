@@ -21,7 +21,8 @@ export interface ICustodianStates {
 	limitPeriodic: number;
 	limitUpper: number;
 	limitLower: number;
-	commissionRate: number;
+	createCommRate: number;
+	redeemCommRate: number;
 	period: number;
 	iterationGasThreshold: number;
 	ethDuoFeeRatio: number;
