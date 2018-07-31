@@ -3,9 +3,17 @@ import * as CST from '../common/constants';
 import { IUIState } from '../common/types';
 import util from '../common/util';
 
+const lan = navigator.language.toUpperCase();
+
 export const initialState: IUIState = {
 	refresh: 0,
-	locale: navigator.language.toUpperCase().includes(CST.LOCALE_CN) ? CST.LOCALE_CN : CST.LOCALE_EN
+	locale: lan.includes(CST.LOCALE_CN)
+		? CST.LOCALE_CN
+		// : lan.includes('JA')
+		// 	? CST.LOCALE_JP
+		// 	: lan.includes(CST.LOCALE_RU)
+		// 		? CST.LOCALE_RU
+				: CST.LOCALE_EN
 };
 
 export function uiReducer(state: IUIState = initialState, action: AnyAction): IUIState {

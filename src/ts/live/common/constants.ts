@@ -379,26 +379,26 @@ export const TH_TOTAL_VOL: ILocaleText = {
 export const TH_DAILY_VOL: ILocaleText = {
 	[LOCALE_CN]: '当日总量',
 	[LOCALE_EN]: 'Daily Volume',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
+	[LOCALE_JP]: 'Daily Volume',
+	[LOCALE_RU]: 'Daily Volume'
 };
 export const TH_DAILY_BP: ILocaleText = {
 	[LOCALE_CN]: '当日基础分',
 	[LOCALE_EN]: 'Daily BP',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
+	[LOCALE_JP]: 'Daily BP',
+	[LOCALE_RU]: 'Daily BP'
 };
 export const TH_DAILY_RP: ILocaleText = {
 	[LOCALE_CN]: '当日邀请分',
 	[LOCALE_EN]: 'Daily RP',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
+	[LOCALE_JP]: 'Daily RP',
+	[LOCALE_RU]: 'Daily RP'
 };
 export const TH_TOTAL_POINT: ILocaleText = {
 	[LOCALE_CN]: '总分',
 	[LOCALE_EN]: 'Total Point',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
+	[LOCALE_JP]: 'Total Point',
+	[LOCALE_RU]: 'Total Point'
 };
 export const TH_UPDATE_DAILY: ILocaleText = {
 	[LOCALE_CN]: '每日更新',
