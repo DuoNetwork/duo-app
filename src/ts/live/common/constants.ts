@@ -409,33 +409,33 @@ export const TH_UPDATE_DAILY: ILocaleText = {
 
 export const TT_TRADING_STATE: ILocaleText = {
 	[LOCALE_CN]: '交易状态， 可执行所有操作',
-	[LOCALE_EN]: 'Trading state, operations are permitted during current state.',
-	[LOCALE_JP]: 'トレーディング状態，現在の状態で操作が許可されます。',
-	[LOCALE_RU]: 'Операции не могут быть выполнены во время покупки.'
+	[LOCALE_EN]: 'Trading state, operations are permitted during current state',
+	[LOCALE_JP]: 'トレーディング状態，現在の状態で操作が許可されます',
+	[LOCALE_RU]: 'Операции не могут быть выполнены во время покупки'
 };
 export const TT_RESET_STATE: ILocaleText = {
 	[LOCALE_CN]: '折算中，无法执行任何操作',
-	[LOCALE_EN]: 'Reset in progress, operations are prohibited during current state.',
-	[LOCALE_JP]: 'リセット中，現在の状態で操作が許可されません。',
+	[LOCALE_EN]: 'Reset in progress, operations are prohibited during current state',
+	[LOCALE_JP]: 'リセット中，現在の状態で操作が許可されません',
 	[LOCALE_RU]: 'Операции не могут быть выполнены во время сброса'
 };
 export const TT_CTD_NAV: ILocaleText = {
 	[LOCALE_CN]: '合约中显示的净值',
-	[LOCALE_EN]: 'Nav as currently in Smart Contract.',
+	[LOCALE_EN]: 'Nav as currently in Smart Contract',
 	[LOCALE_JP]: 'ただいまスマートコントラクトに示された純資産総額',
 	[LOCALE_RU]: 'Стоимость отражена в Смарт-контракте'
 };
 export const TT_EST_NAV: ILocaleText = {
 	[LOCALE_CN]: '以所选价格估算的净值',
-	[LOCALE_EN]: 'Estimated nav based selected ETH price.',
+	[LOCALE_EN]: 'Estimated nav based selected ETH price',
 	[LOCALE_JP]: '選択されたETH価格に基づく、推定純資産総額',
-	[LOCALE_RU]: 'Сумма отражена согласно выбранной стоимости ETH.'
+	[LOCALE_RU]: 'Сумма отражена согласно выбранной стоимости ETH'
 };
 export const TT_RESULT_VARY: ILocaleText = {
 	[LOCALE_CN]: '可能与实际结果存在误差',
-	[LOCALE_EN]: 'May vary from actual result.',
-	[LOCALE_JP]: '際の結果に異なるの場合はあるかもしれません',
-	[LOCALE_RU]: 'Может отличаться от конечного результата.'
+	[LOCALE_EN]: 'May vary from actual result',
+	[LOCALE_JP]: '際の結果に異なるの場合はあります',
+	[LOCALE_RU]: 'Может отличаться от конечного результата'
 };
 export const TT_INPUT_AMOUNT: ILocaleText = {
 	[LOCALE_CN]: '请输入数量',
@@ -477,10 +477,10 @@ export const TT_BEETHOVEN_ADDR: ILocaleText = {
 		' Отключить.'
 };
 export const TT_DUO_FEE_CHECK: ILocaleText = {
-	[LOCALE_CN]: '由于DUO授权余额不足，操作可能失败。',
-	[LOCALE_EN]: 'Insufficient DUO Allowance balance, transaction may fail.',
-	[LOCALE_JP]: 'DUOの認可手当残高不足のため、トランザクションが失敗する可能性があります。',
-	[LOCALE_RU]: 'Недостаточный баланс DUO, транзакция может быть не успешна.'
+	[LOCALE_CN]: '由于DUO授权余额不足，操作可能失败',
+	[LOCALE_EN]: 'Insufficient DUO Allowance balance, transaction may fail',
+	[LOCALE_JP]: 'DUOの認可手当残高不足のため、トランザクションが失敗する可能性があります',
+	[LOCALE_RU]: 'Недостаточный баланс DUO, транзакция может быть не успешна'
 };
 export const TT_NETWORK_CHECK: ILocaleText = {
 	[LOCALE_CN]:
