@@ -40,9 +40,8 @@ const RankDiv = (props: {
 			{CST.TH_DAILY_RP[locale]}:{' '}
 			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + rp}</span>,{' '}
 			{CST.TH_TOTAL_POINT[locale]}:{' '}
-			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + total}</span>, ({
-				CST.TH_UPDATE_DAILY[locale]
-			})
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + total}</span>,
+			({CST.TH_UPDATE_DAILY[locale]})
 		</div>
 	);
 };
@@ -87,7 +86,11 @@ export default class Header extends React.PureComponent<IProps> {
 							<a
 								href={
 									'./GettingStarted' +
-									(locale === CST.LOCALE_CN ? '_CN' : '') +
+									(locale === CST.LOCALE_CN
+										? '_CN'
+										: locale === CST.LOCALE_JP
+											? '_JP'
+											: '') +
 									'.pdf'
 								}
 								target="_blank"
