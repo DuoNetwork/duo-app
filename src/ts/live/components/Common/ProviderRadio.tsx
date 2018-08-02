@@ -118,7 +118,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					<br />
 					{showTip ? (
 						<p className="ledger-reminder">
-							<b>Contract data</b> and <b>Browswe support</b> must be set to{' '}
+							<b>Contract data</b> and <b>Browser support</b> must be set to{' '}
 							<b>Yes</b>
 						</p>
 					) : null}
