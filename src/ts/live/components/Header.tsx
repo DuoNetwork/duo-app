@@ -29,7 +29,7 @@ const RankDiv = (props: {
 }) => {
 	const { rank, volume, locale, bp, rp, total } = props;
 	return (
-		<div style={{ color: ColorStyles.TextWhiteAlphaL, fontWeight: 200 }}>
+		<div style={{ color: ColorStyles.TextWhiteAlphaL, fontWeight: 200, fontSize: 12 }}>
 			{CST.TH_RANK[locale] + ':'}
 			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>
 				{' ' + rank}

@@ -9,10 +9,10 @@ export const initialState: IUIState = {
 	refresh: 0,
 	locale: lan.includes(CST.LOCALE_CN)
 		? CST.LOCALE_CN
-		// : lan.includes('JA')
-		// 	? CST.LOCALE_JP
-		// 	: lan.includes(CST.LOCALE_RU)
-		// 		? CST.LOCALE_RU
+		: lan.includes('JA')
+			? CST.LOCALE_JP
+			: lan.includes(CST.LOCALE_RU)
+				? CST.LOCALE_RU
 				: CST.LOCALE_EN
 };
 

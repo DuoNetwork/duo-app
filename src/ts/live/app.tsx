@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import '../../css/liveStyle.css';
 import '../../static/GettingStarted.pdf';
 import '../../static/GettingStarted_CN.pdf';
+import '../../static/GettingStarted_JP.pdf';
 import * as uiActions from './actions/uiActions';
 import contractUtil from './common/contractUtil';
 import Duo from './containers/DuoContainer';
