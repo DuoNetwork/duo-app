@@ -53,13 +53,13 @@ export interface ILocaleText {
 export const TH_CREATE: ILocaleText = {
 	[LOCALE_CN]: '拆分',
 	[LOCALE_EN]: 'Create',
-	[LOCALE_JP]: '分割',
+	[LOCALE_JP]: '創造',
 	[LOCALE_RU]: 'Создать'
 };
 export const TH_REDEEM: ILocaleText = {
 	[LOCALE_CN]: '合并',
 	[LOCALE_EN]: 'Redeem',
-	[LOCALE_JP]: '合併',
+	[LOCALE_JP]: '償還',
 	[LOCALE_RU]: 'Вывести'
 };
 export const TH_ETH = 'ETH';

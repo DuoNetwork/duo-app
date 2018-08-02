@@ -169,9 +169,9 @@ export const SCardPriceTag = styled.div`
 		.tag-subtext {
 			font-size: ${(props: ICardPriceTagProps) =>
 				props.locale === CST.LOCALE_JP
-					? '10px'
+					? '11px'
 					: props.locale === CST.LOCALE_RU
-						? '9px'
+						? '10px'
 						: '12px'};
 			display: flex;
 			flex-direction: row;
