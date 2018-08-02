@@ -75,7 +75,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 				margin={mobile ? '0' : '0 10px 0 0'}
 			>
 				<SDivFlexCenter horizontal={!mobile} padding="0 10px">
-					<SCardPriceTag mobile={mobile}>
+					<SCardPriceTag mobile={mobile} locale={locale}>
 						<div className="bg-logo">
 							<img src={ethIcon} />
 						</div>
@@ -106,7 +106,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardPriceTag>
-					<SCardPriceTag mobile={mobile}>
+					<SCardPriceTag mobile={mobile} locale={locale}>
 						<div className="bg-logo">
 							<img src={classAIcon} />
 						</div>
@@ -143,7 +143,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardPriceTag>
-					<SCardPriceTag mobile={mobile}>
+					<SCardPriceTag mobile={mobile} locale={locale}>
 						<div className="bg-logo">
 							<img src={classBIcon} />
 						</div>

@@ -76,7 +76,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 										b[CST.TH_TIME.EN]
 									)
 								}
-								width={160}
+								width={155}
 							/>
 							<Column
 								title={CST.TH_STATUS[locale]}
@@ -93,7 +93,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								onFilter={(value, record: ITableRecord) =>
 									record[CST.TH_STATUS.EN] === value
 								}
-								width={90}
+								width={95}
 								render={(text, record) =>
 									record[CST.TH_TOOLTIP] ? (
 										<Tooltip title={record[CST.TH_TOOLTIP]}>{text}</Tooltip>

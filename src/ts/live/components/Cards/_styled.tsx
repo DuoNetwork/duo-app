@@ -1,5 +1,6 @@
 import { Button, Card, Radio, Select } from 'antd';
 import styled, { injectGlobal } from 'styled-components';
+import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
 
 const RadioGroup = Radio.Group;
@@ -109,6 +110,7 @@ injectGlobal([
 ] as any);
 export interface ICardPriceTagProps {
 	mobile?: boolean;
+	locale?: string;
 }
 export const SCardPriceTag = styled.div`
 	height: 100px;
@@ -165,7 +167,12 @@ export const SCardPriceTag = styled.div`
 		margin-left: 20px;
 		margin-top: 10px;
 		.tag-subtext {
-			font-size: 12px;
+			font-size: ${(props: ICardPriceTagProps) =>
+				props.locale === CST.LOCALE_JP
+					? '10px'
+					: props.locale === CST.LOCALE_RU
+						? '9px'
+						: '12px'};
 			display: flex;
 			flex-direction: row;
 			color: ${ColorStyles.TextWhiteAlphaL};
