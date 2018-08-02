@@ -30,7 +30,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 			[CST.TH_ACTION]: (
 				<AdminInputButton
 					account={account}
-					type={CST.TH_COLLLECT_FEE}
+					type={CST.TH_COLLECT_FEE}
 					disabled={
 						account === CST.DUMMY_ADDR || addresses.feeCollector.address !== account
 					}

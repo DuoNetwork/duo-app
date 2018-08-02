@@ -224,7 +224,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 				? Number(amount) * commissionRate
 				: (Number(amount) / reset.price / states.beta) * 2 * commissionRate) *
 			(ethFee ? 1 : states.ethDuoFeeRatio);
-		const duoIsSuffient = ethFee ? true : fee < allowance || fee < duo;
+		const duoIsSuffient = ethFee ? true : fee < allowance && fee < duo;
 
 		const tooltipText = CST.TT_RESULT_VARY[locale];
 		return (
@@ -359,10 +359,10 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 											{!duoIsSuffient ? (
 												<Popconfirm
 													title={CST.TT_DUO_FEE_CHECK[locale]}
-													onConfirm={this.handleSubmit}
-													onCancel={this.handleClear}
-													okText="Submit"
-													cancelText="Cancel"
+													onConfirm={this.handleClear}
+													onCancel={this.handleSubmit}
+													okText={CST.TH_CANCEL[locale]}
+													cancelText={CST.TH_SUBMIT[locale]}
 												>
 													<button
 														className="form-button"

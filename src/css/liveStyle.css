@@ -16,7 +16,7 @@ body {
 }
 .nav-button-wrapper {
 	height: 100%;
-	width: 80px;
+	width: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

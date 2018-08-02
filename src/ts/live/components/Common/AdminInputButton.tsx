@@ -49,7 +49,7 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 		if (valueError || value1Error) return;
 
 		switch (type) {
-			case CST.TH_COLLLECT_FEE:
+			case CST.TH_COLLECT_FEE:
 				contractUtil.collectFee(account, Number(value));
 				break;
 			case CST.TH_SET_VALUE:

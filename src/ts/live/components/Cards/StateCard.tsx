@@ -146,19 +146,27 @@ export default class StateCard extends React.PureComponent<IProps> {
 									</span>
 								</li>
 								<li>
-									<span className="title">{CST.TH_LEVERAGE_FACTOR[locale] + ' (Alpha)'}</span>
+									<span className="title">
+										{CST.TH_LEVERAGE_FACTOR[locale] + ' (Alpha)'}
+									</span>
 									<span className="content">
 										{d3.format(',.2f')(states.alpha)}
 									</span>
 								</li>
 								<li>
-									<span className="title">{CST.TH_CONVERSION_FACTOR[locale] + ' (Beta)'}</span>
+									<span className="title">
+										{CST.TH_CONVERSION_FACTOR[locale] + ' (Beta)'}
+									</span>
 									<span className="content">
 										{d3.format(',.2f')(states.beta)}
 									</span>
 								</li>
 								<li>
-									<span className="title">{'ETH:DUO ' + CST.TH_FEE_RATIO[locale]}</span>
+									<span className="title">
+										{locale === CST.LOCALE_RU
+											? CST.TH_FEE_RATIO[locale] + ' ETH:DUO'
+											: 'ETH:DUO ' + CST.TH_FEE_RATIO[locale]}
+									</span>
 									<span className="content">1:{states.ethDuoFeeRatio}</span>
 								</li>
 								<li>
