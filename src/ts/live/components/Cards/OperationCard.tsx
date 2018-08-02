@@ -234,7 +234,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 						<SCardTitle>
 							{CST.TH_OPERATION[locale].toUpperCase() +
 								(states.state !== CST.CTD_TRADING
-									? ' (' + CST.TH_DISABLED[locale] + ')'
+									? '(' + CST.TH_DISABLED[locale] + ')'
 									: '')}
 						</SCardTitle>
 					}

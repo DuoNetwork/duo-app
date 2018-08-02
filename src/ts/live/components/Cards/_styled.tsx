@@ -330,7 +330,7 @@ injectGlobal([
 		.ant-tooltip-inner {
 			max-width: 400px;
 			border-radius: 0;
-			font-size: 12px;
+			font-size: 10px;
 			font-family: 'Roboto', 'Microsoft YaHei';
 			background: ${ColorStyles.CardBackgroundSolid};
 			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
@@ -447,7 +447,7 @@ export const SCardList = styled.div`
 			position: relative;
 		}
 		.block-title {
-			font-weight: 500;
+			font-weight: 600;
 			color: ${ColorStyles.TextWhiteAlphaL};
 			margin-bottom: 5px;
 			.last-reset-title {

@@ -171,7 +171,7 @@ export const TH_CHART: ILocaleText = {
 	[LOCALE_CN]: '图表',
 	[LOCALE_EN]: 'Chart',
 	[LOCALE_JP]: 'チャート',
-	[LOCALE_RU]: 'Чарт'
+	[LOCALE_RU]: 'График'
 };
 export const TH_1H = '1h';
 export const TH_5M = '5m';
@@ -242,7 +242,7 @@ export const TH_CONTRACT_STATES: ILocaleText = {
 	[LOCALE_CN]: '合约详情',
 	[LOCALE_EN]: 'Contract States',
 	[LOCALE_JP]: 'コントラクトの詳細',
-	[LOCALE_RU]: 'Детали контракта'
+	[LOCALE_RU]: 'Kонтракт'
 };
 export const TH_PERIOD_LENGTH: ILocaleText = {
 	[LOCALE_CN]: '周期',
@@ -260,19 +260,19 @@ export const TH_UPPER_A: ILocaleText = {
 	[LOCALE_CN]: 'A级上限',
 	[LOCALE_EN]: 'Upper Limit for Token A',
 	[LOCALE_JP]: 'トークン A 上限',
-	[LOCALE_RU]: 'Max лимит для Токена А'
+	[LOCALE_RU]: 'Max лимит для Token А'
 };
 export const TH_UPPER_B: ILocaleText = {
 	[LOCALE_CN]: 'B级上限',
 	[LOCALE_EN]: 'Upper Limit for Token B',
 	[LOCALE_JP]: 'トークン B 上限',
-	[LOCALE_RU]: 'Max лимит для Токена В'
+	[LOCALE_RU]: 'Max лимит для Token В'
 };
 export const TH_LOWER_B: ILocaleText = {
 	[LOCALE_CN]: 'B级下限',
 	[LOCALE_EN]: 'Lower Limit for Token B',
 	[LOCALE_JP]: 'トークン B 下限',
-	[LOCALE_RU]: 'Min лимит для Токена В'
+	[LOCALE_RU]: 'Min лимит для Token В'
 };
 export const TH_LEVERAGE_FACTOR: ILocaleText = {
 	[LOCALE_CN]: '杠杆因子',
@@ -308,13 +308,13 @@ export const TH_A_SUPPLY: ILocaleText = {
 	[LOCALE_CN]: 'A级总量',
 	[LOCALE_EN]: 'Token A Total Supply',
 	[LOCALE_JP]: 'トークン A 総供給',
-	[LOCALE_RU]: 'Всего Токенов А'
+	[LOCALE_RU]: 'Всего Token А'
 };
 export const TH_B_SUPPLY: ILocaleText = {
 	[LOCALE_CN]: 'B级总量',
 	[LOCALE_EN]: 'Token B Total Supply',
 	[LOCALE_JP]: 'トークン B 総供給',
-	[LOCALE_RU]: 'Всего Токенов В'
+	[LOCALE_RU]: 'Всего Token В'
 };
 export const TH_TOTAL_USERS: ILocaleText = {
 	[LOCALE_CN]: '用户总数',
@@ -356,7 +356,7 @@ export const TH_CONVERSION_FEE: ILocaleText = {
 	[LOCALE_CN]: '手续费',
 	[LOCALE_EN]: 'Conversion Fee',
 	[LOCALE_JP]: 'コンバージョン手数料',
-	[LOCALE_RU]: 'Стоимость конверсии'
+	[LOCALE_RU]: 'cтоимость конверсии'
 };
 export const TH_DISABLED: ILocaleText = {
 	[LOCALE_CN]: '禁用',
@@ -416,13 +416,13 @@ export const TH_UPDATE_DAILY: ILocaleText = {
 export const TT_TRADING_STATE: ILocaleText = {
 	[LOCALE_CN]: '交易状态， 可执行所有操作',
 	[LOCALE_EN]: 'Trading state, operations are permitted during current state',
-	[LOCALE_JP]: 'トレーディング状態，現在の状態で操作が許可されます',
-	[LOCALE_RU]: 'Операции не могут быть выполнены во время покупки'
+	[LOCALE_JP]: 'トレーディング状態、現在の状態で操作が許可されます',
+	[LOCALE_RU]: 'Операции выполняются'
 };
 export const TT_RESET_STATE: ILocaleText = {
 	[LOCALE_CN]: '折算中，无法执行任何操作',
 	[LOCALE_EN]: 'Reset in progress, operations are prohibited during current state',
-	[LOCALE_JP]: 'リセット進行中，現在の状態で操作が許可されません',
+	[LOCALE_JP]: 'リセット進行中、現在の状態で操作が許可されません',
 	[LOCALE_RU]: 'Операции не могут быть выполнены во время сброса'
 };
 export const TT_CTD_NAV: ILocaleText = {
@@ -441,7 +441,7 @@ export const TT_RESULT_VARY: ILocaleText = {
 	[LOCALE_CN]: '可能与实际结果存在误差',
 	[LOCALE_EN]: 'May vary from actual result',
 	[LOCALE_JP]: '際の結果と異なる場合がありえます',
-	[LOCALE_RU]: 'Может отличаться от конечного результата'
+	[LOCALE_RU]: 'Может отличаться от конечной суммы'
 };
 export const TT_INPUT_AMOUNT: ILocaleText = {
 	[LOCALE_CN]: '请输入数量',
@@ -472,15 +472,15 @@ export const TT_BEETHOVEN_ADDR: ILocaleText = {
 	[LOCALE_JP]:
 		'クリックしてオートフィルします' +
 		TH_BEETHOVEN +
-		'アドレス' +
+		'アドレス、' +
 		TH_BEETHOVEN +
 		'送金することができません',
 	[LOCALE_RU]:
-		'Нажмите для автозаполнения' +
+		'Нажмите для автозаполнения aдрес ' +
 		TH_BEETHOVEN +
-		' Адрес. Перевести' +
+		'. Функция трансфера в ' +
 		TH_BEETHOVEN +
-		' Отключить.'
+		' отключена.'
 };
 export const TT_DUO_FEE_CHECK: ILocaleText = {
 	[LOCALE_CN]: '由于DUO授权余额不足，操作可能失败',
@@ -500,7 +500,7 @@ export const TT_NETWORK_CHECK: ILocaleText = {
 		(__KOVAN__ ? 'KOVAN' : 'MainNet') +
 		'のために作られています。メタマスクに、正しいネットワークを選んでください',
 	[LOCALE_RU]:
-		'Данная страница для' +
+		'Данная страница предназначена для ' +
 		(__KOVAN__ ? 'KOVAN' : 'MainNet') +
-		', выберите нужную сеть в  MetaMask'
+		', выберите необходимую сеть в MetaMask'
 };
