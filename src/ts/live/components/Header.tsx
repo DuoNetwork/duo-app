@@ -25,9 +25,10 @@ const RankDiv = (props: {
 	locale: string;
 	bp: number;
 	rp: number;
+	op: number;
 	total: number;
 }) => {
-	const { rank, volume, locale, bp, rp, total } = props;
+	const { rank, volume, locale, bp, rp, op, total } = props;
 	return (
 		<div style={{ color: ColorStyles.TextWhiteAlphaL, fontWeight: 200, fontSize: 12 }}>
 			{CST.TH_RANK[locale] + ':'}
@@ -39,6 +40,8 @@ const RankDiv = (props: {
 			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + bp}</span>,{' '}
 			{CST.TH_DAILY_RP[locale]}:{' '}
 			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + rp}</span>,{' '}
+			{CST.TH_DAILY_OP[locale]}:{' '}
+			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + op}</span>,{' '}
 			{CST.TH_TOTAL_POINT[locale]}:{' '}
 			<span style={{ color: ColorStyles.TextRedAlpha, fontWeight: 500 }}>{' ' + total}</span>,
 			({CST.TH_UPDATE_DAILY[locale]})
@@ -75,6 +78,7 @@ export default class Header extends React.PureComponent<IProps> {
 								locale={locale}
 								bp={accountConversion.dailyBasePoint}
 								rp={accountConversion.dailyBonusPoint}
+								op={accountConversion.dailyOraclePoint}
 								total={accountConversion.totalPoint}
 							/>
 						) : (
