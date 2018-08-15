@@ -84,9 +84,23 @@ export function priceUpdate(prices: IAcceptedPrice[]) {
 }
 
 export function fetchPrice(): VoidThunkAction {
-	return async dispatch => {
+	return async (dispatch, getState) => {
 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
-		dispatch(priceUpdate(await dynamoUtil.queryAcceptPriceEvent(dates)));
+		const priceData = await dynamoUtil.queryAcceptPriceEvent(dates);
+		const custodianStates = getState().contract.states;
+		dispatch(
+			priceUpdate(
+				chartUtil.mergeReset(
+					priceData,
+					chartUtil.reset(
+						priceData,
+						custodianStates.limitUpper,
+						custodianStates.limitLower,
+						custodianStates.limitPeriodic
+					)
+				)
+			)
+		);
 	};
 }
 

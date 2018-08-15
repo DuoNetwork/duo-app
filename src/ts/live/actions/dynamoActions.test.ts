@@ -76,7 +76,7 @@ describe('actions', () => {
 	});
 
 	test('fetchPrice', () => {
-		const store: any = mockStore({});
+		const store: any = mockStore({contract: {states: {limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035}}});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		store.dispatch(dynamoActions.fetchPrice());
 		return new Promise(resolve =>
