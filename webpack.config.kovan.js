@@ -27,28 +27,28 @@ module.exports = {
 		new MiniCssExtractPlugin({ filename: "styles.[chunkhash].css" }),
 		new HtmlWebpackPlugin({
 			excludeChunks: ['status', 'user', 'admin'],
-			title: "DUO",
+			title: "DUO | Beethoven",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'index.html'
 		}),
 		new HtmlWebpackPlugin({
 			excludeChunks: ['app', 'user', 'admin'],
-			title: "DUO",
+			title: "DUO | Status",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'status.html'
 		}),
 		new HtmlWebpackPlugin({
 			excludeChunks: ['app', 'status', 'admin'],
-			title: "DUO",
+			title: "DUO | Users",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'user.html'
 		}),
 		new HtmlWebpackPlugin({
 			excludeChunks: ['app', 'status', 'user'],
-			title: "DUO",
+			title: "DUO | Admin",
 			template: path.resolve(__dirname, "src/index.ejs"),
 			favicon: path.join(__dirname, "src/images/favicon.ico"),
 			filename: 'admin.html'
