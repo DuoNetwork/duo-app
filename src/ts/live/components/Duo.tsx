@@ -31,7 +31,7 @@ interface IProps {
 	gasPrice: number;
 	refresh: () => any;
 	refreshBalance: () => any;
-	updateLocale: (locale: string) => any
+	updateLocale: (locale: string) => any;
 }
 
 export default class Duo extends React.PureComponent<IProps> {
@@ -107,6 +107,15 @@ export default class Duo extends React.PureComponent<IProps> {
 						states={states}
 						sourceLast={sourceLast}
 						mobile
+					/>
+					<OperationCard
+						locale={locale}
+						reset={prices.reset}
+						states={states}
+						balances={balances}
+						account={account}
+						refresh={refresh}
+						gasPrice={gasPrice}
 					/>
 				</MediaQuery>
 			</div>
