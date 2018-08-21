@@ -242,12 +242,13 @@ export const SCardPriceTag = styled.div`
 `;
 
 export interface ICardAssetTagProps {
-	value: number;
+	mobile?: boolean;
+	value?: number;
 }
 
 export const SCardAssetTag = styled.div`
 	height: 100px;
-	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '140px')};
+	width: ${(props: ICardAssetTagProps) => (props.mobile ? '100%' : '140px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -258,7 +259,8 @@ export const SCardAssetTag = styled.div`
 		height: 100px;
 		width: 100px;
 		position: absolute;
-		left: -35px;
+		left: ${(props: ICardAssetTagProps) => (props.mobile ? ''  : '-35px')};
+		right: ${(props: ICardAssetTagProps) => (props.mobile ? '-15px' : '')};
 		top: 10px;
 	}
 	.bg-logo > img {
@@ -486,6 +488,9 @@ export const SCardList = styled.div`
 				width: 40px;
 				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 			}
+			.p_mobile {
+				width: 22% !important;
+			}
 			.percent-button:hover {
 				color: ${ColorStyles.TextWhiteAlphaL};
 				border-color: ${ColorStyles.BorderWhite4};
@@ -636,6 +641,9 @@ export const SCardConversionForm = styled.div`
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
 	}
+	.mobile {
+		width: 46% !important;
+	}
 	.conv-button:hover {
 		color: ${ColorStyles.TextWhiteAlphaL};
 		border-color: ${ColorStyles.BorderWhite4};
@@ -780,6 +788,9 @@ export const SCardTransactionForm = styled.div`
 		border-color: ${ColorStyles.BorderWhite4};
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
+	}
+	.b_mobile {
+		width: 30% !important;
 	}
 	.form-button:hover {
 		color: ${ColorStyles.TextWhiteAlpha};

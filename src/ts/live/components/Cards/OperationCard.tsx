@@ -240,7 +240,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 						</SCardTitle>
 					}
 					width={mobile ? '100%' : '440px'}
-					margin={mobile ? '0' : '0 0 0 10px'}
+					margin={mobile ? '20px 0 0 0' : '0 0 0 10px'}
 					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
 					extra={
 						<SCardExtraDiv>
@@ -281,9 +281,10 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 										>
 											<button
 												className={
-													isCreate
+													(isCreate
 														? 'conv-button selected'
-														: 'conv-button non-select'
+														: 'conv-button non-select') +
+													(mobile ? ' mobile' : '')
 												}
 												onClick={() => !isCreate && this.handleTypeChange()}
 											>
@@ -291,9 +292,10 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 											</button>
 											<button
 												className={
-													!isCreate
+													(!isCreate
 														? 'conv-button selected'
-														: 'conv-button non-select'
+														: 'conv-button non-select') +
+													(mobile ? ' mobile' : '')
 												}
 												onClick={() => isCreate && this.handleTypeChange()}
 											>
@@ -310,7 +312,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 											{[0.25, 0.5, 0.75, 0.99].map(pct => (
 												<button
 													key={pct + ''}
-													className="percent-button"
+													className={"percent-button" + (mobile ? ' p_mobile' : '')}
 													onClick={() =>
 														this.handleAmountButtonClick(
 															util.round(limit * pct) + ''
@@ -327,6 +329,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 											onChange={e =>
 												this.handleAmountInputChange(e.target.value)
 											}
+											width={mobile ? '140px' : ''}
 											onBlur={() => this.handleAmountBlur(limit)}
 											placeholder={CST.TT_INPUT_AMOUNT[locale]}
 											right
@@ -365,7 +368,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 													cancelText={CST.TH_SUBMIT[locale]}
 												>
 													<button
-														className="form-button"
+														className={"form-button" + (mobile ? ' mobile' : '')}
 														disabled={!amount || !!amountError}
 													>
 														{CST.TH_SUBMIT[locale]}
@@ -373,7 +376,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 												</Popconfirm>
 											) : (
 												<button
-													className="form-button"
+													className={"form-button" + (mobile ? ' mobile' : '')}
 													disabled={!amount || !!amountError}
 													onClick={this.handleSubmit}
 												>
@@ -381,7 +384,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 												</button>
 											)}
 											<button
-												className="form-button"
+												className={"form-button" + (mobile ? ' mobile' : '')}
 												onClick={this.handleClear}
 											>
 												{CST.TH_CLEAR[locale]}
@@ -392,7 +395,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 							</div>
 						</SCardList>
 					</SCardConversionForm>
-					<Erc20Form balances={balances} account={account} locale={locale} />
+					<Erc20Form balances={balances} account={account} locale={locale} mobile={mobile}/>
 				</SCard>
 			</Affix>
 		);

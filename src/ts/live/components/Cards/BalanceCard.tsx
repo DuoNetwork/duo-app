@@ -106,7 +106,7 @@ export default class BalanceCard extends React.Component<IProps> {
 					</SCardTitle>
 				}
 				width={mobile ? '100%' : '640px'}
-				margin={mobile ? '0' : '0 0 0 10px'}
+				margin={mobile ? '20px 0 0 0' : '0 0 0 10px'}
 				extra={
 					<ExtendExtraDiv
 						accountShow={account ? account : 'Unknown'}

@@ -11,6 +11,7 @@ interface IProps {
 	locale: string;
 	account: string;
 	balances: IBalances;
+	mobile?: boolean;
 }
 
 interface IState {
@@ -98,7 +99,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		});
 
 	public render() {
-		const { balances, locale } = this.props;
+		const { balances, locale, mobile } = this.props;
 		const { duo, tokenA, tokenB } = balances;
 		const { token, address, amount, addressError, amountError } = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
@@ -145,7 +146,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 								<SInput
 									className={addressError ? 'input-error' : ''}
 									placeholder={CST.TT_INPUT_ADDR[locale]}
-									width={token === CST.TH_DUO ? '240px' : '300px'}
+									width={token === CST.TH_DUO ? (mobile ? '180px' : '240px') : (mobile ? '240px' : '300px')}
 									value={address}
 									onChange={e => this.handleAddressChange(e.target.value)}
 									small
@@ -161,7 +162,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 									{[0.25, 0.5, 0.75, 1].map(pct => (
 										<button
 											key={pct + ''}
-											className="percent-button"
+											className={"percent-button" + (mobile ? ' p_mobile' : '')}
 											onClick={() =>
 												this.handleAmountButtonClick(limit * pct + '')
 											}
@@ -175,6 +176,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 									placeholder={CST.TT_INPUT_AMOUNT[locale]}
 									right
 									value={amount}
+									width={mobile ? '140px' : ''}
 									onChange={e => this.handleAmountInputChange(e.target.value)}
 									onBlur={() => this.handleAmountBlur(limit)}
 								/>
@@ -182,7 +184,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 							<li className="no-bg">
 								<SDivFlexCenter horizontal width="100%" padding="0">
 									<button
-										className="form-button"
+										className={"form-button" + (mobile ? ' b_mobile' : '')}
 										disabled={
 											!address ||
 											!amount ||
@@ -195,7 +197,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 										{CST.TH_TRANSFER[locale]}
 									</button>
 									<button
-										className="form-button"
+										className={"form-button" + (mobile ? ' b_mobile' : '')}
 										disabled={
 											!address || !amount || !!addressError || !!amountError
 										}
@@ -203,7 +205,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 									>
 										{CST.TH_APPROVE[locale]}
 									</button>
-									<button className="form-button" onClick={this.handleClear}>
+									<button className={"form-button" + (mobile ? ' b_mobile' : '')} onClick={this.handleClear}>
 										{CST.TH_CLEAR[locale]}
 									</button>
 								</SDivFlexCenter>

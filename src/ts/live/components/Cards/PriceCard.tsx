@@ -72,7 +72,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					</SCardExtraDiv>
 				}
 				width={mobile ? '100%' : '540px'}
-				margin={mobile ? '0' : '0 10px 0 0'}
+				margin={mobile ? '20px 0 0 0' : '0 10px 0 0'}
 			>
 				<SDivFlexCenter horizontal={!mobile} padding="0 10px">
 					<SCardPriceTag mobile={mobile} locale={locale}>
