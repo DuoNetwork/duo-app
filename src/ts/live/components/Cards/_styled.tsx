@@ -247,7 +247,7 @@ export interface ICardAssetTagProps {
 
 export const SCardAssetTag = styled.div`
 	height: 100px;
-	width: 140px;
+	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '140px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;

@@ -107,15 +107,27 @@ export default class Duo extends React.PureComponent<IProps> {
 						sourceLast={sourceLast}
 						mobile
 					/>
-					<OperationCard
-						locale={locale}
-						reset={prices.reset}
-						states={states}
-						balances={balances}
-						account={account}
-						refresh={refresh}
-						gasPrice={gasPrice}
-					/>
+					{account !== CST.DUMMY_ADDR ? (
+						<BalanceCard
+							locale={locale}
+							account={account}
+							balances={balances}
+							refreshBalance={refreshBalance}
+							mobile
+						/>
+					) : null}
+					{account !== CST.DUMMY_ADDR ? (
+						<OperationCard
+							locale={locale}
+							reset={prices.reset}
+							states={states}
+							balances={balances}
+							account={account}
+							refresh={refresh}
+							gasPrice={gasPrice}
+							mobile
+						/>
+					) : null}
 				</MediaQuery>
 			</div>
 		);

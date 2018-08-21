@@ -18,10 +18,11 @@ const BalanceInfo = (props: {
 	allowance?: number;
 	locale?: string;
 	account?: string;
+	mobile?: boolean;
 }) => {
-	const { icon, name, value, allowance, locale, account } = props;
+	const { icon, name, value, allowance, locale, account, mobile } = props;
 	return (
-		<SCardAssetTag>
+		<SCardAssetTag mobile={mobile}>
 			<div className="bg-logo">
 				<img src={icon} />
 			</div>
@@ -89,12 +90,13 @@ interface IProps {
 	locale: string;
 	account: string;
 	balances: IBalances;
+	mobile?: boolean;
 	refreshBalance: () => any;
 }
 
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
-		const { balances, account, refreshBalance, locale } = this.props;
+		const { balances, account, refreshBalance, locale, mobile } = this.props;
 		return (
 			<SCard
 				title={
@@ -103,8 +105,8 @@ export default class BalanceCard extends React.Component<IProps> {
 						<SRefreshButton icon="reload" onClick={refreshBalance} />
 					</SCardTitle>
 				}
-				width="640px"
-				margin="0 0 0 10px"
+				width={mobile ? '100%' : '640px'}
+				margin={mobile ? '0' : '0 0 0 10px'}
 				extra={
 					<ExtendExtraDiv
 						accountShow={account ? account : 'Unknown'}
@@ -113,8 +115,13 @@ export default class BalanceCard extends React.Component<IProps> {
 					/>
 				}
 			>
-				<SDivFlexCenter horizontal padding="0 10px">
-					<BalanceInfo icon={ethIcon} name={CST.TH_ETH} value={balances.eth} />
+				<SDivFlexCenter horizontal={!mobile} padding="0 10px">
+					<BalanceInfo
+						icon={ethIcon}
+						name={CST.TH_ETH}
+						value={balances.eth}
+						mobile={mobile}
+					/>
 					<BalanceInfo
 						icon={duoIcon}
 						name={CST.TH_DUO}
@@ -122,9 +129,20 @@ export default class BalanceCard extends React.Component<IProps> {
 						allowance={balances.allowance}
 						locale={locale}
 						account={account}
+						mobile={mobile}
 					/>
-					<BalanceInfo icon={classAIcon} name={CST.TH_TOKEN_A} value={balances.tokenA} />
-					<BalanceInfo icon={classBIcon} name={CST.TH_TOKEN_B} value={balances.tokenB} />
+					<BalanceInfo
+						icon={classAIcon}
+						name={CST.TH_TOKEN_A}
+						value={balances.tokenA}
+						mobile={mobile}
+					/>
+					<BalanceInfo
+						icon={classBIcon}
+						name={CST.TH_TOKEN_B}
+						value={balances.tokenB}
+						mobile={mobile}
+					/>
 				</SDivFlexCenter>
 			</SCard>
 		);

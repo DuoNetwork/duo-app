@@ -29,6 +29,7 @@ interface IProps {
 	balances: IBalances;
 	account: string;
 	gasPrice: number;
+	mobile?: boolean;
 	refresh: () => any;
 }
 
@@ -213,7 +214,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		});
 
 	public render() {
-		const { states, reset, account, balances, gasPrice, locale } = this.props;
+		const { states, reset, account, balances, gasPrice, locale, mobile } = this.props;
 		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
 		const { ethFee, isCreate, amount, amountError, description } = this.state;
 		const limit = util.round(isCreate ? eth : Math.min(tokenA, tokenB));
@@ -238,8 +239,8 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 									: '')}
 						</SCardTitle>
 					}
-					width="440px"
-					margin="0 0 0 10px"
+					width={mobile ? '100%' : '440px'}
+					margin={mobile ? '0' : '0 0 0 10px'}
 					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
 					extra={
 						<SCardExtraDiv>
@@ -339,8 +340,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 									</li>
 									<li>
 										<div className="align-right">
-											{commissionRate *
-												100 +
+											{commissionRate * 100 +
 												'% ' +
 												CST.TH_CONVERSION_FEE[locale] +
 												': ' +
