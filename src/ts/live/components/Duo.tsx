@@ -56,7 +56,6 @@ export default class Duo extends React.PureComponent<IProps> {
 					<Layout>
 						<Header
 							locale={locale}
-							account={account}
 							network={network}
 							to={CST.TH_STATUS.EN}
 							toText={CST.TH_STATUS[locale]}

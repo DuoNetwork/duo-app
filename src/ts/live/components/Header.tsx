@@ -10,7 +10,6 @@ interface IProps {
 	to: string;
 	toText?: string;
 	width?: string;
-	account?: string;
 	locale?: string;
 	refresh?: () => any;
 	updateLocale?: (locale: string) => any;
@@ -18,7 +17,7 @@ interface IProps {
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
-		const { network, toText, to, width, refresh, account, updateLocale } = this.props;
+		const { network, toText, to, width, refresh, updateLocale } = this.props;
 		const locale = this.props.locale || CST.LOCALE_EN;
 		return (
 			<SHeader>
