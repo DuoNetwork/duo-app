@@ -464,6 +464,9 @@ export const SCardList = styled.div`
 				}
 			}
 		}
+		.t-center {
+			justify-content: center;
+		}
 		li {
 			display: flex;
 			flex-direction: row;
@@ -490,6 +493,7 @@ export const SCardList = styled.div`
 			}
 			.p_mobile {
 				width: 22% !important;
+				font-size: 9px !important;
 			}
 			.percent-button:hover {
 				color: ${ColorStyles.TextWhiteAlphaL};

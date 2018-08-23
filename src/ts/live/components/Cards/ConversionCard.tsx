@@ -30,9 +30,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 						<Table
 							dataSource={conversion.map(c => ({
 								key: c.transactionHash,
-								[CST.TH_TIME.EN]: moment(c.timestamp).format(
-									'YYYY-MM-DD HH:mm:ss'
-								),
+								[CST.TH_TIME.EN]: moment(c.timestamp).format('YYYY-MM-DD HH:mm:ss'),
 								[CST.TH_STATUS.EN]: c.pending
 									? CST.TH_PENDING[locale]
 									: c.reverted
@@ -72,9 +70,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								title={CST.TH_TIME[locale]}
 								dataIndex={CST.TH_TIME.EN}
 								sorter={(a: ITableRecord, b: ITableRecord) =>
-									-(a[CST.TH_TIME.EN] as string).localeCompare(
-										b[CST.TH_TIME.EN]
-									)
+									-(a[CST.TH_TIME.EN] as string).localeCompare(b[CST.TH_TIME.EN])
 								}
 								width={155}
 							/>

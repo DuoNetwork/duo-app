@@ -14,6 +14,7 @@ import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
 import ConversionCard from './Cards/ConversionCard';
+import ConversionMCard from './Cards/ConversionMCard';
 import OperationCard from './Cards/OperationCard';
 import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
@@ -126,6 +127,12 @@ export default class Duo extends React.PureComponent<IProps> {
 							refresh={refresh}
 							gasPrice={gasPrice}
 							mobile
+						/>
+					) : null}
+					{account !== CST.DUMMY_ADDR ? (
+						<ConversionMCard
+							locale={locale}
+							conversion={conversion}
 						/>
 					) : null}
 				</MediaQuery>

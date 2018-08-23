@@ -114,6 +114,12 @@ export const TH_STATUS: ILocaleText = {
 	[LOCALE_JP]: '状態',
 	[LOCALE_RU]: 'Статус'
 };
+export const TH_NODATA: ILocaleText = {
+	[LOCALE_CN]: '暂无数据',
+	[LOCALE_EN]: 'No data',
+	[LOCALE_JP]: '利用可能なデータがありません',
+	[LOCALE_RU]: 'Нет данных'
+}
 export const TH_MINED: ILocaleText = {
 	[LOCALE_CN]: '已确认',
 	[LOCALE_EN]: 'Mined',

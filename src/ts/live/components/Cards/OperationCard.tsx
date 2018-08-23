@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import { Affix, Popconfirm, Tooltip } from 'antd';
+import { Popconfirm, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import demoCreate from '../../../../images/createDemo.png';
@@ -229,175 +229,175 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 
 		const tooltipText = CST.TT_RESULT_VARY[locale];
 		return (
-			<Affix offsetTop={20}>
-				<SCard
-					title={
-						<SCardTitle>
-							{CST.TH_OPERATION[locale].toUpperCase() +
-								(states.state !== CST.CTD_TRADING
-									? '(' + CST.TH_DISABLED[locale] + ')'
-									: '')}
-						</SCardTitle>
-					}
-					width={mobile ? '100%' : '440px'}
-					margin={mobile ? '20px 0 0 0' : '0 0 0 10px'}
-					className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
-					extra={
-						<SCardExtraDiv>
-							{CST.TH_NETWORK_GAS_PRICE[locale] +
-								': ' +
-								(gasPrice
-									? +Math.round(gasPrice * 1e9) + ' Gwei'
-									: CST.TH_LOADING[locale])}
-						</SCardExtraDiv>
-					}
-				>
-					<SCardConversionForm>
-						<SCardList>
-							<div className="status-list-wrapper">
-								<ul>
-									<li className="block-title">
-										<span>{CST.TH_CONVERSION[locale]}</span>
-										<RadioExtra
-											text="Fee in"
-											onChange={this.handleFeeTypeChange}
-											left={CST.TH_DUO}
-											right={CST.TH_ETH}
-											isLeft={!ethFee}
-										/>
-									</li>
-									<li className="img-line no-bg">
-										<img
-											className="demo-img"
-											src={isCreate ? demoCreate : demoRedeem}
-										/>
-									</li>
-									<li>
-										<SDivFlexCenter
-											horizontal
-											width="100%"
-											padding="5px 0 0 0"
-											marginBottom="10px"
-										>
-											<button
-												className={
-													(isCreate
-														? 'conv-button selected'
-														: 'conv-button non-select') +
-													(mobile ? ' mobile' : '')
-												}
-												onClick={() => !isCreate && this.handleTypeChange()}
-											>
-												{CST.TH_CREATE[locale]}
-											</button>
-											<button
-												className={
-													(!isCreate
-														? 'conv-button selected'
-														: 'conv-button non-select') +
-													(mobile ? ' mobile' : '')
-												}
-												onClick={() => isCreate && this.handleTypeChange()}
-											>
-												{CST.TH_REDEEM[locale]}
-											</button>
-										</SDivFlexCenter>
-									</li>
-									<li
-										className={
-											'input-line' + (limit <= 0 ? ' input-disabled' : '')
-										}
+			<SCard
+				title={
+					<SCardTitle>
+						{CST.TH_OPERATION[locale].toUpperCase() +
+							(states.state !== CST.CTD_TRADING
+								? '(' + CST.TH_DISABLED[locale] + ')'
+								: '')}
+					</SCardTitle>
+				}
+				width={mobile ? '100%' : '440px'}
+				margin={mobile ? '20px 0 0 0' : '0 0 0 10px'}
+				className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
+				extra={
+					<SCardExtraDiv>
+						{CST.TH_NETWORK_GAS_PRICE[locale] +
+							': ' +
+							(gasPrice
+								? +Math.round(gasPrice * 1e9) + ' Gwei'
+								: CST.TH_LOADING[locale])}
+					</SCardExtraDiv>
+				}
+			>
+				<SCardConversionForm>
+					<SCardList>
+						<div className="status-list-wrapper">
+							<ul>
+								<li className="block-title">
+									<span>{CST.TH_CONVERSION[locale]}</span>
+									<RadioExtra
+										text="Fee in"
+										onChange={this.handleFeeTypeChange}
+										left={CST.TH_DUO}
+										right={CST.TH_ETH}
+										isLeft={!ethFee}
+									/>
+								</li>
+								<li className="img-line no-bg">
+									<img
+										className="demo-img"
+										src={isCreate ? demoCreate : demoRedeem}
+									/>
+								</li>
+								<li>
+									<SDivFlexCenter
+										horizontal
+										width="100%"
+										padding="5px 0 0 0"
+										marginBottom="10px"
 									>
-										<SDivFlexCenter horizontal width="50%" padding="0">
-											{[0.25, 0.5, 0.75, 0.99].map(pct => (
-												<button
-													key={pct + ''}
-													className={"percent-button" + (mobile ? ' p_mobile' : '')}
-													onClick={() =>
-														this.handleAmountButtonClick(
-															util.round(limit * pct) + ''
-														)
-													}
-												>
-													{pct * 100 + '%'}
-												</button>
-											))}
-										</SDivFlexCenter>
-										<SInput
-											className={amountError ? 'input-error' : ''}
-											value={amount}
-											onChange={e =>
-												this.handleAmountInputChange(e.target.value)
+										<button
+											className={
+												(isCreate
+													? 'conv-button selected'
+													: 'conv-button non-select') +
+												(mobile ? ' mobile' : '')
 											}
-											width={mobile ? '140px' : ''}
-											onBlur={() => this.handleAmountBlur(limit)}
-											placeholder={CST.TT_INPUT_AMOUNT[locale]}
-											right
-										/>
-									</li>
-									<li className="description">
-										<div>{amountError || description}</div>
-										<Tooltip title={tooltipText}>
-											<img src={infoIcon} />
-										</Tooltip>
-									</li>
-									<li>
-										<div className="align-right">
-											{commissionRate * 100 +
-												'% ' +
-												CST.TH_CONVERSION_FEE[locale] +
-												': ' +
-												d3.formatPrefix(',.8', 1)(isNaN(fee) ? 0 : fee) +
-												' ' +
-												(ethFee ? CST.TH_ETH : CST.TH_DUO)}
-										</div>
-									</li>
-									<li>
-										<SDivFlexCenter
-											horizontal
-											width="100%"
-											padding="0"
-											marginTop="10px"
+											onClick={() => !isCreate && this.handleTypeChange()}
 										>
-											{!duoIsSuffient ? (
-												<Popconfirm
-													title={CST.TT_DUO_FEE_CHECK[locale]}
-													onConfirm={this.handleClear}
-													onCancel={this.handleSubmit}
-													okText={CST.TH_CANCEL[locale]}
-													cancelText={CST.TH_SUBMIT[locale]}
-												>
-													<button
-														className={"form-button" + (mobile ? ' mobile' : '')}
-														disabled={!amount || !!amountError}
-													>
-														{CST.TH_SUBMIT[locale]}
-													</button>
-												</Popconfirm>
-											) : (
+											{CST.TH_CREATE[locale]}
+										</button>
+										<button
+											className={
+												(!isCreate
+													? 'conv-button selected'
+													: 'conv-button non-select') +
+												(mobile ? ' mobile' : '')
+											}
+											onClick={() => isCreate && this.handleTypeChange()}
+										>
+											{CST.TH_REDEEM[locale]}
+										</button>
+									</SDivFlexCenter>
+								</li>
+								<li
+									className={'input-line' + (limit <= 0 ? ' input-disabled' : '')}
+								>
+									<SDivFlexCenter horizontal width="50%" padding="0">
+										{[0.25, 0.5, 0.75, 0.99].map(pct => (
+											<button
+												key={pct + ''}
+												className={
+													'percent-button' + (mobile ? ' p_mobile' : '')
+												}
+												onClick={() =>
+													this.handleAmountButtonClick(
+														util.round(limit * pct) + ''
+													)
+												}
+											>
+												{pct * 100 + '%'}
+											</button>
+										))}
+									</SDivFlexCenter>
+									<SInput
+										className={amountError ? 'input-error' : ''}
+										value={amount}
+										onChange={e => this.handleAmountInputChange(e.target.value)}
+										width={mobile ? '140px' : ''}
+										onBlur={() => this.handleAmountBlur(limit)}
+										placeholder={CST.TT_INPUT_AMOUNT[locale]}
+										right
+									/>
+								</li>
+								<li className="description">
+									<div>{amountError || description}</div>
+									<Tooltip title={tooltipText}>
+										<img src={infoIcon} />
+									</Tooltip>
+								</li>
+								<li>
+									<div className="align-right">
+										{commissionRate * 100 +
+											'% ' +
+											CST.TH_CONVERSION_FEE[locale] +
+											': ' +
+											d3.formatPrefix(',.8', 1)(isNaN(fee) ? 0 : fee) +
+											' ' +
+											(ethFee ? CST.TH_ETH : CST.TH_DUO)}
+									</div>
+								</li>
+								<li>
+									<SDivFlexCenter
+										horizontal
+										width="100%"
+										padding="0"
+										marginTop="10px"
+									>
+										{!duoIsSuffient ? (
+											<Popconfirm
+												title={CST.TT_DUO_FEE_CHECK[locale]}
+												onConfirm={this.handleClear}
+												onCancel={this.handleSubmit}
+												okText={CST.TH_CANCEL[locale]}
+												cancelText={CST.TH_SUBMIT[locale]}
+											>
 												<button
-													className={"form-button" + (mobile ? ' mobile' : '')}
+													className={
+														'form-button' + (mobile ? ' mobile' : '')
+													}
 													disabled={!amount || !!amountError}
-													onClick={this.handleSubmit}
 												>
 													{CST.TH_SUBMIT[locale]}
 												</button>
-											)}
+											</Popconfirm>
+										) : (
 											<button
-												className={"form-button" + (mobile ? ' mobile' : '')}
-												onClick={this.handleClear}
+												className={
+													'form-button' + (mobile ? ' mobile' : '')
+												}
+												disabled={!amount || !!amountError}
+												onClick={this.handleSubmit}
 											>
-												{CST.TH_CLEAR[locale]}
+												{CST.TH_SUBMIT[locale]}
 											</button>
-										</SDivFlexCenter>
-									</li>
-								</ul>
-							</div>
-						</SCardList>
-					</SCardConversionForm>
-					<Erc20Form balances={balances} account={account} locale={locale} mobile={mobile}/>
-				</SCard>
-			</Affix>
+										)}
+										<button
+											className={'form-button' + (mobile ? ' mobile' : '')}
+											onClick={this.handleClear}
+										>
+											{CST.TH_CLEAR[locale]}
+										</button>
+									</SDivFlexCenter>
+								</li>
+							</ul>
+						</div>
+					</SCardList>
+				</SCardConversionForm>
+				<Erc20Form balances={balances} account={account} locale={locale} mobile={mobile} />
+			</SCard>
 		);
 	}
 }
