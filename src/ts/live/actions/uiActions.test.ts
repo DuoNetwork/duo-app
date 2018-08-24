@@ -10,7 +10,12 @@ const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
 	test('refresh', () => {
-		const store: any = mockStore({ contract: { account: CST.DUMMY_ADDR } });
+		const store: any = mockStore({
+			contract: {
+				account: CST.DUMMY_ADDR,
+				states: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 }
+			}
+		});
 		contractUtil.getSystemStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
