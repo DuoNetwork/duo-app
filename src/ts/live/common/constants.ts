@@ -119,7 +119,7 @@ export const TH_NODATA: ILocaleText = {
 	[LOCALE_EN]: 'No data',
 	[LOCALE_JP]: '利用可能なデータがありません',
 	[LOCALE_RU]: 'Нет данных'
-}
+};
 export const TH_MINED: ILocaleText = {
 	[LOCALE_CN]: '已确认',
 	[LOCALE_EN]: 'Mined',
@@ -207,6 +207,7 @@ export const TH_VALUE = 'Value';
 export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
+export const TH_HOME = 'Home'; //******************* */
 export const TH_REVERTED: ILocaleText = {
 	[LOCALE_CN]: '失败',
 	[LOCALE_EN]: 'Reverted',

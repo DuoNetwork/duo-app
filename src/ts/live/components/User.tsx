@@ -7,20 +7,21 @@ import UserCard from './Cards/UserCard';
 import Header from './Header';
 
 interface IProps {
+	location: object;
 	network: number;
-	allBalances: {[index: number]: IAccountBalances};
+	allBalances: { [index: number]: IAccountBalances };
 	userLength: number;
 	load: (start: number, end: number) => any;
 }
 
 export default class Admin extends React.PureComponent<IProps> {
 	public render() {
-		const { allBalances, userLength, network, load } = this.props;
+		const { allBalances, userLength, network, load, location } = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_APP} width='1000px'/>
+				<Header network={network} to={CST.TH_APP} location={location} width="1000px" />
 				<SContent>
-					<UserCard allBalances={allBalances} userLength={userLength} load={load}/>
+					<UserCard allBalances={allBalances} userLength={userLength} load={load} />
 				</SContent>
 			</Layout>
 		);

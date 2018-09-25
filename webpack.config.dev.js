@@ -82,8 +82,7 @@ module.exports = {
 		},
 	},
 	module: {
-		rules: [
-			{
+		rules: [{
 				enforce: "pre",
 				test: /\.tsx?$/,
 				include: path.join(__dirname, "src"),
@@ -103,19 +102,22 @@ module.exports = {
 				use: [
 					"style-loader",
 					"css-loader",
-					{ loader: "less-loader", options: { javascriptEnabled: true } },
+					{
+						loader: "less-loader",
+						options: {
+							javascriptEnabled: true
+						}
+					},
 				],
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif|svg)(\?.*)?$/,
-				use: [
-					{
-						loader: "url-loader",
-						options: {
-							limit: 20480,
-						},
+				use: [{
+					loader: "url-loader",
+					options: {
+						limit: 20480,
 					},
-				],
+				}, ],
 			},
 			{
 				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|ttc|woff|woff2|pdf)(\?.*)?$/,

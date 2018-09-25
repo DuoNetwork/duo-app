@@ -7,16 +7,17 @@ import StatusCard from './Cards/StatusCard';
 import Header from './Header';
 
 interface IProps {
+	location: object;
 	network: number;
 	status: IStatus[];
 }
 
 export default class Status extends React.PureComponent<IProps> {
 	public render() {
-		const { status, network } = this.props;
+		const { status, network, location } = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_APP} width='1000px'/>
+				<Header network={network} to={CST.TH_APP} location={location} width="1000px" />
 				<SContent>
 					<StatusCard status={status} />
 				</SContent>

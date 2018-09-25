@@ -125,14 +125,14 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 
 		return isCreate
 			? this.getConversionDescription(
-					amtNum,
-					this.getABFromEth(ethFee ? amtNum * (1 - states.createCommRate) : amtNum)[0],
-					true
+				amtNum,
+				this.getABFromEth(ethFee ? amtNum * (1 - states.createCommRate) : amtNum)[0],
+				true
 			)
 			: this.getConversionDescription(
-					this.getEthFromAB(amtNum) * (ethFee ? 1 - states.redeemCommRate : 1),
-					amtNum,
-					false
+				this.getEthFromAB(amtNum) * (ethFee ? 1 - states.redeemCommRate : 1),
+				amtNum,
+				false
 			);
 	};
 

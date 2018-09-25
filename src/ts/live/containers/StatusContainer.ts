@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { IState } from '../common/types';
 import Status from '../components/Status';
 
@@ -9,7 +10,7 @@ function mapStateToProps(state: IState) {
 	};
 }
 
-export default connect(
+export default withRouter(connect(
 	mapStateToProps,
 	{}
-)(Status);
+)(Status) as any);

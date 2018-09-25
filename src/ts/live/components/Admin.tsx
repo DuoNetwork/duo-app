@@ -9,26 +9,31 @@ import DecodeCard from './Cards/DecodeCard';
 import Header from './Header';
 
 interface IProps {
+	location: object;
 	network: number;
 	addresses: IAddresses;
 	states: ICustodianStates;
 	prices: ICustodianPrices;
 	addressPool: IAddress[];
-	account: string
+	account: string;
 }
 
 export default class Admin extends React.PureComponent<IProps> {
 	public render() {
-		const { addresses, network, states, addressPool, account } = this.props;
+		const { addresses, network, states, addressPool, account, location } = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_APP} width="1000px" />
+				<Header network={network} to={CST.TH_APP} location={location} width="1000px" />
 				<SContent>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<AdminCard addresses={addresses} states={states} account={account}/>
+						<AdminCard addresses={addresses} states={states} account={account} />
 					</SDivFlexCenter>
 					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<AddressCard addresses={addresses} addressPool={addressPool} account={account}/>
+						<AddressCard
+							addresses={addresses}
+							addressPool={addressPool}
+							account={account}
+						/>
 					</SDivFlexCenter>
 					<DecodeCard />
 				</SContent>

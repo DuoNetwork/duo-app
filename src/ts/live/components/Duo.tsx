@@ -1,141 +1,80 @@
-import { Layout } from 'antd';
 import * as React from 'react';
-import MediaQuery from 'react-responsive';
-import * as CST from '../common/constants';
-import {
-	IBalances,
-	IConversion,
-	ICustodianPrice,
-	ICustodianPrices,
-	ICustodianStates,
-	ISourceData
-} from '../common/types';
-import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
-import { SContent, SDivFlexCenter } from './_styled';
-import BalanceCard from './Cards/BalanceCard';
-import ConversionCard from './Cards/ConversionCard';
-import ConversionMCard from './Cards/ConversionMCard';
-import OperationCard from './Cards/OperationCard';
-import PriceCard from './Cards/PriceCard';
-import StateCard from './Cards/StateCard';
-import Header from './Header';
-
+import { Link, Route, Switch } from 'react-router-dom';
+import Admin from '../containers/AdminContainer';
+import Beethoven from '../containers/BeethovenContainer';
+import Status from '../containers/StatusContainer';
+import User from '../containers/UserContainer';
+import { SDivFlexCenter } from './_styled';
+import { SCard } from './Cards/_styled';
 interface IProps {
-	locale: string;
-	states: ICustodianStates;
-	prices: ICustodianPrices;
-	balances: IBalances;
-	network: number;
-	account: string;
-	sourceLast: ISourceData<ICustodianPrice>;
-	conversion: IConversion[];
-	gasPrice: number;
-	refresh: () => any;
-	refreshBalance: () => any;
-	updateLocale: (locale: string) => any;
+	location: object;
 }
 
 export default class Duo extends React.PureComponent<IProps> {
 	public render() {
-		const {
-			locale,
-			states,
-			prices,
-			balances,
-			network,
-			account,
-			sourceLast,
-			conversion,
-			gasPrice,
-			refresh,
-			refreshBalance,
-			updateLocale
-		} = this.props;
+		const {} = this.props;
 		return (
 			<div>
-				<MediaQuery minDeviceWidth={900}>
-					<Layout>
-						<Header
-							locale={locale}
-							network={network}
-							to={CST.TH_STATUS.EN}
-							toText={CST.TH_STATUS[locale]}
-							refresh={refresh}
-							updateLocale={updateLocale}
-						/>
-						<SContent>
-							<SDivFlexCenter center horizontal marginBottom="20px;">
-								<TimeSeriesCard />
-								<StateCard locale={locale} states={states} reset={prices.reset} />
-							</SDivFlexCenter>
-							<SDivFlexCenter center horizontal marginBottom="20px;">
-								<PriceCard
-									locale={locale}
-									last={prices.last}
-									reset={prices.reset}
-									states={states}
-									sourceLast={sourceLast}
-								/>
-								<BalanceCard
-									locale={locale}
-									account={account}
-									balances={balances}
-									refreshBalance={refreshBalance}
-								/>
-							</SDivFlexCenter>
-							<SDivFlexCenter center horizontal marginBottom="20px;">
-								<ConversionCard locale={locale} conversion={conversion} />
-								<OperationCard
-									locale={locale}
-									reset={prices.reset}
-									states={states}
-									balances={balances}
-									account={account}
-									refresh={refresh}
-									gasPrice={gasPrice}
-								/>
-							</SDivFlexCenter>
-						</SContent>
-					</Layout>
-				</MediaQuery>
-				<MediaQuery maxDeviceWidth={899}>
-					<StateCard locale={locale} states={states} reset={prices.reset} mobile />
-					<PriceCard
-						locale={locale}
-						last={prices.last}
-						reset={prices.reset}
-						states={states}
-						sourceLast={sourceLast}
-						mobile
+				<Switch>
+					<Route exact path="/beethoven" render={() => <Beethoven />} />
+					<Route exact path="/status" render={() => <Status />} />
+					<Route exact path="/admin" render={() => <Admin />} />
+					<Route exact path="/user" render={() => <User />} />
+					<Route
+						render={() => (
+							<div>
+								<SDivFlexCenter center horizontal marginBottom="20px;">
+									<div>
+										<Link to={'/beethoven'}>
+											<SCard
+												title="Beethoven"
+												width="640px"
+												margin="0 0 0 10px"
+											>
+												<div style={{ color: 'white' }}> Beethoven </div>
+											</SCard>
+										</Link>
+									</div>
+									<div>
+										<Link to={'/status'}>
+											<SCard
+												title="Beethoven"
+												width="640px"
+												margin="0 0 0 10px"
+											>
+												<div style={{ color: 'white' }}> Status </div>
+											</SCard>
+										</Link>
+									</div>
+								</SDivFlexCenter>
+								<SDivFlexCenter center horizontal marginBottom="20px;">
+									<div>
+										<Link to={'/admin'}>
+											<SCard
+												title="Beethoven"
+												width="640px"
+												margin="0 0 0 10px"
+											>
+												<div style={{ color: 'white' }}> Admin </div>
+											</SCard>
+										</Link>
+									</div>
+									<div>
+										<Link to={'/user'}>
+											<SCard
+												title="Beethoven"
+												width="640px"
+												margin="0 0 0 10px"
+											>
+												<div style={{ color: 'white' }}> User </div>
+											</SCard>
+										</Link>
+									</div>
+								</SDivFlexCenter>
+							</div>
+						)}
 					/>
-					{account !== CST.DUMMY_ADDR ? (
-						<BalanceCard
-							locale={locale}
-							account={account}
-							balances={balances}
-							refreshBalance={refreshBalance}
-							mobile
-						/>
-					) : null}
-					{account !== CST.DUMMY_ADDR ? (
-						<OperationCard
-							locale={locale}
-							reset={prices.reset}
-							states={states}
-							balances={balances}
-							account={account}
-							refresh={refresh}
-							gasPrice={gasPrice}
-							mobile
-						/>
-					) : null}
-					{account !== CST.DUMMY_ADDR ? (
-						<ConversionMCard
-							locale={locale}
-							conversion={conversion}
-						/>
-					) : null}
-				</MediaQuery>
+				</Switch>
 			</div>
 		);
 	}

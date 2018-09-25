@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import duoIcon from '../../../images/DUO_icon.png';
 import * as CST from '../common/constants';
 import { SDivFlexCenter, SHeader } from './_styled';
@@ -6,6 +7,7 @@ import LocaleSelect from './Common/LocaleSelect';
 import ProviderRadio from './Common/ProviderRadio';
 
 interface IProps {
+	location: object;
 	network: number;
 	to: string;
 	toText?: string;
@@ -17,7 +19,7 @@ interface IProps {
 
 export default class Header extends React.PureComponent<IProps> {
 	public render() {
-		const { network, toText, to, width, refresh, updateLocale } = this.props;
+		const { location, network, width, refresh, updateLocale } = this.props;
 		const locale = this.props.locale || CST.LOCALE_EN;
 		return (
 			<SHeader>
@@ -41,6 +43,9 @@ export default class Header extends React.PureComponent<IProps> {
 					) : null}
 					<SDivFlexCenter horizontal>
 						<div className="nav-button-wrapper">
+							<Link to={'/'}>{CST.TH_HOME.toUpperCase()}</Link>
+						</div>
+						<div className="nav-button-wrapper">
 							<a
 								href={
 									'./GettingStarted' +
@@ -56,17 +61,11 @@ export default class Header extends React.PureComponent<IProps> {
 								{CST.TH_GUIDE[locale].toUpperCase()}
 							</a>
 						</div>
-						<div className="nav-button-wrapper">
-							<a
-								href={
-									'./' +
-									(to === CST.TH_APP ? 'index' : to.toLowerCase()) +
-									'.html'
-								}
-							>
-								{(toText || to).toUpperCase()}
-							</a>
-						</div>
+						{(location as any).pathname !== '/beethoven' ? (
+							<div className="nav-button-wrapper">
+								<Link to={'/beethoven'}>{CST.TH_BEETHOVEN.toUpperCase()}</Link>
+							</div>
+						) : null}
 						{refresh ? <ProviderRadio refresh={refresh} /> : null}
 						{updateLocale ? (
 							<LocaleSelect locale={locale} onSelect={updateLocale} />
