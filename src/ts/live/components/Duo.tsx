@@ -23,26 +23,18 @@ export default class Duo extends React.PureComponent<IProps> {
 					<Route
 						render={() => (
 							<div>
-								<SDivFlexCenter center horizontal marginBottom="20px;">
+								<SDivFlexCenter center horizontal marginBottom="20px;" marginTop="20px;">
 									<div>
 										<Link to={'/beethoven'}>
-											<SCard
-												title="Beethoven"
-												width="640px"
-												margin="0 0 0 10px"
-											>
-												<div style={{ color: 'white' }}> Beethoven </div>
+											<SCard width="640px" margin="0 10px 0 0">
+												<div style={{ color: 'white', marginTop: 10 }}> Beethoven </div>
 											</SCard>
 										</Link>
 									</div>
 									<div>
 										<Link to={'/status'}>
-											<SCard
-												title="Beethoven"
-												width="640px"
-												margin="0 0 0 10px"
-											>
-												<div style={{ color: 'white' }}> Status </div>
+											<SCard width="640px" margin="0 0 0 10px">
+												<div style={{ color: 'white', marginTop: 10 }}> Status </div>
 											</SCard>
 										</Link>
 									</div>
@@ -50,23 +42,15 @@ export default class Duo extends React.PureComponent<IProps> {
 								<SDivFlexCenter center horizontal marginBottom="20px;">
 									<div>
 										<Link to={'/admin'}>
-											<SCard
-												title="Beethoven"
-												width="640px"
-												margin="0 0 0 10px"
-											>
-												<div style={{ color: 'white' }}> Admin </div>
+											<SCard width="640px" margin="0 10px 0 0">
+												<div style={{ color: 'white', marginTop: 10 }}> Admin </div>
 											</SCard>
 										</Link>
 									</div>
 									<div>
 										<Link to={'/user'}>
-											<SCard
-												title="Beethoven"
-												width="640px"
-												margin="0 0 0 10px"
-											>
-												<div style={{ color: 'white' }}> User </div>
+											<SCard width="640px" margin="0 0 0 10px">
+												<div style={{ color: 'white', marginTop: 10 }}> User </div>
 											</SCard>
 										</Link>
 									</div>

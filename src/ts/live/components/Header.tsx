@@ -43,7 +43,7 @@ export default class Header extends React.PureComponent<IProps> {
 					) : null}
 					<SDivFlexCenter horizontal>
 						<div className="nav-button-wrapper">
-							<Link to={'/'}>{CST.TH_HOME.toUpperCase()}</Link>
+							<Link to={'/'}>{CST.TH_HOME[locale].toUpperCase()}</Link>
 						</div>
 						<div className="nav-button-wrapper">
 							<a

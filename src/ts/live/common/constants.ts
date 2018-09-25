@@ -207,7 +207,12 @@ export const TH_VALUE = 'Value';
 export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
-export const TH_HOME = 'Home'; //******************* */
+export const TH_HOME: ILocaleText = {
+	[LOCALE_CN]: '主页',
+	[LOCALE_EN]: 'Home',
+	[LOCALE_JP]: 'ホーム',
+	[LOCALE_RU]: 'Home'
+};
 export const TH_REVERTED: ILocaleText = {
 	[LOCALE_CN]: '失败',
 	[LOCALE_EN]: 'Reverted',
