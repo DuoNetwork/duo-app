@@ -25,7 +25,7 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 						defaultValue={onlySource ? CST.EXCHANGE_BITFINEX : CST.TH_BEETHOVEN}
 						style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 						size="small"
-						onSelect={value => this.props.onSelect(value + '')}
+						onSelect={(value: any) => this.props.onSelect(value + '')}
 					>
 						{onlySource ? null : (
 							<Option value={CST.TH_BEETHOVEN}>{CST.TH_BEETHOVEN}</Option>

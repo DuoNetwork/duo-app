@@ -60,7 +60,7 @@ export const SCardTitle = styled.div`
 	padding-left: 12px;
 `;
 
-export const SCardTitleSelector = styled(Select)`
+export const SCardTitleSelector = styled(Select as any)`
 	.ant-select-selection {
 		border-radius: 0;
 		color: ${ColorStyles.TextWhiteAlphaL};

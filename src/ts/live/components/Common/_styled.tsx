@@ -29,7 +29,7 @@ export const SItem = styled(Menu.Item)`
 	}
 `;
 
-export const SModal = styled(Modal)`
+export const SModal = styled(Modal as any)`
 	color: ${ColorStyles.TextWhiteAlpha};
 	.ant-modal-content {
 		border-radius: 0;

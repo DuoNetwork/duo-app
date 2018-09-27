@@ -23,7 +23,7 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 			<SCardTitleSelector
 				value={locale}
 				size="small"
-				onSelect={value => onSelect(value + '')}
+				onSelect={(value: any) => onSelect(value + '')}
 				className="locale-select"
 				showArrow={false}
 			>
