@@ -9,6 +9,9 @@
 		{
 			"path": "..\\duo-contract"
 		},
+		{
+			"path": "..\\duo-contract-util"
+		}
 	],
 	"settings": {
 		"vsicons.presets.angular": false,
@@ -27,6 +30,6 @@
 			  "double"
 			]
 			},
-			"typescript.tsdk": "duo-app\\node_modules\\typescript\\lib"
+			"typescript.tsdk": "duo-contract-util\\node_modules\\typescript\\lib"
 		}
 }
