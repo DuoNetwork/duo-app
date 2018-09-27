@@ -12,7 +12,7 @@ import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
 import * as CST from './constants';
-import contractUtil from './contractUtil';
+import contract from './contract';
 import {
 	IAcceptedPrice,
 	IConversion,
@@ -79,9 +79,9 @@ export class DynamoUtil {
 		return acceptPrice.Items.map(p => ({
 			transactionHash: p[CST.DB_EV_TX_HASH].S || '',
 			blockNumber: Number(p[CST.DB_EV_BLOCK_NO].N),
-			price: contractUtil.fromWei(p[CST.DB_EV_PX].S || ''),
-			navA: contractUtil.fromWei(p[CST.DB_EV_NAV_A].S || ''),
-			navB: contractUtil.fromWei(p[CST.DB_EV_NAV_B].S || ''),
+			price: contract.fromWei(p[CST.DB_EV_PX].S || ''),
+			navA: contract.fromWei(p[CST.DB_EV_NAV_A].S || ''),
+			navB: contract.fromWei(p[CST.DB_EV_NAV_B].S || ''),
 			timestamp: Math.round(Number(p[CST.DB_EV_TS].S) / 3600) * 3600000
 		}));
 	}
@@ -109,8 +109,8 @@ export class DynamoUtil {
 		return totalSupply.Items.map(t => ({
 			transactionHash: t[CST.DB_EV_TX_HASH].S || '',
 			blockNumber: Number(t[CST.DB_EV_BLOCK_NO].N),
-			tokenA: contractUtil.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
-			tokenB: contractUtil.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
+			tokenA: contract.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_A].S || ''),
+			tokenB: contract.fromWei(t[CST.DB_EV_TOTAL_SUPPLY_B].S || ''),
 			timestamp: Number((t[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0])
 		}));
 	}
@@ -145,11 +145,11 @@ export class DynamoUtil {
 			blockNumber: Number(c[CST.DB_EV_BLOCK_NO].N),
 			type: (c[CST.DB_EV_KEY].S || '').split('|')[0],
 			timestamp: Number((c[CST.DB_EV_TIMESTAMP_ID].S || '').split('|')[0]),
-			eth: contractUtil.fromWei(c[CST.DB_EV_ETH].S || ''),
-			tokenA: contractUtil.fromWei(c[CST.DB_EV_TOKEN_A].S || ''),
-			tokenB: contractUtil.fromWei(c[CST.DB_EV_TOKEN_B].S || ''),
-			ethFee: contractUtil.fromWei(c[CST.DB_EV_ETH_FEE].S || ''),
-			duoFee: contractUtil.fromWei(c[CST.DB_EV_DUO_FEE].S || '')
+			eth: contract.fromWei(c[CST.DB_EV_ETH].S || ''),
+			tokenA: contract.fromWei(c[CST.DB_EV_TOKEN_A].S || ''),
+			tokenB: contract.fromWei(c[CST.DB_EV_TOKEN_B].S || ''),
+			ethFee: contract.fromWei(c[CST.DB_EV_ETH_FEE].S || ''),
+			duoFee: contract.fromWei(c[CST.DB_EV_DUO_FEE].S || '')
 		}));
 	}
 
@@ -383,7 +383,7 @@ export class DynamoUtil {
 			);
 		for (const c of allData)
 			try {
-				const receipt = await contractUtil.getTransactionReceipt(c.transactionHash);
+				const receipt = await contract.getTransactionReceipt(c.transactionHash);
 				c.pending = !receipt;
 				c.reverted = !receipt.status;
 			} catch (error) {

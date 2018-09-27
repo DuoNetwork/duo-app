@@ -9,7 +9,7 @@ import '../../static/GettingStarted_JP.pdf';
 import * as contractActions from './actions/contractActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as uiActions from './actions/uiActions';
-import contractUtil from './common/contractUtil';
+import contract from './common/contract';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
 
@@ -25,7 +25,7 @@ setInterval(() => {
 	store.dispatch(dynamoActions.scanStatus());
 }, 60000);
 
-contractUtil.onWeb3AccountUpdate((addr: string, network: number) => {
+contract.onWeb3AccountUpdate((addr: string, network: number) => {
 	if (
 		addr.toLowerCase() !== store.getState().contract.account.toLowerCase() ||
 		network !== store.getState().contract.network

@@ -2,8 +2,9 @@
 //import moment from 'moment';
 import { Button, Radio } from 'antd';
 import * as React from 'react';
+import {Wallet} from '../../../../../../duo-contract-util/src/contractUtil';
 import * as CST from '../../common/constants';
-import contractUtil, { Wallet } from '../../common/contractUtil';
+import contract from '../../common/contract';
 import { SRadioGroup } from '../Cards/_styled';
 import { SModal } from './_styled';
 
@@ -30,7 +31,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 		this.state = {
 			loading: false,
 			accounts: [],
-			value: contractUtil.wallet,
+			value: contract.wallet,
 			visible: false,
 			msg: 'Please make sure Ledger is connected.',
 			accountIndex: 0,
@@ -50,9 +51,9 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 
 	private handleChange = (value: number) => {
 		if (value === Wallet.MetaMask) {
-			contractUtil.switchToMetaMask();
+			contract.switchToMetaMask(window);
 			this.setState({
-				value: contractUtil.wallet
+				value: contract.wallet
 			});
 			this.props.refresh();
 		} else if (value === Wallet.Ledger) this.setState({ visible: true });
@@ -63,7 +64,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 		const timer = setTimeout(() => {
 			this.setState({ msg: 'Failed to connect.', loading: false });
 		}, 15000);
-		contractUtil.switchToLedger().then(accounts => {
+		contract.switchToLedger().then(accounts => {
 			clearTimeout(timer);
 			this.setState({
 				msg: 'Select an account',
@@ -79,9 +80,9 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 	private handleSubmit = async () => {
 		this.setState({
 			loading: true,
-			value: contractUtil.wallet
+			value: contract.wallet
 		});
-		contractUtil.accountIndex = this.state.accountIndex;
+		contract.accountIndex = this.state.accountIndex;
 		await this.props.refresh();
 		this.handleCancel();
 	};

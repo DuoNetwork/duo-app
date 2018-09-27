@@ -4,7 +4,7 @@ import classBIcon from '../../../../images/ClassB_white.png';
 import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
-import contractUtil from '../../common/contractUtil';
+import contract from '../../common/contract';
 import { ColorStyles } from '../../common/styles';
 import { IBalances } from '../../common/types';
 import util from '../../common/util';
@@ -43,7 +43,7 @@ const BalanceInfo = (props: {
 									disabled={!account || account === CST.DUMMY_ADDR}
 									onClick={() =>
 										account &&
-										contractUtil.duoApprove(
+										contract.duoApprove(
 											account,
 											__KOVAN__
 												? CST.CUSTODIAN_ADDR_KOVAN

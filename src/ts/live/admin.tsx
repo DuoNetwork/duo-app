@@ -3,14 +3,14 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import '../../css/liveStyle.css';
 import * as uiActions from './actions/uiActions';
-import contractUtil from './common/contractUtil';
+import contract from './common/contract';
 import Admin from './containers/AdminContainer';
 import store from './store/store';
 
 store.dispatch(uiActions.refresh(true));
 setInterval(() => store.dispatch(uiActions.refresh(true)), 60000);
 
-contractUtil.onWeb3AccountUpdate((addr: string, network: number) => {
+contract.onWeb3AccountUpdate((addr: string, network: number) => {
 	if (
 		addr.toLowerCase() !== store.getState().contract.account.toLowerCase() ||
 		network !== store.getState().contract.network

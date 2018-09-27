@@ -1,7 +1,7 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as CST from '../common/constants';
-import contractUtil from '../common/contractUtil';
+import contract from '../common/contract';
 import * as contractActions from './contractActions';
 
 const mockStore = configureMockStore([thunk]);
@@ -17,7 +17,7 @@ describe('actions', () => {
 
 	test('getNetwork', () => {
 		const store: any = mockStore({});
-		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
+		contract.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
 		store.dispatch(contractActions.getNetwork());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -33,7 +33,7 @@ describe('actions', () => {
 
 	test('getCustodianStates', () => {
 		const store: any = mockStore({});
-		contractUtil.getSystemStates = jest.fn(() =>
+		contract.getCustodianStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
@@ -53,7 +53,7 @@ describe('actions', () => {
 
 	test('getCustodianPrices', () => {
 		const store: any = mockStore({});
-		contractUtil.getSystemPrices = jest.fn(() =>
+		contract.getCustodianPrices = jest.fn(() =>
 			Promise.resolve({
 				last: 'last',
 				reset: 'reset'
@@ -74,7 +74,7 @@ describe('actions', () => {
 
 	test('getBalances', () => {
 		const store: any = mockStore({ contract: { account: CST.DUMMY_ADDR } });
-		contractUtil.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
+		contract.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(contractActions.getBalances());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -94,9 +94,9 @@ describe('actions', () => {
 
 	test('getAddresses', () => {
 		const store: any = mockStore({ contract: { states: { addrPoolLength: 1 } } });
-		contractUtil.getSystemAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
-		contractUtil.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contractUtil.getEthBalance = jest.fn(() => Promise.resolve(123));
+		contract.getCustodianAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+		contract.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
+		contract.getEthBalance = jest.fn(() => Promise.resolve(123));
 		store.dispatch(contractActions.getAddresses());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -112,9 +112,9 @@ describe('actions', () => {
 
 	test('getAllBalances', () => {
 		const store: any = mockStore({});
-		contractUtil.getSystemStates = jest.fn(() => Promise.resolve({ usersLength: 1 }));
-		contractUtil.getUserAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contractUtil.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
+		contract.getCustodianStates = jest.fn(() => Promise.resolve({ usersLength: 1 }));
+		contract.getUserAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
+		contract.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(contractActions.getAllBalances(123, 125));
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -130,7 +130,7 @@ describe('actions', () => {
 
 	test('getGasPrice', () => {
 		const store: any = mockStore({});
-		contractUtil.getGasPrice = jest.fn(() => Promise.resolve(456));
+		contract.getGasPrice = jest.fn(() => Promise.resolve(456));
 		store.dispatch(contractActions.getGasPrice());
 		return new Promise(resolve =>
 			setTimeout(() => {

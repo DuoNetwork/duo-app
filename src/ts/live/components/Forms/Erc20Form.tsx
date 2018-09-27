@@ -2,7 +2,7 @@
 import { Tooltip } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contractUtil from '../../common/contractUtil';
+import contract from '../../common/contract';
 import { IBalances } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCardList, SCardTransactionForm, SInput } from '../Cards/_styled';
@@ -46,7 +46,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 	private handleAddressChange = (addr: string) =>
 		this.setState({
 			address: addr,
-			addressError: contractUtil.checkAddress(addr) ? '' : 'Invalid Address',
+			addressError: contract.checkAddress(addr) ? '' : 'Invalid Address',
 			amount: '',
 			amountError: ''
 		});
@@ -76,8 +76,8 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		const { account } = this.props;
 		const { token, address, amount } = this.state;
 		token === CST.TH_DUO
-			? contractUtil.duoTransfer(account, address, Number(amount))
-			: contractUtil.transfer(account, address, Number(amount), token === CST.TH_TOKEN_A);
+			? contract.duoTransfer(account, address, Number(amount))
+			: contract.tokenTransfer(account, address, Number(amount), token === CST.TH_TOKEN_A);
 		this.handleClear();
 	};
 
@@ -85,8 +85,8 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		const { account } = this.props;
 		const { token, address, amount } = this.state;
 		token === CST.TH_DUO
-			? contractUtil.duoApprove(account, address, Number(amount))
-			: contractUtil.approve(account, address, Number(amount), token === CST.TH_TOKEN_A);
+			? contract.duoApprove(account, address, Number(amount))
+			: contract.tokenApprove(account, address, Number(amount), token === CST.TH_TOKEN_A);
 		this.handleClear();
 	};
 
@@ -103,7 +103,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 		const { duo, tokenA, tokenB } = balances;
 		const { token, address, amount, addressError, amountError } = this.state;
 		const limit = token === CST.TH_DUO ? duo : token === CST.TH_TOKEN_A ? tokenA : tokenB;
-		const noTransferAddr = address === contractUtil.custodianAddr;
+		const noTransferAddr = address === contract.custodianAddr;
 		return (
 			<SCardTransactionForm>
 				<SCardList>
@@ -136,7 +136,7 @@ export default class Erc20Form extends React.PureComponent<IProps, IState> {
 										<div
 											className="default-button"
 											onClick={() =>
-												this.handleAddressChange(contractUtil.custodianAddr)
+												this.handleAddressChange(contract.custodianAddr)
 											}
 										>
 											{CST.TH_BEETHOVEN}

@@ -1,7 +1,7 @@
 import { Table } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contractUtil from '../../common/contractUtil';
+import contract from '../../common/contract';
 import { IAddress, IAddresses, ITableRecord } from '../../common/types';
 import util from '../../common/util';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
@@ -39,7 +39,7 @@ export default class AddressCard extends React.PureComponent<IProps> {
 						<button
 							className="form-button"
 							disabled={!isInPool}
-							onClick={() => contractUtil.updateAddress(account, addr.address)}
+							onClick={() => contract.updateAddress(account, addr.address)}
 						>
 							{CST.TH_UPDATE_ROLE}
 						</button>
@@ -61,7 +61,7 @@ export default class AddressCard extends React.PureComponent<IProps> {
 					<button
 						className="form-button"
 						disabled={!isPoolManager}
-						onClick={() => contractUtil.removeAddress(account, addr.address)}
+						onClick={() => contract.removeAddress(account, addr.address)}
 					>
 						{CST.TH_RM_ADDR}
 					</button>

@@ -1,5 +1,5 @@
 import * as CST from '../common/constants';
-import contractUtil from '../common/contractUtil';
+import contract from '../common/contract';
 import {
 	IAccountBalances,
 	IAddress,
@@ -25,7 +25,7 @@ export function networkUpdate(networkId: number) {
 }
 
 export function getNetwork(): VoidThunkAction {
-	return async dispatch => dispatch(networkUpdate(await contractUtil.getCurrentNetwork()));
+	return async dispatch => dispatch(networkUpdate(await contract.getCurrentNetwork()));
 }
 
 export function custodianStatesUpdate(states: ICustodianStates) {
@@ -37,7 +37,7 @@ export function custodianStatesUpdate(states: ICustodianStates) {
 
 export function getCustodianStates(): VoidThunkAction {
 	return async dispatch => {
-		const states = await contractUtil.getSystemStates();
+		const states = await contract.getCustodianStates();
 		dispatch(custodianStatesUpdate(states));
 	};
 }
@@ -50,7 +50,7 @@ export function custodianPricesUpdate(prices: ICustodianPrices) {
 }
 
 export function getCustodianPrices(): VoidThunkAction {
-	return async dispatch => dispatch(custodianPricesUpdate(await contractUtil.getSystemPrices()));
+	return async dispatch => dispatch(custodianPricesUpdate(await contract.getCustodianPrices()));
 }
 
 export function balancesUpdate(balance: IBalances) {
@@ -62,7 +62,7 @@ export function balancesUpdate(balance: IBalances) {
 
 export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) =>
-		dispatch(balancesUpdate(await contractUtil.getBalances(getState().contract.account)));
+		dispatch(balancesUpdate(await contract.getBalances(getState().contract.account)));
 }
 
 export function allBalancesUpdate(balance: IAccountBalances, index: number) {
@@ -77,9 +77,9 @@ export function allBalancesUpdate(balance: IAccountBalances, index: number) {
 export function getAllBalances(start: number, end: number): VoidThunkAction {
 	return async dispatch => {
 		for (let i = start; i < end; i++)
-			contractUtil.getUserAddress(i).then((account: any) => {
+			contract.getUserAddress(i).then((account: any) => {
 				if (account)
-					contractUtil.getBalances(account).then(balance =>
+					contract.getBalances(account).then(balance =>
 						dispatch(
 							allBalancesUpdate(
 								{
@@ -110,15 +110,15 @@ export function addressPoolUpdate(address: IAddress[]) {
 
 export function getAddresses(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		dispatch(addressesUpdate(await contractUtil.getSystemAddresses()));
+		dispatch(addressesUpdate(await contract.getCustodianAddresses()));
 		const poolLength = getState().contract.states.addrPoolLength;
 		const addrPool: IAddress[] = [];
 		for (let i = 0; i < poolLength; i++) {
-			const address = await contractUtil.getPoolAddress(i);
+			const address = await contract.getPoolAddress(i);
 			if (address)
 				addrPool.push({
 					address: address,
-					balance: await contractUtil.getEthBalance(address)
+					balance: await contract.getEthBalance(address)
 				});
 		}
 		dispatch(addressPoolUpdate(addrPool));
@@ -134,5 +134,5 @@ export function gasPriceUpdate(gasPrice: number) {
 
 export function getGasPrice(): VoidThunkAction {
 	return async (dispatch) =>
-		dispatch(gasPriceUpdate(await contractUtil.getGasPrice()));
+		dispatch(gasPriceUpdate(await contract.getGasPrice()));
 }

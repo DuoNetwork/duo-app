@@ -6,7 +6,7 @@ import demoCreate from '../../../../images/createDemo.png';
 import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
 import * as CST from '../../common/constants';
-import contractUtil from '../../common/contractUtil';
+import contract from '../../common/contract';
 import dynamoUtil from '../../common/dynamoUtil';
 import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
 import util from '../../common/util';
@@ -166,7 +166,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = ethFee ? amtNum - fee : amtNum;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
-			contractUtil.create(account, amtNum, ethFee, (txHash: string) =>
+			contract.create(account, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						account,
@@ -184,7 +184,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			const ethAmount = this.getEthFromAB(amtNum);
 			const fee = ethAmount * states.redeemCommRate;
 			const ethNetOfFee = ethFee ? ethAmount - fee : ethAmount;
-			contractUtil.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
+			contract.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						account,
@@ -246,7 +246,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 						{CST.TH_NETWORK_GAS_PRICE[locale] +
 							': ' +
 							(gasPrice
-								? +Math.round(gasPrice * 1e9) + ' Gwei'
+								? +Math.round(gasPrice / 1e9) + ' Gwei'
 								: CST.TH_LOADING[locale])}
 					</SCardExtraDiv>
 				}

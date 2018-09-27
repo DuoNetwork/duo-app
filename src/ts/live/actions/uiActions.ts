@@ -1,5 +1,5 @@
 import * as CST from '../common/constants';
-import contractUtil from '../common/contractUtil';
+import contract from '../common/contract';
 import { VoidThunkAction } from '../common/types';
 import * as contractActions from './contractActions';
 import * as dynamoActions from './dynamoActions';
@@ -12,7 +12,7 @@ export function refreshUpdate() {
 
 export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 	return async dispatch => {
-		dispatch(contractActions.accountUpdate(await contractUtil.getCurrentAddress()));
+		dispatch(contractActions.accountUpdate(await contract.getCurrentAddress()));
 		dispatch(contractActions.getGasPrice());
 		await dispatch(contractActions.getNetwork());
 		await dispatch(contractActions.getCustodianStates());

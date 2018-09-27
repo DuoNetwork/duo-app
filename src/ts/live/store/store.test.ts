@@ -2,30 +2,30 @@ import * as contractActions from '../actions/contractActions';
 import * as uiActions from '../actions/uiActions';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
-import contractUtil from '../common/contractUtil';
+import contract from '../common/contract';
 import dynamoUtil from '../common/dynamoUtil';
 import util from '../common/util';
 import store from './store';
 
 describe('store', () => {
 	test('actions', () => {
-		contractUtil.getSystemStates = jest.fn(() =>
+		contract.getCustodianStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
-		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
-		contractUtil.getSystemPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
-		contractUtil.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
-		contractUtil.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
-		contractUtil.getUserAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contractUtil.getGasPrice = jest.fn(() => Promise.resolve(123));
-		contractUtil.getBalances = jest.fn(() =>
+		contract.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
+		contract.getCustodianPrices = jest.fn(() => Promise.resolve(['reset', 'last']));
+		contract.getCurrentAddress = jest.fn(() => Promise.resolve('test'));
+		contract.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
+		contract.getUserAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
+		contract.getGasPrice = jest.fn(() => Promise.resolve(123));
+		contract.getBalances = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
-		contractUtil.getSystemAddresses = jest.fn(() =>
+		contract.getCustodianAddresses = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})

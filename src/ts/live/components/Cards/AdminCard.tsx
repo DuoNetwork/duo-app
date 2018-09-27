@@ -2,7 +2,7 @@ import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contractUtil from '../../common/contractUtil';
+import contract from '../../common/contract';
 import { IAddresses, ICustodianStates } from '../../common/types';
 import AdminInputButton from '../Common/AdminInputButton';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
@@ -180,7 +180,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 						account === CST.DUMMY_ADDR || addresses.poolManager.address !== account
 					}
 					validateInput={(value: string) =>
-						contractUtil.checkAddress(value) ? '' : 'Invalid Address'
+						contract.checkAddress(value) ? '' : 'Invalid Address'
 					}
 				/>
 			)

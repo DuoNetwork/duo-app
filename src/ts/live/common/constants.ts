@@ -18,24 +18,11 @@ export const AC_ADDR_POOL = 'addressPool';
 export const AC_GAS_PX = 'gasPrice';
 export const AC_LOCALE = 'locale';
 
-export const ETH_MAINNET_ID = 1;
-export const ETH_KOVAN_ID = 42;
-
-export const CTD_INCEPTION = 'Inception';
-export const CTD_TRADING = 'Trading';
-export const CTD_PRERESET = 'PreReset';
-export const CTD_UP_RESET = 'UpwardReset';
-export const CTD_DOWN_RESET = 'DownwardReset';
-export const CTD_PERIOD_RESET = 'PeriodicReset';
-export const CTD_LOADING = 'Loading';
-
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
 export const RX_INTEGER = /^[0-9]+?$/;
 
 export const PENDING_TX_TIMEOUT = 1200000;
-
-export const DUMMY_ADDR = '0x0';
 
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';

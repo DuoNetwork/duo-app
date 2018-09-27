@@ -1,107 +1,103 @@
 {
-  "name": "duo-app",
-  "version": "1.0.0",
-  "private": true,
-  "description": "DUO App",
-  "author": "FinBook Pte Ltd",
-  "scripts": {
-    "clean": "rimraf dist",
-    "test": "jest",
-    "tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
-    "start": "webpack-dev-server --config webpack.config.dev.js",
-    "rebuild": "webpack --config webpack.config.kovan.js --json | webpack-bundle-size-analyzer",
-    "rebuildDemo": "webpack --config webpack.config.demo.js --json | webpack-bundle-size-analyzer",
-    "rebuildLive": "webpack --config webpack.config.prod.js --json | webpack-bundle-size-analyzer",
-    "build": "npm run clean && npm run rebuild",
-    "buildDemo": "npm run clean && npm run rebuildDemo",
-    "buildLive": "npm run clean && npm run rebuildLive"
-  },
-  "jest": {
-    "globals": {
-      "__DEV__": false,
-      "__KOVAN__": true
-    },
-    "moduleNameMapper": {
-      "\\.(css|less|svg|png|jpg)$": "identity-obj-proxy"
-    },
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/enzyme-to-json/serializer"
-    ],
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "transform": {
-      "^.+\\.tsx?$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
-  "devDependencies": {
-    "@types/d3": "^5.0.0",
-    "@types/jest": "^23.3.1",
-    "@types/lodash": "^4.14.115",
-    "@types/react": "^16.4.7",
-    "@types/react-dom": "^16.0.6",
-    "@types/react-redux": "^5.0.7",
-    "@types/redux-logger": "^3.0.6",
-    "@types/redux-mock-store": "1.0.0",
-    "browserslist": "^4.0.1",
-    "css-loader": "^1.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "enzyme-to-json": "^3.3.4",
-    "file-loader": "^1.1.11",
-    "html-webpack-plugin": "^3.2.0",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^23.4.2",
-    "mini-css-extract-plugin": "^0.4.1",
-    "optimize-css-assets-webpack-plugin": "^5.0.0",
-    "pre-commit": "^1.2.2",
-    "react-test-renderer": "^16.4.1",
-    "redux-mock-store": "^1.5.3",
-    "rimraf": "^2.6.2",
-    "style-loader": "^0.21.0",
-    "ts-jest": "^23.0.1",
-    "ts-loader": "^4.4.2",
-    "tslint": "^5.11.0",
-    "tslint-loader": "^3.6.0",
-    "tslint-react": "^3.6.0",
-    "uglifyjs-webpack-plugin": "^1.2.7",
-    "url-loader": "^1.0.1",
-    "webpack": "^4.16.3",
-    "webpack-bundle-size-analyzer": "^2.7.0",
-    "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
-  },
-  "dependencies": {
-    "@ledgerhq/hw-transport-u2f": "^4.21.0",
-    "@ledgerhq/web3-subprovider": "^4.21.0",
-    "@types/react-responsive": "^3.0.1",
-    "@types/react-router-dom": "^4.3.1",
-    "abi-decoder": "^1.1.0",
-    "antd": "^3.7.3",
-    "aws-sdk": "^2.283.1",
-    "d3": "^5.5.0",
-    "lodash": "^4.17.10",
-    "moment": "^2.22.2",
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1",
-    "react-redux": "^5.0.7",
-    "react-responsive": "^5.0.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "redux": "^4.0.0",
-    "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0",
-    "styled-components": "^3.3.3",
-    "typescript": "^3.0.1",
-    "web3": "1.0.0-beta.34"
-  }
+	"name": "duo-app",
+	"version": "1.0.0",
+	"private": true,
+	"description": "DUO App",
+	"author": "FinBook Pte Ltd",
+	"scripts": {
+		"clean": "rimraf dist",
+		"test": "jest",
+		"tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
+		"start": "webpack-dev-server --config webpack.config.dev.js",
+		"rebuild": "webpack --config webpack.config.kovan.js --json | webpack-bundle-size-analyzer",
+		"rebuildDemo": "webpack --config webpack.config.demo.js --json | webpack-bundle-size-analyzer",
+		"rebuildLive": "webpack --config webpack.config.prod.js --json | webpack-bundle-size-analyzer",
+		"build": "npm run clean && npm run rebuild",
+		"buildDemo": "npm run clean && npm run rebuildDemo",
+		"buildLive": "npm run clean && npm run rebuildLive"
+	},
+	"jest": {
+		"globals": {
+			"__DEV__": false,
+			"__KOVAN__": true
+		},
+		"moduleNameMapper": {
+			"\\.(css|less|svg|png|jpg)$": "identity-obj-proxy"
+		},
+		"snapshotSerializers": [
+			"<rootDir>/node_modules/enzyme-to-json/serializer"
+		],
+		"roots": [
+			"<rootDir>/src"
+		],
+		"transform": {
+			"^.+\\.tsx?$": "ts-jest"
+		},
+		"testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+		"moduleFileExtensions": [
+			"ts",
+			"tsx",
+			"js",
+			"jsx",
+			"json",
+			"node"
+		]
+	},
+	"devDependencies": {
+		"@types/d3": "^5.0.0",
+		"@types/jest": "^23.3.1",
+		"@types/lodash": "^4.14.115",
+		"@types/react": "^16.4.7",
+		"@types/react-dom": "^16.0.6",
+		"@types/react-redux": "^5.0.7",
+		"@types/react-responsive": "^3.0.1",
+		"@types/react-router-dom": "^4.3.1",
+		"@types/redux-logger": "^3.0.6",
+		"@types/redux-mock-store": "1.0.0",
+		"browserslist": "^4.0.1",
+		"css-loader": "^1.0.0",
+		"enzyme": "^3.3.0",
+		"enzyme-adapter-react-16": "^1.1.1",
+		"enzyme-to-json": "^3.3.4",
+		"file-loader": "^1.1.11",
+		"html-webpack-plugin": "^3.2.0",
+		"identity-obj-proxy": "^3.0.0",
+		"jest": "^23.4.2",
+		"mini-css-extract-plugin": "^0.4.1",
+		"optimize-css-assets-webpack-plugin": "^5.0.0",
+		"pre-commit": "^1.2.2",
+		"react-test-renderer": "^16.4.1",
+		"redux-mock-store": "^1.5.3",
+		"rimraf": "^2.6.2",
+		"style-loader": "^0.21.0",
+		"ts-jest": "^23.0.1",
+		"ts-loader": "^4.4.2",
+		"tslint": "^5.11.0",
+		"tslint-loader": "^3.6.0",
+		"tslint-react": "^3.6.0",
+		"uglifyjs-webpack-plugin": "^1.2.7",
+		"url-loader": "^1.0.1",
+		"webpack": "^4.16.3",
+		"webpack-bundle-size-analyzer": "^2.7.0",
+		"webpack-cli": "^3.1.0",
+		"webpack-dev-server": "^3.1.5"
+	},
+	"dependencies": {
+		"antd": "^3.7.3",
+		"aws-sdk": "^2.283.1",
+		"d3": "^5.5.0",
+		"lodash": "^4.17.10",
+		"moment": "^2.22.2",
+		"react": "^16.4.1",
+		"react-dom": "^16.4.1",
+		"react-redux": "^5.0.7",
+		"react-responsive": "^5.0.0",
+		"react-router": "^4.3.1",
+		"react-router-dom": "^4.3.1",
+		"redux": "^4.0.0",
+		"redux-logger": "^3.0.6",
+		"redux-thunk": "^2.3.0",
+		"styled-components": "^3.3.3",
+		"typescript": "^3.0.1"
+	}
 }

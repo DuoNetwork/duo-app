@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contractUtil from '../../common/contractUtil';
+import contract from '../../common/contract';
 import { SDivFlexCenter } from '../_styled';
 import { SInput } from '../Cards/_styled';
 
@@ -50,13 +50,13 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 
 		switch (type) {
 			case CST.TH_COLLECT_FEE:
-				contractUtil.collectFee(account, Number(value));
+				contract.collectFee(account, Number(value));
 				break;
 			case CST.TH_SET_VALUE:
-				if (index >= 0) contractUtil.setValue(account, index, Number(value));
+				if (index >= 0) contract.setValue(account, index, Number(value));
 				break;
 			case CST.TH_ADD_ADDR:
-				contractUtil.addAddress(account, value, value1);
+				contract.addAddress(account, value, value1);
 				break;
 			default:
 				break;

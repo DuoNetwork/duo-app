@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contractUtil from '../../common/contractUtil';
+import contract from '../../common/contract';
 import { ColorStyles } from '../../common/styles';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SInput } from './_styled';
@@ -26,7 +26,7 @@ export default class DecodeCard extends React.PureComponent<{}, IState> {
 	private handleClick = () => {
 		const { input } = this.state;
 		this.setState({
-			output: JSON.stringify(contractUtil.decode(input), null, 4)
+			output: JSON.stringify(contract.decode(input), null, 4)
 		});
 	};
 
