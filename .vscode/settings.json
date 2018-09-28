@@ -6,5 +6,6 @@
 	"editor.insertSpaces": false,
 	"vsicons.presets.angular": false,
 	//"eslint.run": "onSave"
-	"javascript.validate.enable": false
+	"javascript.validate.enable": false,
+	"files.eol": "\n"
 }

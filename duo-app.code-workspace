@@ -30,6 +30,7 @@
 			  "double"
 			]
 			},
-			"typescript.tsdk": "duo-contract-util\\node_modules\\typescript\\lib"
+			"typescript.tsdk": "duo-contract-util\\node_modules\\typescript\\lib",
+			"files.eol": "\n"
 		}
 }
