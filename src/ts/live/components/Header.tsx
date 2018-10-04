@@ -42,9 +42,9 @@ export default class Header extends React.PureComponent<IProps> {
 						)
 					) : null}
 					<SDivFlexCenter horizontal>
-						<div className="nav-button-wrapper">
+						{/* <div className="nav-button-wrapper">
 							<Link to={'/'}>{CST.TH_HOME[locale].toUpperCase()}</Link>
-						</div>
+						</div> */}
 						<div className="nav-button-wrapper">
 							<a
 								href={
@@ -61,11 +61,13 @@ export default class Header extends React.PureComponent<IProps> {
 								{CST.TH_GUIDE[locale].toUpperCase()}
 							</a>
 						</div>
-						{(location as any).pathname !== '/beethoven' ? (
+						{(location as any).pathname !== '/' && (location as any).pathname !== '/beethoven' ? (
 							<div className="nav-button-wrapper">
 								<Link to={'/beethoven'}>{CST.TH_BEETHOVEN.toUpperCase()}</Link>
 							</div>
-						) : null}
+						) : <div className="nav-button-wrapper">
+								<Link to={'/status'}>{CST.TH_STATUS[locale].toUpperCase()}</Link>
+							</div>}
 						{refresh ? <ProviderRadio refresh={refresh} /> : null}
 						{updateLocale ? (
 							<LocaleSelect locale={locale} onSelect={updateLocale} />
