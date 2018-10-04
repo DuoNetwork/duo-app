@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -30,7 +30,7 @@ module.exports = {
 		})
 	],
 	optimization: {
-		minimizer: [new UglifyJsPlugin({}), new OptimizeCssAssetsPlugin({})],
+		minimizer: [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})],
 		splitChunks: {
 			cacheGroups: {
 				commons: {
