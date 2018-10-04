@@ -21,6 +21,12 @@ export default class Header extends React.PureComponent<IProps> {
 	public render() {
 		const { location, network, width, refresh, updateLocale } = this.props;
 		const locale = this.props.locale || CST.LOCALE_EN;
+		const path: string = (location as any).pathname;
+		const parts = path.split('/');
+		const base = parts.slice(0, parts.length - 1).join('/') + '/';
+		const isBeethovenPage = ['', 'index.html', 'beethoven'].includes(
+			parts[parts.length - 1]
+		);
 		return (
 			<SHeader>
 				<SDivFlexCenter horizontal width={width ? width : '1200px'}>
@@ -61,13 +67,19 @@ export default class Header extends React.PureComponent<IProps> {
 								{CST.TH_GUIDE[locale].toUpperCase()}
 							</a>
 						</div>
-						{(location as any).pathname !== '/' && (location as any).pathname !== '/beethoven' ? (
+						{isBeethovenPage ? (
 							<div className="nav-button-wrapper">
-								<Link to={'/beethoven'}>{CST.TH_BEETHOVEN.toUpperCase()}</Link>
+								<Link to={`${base}status`}>
+									{CST.TH_STATUS[locale].toUpperCase()}
+								</Link>
 							</div>
-						) : <div className="nav-button-wrapper">
-								<Link to={'/status'}>{CST.TH_STATUS[locale].toUpperCase()}</Link>
-							</div>}
+						) : (
+							<div className="nav-button-wrapper">
+								<Link to={`${base}beethoven`}>
+									{CST.TH_BEETHOVEN.toUpperCase()}
+								</Link>
+							</div>
+						)}
 						{refresh ? <ProviderRadio refresh={refresh} /> : null}
 						{updateLocale ? (
 							<LocaleSelect locale={locale} onSelect={updateLocale} />

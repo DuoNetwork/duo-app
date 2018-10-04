@@ -32,7 +32,7 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 						)}
 						{CST.EXCHANGES.map(src => (
 							<Option key={src.toLowerCase()} value={src.toLowerCase()}>
-								{src}
+								{src.toUpperCase()}
 							</Option>
 						))}
 					</SCardTitleSelector>
