@@ -173,14 +173,15 @@ export default class Settings extends React.Component<IProps, IState> {
 					<div className="settings-bottom">
 						<button
 							className="settings-button"
-							onClick={() =>
+							onClick={() => {
 								this.props.onConfirm(
 									couponRateValue,
 									upwardResetLimit,
 									downwardResetLimit,
 									prlInput
-								) && this.props.onCancel()
-							}
+								);
+								this.props.onCancel();
+							}}
 						>
 							COMFIRM
 						</button>
