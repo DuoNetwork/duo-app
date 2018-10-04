@@ -1,5 +1,4 @@
-import AWS from 'aws-sdk';
-import {
+import DynamoDB, {
 	AttributeMap,
 	DeleteItemInput,
 	PutItemInput,
@@ -8,6 +7,7 @@ import {
 	ScanInput,
 	ScanOutput
 } from 'aws-sdk/clients/dynamodb';
+import AWS from 'aws-sdk/global';
 import moment from 'moment';
 import devConfig from '../../keys/aws.ui.dev.json';
 import liveConfig from '../../keys/aws.ui.live.json';
@@ -26,11 +26,11 @@ import {
 import util from './util';
 
 export class DynamoUtil {
-	private ddb: AWS.DynamoDB;
+	private ddb: DynamoDB;
 	constructor() {
 		// this.role = role;
 		AWS.config.update(__KOVAN__ ? devConfig : liveConfig);
-		this.ddb = new AWS.DynamoDB({ apiVersion: CST.AWS_DYNAMO_API_VERSION });
+		this.ddb = new DynamoDB({ apiVersion: CST.AWS_DYNAMO_API_VERSION });
 	}
 
 	public scanData(params: ScanInput): Promise<ScanOutput> {
