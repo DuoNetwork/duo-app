@@ -1,6 +1,6 @@
 //import * as d3 from 'd3';
 //import moment from 'moment';
-import { Button, Radio } from 'antd/lib';
+import { Button, Radio } from 'antd';
 import * as React from 'react';
 import {Wallet} from '../../../../../../duo-contract-util/src/contractUtil';
 import * as CST from '../../common/constants';

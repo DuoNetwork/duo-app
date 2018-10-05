@@ -1,4 +1,4 @@
-import { LocaleProvider, Table, Tooltip } from 'antd/lib';
+import { LocaleProvider, Table, Tooltip } from 'antd';
 import antdEn from 'antd/lib/locale-provider/en_US';
 import antdCn from 'antd/lib/locale-provider/zh_CN';
 import * as d3 from 'd3';

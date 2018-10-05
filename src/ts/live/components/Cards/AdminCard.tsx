@@ -1,4 +1,4 @@
-import Table from 'antd/lib/table';
+import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from '../../common/constants';

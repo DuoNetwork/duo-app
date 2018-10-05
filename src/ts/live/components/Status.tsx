@@ -1,4 +1,4 @@
-import Layout from 'antd/lib/layout';
+import { Layout } from 'antd';
 import * as React from 'react';
 import * as CST from '../common/constants';
 import { IStatus } from '../common/types';

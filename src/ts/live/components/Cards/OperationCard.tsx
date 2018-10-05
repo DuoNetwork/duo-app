@@ -1,4 +1,5 @@
-import { Popconfirm, Tooltip } from 'antd/lib';
+//import moment from 'moment';
+import { Popconfirm, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import demoCreate from '../../../../images/createDemo.png';

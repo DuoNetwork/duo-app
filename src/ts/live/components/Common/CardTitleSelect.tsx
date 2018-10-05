@@ -1,4 +1,6 @@
-import Select from 'antd/lib/select';
+//import * as d3 from 'd3';
+//import moment from 'moment';
+import { Select } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import { SDivFlexCenter } from '../_styled';

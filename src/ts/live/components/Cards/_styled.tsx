@@ -1,4 +1,4 @@
-import { Button, Card, Radio, Select } from 'antd/lib';
+import { Button, Card, Radio, Select } from 'antd';
 import styled, { injectGlobal } from 'styled-components';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';

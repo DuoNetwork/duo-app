@@ -1,4 +1,4 @@
-import Layout from 'antd/lib/layout';
+import { Layout } from 'antd';
 import styled from 'styled-components';
 import { ColorStyles } from '../common/styles';
 

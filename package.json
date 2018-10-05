@@ -71,7 +71,6 @@
 		"rimraf": "^2.6.2",
 		"style-loader": "^0.23.0",
 		"terser-webpack-plugin": "^1.1.0",
-		"ts-import-plugin": "^1.5.5",
 		"ts-jest": "^23.10.3",
 		"ts-loader": "^5.2.1",
 		"tslint": "^5.11.0",

@@ -1,4 +1,4 @@
-import Radio from 'antd/lib/radio';
+import { Radio } from 'antd';
 import * as React from 'react';
 import { SCardRadioExtraDiv, SRadioGroup } from '../Cards/_styled';
 
