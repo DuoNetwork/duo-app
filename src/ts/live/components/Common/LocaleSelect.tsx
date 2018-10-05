@@ -1,6 +1,6 @@
 //import * as d3 from 'd3';
 //import moment from 'moment';
-import { Select } from 'antd';
+import Select from 'antd/lib/select';
 import * as React from 'react';
 import cnImg from '../../../../images/locale/cn.png';
 import enImg from '../../../../images/locale/en.png';

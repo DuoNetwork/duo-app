@@ -1,4 +1,4 @@
-import { Menu, Modal } from 'antd';
+import { Menu, Modal } from 'antd/lib';
 import styled, { injectGlobal } from 'styled-components';
 import { ColorStyles } from '../../common/styles';
 

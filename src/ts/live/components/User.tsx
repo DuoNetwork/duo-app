@@ -1,4 +1,4 @@
-import { Layout } from 'antd';
+import Layout from 'antd/lib/layout';
 import * as React from 'react';
 import * as CST from '../common/constants';
 import { IAccountBalances } from '../common/types';

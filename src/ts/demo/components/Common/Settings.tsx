@@ -1,4 +1,4 @@
-import { Slider } from 'antd';
+import Slider from 'antd/lib/slider';
 import * as d3 from 'd3';
 import * as React from 'react';
 

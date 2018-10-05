@@ -1,4 +1,4 @@
-import { Layout } from 'antd';
+import Layout from 'antd/lib/layout';
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from '../common/constants';

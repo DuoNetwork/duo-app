@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import { Tooltip } from 'antd';
+import Tooltip from 'antd/lib/tooltip';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import contract from '../../common/contract';

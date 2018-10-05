@@ -1,4 +1,4 @@
-import { Tooltip } from 'antd';
+import Tooltip from 'antd/lib/Tooltip';
 import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
