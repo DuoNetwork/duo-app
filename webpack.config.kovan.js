@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const tsImportPluginFactory = require('ts-import-plugin')
 
 module.exports = {
 	mode: 'production',
@@ -50,8 +51,17 @@ module.exports = {
 				use: 'tslint-loader'
 			},
 			{
-				test: /\.tsx?$/,
+				test: /\.(jsx|tsx|js|ts)$/,
 				use: 'ts-loader',
+				options: {
+				  transpileOnly: true,
+				  getCustomTransformers: () => ({
+					before: [ tsImportPluginFactory( /** options */) ]
+				  }),
+				  compilerOptions: {
+					module: 'es2015'
+				  }
+				},
 				exclude: /node_modules/
 			},
 			{
