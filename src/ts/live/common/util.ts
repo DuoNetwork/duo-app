@@ -49,6 +49,11 @@ class Util {
 		return +(Math.floor((num + 'e+8') as any) + 'e-8');
 	}
 
+	public range(start: number, end: number) {
+		const subArray = Array.apply(null, { length: end }).map(Number.call, Number);
+		return subArray.slice(start, end);
+	}
+
 	public formatBalance(num: number) {
 		if (Math.abs(num) < 1e-8)
 			return '0.000';
@@ -56,6 +61,16 @@ class Util {
 			.format(Math.abs(num) > 1 ? ',.4s' : ',.4n')(num)
 			.toUpperCase()
 			.replace(/G/g, 'B')
+	}
+
+	public formatNumber(num: number) {
+		if (Math.abs(num) < 1e-8) return '0.000';
+		if (Math.abs(num) < 1) return d3.format(',.4n')(num);
+		if (Math.abs(num) < 100000) return d3.format(',.2f')(num);
+		return d3
+			.format(',.4s')(num)
+			.toUpperCase()
+			.replace(/G/g, 'B');
 	}
 }
 

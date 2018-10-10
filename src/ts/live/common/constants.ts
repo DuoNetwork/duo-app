@@ -17,12 +17,15 @@ export const AC_REFRESH = 'refresh';
 export const AC_ADDR_POOL = 'addressPool';
 export const AC_GAS_PX = 'gasPrice';
 export const AC_LOCALE = 'locale';
+export const AC_SUBSCRIBE = 'subscribe';
+export const AC_UPDATE = 'update';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
 export const RX_INTEGER = /^[0-9]+?$/;
 
 export const PENDING_TX_TIMEOUT = 1200000;
+export const RELAYER_WS_URL = 'ws://localhost:8080';
 
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';
@@ -36,6 +39,9 @@ export interface ILocaleText {
 	JP: string;
 	[key: string]: string;
 }
+export const TH_BID = 'bid';   /************************** */
+export const TH_ASK = 'ask';	/************************** */
+export const TH_ORDERBOOK = 'Orderbook'; 	/***************** */
 
 export const TH_CREATE: ILocaleText = {
 	[LOCALE_CN]: '拆分',

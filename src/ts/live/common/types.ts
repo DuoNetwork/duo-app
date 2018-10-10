@@ -131,6 +131,7 @@ export interface IState {
 	readonly contract: IContractState;
 	readonly dynamo: IDynamoState;
 	readonly ui: IUIState;
+	readonly ws: IWSState;
 }
 
 export interface IContractState {
@@ -157,11 +158,77 @@ export interface IDynamoState {
 
 export interface IUIState {
 	readonly refresh: number;
-	readonly locale: string
+	readonly locale: string;
 }
 
 export type VoidThunkAction = ThunkAction<void, IState, undefined, AnyAction>;
 
 export interface ITableRecord {
 	[key: string]: any
+}
+
+export interface IWSOrderBook extends IWSChannel {
+	changes: [
+		{
+			side: string;
+			price: string;
+			amount: string;
+		}
+	];
+}
+
+export interface IWSOrderBookChanges {
+	side: string;
+	price: string;
+	amount: string;
+}
+
+export interface IWSChannel {
+	type: string;
+	channel: {
+		name: string;
+		marketId: string;
+	};
+	requestId: number;
+	timestamp: number;
+	delay?: number;
+}
+
+export interface IWSOrderBookSubscription extends IWSChannel {
+	bids: [
+		{
+			makerTokenName: string;
+			takerTokenName: string;
+			marketId: string;
+			side: string;
+			amount: number;
+			price: number;
+		}
+	];
+	asks: [
+		{
+			makerTokenName: string;
+			takerTokenName: string;
+			marketId: string;
+			side: string;
+			amount: number;
+			price: number;
+		}
+	];
+}
+
+export enum WsChannelMessageTypes {
+	Add = 'add',
+	Update = 'update',
+	Cancel = 'cancel',
+	Subscribe = 'subscribe'
+}
+
+export enum WsChannelName {
+	Orderbook = 'orderbook',
+	Order = 'order'
+}
+
+export interface IWSState {
+	readonly subscribe: IWSOrderBookSubscription;
 }
