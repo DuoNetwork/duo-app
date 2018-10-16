@@ -6,15 +6,14 @@ import {
 	IAcceptedPrice,
 	IConversion,
 	IPrice,
-	ISourceData,
-	ITotalSupply,
+	// ITotalSupply,
 	VoidThunkAction
 } from '../common/types';
 import util from '../common/util';
 
 export function statusUpdate(status: object) {
 	return {
-		type: CST.AC_DNM_STATUS,
+		type: CST.AC_STATUS,
 		value: status
 	};
 }
@@ -26,70 +25,45 @@ export function scanStatus(): VoidThunkAction {
 	};
 }
 
-export function hourlyUpdate(hourly: ISourceData<IPrice[]>) {
+export function pricesUpdate(prices: IPrice[]) {
 	return {
-		type: CST.AC_DMN_HOURLY,
-		value: hourly
-	};
-}
-
-// export function fetchHourly(): VoidThunkAction {
-// 	return async dispatch => {
-// 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
-// 		const promistList = CST.API_LIST.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
-// 		const results = await Promise.all(promistList);
-// 		const hourly: ISourceData<IPrice[]> = {
-// 			bitfinex: [],
-// 			gemini: [],
-// 			kraken: [],
-// 			gdax: []
-// 		};
-// 		results.forEach(
-// 			(r, i) => (hourly[CST.API_LIST[i].toLowerCase()] = chartUtil.interpolate(r, true))
-// 		);
-// 		dispatch(hourlyUpdate(hourly));
-// 	};
-// }
-
-export function minutelyUpdate(minutely: ISourceData<IPrice[]>) {
-	return {
-		type: CST.AC_DMN_MINUTELY,
-		value: minutely
-	};
-}
-
-// export function fetchMinutely(): VoidThunkAction {
-// 	return async dispatch => {
-// 		const dates = util.getDates(7, 1, 'hour', 'YYYY-MM-DD-HH');
-// 		const promistList = CST.API_LIST.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
-// 		const results = await Promise.all(promistList);
-// 		const minutely: ISourceData<IPrice[]> = {
-// 			bitfinex: [],
-// 			gemini: [],
-// 			kraken: [],
-// 			gdax: []
-// 		};
-// 		results.forEach(
-// 			(r, i) => (minutely[CST.API_LIST[i].toLowerCase()] = chartUtil.interpolate(r, false))
-// 		);
-// 		dispatch(minutelyUpdate(minutely));
-// 	};
-// }
-
-export function priceUpdate(prices: IAcceptedPrice[]) {
-	return {
-		type: CST.AC_DMN_PRICE,
+		type: CST.AC_PRICES,
 		value: prices
 	};
 }
 
-export function fetchPrice(): VoidThunkAction {
+export function fetchPrices(): VoidThunkAction {
+	return async (dispatch, state) => {
+		const source = state().ui.source;
+		const period = state().ui.period;
+		dispatch(
+			pricesUpdate(
+				await dynamoUtil.getPrices(
+					source,
+					period,
+					util.getUTCNowTimestamp() - period * 96 * 60000,
+					0,
+					'ETH|USD'
+				)
+			)
+		);
+	};
+}
+
+export function acceptedPricesUpdate(acceptedPrices: IAcceptedPrice[]) {
+	return {
+		type: CST.AC_ACCEPTED_PRICES,
+		value: acceptedPrices
+	};
+}
+
+export function fetchAcceptedPrices(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
 		const priceData = await dynamoUtil.queryAcceptPriceEvent(dates);
 		const custodianStates = getState().contract.states;
 		dispatch(
-			priceUpdate(
+			acceptedPricesUpdate(
 				chartUtil.mergeReset(
 					priceData,
 					chartUtil.reset(
@@ -104,16 +78,16 @@ export function fetchPrice(): VoidThunkAction {
 	};
 }
 
-export function conversionUpdate(conversions: IConversion[]) {
+export function conversionsUpdate(conversions: IConversion[]) {
 	return {
-		type: CST.AC_CONVERSION,
+		type: CST.AC_CONVERSIONS,
 		value: conversions
 	};
 }
 
-export function fetchConversion(): VoidThunkAction {
+export function fetchConversions(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const nowTimestamp = util.getNowTimestamp();
+		const nowTimestamp = util.getUTCNowTimestamp();
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		const account = getState().contract.account;
 		const conversion = await dynamoUtil.queryConversionEvent(
@@ -130,20 +104,20 @@ export function fetchConversion(): VoidThunkAction {
 			else conversion.push(uc);
 		});
 		conversion.sort((a, b) => -a.timestamp + b.timestamp);
-		dispatch(conversionUpdate(conversion));
+		dispatch(conversionsUpdate(conversion));
 	};
 }
 
-export function totalSupplyUpdate(totalSupplies: ITotalSupply[]) {
-	return {
-		type: CST.AC_TOTAL_SUPPLY,
-		value: totalSupplies
-	};
-}
+// export function totalSupplyUpdate(totalSupply: ITotalSupply[]) {
+// 	return {
+// 		type: CST.AC_TOTAL_SUPPLY,
+// 		value: totalSupply
+// 	};
+// }
 
-export function fetchTotalSupply(): VoidThunkAction {
-	return async dispatch => {
-		const dates = util.getDates(75, 1, 'hour', 'YYYY-MM-DD-HH');
-		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
-	};
-}
+// export function fetchTotalSupply(): VoidThunkAction {
+// 	return async dispatch => {
+// 		const dates = util.getDates(75, 1, 'hour', 'YYYY-MM-DD-HH');
+// 		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
+// 	};
+// }

@@ -97,48 +97,16 @@ Object {
     },
   },
   "dynamo": Object {
-    "conversion": Array [],
-    "hourly": Object {
-      "bitfinex": Array [],
-      "gdax": Array [],
-      "gemini": Array [],
-      "kraken": Array [],
-    },
-    "last": Object {
-      "bitfinex": Object {
-        "address": "0x0",
-        "price": 0,
-        "timestamp": 0,
-      },
-      "gdax": Object {
-        "address": "0x0",
-        "price": 0,
-        "timestamp": 0,
-      },
-      "gemini": Object {
-        "address": "0x0",
-        "price": 0,
-        "timestamp": 0,
-      },
-      "kraken": Object {
-        "address": "0x0",
-        "price": 0,
-        "timestamp": 0,
-      },
-    },
-    "minutely": Object {
-      "bitfinex": Array [],
-      "gdax": Array [],
-      "gemini": Array [],
-      "kraken": Array [],
-    },
-    "price": Array [],
+    "acceptedPrices": Array [],
+    "conversions": Array [],
+    "prices": Array [],
     "status": Array [],
-    "totalSupply": Array [],
   },
   "ui": Object {
     "locale": "EN",
+    "period": 60,
     "refresh": 0,
+    "source": "gemini",
   },
   "ws": Object {
     "subscribe": Object {

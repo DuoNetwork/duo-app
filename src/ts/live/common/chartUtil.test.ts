@@ -3,7 +3,7 @@ import moment from 'moment';
 // import minutely from '../samples/minutely.json';
 // import prices from '../samples/prices.json';
 import chartUtil from './chartUtil';
-import util from './util';
+// import util from './util';
 
 const hourlyBar1 = {
 	source: 'source',
@@ -247,20 +247,20 @@ test('merge reset correctly', () =>
 // 	expect(merged1[parsedAcceptedPrice.length]).toMatchSnapshot();
 // });
 
-const totalSupply = {
-	tokenA: 123,
-	tokenB: 456,
-	timestamp: 1234567890,
-	blockNumber: 111,
-	transactionHash: 'abc'
-};
+// const totalSupply = {
+// 	tokenA: 123,
+// 	tokenB: 456,
+// 	timestamp: 1234567890,
+// 	blockNumber: 111,
+// 	transactionHash: 'abc'
+// };
 
-test('merge total supply correctly', () => {
-	util.getNowTimestamp = jest.fn(() => 2345678901);
-	expect(
-		chartUtil.mergeTotalSupply([totalSupply], {
-			totalSupplyA: 1234,
-			totalSupplyB: 2345
-		} as any)
-	).toMatchSnapshot();
-});
+// test('merge total supply correctly', () => {
+// 	util.getUTCNowTimestamp = jest.fn(() => 2345678901);
+// 	expect(
+// 		chartUtil.mergeTotalSupply([totalSupply], {
+// 			totalSupplyA: 1234,
+// 			totalSupplyB: 2345
+// 		} as any)
+// 	).toMatchSnapshot();
+// });

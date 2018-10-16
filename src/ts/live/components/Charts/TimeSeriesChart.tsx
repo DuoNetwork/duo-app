@@ -3,7 +3,7 @@ import moment from 'moment';
 import * as React from 'react';
 import loadingImg from '../../../../images/loadingDUO.png';
 import { ColorStyles } from '../../common/styles';
-import { IAcceptedPrice, IPrice, ISourceData } from '../../common/types';
+import { IAcceptedPrice, IPrice } from '../../common/types';
 
 const margin = { top: 40, right: 34, bottom: 23, left: 38 };
 const width = 708 - margin.left - margin.right;
@@ -11,18 +11,12 @@ const height = 400 - margin.top - margin.bottom;
 
 function drawLines(
 	el: Element,
-	custodianData: IAcceptedPrice[],
-	sourceData: ISourceData<IPrice[]>,
+	acceptedPrices: IAcceptedPrice[],
+	prices: IPrice[],
 	timeStep: number,
-	source: string,
 	isHourly?: boolean
 ) {
-	const dataLoaded =
-		custodianData.length &&
-		sourceData.bitfinex.length &&
-		sourceData.gemini.length &&
-		sourceData.gemini.length &&
-		sourceData.gdax.length;
+	const dataLoaded = acceptedPrices.length && prices.length;
 	if (!dataLoaded) {
 		d3.selectAll('.loading').remove();
 		d3.select(el)
@@ -71,11 +65,8 @@ function drawLines(
 	const maxDate =
 		d3.max(
 			[
-				custodianData[custodianData.length - 1].timestamp,
-				sourceData.bitfinex[sourceData.bitfinex.length - 1].timestamp,
-				sourceData.gemini[sourceData.gemini.length - 1].timestamp,
-				sourceData.kraken[sourceData.kraken.length - 1].timestamp,
-				sourceData.gdax[sourceData.gdax.length - 1].timestamp
+				acceptedPrices[acceptedPrices.length - 1].timestamp,
+				prices[prices.length - 1].timestamp
 			]
 		) || 0;
 	const minDate = maxDate - timeStep * colums;
@@ -90,28 +81,27 @@ function drawLines(
 		xScale(moment('2000-01-01').valueOf() + timeStep) - xScale(moment('2000-01-01').valueOf());
 	const rectWidth = barWidth * 0.7;
 	//Data Range (ETH price)
-	const slicedCustodianData = custodianData.slice(
+	const slicedCustodianData = acceptedPrices.slice(
 		-colums / custodianSourceTimestepRatio(timeStep)
 	);
 	const maxPrice =
 		d3.max(
 			[
 				d3.max(slicedCustodianData.map(d => d.price)) || 0,
-				d3.max((sourceData[source] as IPrice[]).map(d => d.high).slice(-colums)) || 0
+				d3.max(prices.map(d => d.high).slice(-colums)) || 0
 			]
 		) || 0;
 	const minPrice =
 		d3.min(
 			[
 				d3.min(slicedCustodianData.map(d => d.price)) || 0,
-				d3.min((sourceData[source] as IPrice[]).map(d => d.low).slice(-colums)) || 0
+				d3.min(prices.map(d => d.low).slice(-colums)) || 0
 			]
 		) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
 	const rangeBottom = d3.max([0, minPrice - 0.2 * (maxPrice - minPrice)]) || 0;
 	//Data Range Volumn
-	const maxVol =
-		d3.max((sourceData[source] as IPrice[]).map(d => d.volume).slice(-colums)) || 0;
+	const maxVol = d3.max(prices.map(d => d.volume).slice(-colums)) || 0;
 	const rangeTopV = maxVol * 7;
 
 	//Data Range (Nav A/B)
@@ -232,7 +222,7 @@ function drawLines(
 
 	const ohlc = chartdata.append('g').attr('class', 'ohlc');
 	ohlc.selectAll('g')
-		.data(sourceData[source])
+		.data(prices)
 		.enter()
 		.append('g');
 	const bars = ohlc.selectAll('g');
@@ -301,7 +291,7 @@ function drawLines(
 	chartdata
 		.append('path')
 		.attr('class', 'line-custodian-navA ' + (!isHourly ? 'dashed' : ''))
-		.datum(custodianData)
+		.datum(acceptedPrices)
 		.attr('d', lineNavA)
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
@@ -311,7 +301,7 @@ function drawLines(
 	chartdata
 		.append('path')
 		.attr('class', 'line-custodian-navB ' + (!isHourly ? 'dashed' : ''))
-		.datum(custodianData)
+		.datum(acceptedPrices)
 		.attr('d', lineNavB)
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
@@ -322,7 +312,7 @@ function drawLines(
 	chartdata
 		.append('path')
 		.attr('class', 'line-custodian-eth ' + (!isHourly ? 'dashed' : ''))
-		.datum(custodianData)
+		.datum(acceptedPrices)
 		.attr('d', lineCustodian)
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
@@ -334,7 +324,7 @@ function drawLines(
 		const segments = chartdata.append('g').attr('class', 'segments');
 		segments
 			.selectAll('g')
-			.data(custodianData)
+			.data(acceptedPrices)
 			.enter()
 			.append('g');
 		const segBar = segments.selectAll('g');
@@ -705,7 +695,7 @@ function drawLines(
 		d3.selectAll('.source-legend-text-low').text('');
 		d3.selectAll('.source-legend-text-close').text('');
 		d3.selectAll('.source-legend-text-vol').text('');
-		sourceData[source].forEach(item => {
+		prices.forEach(item => {
 			if (item.timestamp < x && x < item.timestamp + timeStep) {
 				d3.selectAll('.source-legend-text-open').text(d3.format(',.1f')(item.open));
 				d3.selectAll('.source-legend-text-high').text(d3.format(',.1f')(item.high));
@@ -717,7 +707,7 @@ function drawLines(
 		d3.selectAll('.custodian-eth-legend-text').text('');
 		d3.selectAll('.custodian-tokenA-legend-text').text('');
 		d3.selectAll('.custodian-tokenB-legend-text').text('');
-		custodianData.forEach(item => {
+		acceptedPrices.forEach(item => {
 			if (
 				xScale(item.timestamp) - barWidth / 2 < xScale(x) &&
 				xScale(x) < xScale(item.timestamp) + barWidth / 2
@@ -730,7 +720,7 @@ function drawLines(
 	}
 	function findETHDot(x: number, y: number) {
 		d3.selectAll('.eth-dot').remove();
-		custodianData.forEach(item => {
+		acceptedPrices.forEach(item => {
 			if (
 				xScale(item.timestamp) - barWidth / 2 < xScale(x) &&
 				xScale(x) < xScale(item.timestamp) + barWidth / 2 &&
@@ -765,9 +755,8 @@ function drawLines(
 }
 
 interface IProps {
-	sourceData: ISourceData<IPrice[]>;
-	prices: IAcceptedPrice[];
-	source: string;
+	prices: IPrice[];
+	acceptedPrices: IAcceptedPrice[];
 	timeStep: number;
 	isHourly?: boolean;
 }
@@ -780,26 +769,18 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { sourceData, prices, timeStep, source, isHourly } = this.props;
-		drawLines(this.chartRef.current as Element, prices, sourceData, timeStep, source, isHourly);
+		const { acceptedPrices, prices, timeStep, isHourly } = this.props;
+		drawLines(this.chartRef.current as Element, acceptedPrices, prices, timeStep, isHourly);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		const { sourceData, prices, timeStep, source, isHourly } = nextProps;
+		const { acceptedPrices, prices, timeStep, isHourly } = nextProps;
 		if (
-			JSON.stringify(nextProps.sourceData) !== JSON.stringify(this.props.sourceData) ||
-			JSON.stringify(nextProps.prices) !== JSON.stringify(this.props.prices) ||
-			timeStep !== this.props.timeStep ||
-			source !== this.props.source
+			JSON.stringify(prices) !== JSON.stringify(prices) ||
+			JSON.stringify(acceptedPrices) !== JSON.stringify(this.props.acceptedPrices) ||
+			timeStep !== this.props.timeStep
 		)
-			drawLines(
-				this.chartRef.current as Element,
-				prices,
-				sourceData,
-				timeStep,
-				source,
-				isHourly
-			);
+			drawLines(this.chartRef.current as Element, acceptedPrices, prices, timeStep, isHourly);
 
 		return false;
 	}

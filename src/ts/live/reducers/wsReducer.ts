@@ -33,7 +33,6 @@ export const initialState: IWSState = {
 };
 
 export function wsReducer(state: IWSState = initialState, action: AnyAction): IWSState {
-	console.log('action.type');
 	switch (action.type) {
 		case CST.AC_SUBSCRIBE:
 			return Object.assign({}, state, { [action.type]: action[action.type] });

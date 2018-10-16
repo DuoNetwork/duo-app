@@ -5,7 +5,7 @@ import { ICustodianPrice, IPriceStatus, ISourceData, IStatus } from './types';
 
 class Util {
 	public convertUpdateTime(timestamp: number): string {
-		const diff = this.getNowTimestamp() - timestamp;
+		const diff = this.getUTCNowTimestamp() - timestamp;
 		if (diff < 60000) return 'Just Now';
 		else if (diff < 3600000) return Math.floor(diff / 60000) + ' Minutes Ago';
 		else if (diff < 86400000) return Math.floor(diff / 3600000) + ' Hours Ago';
@@ -13,7 +13,7 @@ class Util {
 		else return 'Long Time Ago';
 	}
 
-	public getNowTimestamp() {
+	public getUTCNowTimestamp() {
 		return moment().valueOf();
 	}
 
@@ -75,11 +75,11 @@ class Util {
 	}
 
 	public getLastPriceFromStatus(status: IStatus[]): ISourceData<ICustodianPrice> {
-		const bitfinex: ICustodianPrice = {
-			address: CST.DUMMY_ADDR,
-			price: 0,
-			timestamp: 0
-		};
+		// const bitfinex: ICustodianPrice = {
+		// 	address: CST.DUMMY_ADDR,
+		// 	price: 0,
+		// 	timestamp: 0
+		// };
 		const kraken: ICustodianPrice = {
 			address: CST.DUMMY_ADDR,
 			price: 0,
@@ -96,10 +96,11 @@ class Util {
 			timestamp: 0
 		};
 		status.forEach(s => {
-			if (s.process === 'PRICE_AWS_PUBLIC_BITFINEX') {
-				bitfinex.price = (s as IPriceStatus).price;
-				bitfinex.timestamp = (s as IPriceStatus).timestamp;
-			} else if (s.process === 'PRICE_AWS_PUBLIC_GEMINI') {
+			// if (s.process === 'PRICE_AWS_PUBLIC_BITFINEX') {
+			// 	bitfinex.price = (s as IPriceStatus).price;
+			// 	bitfinex.timestamp = (s as IPriceStatus).timestamp;
+			// } else
+			if (s.process === 'PRICE_AWS_PUBLIC_GEMINI') {
 				gemini.price = (s as IPriceStatus).price;
 				gemini.timestamp = (s as IPriceStatus).timestamp;
 			} else if (s.process === 'PRICE_AWS_PUBLIC_KRAKEN') {
@@ -112,7 +113,7 @@ class Util {
 		});
 
 		return {
-			bitfinex,
+			// bitfinex,
 			kraken,
 			gemini,
 			gdax

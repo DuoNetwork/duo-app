@@ -9,7 +9,7 @@ import { SCard, SCardList, SCardTitle } from './_styled';
 
 interface IProps {
 	locale: string;
-	conversion: IConversion[];
+	conversions: IConversion[];
 }
 
 const ConversionEntry = (props: {
@@ -64,7 +64,7 @@ const ConversionEntry = (props: {
 
 export default class ConversionMCard extends React.PureComponent<IProps> {
 	public render() {
-		const { conversion, locale } = this.props;
+		const { conversions, locale } = this.props;
 		return (
 			<SCard
 				title={<SCardTitle>{CST.TH_CONVERSION[locale].toUpperCase()}</SCardTitle>}
@@ -74,8 +74,8 @@ export default class ConversionMCard extends React.PureComponent<IProps> {
 				<SDivFlexCenter horizontal padding="0 10px">
 					<SCardList noMargin>
 						<div className="status-list-wrapper">
-							{conversion.length ? (
-								conversion.map(c => (
+							{conversions.length ? (
+								conversions.map(c => (
 									<ConversionEntry
 										key={c.timestamp}
 										timestamp={c.timestamp}

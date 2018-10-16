@@ -1,6 +1,6 @@
 import moment from 'moment';
-import { IAcceptedPrice, ICustodianPrice, ICustodianStates, IPrice, ITotalSupply } from './types';
-import util from './util';
+import { IAcceptedPrice, ICustodianPrice, ICustodianStates, IPrice } from './types';
+// import util from './util';
 
 class ChartUtil {
 	public interpolate(sourceData: IPrice[], isHourly: boolean): IPrice[] {
@@ -193,20 +193,20 @@ class ChartUtil {
 		return price;
 	}
 
-	public mergeTotalSupply(totalSupply: ITotalSupply[], states: ICustodianStates): ITotalSupply[] {
-		const all = [
-			...totalSupply,
-			{
-				tokenA: states.totalSupplyA,
-				tokenB: states.totalSupplyB,
-				timestamp: util.getNowTimestamp(),
-				blockNumber: 0,
-				transactionHash: ''
-			}
-		];
-		all.sort((a, b) => a.timestamp - b.timestamp);
-		return all;
-	}
+	// public mergeTotalSupply(totalSupply: ITotalSupply[], states: ICustodianStates): ITotalSupply[] {
+	// 	const all = [
+	// 		...totalSupply,
+	// 		{
+	// 			tokenA: states.totalSupplyA,
+	// 			tokenB: states.totalSupplyB,
+	// 			timestamp: util.getUTCNowTimestamp(),
+	// 			blockNumber: 0,
+	// 			transactionHash: ''
+	// 		}
+	// 	];
+	// 	all.sort((a, b) => a.timestamp - b.timestamp);
+	// 	return all;
+	// }
 }
 
 const chartUtil = new ChartUtil();

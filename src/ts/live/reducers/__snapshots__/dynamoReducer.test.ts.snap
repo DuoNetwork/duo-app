@@ -1,311 +1,74 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ui reducer conversion 1`] = `
+exports[`ui reducer acceptedPrices 1`] = `
 Object {
-  "conversion": Array [
+  "acceptedPrices": Array [
     "test",
   ],
-  "hourly": Object {
+  "conversions": Array [],
+  "prices": Object {
     "test": "test",
   },
-  "last": Object {
-    "bitfinex": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gdax": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gemini": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "kraken": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-  },
-  "minutely": Object {
-    "test": "test",
-  },
-  "price": Array [
-    "test",
-  ],
   "status": Array [
     Object {
       "process": "test",
     },
   ],
-  "totalSupply": Array [],
+}
+`;
+
+exports[`ui reducer conversions 1`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "conversions": Array [
+    "test",
+  ],
+  "prices": Object {
+    "test": "test",
+  },
+  "status": Array [
+    Object {
+      "process": "test",
+    },
+  ],
 }
 `;
 
 exports[`ui reducer default 1`] = `
 Object {
-  "conversion": Array [],
-  "hourly": Object {
-    "bitfinex": Array [],
-    "gdax": Array [],
-    "gemini": Array [],
-    "kraken": Array [],
-  },
-  "last": Object {
-    "bitfinex": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gdax": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gemini": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "kraken": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-  },
-  "minutely": Object {
-    "bitfinex": Array [],
-    "gdax": Array [],
-    "gemini": Array [],
-    "kraken": Array [],
-  },
-  "price": Array [],
+  "acceptedPrices": Array [],
+  "conversions": Array [],
+  "prices": Array [],
   "status": Array [],
-  "totalSupply": Array [],
 }
 `;
 
-exports[`ui reducer dynamoHourly 1`] = `
+exports[`ui reducer prices 1`] = `
 Object {
-  "conversion": Array [],
-  "hourly": Object {
+  "acceptedPrices": Array [],
+  "conversions": Array [],
+  "prices": Object {
     "test": "test",
   },
-  "last": Object {
-    "bitfinex": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gdax": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gemini": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "kraken": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-  },
-  "minutely": Object {
-    "bitfinex": Array [],
-    "gdax": Array [],
-    "gemini": Array [],
-    "kraken": Array [],
-  },
-  "price": Array [],
   "status": Array [
     Object {
       "process": "test",
     },
   ],
-  "totalSupply": Array [],
 }
 `;
 
-exports[`ui reducer dynamoMinutely 1`] = `
+exports[`ui reducer status 1`] = `
 Object {
-  "conversion": Array [],
-  "hourly": Object {
-    "test": "test",
-  },
-  "last": Object {
-    "bitfinex": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gdax": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gemini": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "kraken": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-  },
-  "minutely": Object {
-    "test": "test",
-  },
-  "price": Array [],
+  "acceptedPrices": Array [],
+  "conversions": Array [],
+  "prices": Array [],
   "status": Array [
     Object {
       "process": "test",
     },
-  ],
-  "totalSupply": Array [],
-}
-`;
-
-exports[`ui reducer dynamoPrices 1`] = `
-Object {
-  "conversion": Array [],
-  "hourly": Object {
-    "test": "test",
-  },
-  "last": Object {
-    "bitfinex": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gdax": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gemini": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "kraken": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-  },
-  "minutely": Object {
-    "test": "test",
-  },
-  "price": Array [
-    "test",
-  ],
-  "status": Array [
-    Object {
-      "process": "test",
-    },
-  ],
-  "totalSupply": Array [],
-}
-`;
-
-exports[`ui reducer dynamoStatus 1`] = `
-Object {
-  "conversion": Array [],
-  "hourly": Object {
-    "bitfinex": Array [],
-    "gdax": Array [],
-    "gemini": Array [],
-    "kraken": Array [],
-  },
-  "last": Object {
-    "bitfinex": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gdax": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gemini": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "kraken": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-  },
-  "minutely": Object {
-    "bitfinex": Array [],
-    "gdax": Array [],
-    "gemini": Array [],
-    "kraken": Array [],
-  },
-  "price": Array [],
-  "status": Array [
-    Object {
-      "process": "test",
-    },
-  ],
-  "totalSupply": Array [],
-}
-`;
-
-exports[`ui reducer totalSupply 1`] = `
-Object {
-  "conversion": Array [
-    "test",
-  ],
-  "hourly": Object {
-    "test": "test",
-  },
-  "last": Object {
-    "bitfinex": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gdax": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "gemini": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-    "kraken": Object {
-      "address": "0x0",
-      "price": 0,
-      "timestamp": 0,
-    },
-  },
-  "minutely": Object {
-    "test": "test",
-  },
-  "price": Array [
-    "test",
-  ],
-  "status": Array [
-    Object {
-      "process": "test",
-    },
-  ],
-  "totalSupply": Array [
-    "test",
   ],
 }
 `;

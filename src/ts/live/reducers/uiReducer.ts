@@ -7,6 +7,8 @@ const lan = navigator.language.toUpperCase();
 
 export const initialState: IUIState = {
 	refresh: 0,
+	period: 60,
+	source: CST.API_GEMINI,
 	locale: lan.includes(CST.LOCALE_CN)
 		? CST.LOCALE_CN
 		: lan.includes('JA')
@@ -20,9 +22,11 @@ export function uiReducer(state: IUIState = initialState, action: AnyAction): IU
 	switch (action.type) {
 		case CST.AC_REFRESH:
 			return Object.assign({}, state, {
-				refresh: util.getNowTimestamp()
+				refresh: util.getUTCNowTimestamp()
 			});
 		case CST.AC_LOCALE:
+		case CST.AC_SOURCE:
+		case CST.AC_PERIOD:
 			return Object.assign({}, state, {
 				[action.type]: action.value
 			});

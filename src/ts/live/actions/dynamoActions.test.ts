@@ -24,62 +24,45 @@ describe('actions', () => {
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
 				resolve();
-			}, 1000)
+			}, 0)
 		);
 	});
 
-	test('hourlyUpdate', () => {
-		expect(dynamoActions.hourlyUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	test('pricesUpdate', () => {
+		expect(dynamoActions.pricesUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
-	// test('fetchHourly', () => {
-	// 	const store: any = mockStore({});
-	// 	dynamoUtil.queryHourlyOHLC = jest.fn(() =>
-	// 		Promise.resolve({
-	// 			test: 'test'
-	// 		})
-	// 	);
-	// 	chartUtil.interpolate = jest.fn(r => r);
-	// 	store.dispatch(dynamoActions.fetchHourly());
-	// 	return new Promise(resolve =>
-	// 		setTimeout(() => {
-	// 			expect(store.getActions()).toMatchSnapshot();
-	// 			resolve();
-	// 		}, 1000)
-	// 	);
-	// });
+	test('fetchPrices', () => {
+		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
+		const store: any = mockStore({
+			ui: {
+				period: 60,
+				source: 'test'
+			}
+		});
+		dynamoUtil.getPrices = jest.fn(
+			(src: string, period: number, start: number, end: number, pair: string) =>
+				Promise.resolve([src, period, start, end, pair])
+		);
+		store.dispatch(dynamoActions.fetchPrices());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	})
 
-	test('minutelyUpdate', () => {
-		expect(dynamoActions.minutelyUpdate({ test: 'test' } as any)).toMatchSnapshot();
+	test('acceptedPricesUpdate', () => {
+		expect(dynamoActions.acceptedPricesUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
-	// test('fetchMinutely', () => {
-	// 	const store: any = mockStore({});
-	// 	dynamoUtil.queryMinutelyOHLC = jest.fn(() =>
-	// 		Promise.resolve({
-	// 			test: 'test'
-	// 		})
-	// 	);
-	// 	chartUtil.interpolate = jest.fn(r => r);
-	// 	store.dispatch(dynamoActions.fetchMinutely());
-	// 	return new Promise(resolve =>
-	// 		setTimeout(() => {
-	// 			expect(store.getActions()).toMatchSnapshot();
-	// 			resolve();
-	// 		}, 1000)
-	// 	);
-	// });
-
-	test('priceUpdate', () => {
-		expect(dynamoActions.priceUpdate(['test'] as any)).toMatchSnapshot();
-	});
-
-	test('fetchPrice', () => {
+	test('fetchAcceptedPrices', () => {
 		const store: any = mockStore({
 			contract: { states: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 } }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchPrice());
+		store.dispatch(dynamoActions.fetchAcceptedPrices());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -88,11 +71,11 @@ describe('actions', () => {
 		);
 	});
 
-	test('conversionUpdate', () => {
-		expect(dynamoActions.conversionUpdate(['test'] as any)).toMatchSnapshot();
+	test('conversionsUpdate', () => {
+		expect(dynamoActions.conversionsUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
-	test('fetchConversion', () => {
+	test('fetchConversions', () => {
 		const store: any = mockStore({ contract: { account: CST.DUMMY_ADDR } });
 		util.getDates = jest.fn(() => ['1970-01-15']);
 		dynamoUtil.queryConversionEvent = jest.fn(() =>
@@ -119,7 +102,7 @@ describe('actions', () => {
 			])
 		);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
-		store.dispatch(dynamoActions.fetchConversion());
+		store.dispatch(dynamoActions.fetchConversions());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -140,19 +123,19 @@ describe('actions', () => {
 		);
 	});
 
-	test('totalSupplyUpdate', () => {
-		expect(dynamoActions.totalSupplyUpdate(['test'] as any)).toMatchSnapshot();
-	});
+	// test('totalSupplyUpdate', () => {
+	// 	expect(dynamoActions.totalSupplyUpdate(['test'] as any)).toMatchSnapshot();
+	// });
 
-	test('fetchTotalSupply', () => {
-		const store: any = mockStore({});
-		dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchTotalSupply());
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 1000)
-		);
-	});
+	// test('fetchTotalSupply', () => {
+	// 	const store: any = mockStore({});
+	// 	dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
+	// 	store.dispatch(dynamoActions.fetchTotalSupply());
+	// 	return new Promise(resolve =>
+	// 		setTimeout(() => {
+	// 			expect(store.getActions()).toMatchSnapshot();
+	// 			resolve();
+	// 		}, 1000)
+	// 	);
+	// });
 });

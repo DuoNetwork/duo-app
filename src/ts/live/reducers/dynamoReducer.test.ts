@@ -9,9 +9,9 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('dynamoStatus', () => {
+	test('status', () => {
 		state = dynamoReducer(state, {
-			type: CST.AC_DNM_STATUS,
+			type: CST.AC_STATUS,
 			value: [{
 				process: 'test'
 			}]
@@ -19,9 +19,9 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('dynamoHourly', () => {
+	test('prices', () => {
 		state = dynamoReducer(state, {
-			type: CST.AC_DMN_HOURLY,
+			type: CST.AC_PRICES,
 			value: {
 				test: 'test'
 			}
@@ -29,37 +29,27 @@ describe('ui reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('dynamoMinutely', () => {
+	test('acceptedPrices', () => {
 		state = dynamoReducer(state, {
-			type: CST.AC_DMN_MINUTELY,
-			value: {
-				test: 'test'
-			}
-		});
-		expect(state).toMatchSnapshot();
-	});
-
-	test('dynamoPrices', () => {
-		state = dynamoReducer(state, {
-			type: CST.AC_DMN_PRICE,
+			type: CST.AC_ACCEPTED_PRICES,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();
 	});
 
-	test('conversion', () => {
+	test('conversions', () => {
 		state = dynamoReducer(state, {
-			type: CST.AC_CONVERSION,
+			type: CST.AC_CONVERSIONS,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();
 	});
 
-	test('totalSupply', () => {
-		state = dynamoReducer(state, {
-			type: CST.AC_TOTAL_SUPPLY,
-			value: ['test']
-		});
-		expect(state).toMatchSnapshot();
-	});
+	// test('totalSupply', () => {
+	// 	state = dynamoReducer(state, {
+	// 		type: CST.AC_TOTAL_SUPPLY,
+	// 		value: ['test']
+	// 	});
+	// 	expect(state).toMatchSnapshot();
+	// });
 });

@@ -7,7 +7,6 @@ class WsUtil {
 	public ws: WebSocket | null = null;
 	private handleOrderBooksUpdate: ((orderBooks: IWSOrderBookSubscription) => any) | null = null;
 	public init(host: string) {
-		console.log(host);
 		this.ws = new WebSocket(host);
 		this.ws.onmessage = (m: any) => this.handleMessage(m.data.toString());
 	}
@@ -21,7 +20,7 @@ class WsUtil {
 					const obRes = wsMsg as IWSOrderBookSubscription;
 					// const src = others[0];
 					if (obRes && obRes.asks && obRes.bids) {
-						obRes.delay = util.getNowTimestamp() - obRes.timestamp;
+						obRes.delay = util.getUTCNowTimestamp() - obRes.timestamp;
 						console.log("obRes");
 						this.handleOrderBooksUpdate(obRes);
 					}

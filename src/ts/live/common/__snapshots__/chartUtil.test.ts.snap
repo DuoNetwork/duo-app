@@ -135,25 +135,6 @@ Array [
 ]
 `;
 
-exports[`merge total supply correctly 1`] = `
-Array [
-  Object {
-    "blockNumber": 111,
-    "timestamp": 1234567890,
-    "tokenA": 123,
-    "tokenB": 456,
-    "transactionHash": "abc",
-  },
-  Object {
-    "blockNumber": 0,
-    "timestamp": 2345678901,
-    "tokenA": 1234,
-    "tokenB": 2345,
-    "transactionHash": "",
-  },
-]
-`;
-
 exports[`minutely interpolate correctly 1`] = `
 Object {
   "base": "base",

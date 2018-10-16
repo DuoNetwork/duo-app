@@ -29,7 +29,7 @@ interface IProps {
 	network: number;
 	account: string;
 	sourceLast: ISourceData<ICustodianPrice>;
-	conversion: IConversion[];
+	conversions: IConversion[];
 	gasPrice: number;
 	refresh: () => any;
 	refreshBalance: () => any;
@@ -45,7 +45,7 @@ export default class DuoScreen extends React.PureComponent<IProps> {
 			balances,
 			account,
 			sourceLast,
-			conversion,
+			conversions,
 			gasPrice,
 			refresh,
 			refreshBalance,
@@ -87,7 +87,7 @@ export default class DuoScreen extends React.PureComponent<IProps> {
 								/>
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
-								<ConversionCard locale={locale} conversion={conversion} />
+								<ConversionCard locale={locale} conversions={conversions} />
 								<OperationCard
 									locale={locale}
 									reset={prices.reset}
@@ -133,7 +133,7 @@ export default class DuoScreen extends React.PureComponent<IProps> {
 						/>
 					) : null}
 					{account !== CST.DUMMY_ADDR ? (
-						<ConversionMCard locale={locale} conversion={conversion} />
+						<ConversionMCard locale={locale} conversions={conversions} />
 					) : null}
 				</MediaQuery>
 			</div>

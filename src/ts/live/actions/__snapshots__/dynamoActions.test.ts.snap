@@ -1,18 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`actions conversionUpdate 1`] = `
+exports[`actions acceptedPricesUpdate 1`] = `
 Object {
-  "type": "conversion",
+  "type": "acceptedPrices",
   "value": Array [
     "test",
   ],
 }
 `;
 
-exports[`actions fetchConversion 1`] = `
+exports[`actions conversionsUpdate 1`] = `
+Object {
+  "type": "conversions",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions fetchAcceptedPrices 1`] = `
 Array [
   Object {
-    "type": "conversion",
+    "type": "acceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
+exports[`actions fetchConversions 1`] = `
+Array [
+  Object {
+    "type": "conversions",
     "value": Array [
       Object {
         "transactionHash": "aaa",
@@ -26,63 +46,38 @@ Array [
 ]
 `;
 
-exports[`actions fetchConversion 2`] = `
+exports[`actions fetchConversions 2`] = `
 Object {
   "timestamp": 1234567890,
   "transactionHash": "aaa",
 }
 `;
 
-exports[`actions fetchConversion 3`] = `
+exports[`actions fetchConversions 3`] = `
 Object {
   "timestamp": 0,
   "transactionHash": "ccc",
 }
 `;
 
-exports[`actions fetchPrice 1`] = `
+exports[`actions fetchPrices 1`] = `
 Array [
   Object {
-    "type": "dynamoPrice",
+    "type": "prices",
     "value": Array [
       "test",
+      60,
+      888967890,
+      0,
+      "ETH|USD",
     ],
   },
 ]
 `;
 
-exports[`actions fetchTotalSupply 1`] = `
-Array [
-  Object {
-    "type": "totalSupply",
-    "value": Array [
-      "test",
-    ],
-  },
-]
-`;
-
-exports[`actions hourlyUpdate 1`] = `
+exports[`actions pricesUpdate 1`] = `
 Object {
-  "type": "dynamoHourly",
-  "value": Object {
-    "test": "test",
-  },
-}
-`;
-
-exports[`actions minutelyUpdate 1`] = `
-Object {
-  "type": "dynamoMinutely",
-  "value": Object {
-    "test": "test",
-  },
-}
-`;
-
-exports[`actions priceUpdate 1`] = `
-Object {
-  "type": "dynamoPrice",
+  "type": "prices",
   "value": Array [
     "test",
   ],
@@ -92,7 +87,7 @@ Object {
 exports[`actions scanStatus 1`] = `
 Array [
   Object {
-    "type": "dynamoStatus",
+    "type": "status",
     "value": Object {
       "test": "test",
     },
@@ -102,18 +97,9 @@ Array [
 
 exports[`actions statusUpdate 1`] = `
 Object {
-  "type": "dynamoStatus",
+  "type": "status",
   "value": Object {
     "test": "test",
   },
-}
-`;
-
-exports[`actions totalSupplyUpdate 1`] = `
-Object {
-  "type": "totalSupply",
-  "value": Array [
-    "test",
-  ],
 }
 `;

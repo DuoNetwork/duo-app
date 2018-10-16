@@ -11,15 +11,7 @@ import Dex from '../components/Dex';
 function mapStateToProps(state: IState) {
 	return {
 		locale: state.ui.locale,
-		wsSubMsg: state.ws.subscribe,
-		states: state.contract.states,
-		prices: state.contract.prices,
-		balances: state.contract.balances,
-		network: state.contract.network,
-		account: state.contract.account,
-		sourceLast: state.dynamo.last,
-		conversion: state.dynamo.conversion,
-		gasPrice: state.contract.gasPrice
+		wsSubMsg: state.ws.subscribe
 	};
 }
 

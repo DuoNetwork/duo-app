@@ -11,9 +11,25 @@ describe('ui reducer', () => {
 	});
 
 	test('refresh', () => {
-		util.getNowTimestamp = jest.fn(() => 1234567890);
+		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
 		state = uiReducer(state, {
 			type: CST.AC_REFRESH
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('period', () => {
+		state = uiReducer(state, {
+			type: CST.AC_PERIOD,
+			value: 1
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('source', () => {
+		state = uiReducer(state, {
+			type: CST.AC_SOURCE,
+			value: 'test'
 		});
 		expect(state).toMatchSnapshot();
 	});

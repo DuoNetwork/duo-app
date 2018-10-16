@@ -13,7 +13,7 @@ import * as uiActions from './actions/uiActions';
 import * as wsActions from './actions/wsActions';
 import * as CST from './common/constants';
 import contract from './common/contract';
-import wsUtil from './common/websocketUtil';
+import wsUtil from './common/wsUtil';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
 

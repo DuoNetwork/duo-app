@@ -5,6 +5,7 @@ import { ThunkDispatch } from 'redux-thunk';
 import * as contractActions from '../actions/contractActions';
 import * as uiActions from '../actions/uiActions';
 import { IState } from '../common/types';
+import util from '../common/util';
 import Beethoven from '../components/Beethoven';
 
 function mapStateToProps(state: IState) {
@@ -15,8 +16,8 @@ function mapStateToProps(state: IState) {
 		balances: state.contract.balances,
 		network: state.contract.network,
 		account: state.contract.account,
-		sourceLast: state.dynamo.last,
-		conversion: state.dynamo.conversion,
+		sourceLast: util.getLastPriceFromStatus(state.dynamo.status),
+		conversions: state.dynamo.conversions,
 		gasPrice: state.contract.gasPrice
 	};
 }

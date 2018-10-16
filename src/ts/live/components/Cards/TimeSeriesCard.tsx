@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import { IAcceptedPrice, IPrice, ISourceData } from '../../common/types';
+import { IAcceptedPrice, IPrice } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import TimeSeriesChart from '../Charts/TimeSeriesChart';
 import CardTitleSelect from '../Common/CardTitleSelect';
@@ -9,38 +9,24 @@ import { SCard } from './_styled';
 
 interface IProps {
 	locale: string;
-	hourly: ISourceData<IPrice[]>;
-	minutely: ISourceData<IPrice[]>;
-	prices: IAcceptedPrice[];
-}
-
-interface IState {
+	prices: IPrice[];
 	source: string;
-	isHourly: boolean;
+	period: number;
+	acceptedPrices: IAcceptedPrice[];
+	handleSourceUpdate: (src: string) => any;
+	handlePeriodUpdate: (period: number) => any;
 }
 
-export default class TimeSeriesCard extends React.Component<IProps, IState> {
-	constructor(props: IProps) {
-		super(props);
-		this.state = {
-			source: CST.API_BITFINEX.toLowerCase(),
-			isHourly: true
-		};
-	}
-
-	private handleSelect = (source: string) => this.setState({ source: source });
-
-	private handleIntervalToggle = () => this.setState({ isHourly: !this.state.isHourly });
-
-	public render() {
-		const { locale, hourly, minutely, prices } = this.props;
-		const { source, isHourly } = this.state;
+export default class TimeSeriesCard extends React.Component<IProps> {
+		public render() {
+		const { locale, acceptedPrices, prices, period, source, handleSourceUpdate, handlePeriodUpdate } = this.props;
 		return (
 			<SCard
 				title={
 					<CardTitleSelect
 						name={CST.TH_CHART[locale].toUpperCase()}
-						onSelect={this.handleSelect}
+						source={source}
+						onSelect={handleSourceUpdate}
 						onlySource
 					/>
 				}
@@ -50,19 +36,18 @@ export default class TimeSeriesCard extends React.Component<IProps, IState> {
 					<RadioExtra
 						left={CST.TH_5M}
 						right={CST.TH_1H}
-						isLeft={!isHourly}
-						onChange={this.handleIntervalToggle}
+						isLeft={period !== 60}
+						onChange={() => handlePeriodUpdate(period === 60 ? 1 : 60)}
 						rightPadding
 					/>
 				}
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
 					<TimeSeriesChart
-						sourceData={isHourly ? hourly : minutely}
+						acceptedPrices={acceptedPrices}
 						prices={prices}
-						source={source}
-						timeStep={isHourly ? 3600000 : 300000}
-						isHourly={isHourly}
+						timeStep={period === 60 ? 3600000 : 300000}
+						isHourly={period === 60}
 					/>
 				</SDivFlexCenter>
 			</SCard>

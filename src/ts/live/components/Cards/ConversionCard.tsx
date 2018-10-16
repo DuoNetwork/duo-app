@@ -12,12 +12,12 @@ const { Column } = Table;
 
 interface IProps {
 	locale: string;
-	conversion: IConversion[];
+	conversions: IConversion[];
 }
 
 export default class ConversionCard extends React.PureComponent<IProps> {
 	public render() {
-		const { conversion, locale } = this.props;
+		const { conversions, locale } = this.props;
 		return (
 			<LocaleProvider locale={locale === CST.LOCALE_CN ? antdCn : antdEn}>
 				<SCard
@@ -28,7 +28,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 				>
 					<STableWrapper>
 						<Table
-							dataSource={conversion.map(c => ({
+							dataSource={conversions.map(c => ({
 								key: c.transactionHash,
 								[CST.TH_TIME.EN]: moment(c.timestamp).format('YYYY-MM-DD HH:mm:ss'),
 								[CST.TH_STATUS.EN]: c.pending

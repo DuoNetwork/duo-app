@@ -77,7 +77,7 @@ export interface IAddresses {
 }
 
 export interface ISourceData<T> {
-	bitfinex: T;
+	// bitfinex: T;
 	gemini: T;
 	kraken: T;
 	gdax: T;
@@ -105,16 +105,16 @@ export interface IContractState {
 
 export interface IDynamoState {
 	readonly status: adminTypes.IStatus[];
-	readonly hourly: ISourceData<adminTypes.IPrice[]>;
-	readonly minutely: ISourceData<adminTypes.IPrice[]>;
-	readonly price: adminTypes.IAcceptedPrice[];
-	readonly last: ISourceData<ICustodianPrice>;
-	readonly conversion: adminTypes.IConversion[];
-	readonly totalSupply: adminTypes.ITotalSupply[]
+	readonly prices: adminTypes.IPrice[];
+	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
+	readonly conversions: adminTypes.IConversion[];
+	// readonly totalSupply: adminTypes.ITotalSupply[]
 }
 
 export interface IUIState {
 	readonly refresh: number;
+	readonly period: number;
+	readonly source: string;
 	readonly locale: string;
 }
 
