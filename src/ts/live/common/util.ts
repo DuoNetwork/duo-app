@@ -100,13 +100,13 @@ class Util {
 			// 	bitfinex.price = (s as IPriceStatus).price;
 			// 	bitfinex.timestamp = (s as IPriceStatus).timestamp;
 			// } else
-			if (s.process === 'PRICE_AWS_PUBLIC_GEMINI') {
+			if (s.process === 'TRADE_AWS_PUBLIC_GEMINI') {
 				gemini.price = (s as IPriceStatus).price;
 				gemini.timestamp = (s as IPriceStatus).timestamp;
-			} else if (s.process === 'PRICE_AWS_PUBLIC_KRAKEN') {
+			} else if (s.process === 'TRADE_AWS_PUBLIC_KRAKEN') {
 				kraken.price = (s as IPriceStatus).price;
 				kraken.timestamp = (s as IPriceStatus).timestamp;
-			} else if (s.process === 'PRICE_AWS_PUBLIC_GDAX') {
+			} else if (s.process === 'TRADE_AWS_PUBLIC_GDAX') {
 				gdax.price = (s as IPriceStatus).price;
 				gdax.timestamp = (s as IPriceStatus).timestamp;
 			}

@@ -35,9 +35,10 @@ export default class PriceCard extends React.Component<IProps, IState> {
 	public render() {
 		const { locale, reset, states, mobile } = this.props;
 		const { source } = this.state;
-		const last: ICustodianPrice = CST.API_LIST.includes(source.toUpperCase())
+		const last: ICustodianPrice = CST.API_LIST.includes(source)
 			? this.props.sourceLast[source]
 			: this.props.last;
+		console.log(last);
 		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())
 			? util.calculateNav(
 					last.price || 1,
