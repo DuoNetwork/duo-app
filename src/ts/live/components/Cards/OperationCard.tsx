@@ -2,12 +2,12 @@
 import { Popconfirm, Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
+import dynamoUtil from '../../../../../../duo-admin/src/utils/dynamoUtil';
 import demoCreate from '../../../../images/createDemo.png';
 import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
 import * as CST from '../../common/constants';
 import contract from '../../common/contract';
-import dynamoUtil from '../../common/dynamoUtil';
 import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
 import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';

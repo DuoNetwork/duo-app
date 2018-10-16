@@ -35,10 +35,10 @@ export default class PriceCard extends React.Component<IProps, IState> {
 	public render() {
 		const { locale, reset, states, mobile } = this.props;
 		const { source } = this.state;
-		const last: ICustodianPrice = CST.EXCHANGES.includes(source.toUpperCase())
+		const last: ICustodianPrice = CST.API_LIST.includes(source.toUpperCase())
 			? this.props.sourceLast[source]
 			: this.props.last;
-		const [navA, navB] = CST.EXCHANGES.includes(source.toUpperCase())
+		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())
 			? util.calculateNav(
 					last.price || 1,
 					last.timestamp,
@@ -51,7 +51,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			)
 			: [states.navA, states.navB];
 		const ethChange = last.price / reset.price - 1;
-		const tooltipText = (!CST.EXCHANGES.includes(source.toUpperCase())
+		const tooltipText = (!CST.API_LIST.includes(source.toUpperCase())
 			? CST.TT_CTD_NAV
 			: CST.TT_EST_NAV)[locale];
 		return (
