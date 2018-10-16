@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
+import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 import '../../css/liveStyle.css';
 import '../../static/GettingStarted.pdf';
 import '../../static/GettingStarted_CN.pdf';
@@ -15,6 +16,9 @@ import contract from './common/contract';
 import wsUtil from './common/websocketUtil';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
+
+const config = require(`../keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
+dynamoUtil.init(config, !__KOVAN__, '', contract);
 
 store.dispatch(contractActions.getCustodianStates());
 store.dispatch(contractActions.getAllBalances(0, 20));
