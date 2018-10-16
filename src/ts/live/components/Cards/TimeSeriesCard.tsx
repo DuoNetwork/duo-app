@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
+import { IAcceptedPrice, IPrice, ISourceData } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import TimeSeriesChart from '../Charts/TimeSeriesChart';
 import CardTitleSelect from '../Common/CardTitleSelect';
@@ -9,8 +9,8 @@ import { SCard } from './_styled';
 
 interface IProps {
 	locale: string;
-	hourly: ISourceData<IPriceBar[]>;
-	minutely: ISourceData<IPriceBar[]>;
+	hourly: ISourceData<IPrice[]>;
+	minutely: ISourceData<IPrice[]>;
 	prices: IAcceptedPrice[];
 }
 
@@ -23,7 +23,7 @@ export default class TimeSeriesCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			source: CST.EXCHANGE_BITFINEX.toLowerCase(),
+			source: CST.API_BITFINEX.toLowerCase(),
 			isHourly: true
 		};
 	}

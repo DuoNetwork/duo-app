@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import * as CST from '../common/constants';
-import dynamoUtil from '../common/dynamoUtil';
 import { IDynamoState } from '../common/types';
+import util from '../common/util';
 
 export const initialState: IDynamoState = {
 	status: [],
@@ -49,7 +49,7 @@ export function dynamoReducer(state: IDynamoState = initialState, action: AnyAct
 		case CST.AC_DNM_STATUS:
 			return Object.assign({}, state, {
 				status: action.value,
-				last: dynamoUtil.getLastPriceFromStatus(action.value)
+				last: util.getLastPriceFromStatus(action.value)
 			});
 		case CST.AC_DMN_HOURLY:
 			return Object.assign({}, state, {

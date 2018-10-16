@@ -40,50 +40,6 @@ Object {
 }
 `;
 
-exports[`actions fetchHourly 1`] = `
-Array [
-  Object {
-    "type": "dynamoHourly",
-    "value": Object {
-      "bitfinex": Object {
-        "test": "test",
-      },
-      "gdax": Object {
-        "test": "test",
-      },
-      "gemini": Object {
-        "test": "test",
-      },
-      "kraken": Object {
-        "test": "test",
-      },
-    },
-  },
-]
-`;
-
-exports[`actions fetchMinutely 1`] = `
-Array [
-  Object {
-    "type": "dynamoMinutely",
-    "value": Object {
-      "bitfinex": Object {
-        "test": "test",
-      },
-      "gdax": Object {
-        "test": "test",
-      },
-      "gemini": Object {
-        "test": "test",
-      },
-      "kraken": Object {
-        "test": "test",
-      },
-    },
-  },
-]
-`;
-
 exports[`actions fetchPrice 1`] = `
 Array [
   Object {

@@ -1,4 +1,4 @@
-export * from '../../../../../duo-admin/src/constants';
+export * from '../../../../../duo-admin/src/common/constants';
 
 export const AC_CTD_STATES = 'custodianStates';
 export const AC_CTD_PRICES = 'custodianPrices';

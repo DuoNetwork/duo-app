@@ -3,7 +3,7 @@ import moment from 'moment';
 import * as React from 'react';
 import loadingImg from '../../../../images/loadingDUO.png';
 import { ColorStyles } from '../../common/styles';
-import { IAcceptedPrice, IPriceBar, ISourceData } from '../../common/types';
+import { IAcceptedPrice, IPrice, ISourceData } from '../../common/types';
 
 const margin = { top: 40, right: 34, bottom: 23, left: 38 };
 const width = 708 - margin.left - margin.right;
@@ -12,7 +12,7 @@ const height = 400 - margin.top - margin.bottom;
 function drawLines(
 	el: Element,
 	custodianData: IAcceptedPrice[],
-	sourceData: ISourceData<IPriceBar[]>,
+	sourceData: ISourceData<IPrice[]>,
 	timeStep: number,
 	source: string,
 	isHourly?: boolean
@@ -97,21 +97,21 @@ function drawLines(
 		d3.max(
 			[
 				d3.max(slicedCustodianData.map(d => d.price)) || 0,
-				d3.max((sourceData[source] as IPriceBar[]).map(d => d.high).slice(-colums)) || 0
+				d3.max((sourceData[source] as IPrice[]).map(d => d.high).slice(-colums)) || 0
 			]
 		) || 0;
 	const minPrice =
 		d3.min(
 			[
 				d3.min(slicedCustodianData.map(d => d.price)) || 0,
-				d3.min((sourceData[source] as IPriceBar[]).map(d => d.low).slice(-colums)) || 0
+				d3.min((sourceData[source] as IPrice[]).map(d => d.low).slice(-colums)) || 0
 			]
 		) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
 	const rangeBottom = d3.max([0, minPrice - 0.2 * (maxPrice - minPrice)]) || 0;
 	//Data Range Volumn
 	const maxVol =
-		d3.max((sourceData[source] as IPriceBar[]).map(d => d.volume).slice(-colums)) || 0;
+		d3.max((sourceData[source] as IPrice[]).map(d => d.volume).slice(-colums)) || 0;
 	const rangeTopV = maxVol * 7;
 
 	//Data Range (Nav A/B)
@@ -218,7 +218,7 @@ function drawLines(
 		.attr('class', 'chart-data')
 		.attr('clip-path', 'url(#clip)');
 	//Draw OHLCs
-	const isUpday = (d: IPriceBar): boolean => {
+	const isUpday = (d: IPrice): boolean => {
 		return d.close > d.open;
 	};
 	const line = d3
@@ -765,7 +765,7 @@ function drawLines(
 }
 
 interface IProps {
-	sourceData: ISourceData<IPriceBar[]>;
+	sourceData: ISourceData<IPrice[]>;
 	prices: IAcceptedPrice[];
 	source: string;
 	timeStep: number;

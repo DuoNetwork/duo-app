@@ -1,9 +1,9 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import contract from '../common/contract';
-import dynamoUtil from '../common/dynamoUtil';
 import * as uiActions from './uiActions';
 
 const mockStore = configureMockStore([thunk]);
@@ -40,16 +40,16 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
-		dynamoUtil.queryHourlyOHLC = jest.fn(() =>
-			Promise.resolve({
-				test: 'test'
-			})
-		);
-		dynamoUtil.queryMinutelyOHLC = jest.fn(() =>
-			Promise.resolve({
-				test: 'test'
-			})
-		);
+		// dynamoUtil.queryHourlyOHLC = jest.fn(() =>
+		// 	Promise.resolve({
+		// 		test: 'test'
+		// 	})
+		// );
+		// dynamoUtil.queryMinutelyOHLC = jest.fn(() =>
+		// 	Promise.resolve({
+		// 		test: 'test'
+		// 	})
+		// );
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		dynamoUtil.queryConversionEvent = jest.fn(() =>
 			Promise.resolve([

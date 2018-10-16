@@ -1,18 +1,12 @@
 import moment from 'moment';
-import {
-	IAcceptedPrice,
-	ICustodianPrice,
-	ICustodianStates,
-	IPriceBar,
-	ITotalSupply
-} from './types';
+import { IAcceptedPrice, ICustodianPrice, ICustodianStates, IPrice, ITotalSupply } from './types';
 import util from './util';
 
 class ChartUtil {
-	public interpolate(sourceData: IPriceBar[], isHourly: boolean): IPriceBar[] {
+	public interpolate(sourceData: IPrice[], isHourly: boolean): IPrice[] {
 		if (!sourceData.length) return [];
 		sourceData.sort((a, b) => a.timestamp - b.timestamp);
-		const newSourceData: IPriceBar[] = [];
+		const newSourceData: IPrice[] = [];
 		const timeStep = isHourly ? 3.6e6 : 60000;
 		const source = sourceData[0].source;
 		for (let i = 0; i < sourceData.length - 1; i++) {
@@ -24,9 +18,9 @@ class ChartUtil {
 			while (newTimeStamp < nextTimeIndex) {
 				newSourceData.push({
 					source: source,
-					date: moment.utc(newTimeStamp).format('YYYY-MM-DD'),
-					hour: moment.utc(newTimeStamp).format('HH'),
-					minute: isHourly ? 0 : Number(moment.utc(newTimeStamp).format('mm')),
+					base: sourceData[i].base,
+					quote: sourceData[i].quote,
+					period: sourceData[i].period,
 					open: close,
 					high: close,
 					low: close,
@@ -42,13 +36,13 @@ class ChartUtil {
 		return newSourceData;
 	}
 
-	public mergePriceBars(bars: IPriceBar[]) {
+	public mergePriceBars(bars: IPrice[]): IPrice {
 		if (!bars.length)
 			return {
 				source: '',
-				date: '',
-				hour: '',
-				minute: 0,
+				base: '',
+				quote: '',
+				period: 0,
 				open: 0,
 				high: 0,
 				low: 0,
@@ -67,9 +61,9 @@ class ChartUtil {
 		}
 		return {
 			source: bars[0].source,
-			date: last.date,
-			hour: last.hour,
-			minute: last.minute,
+			base: bars[0].base,
+			quote: bars[0].quote,
+			period: bars[0].period,
 			open: bars[0].open,
 			high: high,
 			low: low,
@@ -104,49 +98,57 @@ class ChartUtil {
 	}
 
 	public mergeLastToPriceBar(
-		pricebars: IPriceBar[],
+		pricebars: IPrice[],
 		last: ICustodianPrice,
 		isHourly: boolean
-	): IPriceBar[] {
+	): IPrice[] {
 		if (!pricebars || !pricebars.length) return pricebars;
 		const lastBar = pricebars[pricebars.length - 1];
 		const dateObj = moment.utc(last.timestamp);
 		if (lastBar.timestamp >= last.timestamp) return pricebars;
 
-		if (isHourly && lastBar.date + ' ' + lastBar.hour !== dateObj.format('YYYY-MM-DD HH'))
+		if (
+			isHourly &&
+			moment.utc(lastBar.timestamp).format('YYYY-MM-DD HH') !==
+				dateObj.format('YYYY-MM-DD HH')
+		)
 			return [
 				...pricebars,
 				{
 					source: lastBar.source,
-					date: dateObj.format('YYYY-MM-DD'),
-					hour: dateObj.format('HH'),
-					minute: 0,
+					base: lastBar.base,
+					quote: lastBar.quote,
+					period: lastBar.period,
 					open: lastBar.close,
 					high: Math.max(lastBar.close, last.price),
 					low: Math.min(lastBar.close, last.price),
 					close: last.price,
 					volume: 0,
-					timestamp: moment.utc(dateObj.format('YYYY-MM-DD HH') + ':0', 'YYYY-MM-DD HH:m').valueOf()
+					timestamp: moment
+						.utc(dateObj.format('YYYY-MM-DD HH') + ':0', 'YYYY-MM-DD HH:m')
+						.valueOf()
 				}
 			];
 		else if (
 			!isHourly &&
-			lastBar.date + ' ' + lastBar.hour + ' ' + lastBar.minute !==
+			moment.utc(lastBar.timestamp).format('YYYY-MM-DD HH m') !==
 				dateObj.format('YYYY-MM-DD HH m')
 		)
 			return [
 				...pricebars,
 				{
 					source: lastBar.source,
-					date: dateObj.format('YYYY-MM-DD'),
-					hour: dateObj.format('HH'),
-					minute: Number(dateObj.format('mm')),
+					base: lastBar.base,
+					quote: lastBar.quote,
+					period: lastBar.period,
 					open: lastBar.close,
 					high: Math.max(lastBar.close, last.price),
 					low: Math.min(lastBar.close, last.price),
 					close: last.price,
 					volume: 0,
-					timestamp: moment.utc(dateObj.format('YYYY-MM-DD HH:m'), 'YYYY-MM-DD HH:m').valueOf()
+					timestamp: moment
+						.utc(dateObj.format('YYYY-MM-DD HH:m'), 'YYYY-MM-DD HH:m')
+						.valueOf()
 				}
 			];
 		else
@@ -154,9 +156,9 @@ class ChartUtil {
 				...pricebars.slice(0, pricebars.length - 1),
 				{
 					source: lastBar.source,
-					date: lastBar.date,
-					hour: lastBar.hour,
-					minute: lastBar.minute,
+					base: lastBar.base,
+					quote: lastBar.quote,
+					period: lastBar.period,
 					open: lastBar.open,
 					high: Math.max(lastBar.high, last.price),
 					low: Math.min(lastBar.low, last.price),

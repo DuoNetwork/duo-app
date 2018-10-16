@@ -22,7 +22,7 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 				<SDivFlexCenter horizontal noJust>
 					<div>{this.props.name}</div>
 					<SCardTitleSelector
-						defaultValue={onlySource ? CST.EXCHANGE_BITFINEX : CST.TH_BEETHOVEN}
+						defaultValue={onlySource ? CST.API_BITFINEX : CST.TH_BEETHOVEN}
 						style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 						size="small"
 						onSelect={(value: any) => this.props.onSelect(value + '')}
@@ -30,7 +30,7 @@ export default class CardTitleSelect extends React.PureComponent<IProps> {
 						{onlySource ? null : (
 							<Option value={CST.TH_BEETHOVEN}>{CST.TH_BEETHOVEN}</Option>
 						)}
-						{CST.EXCHANGES.map(src => (
+						{CST.API_LIST.map(src => (
 							<Option key={src.toLowerCase()} value={src.toLowerCase()}>
 								{src.toUpperCase()}
 							</Option>

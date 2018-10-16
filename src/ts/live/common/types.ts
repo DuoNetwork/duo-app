@@ -1,6 +1,7 @@
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import * as adminTypes from '../../../../../duo-admin/src/types';
+export * from '../../../../../duo-admin/src/common/types';
+import * as adminTypes from '../../../../../duo-admin/src/common/types';
 
 export interface ICustodianPrice {
 	address: string;
@@ -75,56 +76,12 @@ export interface IAddresses {
 	[role: string]: IAddress;
 }
 
-export interface IStatus {
-	process: string;
-	timestamp: number;
-}
-
-export interface IPriceStatus extends IStatus {
-	price: number;
-	volume: number;
-}
-
-export interface INodeStatus extends IStatus {
-	block: number;
-}
-
-export import IPriceBar = adminTypes.IPriceBar;
-
 export interface ISourceData<T> {
 	bitfinex: T;
 	gemini: T;
 	kraken: T;
 	gdax: T;
 	[source: string]: T;
-}
-
-export interface IBaseEvent {
-	timestamp: number;
-	transactionHash: string;
-	blockNumber: number;
-}
-
-export interface IAcceptedPrice extends IBaseEvent {
-	price: number;
-	navA: number;
-	navB: number;
-}
-
-export interface ITotalSupply extends IBaseEvent {
-	tokenA: number,
-	tokenB: number
-}
-
-export interface IConversion extends IBaseEvent {
-	type: string;
-	eth: number;
-	tokenA: number;
-	tokenB: number;
-	ethFee: number;
-	duoFee: number;
-	pending?: boolean;
-	reverted?: boolean;
 }
 
 export interface IState {
@@ -147,13 +104,13 @@ export interface IContractState {
 }
 
 export interface IDynamoState {
-	readonly status: IStatus[];
-	readonly hourly: ISourceData<IPriceBar[]>;
-	readonly minutely: ISourceData<IPriceBar[]>;
-	readonly price: IAcceptedPrice[];
+	readonly status: adminTypes.IStatus[];
+	readonly hourly: ISourceData<adminTypes.IPrice[]>;
+	readonly minutely: ISourceData<adminTypes.IPrice[]>;
+	readonly price: adminTypes.IAcceptedPrice[];
 	readonly last: ISourceData<ICustodianPrice>;
-	readonly conversion: IConversion[];
-	readonly totalSupply: ITotalSupply[]
+	readonly conversion: adminTypes.IConversion[];
+	readonly totalSupply: adminTypes.ITotalSupply[]
 }
 
 export interface IUIState {

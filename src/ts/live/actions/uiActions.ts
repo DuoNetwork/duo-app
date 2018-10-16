@@ -20,8 +20,8 @@ export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 		if (!isAdminPage) {
 			await dispatch(dynamoActions.scanStatus());
 			dispatch(contractActions.getBalances());
-			dispatch(dynamoActions.fetchHourly());
-			dispatch(dynamoActions.fetchMinutely());
+			// dispatch(dynamoActions.fetchHourly());
+			// dispatch(dynamoActions.fetchMinutely());
 			dispatch(dynamoActions.fetchPrice());
 			dispatch(dynamoActions.fetchConversion());
 			// dispatch(dynamoActions.fetchTotalSupply());

@@ -1,5 +1,7 @@
 import * as d3 from 'd3';
 import moment, { DurationInputArg2 } from 'moment';
+import * as CST from './constants';
+import { ICustodianPrice, IPriceStatus, ISourceData, IStatus } from './types';
 
 class Util {
 	public convertUpdateTime(timestamp: number): string {
@@ -55,12 +57,11 @@ class Util {
 	}
 
 	public formatBalance(num: number) {
-		if (Math.abs(num) < 1e-8)
-			return '0.000';
+		if (Math.abs(num) < 1e-8) return '0.000';
 		return d3
 			.format(Math.abs(num) > 1 ? ',.4s' : ',.4n')(num)
 			.toUpperCase()
-			.replace(/G/g, 'B')
+			.replace(/G/g, 'B');
 	}
 
 	public formatNumber(num: number) {
@@ -71,6 +72,51 @@ class Util {
 			.format(',.4s')(num)
 			.toUpperCase()
 			.replace(/G/g, 'B');
+	}
+
+	public getLastPriceFromStatus(status: IStatus[]): ISourceData<ICustodianPrice> {
+		const bitfinex: ICustodianPrice = {
+			address: CST.DUMMY_ADDR,
+			price: 0,
+			timestamp: 0
+		};
+		const kraken: ICustodianPrice = {
+			address: CST.DUMMY_ADDR,
+			price: 0,
+			timestamp: 0
+		};
+		const gemini: ICustodianPrice = {
+			address: CST.DUMMY_ADDR,
+			price: 0,
+			timestamp: 0
+		};
+		const gdax: ICustodianPrice = {
+			address: CST.DUMMY_ADDR,
+			price: 0,
+			timestamp: 0
+		};
+		status.forEach(s => {
+			if (s.process === 'PRICE_AWS_PUBLIC_BITFINEX') {
+				bitfinex.price = (s as IPriceStatus).price;
+				bitfinex.timestamp = (s as IPriceStatus).timestamp;
+			} else if (s.process === 'PRICE_AWS_PUBLIC_GEMINI') {
+				gemini.price = (s as IPriceStatus).price;
+				gemini.timestamp = (s as IPriceStatus).timestamp;
+			} else if (s.process === 'PRICE_AWS_PUBLIC_KRAKEN') {
+				kraken.price = (s as IPriceStatus).price;
+				kraken.timestamp = (s as IPriceStatus).timestamp;
+			} else if (s.process === 'PRICE_AWS_PUBLIC_GDAX') {
+				gdax.price = (s as IPriceStatus).price;
+				gdax.timestamp = (s as IPriceStatus).timestamp;
+			}
+		});
+
+		return {
+			bitfinex,
+			kraken,
+			gemini,
+			gdax
+		};
 	}
 }
 

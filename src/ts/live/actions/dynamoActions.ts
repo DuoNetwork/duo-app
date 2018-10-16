@@ -1,11 +1,11 @@
 import moment from 'moment';
+import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
-import dynamoUtil from '../common/dynamoUtil';
 import {
 	IAcceptedPrice,
 	IConversion,
-	IPriceBar,
+	IPrice,
 	ISourceData,
 	ITotalSupply,
 	VoidThunkAction
@@ -26,55 +26,55 @@ export function scanStatus(): VoidThunkAction {
 	};
 }
 
-export function hourlyUpdate(hourly: ISourceData<IPriceBar[]>) {
+export function hourlyUpdate(hourly: ISourceData<IPrice[]>) {
 	return {
 		type: CST.AC_DMN_HOURLY,
 		value: hourly
 	};
 }
 
-export function fetchHourly(): VoidThunkAction {
-	return async dispatch => {
-		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
-		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
-		const results = await Promise.all(promistList);
-		const hourly: ISourceData<IPriceBar[]> = {
-			bitfinex: [],
-			gemini: [],
-			kraken: [],
-			gdax: []
-		};
-		results.forEach(
-			(r, i) => (hourly[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, true))
-		);
-		dispatch(hourlyUpdate(hourly));
-	};
-}
+// export function fetchHourly(): VoidThunkAction {
+// 	return async dispatch => {
+// 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
+// 		const promistList = CST.API_LIST.map(src => dynamoUtil.queryHourlyOHLC(src, dates));
+// 		const results = await Promise.all(promistList);
+// 		const hourly: ISourceData<IPrice[]> = {
+// 			bitfinex: [],
+// 			gemini: [],
+// 			kraken: [],
+// 			gdax: []
+// 		};
+// 		results.forEach(
+// 			(r, i) => (hourly[CST.API_LIST[i].toLowerCase()] = chartUtil.interpolate(r, true))
+// 		);
+// 		dispatch(hourlyUpdate(hourly));
+// 	};
+// }
 
-export function minutelyUpdate(minutely: ISourceData<IPriceBar[]>) {
+export function minutelyUpdate(minutely: ISourceData<IPrice[]>) {
 	return {
 		type: CST.AC_DMN_MINUTELY,
 		value: minutely
 	};
 }
 
-export function fetchMinutely(): VoidThunkAction {
-	return async dispatch => {
-		const dates = util.getDates(7, 1, 'hour', 'YYYY-MM-DD-HH');
-		const promistList = CST.EXCHANGES.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
-		const results = await Promise.all(promistList);
-		const minutely: ISourceData<IPriceBar[]> = {
-			bitfinex: [],
-			gemini: [],
-			kraken: [],
-			gdax: []
-		};
-		results.forEach(
-			(r, i) => (minutely[CST.EXCHANGES[i].toLowerCase()] = chartUtil.interpolate(r, false))
-		);
-		dispatch(minutelyUpdate(minutely));
-	};
-}
+// export function fetchMinutely(): VoidThunkAction {
+// 	return async dispatch => {
+// 		const dates = util.getDates(7, 1, 'hour', 'YYYY-MM-DD-HH');
+// 		const promistList = CST.API_LIST.map(src => dynamoUtil.queryMinutelyOHLC(src, dates));
+// 		const results = await Promise.all(promistList);
+// 		const minutely: ISourceData<IPrice[]> = {
+// 			bitfinex: [],
+// 			gemini: [],
+// 			kraken: [],
+// 			gdax: []
+// 		};
+// 		results.forEach(
+// 			(r, i) => (minutely[CST.API_LIST[i].toLowerCase()] = chartUtil.interpolate(r, false))
+// 		);
+// 		dispatch(minutelyUpdate(minutely));
+// 	};
+// }
 
 export function priceUpdate(prices: IAcceptedPrice[]) {
 	return {

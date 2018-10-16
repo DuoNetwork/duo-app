@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import chartUtil from '../../common/chartUtil';
-import { IPriceBar, ISourceData, IState } from '../../common/types';
+import { IPrice, ISourceData, IState } from '../../common/types';
 import TimeSeriesCard from '../../components/Cards/TimeSeriesCard';
 
 function mapStateToProps(state: IState) {
 	const minutely = state.dynamo.minutely;
-	const mergedMinutely: ISourceData<IPriceBar[]> = {
+	const mergedMinutely: ISourceData<IPrice[]> = {
 		bitfinex: [],
 		gemini: [],
 		gdax: [],
 		kraken: []
 	};
 	for (const src in minutely) {
-		const srcData: IPriceBar[] = minutely[src];
+		const srcData: IPrice[] = minutely[src];
 		mergedMinutely[src] = [];
 		for (let i = 0; i < srcData.length; i += 5)
 			mergedMinutely[src].push(
