@@ -1,48 +1,32 @@
-import moment from 'moment';
 import { IAcceptedPrice, ICustodianPrice, ICustodianStates, IPrice } from './types';
-// import util from './util';
 
 class ChartUtil {
-	public interpolate(sourceData: IPrice[], isHourly: boolean): IPrice[] {
-		if (!sourceData.length) return [];
-		sourceData.sort((a, b) => a.timestamp - b.timestamp);
-		const newSourceData: IPrice[] = [];
-		const timeStep = isHourly ? 3.6e6 : 60000;
-		const source = sourceData[0].source;
-		for (let i = 0; i < sourceData.length - 1; i++) {
-			newSourceData.push(sourceData[i]);
-			const timeIndex = sourceData[i].timestamp;
-			const nextTimeIndex = sourceData[i + 1].timestamp;
-			const close = sourceData[i].close;
-			let newTimeStamp = timeIndex + timeStep;
-			while (newTimeStamp < nextTimeIndex) {
-				newSourceData.push({
-					source: source,
-					base: sourceData[i].base,
-					quote: sourceData[i].quote,
-					period: sourceData[i].period,
-					open: close,
-					high: close,
-					low: close,
-					close: close,
-					volume: 0,
-					timestamp: newTimeStamp
-				});
-				newTimeStamp += timeStep;
-			}
+	public mergePrices(prices: IPrice[], period: number): IPrice[] {
+		const merged: IPrice[] = [];
+		let currentBatch: IPrice[] = [];
+		for (let i = 0; i < prices.length; i++) {
+			const price = prices[i];
+			if (!currentBatch.length) currentBatch.push(price);
+			else if (
+				Math.floor(price.timestamp / period / 60000) !==
+				Math.floor(prices[i - 1].timestamp / period / 60000)
+			) {
+				merged.push(this.mergePricesToPrice(currentBatch, period));
+				currentBatch = [];
+			} else currentBatch.push(price);
 		}
-		newSourceData.push(sourceData[sourceData.length - 1]);
 
-		return newSourceData;
+		if (currentBatch.length) merged.push(this.mergePricesToPrice(currentBatch, period));
+		return merged;
 	}
 
-	public mergePriceBars(bars: IPrice[]): IPrice {
-		if (!bars.length)
+	public mergePricesToPrice(prices: IPrice[], period: number): IPrice {
+		if (!prices.length)
 			return {
 				source: '',
 				base: '',
 				quote: '',
-				period: 0,
+				period: period,
 				open: 0,
 				high: 0,
 				low: 0,
@@ -50,26 +34,27 @@ class ChartUtil {
 				volume: 0,
 				timestamp: 0
 			};
-		const last = bars[bars.length - 1];
-		let high = bars[0].high;
-		let low = bars[0].low;
+		const last = prices[0];
+		const first = prices[prices.length - 1];
+		let high = prices[0].high;
+		let low = prices[0].low;
 		let volume = 0;
-		for (const bar of bars) {
-			high = Math.max(high, bar.high);
-			low = Math.min(low, bar.low);
-			volume += bar.volume;
+		for (const price of prices) {
+			high = Math.max(high, price.high);
+			low = Math.min(low, price.low);
+			volume += price.volume;
 		}
 		return {
-			source: bars[0].source,
-			base: bars[0].base,
-			quote: bars[0].quote,
-			period: bars[0].period,
-			open: bars[0].open,
+			source: last.source,
+			base: last.base,
+			quote: last.quote,
+			period: period,
+			open: first.open,
 			high: high,
 			low: low,
 			close: last.close,
 			volume: volume,
-			timestamp: bars[0].timestamp
+			timestamp: Math.floor(first.timestamp / period / 60000) * period * 60000
 		};
 	}
 
@@ -97,89 +82,62 @@ class ChartUtil {
 		return all;
 	}
 
-	public mergeLastToPriceBar(
-		pricebars: IPrice[],
-		last: ICustodianPrice,
-		isHourly: boolean
-	): IPrice[] {
-		if (!pricebars || !pricebars.length) return pricebars;
-		const lastBar = pricebars[pricebars.length - 1];
-		const dateObj = moment.utc(last.timestamp);
-		if (lastBar.timestamp >= last.timestamp) return pricebars;
+	public mergeLastestToPrices(prices: IPrice[], latest: ICustodianPrice): IPrice[] {
+		if (!prices || !prices.length) return prices;
+		const lastPrice = prices[0];
+		if (lastPrice.timestamp >= latest.timestamp) return prices;
 
 		if (
-			isHourly &&
-			moment.utc(lastBar.timestamp).format('YYYY-MM-DD HH') !==
-				dateObj.format('YYYY-MM-DD HH')
+			Math.floor(lastPrice.timestamp / lastPrice.period / 60000) !==
+			Math.floor(latest.timestamp / lastPrice.period / 60000)
 		)
 			return [
-				...pricebars,
 				{
-					source: lastBar.source,
-					base: lastBar.base,
-					quote: lastBar.quote,
-					period: lastBar.period,
-					open: lastBar.close,
-					high: Math.max(lastBar.close, last.price),
-					low: Math.min(lastBar.close, last.price),
-					close: last.price,
+					source: lastPrice.source,
+					base: lastPrice.base,
+					quote: lastPrice.quote,
+					period: lastPrice.period,
+					open: lastPrice.close,
+					high: Math.max(lastPrice.close, latest.price),
+					low: Math.min(lastPrice.close, latest.price),
+					close: latest.price,
 					volume: 0,
-					timestamp: moment
-						.utc(dateObj.format('YYYY-MM-DD HH') + ':0', 'YYYY-MM-DD HH:m')
-						.valueOf()
-				}
-			];
-		else if (
-			!isHourly &&
-			moment.utc(lastBar.timestamp).format('YYYY-MM-DD HH m') !==
-				dateObj.format('YYYY-MM-DD HH m')
-		)
-			return [
-				...pricebars,
-				{
-					source: lastBar.source,
-					base: lastBar.base,
-					quote: lastBar.quote,
-					period: lastBar.period,
-					open: lastBar.close,
-					high: Math.max(lastBar.close, last.price),
-					low: Math.min(lastBar.close, last.price),
-					close: last.price,
-					volume: 0,
-					timestamp: moment
-						.utc(dateObj.format('YYYY-MM-DD HH:m'), 'YYYY-MM-DD HH:m')
-						.valueOf()
-				}
+					timestamp:
+						Math.floor(latest.timestamp / lastPrice.period / 60000) *
+						lastPrice.period *
+						60000
+				},
+				...prices
 			];
 		else
 			return [
-				...pricebars.slice(0, pricebars.length - 1),
 				{
-					source: lastBar.source,
-					base: lastBar.base,
-					quote: lastBar.quote,
-					period: lastBar.period,
-					open: lastBar.open,
-					high: Math.max(lastBar.high, last.price),
-					low: Math.min(lastBar.low, last.price),
-					close: last.price,
+					source: lastPrice.source,
+					base: lastPrice.base,
+					quote: lastPrice.quote,
+					period: lastPrice.period,
+					open: lastPrice.open,
+					high: Math.max(lastPrice.high, latest.price),
+					low: Math.min(lastPrice.low, latest.price),
+					close: latest.price,
 					volume: 0,
-					timestamp: lastBar.timestamp
-				}
+					timestamp: lastPrice.timestamp
+				},
+				...prices.slice(1, prices.length)
 			];
 	}
 
-	public mergeLastToPrice(
-		price: IAcceptedPrice[],
+	public mergeLastestToAcceptedPrices(
+		acceptedPrices: IAcceptedPrice[],
 		states: ICustodianStates,
 		last: ICustodianPrice
 	): IAcceptedPrice[] {
-		if (!price.length) return price;
-		const lastPrice = price[price.length - 1];
+		if (!acceptedPrices.length) return acceptedPrices;
+		const lastPrice = acceptedPrices[acceptedPrices.length - 1];
 		const lastTimestamp = Math.round(last.timestamp / 3600000) * 3600000;
 		if (lastPrice.timestamp < lastTimestamp)
 			return [
-				...price,
+				...acceptedPrices,
 				{
 					price: last.price,
 					navA: states.navA,
@@ -190,7 +148,7 @@ class ChartUtil {
 				}
 			];
 
-		return price;
+		return acceptedPrices;
 	}
 
 	// public mergeTotalSupply(totalSupply: ITotalSupply[], states: ICustodianStates): ITotalSupply[] {

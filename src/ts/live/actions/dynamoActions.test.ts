@@ -32,11 +32,32 @@ describe('actions', () => {
 		expect(dynamoActions.pricesUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
-	test('fetchPrices', () => {
+	test('fetchPrices 60', () => {
 		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
 		const store: any = mockStore({
 			ui: {
 				period: 60,
+				source: 'test'
+			}
+		});
+		dynamoUtil.getPrices = jest.fn(
+			(src: string, period: number, start: number, end: number, pair: string) =>
+				Promise.resolve([src, period, start, end, pair])
+		);
+		store.dispatch(dynamoActions.fetchPrices());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('fetchPrices 5', () => {
+		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
+		const store: any = mockStore({
+			ui: {
+				period: 5,
 				source: 'test'
 			}
 		});

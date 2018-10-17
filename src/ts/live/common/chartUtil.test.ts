@@ -44,21 +44,8 @@ const hourlyBar3 = {
 	timestamp: moment.utc('2018-06-06 03:0', 'YYYY-MM-DD HH:m').valueOf()
 };
 
-test('hourly does not interpolate unnecessarily', () => {
-	const result = chartUtil.interpolate([hourlyBar1, hourlyBar2], true);
-	expect(result.length).toBe(2);
-	expect(result[0]).toBe(hourlyBar1);
-	expect(result[1]).toEqual(hourlyBar2);
-});
-
-test('hourly interpolate correctly', () => {
-	const result = chartUtil.interpolate([hourlyBar1, hourlyBar3], true);
-	expect(result.length).toBe(4);
-	expect(result[0]).toBe(hourlyBar1);
-	expect(result[3]).toEqual(hourlyBar3);
-	expect(result[1]).toMatchSnapshot();
-	expect(result[2]).toMatchSnapshot();
-	expect(chartUtil.mergePriceBars(result)).toMatchSnapshot();
+test('mergePrices', () => {
+	expect(chartUtil.mergePrices([hourlyBar1, hourlyBar2, hourlyBar3], 180)).toMatchSnapshot();
 });
 
 const minutelyBar1 = {
@@ -100,21 +87,8 @@ const minutelyBar3 = {
 	timestamp: moment.utc('2018-06-06 00:3', 'YYYY-MM-DD HH:m').valueOf()
 };
 
-test('minutely does not interpolate unnecessarily', () => {
-	const result = chartUtil.interpolate([minutelyBar1, minutelyBar2], false);
-	expect(result.length).toBe(2);
-	expect(result[0]).toBe(minutelyBar1);
-	expect(result[1]).toEqual(minutelyBar2);
-});
-
-test('minutely interpolate correctly', () => {
-	const result = chartUtil.interpolate([minutelyBar1, minutelyBar3], false);
-	expect(result.length).toBe(4);
-	expect(result[0]).toBe(minutelyBar1);
-	expect(result[3]).toEqual(minutelyBar3);
-	expect(result[1]).toMatchSnapshot();
-	expect(result[2]).toMatchSnapshot();
-	expect(chartUtil.mergePriceBars(result)).toMatchSnapshot();
+test('minutely merged correctly to 5 minute bar', () => {
+	expect(chartUtil.mergePrices([minutelyBar1, minutelyBar2, minutelyBar3], 5)).toMatchSnapshot();
 });
 
 const acceptedPrice1 = {

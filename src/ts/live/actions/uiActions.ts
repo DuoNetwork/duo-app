@@ -16,7 +16,8 @@ export function updatePeriod(period: number) {
 
 export function updateSource(src: string) {
 	return {
-		type: CST.AC_SOURCE, value: src
+		type: CST.AC_SOURCE,
+		value: src
 	};
 }
 

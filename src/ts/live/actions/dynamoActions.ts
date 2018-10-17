@@ -36,17 +36,11 @@ export function fetchPrices(): VoidThunkAction {
 	return async (dispatch, state) => {
 		const source = state().ui.source;
 		const period = state().ui.period;
-		dispatch(
-			pricesUpdate(
-				await dynamoUtil.getPrices(
-					source,
-					period,
-					util.getUTCNowTimestamp() - period * 96 * 60000,
-					0,
-					'ETH|USD'
-				)
-			)
-		);
+		const start =
+			period === 60
+				? util.getUTCNowTimestamp() - period * 96 * 60000
+				: util.getUTCNowTimestamp() - 400 * 60000;
+		dispatch(pricesUpdate(await dynamoUtil.getPrices(source, period === 60 ? 60 : 1, start, 0, 'ETH|USD')));
 	};
 }
 

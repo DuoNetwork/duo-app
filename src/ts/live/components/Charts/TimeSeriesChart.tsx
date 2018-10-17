@@ -12,9 +12,7 @@ const height = 400 - margin.top - margin.bottom;
 function drawLines(
 	el: Element,
 	acceptedPrices: IAcceptedPrice[],
-	prices: IPrice[],
-	timeStep: number,
-	isHourly?: boolean
+	prices: IPrice[]
 ) {
 	const dataLoaded = acceptedPrices.length && prices.length;
 	if (!dataLoaded) {
@@ -25,6 +23,8 @@ function drawLines(
 			.html('<span>Loading...</span><img class="loading-img" src="' + loadingImg + '" />');
 		return;
 	}
+	const timeStep = prices[0].period * 60000;
+	const isHourly = prices[0].period === 60;
 	//Establish SVG Playground
 	d3.selectAll('.loading').remove();
 	d3.selectAll('#timeserieschart').remove();
@@ -757,8 +757,6 @@ function drawLines(
 interface IProps {
 	prices: IPrice[];
 	acceptedPrices: IAcceptedPrice[];
-	timeStep: number;
-	isHourly?: boolean;
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
@@ -769,18 +767,17 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { acceptedPrices, prices, timeStep, isHourly } = this.props;
-		drawLines(this.chartRef.current as Element, acceptedPrices, prices, timeStep, isHourly);
+		const { acceptedPrices, prices } = this.props;
+		drawLines(this.chartRef.current as Element, acceptedPrices, prices);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		const { acceptedPrices, prices, timeStep, isHourly } = nextProps;
+		const { acceptedPrices, prices } = nextProps;
 		if (
 			JSON.stringify(prices) !== JSON.stringify(this.props.prices) ||
-			JSON.stringify(acceptedPrices) !== JSON.stringify(this.props.acceptedPrices) ||
-			timeStep !== this.props.timeStep
+			JSON.stringify(acceptedPrices) !== JSON.stringify(this.props.acceptedPrices)
 		)
-			drawLines(this.chartRef.current as Element, acceptedPrices, prices, timeStep, isHourly);
+			drawLines(this.chartRef.current as Element, acceptedPrices, prices);
 
 		return false;
 	}

@@ -60,7 +60,22 @@ Object {
 }
 `;
 
-exports[`actions fetchPrices 1`] = `
+exports[`actions fetchPrices 5 1`] = `
+Array [
+  Object {
+    "type": "prices",
+    "value": Array [
+      "test",
+      1,
+      1210567890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions fetchPrices 60 1`] = `
 Array [
   Object {
     "type": "prices",

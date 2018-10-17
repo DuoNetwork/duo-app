@@ -37,7 +37,7 @@ export default class TimeSeriesCard extends React.Component<IProps> {
 						left={CST.TH_5M}
 						right={CST.TH_1H}
 						isLeft={period !== 60}
-						onChange={() => handlePeriodUpdate(period === 60 ? 1 : 60)}
+						onChange={() => handlePeriodUpdate(period === 60 ? 5 : 60)}
 						rightPadding
 					/>
 				}
@@ -46,8 +46,6 @@ export default class TimeSeriesCard extends React.Component<IProps> {
 					<TimeSeriesChart
 						acceptedPrices={acceptedPrices}
 						prices={prices}
-						timeStep={period === 60 ? 3600000 : 300000}
-						isHourly={period === 60}
 					/>
 				</SDivFlexCenter>
 			</SCard>

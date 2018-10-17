@@ -29,51 +29,6 @@ Array [
 ]
 `;
 
-exports[`hourly interpolate correctly 1`] = `
-Object {
-  "base": "base",
-  "close": 2,
-  "high": 2,
-  "low": 2,
-  "open": 2,
-  "period": 60,
-  "quote": "quote",
-  "source": "source",
-  "timestamp": 1528246800000,
-  "volume": 0,
-}
-`;
-
-exports[`hourly interpolate correctly 2`] = `
-Object {
-  "base": "base",
-  "close": 2,
-  "high": 2,
-  "low": 2,
-  "open": 2,
-  "period": 60,
-  "quote": "quote",
-  "source": "source",
-  "timestamp": 1528250400000,
-  "volume": 0,
-}
-`;
-
-exports[`hourly interpolate correctly 3`] = `
-Object {
-  "base": "base",
-  "close": 2,
-  "high": 3,
-  "low": 0,
-  "open": 1,
-  "period": 60,
-  "quote": "quote",
-  "source": "source",
-  "timestamp": 1528243200000,
-  "volume": 246,
-}
-`;
-
 exports[`merge reset correctly 1`] = `
 Array [
   Object {
@@ -135,47 +90,36 @@ Array [
 ]
 `;
 
-exports[`minutely interpolate correctly 1`] = `
-Object {
-  "base": "base",
-  "close": 2,
-  "high": 2,
-  "low": 2,
-  "open": 2,
-  "period": 1,
-  "quote": "quote",
-  "source": "source",
-  "timestamp": 1528243260000,
-  "volume": 0,
-}
+exports[`mergePrices 1`] = `
+Array [
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 180,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528243200000,
+    "volume": 246,
+  },
+]
 `;
 
-exports[`minutely interpolate correctly 2`] = `
-Object {
-  "base": "base",
-  "close": 2,
-  "high": 2,
-  "low": 2,
-  "open": 2,
-  "period": 1,
-  "quote": "quote",
-  "source": "source",
-  "timestamp": 1528243320000,
-  "volume": 0,
-}
-`;
-
-exports[`minutely interpolate correctly 3`] = `
-Object {
-  "base": "base",
-  "close": 2,
-  "high": 3,
-  "low": 0,
-  "open": 1,
-  "period": 1,
-  "quote": "quote",
-  "source": "source",
-  "timestamp": 1528243200000,
-  "volume": 246,
-}
+exports[`minutely merged correctly to 5 minute bar 1`] = `
+Array [
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 5,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528243200000,
+    "volume": 369,
+  },
+]
 `;
