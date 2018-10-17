@@ -144,97 +144,90 @@ test('merge reset correctly', () =>
 		)
 	).toMatchSnapshot());
 
-// test('merge last price to hourly correctly', () => {
-// 	const parsedHourly = dynamoUtil.parseHourly(hourly);
-// 	expect(
-// 		chartUtil.mergeLastToPriceBar(
-// 			parsedHourly,
-// 			{
-// 				address: DUMMY_ADDR,
-// 				price: 600,
-// 				timestamp: 1528072200000
-// 			},
-// 			true
-// 		)
-// 	).toMatchSnapshot();
-// 	expect(
-// 		chartUtil.mergeLastToPriceBar(
-// 			parsedHourly,
-// 			{
-// 				address: DUMMY_ADDR,
-// 				price: 620,
-// 				timestamp: 1528074000000
-// 			},
-// 			true
-// 		)
-// 	).toMatchSnapshot();
-// });
+test('merge Prices correctly', () => {
+	expect(
+		chartUtil.mergePricesToPrice(
+			[hourlyBar1, hourlyBar2, hourlyBar3],
+			5
+		)
+	).toMatchSnapshot();
+	expect(
+		chartUtil.mergePricesToPrice(
+			[],
+			5
+		)
+	).toMatchSnapshot();
+});
 
-// test('merge last price to minutely correctly', () => {
-// 	const parsedMinutely = dynamoUtil.parseMinutely(minutely);
-// 	expect(
-// 		chartUtil.mergeLastToPriceBar(
-// 			parsedMinutely,
-// 			{
-// 				address: DUMMY_ADDR,
-// 				price: 600,
-// 				timestamp: 1527839610000
-// 			},
-// 			false
-// 		)
-// 	).toMatchSnapshot();
-// 	expect(
-// 		chartUtil.mergeLastToPriceBar(
-// 			parsedMinutely,
-// 			{
-// 				address: DUMMY_ADDR,
-// 				price: 620,
-// 				timestamp: 1527839640000
-// 			},
-// 			false
-// 		)
-// 	).toMatchSnapshot();
-// });
+test('merge last price correctly', () => {
+	const lastDataBefore = { address: '0x0', price: 205.01, timestamp: 1528200000 };
+	const lastData = { address: '0x0', price: 205.01, timestamp: 1539755124695 };
+	const lastDataSameTime = {
+		address: '0x0',
+		price: 205.1,
+		timestamp: moment.utc('2018-06-06 00:0', 'YYYY-MM-DD HH:m').valueOf()
+	};
+	expect(chartUtil.mergeLastestToPrices([], lastData)).toMatchSnapshot();
+	expect(chartUtil.mergeLastestToPrices([], lastDataBefore)).toMatchSnapshot();
+	expect(
+		chartUtil.mergeLastestToPrices([hourlyBar1, hourlyBar2, hourlyBar3], lastData)
+	).toMatchSnapshot();
+	expect(
+		chartUtil.mergeLastestToPrices([hourlyBar1, hourlyBar2, hourlyBar3], lastDataBefore)
+	).toMatchSnapshot();
+	expect(
+		chartUtil.mergeLastestToPrices([hourlyBar1, hourlyBar2, hourlyBar3], lastDataSameTime)
+	).toMatchSnapshot();
+});
 
-// test('merge last price to accepted price correctly', () => {
-// 	const parsedAcceptedPrice = dynamoUtil.parseAcceptedPrice(prices);
-// 	const merged = chartUtil.mergeLastToPrice(
-// 		parsedAcceptedPrice,
-// 		{ navA: 1.23, navB: 1.45 } as any,
-// 		{
-// 			address: DUMMY_ADDR,
-// 			price: 620,
-// 			timestamp: 1529640000000
-// 		}
-// 	);
-// 	expect(merged.length).toBe(parsedAcceptedPrice.length);
-// 	const merged1 = chartUtil.mergeLastToPrice(
-// 		parsedAcceptedPrice,
-// 		{ navA: 1.23, navB: 1.45 } as any,
-// 		{
-// 			address: DUMMY_ADDR,
-// 			price: 620,
-// 			timestamp: 1529640000000 + 1850000
-// 		}
-// 	);
-// 	expect(merged1.length).toBe(parsedAcceptedPrice.length + 1);
-// 	expect(merged1[parsedAcceptedPrice.length]).toMatchSnapshot();
-// });
-
-// const totalSupply = {
-// 	tokenA: 123,
-// 	tokenB: 456,
-// 	timestamp: 1234567890,
-// 	blockNumber: 111,
-// 	transactionHash: 'abc'
-// };
-
-// test('merge total supply correctly', () => {
-// 	util.getUTCNowTimestamp = jest.fn(() => 2345678901);
-// 	expect(
-// 		chartUtil.mergeTotalSupply([totalSupply], {
-// 			totalSupplyA: 1234,
-// 			totalSupplyB: 2345
-// 		} as any)
-// 	).toMatchSnapshot();
-// });
+test('merge last price to accepted price correctly', () => {
+	const lastData = { address: '0x0', price: 205.01, timestamp: 1539755124695 };
+	const lastDataSameTime = { address: '0x0', price: 250.01, timestamp: 4000 };
+	const states = {
+		addrPoolLength: 6,
+		adminCoolDown: 3600,
+		alpha: 1,
+		beta: 1,
+		createCommRate: 0.01,
+		duoBalance: 2482128.9762267205,
+		ethBalance: 742.408092589115,
+		ethDuoFeeRatio: 800,
+		feeAccumulated: 87.06788278541666,
+		iterationGasThreshold: 65000,
+		lastAdminTime: 0,
+		limitLower: 0.25,
+		limitPeriodic: 1.035,
+		limitUpper: 2,
+		navA: 1.025942,
+		navB: 0.595738272490127,
+		nextResetAddrIndex: 0,
+		numOfPrices: 0,
+		period: 3600,
+		periodCoupon: 0.000017,
+		preResetWaitingBlocks: 10,
+		priceFeedTimeTol: 60,
+		priceFeedTol: 0.01,
+		priceTol: 0.05,
+		priceUpdateCoolDown: 3000,
+		redeemCommRate: 0.01,
+		state: 'Trading',
+		totalSupplyA: 82880.4753362674,
+		totalSupplyB: 82880.4753362674,
+		usersLength: 295
+	};
+	expect(
+		chartUtil.mergeLastestToAcceptedPrices(
+			[acceptedPrice1, acceptedPrice2, acceptedPrice3],
+			states,
+			lastData
+		)
+	).toMatchSnapshot();
+	expect(chartUtil.mergeLastestToAcceptedPrices([], states, lastData)).toMatchSnapshot();
+	expect(
+		chartUtil.mergeLastestToAcceptedPrices(
+			[acceptedPrice1, acceptedPrice2, acceptedPrice3],
+			states,
+			lastDataSameTime
+		)
+	).toMatchSnapshot();
+});

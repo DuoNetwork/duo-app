@@ -29,6 +29,243 @@ Array [
 ]
 `;
 
+exports[`merge Prices correctly 1`] = `
+Object {
+  "base": "base",
+  "close": 2,
+  "high": 3,
+  "low": 0,
+  "open": 1,
+  "period": 5,
+  "quote": "quote",
+  "source": "source",
+  "timestamp": 1528254000000,
+  "volume": 369,
+}
+`;
+
+exports[`merge Prices correctly 2`] = `
+Object {
+  "base": "",
+  "close": 0,
+  "high": 0,
+  "low": 0,
+  "open": 0,
+  "period": 5,
+  "quote": "",
+  "source": "",
+  "timestamp": 0,
+  "volume": 0,
+}
+`;
+
+exports[`merge last price correctly 1`] = `Array []`;
+
+exports[`merge last price correctly 2`] = `Array []`;
+
+exports[`merge last price correctly 3`] = `
+Array [
+  Object {
+    "base": "base",
+    "close": 205.01,
+    "high": 205.01,
+    "low": 2,
+    "open": 2,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1539752400000,
+    "volume": 0,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528243200000,
+    "volume": 123,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528246800000,
+    "volume": 123,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528254000000,
+    "volume": 123,
+  },
+]
+`;
+
+exports[`merge last price correctly 4`] = `
+Array [
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528243200000,
+    "volume": 123,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528246800000,
+    "volume": 123,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528254000000,
+    "volume": 123,
+  },
+]
+`;
+
+exports[`merge last price correctly 5`] = `
+Array [
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528243200000,
+    "volume": 123,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528246800000,
+    "volume": 123,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528254000000,
+    "volume": 123,
+  },
+]
+`;
+
+exports[`merge last price to accepted price correctly 1`] = `
+Array [
+  Object {
+    "blockNumber": 111,
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 1000,
+    "transactionHash": "aaa",
+  },
+  Object {
+    "blockNumber": 222,
+    "navA": 1,
+    "navB": 2,
+    "price": 123,
+    "timestamp": 2000,
+    "transactionHash": "bbb",
+  },
+  Object {
+    "blockNumber": 333,
+    "navA": 1,
+    "navB": 0.25,
+    "price": 123,
+    "timestamp": 3000,
+    "transactionHash": "ccc",
+  },
+  Object {
+    "blockNumber": 0,
+    "navA": 1.025942,
+    "navB": 0.595738272490127,
+    "price": 205.01,
+    "timestamp": 1539756000000,
+    "transactionHash": "",
+  },
+]
+`;
+
+exports[`merge last price to accepted price correctly 2`] = `Array []`;
+
+exports[`merge last price to accepted price correctly 3`] = `
+Array [
+  Object {
+    "blockNumber": 111,
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 1000,
+    "transactionHash": "aaa",
+  },
+  Object {
+    "blockNumber": 222,
+    "navA": 1,
+    "navB": 2,
+    "price": 123,
+    "timestamp": 2000,
+    "transactionHash": "bbb",
+  },
+  Object {
+    "blockNumber": 333,
+    "navA": 1,
+    "navB": 0.25,
+    "price": 123,
+    "timestamp": 3000,
+    "transactionHash": "ccc",
+  },
+]
+`;
+
 exports[`merge reset correctly 1`] = `
 Array [
   Object {
