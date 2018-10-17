@@ -776,7 +776,7 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	public shouldComponentUpdate(nextProps: IProps) {
 		const { acceptedPrices, prices, timeStep, isHourly } = nextProps;
 		if (
-			JSON.stringify(prices) !== JSON.stringify(prices) ||
+			JSON.stringify(prices) !== JSON.stringify(this.props.prices) ||
 			JSON.stringify(acceptedPrices) !== JSON.stringify(this.props.acceptedPrices) ||
 			timeStep !== this.props.timeStep
 		)
