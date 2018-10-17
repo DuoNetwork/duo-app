@@ -83,6 +83,14 @@ describe('actions', () => {
 	// 	);
 	// });
 
+	test('updatePeriod', () => {
+		expect(uiActions.updatePeriod(123)).toMatchSnapshot();
+	});
+
+	test('SourceUpdate', () => {
+		expect(uiActions.updateSource('test')).toMatchSnapshot();
+	});
+
 	test('localeUpdate', () => {
 		expect(uiActions.localeUpdate('test')).toMatchSnapshot();
 	});

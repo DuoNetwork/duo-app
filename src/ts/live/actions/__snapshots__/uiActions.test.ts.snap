@@ -1,8 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`actions SourceUpdate 1`] = `
+Object {
+  "type": "source",
+  "value": "test",
+}
+`;
+
 exports[`actions localeUpdate 1`] = `
 Object {
   "type": "locale",
   "value": "test",
+}
+`;
+
+exports[`actions updatePeriod 1`] = `
+Object {
+  "type": "period",
+  "value": 123,
 }
 `;

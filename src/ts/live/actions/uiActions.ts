@@ -10,6 +10,16 @@ export function refreshUpdate() {
 	};
 }
 
+export function updatePeriod(period: number) {
+	return { type: CST.AC_PERIOD, value: period };
+}
+
+export function updateSource(src: string) {
+	return {
+		type: CST.AC_SOURCE, value: src
+	};
+}
+
 export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 	return async dispatch => {
 		dispatch(contractActions.accountUpdate(await contract.getCurrentAddress()));
@@ -23,8 +33,7 @@ export function refresh(isAdminPage: boolean = false): VoidThunkAction {
 			dispatch(dynamoActions.fetchPrices());
 			dispatch(dynamoActions.fetchAcceptedPrices());
 			dispatch(dynamoActions.fetchConversions());
-		} else
-			dispatch(contractActions.getAddresses());
+		} else dispatch(contractActions.getAddresses());
 		dispatch(refreshUpdate());
 	};
 }
@@ -33,5 +42,5 @@ export function localeUpdate(locale: string) {
 	return {
 		type: CST.AC_LOCALE,
 		value: locale
-	}
+	};
 }
