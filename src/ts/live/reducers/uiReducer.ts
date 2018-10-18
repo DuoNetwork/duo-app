@@ -8,7 +8,7 @@ const lan = navigator.language.toUpperCase();
 export const initialState: IUIState = {
 	refresh: 0,
 	period: 60,
-	source: CST.API_GEMINI,
+	source: CST.API_KRAKEN,
 	locale: lan.includes(CST.LOCALE_CN)
 		? CST.LOCALE_CN
 		: lan.includes('JA')

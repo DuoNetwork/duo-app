@@ -21,20 +21,19 @@ export function updateSource(src: string) {
 	};
 }
 
-export function refresh(isAdminPage: boolean = false): VoidThunkAction {
+export function refresh(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(contractActions.accountUpdate(await contract.getCurrentAddress()));
 		dispatch(contractActions.getGasPrice());
 		await dispatch(contractActions.getNetwork());
 		await dispatch(contractActions.getCustodianStates());
 		dispatch(contractActions.getCustodianPrices());
-		if (!isAdminPage) {
-			await dispatch(dynamoActions.scanStatus());
-			dispatch(contractActions.getBalances());
-			dispatch(dynamoActions.fetchPrices());
-			dispatch(dynamoActions.fetchAcceptedPrices());
-			dispatch(dynamoActions.fetchConversions());
-		} else dispatch(contractActions.getAddresses());
+		await dispatch(dynamoActions.scanStatus());
+		dispatch(contractActions.getBalances());
+		dispatch(dynamoActions.fetchPrices());
+		dispatch(dynamoActions.fetchAcceptedPrices());
+		dispatch(dynamoActions.fetchConversions());
+		dispatch(contractActions.getAddresses());
 		dispatch(refreshUpdate());
 	};
 }
