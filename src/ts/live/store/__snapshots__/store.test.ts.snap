@@ -106,7 +106,7 @@ Object {
     "locale": "EN",
     "period": 60,
     "refresh": 0,
-    "source": "gemini",
+    "source": "kraken",
   },
   "ws": Object {
     "subscribe": Object {
