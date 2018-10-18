@@ -10,10 +10,7 @@ import '../../static/GettingStarted_JP.pdf';
 import * as contractActions from './actions/contractActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as uiActions from './actions/uiActions';
-import * as wsActions from './actions/wsActions';
-import * as CST from './common/constants';
 import contract from './common/contract';
-import wsUtil from './common/wsUtil';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
 
@@ -25,8 +22,6 @@ store.dispatch(contractActions.getAllBalances(0, 20));
 store.dispatch(uiActions.refresh());
 store.dispatch(contractActions.getNetwork());
 store.dispatch(dynamoActions.scanStatus());
-wsUtil.init(CST.RELAYER_WS_URL);
-wsUtil.onOrderBooks(orderBooks => store.dispatch(wsActions.orderBooksUpdate(orderBooks)));
 
 setInterval(() => {
 	store.dispatch(uiActions.refresh());

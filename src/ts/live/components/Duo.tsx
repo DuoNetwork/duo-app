@@ -2,7 +2,6 @@ import * as React from 'react';
 import { /*Link, */ Route, Switch } from 'react-router-dom';
 import Admin from '../containers/AdminContainer';
 import Beethoven from '../containers/BeethovenContainer';
-import Dex from '../containers/DexContainer';
 import Status from '../containers/StatusContainer';
 import User from '../containers/UserContainer';
 // import { SDivFlexCenter } from './_styled';
@@ -24,7 +23,6 @@ export default class Duo extends React.PureComponent<IProps> {
 					<Route exact path={`${base}status`} render={() => <Status />} />
 					<Route exact path={`${base}admin`} render={() => <Admin />} />
 					<Route exact path={`${base}user`} render={() => <User />} />
-					<Route exact path={`${base}dex`} render={() => <Dex />} />
 					<Route
 						path={base}
 						render={() => (
