@@ -4,6 +4,7 @@ exports[`find reset points correctly 1`] = `
 Array [
   Object {
     "blockNumber": 222,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -12,6 +13,7 @@ Array [
   },
   Object {
     "blockNumber": 333,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -20,6 +22,7 @@ Array [
   },
   Object {
     "blockNumber": 444,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -202,6 +205,7 @@ exports[`merge last price to accepted price correctly 1`] = `
 Array [
   Object {
     "blockNumber": 111,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -210,6 +214,7 @@ Array [
   },
   Object {
     "blockNumber": 222,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 2,
     "price": 123,
@@ -218,6 +223,7 @@ Array [
   },
   Object {
     "blockNumber": 333,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 0.25,
     "price": 123,
@@ -226,6 +232,7 @@ Array [
   },
   Object {
     "blockNumber": 0,
+    "contractAddress": "0x0",
     "navA": 1.025942,
     "navB": 0.595738272490127,
     "price": 205.01,
@@ -241,6 +248,7 @@ exports[`merge last price to accepted price correctly 3`] = `
 Array [
   Object {
     "blockNumber": 111,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -249,6 +257,7 @@ Array [
   },
   Object {
     "blockNumber": 222,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 2,
     "price": 123,
@@ -257,6 +266,7 @@ Array [
   },
   Object {
     "blockNumber": 333,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 0.25,
     "price": 123,
@@ -270,6 +280,7 @@ exports[`merge reset correctly 1`] = `
 Array [
   Object {
     "blockNumber": 111,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -278,6 +289,7 @@ Array [
   },
   Object {
     "blockNumber": 222,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 2,
     "price": 123,
@@ -286,6 +298,7 @@ Array [
   },
   Object {
     "blockNumber": 222,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -294,6 +307,7 @@ Array [
   },
   Object {
     "blockNumber": 333,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 0.25,
     "price": 123,
@@ -302,6 +316,7 @@ Array [
   },
   Object {
     "blockNumber": 333,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,
@@ -310,6 +325,7 @@ Array [
   },
   Object {
     "blockNumber": 444,
+    "contractAddress": "0x0",
     "navA": 1.1,
     "navB": 1,
     "price": 123,
@@ -318,6 +334,7 @@ Array [
   },
   Object {
     "blockNumber": 444,
+    "contractAddress": "0x0",
     "navA": 1,
     "navB": 1,
     "price": 123,

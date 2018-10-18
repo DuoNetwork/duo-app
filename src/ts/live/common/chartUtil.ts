@@ -67,6 +67,7 @@ class ChartUtil {
 		return price
 			.filter(p => p.navB >= limitUp || p.navB <= limitDown || p.navA >= limitPeriod)
 			.map(p => ({
+				contractAddress: p.contractAddress,
 				price: p.price,
 				navA: 1,
 				navB: 1,
@@ -139,6 +140,7 @@ class ChartUtil {
 			return [
 				...acceptedPrices,
 				{
+					contractAddress: lastPrice.contractAddress,
 					price: last.price,
 					navA: states.navA,
 					navB: states.navB,

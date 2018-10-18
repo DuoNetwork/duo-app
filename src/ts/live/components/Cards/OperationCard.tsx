@@ -169,6 +169,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			contract.create(account, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
+						contract.custodianAddr,
 						account,
 						txHash,
 						true,
@@ -187,6 +188,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 			contract.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
+						contract.custodianAddr,
 						account,
 						txHash,
 						false,
