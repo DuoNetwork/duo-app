@@ -17,6 +17,8 @@ interface IProps {
 export default class AddressCard extends React.PureComponent<IProps> {
 	public render() {
 		const { addresses, addressPool, account } = this.props;
+		console.log("props");
+		console.log(this.props);
 		const data: object[] = [];
 		const isInPool = addressPool.findIndex(a => a.address === account) >= 0;
 		const isPoolManager = account === addresses.poolManager.address;

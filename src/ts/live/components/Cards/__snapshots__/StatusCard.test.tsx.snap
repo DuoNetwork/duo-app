@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  inlinetype="table"
+  margin="0 0px 0 0"
+  title={
+    <styled.div>
+      PROCESS STATUS
+    </styled.div>
+  }
+  width="100%"
+>
+  <styled.div>
+    <Table
+      bordered={false}
+      className=""
+      dataSource={
+        Array [
+          Object {
+            "Block": "",
+            "Price": "",
+            "Process": "test",
+            "Updated": "Long Time Ago",
+            "Volume": "",
+            "key": "test",
+          },
+        ]
+      }
+      indentSize={20}
+      loading={false}
+      locale={Object {}}
+      pagination={false}
+      prefixCls="ant-table"
+      rowKey="key"
+      showHeader={true}
+      size="default"
+      useFixedHeader={false}
+    >
+      <Column
+        dataIndex="Process"
+        key="Process"
+        title="Process"
+      />
+      <Column
+        dataIndex="Updated"
+        key="Updated"
+        title="Updated"
+      />
+      <Column
+        dataIndex="Price"
+        key="Price"
+        title="Price"
+      />
+      <Column
+        dataIndex="Volume"
+        key="Volume"
+        title="Volume"
+      />
+      <Column
+        dataIndex="Block"
+        key="Block"
+        title="Block"
+      />
+    </Table>
+  </styled.div>
+</Styled(Card)>
+`;

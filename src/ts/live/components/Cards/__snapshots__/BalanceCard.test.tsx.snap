@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  extra={
+    <ExtendExtraDiv
+      account="0x0"
+      accountShow="0x0"
+      locale="EN"
+    />
+  }
+  margin="20px 0 0 0"
+  title={
+    <styled.div>
+      BALANCE
+       
+      <Styled(Button)
+        icon="reload"
+        onClick={[MockFunction]}
+      />
+    </styled.div>
+  }
+  width="100%"
+>
+  <styled.div
+    horizontal={false}
+    padding="0 10px"
+  >
+    <BalanceInfo
+      icon={null}
+      mobile={true}
+      name="ETH"
+      value={0}
+    />
+    <BalanceInfo
+      account="0x0"
+      allowance={0}
+      icon={null}
+      locale="EN"
+      mobile={true}
+      name="DUO"
+      value={0}
+    />
+    <BalanceInfo
+      icon={null}
+      mobile={true}
+      name="Token A"
+      value={0}
+    />
+    <BalanceInfo
+      icon={null}
+      mobile={true}
+      name="Token B"
+      value={0}
+    />
+  </styled.div>
+</Styled(Card)>
+`;

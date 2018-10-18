@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  inlinetype="table"
+  margin="0 0 0 0"
+  title={
+    <styled.div>
+      DECODE
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div
+    horizontal={true}
+    padding="0"
+    width="100%"
+  >
+    <styled.input
+      onChange={[Function]}
+      width="760px"
+    />
+    <button
+      className="form-button"
+      onClick={[Function]}
+    >
+      Decode
+    </button>
+  </styled.div>
+  <pre
+    style={
+      Object {
+        "color": "rgba(255,255,255,.8)",
+      }
+    }
+  />
+</Styled(Card)>
+`;

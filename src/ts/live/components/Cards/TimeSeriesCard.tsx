@@ -20,6 +20,7 @@ interface IProps {
 export default class TimeSeriesCard extends React.Component<IProps> {
 		public render() {
 		const { locale, acceptedPrices, prices, period, source, handleSourceUpdate, handlePeriodUpdate } = this.props;
+		console.log(this.props);
 		return (
 			<SCard
 				title={

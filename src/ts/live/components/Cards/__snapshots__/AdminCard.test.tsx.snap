@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  inlinetype="table"
+  margin="0 0px 0 0"
+  title={
+    <styled.div>
+      ADMIN
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div>
+    <Table
+      bordered={false}
+      className=""
+      dataSource={
+        Array [
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              type="Collect Fee"
+              validateInput={[Function]}
+            />,
+            "State": "Fee Accumulated",
+            "Value": "87.07",
+            "key": 0,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={0}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Create Comm Rate BP",
+            "Value": 100,
+            "key": 1,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={8}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Redeem Comm Rate BP",
+            "Value": 100,
+            "key": 2,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={1}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "ETH:DUO Fee Ratio",
+            "Value": 800,
+            "key": 3,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={2}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Iteration Gas Threshold",
+            "Value": 65000,
+            "key": 4,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={3}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "PreReset Waiting Blocks",
+            "Value": 10,
+            "key": 5,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={4}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Price Tolerance BP",
+            "Value": 500,
+            "key": 6,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={5}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Price Feed Tolerance BP",
+            "Value": 100,
+            "key": 7,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={6}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Price Feed Time Tolerance",
+            "Value": 60,
+            "key": 8,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={7}
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Price Update Cool Down",
+            "Value": 3000,
+            "key": 9,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              type="Add Address"
+              validateInput={[Function]}
+            />,
+            "State": "Address Pool Length",
+            "Value": 6,
+            "key": 10,
+          },
+          Object {
+            "State": "Staged Prices",
+            "Value": 0,
+            "key": 11,
+          },
+          Object {
+            "State": "Next Reset Addr Index",
+            "Value": 0,
+            "key": 12,
+          },
+          Object {
+            "State": "Last Admin Time",
+            "Value": 0,
+            "key": 13,
+          },
+          Object {
+            "State": "Admin Cool Down",
+            "Value": 3600,
+            "key": 14,
+          },
+        ]
+      }
+      indentSize={20}
+      loading={false}
+      locale={Object {}}
+      pagination={false}
+      prefixCls="ant-table"
+      rowClassName={[Function]}
+      rowKey="key"
+      showHeader={true}
+      size="default"
+      useFixedHeader={false}
+    >
+      <Column
+        dataIndex="State"
+        key="State"
+        title="State"
+      />
+      <Column
+        dataIndex="Value"
+        key="Value"
+        title="Value"
+      />
+      <Column
+        dataIndex="Action"
+        key="Action"
+        title="Action"
+      />
+    </Table>
+  </styled.div>
+</Styled(Card)>
+`;

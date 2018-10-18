@@ -21,6 +21,7 @@ const BalanceInfo = (props: {
 	mobile?: boolean;
 }) => {
 	const { icon, name, value, allowance, locale, account, mobile } = props;
+	console.log(props);
 	return (
 		<SCardAssetTag mobile={mobile}>
 			<div className="bg-logo">
@@ -97,6 +98,7 @@ interface IProps {
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
 		const { balances, account, refreshBalance, locale, mobile } = this.props;
+		console.log(this.props);
 		return (
 			<SCard
 				title={

@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  inlinetype="table"
+  margin="0 0 0 0"
+  title={
+    <styled.div>
+      ADDRESS
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div>
+    <Table
+      bordered={false}
+      className=""
+      dataSource={
+        Array [
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Update Role
+            </button>,
+            "Address": "0x0017d61f0B0a28E2F0eBB3B6E269738a6252CFeD",
+            "Balance": "1.019",
+            "Link": "https://kovan.etherscan.io/address/0x0017d61f0B0a28E2F0eBB3B6E269738a6252CFeD",
+            "Role": "feeCollector",
+            "key": "feeCollector",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Update Role
+            </button>,
+            "Address": "0x00D8d0660b243452fC2f996A892D3083A903576F",
+            "Balance": "633.5",
+            "Link": "https://kovan.etherscan.io/address/0x00D8d0660b243452fC2f996A892D3083A903576F",
+            "Role": "operator",
+            "key": "operator",
+          },
+          Object {
+            "Action": "",
+            "Address": "0x00184D7745ef135490114EEFfB762C2A60E067d3",
+            "Balance": "0.5000",
+            "Link": "https://kovan.etherscan.io/address/0x00184D7745ef135490114EEFfB762C2A60E067d3",
+            "Role": "poolManager",
+            "key": "poolManager",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Update Role
+            </button>,
+            "Address": "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+            "Balance": "6.274",
+            "Link": "https://kovan.etherscan.io/address/0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+            "Role": "priceFeed1",
+            "key": "priceFeed1",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Update Role
+            </button>,
+            "Address": "0x002002812b42601Ae5026344F0395E68527bb0F8",
+            "Balance": "7.798",
+            "Link": "https://kovan.etherscan.io/address/0x002002812b42601Ae5026344F0395E68527bb0F8",
+            "Role": "priceFeed2",
+            "key": "priceFeed2",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Update Role
+            </button>,
+            "Address": "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+            "Balance": "7.838",
+            "Link": "https://kovan.etherscan.io/address/0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+            "Role": "priceFeed3",
+            "key": "priceFeed3",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Update Role
+            </button>,
+            "Address": "0x0017d61f0B0a28E2F0eBB3B6E269738a6252CFeD",
+            "Balance": "1.019",
+            "Link": "https://kovan.etherscan.io/address/0x0017d61f0B0a28E2F0eBB3B6E269738a6252CFeD",
+            "Role": "test",
+            "key": "test",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Remove Address
+            </button>,
+            "Address": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+            "Balance": "0.02314",
+            "Link": "https://kovan.etherscan.io/address/0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+            "Role": "Pool0",
+            "key": "Pool0",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Remove Address
+            </button>,
+            "Address": "0xd066FbAc54838c1d3c3113fc4390B9F99fEb7678",
+            "Balance": "0.05502",
+            "Link": "https://kovan.etherscan.io/address/0xd066FbAc54838c1d3c3113fc4390B9F99fEb7678",
+            "Role": "Pool1",
+            "key": "Pool1",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Remove Address
+            </button>,
+            "Address": "0xB0f396d1fba9a5C699695B69337635Fad6547B13",
+            "Balance": "0.05454",
+            "Link": "https://kovan.etherscan.io/address/0xB0f396d1fba9a5C699695B69337635Fad6547B13",
+            "Role": "Pool2",
+            "key": "Pool2",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Remove Address
+            </button>,
+            "Address": "0x290FC07db2BF4b385987059E919B78898941102e",
+            "Balance": "0.05491",
+            "Link": "https://kovan.etherscan.io/address/0x290FC07db2BF4b385987059E919B78898941102e",
+            "Role": "Pool3",
+            "key": "Pool3",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Remove Address
+            </button>,
+            "Address": "0x06C59e1aD2299EA99631850291021eda772715eb",
+            "Balance": "0.04189",
+            "Link": "https://kovan.etherscan.io/address/0x06C59e1aD2299EA99631850291021eda772715eb",
+            "Role": "Pool4",
+            "key": "Pool4",
+          },
+          Object {
+            "Action": <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Remove Address
+            </button>,
+            "Address": "0xd34d743B5bfDF21e0D8829f0eEA52cC493628610",
+            "Balance": "0.04415",
+            "Link": "https://kovan.etherscan.io/address/0xd34d743B5bfDF21e0D8829f0eEA52cC493628610",
+            "Role": "Pool5",
+            "key": "Pool5",
+          },
+        ]
+      }
+      indentSize={20}
+      loading={false}
+      locale={Object {}}
+      pagination={false}
+      prefixCls="ant-table"
+      rowKey="key"
+      showHeader={true}
+      size="default"
+      useFixedHeader={false}
+    >
+      <Column
+        dataIndex="Role"
+        key="Role"
+        onCell={[Function]}
+        title="Role"
+      />
+      <Column
+        dataIndex="Address"
+        key="Address"
+        onCell={[Function]}
+        title="Address"
+      />
+      <Column
+        dataIndex="Balance"
+        key="Balance"
+        onCell={[Function]}
+        title="Balance"
+      />
+      <Column
+        className="address-table-action-col"
+        dataIndex="Action"
+        key="Action"
+        title="Action"
+      />
+    </Table>
+  </styled.div>
+</Styled(Card)>
+`;

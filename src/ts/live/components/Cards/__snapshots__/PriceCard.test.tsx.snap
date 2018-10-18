@@ -1,0 +1,217 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  extra={
+    <styled.div>
+      Last Updated: 2018-10-18 15:00
+    </styled.div>
+  }
+  margin="0 10px 0 0"
+  title={
+    <CardTitleSelect
+      name="PRICE"
+      onSelect={[Function]}
+      source=""
+    />
+  }
+  width="540px"
+>
+  <styled.div
+    horizontal={true}
+    padding="0 10px"
+  >
+    <styled.div
+      locale="EN"
+    >
+      <div
+        className="bg-logo"
+      >
+        <img
+          src={null}
+        />
+      </div>
+      <div
+        className="tag-title"
+      >
+        <h3>
+          ETH
+        </h3>
+      </div>
+      <div
+        className="tag-content"
+      >
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <div
+            className="tag-price USD"
+          >
+            203.60
+          </div>
+          <div
+            className="tag-unit"
+          >
+            USD
+          </div>
+        </div>
+        <div
+          className="tag-subtext"
+        >
+          <div
+            style={
+              Object {
+                "color": "rgba(255,94,94,.6)",
+              }
+            }
+          >
+            -19.51%
+          </div>
+          <div
+            style={
+              Object {
+                "marginLeft": 5,
+              }
+            }
+          >
+            since reset
+          </div>
+        </div>
+      </div>
+    </styled.div>
+    <styled.div
+      locale="EN"
+    >
+      <div
+        className="bg-logo"
+      >
+        <img
+          src={null}
+        />
+      </div>
+      <div
+        className="tag-title"
+      >
+        <a
+          className="tag-content"
+          href="https://kovan.etherscan.io/tokens?q=0x8e9962286823F21960D849CCC52F8c4a09a4b30f"
+          target="_blank"
+        >
+          Token A
+        </a>
+        <Tooltip
+          arrowPointAtCenter={false}
+          autoAdjustOverflow={true}
+          mouseEnterDelay={0.1}
+          mouseLeaveDelay={0.1}
+          placement="top"
+          prefixCls="ant-tooltip"
+          title="Nav as currently in Smart Contract"
+          transitionName="zoom-big-fast"
+        >
+          <img
+            src={null}
+          />
+        </Tooltip>
+      </div>
+      <div
+        className="tag-content"
+      >
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <div
+            className="tag-price-1 USD"
+          >
+            1.026367
+          </div>
+          <div
+            className="tag-unit-1"
+          >
+            USD
+          </div>
+        </div>
+        <div
+          className="tag-subtext"
+        >
+          14.89% p.a.
+        </div>
+      </div>
+    </styled.div>
+    <styled.div
+      locale="EN"
+    >
+      <div
+        className="bg-logo"
+      >
+        <img
+          src={null}
+        />
+      </div>
+      <div
+        className="tag-title"
+      >
+        <a
+          className="tag-content"
+          href="https://kovan.etherscan.io/tokens?q=0x1575e11F5DA9067A577175f898A92e9B4BfbE060"
+          target="_blank"
+        >
+          Token B
+        </a>
+        <Tooltip
+          arrowPointAtCenter={false}
+          autoAdjustOverflow={true}
+          mouseEnterDelay={0.1}
+          mouseLeaveDelay={0.1}
+          placement="top"
+          prefixCls="ant-tooltip"
+          title="Nav as currently in Smart Contract"
+          transitionName="zoom-big-fast"
+        >
+          <img
+            src={null}
+          />
+        </Tooltip>
+      </div>
+      <div
+        className="tag-content"
+      >
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row",
+            }
+          }
+        >
+          <div
+            className="tag-price-2 USD"
+          >
+            0.583469
+          </div>
+          <div
+            className="tag-unit-2"
+          >
+            USD
+          </div>
+        </div>
+        <div
+          className="tag-subtext"
+        >
+          2.76x leverage
+        </div>
+      </div>
+    </styled.div>
+  </styled.div>
+</Styled(Card)>
+`;

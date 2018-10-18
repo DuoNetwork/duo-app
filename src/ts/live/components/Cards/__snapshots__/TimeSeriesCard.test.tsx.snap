@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  extra={
+    <RadioExtra
+      isLeft={false}
+      left="5m"
+      onChange={[Function]}
+      right="1h"
+      rightPadding={true}
+    />
+  }
+  margin="0 10px 0 0"
+  title={
+    <CardTitleSelect
+      name="CHART"
+      onSelect={[MockFunction]}
+      onlySource={true}
+      source="test"
+    />
+  }
+  width="760px"
+>
+  <styled.div
+    horizontal={true}
+    padding="0 10px"
+  >
+    <TimeSeriesChart
+      acceptedPrices={
+        Array [
+          Object {
+            "blockNumber": 3,
+            "contractAddress": "0x0",
+            "navA": 123,
+            "navB": 123,
+            "price": 123,
+            "timestamp": 1539843443,
+            "transactionHash": "test",
+          },
+        ]
+      }
+      prices={
+        Array [
+          Object {
+            "base": "USD",
+            "close": 203.69,
+            "high": 203.72,
+            "low": 203.67,
+            "open": 203.72,
+            "period": 60,
+            "quote": "ETH",
+            "source": "kraken",
+            "timestamp": 1539846000000,
+            "volume": 0,
+          },
+        ]
+      }
+    />
+  </styled.div>
+</Styled(Card)>
+`;
