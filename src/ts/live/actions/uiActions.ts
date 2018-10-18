@@ -31,8 +31,8 @@ export function refresh(): VoidThunkAction {
 		await dispatch(dynamoActions.scanStatus());
 		dispatch(contractActions.getBalances());
 		dispatch(dynamoActions.fetchPrices());
-		dispatch(dynamoActions.fetchAcceptedPrices());
-		dispatch(dynamoActions.fetchConversions());
+		dispatch(dynamoActions.fetchAcceptedPrices(contract.custodianAddr));
+		dispatch(dynamoActions.fetchConversions(contract.custodianAddr));
 		dispatch(contractActions.getAddresses());
 		dispatch(refreshUpdate());
 	};

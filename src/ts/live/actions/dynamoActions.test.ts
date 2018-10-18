@@ -83,7 +83,7 @@ describe('actions', () => {
 			contract: { states: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 } }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(dynamoActions.fetchAcceptedPrices());
+		store.dispatch(dynamoActions.fetchAcceptedPrices(CST.DUMMY_ADDR));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -123,7 +123,7 @@ describe('actions', () => {
 			])
 		);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
-		store.dispatch(dynamoActions.fetchConversions());
+		store.dispatch(dynamoActions.fetchConversions(CST.DUMMY_ADDR));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -143,20 +143,4 @@ describe('actions', () => {
 			}, 1000)
 		);
 	});
-
-	// test('totalSupplyUpdate', () => {
-	// 	expect(dynamoActions.totalSupplyUpdate(['test'] as any)).toMatchSnapshot();
-	// });
-
-	// test('fetchTotalSupply', () => {
-	// 	const store: any = mockStore({});
-	// 	dynamoUtil.queryTotalSupplyEvent = jest.fn(() => Promise.resolve(['test']));
-	// 	store.dispatch(dynamoActions.fetchTotalSupply());
-	// 	return new Promise(resolve =>
-	// 		setTimeout(() => {
-	// 			expect(store.getActions()).toMatchSnapshot();
-	// 			resolve();
-	// 		}, 1000)
-	// 	);
-	// });
 });

@@ -6,7 +6,6 @@ import {
 	IAcceptedPrice,
 	IConversion,
 	IPrice,
-	// ITotalSupply,
 	VoidThunkAction
 } from '../common/types';
 import util from '../common/util';
@@ -40,7 +39,11 @@ export function fetchPrices(): VoidThunkAction {
 			period === 60
 				? util.getUTCNowTimestamp() - period * 96 * 60000
 				: util.getUTCNowTimestamp() - 400 * 60000;
-		dispatch(pricesUpdate(await dynamoUtil.getPrices(source, period === 60 ? 60 : 1, start, 0, 'ETH|USD')));
+		dispatch(
+			pricesUpdate(
+				await dynamoUtil.getPrices(source, period === 60 ? 60 : 1, start, 0, 'ETH|USD')
+			)
+		);
 	};
 }
 
@@ -51,10 +54,10 @@ export function acceptedPricesUpdate(acceptedPrices: IAcceptedPrice[]) {
 	};
 }
 
-export function fetchAcceptedPrices(): VoidThunkAction {
+export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
-		const priceData = await dynamoUtil.queryAcceptPriceEvent(dates);
+		const priceData = await dynamoUtil.queryAcceptPriceEvent(contractAddress, dates);
 		const custodianStates = getState().contract.states;
 		dispatch(
 			acceptedPricesUpdate(
@@ -79,16 +82,17 @@ export function conversionsUpdate(conversions: IConversion[]) {
 	};
 }
 
-export function fetchConversions(): VoidThunkAction {
+export function fetchConversions(contractAddress: string): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const nowTimestamp = util.getUTCNowTimestamp();
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		const account = getState().contract.account;
 		const conversion = await dynamoUtil.queryConversionEvent(
+			contractAddress,
 			getState().contract.account,
 			dates
 		);
-		(await dynamoUtil.queryUIConversionEvent(account)).forEach(uc => {
+		(await dynamoUtil.queryUIConversionEvent(contractAddress, account)).forEach(uc => {
 			if (
 				!dates.includes(moment.utc(uc.timestamp).format('YYYY-MM-DD')) ||
 				conversion.some(c => c.transactionHash === uc.transactionHash) ||
@@ -101,17 +105,3 @@ export function fetchConversions(): VoidThunkAction {
 		dispatch(conversionsUpdate(conversion));
 	};
 }
-
-// export function totalSupplyUpdate(totalSupply: ITotalSupply[]) {
-// 	return {
-// 		type: CST.AC_TOTAL_SUPPLY,
-// 		value: totalSupply
-// 	};
-// }
-
-// export function fetchTotalSupply(): VoidThunkAction {
-// 	return async dispatch => {
-// 		const dates = util.getDates(75, 1, 'hour', 'YYYY-MM-DD-HH');
-// 		dispatch(totalSupplyUpdate(await dynamoUtil.queryTotalSupplyEvent(dates)));
-// 	};
-// }
