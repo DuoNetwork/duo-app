@@ -9,8 +9,7 @@ import util from '../../common/util';
 import TimeSeriesCard from '../../components/Cards/TimeSeriesCard';
 
 function mapStateToProps(state: IState) {
-	const latest = util.getLastPriceFromStatus(state.dynamo.status)[state.ui.source];
-	const prices = chartUtil.mergeLastestToPrices(state.dynamo.prices, latest);
+	const prices = chartUtil.mergeLastestToPrices(state.dynamo.prices, util.getLastPriceFromStatus(state.dynamo.status)[state.ui.source]);
 	const period = state.ui.period;
 	return {
 		locale: state.ui.locale,
@@ -22,7 +21,7 @@ function mapStateToProps(state: IState) {
 		acceptedPrices: chartUtil.mergeLastestToAcceptedPrices(
 			state.dynamo.acceptedPrices,
 			state.contract.states,
-			latest
+			state.contract.prices.last
 		),
 		source: state.ui.source,
 		period: period
