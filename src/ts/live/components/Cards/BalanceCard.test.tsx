@@ -21,6 +21,8 @@ describe('AuthCard Test', () => {
 				/>
 			);
 			expect(wrapper).toMatchSnapshot();
+			const wrapper1 = shallow(<BalanceCard refreshBalance={refreshBalance} mobile={false} account={account} balances={balances} locale={locale} />);
+			expect(wrapper1).toMatchSnapshot();
 		});
 	});
 });

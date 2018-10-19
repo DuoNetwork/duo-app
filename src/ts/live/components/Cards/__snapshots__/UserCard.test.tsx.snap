@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthCard Test User Login Test Snapshot 1`] = `
+exports[`UserCard Test User Login Test Snapshot 1`] = `
 <Styled(Card)
   inlinetype="table"
   margin="0 0px 0 0"
@@ -29,15 +29,15 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
             "key": 0,
           },
           Object {
-            "Address": "Loading",
-            "Allowance": "Loading",
-            "DUO": "Loading",
-            "ETH": "Loading",
-            "Link": "https://kovan.etherscan.io",
+            "Address": "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4",
+            "Allowance": "30,021.8765",
+            "DUO": "92,528.8285",
+            "ETH": "101.3793",
+            "Link": "https://kovan.etherscan.io/address/0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4",
             "No": 2,
-            "Token A": "Loading",
-            "Token B": "Loading",
-            "key": 1,
+            "Token A": "125.6885",
+            "Token B": "125.6885",
+            "key": "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4",
           },
           Object {
             "Address": "Loading",
@@ -1436,7 +1436,7 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
 </Styled(Card)>
 `;
 
-exports[`AuthCard Test User Login Test Snapshot 2`] = `
+exports[`UserCard Test User Login Test Snapshot 2`] = `
 <Styled(Card)
   inlinetype="table"
   margin="0 0px 0 0"
@@ -1465,15 +1465,15 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
             "key": 0,
           },
           Object {
-            "Address": "Loading",
-            "Allowance": "Loading",
-            "DUO": "Loading",
-            "ETH": "Loading",
-            "Link": "https://kovan.etherscan.io",
+            "Address": "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4",
+            "Allowance": "30,021.8765",
+            "DUO": "92,528.8285",
+            "ETH": "101.3793",
+            "Link": "https://kovan.etherscan.io/address/0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4",
             "No": 2,
-            "Token A": "Loading",
-            "Token B": "Loading",
-            "key": 1,
+            "Token A": "125.6885",
+            "Token B": "125.6885",
+            "key": "0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4",
           },
           Object {
             "Address": "Loading",

@@ -2,10 +2,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import UserCard from './UserCard';
 
-describe('AuthCard Test', () => {
+describe('UserCard Test', () => {
 	describe('User Login', () => {
 		const balances = {
-			['allBalances']: {
+			[1]: {
 				account: '0xF69f0cbb7409f32Ad78FE4b0d5A17179d08090c4',
 				allowance: 30021.87654503128,
 				duo: 92528.82851047537,
@@ -18,11 +18,7 @@ describe('AuthCard Test', () => {
 		const load = jest.fn(() => 1234567890);
 		it('Test Snapshot', async () => {
 			const wrapper = shallow(
-				<UserCard
-					allBalances={balances}
-					userLength={userLength}
-					load={load}
-				/>
+				<UserCard allBalances={balances} userLength={userLength} load={load} />
 			);
 			expect(wrapper).toMatchSnapshot();
 			await wrapper

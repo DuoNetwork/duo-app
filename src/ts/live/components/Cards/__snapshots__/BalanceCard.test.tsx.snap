@@ -3,7 +3,7 @@
 exports[`AuthCard Test User Login Test Snapshot 1`] = `
 <Styled(Card)
   extra={
-    <ExtendExtraDiv
+    <BalanceCard
       account="0x0"
       accountShow="0x0"
       locale="EN"
@@ -50,6 +50,63 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
     <BalanceInfo
       icon={null}
       mobile={true}
+      name="Token B"
+      value={0}
+    />
+  </styled.div>
+</Styled(Card)>
+`;
+
+exports[`AuthCard Test User Login Test Snapshot 2`] = `
+<Styled(Card)
+  extra={
+    <BalanceCard
+      account="0x0"
+      accountShow="0x0"
+      locale="EN"
+    />
+  }
+  margin="0 0 0 10px"
+  title={
+    <styled.div>
+      BALANCE
+       
+      <Styled(Button)
+        icon="reload"
+        onClick={[MockFunction]}
+      />
+    </styled.div>
+  }
+  width="640px"
+>
+  <styled.div
+    horizontal={true}
+    padding="0 10px"
+  >
+    <BalanceInfo
+      icon={null}
+      mobile={false}
+      name="ETH"
+      value={0}
+    />
+    <BalanceInfo
+      account="0x0"
+      allowance={0}
+      icon={null}
+      locale="EN"
+      mobile={false}
+      name="DUO"
+      value={0}
+    />
+    <BalanceInfo
+      icon={null}
+      mobile={false}
+      name="Token A"
+      value={0}
+    />
+    <BalanceInfo
+      icon={null}
+      mobile={false}
       name="Token B"
       value={0}
     />

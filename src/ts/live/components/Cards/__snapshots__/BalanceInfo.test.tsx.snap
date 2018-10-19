@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<styled.div
+  mobile={true}
+>
+  <div
+    className="bg-logo"
+  >
+    <img
+      src="test"
+    />
+  </div>
+  <div
+    className="tag-title"
+  >
+    <h3>
+      123
+    </h3>
+  </div>
+  <div
+    className="tag-content"
+  >
+    <div>
+      <div>
+        <div
+          className="tag-price"
+        >
+          123.0
+        </div>
+        <div
+          className="tag-subtext"
+        >
+          123.0 Allowance
+          <Styled(Button)
+            disabled={true}
+            icon="plus-square-o"
+            onClick={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login Test Snapshot 2`] = `
+<styled.div
+  mobile={true}
+>
+  <div
+    className="bg-logo"
+  >
+    <img
+      src="test"
+    />
+  </div>
+  <div
+    className="tag-title"
+  >
+    <h3>
+      123
+    </h3>
+  </div>
+  <div
+    className="tag-content"
+  >
+    <div>
+      <div>
+        <div
+          className="tag-price"
+        >
+          123.0
+        </div>
+      </div>
+    </div>
+  </div>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login Test Snapshot 3`] = `
+<styled.div
+  mobile={true}
+>
+  <div
+    className="bg-logo"
+  >
+    <img
+      src="test"
+    />
+  </div>
+  <div
+    className="tag-title"
+  >
+    <h3>
+      123
+    </h3>
+  </div>
+  <div
+    className="tag-content"
+  >
+    <div>
+      <div>
+        <div
+          className="tag-price"
+        >
+          123.0
+        </div>
+      </div>
+    </div>
+  </div>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login Test Snapshot 4`] = `
+<styled.div
+  mobile={true}
+>
+  <div
+    className="bg-logo"
+  >
+    <img
+      src="test"
+    />
+  </div>
+  <div
+    className="tag-title"
+  >
+    <h3>
+      123
+    </h3>
+  </div>
+  <div
+    className="tag-content"
+  >
+    <div>
+      <div>
+        <div
+          className="tag-price"
+        >
+          123.0
+        </div>
+        <div
+          className="tag-subtext"
+        >
+          123.0 Allowance
+          <Styled(Button)
+            disabled={true}
+            icon="plus-square-o"
+            onClick={[Function]}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</styled.div>
+`;

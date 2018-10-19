@@ -64,10 +64,12 @@ describe('AuthCard Test', () => {
 		};
 
 		it('Test Snapshot', () => {
-			const wrapper = shallow(
+			const wrapper1 = shallow(
 				<AdminCard addresses={addresses} states={states} account={account} />
 			);
-			expect(wrapper).toMatchSnapshot();
+			expect(wrapper1).toMatchSnapshot();
+			const wrapper2 = shallow(<AdminCard addresses={addresses} states={states} account={'0x01'} />);
+			expect(wrapper2).toMatchSnapshot();
 		});
 	});
 });
