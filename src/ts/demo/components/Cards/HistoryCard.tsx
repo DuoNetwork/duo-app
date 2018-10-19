@@ -32,7 +32,6 @@ export default class HistoryCard extends React.Component<IProps, IStates> {
 		return groupedHistory;
 	}
 	public handlePrev = () => {
-		console.log(this.state.page);
 		const { page } = this.state;
 		if (page > 0)
 			if (page === 1)
@@ -47,7 +46,6 @@ export default class HistoryCard extends React.Component<IProps, IStates> {
 				});
 	};
 	public handleNext = () => {
-		console.log(this.state.page);
 		const { page } = this.state;
 		if (page < Math.floor((this.props.trades.length - 1) / 10))
 			if (page === Math.floor((this.props.trades.length - 1) / 10 - 1))

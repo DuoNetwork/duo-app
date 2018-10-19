@@ -18,8 +18,6 @@ interface IProps {
 export default class ConversionCard extends React.PureComponent<IProps> {
 	public render() {
 		const { conversions, locale } = this.props;
-		console.log("coversion");
-		console.log(this.props);
 		return (
 			<LocaleProvider locale={locale === CST.LOCALE_CN ? antdCn : antdEn}>
 				<SCard

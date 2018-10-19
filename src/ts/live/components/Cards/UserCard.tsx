@@ -18,7 +18,6 @@ const format = d3.format(',.4f');
 export default class UserCard extends React.PureComponent<IProps> {
 	public render() {
 		const { allBalances, userLength, load } = this.props;
-		console.log(this.props);
 		const data: ITableRecord[] = [];
 		for (let i = 0; i < userLength; i++) {
 			const b = allBalances[i];
