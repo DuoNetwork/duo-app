@@ -1,0 +1,256 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`StateCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  extra={
+    <styled.div>
+      <Tooltip
+        arrowPointAtCenter={false}
+        autoAdjustOverflow={true}
+        mouseEnterDelay={0.1}
+        mouseLeaveDelay={0.1}
+        placement="top"
+        prefixCls="ant-tooltip"
+        title="Trading state, operations are permitted during current state"
+        transitionName="zoom-big-fast"
+      >
+        <div>
+          Trading
+        </div>
+        <img
+          src={null}
+        />
+      </Tooltip>
+    </styled.div>
+  }
+  margin="0"
+  title={
+    <styled.div>
+      <a
+        className="tag-content"
+        href="https://kovan.etherscan.io/address/0x0f80F055c7482b919183EcD06e0dd5FD7991D309"
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+        target="_blank"
+      >
+        BEETHOVEN
+      </a>
+    </styled.div>
+  }
+  width="100%"
+>
+  <styled.div
+    horizontal={true}
+    padding="0 10px"
+  >
+    <styled.div
+      noMargin={true}
+    >
+      <div
+        className="status-list-wrapper"
+      >
+        <ul>
+          <li
+            className="block-title"
+          >
+            <div
+              className="last-reset-title"
+            >
+              <span>
+                Last Reset
+              </span>
+              <span
+                className="last-reset-title-span"
+              >
+                2018-08-14 23:00
+              </span>
+            </div>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              ETH
+            </span>
+            <span
+              className="content"
+            >
+              252.94 USD
+            </span>
+          </li>
+        </ul>
+        <ul>
+          <li
+            className="block-title"
+          >
+            Contract States
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Period Length
+            </span>
+            <span
+              className="content"
+            >
+              60 mins
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Coupon per Period
+            </span>
+            <span
+              className="content"
+            >
+              0.0017%
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Upper Limit for Token A
+            </span>
+            <span
+              className="content"
+            >
+              1.0350
+               USD
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Upper Limit for Token B
+            </span>
+            <span
+              className="content"
+            >
+              2.0000
+               USD
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Lower Limit for Token B
+            </span>
+            <span
+              className="content"
+            >
+              0.2500
+               USD
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Leverage Factor (Alpha)
+            </span>
+            <span
+              className="content"
+            >
+              1.00
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Conversion Factor (Beta)
+            </span>
+            <span
+              className="content"
+            >
+              1.00
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              ETH:DUO Fee Ratio
+            </span>
+            <span
+              className="content"
+            >
+              1:
+              800
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              DUO Received
+            </span>
+            <span
+              className="content"
+            >
+              2,482,128.98
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Net ETH Balance
+            </span>
+            <span
+              className="content"
+            >
+              655.34
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Token A Total Supply
+            </span>
+            <span
+              className="content"
+            >
+              82,880.48
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Token B Total Supply
+            </span>
+            <span
+              className="content"
+            >
+              82,880.48
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Total Users
+            </span>
+            <span
+              className="content"
+            >
+              295
+            </span>
+          </li>
+        </ul>
+      </div>
+    </styled.div>
+  </styled.div>
+</Styled(Card)>
+`;
