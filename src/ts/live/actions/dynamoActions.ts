@@ -2,7 +2,6 @@ import moment from 'moment';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
-import contract from '../common/contract';
 import {
 	IAcceptedPrice,
 	IConversion,
@@ -16,13 +15,6 @@ export function statusUpdate(status: object) {
 		type: CST.AC_STATUS,
 		value: status
 	};
-}
-
-export async function dynamoRefresh(dispatch: any): Promise<void> {
-	await dispatch(scanStatus());
-	dispatch(fetchPrices());
-	dispatch(fetchAcceptedPrices(contract.custodianAddr));
-	dispatch(fetchConversions(contract.custodianAddr));
 }
 
 export function scanStatus(): VoidThunkAction {

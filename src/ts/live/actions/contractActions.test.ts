@@ -27,31 +27,6 @@ describe('actions', () => {
 		);
 	});
 
-	test('contractRefresh', () => {
-		expect(contractActions.accountUpdate('test')).toMatchSnapshot();
-		const store: any = mockStore({ contract: { states: { addrPoolLength: 1 }}});
-		contract.getGasPrice = jest.fn(() => Promise.resolve(456));
-		contract.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
-		contract.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
-		contract.getCustodianAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
-		contract.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contract.getEthBalance = jest.fn(() => Promise.resolve(123));
-		contract.getCustodianStates = jest.fn(() => Promise.resolve({ test: 'test' }));
-		contract.getCustodianPrices = jest.fn(() =>
-			Promise.resolve({
-				last: 'last',
-				reset: 'reset'
-			})
-		);
-		store.dispatch((dispatch: any) => contractActions.contractRefresh(dispatch));
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 1000)
-		);
-	});
-
 	test('custodianStatesUpdate', () => {
 		expect(contractActions.custodianStatesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
