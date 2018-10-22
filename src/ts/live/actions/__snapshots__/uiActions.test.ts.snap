@@ -14,12 +14,6 @@ Object {
 }
 `;
 
-exports[`actions refreshUpdate 1`] = `
-Object {
-  "type": "refresh",
-}
-`;
-
 exports[`actions updatePeriod 1`] = `
 Object {
   "type": "period",

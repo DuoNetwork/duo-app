@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
 import * as React from 'react';
 import * as CST from '../common/constants';
-import { IAddress, IAddresses, ICustodianPrices, ICustodianStates } from '../common/types';
+import { IAddress, IBeethovanAddresses, IBeethovanPrices, IBeethovanStates } from '../common/types';
 import { SContent, SDivFlexCenter } from './_styled';
 import AddressCard from './Cards/AddressCard';
 import AdminCard from './Cards/AdminCard';
@@ -11,9 +11,9 @@ import Header from './Header';
 interface IProps {
 	location: object;
 	network: number;
-	addresses: IAddresses;
-	states: ICustodianStates;
-	prices: ICustodianPrices;
+	addresses: IBeethovanAddresses;
+	states: IBeethovanStates;
+	prices: IBeethovanPrices;
 	addressPool: IAddress[];
 	account: string;
 }

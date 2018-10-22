@@ -1,4 +1,4 @@
-import { IAcceptedPrice, ICustodianPrice, ICustodianStates, IPrice } from './types';
+import { IAcceptedPrice, IBeethovanStates, IContractPrice, IPrice } from './types';
 
 class ChartUtil {
 	public mergePrices(prices: IPrice[], period: number): IPrice[] {
@@ -83,7 +83,7 @@ class ChartUtil {
 		return all;
 	}
 
-	public mergeLastestToPrices(prices: IPrice[], latest: ICustodianPrice): IPrice[] {
+	public mergeLastestToPrices(prices: IPrice[], latest: IContractPrice): IPrice[] {
 		if (!prices || !prices.length) return prices;
 		const lastPrice = prices[0];
 		if (lastPrice.timestamp >= latest.timestamp) return prices;
@@ -130,8 +130,8 @@ class ChartUtil {
 
 	public mergeLastestToAcceptedPrices(
 		acceptedPrices: IAcceptedPrice[],
-		states: ICustodianStates,
-		last: ICustodianPrice
+		states: IBeethovanStates,
+		last: IContractPrice
 	): IAcceptedPrice[] {
 		if (!acceptedPrices.length) return acceptedPrices;
 		const lastPrice = acceptedPrices[acceptedPrices.length - 1];

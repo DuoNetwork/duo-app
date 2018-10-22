@@ -1,0 +1,235 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions acceptedPricesUpdate 1`] = `
+Object {
+  "type": "beethovanAcceptedPrices",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions addressPoolUpdate 1`] = `
+Object {
+  "type": "addressPool",
+  "value": Array [
+    Object {
+      "test": "test",
+    },
+  ],
+}
+`;
+
+exports[`actions addressesUpdate 1`] = `
+Object {
+  "type": "beethovanAddresses",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`actions allBalancesUpdate 1`] = `
+Object {
+  "type": "allBalances",
+  "value": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+}
+`;
+
+exports[`actions balancesUpdate 1`] = `
+Object {
+  "type": "beethovanBalances",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`actions conversionsUpdate 1`] = `
+Object {
+  "type": "beethovanConversions",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions exchangePricesUpdate 1`] = `
+Object {
+  "type": "beethovanExchangePrices",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions fetchAcceptedPrices 1`] = `
+Array [
+  Object {
+    "type": "beethovanAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
+exports[`actions fetchConversions 1`] = `
+Array [
+  Object {
+    "type": "beethovanConversions",
+    "value": Array [
+      Object {
+        "transactionHash": "aaa",
+      },
+      Object {
+        "timestamp": 1234567890,
+        "transactionHash": "bbb",
+      },
+    ],
+  },
+]
+`;
+
+exports[`actions fetchConversions 2`] = `
+Object {
+  "timestamp": 1234567890,
+  "transactionHash": "aaa",
+}
+`;
+
+exports[`actions fetchConversions 3`] = `
+Object {
+  "timestamp": 0,
+  "transactionHash": "ccc",
+}
+`;
+
+exports[`actions fetchExchangePrices 5 1`] = `
+Array [
+  Object {
+    "type": "beethovanExchangePrices",
+    "value": Array [
+      "test",
+      1,
+      1210567890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions fetchExchangePrices 60 1`] = `
+Array [
+  Object {
+    "type": "beethovanExchangePrices",
+    "value": Array [
+      "test",
+      60,
+      888967890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions getAddresses 1`] = `
+Array [
+  Object {
+    "type": "beethovanAddresses",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "addressPool",
+    "value": Array [
+      Object {
+        "address": "0x0",
+        "balance": 123,
+      },
+    ],
+  },
+]
+`;
+
+exports[`actions getAllBalances 1`] = `
+Array [
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "123": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "124": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+]
+`;
+
+exports[`actions getBalances 1`] = `
+Array [
+  Object {
+    "type": "beethovanBalances",
+    "value": Object {
+      "test": "test",
+    },
+  },
+]
+`;
+
+exports[`actions getPrices 1`] = `
+Array [
+  Object {
+    "type": "beethovanPrices",
+    "value": Object {
+      "last": "last",
+      "reset": "reset",
+    },
+  },
+]
+`;
+
+exports[`actions getStates 1`] = `
+Array [
+  Object {
+    "type": "beethovanStates",
+    "value": Object {
+      "test": "test",
+    },
+  },
+]
+`;
+
+exports[`actions pricesUpdate 1`] = `
+Object {
+  "type": "beethovanPrices",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`actions statesUpdate 1`] = `
+Object {
+  "type": "beethovanStates",
+  "value": Object {
+    "test": "test",
+  },
+}
+`;

@@ -4,7 +4,6 @@ exports[`ui reducer default 1`] = `
 Object {
   "locale": "EN",
   "period": 60,
-  "refresh": 0,
   "source": "kraken",
 }
 `;
@@ -13,16 +12,6 @@ exports[`ui reducer period 1`] = `
 Object {
   "locale": "EN",
   "period": 1,
-  "refresh": 1234567890,
-  "source": "kraken",
-}
-`;
-
-exports[`ui reducer refresh 1`] = `
-Object {
-  "locale": "EN",
-  "period": 60,
-  "refresh": 1234567890,
   "source": "kraken",
 }
 `;
@@ -31,7 +20,6 @@ exports[`ui reducer source 1`] = `
 Object {
   "locale": "EN",
   "period": 1,
-  "refresh": 1234567890,
   "source": "test",
 }
 `;

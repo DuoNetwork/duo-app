@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui reducer account 1`] = `
+Object {
+  "account": "test",
+  "gasPrice": 0,
+  "network": 0,
+}
+`;
+
+exports[`ui reducer default 1`] = `
+Object {
+  "account": "0x0",
+  "gasPrice": 0,
+  "network": 0,
+}
+`;
+
+exports[`ui reducer gasPrice 1`] = `
+Object {
+  "account": "test",
+  "gasPrice": 123,
+  "network": 123,
+}
+`;
+
+exports[`ui reducer network 1`] = `
+Object {
+  "account": "test",
+  "gasPrice": 0,
+  "network": 123,
+}
+`;

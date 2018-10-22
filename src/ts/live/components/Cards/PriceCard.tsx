@@ -8,7 +8,7 @@ import ethIcon from '../../../../images/ethIcon.png';
 import infoIcon from '../../../../images/info.svg';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
-import { ICustodianPrice, ICustodianStates, ISourceData } from '../../common/types';
+import { IBeethovanStates, IContractPrice, ISourceData } from '../../common/types';
 import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
@@ -16,10 +16,10 @@ import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
 
 interface IProps {
 	locale: string;
-	last: ICustodianPrice;
-	reset: ICustodianPrice;
-	states: ICustodianStates;
-	sourceLast: ISourceData<ICustodianPrice>;
+	last: IContractPrice;
+	reset: IContractPrice;
+	states: IBeethovanStates;
+	sourceLast: ISourceData<IContractPrice>;
 	mobile?: boolean;
 }
 interface IState {
@@ -35,7 +35,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 	public render() {
 		const { locale, reset, states, mobile } = this.props;
 		const { source } = this.state;
-		const last: ICustodianPrice = CST.API_LIST.includes(source)
+		const last: IContractPrice = CST.API_LIST.includes(source)
 			? this.props.sourceLast[source]
 			: this.props.last;
 		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())

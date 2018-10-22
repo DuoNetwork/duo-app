@@ -5,7 +5,7 @@ import Status from '../components/Status';
 
 function mapStateToProps(state: IState) {
 	return {
-		network: state.contract.network,
+		network: state.web3.network,
 		status: state.dynamo.status
 	};
 }

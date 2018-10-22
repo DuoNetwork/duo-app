@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import * as dynamoActions from '../../actions/dynamoActions';
+import * as beethovanActions from '../../actions/beethovanActions';
 import * as uiActions from '../../actions/uiActions';
 import chartUtil from '../../common/chartUtil';
 import { IState } from '../../common/types';
@@ -9,7 +9,10 @@ import util from '../../common/util';
 import TimeSeriesCard from '../../components/Cards/TimeSeriesCard';
 
 function mapStateToProps(state: IState) {
-	const prices = chartUtil.mergeLastestToPrices(state.dynamo.prices, util.getLastPriceFromStatus(state.dynamo.status)[state.ui.source]);
+	const prices = chartUtil.mergeLastestToPrices(
+		state.beethovan.beethovanExchangePrices,
+		util.getLastPriceFromStatus(state.dynamo.status)[state.ui.source]
+	);
 	const period = state.ui.period;
 	return {
 		locale: state.ui.locale,
@@ -19,9 +22,9 @@ function mapStateToProps(state: IState) {
 				: chartUtil.mergePrices(prices, period)
 			: prices,
 		acceptedPrices: chartUtil.mergeLastestToAcceptedPrices(
-			state.dynamo.acceptedPrices,
-			state.contract.states,
-			state.contract.prices.last
+			state.beethovan.beethovanAcceptedPrices,
+			state.beethovan.beethovanStates,
+			state.beethovan.beethovanPrices.last
 		),
 		source: state.ui.source,
 		period: period
@@ -32,11 +35,11 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 	return {
 		handleSourceUpdate: (src: string) => {
 			dispatch(uiActions.updateSource(src));
-			dispatch(dynamoActions.fetchPrices());
+			dispatch(beethovanActions.fetchExchangePrices());
 		},
 		handlePeriodUpdate: (period: number) => {
 			dispatch(uiActions.updatePeriod(period));
-			dispatch(dynamoActions.fetchPrices());
+			dispatch(beethovanActions.fetchExchangePrices());
 		}
 	};
 }

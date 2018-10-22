@@ -2,10 +2,11 @@
 
 exports[`store actions 1`] = `
 Object {
-  "contract": Object {
-    "account": "0x0",
+  "beethovan": Object {
     "addressPool": Array [],
-    "addresses": Object {
+    "allBalances": Object {},
+    "beethovanAcceptedPrices": Array [],
+    "beethovanAddresses": Object {
       "feeCollector": Object {
         "address": "0x0",
         "balance": 0,
@@ -31,17 +32,16 @@ Object {
         "balance": 0,
       },
     },
-    "allBalances": Object {},
-    "balances": Object {
+    "beethovanBalances": Object {
       "allowance": 0,
       "duo": 0,
       "eth": 0,
       "tokenA": 0,
       "tokenB": 0,
     },
-    "gasPrice": 0,
-    "network": 0,
-    "prices": Object {
+    "beethovanConversions": Array [],
+    "beethovanExchangePrices": Array [],
+    "beethovanPrices": Object {
       "first": Object {
         "address": "0x0",
         "price": 0,
@@ -63,7 +63,7 @@ Object {
         "timestamp": 0,
       },
     },
-    "states": Object {
+    "beethovanStates": Object {
       "addrPoolLength": 0,
       "adminCoolDown": 0,
       "alpha": 0,
@@ -97,16 +97,17 @@ Object {
     },
   },
   "dynamo": Object {
-    "acceptedPrices": Array [],
-    "conversions": Array [],
-    "prices": Array [],
     "status": Array [],
   },
   "ui": Object {
     "locale": "EN",
     "period": 60,
-    "refresh": 0,
     "source": "kraken",
+  },
+  "web3": Object {
+    "account": "0x0",
+    "gasPrice": 0,
+    "network": 0,
   },
 }
 `;

@@ -1,7 +1,7 @@
 import * as d3 from 'd3';
 import moment, { DurationInputArg2 } from 'moment';
 import * as CST from './constants';
-import { ICustodianPrice, IPriceStatus, ISourceData, IStatus } from './types';
+import { IContractPrice, IPriceStatus, ISourceData, IStatus } from './types';
 
 class Util {
 	public convertUpdateTime(timestamp: number): string {
@@ -74,23 +74,23 @@ class Util {
 			.replace(/G/g, 'B');
 	}
 
-	public getLastPriceFromStatus(status: IStatus[]): ISourceData<ICustodianPrice> {
+	public getLastPriceFromStatus(status: IStatus[]): ISourceData<IContractPrice> {
 		// const bitfinex: ICustodianPrice = {
 		// 	address: CST.DUMMY_ADDR,
 		// 	price: 0,
 		// 	timestamp: 0
 		// };
-		const kraken: ICustodianPrice = {
+		const kraken: IContractPrice = {
 			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};
-		const gemini: ICustodianPrice = {
+		const gemini: IContractPrice = {
 			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};
-		const gdax: ICustodianPrice = {
+		const gdax: IContractPrice = {
 			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0

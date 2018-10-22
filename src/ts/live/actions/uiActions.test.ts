@@ -6,10 +6,6 @@ describe('actions', () => {
 		expect(uiActions.updatePeriod(123)).toMatchSnapshot();
 	});
 
-	test('refreshUpdate', () => {
-		expect(uiActions.refreshUpdate()).toMatchSnapshot();
-	});
-
 	test('SourceUpdate', () => {
 		expect(uiActions.updateSource('test')).toMatchSnapshot();
 	});

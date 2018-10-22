@@ -5,12 +5,12 @@ import Admin from '../components/Admin';
 
 function mapStateToProps(state: IState) {
 	return {
-		network: state.contract.network,
-		addresses: state.contract.addresses,
-		states: state.contract.states,
-		prices: state.contract.prices,
-		addressPool: state.contract.addressPool,
-		account: state.contract.account
+		network: state.web3.network,
+		addresses: state.beethovan.beethovanAddresses,
+		states: state.beethovan.beethovanStates,
+		prices: state.beethovan.beethovanPrices,
+		addressPool: state.beethovan.addressPool,
+		account: state.web3.account
 	};
 }
 

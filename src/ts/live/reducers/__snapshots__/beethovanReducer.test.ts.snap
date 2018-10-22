@@ -1,114 +1,243 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ui reducer account 1`] = `
+exports[`beethovan reducer addressPool 1`] = `
 Object {
-  "account": "test",
-  "addressPool": Array [],
-  "addresses": Object {
-    "test": "test",
-  },
-  "allBalances": Object {},
-  "balances": Object {
-    "test": "test",
-  },
-  "gasPrice": 0,
-  "network": 0,
-  "prices": Object {
-    "last": "last",
-    "reset": "reset",
-  },
-  "states": Object {
-    "test": "test",
-  },
-}
-`;
-
-exports[`ui reducer addressPool 1`] = `
-Object {
-  "account": "test",
   "addressPool": Object {
     "123": Object {
       "test": "test",
     },
   },
-  "addresses": Object {
+  "allBalances": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
     "test": "test",
+  },
+  "beethovanBalances": Object {
+    "test": "test",
+  },
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Array [],
+  "beethovanPrices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "beethovanStates": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`beethovan reducer allBalances 1`] = `
+Object {
+  "addressPool": Array [],
+  "allBalances": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
+    "test": "test",
+  },
+  "beethovanBalances": Object {
+    "test": "test",
+  },
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Array [],
+  "beethovanPrices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "beethovanStates": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`beethovan reducer beethovanAcceptedPrices 1`] = `
+Object {
+  "addressPool": Object {
+    "123": Object {
+      "test": "test",
+    },
   },
   "allBalances": Object {
     "123": Object {
       "test": "test",
     },
   },
-  "balances": Object {
+  "beethovanAcceptedPrices": Array [
+    "test",
+  ],
+  "beethovanAddresses": Object {
     "test": "test",
   },
-  "gasPrice": 0,
-  "network": 123,
-  "prices": Object {
+  "beethovanBalances": Object {
+    "test": "test",
+  },
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Object {
+    "test": "test",
+  },
+  "beethovanPrices": Object {
     "last": "last",
     "reset": "reset",
   },
-  "states": Object {
+  "beethovanStates": Object {
     "test": "test",
   },
 }
 `;
 
-exports[`ui reducer addresses 1`] = `
+exports[`beethovan reducer beethovanAddresses 1`] = `
 Object {
-  "account": "0x0",
   "addressPool": Array [],
-  "addresses": Object {
-    "test": "test",
-  },
   "allBalances": Object {},
-  "balances": Object {
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
     "test": "test",
   },
-  "gasPrice": 0,
-  "network": 0,
-  "prices": Object {
+  "beethovanBalances": Object {
+    "test": "test",
+  },
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Array [],
+  "beethovanPrices": Object {
     "last": "last",
     "reset": "reset",
   },
-  "states": Object {
+  "beethovanStates": Object {
     "test": "test",
   },
 }
 `;
 
-exports[`ui reducer allBalances 1`] = `
+exports[`beethovan reducer beethovanBalances 1`] = `
 Object {
-  "account": "test",
   "addressPool": Array [],
-  "addresses": Object {
+  "allBalances": Object {},
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
+    "feeCollector": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "operator": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolManager": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed1": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed2": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "priceFeed3": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+  },
+  "beethovanBalances": Object {
     "test": "test",
+  },
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Array [],
+  "beethovanPrices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "beethovanStates": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`beethovan reducer beethovanConversions 1`] = `
+Object {
+  "addressPool": Object {
+    "123": Object {
+      "test": "test",
+    },
   },
   "allBalances": Object {
     "123": Object {
       "test": "test",
     },
   },
-  "balances": Object {
+  "beethovanAcceptedPrices": Array [
+    "test",
+  ],
+  "beethovanAddresses": Object {
     "test": "test",
   },
-  "gasPrice": 0,
-  "network": 123,
-  "prices": Object {
+  "beethovanBalances": Object {
+    "test": "test",
+  },
+  "beethovanConversions": Array [
+    "test",
+  ],
+  "beethovanExchangePrices": Object {
+    "test": "test",
+  },
+  "beethovanPrices": Object {
     "last": "last",
     "reset": "reset",
   },
-  "states": Object {
+  "beethovanStates": Object {
     "test": "test",
   },
 }
 `;
 
-exports[`ui reducer balances 1`] = `
+exports[`beethovan reducer beethovanExchangePrices 1`] = `
 Object {
-  "account": "0x0",
+  "addressPool": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+  "allBalances": Object {
+    "123": Object {
+      "test": "test",
+    },
+  },
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
+    "test": "test",
+  },
+  "beethovanBalances": Object {
+    "test": "test",
+  },
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Object {
+    "test": "test",
+  },
+  "beethovanPrices": Object {
+    "last": "last",
+    "reset": "reset",
+  },
+  "beethovanStates": Object {
+    "test": "test",
+  },
+}
+`;
+
+exports[`beethovan reducer beethovanPrices 1`] = `
+Object {
   "addressPool": Array [],
-  "addresses": Object {
+  "allBalances": Object {},
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
     "feeCollector": Object {
       "address": "0x0",
       "balance": 0,
@@ -134,77 +263,31 @@ Object {
       "balance": 0,
     },
   },
-  "allBalances": Object {},
-  "balances": Object {
-    "test": "test",
-  },
-  "gasPrice": 0,
-  "network": 0,
-  "prices": Object {
-    "last": "last",
-    "reset": "reset",
-  },
-  "states": Object {
-    "test": "test",
-  },
-}
-`;
-
-exports[`ui reducer custodianPrices 1`] = `
-Object {
-  "account": "0x0",
-  "addressPool": Array [],
-  "addresses": Object {
-    "feeCollector": Object {
-      "address": "0x0",
-      "balance": 0,
-    },
-    "operator": Object {
-      "address": "0x0",
-      "balance": 0,
-    },
-    "poolManager": Object {
-      "address": "0x0",
-      "balance": 0,
-    },
-    "priceFeed1": Object {
-      "address": "0x0",
-      "balance": 0,
-    },
-    "priceFeed2": Object {
-      "address": "0x0",
-      "balance": 0,
-    },
-    "priceFeed3": Object {
-      "address": "0x0",
-      "balance": 0,
-    },
-  },
-  "allBalances": Object {},
-  "balances": Object {
+  "beethovanBalances": Object {
     "allowance": 0,
     "duo": 0,
     "eth": 0,
     "tokenA": 0,
     "tokenB": 0,
   },
-  "gasPrice": 0,
-  "network": 0,
-  "prices": Object {
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Array [],
+  "beethovanPrices": Object {
     "last": "last",
     "reset": "reset",
   },
-  "states": Object {
+  "beethovanStates": Object {
     "test": "test",
   },
 }
 `;
 
-exports[`ui reducer custodianStates 1`] = `
+exports[`beethovan reducer beethovanStates 1`] = `
 Object {
-  "account": "0x0",
   "addressPool": Array [],
-  "addresses": Object {
+  "allBalances": Object {},
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
     "feeCollector": Object {
       "address": "0x0",
       "balance": 0,
@@ -230,17 +313,16 @@ Object {
       "balance": 0,
     },
   },
-  "allBalances": Object {},
-  "balances": Object {
+  "beethovanBalances": Object {
     "allowance": 0,
     "duo": 0,
     "eth": 0,
     "tokenA": 0,
     "tokenB": 0,
   },
-  "gasPrice": 0,
-  "network": 0,
-  "prices": Object {
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Array [],
+  "beethovanPrices": Object {
     "first": Object {
       "address": "0x0",
       "price": 0,
@@ -262,17 +344,18 @@ Object {
       "timestamp": 0,
     },
   },
-  "states": Object {
+  "beethovanStates": Object {
     "test": "test",
   },
 }
 `;
 
-exports[`ui reducer default 1`] = `
+exports[`beethovan reducer default 1`] = `
 Object {
-  "account": "0x0",
   "addressPool": Array [],
-  "addresses": Object {
+  "allBalances": Object {},
+  "beethovanAcceptedPrices": Array [],
+  "beethovanAddresses": Object {
     "feeCollector": Object {
       "address": "0x0",
       "balance": 0,
@@ -298,17 +381,16 @@ Object {
       "balance": 0,
     },
   },
-  "allBalances": Object {},
-  "balances": Object {
+  "beethovanBalances": Object {
     "allowance": 0,
     "duo": 0,
     "eth": 0,
     "tokenA": 0,
     "tokenB": 0,
   },
-  "gasPrice": 0,
-  "network": 0,
-  "prices": Object {
+  "beethovanConversions": Array [],
+  "beethovanExchangePrices": Array [],
+  "beethovanPrices": Object {
     "first": Object {
       "address": "0x0",
       "price": 0,
@@ -330,7 +412,7 @@ Object {
       "timestamp": 0,
     },
   },
-  "states": Object {
+  "beethovanStates": Object {
     "addrPoolLength": 0,
     "adminCoolDown": 0,
     "alpha": 0,
@@ -361,29 +443,6 @@ Object {
     "totalSupplyA": 0,
     "totalSupplyB": 0,
     "usersLength": 0,
-  },
-}
-`;
-
-exports[`ui reducer network 1`] = `
-Object {
-  "account": "test",
-  "addressPool": Array [],
-  "addresses": Object {
-    "test": "test",
-  },
-  "allBalances": Object {},
-  "balances": Object {
-    "test": "test",
-  },
-  "gasPrice": 0,
-  "network": 123,
-  "prices": Object {
-    "last": "last",
-    "reset": "reset",
-  },
-  "states": Object {
-    "test": "test",
   },
 }
 `;

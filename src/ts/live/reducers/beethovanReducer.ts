@@ -1,9 +1,9 @@
 import { AnyAction } from 'redux';
 import * as CST from '../common/constants';
-import { IContractState } from '../common/types';
+import { IBeethovanState } from '../common/types';
 
-export const initialState: IContractState = {
-	states: {
+export const initialState: IBeethovanState = {
+	beethovanStates: {
 		state: CST.CTD_LOADING,
 		navA: 0,
 		navB: 0,
@@ -35,20 +35,20 @@ export const initialState: IContractState = {
 		ethBalance: 0,
 		duoBalance: 0
 	},
-	prices: {
+	beethovanPrices: {
 		first: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
 		second: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
 		reset: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
 		last: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 }
 	},
-	balances: {
+	beethovanBalances: {
 		eth: 0,
 		duo: 0,
 		allowance: 0,
 		tokenA: 0,
 		tokenB: 0
 	},
-	addresses: {
+	beethovanAddresses: {
 		operator: {
 			address: CST.DUMMY_ADDR,
 			balance: 0
@@ -74,40 +74,30 @@ export const initialState: IContractState = {
 			balance: 0
 		}
 	},
-	account: CST.DUMMY_ADDR,
-	network: 0,
-	gasPrice: 0,
 	allBalances: {},
-	addressPool: []
+	addressPool: [],
+	beethovanExchangePrices: [],
+	beethovanAcceptedPrices: [],
+	beethovanConversions: []
 };
 
-export function contractReducer(
-	state: IContractState = initialState,
+export function beethovanReducer(
+	state: IBeethovanState = initialState,
 	action: AnyAction
-): IContractState {
+): IBeethovanState {
 	switch (action.type) {
-		case CST.AC_CTD_STATES:
-			return Object.assign({}, state, {
-				states: action.value
-			});
-		case CST.AC_CTD_PRICES:
-			return Object.assign({}, state, {
-				prices: action.value
-			});
-		case CST.AC_ACCOUNT:
-			return Object.assign({}, state, {
-				[action.type]: action.value || ''
-			});
 		case CST.AC_ALL_BALANCES:
 			return Object.assign({}, state, {
 				[action.type]: Object.assign({}, state.allBalances, action.value)
 			});
-		case CST.AC_BALANCES:
-		case CST.AC_ADDRESSES:
-		case CST.AC_ACCOUNT:
-		case CST.AC_NETWORK:
+		case CST.AC_BTV_STATES:
+		case CST.AC_BTV_PRICES:
+		case CST.AC_BTV_ADDRESSES:
+		case CST.AC_BTV_BALANCES:
 		case CST.AC_ADDR_POOL:
-		case CST.AC_GAS_PX:
+		case CST.AC_BTV_EX_PX:
+		case CST.AC_BTV_ACCEPTED_PX:
+		case CST.AC_BTV_CONVERSIONS:
 			return Object.assign({}, state, {
 				[action.type]: action.value
 			});

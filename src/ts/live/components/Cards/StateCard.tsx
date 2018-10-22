@@ -5,14 +5,14 @@ import * as React from 'react';
 import successIcon from '../../../../images/stauts/success.svg';
 import warningIcon from '../../../../images/stauts/warning.svg';
 import * as CST from '../../common/constants';
-import { ICustodianPrice, ICustodianStates } from '../../common/types';
+import { IBeethovanStates, IContractPrice } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
 
 interface IProps {
 	locale: string;
-	reset: ICustodianPrice;
-	states: ICustodianStates;
+	reset: IContractPrice;
+	states: IBeethovanStates;
 	mobile?: boolean;
 }
 

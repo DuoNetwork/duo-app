@@ -7,9 +7,9 @@ import '../../css/liveStyle.css';
 import '../../static/GettingStarted.pdf';
 import '../../static/GettingStarted_CN.pdf';
 import '../../static/GettingStarted_JP.pdf';
-import * as contractActions from './actions/contractActions';
+import * as beethovanActions from './actions/beethovanActions';
 import * as dynamoActions from './actions/dynamoActions';
-import * as uiActions from './actions/uiActions';
+import * as web3Actions from './actions/web3Actions';
 import contract from './common/contract';
 import Duo from './containers/DuoContainer';
 import store from './store/store';
@@ -17,24 +17,26 @@ import store from './store/store';
 const config = require(`../keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
 dynamoUtil.init(config, !__KOVAN__, '', contract);
 
-store.dispatch(contractActions.getCustodianStates());
-store.dispatch(contractActions.getAllBalances(0, 20));
-store.dispatch(uiActions.refresh());
-store.dispatch(contractActions.getNetwork());
+store.dispatch(web3Actions.refresh());
+store.dispatch(beethovanActions.refresh());
+store.dispatch(beethovanActions.getAllBalances(0, 20));
 store.dispatch(dynamoActions.scanStatus());
 
 setInterval(() => {
-	store.dispatch(uiActions.refresh());
-	store.dispatch(contractActions.getNetwork());
+	store.dispatch(web3Actions.refresh());
+	store.dispatch(beethovanActions.refresh());
 	store.dispatch(dynamoActions.scanStatus());
 }, 60000);
 
 contract.onWeb3AccountUpdate((addr: string, network: number) => {
 	if (
-		addr.toLowerCase() !== store.getState().contract.account.toLowerCase() ||
-		network !== store.getState().contract.network
-	)
-		store.dispatch(uiActions.refresh());
+		addr.toLowerCase() !== store.getState().web3.account.toLowerCase() ||
+		network !== store.getState().web3.network
+	) {
+		store.dispatch(web3Actions.accountUpdate(addr));
+		store.dispatch(web3Actions.networkUpdate(network));
+		store.dispatch(beethovanActions.refresh());
+	}
 });
 
 ReactDOM.render(

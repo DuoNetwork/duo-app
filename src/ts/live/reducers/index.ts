@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
-import { contractReducer } from './contractReducer';
+import { beethovanReducer } from './beethovanReducer';
 import { dynamoReducer } from './dynamoReducer';
 import { uiReducer } from './uiReducer';
+import { web3Reducer } from './web3Reducer';
 
 const reducers = combineReducers({
-	contract: contractReducer,
+	beethovan: beethovanReducer,
 	dynamo: dynamoReducer,
 	ui: uiReducer,
+	web3: web3Reducer
 });
 
 export default reducers;

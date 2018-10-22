@@ -8,7 +8,7 @@ import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
 import * as CST from '../../common/constants';
 import contract from '../../common/contract';
-import { IBalances, ICustodianPrice, ICustodianStates } from '../../common/types';
+import { IBeethovanBalances, IBeethovanStates, IContractPrice } from '../../common/types';
 import util from '../../common/util';
 import { SDivFlexCenter } from '../_styled';
 import RadioExtra from '../Common/RadioExtra';
@@ -24,9 +24,9 @@ import {
 
 interface IProps {
 	locale: string;
-	reset: ICustodianPrice;
-	states: ICustodianStates;
-	balances: IBalances;
+	reset: IContractPrice;
+	states: IBeethovanStates;
+	balances: IBeethovanBalances;
 	account: string;
 	gasPrice: number;
 	mobile?: boolean;
@@ -123,13 +123,14 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		const amtNum = Number(amount);
 		if (!amtNum) return '';
 
-		return isCreate
-			? this.getConversionDescription(
+		if (isCreate)
+			return this.getConversionDescription(
 				amtNum,
 				this.getABFromEth(ethFee ? amtNum * (1 - states.createCommRate) : amtNum)[0],
 				true
-			)
-			: this.getConversionDescription(
+			);
+		else
+			return this.getConversionDescription(
 				this.getEthFromAB(amtNum) * (ethFee ? 1 - states.redeemCommRate : 1),
 				amtNum,
 				false

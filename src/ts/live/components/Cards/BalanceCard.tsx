@@ -4,7 +4,7 @@ import classBIcon from '../../../../images/ClassB_white.png';
 import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
-import { IBalances } from '../../common/types';
+import { IBeethovanBalances } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SRefreshButton } from './_styled';
 import BalanceInfo from './Balanceinfo';
@@ -13,7 +13,7 @@ import ExtendExtraDiv from './ExtendExtraDiv';
 interface IProps {
 	locale: string;
 	account: string;
-	balances: IBalances;
+	balances: IBeethovanBalances;
 	mobile?: boolean;
 	refreshBalance: () => any;
 }

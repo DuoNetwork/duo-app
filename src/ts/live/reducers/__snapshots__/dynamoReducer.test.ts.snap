@@ -1,70 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ui reducer acceptedPrices 1`] = `
-Object {
-  "acceptedPrices": Array [
-    "test",
-  ],
-  "conversions": Array [],
-  "prices": Object {
-    "test": "test",
-  },
-  "status": Array [
-    Object {
-      "process": "test",
-    },
-  ],
-}
-`;
-
-exports[`ui reducer conversions 1`] = `
-Object {
-  "acceptedPrices": Array [
-    "test",
-  ],
-  "conversions": Array [
-    "test",
-  ],
-  "prices": Object {
-    "test": "test",
-  },
-  "status": Array [
-    Object {
-      "process": "test",
-    },
-  ],
-}
-`;
-
 exports[`ui reducer default 1`] = `
 Object {
-  "acceptedPrices": Array [],
-  "conversions": Array [],
-  "prices": Array [],
   "status": Array [],
-}
-`;
-
-exports[`ui reducer prices 1`] = `
-Object {
-  "acceptedPrices": Array [],
-  "conversions": Array [],
-  "prices": Object {
-    "test": "test",
-  },
-  "status": Array [
-    Object {
-      "process": "test",
-    },
-  ],
 }
 `;
 
 exports[`ui reducer status 1`] = `
 Object {
-  "acceptedPrices": Array [],
-  "conversions": Array [],
-  "prices": Array [],
   "status": Array [
     Object {
       "process": "test",

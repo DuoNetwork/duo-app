@@ -1,23 +1,21 @@
 export * from '../../../../../duo-admin/src/common/constants';
 
-export const AC_CTD_STATES = 'custodianStates';
-export const AC_CTD_PRICES = 'custodianPrices';
+export const AC_BTV_STATES = 'beethovanStates';
+export const AC_BTV_PRICES = 'beethovanPrices';
+export const AC_BTV_ADDRESSES = 'beethovanAddresses';
+export const AC_BTV_EX_PX = 'beethovanExchangePrices';
+export const AC_BTV_ACCEPTED_PX = 'beethovanAcceptedPrices';
+export const AC_BTV_CONVERSIONS = 'beethovanConversions';
+export const AC_BTV_BALANCES = 'beethovanBalances';
 export const AC_ACCOUNT = 'account';
 export const AC_NETWORK = 'network';
-export const AC_BALANCES = 'balances';
 export const AC_ALL_BALANCES = 'allBalances';
-export const AC_ADDRESSES = 'addresses';
-export const AC_PRICES = 'prices';
-export const AC_ACCEPTED_PRICES = 'acceptedPrices';
 export const AC_STATUS = 'status';
 // export const AC_TOTAL_SUPPLY = 'totalSupply';
-export const AC_CONVERSIONS = 'conversions';
-export const AC_REFRESH = 'refresh';
 export const AC_ADDR_POOL = 'addressPool';
 export const AC_GAS_PX = 'gasPrice';
 export const AC_LOCALE = 'locale';
 export const AC_SUBSCRIBE = 'subscribe';
-export const AC_UPDATE = 'update';
 export const AC_PERIOD = 'period';
 export const AC_SOURCE = 'source';
 

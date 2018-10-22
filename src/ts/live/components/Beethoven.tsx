@@ -3,11 +3,11 @@ import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from '../common/constants';
 import {
-	IBalances,
+	IBeethovanBalances,
+	IBeethovanPrices,
+	IBeethovanStates,
+	IContractPrice,
 	IConversion,
-	ICustodianPrice,
-	ICustodianPrices,
-	ICustodianStates,
 	ISourceData
 } from '../common/types';
 import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
@@ -23,12 +23,12 @@ import Header from './Header';
 interface IProps {
 	location: object;
 	locale: string;
-	states: ICustodianStates;
-	prices: ICustodianPrices;
-	balances: IBalances;
+	states: IBeethovanStates;
+	prices: IBeethovanPrices;
+	balances: IBeethovanBalances;
 	network: number;
 	account: string;
-	sourceLast: ISourceData<ICustodianPrice>;
+	sourceLast: ISourceData<IContractPrice>;
 	conversions: IConversion[];
 	gasPrice: number;
 	refresh: () => any;

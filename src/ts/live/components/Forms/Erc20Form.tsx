@@ -3,14 +3,14 @@ import { Tooltip } from 'antd';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import contract from '../../common/contract';
-import { IBalances } from '../../common/types';
+import { IBeethovanBalances } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCardList, SCardTransactionForm, SInput } from '../Cards/_styled';
 
 interface IProps {
 	locale: string;
 	account: string;
-	balances: IBalances;
+	balances: IBeethovanBalances;
 	mobile?: boolean;
 }
 

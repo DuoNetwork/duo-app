@@ -18,38 +18,4 @@ describe('ui reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
-
-	test('prices', () => {
-		state = dynamoReducer(state, {
-			type: CST.AC_PRICES,
-			value: {
-				test: 'test'
-			}
-		});
-		expect(state).toMatchSnapshot();
-	});
-
-	test('acceptedPrices', () => {
-		state = dynamoReducer(state, {
-			type: CST.AC_ACCEPTED_PRICES,
-			value: ['test']
-		});
-		expect(state).toMatchSnapshot();
-	});
-
-	test('conversions', () => {
-		state = dynamoReducer(state, {
-			type: CST.AC_CONVERSIONS,
-			value: ['test']
-		});
-		expect(state).toMatchSnapshot();
-	});
-
-	// test('totalSupply', () => {
-	// 	state = dynamoReducer(state, {
-	// 		type: CST.AC_TOTAL_SUPPLY,
-	// 		value: ['test']
-	// 	});
-	// 	expect(state).toMatchSnapshot();
-	// });
 });

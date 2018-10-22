@@ -3,15 +3,15 @@ import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import contract from '../../common/contract';
-import { IAddresses, ICustodianStates } from '../../common/types';
+import { IBeethovanAddresses, IBeethovanStates } from '../../common/types';
 import AdminInputButton from '../Common/AdminInputButton';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
 
 interface IProps {
-	addresses: IAddresses;
-	states: ICustodianStates;
+	addresses: IBeethovanAddresses;
+	states: IBeethovanStates;
 	account: string;
 }
 
