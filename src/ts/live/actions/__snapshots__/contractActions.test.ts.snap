@@ -47,6 +47,15 @@ Object {
 }
 `;
 
+exports[`actions contractRefresh 1`] = `
+Object {
+  "type": "account",
+  "value": "test",
+}
+`;
+
+exports[`actions contractRefresh 2`] = `Array []`;
+
 exports[`actions custodianPricesUpdate 1`] = `
 Object {
   "type": "custodianPrices",

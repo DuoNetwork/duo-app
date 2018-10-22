@@ -72,7 +72,60 @@ describe('actions', () => {
 				resolve();
 			}, 0)
 		);
-	})
+	});
+
+	test('dynamoRefresh', () => {
+		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
+		dynamoUtil.scanStatus = jest.fn(() => Promise.resolve({ test: 'test' }));
+		dynamoUtil.getPrices = jest.fn(
+			(src: string, period: number, start: number, end: number, pair: string) =>
+				Promise.resolve([src, period, start, end, pair])
+		);
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		util.getDates = jest.fn(() => ['1970-01-15']);
+		dynamoUtil.queryConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				}
+			])
+		);
+		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa',
+					timestamp: 1234567890
+				},
+				{
+					transactionHash: 'bbb',
+					timestamp: 1234567890
+				},
+				{
+					transactionHash: 'ccc',
+					timestamp: 0
+				}
+			])
+		);
+		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
+		const store: any = mockStore({
+			ui: { period: 5, source: 'test' },
+			contract: {
+				states: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 },
+				account: CST.DUMMY_ADDR,
+				ui: {
+					period: 5,
+					source: 'test'
+				}
+			}
+		});
+		store.dispatch((dispatch: any) => dynamoActions.dynamoRefresh(dispatch));
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
 
 	test('acceptedPricesUpdate', () => {
 		expect(dynamoActions.acceptedPricesUpdate(['test'] as any)).toMatchSnapshot();

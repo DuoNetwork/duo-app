@@ -1,5 +1,4 @@
 import * as CST from '../common/constants';
-import contract from '../common/contract';
 import { VoidThunkAction } from '../common/types';
 import * as contractActions from './contractActions';
 import * as dynamoActions from './dynamoActions';
@@ -23,17 +22,8 @@ export function updateSource(src: string) {
 
 export function refresh(): VoidThunkAction {
 	return async dispatch => {
-		dispatch(contractActions.accountUpdate(await contract.getCurrentAddress()));
-		dispatch(contractActions.getGasPrice());
-		await dispatch(contractActions.getNetwork());
-		await dispatch(contractActions.getCustodianStates());
-		dispatch(contractActions.getCustodianPrices());
-		await dispatch(dynamoActions.scanStatus());
-		dispatch(contractActions.getBalances());
-		dispatch(dynamoActions.fetchPrices());
-		dispatch(dynamoActions.fetchAcceptedPrices(contract.custodianAddr));
-		dispatch(dynamoActions.fetchConversions(contract.custodianAddr));
-		dispatch(contractActions.getAddresses());
+		dynamoActions.dynamoRefresh(dispatch);
+		contractActions.contractRefresh(dispatch);
 		dispatch(refreshUpdate());
 	};
 }

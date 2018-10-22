@@ -18,6 +18,45 @@ Object {
 }
 `;
 
+exports[`actions dynamoRefresh 1`] = `
+Array [
+  Object {
+    "type": "status",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "prices",
+    "value": Array [
+      "test",
+      1,
+      1210567890,
+      0,
+      "ETH|USD",
+    ],
+  },
+  Object {
+    "type": "acceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "conversions",
+    "value": Array [
+      Object {
+        "transactionHash": "aaa",
+      },
+      Object {
+        "timestamp": 1234567890,
+        "transactionHash": "bbb",
+      },
+    ],
+  },
+]
+`;
+
 exports[`actions fetchAcceptedPrices 1`] = `
 Array [
   Object {

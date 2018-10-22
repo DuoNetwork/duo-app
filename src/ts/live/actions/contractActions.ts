@@ -53,6 +53,16 @@ export function getCustodianPrices(): VoidThunkAction {
 	return async dispatch => dispatch(custodianPricesUpdate(await contract.getCustodianPrices()));
 }
 
+export async function contractRefresh(dispatch: any): Promise<void> {
+	dispatch(accountUpdate(await contract.getCurrentAddress()));
+	dispatch(getGasPrice());
+	await dispatch(getNetwork());
+	await dispatch(getCustodianStates());
+	dispatch(getCustodianPrices());
+	dispatch(getBalances());
+	dispatch(getAddresses());
+}
+
 export function balancesUpdate(balance: IBalances) {
 	return {
 		type: CST.AC_BALANCES,
