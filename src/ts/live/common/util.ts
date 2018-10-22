@@ -74,6 +74,10 @@ class Util {
 			.replace(/G/g, 'B');
 	}
 
+	public getCurrentPath(location: any) {
+		return location.pathname === '/' ? location.pathname + 'beethoven' : location.pathname;
+	}
+
 	public getLastPriceFromStatus(status: IStatus[]): ISourceData<ICustodianPrice> {
 		// const bitfinex: ICustodianPrice = {
 		// 	address: CST.DUMMY_ADDR,
