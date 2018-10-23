@@ -29,6 +29,36 @@ Object {
 }
 `;
 
+exports[`actions adminActions 1`] = `
+Array [
+  Object {
+    "type": "beethovanStates",
+    "value": Object {
+      "usersLength": 1,
+    },
+  },
+  Object {
+    "type": "beethovanAddresses",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "account",
+    "value": "0x0",
+  },
+  Object {
+    "type": "addressPool",
+    "value": Array [
+      Object {
+        "address": "0x0",
+        "balance": 123,
+      },
+    ],
+  },
+]
+`;
+
 exports[`actions allBalancesUpdate 1`] = `
 Object {
   "type": "allBalances",
@@ -225,6 +255,74 @@ Object {
 }
 `;
 
+exports[`actions refresh 1`] = `
+Array [
+  Object {
+    "type": "beethovanStates",
+    "value": Object {
+      "usersLength": 1,
+    },
+  },
+  Object {
+    "type": "beethovanPrices",
+    "value": Object {
+      "last": "last",
+      "reset": "reset",
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "beethovanBalances",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "beethovanAddresses",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "beethovanExchangePrices",
+    "value": Array [
+      "test",
+      1,
+      1210567890,
+      0,
+      "ETH|USD",
+    ],
+  },
+  Object {
+    "type": "beethovanAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "beethovanConversions",
+    "value": Array [
+      Object {
+        "transactionHash": "aaa",
+      },
+      Object {
+        "timestamp": 1234567890,
+        "transactionHash": "bbb",
+      },
+    ],
+  },
+  Object {
+    "type": "addressPool",
+    "value": Array [
+      Object {
+        "address": "0x0",
+        "balance": 123,
+      },
+    ],
+  },
+]
+`;
+
 exports[`actions statesUpdate 1`] = `
 Object {
   "type": "beethovanStates",
@@ -232,4 +330,207 @@ Object {
     "test": "test",
   },
 }
+`;
+
+exports[`actions statusActions 1`] = `
+Array [
+  Object {
+    "type": "beethovanStates",
+    "value": Object {
+      "test": "test",
+    },
+  },
+]
+`;
+
+exports[`actions userActions 1`] = `
+Array [
+  Object {
+    "type": "beethovanStates",
+    "value": Object {
+      "test": "test",
+      "usersLength": 1,
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "0": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "1": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "2": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "3": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "4": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "5": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "6": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "7": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "8": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "9": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "10": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "11": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "12": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "13": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "14": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "15": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "16": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "17": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "18": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+  Object {
+    "type": "allBalances",
+    "value": Object {
+      "19": Object {
+        "account": "0x0",
+        "test": "test",
+      },
+    },
+  },
+]
 `;

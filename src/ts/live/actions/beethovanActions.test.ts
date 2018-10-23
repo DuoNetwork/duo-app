@@ -158,7 +158,9 @@ describe('actions', () => {
 
 	test('fetchAcceptedPrices', () => {
 		const store: any = mockStore({
-			beethovan: { beethovanStates: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 } }
+			beethovan: {
+				beethovanStates: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 }
+			}
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		store.dispatch(beethovanActions.fetchAcceptedPrices(CST.DUMMY_ADDR));
@@ -217,6 +219,118 @@ describe('actions', () => {
 					(dynamoUtil.deleteUIConversionEvent as jest.Mock<Promise<void>>).mock
 						.calls[1][1]
 				).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('refresh', () => {
+		util.getDates = jest.fn(() => ['1970-01-15']);
+		dynamoUtil.queryConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				}
+			])
+		);
+		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa',
+					timestamp: 1234567890
+				},
+				{
+					transactionHash: 'bbb',
+					timestamp: 1234567890
+				},
+				{
+					transactionHash: 'ccc',
+					timestamp: 0
+				}
+			])
+		);
+		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
+		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
+		dynamoUtil.getPrices = jest.fn(
+			(src: string, period: number, start: number, end: number, pair: string) =>
+				Promise.resolve([src, period, start, end, pair])
+		);
+		const store: any = mockStore({
+			web3: { account: CST.DUMMY_ADDR },
+			beethovan: {
+				beethovanStates: {
+					addrPoolLength: 1,
+					limitUpper: 2,
+					limitLower: 0.25,
+					limitPeriodic: 1.035
+				}
+			},
+			ui: { period: 5, source: 'test' }
+		});
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		contract.getCustodianAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+		contract.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
+		contract.getEthBalance = jest.fn(() => Promise.resolve(123));
+		contract.getCustodianPrices = jest.fn(() =>
+			Promise.resolve({
+				last: 'last',
+				reset: 'reset',
+				test: 'test'
+			})
+		);
+		store.dispatch(beethovanActions.refresh());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('adminActions', () => {
+		const store: any = mockStore({
+			beethovan: { beethovanStates: { addrPoolLength: 1 } }
+		});
+		contract.getCustodianAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+		contract.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
+		contract.getEthBalance = jest.fn(() => Promise.resolve(123));
+		contract.getCurrentAddress = jest.fn(() => Promise.resolve('0x0'));
+		store.dispatch(beethovanActions.adminActions());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('userActions', () => {
+		contract.getUserAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
+		contract.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
+		const store: any = mockStore({});
+		contract.getCustodianStates = jest.fn(() =>
+			Promise.resolve({ test: 'test', usersLength: 1 })
+		);
+		store.dispatch(beethovanActions.userActions(0, 20));
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('statusActions', () => {
+		const store: any = mockStore({});
+		contract.getCustodianStates = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
+		store.dispatch(beethovanActions.statusActions());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
 				resolve();
 			}, 0)
 		);

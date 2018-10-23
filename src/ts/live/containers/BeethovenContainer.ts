@@ -24,7 +24,9 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		refresh: () => dispatch(beethovanActions.refresh()),
+		refresh: () => {
+			dispatch(beethovanActions.refresh());
+		},
 		refreshBalance: () => {
 			dispatch(beethovanActions.getBalances());
 			dispatch(beethovanActions.getStates());

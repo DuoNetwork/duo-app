@@ -22,7 +22,6 @@ store.dispatch(dynamoActions.scanStatus());
 
 setInterval(() => {
 	store.dispatch(web3Actions.refresh());
-	store.dispatch(beethovanActions.refresh());
 	store.dispatch(dynamoActions.scanStatus());
 }, 60000);
 

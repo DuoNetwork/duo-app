@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import * as beethovanActions from '../actions/beethovanActions';
-import * as web3Actions from '../actions/web3Actions';
 import { IState } from '../common/types';
 import Admin from '../components/Admin';
 
@@ -21,9 +20,7 @@ function mapStateToProps(state: IState) {
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
 		init: async () => {
-			await dispatch(beethovanActions.getStates());
-			dispatch(beethovanActions.getAddresses());
-			dispatch(web3Actions.getAccount());
+			dispatch(beethovanActions.adminActions());
 		}
 	};
 }

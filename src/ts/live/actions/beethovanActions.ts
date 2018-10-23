@@ -16,6 +16,7 @@ import {
 	VoidThunkAction
 } from '../common/types';
 import util from '../common/util';
+import * as web3Actions from './web3Actions';
 
 export function statesUpdate(states: IBeethovanStates) {
 	return {
@@ -201,5 +202,47 @@ export function refresh(): VoidThunkAction {
 		dispatch(fetchExchangePrices());
 		dispatch(fetchAcceptedPrices(contract.custodianAddr));
 		dispatch(fetchConversions(contract.custodianAddr));
+		window.setInterval(async () => {
+			await dispatch(getStates());
+			dispatch(getPrices());
+			dispatch(getBalances());
+			dispatch(getAddresses());
+			dispatch(fetchExchangePrices());
+			dispatch(fetchAcceptedPrices(contract.custodianAddr));
+			dispatch(fetchConversions(contract.custodianAddr));
+		}, 60000);
+	};
+}
+
+export function adminActions(): VoidThunkAction {
+	return async dispatch => {
+		await dispatch(getStates());
+		dispatch(getAddresses());
+		dispatch(web3Actions.getAccount());
+		window.setInterval(async () => {
+			await dispatch(getStates());
+			dispatch(getAddresses());
+			dispatch(web3Actions.getAccount());
+		}, 60000);
+	};
+}
+
+export function userActions(start: number, end: number): VoidThunkAction {
+	return async dispatch => {
+		await dispatch(getStates());
+		dispatch(getAllBalances(start, end));
+		window.setInterval(async () => {
+			await dispatch(getStates());
+			dispatch(getAllBalances(start, end));
+		}, 60000);
+	};
+}
+
+export function statusActions(): VoidThunkAction {
+	return async dispatch => {
+		await dispatch(getStates());
+		window.setInterval(async () => {
+			await dispatch(getStates());
+		}, 60000);
 	};
 }
