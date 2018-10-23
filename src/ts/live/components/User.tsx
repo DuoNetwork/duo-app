@@ -15,6 +15,9 @@ interface IProps {
 }
 
 export default class Admin extends React.PureComponent<IProps> {
+	public componentWillMount() {
+		this.props.load(0, 20);
+	}
 	public render() {
 		const { allBalances, userLength, network, load, location } = this.props;
 		return (

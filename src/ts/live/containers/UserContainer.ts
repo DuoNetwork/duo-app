@@ -16,8 +16,8 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		load: (start: number, end: number) => {
-			dispatch(beethovanActions.getStates());
+		load: async (start: number, end: number) => {
+			await dispatch(beethovanActions.getStates());
 			dispatch(beethovanActions.getAllBalances(start, end));
 		}
 	};

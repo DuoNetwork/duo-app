@@ -9,6 +9,7 @@ import DecodeCard from './Cards/DecodeCard';
 import Header from './Header';
 
 interface IProps {
+	init: () => any;
 	location: object;
 	network: number;
 	addresses: IBeethovanAddresses;
@@ -19,6 +20,9 @@ interface IProps {
 }
 
 export default class Admin extends React.PureComponent<IProps> {
+	public componentDidMount() {
+		this.props.init();
+	}
 	public render() {
 		const { addresses, network, states, addressPool, account, location } = this.props;
 		return (

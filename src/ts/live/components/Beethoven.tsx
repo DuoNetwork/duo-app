@@ -37,6 +37,11 @@ interface IProps {
 }
 
 export default class DuoScreen extends React.PureComponent<IProps> {
+
+	public componentDidMount() {
+		this.props.refresh();
+	}
+
 	public render() {
 		const {
 			locale,
