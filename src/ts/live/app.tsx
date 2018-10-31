@@ -11,7 +11,7 @@ import * as beethovanActions from './actions/beethovanActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
 import contract from './common/contract';
-import Duo from './containers/DuoContainer';
+import Duo from './components/Duo';
 import store from './store/store';
 
 const config = require(`../keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);

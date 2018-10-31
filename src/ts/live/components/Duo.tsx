@@ -6,25 +6,18 @@ import Status from '../containers/StatusContainer';
 import User from '../containers/UserContainer';
 // import { SDivFlexCenter } from './_styled';
 // import { SCard } from './Cards/_styled';
-interface IProps {
-	location: object;
-}
 
-export default class Duo extends React.PureComponent<IProps> {
+export default class Duo extends React.PureComponent {
 	public render() {
-		const {} = this.props;
-		const path: string = (location as any).pathname;
-		const parts = path.split('/');
-		const base = parts.slice(0, parts.length - 1).join('/') + '/';
 		return (
 			<div>
 				<Switch>
-					<Route exact path={`${base}beethoven`} render={() => <Beethoven />} />
-					<Route exact path={`${base}status`} render={() => <Status />} />
-					<Route exact path={`${base}admin`} render={() => <Admin />} />
-					<Route exact path={`${base}user`} render={() => <User />} />
+					<Route exact path={'/beethoven'} render={() => <Beethoven />} />
+					<Route exact path={'/status'} render={() => <Status />} />
+					<Route exact path={'/admin'} render={() => <Admin />} />
+					<Route exact path={'/user'} render={() => <User />} />
 					<Route
-						path={base}
+						path={'/'}
 						render={() => (
 							<Beethoven />
 							// <div>
