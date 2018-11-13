@@ -10,7 +10,7 @@
 			"path": "..\\duo-contract"
 		},
 		{
-			"path": "..\\duo-contract-util"
+			"path": "..\\duo-contract-wrapper"
 		}
 	],
 	"settings": {

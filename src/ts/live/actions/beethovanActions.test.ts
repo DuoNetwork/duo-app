@@ -2,8 +2,8 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import * as CST from '../common/constants';
-import contract from '../common/contract';
 import util from '../common/util';
+import { beethovanWapper } from '../common/wrappers';
 import * as beethovanActions from './beethovanActions';
 
 const mockStore = configureMockStore([thunk]);
@@ -15,7 +15,7 @@ describe('actions', () => {
 
 	test('getStates', () => {
 		const store: any = mockStore({});
-		contract.getCustodianStates = jest.fn(() =>
+		beethovanWapper.getStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
@@ -29,75 +29,14 @@ describe('actions', () => {
 		);
 	});
 
-	test('pricesUpdate', () => {
-		expect(beethovanActions.pricesUpdate({ test: 'test' } as any)).toMatchSnapshot();
-	});
-
-	test('getPrices', () => {
-		const store: any = mockStore({});
-		contract.getCustodianPrices = jest.fn(() =>
-			Promise.resolve({
-				last: 'last',
-				reset: 'reset'
-			})
-		);
-		store.dispatch(beethovanActions.getPrices());
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 0)
-		);
-	});
-
-	test('balancesUpdate', () => {
-		expect(beethovanActions.balancesUpdate({ test: 'test' } as any)).toMatchSnapshot();
-	});
-
-	test('getBalances', () => {
-		const store: any = mockStore({ web3: { account: CST.DUMMY_ADDR } });
-		contract.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovanActions.getBalances());
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 0)
-		);
-	});
-
 	test('addressesUpdate', () => {
 		expect(beethovanActions.addressesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
 
-	test('addressPoolUpdate', () => {
-		expect(beethovanActions.addressPoolUpdate([{ test: 'test' }] as any)).toMatchSnapshot();
-	});
-
 	test('getAddresses', () => {
 		const store: any = mockStore({ beethovan: { beethovanStates: { addrPoolLength: 1 } } });
-		contract.getCustodianAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
-		contract.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contract.getEthBalance = jest.fn(() => Promise.resolve(123));
+		beethovanWapper.getAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(beethovanActions.getAddresses());
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 0)
-		);
-	});
-
-	test('allBalancesUpdate', () => {
-		expect(beethovanActions.allBalancesUpdate({ test: 'test' } as any, 123)).toMatchSnapshot();
-	});
-
-	test('getAllBalances', () => {
-		const store: any = mockStore({});
-		contract.getCustodianStates = jest.fn(() => Promise.resolve({ usersLength: 1 }));
-		contract.getUserAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contract.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovanActions.getAllBalances(123, 125));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -159,7 +98,7 @@ describe('actions', () => {
 	test('fetchAcceptedPrices', () => {
 		const store: any = mockStore({
 			beethovan: {
-				beethovanStates: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 }
+				states: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 }
 			}
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
@@ -258,7 +197,7 @@ describe('actions', () => {
 		const store: any = mockStore({
 			web3: { account: CST.DUMMY_ADDR },
 			beethovan: {
-				beethovanStates: {
+				states: {
 					addrPoolLength: 1,
 					limitUpper: 2,
 					limitLower: 0.25,
@@ -268,66 +207,8 @@ describe('actions', () => {
 			ui: { period: 5, source: 'test' }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		contract.getCustodianAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
-		contract.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contract.getEthBalance = jest.fn(() => Promise.resolve(123));
-		contract.getCustodianPrices = jest.fn(() =>
-			Promise.resolve({
-				last: 'last',
-				reset: 'reset',
-				test: 'test'
-			})
-		);
+		beethovanWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(beethovanActions.refresh());
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 0)
-		);
-	});
-
-	test('adminActions', () => {
-		const store: any = mockStore({
-			beethovan: { beethovanStates: { addrPoolLength: 1 } }
-		});
-		contract.getCustodianAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
-		contract.getPoolAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contract.getEthBalance = jest.fn(() => Promise.resolve(123));
-		contract.getCurrentAddress = jest.fn(() => Promise.resolve('0x0'));
-		store.dispatch(beethovanActions.adminActions());
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 0)
-		);
-	});
-
-	test('userActions', () => {
-		contract.getUserAddress = jest.fn(() => Promise.resolve(CST.DUMMY_ADDR));
-		contract.getBalances = jest.fn(() => Promise.resolve({ test: 'test' }));
-		const store: any = mockStore({});
-		contract.getCustodianStates = jest.fn(() =>
-			Promise.resolve({ test: 'test', usersLength: 1 })
-		);
-		store.dispatch(beethovanActions.userActions(0, 20));
-		return new Promise(resolve =>
-			setTimeout(() => {
-				expect(store.getActions()).toMatchSnapshot();
-				resolve();
-			}, 0)
-		);
-	});
-
-	test('statusActions', () => {
-		const store: any = mockStore({});
-		contract.getCustodianStates = jest.fn(() =>
-			Promise.resolve({
-				test: 'test'
-			})
-		);
-		store.dispatch(beethovanActions.statusActions());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

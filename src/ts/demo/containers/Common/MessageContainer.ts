@@ -1,4 +1,6 @@
-import { connect, Dispatch } from 'react-redux';
+import { connect } from 'react-redux';
+import { AnyAction } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import * as uiActions from '../../actions/uiActions';
 import { IState } from '../../common/types';
 import Message from '../../components/Common/Message';
@@ -11,7 +13,7 @@ function mapStateToProps(state: IState) {
 	};
 }
 
-function mapDispatchToProps(dispatch: Dispatch<IState>) {
+function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
 		close: () => dispatch(uiActions.messsage('', '', false))
 	};

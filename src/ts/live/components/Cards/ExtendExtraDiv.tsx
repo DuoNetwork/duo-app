@@ -9,7 +9,7 @@ interface IProps {
 	locale: string;
 }
 
-export default class BalanceCard extends React.Component<IProps> {
+export default class ExtendExtraDiv extends React.Component<IProps> {
 	public render() {
 		const { account, accountShow, locale } = this.props;
 		return (

@@ -2,9 +2,9 @@
 //import moment from 'moment';
 import { Button, Radio } from 'antd';
 import * as React from 'react';
-import {Wallet} from '../../../../../../duo-contract-util/src/contractUtil';
+import { Wallet } from '../../../../../../duo-contract-wrapper/src/Web3Wrapper';
 import * as CST from '../../common/constants';
-import contract from '../../common/contract';
+import { web3Wrapper } from '../../common/wrappers';
 import { SRadioGroup } from '../Cards/_styled';
 import { SModal } from './_styled';
 
@@ -31,7 +31,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 		this.state = {
 			loading: false,
 			accounts: [],
-			value: contract.wallet,
+			value: web3Wrapper.wallet,
 			visible: false,
 			msg: 'Please make sure Ledger is connected.',
 			accountIndex: 0,
@@ -51,9 +51,9 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 
 	private handleChange = (value: number) => {
 		if (value === Wallet.MetaMask) {
-			contract.switchToMetaMask(window);
+			web3Wrapper.switchToMetaMask(window);
 			this.setState({
-				value: contract.wallet
+				value: web3Wrapper.wallet
 			});
 			this.props.refresh();
 		} else if (value === Wallet.Ledger) this.setState({ visible: true });
@@ -64,7 +64,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 		const timer = setTimeout(() => {
 			this.setState({ msg: 'Failed to connect.', loading: false });
 		}, 15000);
-		contract.switchToLedger().then(accounts => {
+		web3Wrapper.switchToLedger().then(accounts => {
 			clearTimeout(timer);
 			this.setState({
 				msg: 'Select an account',
@@ -80,9 +80,9 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 	private handleSubmit = async () => {
 		this.setState({
 			loading: true,
-			value: contract.wallet
+			value: web3Wrapper.wallet
 		});
-		contract.accountIndex = this.state.accountIndex;
+		web3Wrapper.accountIndex = this.state.accountIndex;
 		await this.props.refresh();
 		this.handleCancel();
 	};
@@ -125,7 +125,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 					) : null}
 					{accounts.length ? (
 						<RadioGroup
-							className='ledger-account-selector'
+							className="ledger-account-selector"
 							onChange={e => this.handleSelect(e.target.value)}
 							value={accountIndex}
 						>

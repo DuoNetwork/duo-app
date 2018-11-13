@@ -2,14 +2,7 @@ import { Layout } from 'antd';
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from '../common/constants';
-import {
-	IBeethovanBalances,
-	IBeethovanPrices,
-	IBeethovanStates,
-	IContractPrice,
-	IConversion,
-	ISourceData
-} from '../common/types';
+import { IBeethovanStates, IContractPrice, IConversion, ISourceData } from '../common/types';
 import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
@@ -24,10 +17,11 @@ interface IProps {
 	location: object;
 	locale: string;
 	states: IBeethovanStates;
-	prices: IBeethovanPrices;
-	balances: IBeethovanBalances;
 	network: number;
 	account: string;
+	eth: number;
+	aToken: number;
+	bToken: number;
 	sourceLast: ISourceData<IContractPrice>;
 	conversions: IConversion[];
 	gasPrice: number;
@@ -37,18 +31,14 @@ interface IProps {
 }
 
 export default class DuoScreen extends React.PureComponent<IProps> {
-
-	public componentDidMount() {
-		this.props.refresh();
-	}
-
 	public render() {
 		const {
 			locale,
 			states,
-			prices,
-			balances,
 			account,
+			eth,
+			aToken,
+			bToken,
 			sourceLast,
 			conversions,
 			gasPrice,
@@ -74,20 +64,20 @@ export default class DuoScreen extends React.PureComponent<IProps> {
 						<SContent>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<TimeSeriesCard />
-								<StateCard locale={locale} states={states} reset={prices.reset} />
+								<StateCard locale={locale} states={states} />
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<PriceCard
 									locale={locale}
-									last={prices.last}
-									reset={prices.reset}
 									states={states}
 									sourceLast={sourceLast}
 								/>
 								<BalanceCard
 									locale={locale}
 									account={account}
-									balances={balances}
+									eth={eth}
+									aToken={aToken}
+									bToken={bToken}
 									refreshBalance={refreshBalance}
 								/>
 							</SDivFlexCenter>
@@ -95,9 +85,10 @@ export default class DuoScreen extends React.PureComponent<IProps> {
 								<ConversionCard locale={locale} conversions={conversions} />
 								<OperationCard
 									locale={locale}
-									reset={prices.reset}
 									states={states}
-									balances={balances}
+									eth={eth}
+									aToken={aToken}
+									bToken={bToken}
 									account={account}
 									refresh={refresh}
 									gasPrice={gasPrice}
@@ -107,20 +98,15 @@ export default class DuoScreen extends React.PureComponent<IProps> {
 					</Layout>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={899}>
-					<StateCard locale={locale} states={states} reset={prices.reset} mobile />
-					<PriceCard
-						locale={locale}
-						last={prices.last}
-						reset={prices.reset}
-						states={states}
-						sourceLast={sourceLast}
-						mobile
-					/>
+					<StateCard locale={locale} states={states} mobile />
+					<PriceCard locale={locale} states={states} sourceLast={sourceLast} mobile />
 					{account !== CST.DUMMY_ADDR ? (
 						<BalanceCard
 							locale={locale}
 							account={account}
-							balances={balances}
+							eth={eth}
+							aToken={aToken}
+							bToken={bToken}
 							refreshBalance={refreshBalance}
 							mobile
 						/>
@@ -128,9 +114,10 @@ export default class DuoScreen extends React.PureComponent<IProps> {
 					{account !== CST.DUMMY_ADDR ? (
 						<OperationCard
 							locale={locale}
-							reset={prices.reset}
 							states={states}
-							balances={balances}
+							eth={eth}
+							aToken={aToken}
+							bToken={bToken}
 							account={account}
 							refresh={refresh}
 							gasPrice={gasPrice}

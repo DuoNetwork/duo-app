@@ -66,17 +66,14 @@ Array [
 exports[`getLastPriceFromStatus 1`] = `
 Object {
   "gdax": Object {
-    "address": "0x0",
     "price": 616.14,
     "timestamp": 1528081164613,
   },
   "gemini": Object {
-    "address": "0x0",
     "price": 617.67,
     "timestamp": 1528081767414,
   },
   "kraken": Object {
-    "address": "0x0",
     "price": 617.85,
     "timestamp": 1528081700549,
   },

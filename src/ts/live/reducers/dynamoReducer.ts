@@ -8,9 +8,9 @@ export const initialState: IDynamoState = {
 
 export function dynamoReducer(state: IDynamoState = initialState, action: AnyAction): IDynamoState {
 	switch (action.type) {
-		case CST.AC_STATUS:
+		case CST.AC_DNM_STATUS:
 			return Object.assign({}, state, {
-				[action.type]: action.value
+				status: action.value
 			});
 		default:
 			return state;

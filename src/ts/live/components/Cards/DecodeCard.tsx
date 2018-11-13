@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contract from '../../common/contract';
 import { ColorStyles } from '../../common/styles';
+import { beethovanWapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SInput } from './_styled';
 
@@ -26,7 +26,7 @@ export default class DecodeCard extends React.PureComponent<{}, IState> {
 	private handleClick = () => {
 		const { input } = this.state;
 		this.setState({
-			output: JSON.stringify(contract.decode(input), null, 4)
+			output: JSON.stringify(beethovanWapper.decode(input), null, 4)
 		});
 	};
 
@@ -39,13 +39,13 @@ export default class DecodeCard extends React.PureComponent<{}, IState> {
 				margin="0 0 0 0"
 				inlinetype="table"
 			>
-			<SDivFlexCenter horizontal width="100%" padding="0">
-				<SInput onChange={e => this.handleChange(e.target.value)} width='760px'/>
-				<button className="form-button" onClick={this.handleClick}>
-					{CST.TH_DECODE}
-				</button>
-			</SDivFlexCenter>
-			<pre style={{color: ColorStyles.TextWhiteAlpha}}>{this.state.output}</pre>
+				<SDivFlexCenter horizontal width="100%" padding="0">
+					<SInput onChange={e => this.handleChange(e.target.value)} width="760px" />
+					<button className="form-button" onClick={this.handleClick}>
+						{CST.TH_DECODE}
+					</button>
+				</SDivFlexCenter>
+				<pre style={{ color: ColorStyles.TextWhiteAlpha }}>{this.state.output}</pre>
 			</SCard>
 		);
 	}

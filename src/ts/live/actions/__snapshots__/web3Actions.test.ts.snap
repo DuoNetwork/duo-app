@@ -2,14 +2,21 @@
 
 exports[`actions accountUpdate 1`] = `
 Object {
-  "type": "account",
+  "type": "web3Account",
   "value": "test",
+}
+`;
+
+exports[`actions balanceUpdate 1`] = `
+Object {
+  "type": "web3Balance",
+  "value": 123,
 }
 `;
 
 exports[`actions gasPriceUpdate 1`] = `
 Object {
-  "type": "gasPrice",
+  "type": "web3GasPrice",
   "value": 123,
 }
 `;
@@ -17,8 +24,17 @@ Object {
 exports[`actions getAccount 1`] = `
 Array [
   Object {
-    "type": "account",
+    "type": "web3Account",
     "value": "0x0",
+  },
+]
+`;
+
+exports[`actions getBalance 1`] = `
+Array [
+  Object {
+    "type": "web3Balance",
+    "value": 456,
   },
 ]
 `;
@@ -26,7 +42,7 @@ Array [
 exports[`actions getGasPrice 1`] = `
 Array [
   Object {
-    "type": "gasPrice",
+    "type": "web3GasPrice",
     "value": 456,
   },
 ]
@@ -35,7 +51,7 @@ Array [
 exports[`actions getNetwork 1`] = `
 Array [
   Object {
-    "type": "network",
+    "type": "web3Network",
     "value": 123,
   },
 ]
@@ -43,7 +59,7 @@ Array [
 
 exports[`actions networkUpdate 1`] = `
 Object {
-  "type": "network",
+  "type": "web3Network",
   "value": 123,
 }
 `;

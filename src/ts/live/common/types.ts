@@ -3,10 +3,6 @@ import { ThunkAction } from 'redux-thunk';
 export * from '../../../../../duo-admin/src/common/types';
 import * as adminTypes from '../../../../../duo-admin/src/common/types';
 
-export interface IAccountBalances extends adminTypes.IBeethovanBalances {
-	account: string;
-}
-
 export interface ISourceData<T> {
 	// bitfinex: T;
 	gemini: T;
@@ -26,18 +22,19 @@ export interface IWeb3State {
 	readonly account: string;
 	readonly network: number;
 	readonly gasPrice: number;
+	readonly balance: number;
 }
 
 export interface IBeethovanState {
-	readonly beethovanStates: adminTypes.IBeethovanStates;
-	readonly beethovanPrices: adminTypes.IBeethovanPrices;
-	readonly beethovanAddresses: adminTypes.IBeethovanAddresses;
-	readonly beethovanBalances: adminTypes.IBeethovanBalances;
-	readonly addressPool: adminTypes.IAddress[];
-	readonly allBalances: {[index: number]: IAccountBalances};
-	readonly beethovanExchangePrices: adminTypes.IPrice[];
-	readonly beethovanAcceptedPrices: adminTypes.IAcceptedPrice[];
-	readonly beethovanConversions: adminTypes.IConversion[];
+	readonly states: adminTypes.IBeethovanStates;
+	readonly addresses: adminTypes.ICustodianAddresses;
+	readonly exchangePrices: adminTypes.IPrice[];
+	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
+	readonly conversions: adminTypes.IConversion[];
+	readonly balances: {
+		a: number;
+		b: number;
+	}
 }
 
 export interface IDynamoState {

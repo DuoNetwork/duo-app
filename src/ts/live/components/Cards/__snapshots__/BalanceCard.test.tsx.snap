@@ -3,7 +3,7 @@
 exports[`AuthCard Test User Login Test Snapshot 1`] = `
 <Styled(Card)
   extra={
-    <BalanceCard
+    <ExtendExtraDiv
       account="0x0"
       accountShow="0x0"
       locale="EN"
@@ -33,15 +33,6 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
       value={0}
     />
     <BalanceInfo
-      account="0x0"
-      allowance={0}
-      icon={null}
-      locale="EN"
-      mobile={true}
-      name="DUO"
-      value={0}
-    />
-    <BalanceInfo
       icon={null}
       mobile={true}
       name="Token A"
@@ -60,7 +51,7 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
 exports[`AuthCard Test User Login Test Snapshot 2`] = `
 <Styled(Card)
   extra={
-    <BalanceCard
+    <ExtendExtraDiv
       account="0x0"
       accountShow="0x0"
       locale="EN"
@@ -87,15 +78,6 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
       icon={null}
       mobile={false}
       name="ETH"
-      value={0}
-    />
-    <BalanceInfo
-      account="0x0"
-      allowance={0}
-      icon={null}
-      locale="EN"
-      mobile={false}
-      name="DUO"
       value={0}
     />
     <BalanceInfo

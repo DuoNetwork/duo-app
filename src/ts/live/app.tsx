@@ -10,22 +10,23 @@ import '../../static/GettingStarted_JP.pdf';
 import * as beethovanActions from './actions/beethovanActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
-import contract from './common/contract';
+import { web3Wrapper } from './common/wrappers';
 import Duo from './components/Duo';
 import store from './store/store';
 
 const config = require(`../keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
-dynamoUtil.init(config, !__KOVAN__, '', contract);
+dynamoUtil.init(config, !__KOVAN__, '', web3Wrapper);
 
 store.dispatch(web3Actions.refresh());
 store.dispatch(dynamoActions.scanStatus());
 
 setInterval(() => {
 	store.dispatch(web3Actions.refresh());
+	store.dispatch(beethovanActions.refresh());
 	store.dispatch(dynamoActions.scanStatus());
 }, 60000);
 
-contract.onWeb3AccountUpdate((addr: string, network: number) => {
+web3Wrapper.onWeb3AccountUpdate((addr: string, network: number) => {
 	if (
 		addr.toLowerCase() !== store.getState().web3.account.toLowerCase() ||
 		network !== store.getState().web3.network

@@ -15,8 +15,7 @@ describe('AuthCard Test', () => {
 				eth: 1,
 				tokenA: 1,
 				tokenB: 2,
-				ethFee: 3,
-				duoFee: 4,
+				fee: 3,
 				pending: true,
 				reverted: true,
 				refreshBalance: jest.fn(() => 123)

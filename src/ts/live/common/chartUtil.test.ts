@@ -184,54 +184,54 @@ test('merge last price correctly', () => {
 	).toMatchSnapshot();
 });
 
-test('merge last price to accepted price correctly', () => {
-	const lastData = { address: '0x0', price: 205.01, timestamp: 1539755124695 };
-	const lastDataSameTime = { address: '0x0', price: 250.01, timestamp: 4000 };
-	const states = {
-		addrPoolLength: 6,
-		adminCoolDown: 3600,
-		alpha: 1,
-		beta: 1,
-		createCommRate: 0.01,
-		duoBalance: 2482128.9762267205,
-		ethBalance: 742.408092589115,
-		ethDuoFeeRatio: 800,
-		feeAccumulated: 87.06788278541666,
-		iterationGasThreshold: 65000,
-		lastAdminTime: 0,
-		limitLower: 0.25,
-		limitPeriodic: 1.035,
-		limitUpper: 2,
-		navA: 1.025942,
-		navB: 0.595738272490127,
-		nextResetAddrIndex: 0,
-		numOfPrices: 0,
-		period: 3600,
-		periodCoupon: 0.000017,
-		preResetWaitingBlocks: 10,
-		priceFeedTimeTol: 60,
-		priceFeedTol: 0.01,
-		priceTol: 0.05,
-		priceUpdateCoolDown: 3000,
-		redeemCommRate: 0.01,
-		state: 'Trading',
-		totalSupplyA: 82880.4753362674,
-		totalSupplyB: 82880.4753362674,
-		usersLength: 295
-	};
-	expect(
-		chartUtil.mergeLastestToAcceptedPrices(
-			[acceptedPrice1, acceptedPrice2, acceptedPrice3],
-			states,
-			lastData
-		)
-	).toMatchSnapshot();
-	expect(chartUtil.mergeLastestToAcceptedPrices([], states, lastData)).toMatchSnapshot();
-	expect(
-		chartUtil.mergeLastestToAcceptedPrices(
-			[acceptedPrice1, acceptedPrice2, acceptedPrice3],
-			states,
-			lastDataSameTime
-		)
-	).toMatchSnapshot();
-});
+// test('merge last price to accepted price correctly', () => {
+// 	const lastData = { address: '0x0', price: 205.01, timestamp: 1539755124695 };
+// 	const lastDataSameTime = { address: '0x0', price: 250.01, timestamp: 4000 };
+// 	const states = {
+// 		addrPoolLength: 6,
+// 		adminCoolDown: 3600,
+// 		alpha: 1,
+// 		beta: 1,
+// 		createCommRate: 0.01,
+// 		duoBalance: 2482128.9762267205,
+// 		ethBalance: 742.408092589115,
+// 		ethDuoFeeRatio: 800,
+// 		feeAccumulated: 87.06788278541666,
+// 		iterationGasThreshold: 65000,
+// 		lastAdminTime: 0,
+// 		limitLower: 0.25,
+// 		limitPeriodic: 1.035,
+// 		limitUpper: 2,
+// 		navA: 1.025942,
+// 		navB: 0.595738272490127,
+// 		nextResetAddrIndex: 0,
+// 		numOfPrices: 0,
+// 		period: 3600,
+// 		periodCoupon: 0.000017,
+// 		preResetWaitingBlocks: 10,
+// 		priceFeedTimeTol: 60,
+// 		priceFeedTol: 0.01,
+// 		priceTol: 0.05,
+// 		priceUpdateCoolDown: 3000,
+// 		redeemCommRate: 0.01,
+// 		state: 'Trading',
+// 		totalSupplyA: 82880.4753362674,
+// 		totalSupplyB: 82880.4753362674,
+// 		usersLength: 295
+// 	};
+// 	expect(
+// 		chartUtil.mergeLastestToAcceptedPrices(
+// 			[acceptedPrice1, acceptedPrice2, acceptedPrice3],
+// 			states,
+// 			lastData
+// 		)
+// 	).toMatchSnapshot();
+// 	expect(chartUtil.mergeLastestToAcceptedPrices([], states, lastData)).toMatchSnapshot();
+// 	expect(
+// 		chartUtil.mergeLastestToAcceptedPrices(
+// 			[acceptedPrice1, acceptedPrice2, acceptedPrice3],
+// 			states,
+// 			lastDataSameTime
+// 		)
+// 	).toMatchSnapshot();
+// });

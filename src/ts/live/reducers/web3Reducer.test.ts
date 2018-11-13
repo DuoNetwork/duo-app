@@ -11,7 +11,7 @@ describe('ui reducer', () => {
 
 	test('account', () => {
 		state = web3Reducer(state, {
-			type: CST.AC_ACCOUNT,
+			type: CST.AC_WEB3_ACCOUNT,
 			value: 'test'
 		});
 		expect(state).toMatchSnapshot();
@@ -19,7 +19,7 @@ describe('ui reducer', () => {
 
 	test('network', () => {
 		state = web3Reducer(state, {
-			type: CST.AC_NETWORK,
+			type: CST.AC_WEB3_NETWORK,
 			value: 123
 		});
 		expect(state).toMatchSnapshot();
@@ -27,7 +27,15 @@ describe('ui reducer', () => {
 
 	test('gasPrice', () => {
 		state = web3Reducer(state, {
-			type: CST.AC_GAS_PX,
+			type: CST.AC_WEB3_GAS_PX,
+			value: 123
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('balance', () => {
+		state = web3Reducer(state, {
+			type: CST.AC_WEB3_BALACE,
 			value: 123
 		});
 		expect(state).toMatchSnapshot();

@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import contract from '../../common/contract';
+import { beethovanWapper } from '../../common/wrappers';
 import { SInput } from './_styled';
 import DecodeCard from './DecodeCard';
 
@@ -12,6 +12,7 @@ describe('AuthCard Test', () => {
 		});
 
 		it('Test SInput Input', async () => {
+			beethovanWapper.decode = jest.fn(() => 'decoded');
 			const wrapper = shallow(<DecodeCard />);
 			await wrapper
 				.find(SInput)
@@ -22,7 +23,7 @@ describe('AuthCard Test', () => {
 				.find('button')
 				.at(0)
 				.simulate('click');
-			expect(wrapper.state('output')).toBe(JSON.stringify(contract.decode('123456'), null, 4));
+			expect(wrapper.state('output')).toBe(JSON.stringify('decoded', null, 4));
 		});
 	});
 });

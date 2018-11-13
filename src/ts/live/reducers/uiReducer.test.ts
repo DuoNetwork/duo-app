@@ -11,7 +11,7 @@ describe('ui reducer', () => {
 
 	test('period', () => {
 		state = uiReducer(state, {
-			type: CST.AC_PERIOD,
+			type: CST.AC_UI_PERIOD,
 			value: 1
 		});
 		expect(state).toMatchSnapshot();
@@ -19,7 +19,15 @@ describe('ui reducer', () => {
 
 	test('source', () => {
 		state = uiReducer(state, {
-			type: CST.AC_SOURCE,
+			type: CST.AC_UI_SOURCE,
+			value: 'test'
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('locale', () => {
+		state = uiReducer(state, {
+			type: CST.AC_UI_LOCALE,
 			value: 'test'
 		});
 		expect(state).toMatchSnapshot();

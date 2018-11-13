@@ -1,10 +1,8 @@
 import * as React from 'react';
 import classAIcon from '../../../../images/ClassA_white.png';
 import classBIcon from '../../../../images/ClassB_white.png';
-import duoIcon from '../../../../images/Duo_white.png';
 import ethIcon from '../../../../images/ethIcon.png';
 import * as CST from '../../common/constants';
-import { IBeethovanBalances } from '../../common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SRefreshButton } from './_styled';
 import BalanceInfo from './Balanceinfo';
@@ -13,14 +11,16 @@ import ExtendExtraDiv from './ExtendExtraDiv';
 interface IProps {
 	locale: string;
 	account: string;
-	balances: IBeethovanBalances;
+	eth: number;
+	aToken: number;
+	bToken: number;
 	mobile?: boolean;
 	refreshBalance: () => any;
 }
 
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
-		const { balances, account, refreshBalance, locale, mobile } = this.props;
+		const { eth, aToken, bToken, account, refreshBalance, locale, mobile } = this.props;
 		return (
 			<SCard
 				title={
@@ -43,28 +43,19 @@ export default class BalanceCard extends React.Component<IProps> {
 					<BalanceInfo
 						icon={ethIcon}
 						name={CST.TH_ETH}
-						value={balances.eth}
-						mobile={mobile}
-					/>
-					<BalanceInfo
-						icon={duoIcon}
-						name={CST.TH_DUO}
-						value={balances.duo}
-						allowance={balances.allowance}
-						locale={locale}
-						account={account}
+						value={eth}
 						mobile={mobile}
 					/>
 					<BalanceInfo
 						icon={classAIcon}
 						name={CST.TH_TOKEN_A}
-						value={balances.tokenA}
+						value={aToken}
 						mobile={mobile}
 					/>
 					<BalanceInfo
 						icon={classBIcon}
 						name={CST.TH_TOKEN_B}
-						value={balances.tokenB}
+						value={bToken}
 						mobile={mobile}
 					/>
 				</SDivFlexCenter>

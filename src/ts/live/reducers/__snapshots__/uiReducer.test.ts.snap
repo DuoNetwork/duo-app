@@ -8,6 +8,14 @@ Object {
 }
 `;
 
+exports[`ui reducer locale 1`] = `
+Object {
+  "locale": "test",
+  "period": 1,
+  "source": "test",
+}
+`;
+
 exports[`ui reducer period 1`] = `
 Object {
   "locale": "EN",

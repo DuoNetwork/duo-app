@@ -1,5 +1,5 @@
 //import moment from 'moment';
-import { Popconfirm, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import dynamoUtil from '../../../../../../duo-admin/src/utils/dynamoUtil';
@@ -7,11 +7,10 @@ import demoCreate from '../../../../images/createDemo.png';
 import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
 import * as CST from '../../common/constants';
-import contract from '../../common/contract';
-import { IBeethovanBalances, IBeethovanStates, IContractPrice } from '../../common/types';
+import { IBeethovanStates } from '../../common/types';
 import util from '../../common/util';
+import { beethovanWapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
-import RadioExtra from '../Common/RadioExtra';
 import Erc20Form from '../Forms/Erc20Form';
 import {
 	SCard,
@@ -24,9 +23,10 @@ import {
 
 interface IProps {
 	locale: string;
-	reset: IContractPrice;
 	states: IBeethovanStates;
-	balances: IBeethovanBalances;
+	eth: number;
+	aToken: number;
+	bToken: number;
 	account: string;
 	gasPrice: number;
 	mobile?: boolean;
@@ -34,7 +34,6 @@ interface IProps {
 }
 
 interface IState {
-	ethFee: boolean;
 	isCreate: boolean;
 	amount: string;
 	amountError: string;
@@ -46,7 +45,6 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			ethFee: true,
 			isCreate: true,
 			amount: '',
 			amountError: '',
@@ -66,18 +64,6 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 
 		return null;
 	}
-
-	private handleFeeTypeChange = () => {
-		this.setState(
-			{
-				ethFee: !this.state.ethFee
-			},
-			() =>
-				this.setState({
-					description: this.getDescription(this.state.amount)
-				})
-		);
-	};
 
 	private handleTypeChange = () =>
 		this.setState({
@@ -119,33 +105,33 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 
 	private getDescription = (amount: string) => {
 		const { states } = this.props;
-		const { isCreate, ethFee } = this.state;
+		const { isCreate } = this.state;
 		const amtNum = Number(amount);
 		if (!amtNum) return '';
 
 		if (isCreate)
 			return this.getConversionDescription(
 				amtNum,
-				this.getABFromEth(ethFee ? amtNum * (1 - states.createCommRate) : amtNum)[0],
+				this.getABFromEth(amtNum * (1 - states.createCommRate))[0],
 				true
 			);
 		else
 			return this.getConversionDescription(
-				this.getEthFromAB(amtNum) * (ethFee ? 1 - states.redeemCommRate : 1),
+				this.getEthFromAB(amtNum) * (1 - states.redeemCommRate),
 				amtNum,
 				false
 			);
 	};
 
 	private getABFromEth = (amount: number) => {
-		const { states, reset } = this.props;
-		const tokenB = (amount * reset.price * states.beta) / (1 + states.alpha);
+		const { states } = this.props;
+		const tokenB = (amount * states.resetPrice * states.beta) / (1 + states.alpha);
 		return [tokenB * states.alpha, tokenB];
 	};
 
 	private getEthFromAB = (amount: number) => {
-		const { states, reset } = this.props;
-		return (2 * amount) / reset.price / states.beta;
+		const { states } = this.props;
+		return (2 * amount) / states.resetPrice / states.beta;
 	};
 
 	private handleAmountBlur = (limit: number) => {
@@ -161,43 +147,40 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 
 	private handleSubmit = () => {
 		const { account, states, refresh } = this.props;
-		const { isCreate, amount, ethFee } = this.state;
+		const { isCreate, amount } = this.state;
 		const amtNum = Number(amount);
 		if (isCreate) {
 			const fee = amtNum * states.createCommRate;
-			const ethNetOfFee = ethFee ? amtNum - fee : amtNum;
+			const ethNetOfFee = amtNum - fee;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
-			contract.create(account, amtNum, ethFee, (txHash: string) =>
+			beethovanWapper.create(account, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
-						contract.custodianAddr,
+						beethovanWapper.web3Wrapper.contractAddresses.Beethovan.custodian,
 						account,
 						txHash,
 						true,
 						ethNetOfFee,
 						tokenA,
 						tokenB,
-						ethFee ? fee : 0,
-						ethFee ? 0 : fee * states.ethDuoFeeRatio
+						fee
 					)
 					.then(() => refresh())
 			);
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
 			const fee = ethAmount * states.redeemCommRate;
-			const ethNetOfFee = ethFee ? ethAmount - fee : ethAmount;
-			contract.redeem(account, amtNum, amtNum, ethFee, (txHash: string) =>
+			beethovanWapper.redeem(account, amtNum, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
-						contract.custodianAddr,
+						beethovanWapper.web3Wrapper.contractAddresses.Beethovan.custodian,
 						account,
 						txHash,
 						false,
-						ethNetOfFee,
+						ethAmount - fee,
 						amtNum,
 						amtNum,
-						ethFee ? fee : 0,
-						ethFee ? 0 : fee * states.ethDuoFeeRatio
+						fee
 					)
 					.then(() => refresh())
 			);
@@ -217,18 +200,23 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 		});
 
 	public render() {
-		const { states, reset, account, balances, gasPrice, locale, mobile } = this.props;
-		const { eth, tokenA, tokenB, allowance, duo } = this.props.balances;
-		const { ethFee, isCreate, amount, amountError, description } = this.state;
-		const limit = util.round(isCreate ? eth : Math.min(tokenA, tokenB));
+		const {
+			states,
+			account,
+			eth,
+			aToken,
+			bToken,
+			gasPrice,
+			locale,
+			mobile
+		} = this.props;
+		const { isCreate, amount, amountError, description } = this.state;
+		const limit = util.round(isCreate ? eth : Math.min(aToken, bToken));
 		const commissionRate = isCreate ? states.createCommRate : states.redeemCommRate;
 
-		const fee =
-			(isCreate
-				? Number(amount) * commissionRate
-				: (Number(amount) / reset.price / states.beta) * 2 * commissionRate) *
-			(ethFee ? 1 : states.ethDuoFeeRatio);
-		const duoIsSuffient = ethFee ? true : fee < allowance && fee < duo;
+		const fee = isCreate
+			? Number(amount) * commissionRate
+			: (Number(amount) / states.resetPrice / states.beta) * 2 * commissionRate;
 
 		const tooltipText = CST.TT_RESULT_VARY[locale];
 		return (
@@ -258,16 +246,6 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 					<SCardList>
 						<div className="status-list-wrapper">
 							<ul>
-								<li className="block-title">
-									<span>{CST.TH_CONVERSION[locale]}</span>
-									<RadioExtra
-										text="Fee in"
-										onChange={this.handleFeeTypeChange}
-										left={CST.TH_DUO}
-										right={CST.TH_ETH}
-										isLeft={!ethFee}
-									/>
-								</li>
 								<li className="img-line no-bg">
 									<img
 										className="demo-img"
@@ -349,7 +327,7 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 											': ' +
 											d3.formatPrefix(',.8', 1)(isNaN(fee) ? 0 : fee) +
 											' ' +
-											(ethFee ? CST.TH_ETH : CST.TH_DUO)}
+											CST.TH_ETH}
 									</div>
 								</li>
 								<li>
@@ -359,34 +337,13 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 										padding="0"
 										marginTop="10px"
 									>
-										{!duoIsSuffient ? (
-											<Popconfirm
-												title={CST.TT_DUO_FEE_CHECK[locale]}
-												onConfirm={this.handleClear}
-												onCancel={this.handleSubmit}
-												okText={CST.TH_CANCEL[locale]}
-												cancelText={CST.TH_SUBMIT[locale]}
-											>
-												<button
-													className={
-														'form-button' + (mobile ? ' mobile' : '')
-													}
-													disabled={!amount || !!amountError}
-												>
-													{CST.TH_SUBMIT[locale]}
-												</button>
-											</Popconfirm>
-										) : (
-											<button
-												className={
-													'form-button' + (mobile ? ' mobile' : '')
-												}
-												disabled={!amount || !!amountError}
-												onClick={this.handleSubmit}
-											>
-												{CST.TH_SUBMIT[locale]}
-											</button>
-										)}
+										<button
+											className={'form-button' + (mobile ? ' mobile' : '')}
+											disabled={!amount || !!amountError}
+											onClick={this.handleSubmit}
+										>
+											{CST.TH_SUBMIT[locale]}
+										</button>
 										<button
 											className={'form-button' + (mobile ? ' mobile' : '')}
 											onClick={this.handleClear}
@@ -399,7 +356,13 @@ export default class OperationCard extends React.PureComponent<IProps, IState> {
 						</div>
 					</SCardList>
 				</SCardConversionForm>
-				<Erc20Form balances={balances} account={account} locale={locale} mobile={mobile} />
+				<Erc20Form
+					aToken={aToken}
+					bToken={bToken}
+					account={account}
+					locale={locale}
+					mobile={mobile}
+				/>
 			</SCard>
 		);
 	}

@@ -1,23 +1,20 @@
 export * from '../../../../../duo-admin/src/common/constants';
 
 export const AC_BTV_STATES = 'beethovanStates';
-export const AC_BTV_PRICES = 'beethovanPrices';
 export const AC_BTV_ADDRESSES = 'beethovanAddresses';
 export const AC_BTV_EX_PX = 'beethovanExchangePrices';
 export const AC_BTV_ACCEPTED_PX = 'beethovanAcceptedPrices';
 export const AC_BTV_CONVERSIONS = 'beethovanConversions';
 export const AC_BTV_BALANCES = 'beethovanBalances';
-export const AC_ACCOUNT = 'account';
-export const AC_NETWORK = 'network';
-export const AC_ALL_BALANCES = 'allBalances';
-export const AC_STATUS = 'status';
-// export const AC_TOTAL_SUPPLY = 'totalSupply';
-export const AC_ADDR_POOL = 'addressPool';
-export const AC_GAS_PX = 'gasPrice';
-export const AC_LOCALE = 'locale';
+export const AC_WEB3_ACCOUNT = 'web3Account';
+export const AC_WEB3_NETWORK = 'web3Network';
+export const AC_WEB3_BALACE = 'web3Balance';
+export const AC_WEB3_GAS_PX = 'web3GasPrice';
+export const AC_DNM_STATUS = 'dynamoStatus';
+export const AC_UI_LOCALE = 'uiLocale';
 export const AC_SUBSCRIBE = 'subscribe';
-export const AC_PERIOD = 'period';
-export const AC_SOURCE = 'source';
+export const AC_UI_PERIOD = 'uiPeriod';
+export const AC_UI_SOURCE = 'uiSource';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
@@ -290,18 +287,18 @@ export const TH_CONVERSION_FACTOR: ILocaleText = {
 	[LOCALE_JP]: 'コンバージョンファクター',
 	[LOCALE_RU]: 'Коэф-т конверсии'
 };
-export const TH_FEE_RATIO: ILocaleText = {
-	[LOCALE_CN]: '费用比例',
-	[LOCALE_EN]: 'Fee Ratio',
-	[LOCALE_JP]: '費用比率',
-	[LOCALE_RU]: 'Соотношение'
-};
-export const TH_DUO_RECEIVED: ILocaleText = {
-	[LOCALE_CN]: '累计DUO手续费',
-	[LOCALE_EN]: 'DUO Received',
-	[LOCALE_JP]: '累計DUO',
-	[LOCALE_RU]: 'Получено DUO'
-};
+// export const TH_FEE_RATIO: ILocaleText = {
+// 	[LOCALE_CN]: '费用比例',
+// 	[LOCALE_EN]: 'Fee Ratio',
+// 	[LOCALE_JP]: '費用比率',
+// 	[LOCALE_RU]: 'Соотношение'
+// };
+// export const TH_DUO_RECEIVED: ILocaleText = {
+// 	[LOCALE_CN]: '累计DUO手续费',
+// 	[LOCALE_EN]: 'DUO Received',
+// 	[LOCALE_JP]: '累計DUO',
+// 	[LOCALE_RU]: 'Получено DUO'
+// };
 export const TH_ETH_BALANCE: ILocaleText = {
 	[LOCALE_CN]: 'ETH净余额',
 	[LOCALE_EN]: 'Net ETH Balance',
@@ -492,12 +489,12 @@ export const TT_BEETHOVEN_ADDR: ILocaleText = {
 		TH_BEETHOVEN +
 		' отключена.'
 };
-export const TT_DUO_FEE_CHECK: ILocaleText = {
-	[LOCALE_CN]: '由于DUO授权余额不足，操作可能失败',
-	[LOCALE_EN]: 'Insufficient DUO Allowance balance, transaction may fail',
-	[LOCALE_JP]: 'DUOの割当残高不足のため、トランザクションが失敗する可能性があります',
-	[LOCALE_RU]: 'Недостаточный баланс DUO, транзакция может быть не успешна'
-};
+// export const TT_DUO_FEE_CHECK: ILocaleText = {
+// 	[LOCALE_CN]: '由于DUO授权余额不足，操作可能失败',
+// 	[LOCALE_EN]: 'Insufficient DUO Allowance balance, transaction may fail',
+// 	[LOCALE_JP]: 'DUOの割当残高不足のため、トランザクションが失敗する可能性があります',
+// 	[LOCALE_RU]: 'Недостаточный баланс DUO, транзакция может быть не успешна'
+// };
 export const TT_NETWORK_CHECK: ILocaleText = {
 	[LOCALE_CN]:
 		'此页面只支持' + (__KOVAN__ ? 'KOVAN' : 'MainNet') + '，请在MetaMask中选择正确的网络',

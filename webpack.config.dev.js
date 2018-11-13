@@ -19,6 +19,7 @@ module.exports = {
 		historyApiFallback: true,
 		host: "0.0.0.0",
 		disableHostCheck: true,
+		publicPath: '/'
 	},
 	plugins: [
 		new webpack.LoaderOptionsPlugin({

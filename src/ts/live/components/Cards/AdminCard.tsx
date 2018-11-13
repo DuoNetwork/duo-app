@@ -2,15 +2,14 @@ import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contract from '../../common/contract';
-import { IBeethovanAddresses, IBeethovanStates } from '../../common/types';
+import { IBeethovanStates, ICustodianAddresses } from '../../common/types';
 import AdminInputButton from '../Common/AdminInputButton';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
 
 interface IProps {
-	addresses: IBeethovanAddresses;
+	addresses: ICustodianAddresses;
 	states: IBeethovanStates;
 	account: string;
 }
@@ -26,13 +25,13 @@ export default class AdminCard extends React.PureComponent<IProps> {
 		data.push({
 			key: key++,
 			[CST.TH_STATE]: 'Fee Accumulated',
-			[CST.TH_VALUE]: d3.format(',.2f')(states.feeAccumulated),
+			[CST.TH_VALUE]: d3.format(',.2f')(states.feeBalance),
 			[CST.TH_ACTION]: (
 				<AdminInputButton
 					account={account}
 					type={CST.TH_COLLECT_FEE}
 					disabled={
-						account === CST.DUMMY_ADDR || addresses.feeCollector.address !== account
+						account === CST.DUMMY_ADDR || addresses.feeCollector !== account
 					}
 					validateInput={(value: string) =>
 						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
@@ -50,7 +49,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
 					index={0}
 					validateInput={validatePosInt}
 				/>
@@ -64,21 +63,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
-					index={8}
-					validateInput={validatePosInt}
-				/>
-			)
-		});
-		data.push({
-			key: key++,
-			[CST.TH_STATE]: 'ETH:DUO Fee Ratio',
-			[CST.TH_VALUE]: states.ethDuoFeeRatio,
-			[CST.TH_ACTION]: (
-				<AdminInputButton
-					account={account}
-					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
 					index={1}
 					validateInput={validatePosInt}
 				/>
@@ -92,7 +77,7 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
 					index={2}
 					validateInput={validatePosInt}
 				/>
@@ -106,89 +91,11 @@ export default class AdminCard extends React.PureComponent<IProps> {
 				<AdminInputButton
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
+					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
 					index={3}
 					validateInput={validatePosInt}
 				/>
 			)
-		});
-		data.push({
-			key: key++,
-			[CST.TH_STATE]: 'Price Tolerance BP',
-			[CST.TH_VALUE]: states.priceTol * 10000,
-			[CST.TH_ACTION]: (
-				<AdminInputButton
-					account={account}
-					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
-					index={4}
-					validateInput={validatePosInt}
-				/>
-			)
-		});
-		data.push({
-			key: key++,
-			[CST.TH_STATE]: 'Price Feed Tolerance BP',
-			[CST.TH_VALUE]: states.priceFeedTol * 10000,
-			[CST.TH_ACTION]: (
-				<AdminInputButton
-					account={account}
-					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
-					index={5}
-					validateInput={validatePosInt}
-				/>
-			)
-		});
-		data.push({
-			key: key++,
-			[CST.TH_STATE]: 'Price Feed Time Tolerance',
-			[CST.TH_VALUE]: states.priceFeedTimeTol,
-			[CST.TH_ACTION]: (
-				<AdminInputButton
-					account={account}
-					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
-					index={6}
-					validateInput={validatePosInt}
-				/>
-			)
-		});
-		data.push({
-			key: key++,
-			[CST.TH_STATE]: 'Price Update Cool Down',
-			[CST.TH_VALUE]: states.priceUpdateCoolDown,
-			[CST.TH_ACTION]: (
-				<AdminInputButton
-					account={account}
-					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator.address !== account}
-					index={7}
-					validateInput={validatePosInt}
-				/>
-			)
-		});
-		data.push({
-			key: key++,
-			[CST.TH_STATE]: 'Address Pool Length',
-			[CST.TH_VALUE]: states.addrPoolLength,
-			[CST.TH_ACTION]: (
-				<AdminInputButton
-					account={account}
-					type={CST.TH_ADD_ADDR}
-					disabled={
-						account === CST.DUMMY_ADDR || addresses.poolManager.address !== account
-					}
-					validateInput={(value: string) =>
-						contract.checkAddress(value) ? '' : 'Invalid Address'
-					}
-				/>
-			)
-		});
-		data.push({
-			key: key++,
-			[CST.TH_STATE]: 'Staged Prices',
-			[CST.TH_VALUE]: states.numOfPrices
 		});
 		data.push({
 			key: key++,
@@ -197,13 +104,13 @@ export default class AdminCard extends React.PureComponent<IProps> {
 		});
 		data.push({
 			key: key++,
-			[CST.TH_STATE]: 'Last Admin Time',
-			[CST.TH_VALUE]: states.lastAdminTime
+			[CST.TH_STATE]: 'Last Operation Time',
+			[CST.TH_VALUE]: states.lastOperationTime
 		});
 		data.push({
 			key: key++,
-			[CST.TH_STATE]: 'Admin Cool Down',
-			[CST.TH_VALUE]: states.adminCoolDown
+			[CST.TH_STATE]: 'Operation Cool Down',
+			[CST.TH_VALUE]: states.operationCoolDown
 		});
 		return (
 			<SCard

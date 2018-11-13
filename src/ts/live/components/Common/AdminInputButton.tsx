@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import contract from '../../common/contract';
+import { beethovanWapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SInput } from '../Cards/_styled';
 
@@ -45,18 +45,15 @@ export default class AdminInputButton extends React.PureComponent<IProps, IState
 		const { account, type } = this.props;
 		const index =
 			this.props.index === null || this.props.index === undefined ? -1 : this.props.index;
-		const { value, valueError, value1, value1Error } = this.state;
+		const { value, valueError, value1Error } = this.state;
 		if (valueError || value1Error) return;
 
 		switch (type) {
 			case CST.TH_COLLECT_FEE:
-				contract.collectFee(account, Number(value));
+				beethovanWapper.collectFee(account, Number(value));
 				break;
 			case CST.TH_SET_VALUE:
-				if (index >= 0) contract.setValue(account, index, Number(value));
-				break;
-			case CST.TH_ADD_ADDR:
-				contract.addAddress(account, value, value1);
+				if (index >= 0) beethovanWapper.setValue(account, index, Number(value));
 				break;
 			default:
 				break;

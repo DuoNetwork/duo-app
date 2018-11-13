@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { /*Link, */ Route, Switch } from 'react-router-dom';
-import Admin from '../containers/AdminContainer';
+// import Admin from '../containers/AdminContainer';
 import Beethoven from '../containers/BeethovenContainer';
 import Status from '../containers/StatusContainer';
-import User from '../containers/UserContainer';
+// import User from '../containers/UserContainer';
 // import { SDivFlexCenter } from './_styled';
 // import { SCard } from './Cards/_styled';
 
@@ -14,8 +14,8 @@ export default class Duo extends React.PureComponent {
 				<Switch>
 					<Route exact path={'/beethoven'} render={() => <Beethoven />} />
 					<Route exact path={'/status'} render={() => <Status />} />
-					<Route exact path={'/admin'} render={() => <Admin />} />
-					<Route exact path={'/user'} render={() => <User />} />
+					{/* <Route exact path={'/admin'} render={() => <Admin />} /> */}
+					{/* <Route exact path={'/user'} render={() => <User />} /> */}
 					<Route
 						path={'/'}
 						render={() => (

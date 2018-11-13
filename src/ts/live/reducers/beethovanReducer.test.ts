@@ -19,56 +19,11 @@ describe('beethovan reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanPrices', () => {
-		state = beethovanReducer(state, {
-			type: CST.AC_BTV_PRICES,
-			value: {
-				reset: 'reset',
-				last: 'last'
-			}
-		});
-		expect(state).toMatchSnapshot();
-	});
-
-	test('beethovanBalances', () => {
-		state = beethovanReducer(state, {
-			type: CST.AC_BTV_BALANCES,
-			value: {
-				test: 'test'
-			}
-		});
-		expect(state).toMatchSnapshot();
-	});
-
 	test('beethovanAddresses', () => {
 		state = beethovanReducer(state, {
 			type: CST.AC_BTV_ADDRESSES,
 			value: {
 				test: 'test'
-			}
-		});
-		expect(state).toMatchSnapshot();
-	});
-
-	test('allBalances', () => {
-		state = beethovanReducer(state, {
-			type: CST.AC_ALL_BALANCES,
-			value: {
-				123: {
-					test: 'test'
-				}
-			}
-		});
-		expect(state).toMatchSnapshot();
-	});
-
-	test('addressPool', () => {
-		state = beethovanReducer(state, {
-			type: CST.AC_ADDR_POOL,
-			value: {
-				123: {
-					test: 'test'
-				}
 			}
 		});
 		expect(state).toMatchSnapshot();
@@ -95,6 +50,14 @@ describe('beethovan reducer', () => {
 	test('beethovanConversions', () => {
 		state = beethovanReducer(state, {
 			type: CST.AC_BTV_CONVERSIONS,
+			value: ['test']
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('beethovanBalances', () => {
+		state = beethovanReducer(state, {
+			type: CST.AC_BTV_BALANCES,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();

@@ -11,14 +11,15 @@ import Beethoven from '../components/Beethoven';
 function mapStateToProps(state: IState) {
 	return {
 		locale: state.ui.locale,
-		states: state.beethovan.beethovanStates,
-		prices: state.beethovan.beethovanPrices,
-		balances: state.beethovan.beethovanBalances,
+		states: state.beethovan.states,
 		network: state.web3.network,
 		account: state.web3.account,
 		sourceLast: util.getLastPriceFromStatus(state.dynamo.status),
-		conversions: state.beethovan.beethovanConversions,
-		gasPrice: state.web3.gasPrice
+		conversions: state.beethovan.conversions,
+		gasPrice: state.web3.gasPrice,
+		eth: state.web3.balance,
+		aToken: state.beethovan.balances.a,
+		bToken: state.beethovan.balances.b,
 	};
 }
 

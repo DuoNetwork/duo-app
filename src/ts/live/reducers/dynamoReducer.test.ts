@@ -11,7 +11,7 @@ describe('ui reducer', () => {
 
 	test('status', () => {
 		state = dynamoReducer(state, {
-			type: CST.AC_STATUS,
+			type: CST.AC_DNM_STATUS,
 			value: [{
 				process: 'test'
 			}]

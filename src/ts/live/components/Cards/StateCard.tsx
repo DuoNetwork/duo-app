@@ -5,26 +5,26 @@ import * as React from 'react';
 import successIcon from '../../../../images/stauts/success.svg';
 import warningIcon from '../../../../images/stauts/warning.svg';
 import * as CST from '../../common/constants';
-import { IBeethovanStates, IContractPrice } from '../../common/types';
+import { IBeethovanStates } from '../../common/types';
+import { web3Wrapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
 
 interface IProps {
 	locale: string;
-	reset: IContractPrice;
 	states: IBeethovanStates;
 	mobile?: boolean;
 }
 
 export default class StateCard extends React.PureComponent<IProps> {
 	public render() {
-		const { states, reset, mobile, locale } = this.props;
+		const { states, mobile, locale } = this.props;
 		const tooltioText =
 			states.state === CST.CTD_TRADING
 				? CST.TT_TRADING_STATE[locale]
 				: states.state === CST.CTD_INCEPTION
-					? 'Inception state, please wait until the system is started.'
-					: CST.TT_RESET_STATE[locale];
+				? 'Inception state, please wait until the system is started.'
+				: CST.TT_RESET_STATE[locale];
 		return (
 			<SCard
 				title={
@@ -35,7 +35,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 								'https://' +
 								(__KOVAN__ ? 'kovan.' : '') +
 								'etherscan.io/address/' +
-								(__KOVAN__ ? CST.CUSTODIAN_ADDR_KOVAN : CST.CUSTODIAN_ADDR_MAIN)
+								web3Wrapper.contractAddresses.Beethovan.custodian
 							}
 							target="_blank"
 							style={{ color: 'white' }}
@@ -67,8 +67,8 @@ export default class StateCard extends React.PureComponent<IProps> {
 											<div className="last-reset-title">
 												<span>{CST.TH_LAST_RESET[locale]}</span>
 												<span className="last-reset-title-span">
-													{reset.timestamp
-														? moment(reset.timestamp).format(
+													{states.resetPriceTime
+														? moment(states.resetPriceTime).format(
 																'YYYY-MM-DD HH:mm'
 														)
 														: CST.TH_LOADING[locale]}
@@ -86,14 +86,15 @@ export default class StateCard extends React.PureComponent<IProps> {
 										<li>
 											<span className="title">ETH</span>
 											<span className="content">
-												{d3.formatPrefix(',.2', 1)(reset.price) + ' USD'}
+												{d3.formatPrefix(',.2', 1)(states.resetPrice) +
+													' USD'}
 											</span>
 										</li>
 									) : (
 										<li className="no-bg">
 											<SCardListProgressBar
 												index={states.nextResetAddrIndex}
-												total={states.usersLength}
+												total={states.totalUsers}
 											>
 												<div className="bar-bg">
 													<div className="inner-bar" />
@@ -101,7 +102,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 												<div className="bar-text">
 													{d3.format('.2%')(
 														states.nextResetAddrIndex /
-															(states.usersLength || 1)
+															(states.totalUsers || 1)
 													)}
 												</div>
 											</SCardListProgressBar>
@@ -117,7 +118,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 								<li className="block-title">{CST.TH_CONTRACT_STATES[locale]}</li>
 								<li>
 									<span className="title">{CST.TH_PERIOD_LENGTH[locale]}</span>
-									<span className="content">{states.period / 60 + ' mins'}</span>
+									<span className="content">{states.period / 60000 + ' mins'}</span>
 								</li>
 								<li>
 									<span className="title">
@@ -162,25 +163,9 @@ export default class StateCard extends React.PureComponent<IProps> {
 									</span>
 								</li>
 								<li>
-									<span className="title">
-										{locale === CST.LOCALE_RU
-											? CST.TH_FEE_RATIO[locale] + ' ETH:DUO'
-											: 'ETH:DUO ' + CST.TH_FEE_RATIO[locale]}
-									</span>
-									<span className="content">1:{states.ethDuoFeeRatio}</span>
-								</li>
-								<li>
-									<span className="title">{CST.TH_DUO_RECEIVED[locale]}</span>
-									<span className="content">
-										{d3.format(',.2f')(states.duoBalance)}
-									</span>
-								</li>
-								<li>
 									<span className="title">{CST.TH_ETH_BALANCE[locale]}</span>
 									<span className="content">
-										{d3.format(',.2f')(
-											states.ethBalance - states.feeAccumulated
-										)}
+										{d3.format(',.2f')(states.ethCollateral)}
 									</span>
 								</li>
 								<li>
@@ -197,7 +182,7 @@ export default class StateCard extends React.PureComponent<IProps> {
 								</li>
 								<li>
 									<span className="title">{CST.TH_TOTAL_USERS[locale]}</span>
-									<span className="content">{states.usersLength}</span>
+									<span className="content">{states.totalUsers}</span>
 								</li>
 							</ul>
 						</div>

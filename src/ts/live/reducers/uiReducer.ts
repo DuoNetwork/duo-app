@@ -10,19 +10,25 @@ export const initialState: IUIState = {
 	locale: lan.includes(CST.LOCALE_CN)
 		? CST.LOCALE_CN
 		: lan.includes('JA')
-			? CST.LOCALE_JP
-			: lan.includes(CST.LOCALE_RU)
-				? CST.LOCALE_RU
-				: CST.LOCALE_EN
+		? CST.LOCALE_JP
+		: lan.includes(CST.LOCALE_RU)
+		? CST.LOCALE_RU
+		: CST.LOCALE_EN
 };
 
 export function uiReducer(state: IUIState = initialState, action: AnyAction): IUIState {
 	switch (action.type) {
-		case CST.AC_LOCALE:
-		case CST.AC_SOURCE:
-		case CST.AC_PERIOD:
+		case CST.AC_UI_LOCALE:
 			return Object.assign({}, state, {
-				[action.type]: action.value
+				locale: action.value
+			});
+		case CST.AC_UI_SOURCE:
+			return Object.assign({}, state, {
+				source: action.value
+			});
+		case CST.AC_UI_PERIOD:
+			return Object.assign({}, state, {
+				period: action.value
 			});
 		default:
 			return state;

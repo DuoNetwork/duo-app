@@ -154,7 +154,7 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
           Array [
             Object {
               "ETH": "1.00000000",
-              "Fee": "4.00000000 DUO",
+              "Fee": "3.00000000 ETH",
               "Link": "https://kovan.etherscan.io/tx/test",
               "Status": "Pending",
               "Time": "1970-01-19 03:44:03",

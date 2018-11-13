@@ -1,6 +1,5 @@
 import * as d3 from 'd3';
 import moment, { DurationInputArg2 } from 'moment';
-import * as CST from './constants';
 import { IContractPrice, IPriceStatus, ISourceData, IStatus } from './types';
 
 class Util {
@@ -76,22 +75,18 @@ class Util {
 
 	public getLastPriceFromStatus(status: IStatus[]): ISourceData<IContractPrice> {
 		// const bitfinex: ICustodianPrice = {
-		// 	address: CST.DUMMY_ADDR,
 		// 	price: 0,
 		// 	timestamp: 0
 		// };
 		const kraken: IContractPrice = {
-			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};
 		const gemini: IContractPrice = {
-			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};
 		const gdax: IContractPrice = {
-			address: CST.DUMMY_ADDR,
 			price: 0,
 			timestamp: 0
 		};

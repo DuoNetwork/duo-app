@@ -39,9 +39,7 @@ export default class ConversionCard extends React.PureComponent<IProps> {
 								[CST.TH_TYPE.EN]: c.type,
 								[CST.TH_ETH]: d3.format(',.8f')(c.eth),
 								[CST.TH_TOKEN_AB]: d3.format(',.8f')(c.tokenA),
-								[CST.TH_FEE.EN]: c.duoFee
-									? d3.format(',.8f')(c.duoFee) + ' ' + CST.TH_DUO
-									: d3.format(',.8f')(c.ethFee) + ' ' + CST.TH_ETH,
+								[CST.TH_FEE.EN]: d3.format(',.8f')(c.fee) + ' ' + CST.TH_ETH,
 								[CST.TH_LINK]:
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +

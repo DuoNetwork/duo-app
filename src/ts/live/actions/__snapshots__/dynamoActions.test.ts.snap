@@ -3,7 +3,7 @@
 exports[`actions scanStatus 1`] = `
 Array [
   Object {
-    "type": "status",
+    "type": "dynamoStatus",
     "value": Object {
       "test": "test",
     },
@@ -13,7 +13,7 @@ Array [
 
 exports[`actions statusUpdate 1`] = `
 Object {
-  "type": "status",
+  "type": "dynamoStatus",
   "value": Object {
     "test": "test",
   },

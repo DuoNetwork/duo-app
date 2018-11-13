@@ -10,13 +10,9 @@ interface IProps {
 	location: object;
 	network: number;
 	status: IStatus[];
-	getStates: () => any;
 }
 
 export default class Status extends React.PureComponent<IProps> {
-	public componentDidMount() {
-		this.props.getStates();
-	}
 	public render() {
 		const { status, network, location } = this.props;
 		return (

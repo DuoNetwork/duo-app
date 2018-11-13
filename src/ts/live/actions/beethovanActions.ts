@@ -2,21 +2,16 @@ import moment from 'moment';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
-import contract from '../common/contract';
 import {
 	IAcceptedPrice,
-	IAccountBalances,
-	IAddress,
-	IBeethovanAddresses,
-	IBeethovanBalances,
-	IBeethovanPrices,
 	IBeethovanStates,
 	IConversion,
+	ICustodianAddresses,
 	IPrice,
 	VoidThunkAction
 } from '../common/types';
 import util from '../common/util';
-import * as web3Actions from './web3Actions';
+import { beethovanWapper } from '../common/wrappers';
 
 export function statesUpdate(states: IBeethovanStates) {
 	return {
@@ -27,94 +22,43 @@ export function statesUpdate(states: IBeethovanStates) {
 
 export function getStates(): VoidThunkAction {
 	return async dispatch => {
-		const states = await contract.getCustodianStates();
+		const states = await beethovanWapper.getStates();
 		dispatch(statesUpdate(states));
 	};
 }
 
-export function pricesUpdate(prices: IBeethovanPrices) {
-	return {
-		type: CST.AC_BTV_PRICES,
-		value: prices
-	};
-}
-
-export function getPrices(): VoidThunkAction {
-	return async dispatch => dispatch(pricesUpdate(await contract.getCustodianPrices()));
-}
-
-export function balancesUpdate(balance: IBeethovanBalances) {
+export function balancesUpdate(a: number, b: number) {
 	return {
 		type: CST.AC_BTV_BALANCES,
-		value: balance
-	};
-}
-
-export function getBalances(): VoidThunkAction {
-	return async (dispatch, getState) =>
-		dispatch(balancesUpdate(await contract.getBalances(getState().web3.account)));
-}
-
-export function allBalancesUpdate(balance: IAccountBalances, index: number) {
-	return {
-		type: CST.AC_ALL_BALANCES,
 		value: {
-			[index]: balance
+			a: a,
+			b: b
 		}
 	};
 }
 
-export function getAllBalances(start: number, end: number): VoidThunkAction {
-	return async dispatch => {
-		for (let i = start; i < end; i++)
-			contract.getUserAddress(i).then((account: any) => {
-				if (account)
-					contract.getBalances(account).then(balance =>
-						dispatch(
-							allBalancesUpdate(
-								{
-									account: account,
-									...balance
-								},
-								i
-							)
-						)
-					);
-			});
+export function getBalances(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		const account = getState().web3.account;
+		const { aToken, bToken } = beethovanWapper.web3Wrapper.contractAddresses.Beethovan;
+		const aBalance = await beethovanWapper.web3Wrapper.getErc20Balance(aToken, account);
+		const bBalance = await beethovanWapper.web3Wrapper.getErc20Balance(bToken, account);
+		dispatch(balancesUpdate(aBalance, bBalance));
 	};
 }
 
-export function addressesUpdate(addr: IBeethovanAddresses) {
+export function addressesUpdate(addr: ICustodianAddresses) {
 	return {
 		type: CST.AC_BTV_ADDRESSES,
 		value: addr
 	};
 }
 
-export function addressPoolUpdate(address: IAddress[]) {
-	return {
-		type: CST.AC_ADDR_POOL,
-		value: address
-	};
-}
-
 export function getAddresses(): VoidThunkAction {
-	return async (dispatch, getState) => {
-		dispatch(addressesUpdate(await contract.getCustodianAddresses()));
-		const poolLength = getState().beethovan.beethovanStates.addrPoolLength;
-		const addrPool: IAddress[] = [];
-		for (let i = 0; i < poolLength; i++) {
-			const address = await contract.getPoolAddress(i);
-			if (address)
-				addrPool.push({
-					address: address,
-					balance: await contract.getEthBalance(address)
-				});
-		}
-		dispatch(addressPoolUpdate(addrPool));
+	return async dispatch => {
+		dispatch(addressesUpdate(await beethovanWapper.getAddresses()));
 	};
 }
-
 export function exchangePricesUpdate(prices: IPrice[]) {
 	return {
 		type: CST.AC_BTV_EX_PX,
@@ -149,7 +93,7 @@ export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
 		const priceData = await dynamoUtil.queryAcceptPriceEvent(contractAddress, dates);
-		const states = getState().beethovan.beethovanStates;
+		const states = getState().beethovan.states;
 		dispatch(
 			acceptedPricesUpdate(
 				chartUtil.mergeReset(
@@ -195,54 +139,11 @@ export function fetchConversions(contractAddress: string): VoidThunkAction {
 
 export function refresh(): VoidThunkAction {
 	return async dispatch => {
+		const custodian = beethovanWapper.web3Wrapper.contractAddresses.Beethovan.custodian;
 		await dispatch(getStates());
-		dispatch(getPrices());
 		dispatch(getBalances());
-		dispatch(getAddresses());
 		dispatch(fetchExchangePrices());
-		dispatch(fetchAcceptedPrices(contract.custodianAddr));
-		dispatch(fetchConversions(contract.custodianAddr));
-		window.setInterval(async () => {
-			await dispatch(getStates());
-			dispatch(getPrices());
-			dispatch(getBalances());
-			dispatch(getAddresses());
-			dispatch(fetchExchangePrices());
-			dispatch(fetchAcceptedPrices(contract.custodianAddr));
-			dispatch(fetchConversions(contract.custodianAddr));
-		}, 60000);
-	};
-}
-
-export function adminActions(): VoidThunkAction {
-	return async dispatch => {
-		await dispatch(getStates());
-		dispatch(getAddresses());
-		dispatch(web3Actions.getAccount());
-		window.setInterval(async () => {
-			await dispatch(getStates());
-			dispatch(getAddresses());
-			dispatch(web3Actions.getAccount());
-		}, 60000);
-	};
-}
-
-export function userActions(start: number, end: number): VoidThunkAction {
-	return async dispatch => {
-		await dispatch(getStates());
-		dispatch(getAllBalances(start, end));
-		window.setInterval(async () => {
-			await dispatch(getStates());
-			dispatch(getAllBalances(start, end));
-		}, 60000);
-	};
-}
-
-export function statusActions(): VoidThunkAction {
-	return async dispatch => {
-		await dispatch(getStates());
-		window.setInterval(async () => {
-			await dispatch(getStates());
-		}, 60000);
+		dispatch(fetchAcceptedPrices(custodian));
+		dispatch(fetchConversions(custodian));
 	};
 }

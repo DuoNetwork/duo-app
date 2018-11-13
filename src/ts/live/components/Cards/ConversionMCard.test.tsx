@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import ConversionCard from './ConversionCard';
+import ConversionMCard from './ConversionMCard';
 
 describe('AuthCard Test', () => {
 	describe('User Login', () => {
@@ -15,15 +15,14 @@ describe('AuthCard Test', () => {
 				eth: 1,
 				tokenA: 1,
 				tokenB: 2,
-				ethFee: 3,
-				duoFee: 4,
+				fee: 3,
 				pending: true,
 				reverted: true,
 				refreshBalance: jest.fn(() => 123)
 			}
 		];
 		it('Test Snapshot', () => {
-			const wrapper = shallow(<ConversionCard locale={locale} conversions={conversions} />);
+			const wrapper = shallow(<ConversionMCard locale={locale} conversions={conversions} />);
 			expect(wrapper).toMatchSnapshot();
 		});
 	});

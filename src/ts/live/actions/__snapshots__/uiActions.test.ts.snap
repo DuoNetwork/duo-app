@@ -2,21 +2,21 @@
 
 exports[`actions SourceUpdate 1`] = `
 Object {
-  "type": "source",
+  "type": "uiSource",
   "value": "test",
 }
 `;
 
 exports[`actions localeUpdate 1`] = `
 Object {
-  "type": "locale",
+  "type": "uiLocale",
   "value": "test",
 }
 `;
 
 exports[`actions updatePeriod 1`] = `
 Object {
-  "type": "period",
+  "type": "uiPeriod",
   "value": 123,
 }
 `;

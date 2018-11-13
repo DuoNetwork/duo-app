@@ -3,14 +3,25 @@
 exports[`ui reducer account 1`] = `
 Object {
   "account": "test",
+  "balance": 0,
   "gasPrice": 0,
   "network": 0,
+}
+`;
+
+exports[`ui reducer balance 1`] = `
+Object {
+  "account": "test",
+  "balance": 123,
+  "gasPrice": 123,
+  "network": 123,
 }
 `;
 
 exports[`ui reducer default 1`] = `
 Object {
   "account": "0x0",
+  "balance": 0,
   "gasPrice": 0,
   "network": 0,
 }
@@ -19,6 +30,7 @@ Object {
 exports[`ui reducer gasPrice 1`] = `
 Object {
   "account": "test",
+  "balance": 0,
   "gasPrice": 123,
   "network": 123,
 }
@@ -27,6 +39,7 @@ Object {
 exports[`ui reducer network 1`] = `
 Object {
   "account": "test",
+  "balance": 0,
   "gasPrice": 0,
   "network": 123,
 }

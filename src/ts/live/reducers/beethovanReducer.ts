@@ -3,82 +3,52 @@ import * as CST from '../common/constants';
 import { IBeethovanState } from '../common/types';
 
 export const initialState: IBeethovanState = {
-	beethovanStates: {
+	states: {
+		lastOperationTime: 0,
+		operationCoolDown: 0,
 		state: CST.CTD_LOADING,
-		navA: 0,
-		navB: 0,
+		minBalance: 0,
 		totalSupplyA: 0,
 		totalSupplyB: 0,
+		ethCollateral: 0,
+		navA: 0,
+		navB: 0,
+		lastPrice: 0,
+		lastPriceTime: 0,
+		resetPrice: 0,
+		resetPriceTime: 0,
+		createCommRate: 0,
+		redeemCommRate: 0,
+		period: 0,
+		preResetWaitingBlocks: 0,
+		priceFetchCoolDown: 0,
+		nextResetAddrIndex: 0,
+		totalUsers: 0,
+		feeBalance: 0,
+		resetState: '',
 		alpha: 0,
 		beta: 0,
-		feeAccumulated: 0,
 		periodCoupon: 0,
 		limitPeriodic: 0,
 		limitUpper: 0,
 		limitLower: 0,
-		createCommRate: 0,
-		redeemCommRate: 0,
-		period: 0,
-		iterationGasThreshold: 0,
-		ethDuoFeeRatio: 0,
-		preResetWaitingBlocks: 0,
-		priceTol: 0,
-		priceFeedTol: 0,
-		priceFeedTimeTol: 0,
-		priceUpdateCoolDown: 0,
-		numOfPrices: 0,
-		nextResetAddrIndex: 0,
-		lastAdminTime: 0,
-		adminCoolDown: 0,
-		usersLength: 0,
-		addrPoolLength: 0,
-		ethBalance: 0,
-		duoBalance: 0
+		iterationGasThreshold: 0
 	},
-	beethovanPrices: {
-		first: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
-		second: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
-		reset: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 },
-		last: { address: CST.DUMMY_ADDR, price: 0, timestamp: 0 }
+	addresses: {
+		operator: CST.DUMMY_ADDR,
+		feeCollector: CST.DUMMY_ADDR,
+		roleManager: CST.DUMMY_ADDR,
+		oracle: CST.DUMMY_ADDR,
+		aToken: CST.DUMMY_ADDR,
+		bToken: CST.DUMMY_ADDR
 	},
-	beethovanBalances: {
-		eth: 0,
-		duo: 0,
-		allowance: 0,
-		tokenA: 0,
-		tokenB: 0
-	},
-	beethovanAddresses: {
-		operator: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		},
-		feeCollector: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		},
-		priceFeed1: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		},
-		priceFeed2: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		},
-		priceFeed3: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		},
-		poolManager: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		}
-	},
-	allBalances: {},
-	addressPool: [],
-	beethovanExchangePrices: [],
-	beethovanAcceptedPrices: [],
-	beethovanConversions: []
+	exchangePrices: [],
+	acceptedPrices: [],
+	conversions: [],
+	balances: {
+		a: 0,
+		b: 0
+	}
 };
 
 export function beethovanReducer(
@@ -86,20 +56,29 @@ export function beethovanReducer(
 	action: AnyAction
 ): IBeethovanState {
 	switch (action.type) {
-		case CST.AC_ALL_BALANCES:
-			return Object.assign({}, state, {
-				[action.type]: Object.assign({}, state.allBalances, action.value)
-			});
 		case CST.AC_BTV_STATES:
-		case CST.AC_BTV_PRICES:
+			return Object.assign({}, state, {
+				states: action.value
+			});
 		case CST.AC_BTV_ADDRESSES:
-		case CST.AC_BTV_BALANCES:
-		case CST.AC_ADDR_POOL:
+			return Object.assign({}, state, {
+				addresses: action.value
+			});
 		case CST.AC_BTV_EX_PX:
+			return Object.assign({}, state, {
+				exchangePrices: action.value
+			});
 		case CST.AC_BTV_ACCEPTED_PX:
+			return Object.assign({}, state, {
+				acceptedPrices: action.value
+			});
 		case CST.AC_BTV_CONVERSIONS:
 			return Object.assign({}, state, {
-				[action.type]: action.value
+				conversions: action.value
+			});
+		case CST.AC_BTV_BALANCES:
+			return Object.assign({}, state, {
+				balances: action.value
 			});
 		default:
 			return state;

@@ -10,7 +10,7 @@ import TimeSeriesCard from '../../components/Cards/TimeSeriesCard';
 
 function mapStateToProps(state: IState) {
 	const prices = chartUtil.mergeLastestToPrices(
-		state.beethovan.beethovanExchangePrices,
+		state.beethovan.exchangePrices,
 		util.getLastPriceFromStatus(state.dynamo.status)[state.ui.source]
 	);
 	const period = state.ui.period;
@@ -22,9 +22,12 @@ function mapStateToProps(state: IState) {
 				: chartUtil.mergePrices(prices, period)
 			: prices,
 		acceptedPrices: chartUtil.mergeLastestToAcceptedPrices(
-			state.beethovan.beethovanAcceptedPrices,
-			state.beethovan.beethovanStates,
-			state.beethovan.beethovanPrices.last
+			state.beethovan.acceptedPrices,
+			state.beethovan.states,
+			{
+				price: state.beethovan.states.lastPrice,
+				timestamp: state.beethovan.states.lastPriceTime
+			}
 		),
 		source: state.ui.source,
 		period: period

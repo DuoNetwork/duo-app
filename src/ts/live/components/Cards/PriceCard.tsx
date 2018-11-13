@@ -10,14 +10,13 @@ import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
 import { IBeethovanStates, IContractPrice, ISourceData } from '../../common/types';
 import util from '../../common/util';
+import { web3Wrapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
 
 interface IProps {
 	locale: string;
-	last: IContractPrice;
-	reset: IContractPrice;
 	states: IBeethovanStates;
 	sourceLast: ISourceData<IContractPrice>;
 	mobile?: boolean;
@@ -33,24 +32,27 @@ export default class PriceCard extends React.Component<IProps, IState> {
 		};
 	}
 	public render() {
-		const { locale, reset, states, mobile } = this.props;
+		const { locale, states, mobile } = this.props;
 		const { source } = this.state;
 		const last: IContractPrice = CST.API_LIST.includes(source)
 			? this.props.sourceLast[source]
-			: this.props.last;
+			: {
+				price: states.lastPrice,
+				timestamp: states.lastPriceTime
+			};
 		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())
 			? util.calculateNav(
 					last.price || 1,
 					last.timestamp,
-					reset.price,
-					reset.timestamp,
+					states.resetPrice,
+					states.resetPriceTime,
 					states.alpha,
 					states.beta,
 					states.period,
 					states.periodCoupon
 			)
 			: [states.navA, states.navB];
-		const ethChange = last.price / reset.price - 1;
+		const ethChange = last.price / states.resetPrice - 1;
 		const tooltipText = (!CST.API_LIST.includes(source.toUpperCase())
 			? CST.TT_CTD_NAV
 			: CST.TT_EST_NAV)[locale];
@@ -118,9 +120,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/tokens?q=' +
-									(__KOVAN__
-										? CST.A_CONTRACT_ADDR_KOVAN
-										: CST.A_CONTRACT_ADDR_MAIN)
+									web3Wrapper.contractAddresses.Beethovan.aToken
 								}
 								target="_blank"
 							>
@@ -137,7 +137,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							</div>
 							<div className="tag-subtext">
 								{d3.format('.2%')(
-									(states.periodCoupon * 365 * 24 * 3600) / states.period || 0
+									(states.periodCoupon * 365 * 24 * 3600000) / states.period || 0
 								) +
 									' ' +
 									CST.TH_PA[locale].toLowerCase()}
@@ -155,9 +155,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/tokens?q=' +
-									(__KOVAN__
-										? CST.B_CONTRACT_ADDR_KOVAN
-										: CST.B_CONTRACT_ADDR_MAIN)
+									web3Wrapper.contractAddresses.Beethovan.bToken
 								}
 								target="_blank"
 							>
