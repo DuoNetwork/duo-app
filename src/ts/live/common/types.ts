@@ -26,6 +26,7 @@ export interface IWeb3State {
 }
 
 export interface IBeethovanState {
+	readonly subscription: number;
 	readonly states: adminTypes.IBeethovanStates;
 	readonly addresses: adminTypes.ICustodianAddresses;
 	readonly exchangePrices: adminTypes.IPrice[];

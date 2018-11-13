@@ -62,4 +62,22 @@ describe('beethovan reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+
+	test('beethovanSubscription on', () => {
+		state = beethovanReducer(state, {
+			type: CST.AC_BTV_SUB,
+			value: 123
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('beethovanSubscription off', () => {
+		window.clearInterval = jest.fn();
+		state = beethovanReducer(state, {
+			type: CST.AC_BTV_SUB,
+			value: 0
+		});
+		expect(state).toMatchSnapshot();
+		expect((window.clearInterval as jest.Mock<Promise<void>>).mock.calls).toMatchSnapshot();
+	});
 });

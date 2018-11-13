@@ -208,7 +208,66 @@ describe('actions', () => {
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		beethovanWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovanActions.refresh());
+		store.dispatch(beethovanActions.refresh('custodian'));
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('subscriptionUpdate', () => {
+		expect(beethovanActions.subscriptionUpdate(123)).toMatchSnapshot();
+	});
+
+	test('subscribe', () => {
+		window.setInterval = jest.fn(() => 123);
+		util.getDates = jest.fn(() => ['1970-01-15']);
+		dynamoUtil.queryConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa'
+				}
+			])
+		);
+		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
+			Promise.resolve([
+				{
+					transactionHash: 'aaa',
+					timestamp: 1234567890
+				},
+				{
+					transactionHash: 'bbb',
+					timestamp: 1234567890
+				},
+				{
+					transactionHash: 'ccc',
+					timestamp: 0
+				}
+			])
+		);
+		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
+		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
+		dynamoUtil.getPrices = jest.fn(
+			(src: string, period: number, start: number, end: number, pair: string) =>
+				Promise.resolve([src, period, start, end, pair])
+		);
+		const store: any = mockStore({
+			web3: { account: CST.DUMMY_ADDR },
+			beethovan: {
+				states: {
+					addrPoolLength: 1,
+					limitUpper: 2,
+					limitLower: 0.25,
+					limitPeriodic: 1.035
+				}
+			},
+			ui: { period: 5, source: 'test' }
+		});
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		beethovanWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(beethovanActions.subscribe('custodian'));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

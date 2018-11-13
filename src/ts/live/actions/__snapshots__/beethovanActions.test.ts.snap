@@ -177,3 +177,57 @@ Object {
   },
 }
 `;
+
+exports[`actions subscribe 1`] = `
+Array [
+  Object {
+    "type": "beethovanSubscription",
+    "value": 0,
+  },
+  Object {
+    "type": "beethovanSubscription",
+    "value": 123,
+  },
+  Object {
+    "type": "beethovanStates",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "beethovanExchangePrices",
+    "value": Array [
+      "test",
+      1,
+      1210567890,
+      0,
+      "ETH|USD",
+    ],
+  },
+  Object {
+    "type": "beethovanAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "beethovanConversions",
+    "value": Array [
+      Object {
+        "transactionHash": "aaa",
+      },
+      Object {
+        "timestamp": 1234567890,
+        "transactionHash": "bbb",
+      },
+    ],
+  },
+]
+`;
+
+exports[`actions subscriptionUpdate 1`] = `
+Object {
+  "type": "beethovanSubscription",
+  "value": 123,
+}
+`;

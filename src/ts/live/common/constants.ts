@@ -6,6 +6,7 @@ export const AC_BTV_EX_PX = 'beethovanExchangePrices';
 export const AC_BTV_ACCEPTED_PX = 'beethovanAcceptedPrices';
 export const AC_BTV_CONVERSIONS = 'beethovanConversions';
 export const AC_BTV_BALANCES = 'beethovanBalances';
+export const AC_BTV_SUB = 'beethovanSubscription';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';

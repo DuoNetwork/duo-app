@@ -3,6 +3,7 @@ import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from '../common/constants';
 import { IBeethovanStates, IContractPrice, IConversion, ISourceData } from '../common/types';
+import { web3Wrapper } from '../common/wrappers';
 import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
@@ -25,12 +26,22 @@ interface IProps {
 	sourceLast: ISourceData<IContractPrice>;
 	conversions: IConversion[];
 	gasPrice: number;
-	refresh: () => any;
-	refreshBalance: () => any;
+	subscribe: (custodian: string) => any;
+	unsubscribe: () => any;
+	refresh: (custodian: string) => any;
+	refreshBalance: (custodian: string) => any;
 	updateLocale: (locale: string) => any;
 }
 
-export default class DuoScreen extends React.Component<IProps> {
+export default class Beethovan extends React.Component<IProps> {
+	public componentDidMount() {
+		this.props.subscribe(web3Wrapper.contractAddresses.Beethovan.custodian);
+	}
+
+	public componentWillUnmount() {
+		this.props.unsubscribe();
+	}
+
 	public render() {
 		const {
 			locale,
@@ -48,6 +59,7 @@ export default class DuoScreen extends React.Component<IProps> {
 			updateLocale,
 			location
 		} = this.props;
+		const custodian = web3Wrapper.contractAddresses.Beethovan.custodian;
 		return (
 			<div>
 				<MediaQuery minDeviceWidth={900}>
@@ -58,7 +70,7 @@ export default class DuoScreen extends React.Component<IProps> {
 							network={network}
 							to={CST.TH_STATUS.EN}
 							toText={CST.TH_STATUS[locale]}
-							refresh={refresh}
+							refresh={() => refresh(custodian)}
 							updateLocale={updateLocale}
 						/>
 						<SContent>
@@ -78,7 +90,7 @@ export default class DuoScreen extends React.Component<IProps> {
 									eth={eth}
 									aToken={aToken}
 									bToken={bToken}
-									refreshBalance={refreshBalance}
+									refresh={() => refreshBalance(custodian)}
 								/>
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
@@ -90,7 +102,7 @@ export default class DuoScreen extends React.Component<IProps> {
 									aToken={aToken}
 									bToken={bToken}
 									account={account}
-									refresh={refresh}
+									refresh={() => refreshBalance(custodian)}
 									gasPrice={gasPrice}
 								/>
 							</SDivFlexCenter>
@@ -107,7 +119,7 @@ export default class DuoScreen extends React.Component<IProps> {
 							eth={eth}
 							aToken={aToken}
 							bToken={bToken}
-							refreshBalance={refreshBalance}
+							refresh={() => refreshBalance(custodian)}
 							mobile
 						/>
 					) : null}
@@ -119,7 +131,7 @@ export default class DuoScreen extends React.Component<IProps> {
 							aToken={aToken}
 							bToken={bToken}
 							account={account}
-							refresh={refresh}
+							refresh={() => refreshBalance(custodian)}
 							gasPrice={gasPrice}
 							mobile
 						/>

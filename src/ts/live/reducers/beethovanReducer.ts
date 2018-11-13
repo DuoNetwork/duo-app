@@ -48,7 +48,8 @@ export const initialState: IBeethovanState = {
 	balances: {
 		a: 0,
 		b: 0
-	}
+	},
+	subscription: 0
 };
 
 export function beethovanReducer(
@@ -80,6 +81,15 @@ export function beethovanReducer(
 			return Object.assign({}, state, {
 				balances: action.value
 			});
+		case CST.AC_BTV_SUB:
+			if (action.value)
+				return Object.assign({}, state, {
+					subscription: action.value
+				});
+			else {
+				window.clearInterval(state.subscription);
+				return initialState;
+			}
 		default:
 			return state;
 	}

@@ -18,12 +18,10 @@ const config = require(`../keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
 dynamoUtil.init(config, !__KOVAN__, '', web3Wrapper);
 
 store.dispatch(web3Actions.refresh());
-store.dispatch(beethovanActions.refresh());
 store.dispatch(dynamoActions.scanStatus());
 
 setInterval(() => {
 	store.dispatch(web3Actions.refresh());
-	store.dispatch(beethovanActions.refresh());
 	store.dispatch(dynamoActions.scanStatus());
 }, 60000);
 
@@ -34,7 +32,7 @@ web3Wrapper.onWeb3AccountUpdate((addr: string, network: number) => {
 	) {
 		store.dispatch(web3Actions.accountUpdate(addr));
 		store.dispatch(web3Actions.networkUpdate(network));
-		store.dispatch(beethovanActions.refresh());
+		store.dispatch(beethovanActions.refresh(web3Wrapper.contractAddresses.Beethovan.custodian));
 	}
 });
 

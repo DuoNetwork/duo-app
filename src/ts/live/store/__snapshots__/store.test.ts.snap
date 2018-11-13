@@ -49,6 +49,7 @@ Object {
       "totalSupplyB": 0,
       "totalUsers": 0,
     },
+    "subscription": 0,
   },
   "dynamo": Object {
     "status": Array [],

@@ -4,6 +4,7 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import * as beethovanActions from '../actions/beethovanActions';
 import * as uiActions from '../actions/uiActions';
+import * as web3Actions from '../actions/web3Actions';
 import { IState } from '../common/types';
 import util from '../common/util';
 import Beethoven from '../components/Beethoven';
@@ -19,18 +20,20 @@ function mapStateToProps(state: IState) {
 		gasPrice: state.web3.gasPrice,
 		eth: state.web3.balance,
 		aToken: state.beethovan.balances.a,
-		bToken: state.beethovan.balances.b,
+		bToken: state.beethovan.balances.b
 	};
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		refresh: () => {
-			dispatch(beethovanActions.refresh());
-		},
-		refreshBalance: () => {
+		subscribe: (custodian: string) => dispatch(beethovanActions.subscribe(custodian)),
+		unsubscribe: () => dispatch(beethovanActions.subscriptionUpdate(0)),
+		refresh: (custodian: string) => dispatch(beethovanActions.refresh(custodian)),
+		refreshBalance: (custodian: string) => {
+			dispatch(web3Actions.getBalance());
 			dispatch(beethovanActions.getBalances());
 			dispatch(beethovanActions.getStates());
+			dispatch(beethovanActions.fetchConversions(custodian));
 		},
 		updateLocale: (locale: string) => dispatch(uiActions.localeUpdate(locale))
 	};
