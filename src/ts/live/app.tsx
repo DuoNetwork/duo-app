@@ -18,6 +18,7 @@ const config = require(`../keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
 dynamoUtil.init(config, !__KOVAN__, '', web3Wrapper);
 
 store.dispatch(web3Actions.refresh());
+store.dispatch(beethovanActions.refresh());
 store.dispatch(dynamoActions.scanStatus());
 
 setInterval(() => {
