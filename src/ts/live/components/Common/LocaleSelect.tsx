@@ -16,7 +16,7 @@ interface IProps {
 	onSelect: (value: string) => any;
 }
 
-export default class CardTitleSelect extends React.PureComponent<IProps> {
+export default class CardTitleSelect extends React.Component<IProps> {
 	public render() {
 		const { locale, onSelect } = this.props;
 		return (

@@ -15,7 +15,7 @@ interface IProps {
 	onlySource?: boolean;
 }
 
-export default class CardTitleSelect extends React.PureComponent<IProps> {
+export default class CardTitleSelect extends React.Component<IProps> {
 	public render() {
 		const { onlySource, source } = this.props;
 		return (

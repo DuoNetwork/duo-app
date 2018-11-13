@@ -19,7 +19,7 @@ interface IState {
 	type: string;
 }
 
-export default class TransactionCard extends React.PureComponent<IProps, IState> {
+export default class TransactionCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {

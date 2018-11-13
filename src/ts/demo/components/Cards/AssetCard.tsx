@@ -20,7 +20,7 @@ const Asset = (props: {name: string, value: number}) => (
 	</div>
 );
 
-export default class Duo extends React.PureComponent<IProps> {
+export default class Duo extends React.Component<IProps> {
 	public render() {
 		const { assets, price } = this.props;
 		const mv =

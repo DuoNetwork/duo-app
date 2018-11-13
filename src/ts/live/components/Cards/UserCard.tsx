@@ -15,7 +15,7 @@
 
 // const format = d3.format(',.4f');
 
-// export default class UserCard extends React.PureComponent<IProps> {
+// export default class UserCard extends React.Component<IProps> {
 // 	public render() {
 // 		const { allBalances, userLength, load } = this.props;
 // 		const data: ITableRecord[] = [];

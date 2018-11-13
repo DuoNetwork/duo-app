@@ -9,7 +9,7 @@ interface IState {
 	input: string;
 	output: any;
 }
-export default class DecodeCard extends React.PureComponent<{}, IState> {
+export default class DecodeCard extends React.Component<{}, IState> {
 	constructor(props?: any) {
 		super(props);
 		this.state = {

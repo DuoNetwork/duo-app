@@ -14,7 +14,7 @@
 // 	load: (start: number, end: number) => any;
 // }
 
-// export default class Admin extends React.PureComponent<IProps> {
+// export default class Admin extends React.Component<IProps> {
 // 	public componentWillMount() {
 // 		this.props.load(0, 20);
 // 	}

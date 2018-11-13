@@ -17,7 +17,7 @@ interface IProps {
 const validatePosInt = (value: string) =>
 	!value || (value.match(CST.RX_INTEGER) && Number(value) > 0) ? '' : 'Invalid number';
 
-export default class AdminCard extends React.PureComponent<IProps> {
+export default class AdminCard extends React.Component<IProps> {
 	public render() {
 		const { states, account, addresses } = this.props;
 		const data: object[] = [];

@@ -11,7 +11,7 @@ interface IProps {
 	status: IStatus[];
 }
 
-export default class StatusCard extends React.PureComponent<IProps> {
+export default class StatusCard extends React.Component<IProps> {
 	public render() {
 		const { status } = this.props;
 		return (

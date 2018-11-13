@@ -21,7 +21,7 @@ interface IState {
 	amountError: string;
 }
 
-export default class Erc20Form extends React.PureComponent<IProps, IState> {
+export default class Erc20Form extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {

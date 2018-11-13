@@ -35,7 +35,7 @@ interface IState {
 	visible: boolean;
 }
 
-export default class Duo extends React.PureComponent<IProps, IState> {
+export default class Duo extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {

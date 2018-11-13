@@ -12,7 +12,7 @@ interface IProps {
 	status: IStatus[];
 }
 
-export default class Status extends React.PureComponent<IProps> {
+export default class Status extends React.Component<IProps> {
 	public render() {
 		const { status, network, location } = this.props;
 		return (

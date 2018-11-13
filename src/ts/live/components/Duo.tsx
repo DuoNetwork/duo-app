@@ -7,7 +7,7 @@ import Status from '../containers/StatusContainer';
 // import { SDivFlexCenter } from './_styled';
 // import { SCard } from './Cards/_styled';
 
-export default class Duo extends React.PureComponent {
+export default class Duo extends React.Component {
 	public render() {
 		return (
 			<div>

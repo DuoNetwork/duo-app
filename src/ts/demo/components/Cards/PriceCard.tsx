@@ -42,7 +42,7 @@ const PriceInfo = (props: {
 	);
 };
 
-export default class PriceCard extends React.PureComponent<IProps> {
+export default class PriceCard extends React.Component<IProps> {
 	public render() {
 		const { price } = this.props;
 		return (

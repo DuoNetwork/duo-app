@@ -19,7 +19,7 @@
 // 	account: string;
 // }
 
-// export default class Admin extends React.PureComponent<IProps> {
+// export default class Admin extends React.Component<IProps> {
 // 	public componentDidMount() {
 // 		this.props.init();
 // 	}

@@ -19,7 +19,7 @@ interface IState {
 	value1Error: string;
 }
 
-export default class AdminInputButton extends React.PureComponent<IProps, IState> {
+export default class AdminInputButton extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {

@@ -41,7 +41,7 @@ interface IState {
 	locale: string;
 }
 
-export default class OperationCard extends React.PureComponent<IProps, IState> {
+export default class OperationCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {

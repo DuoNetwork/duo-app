@@ -62,7 +62,7 @@ const ConversionEntry = (props: {
 	);
 };
 
-export default class ConversionMCard extends React.PureComponent<IProps> {
+export default class ConversionMCard extends React.Component<IProps> {
 	public render() {
 		const { conversions, locale } = this.props;
 		return (

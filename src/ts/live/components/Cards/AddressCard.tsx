@@ -14,7 +14,7 @@
 // 	account: string;
 // }
 
-// export default class AddressCard extends React.PureComponent<IProps> {
+// export default class AddressCard extends React.Component<IProps> {
 // 	public render() {
 // 		const { addresses, addressPool, account } = this.props;
 // 		const data: object[] = [];

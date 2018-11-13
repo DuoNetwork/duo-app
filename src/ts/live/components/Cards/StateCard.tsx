@@ -16,7 +16,7 @@ interface IProps {
 	mobile?: boolean;
 }
 
-export default class StateCard extends React.PureComponent<IProps> {
+export default class StateCard extends React.Component<IProps> {
 	public render() {
 		const { states, mobile, locale } = this.props;
 		const tooltioText =

@@ -13,7 +13,7 @@ interface IProps {
 	rightPadding?: boolean;
 }
 
-export default class RadioExtra extends React.PureComponent<IProps> {
+export default class RadioExtra extends React.Component<IProps> {
 	public render() {
 		const { text, onChange, left, right, isLeft, rightPadding } = this.props;
 		return (

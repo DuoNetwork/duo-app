@@ -15,7 +15,7 @@ interface IProps {
 	conversions: IConversion[];
 }
 
-export default class ConversionCard extends React.PureComponent<IProps> {
+export default class ConversionCard extends React.Component<IProps> {
 	public render() {
 		const { conversions, locale } = this.props;
 		return (

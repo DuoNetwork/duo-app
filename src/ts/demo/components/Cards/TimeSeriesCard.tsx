@@ -21,7 +21,7 @@ interface IState {
 	zoom: boolean;
 }
 
-export default class TimeSeriesCard extends React.PureComponent<IProp, IState> {
+export default class TimeSeriesCard extends React.Component<IProp, IState> {
 	constructor(props: IProp) {
 		super(props);
 		this.state = {

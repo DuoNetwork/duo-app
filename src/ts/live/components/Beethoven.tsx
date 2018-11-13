@@ -30,7 +30,7 @@ interface IProps {
 	updateLocale: (locale: string) => any;
 }
 
-export default class DuoScreen extends React.PureComponent<IProps> {
+export default class DuoScreen extends React.Component<IProps> {
 	public render() {
 		const {
 			locale,

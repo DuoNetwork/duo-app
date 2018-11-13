@@ -17,7 +17,7 @@ interface IProps {
 	updateLocale?: (locale: string) => any;
 }
 
-export default class Header extends React.PureComponent<IProps> {
+export default class Header extends React.Component<IProps> {
 	public render() {
 		const { location, network, width, refresh, updateLocale } = this.props;
 		const locale = this.props.locale || CST.LOCALE_EN;
