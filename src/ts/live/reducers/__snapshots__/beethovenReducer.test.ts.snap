@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`beethovan reducer beethovanAcceptedPrices 1`] = `
+exports[`beethoven reducer beethovenAcceptedPrices 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -23,7 +23,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer beethovanAddresses 1`] = `
+exports[`beethoven reducer beethovenAddresses 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -42,7 +42,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer beethovanBalances 1`] = `
+exports[`beethoven reducer beethovenBalances 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -66,7 +66,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer beethovanConversions 1`] = `
+exports[`beethoven reducer beethovenConversions 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -91,7 +91,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer beethovanExchangePrices 1`] = `
+exports[`beethoven reducer beethovenExchangePrices 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -112,7 +112,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer beethovanStates 1`] = `
+exports[`beethoven reducer beethovenStates 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -136,7 +136,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer beethovanSubscription off 1`] = `
+exports[`beethoven reducer beethovenSubscription off 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -188,7 +188,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer beethovanSubscription off 2`] = `
+exports[`beethoven reducer beethovenSubscription off 2`] = `
 Array [
   Array [
     123,
@@ -196,7 +196,7 @@ Array [
 ]
 `;
 
-exports[`beethovan reducer beethovanSubscription on 1`] = `
+exports[`beethoven reducer beethovenSubscription on 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -220,7 +220,7 @@ Object {
 }
 `;
 
-exports[`beethovan reducer default 1`] = `
+exports[`beethoven reducer default 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {

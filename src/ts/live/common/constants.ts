@@ -1,12 +1,12 @@
 export * from '../../../../../duo-admin/src/common/constants';
 
-export const AC_BTV_STATES = 'beethovanStates';
-export const AC_BTV_ADDRESSES = 'beethovanAddresses';
-export const AC_BTV_EX_PX = 'beethovanExchangePrices';
-export const AC_BTV_ACCEPTED_PX = 'beethovanAcceptedPrices';
-export const AC_BTV_CONVERSIONS = 'beethovanConversions';
-export const AC_BTV_BALANCES = 'beethovanBalances';
-export const AC_BTV_SUB = 'beethovanSubscription';
+export const AC_BTV_STATES = 'beethovenStates';
+export const AC_BTV_ADDRESSES = 'beethovenAddresses';
+export const AC_BTV_EX_PX = 'beethovenExchangePrices';
+export const AC_BTV_ACCEPTED_PX = 'beethovenAcceptedPrices';
+export const AC_BTV_CONVERSIONS = 'beethovenConversions';
+export const AC_BTV_BALANCES = 'beethovenBalances';
+export const AC_BTV_SUB = 'beethovenSubscription';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';

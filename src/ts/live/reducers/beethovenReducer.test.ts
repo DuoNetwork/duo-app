@@ -1,16 +1,16 @@
 import * as CST from '../common/constants';
-import { beethovanReducer, initialState } from './beethovanReducer';
+import { beethovenReducer, initialState } from './beethovenReducer';
 
-describe('beethovan reducer', () => {
+describe('beethoven reducer', () => {
 	let state = initialState;
 
 	test('default', () => {
-		state = beethovanReducer(state, { type: 'any' });
+		state = beethovenReducer(state, { type: 'any' });
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanStates', () => {
-		state = beethovanReducer(state, {
+	test('beethovenStates', () => {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_STATES,
 			value: {
 				test: 'test'
@@ -19,8 +19,8 @@ describe('beethovan reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanAddresses', () => {
-		state = beethovanReducer(state, {
+	test('beethovenAddresses', () => {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_ADDRESSES,
 			value: {
 				test: 'test'
@@ -29,8 +29,8 @@ describe('beethovan reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanExchangePrices', () => {
-		state = beethovanReducer(state, {
+	test('beethovenExchangePrices', () => {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_EX_PX,
 			value: {
 				test: 'test'
@@ -39,41 +39,41 @@ describe('beethovan reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanAcceptedPrices', () => {
-		state = beethovanReducer(state, {
+	test('beethovenAcceptedPrices', () => {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_ACCEPTED_PX,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanConversions', () => {
-		state = beethovanReducer(state, {
+	test('beethovenConversions', () => {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_CONVERSIONS,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanBalances', () => {
-		state = beethovanReducer(state, {
+	test('beethovenBalances', () => {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_BALANCES,
 			value: ['test']
 		});
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanSubscription on', () => {
-		state = beethovanReducer(state, {
+	test('beethovenSubscription on', () => {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_SUB,
 			value: 123
 		});
 		expect(state).toMatchSnapshot();
 	});
 
-	test('beethovanSubscription off', () => {
+	test('beethovenSubscription off', () => {
 		window.clearInterval = jest.fn();
-		state = beethovanReducer(state, {
+		state = beethovenReducer(state, {
 			type: CST.AC_BTV_SUB,
 			value: 0
 		});

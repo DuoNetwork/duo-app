@@ -2,7 +2,7 @@
 
 exports[`store actions 1`] = `
 Object {
-  "beethovan": Object {
+  "beethoven": Object {
     "acceptedPrices": Array [],
     "addresses": Object {
       "aToken": "0x0",

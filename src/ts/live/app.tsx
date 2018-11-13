@@ -7,7 +7,7 @@ import '../../css/liveStyle.css';
 import '../../static/GettingStarted.pdf';
 import '../../static/GettingStarted_CN.pdf';
 import '../../static/GettingStarted_JP.pdf';
-import * as beethovanActions from './actions/beethovanActions';
+import * as beethovenActions from './actions/beethovenActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
 import { web3Wrapper } from './common/wrappers';
@@ -32,7 +32,7 @@ web3Wrapper.onWeb3AccountUpdate((addr: string, network: number) => {
 	) {
 		store.dispatch(web3Actions.accountUpdate(addr));
 		store.dispatch(web3Actions.networkUpdate(network));
-		store.dispatch(beethovanActions.refresh(web3Wrapper.contractAddresses.Beethovan.custodian));
+		store.dispatch(beethovenActions.refresh(web3Wrapper.contractAddresses.Beethoven.custodian));
 	}
 });
 

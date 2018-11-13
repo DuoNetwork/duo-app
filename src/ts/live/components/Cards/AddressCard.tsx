@@ -2,14 +2,14 @@
 // import * as React from 'react';
 // import * as CST from '../../common/constants';
 // import contract from '../../common/contract';
-// import { IAddress, IBeethovanAddresses, ITableRecord } from '../../common/types';
+// import { IAddress, IBeethovenAddresses, ITableRecord } from '../../common/types';
 // import util from '../../common/util';
 // import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 // const { Column } = Table;
 
 // interface IProps {
-// 	addresses: IBeethovanAddresses;
+// 	addresses: IBeethovenAddresses;
 // 	addressPool: IAddress[];
 // 	account: string;
 // }

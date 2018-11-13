@@ -3,24 +3,24 @@ import thunk from 'redux-thunk';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import * as CST from '../common/constants';
 import util from '../common/util';
-import { beethovanWapper } from '../common/wrappers';
-import * as beethovanActions from './beethovanActions';
+import { beethovenWapper } from '../common/wrappers';
+import * as beethovenActions from './beethovenActions';
 
 const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
 	test('statesUpdate', () => {
-		expect(beethovanActions.statesUpdate({ test: 'test' } as any)).toMatchSnapshot();
+		expect(beethovenActions.statesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
 
 	test('getStates', () => {
 		const store: any = mockStore({});
-		beethovanWapper.getStates = jest.fn(() =>
+		beethovenWapper.getStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
-		store.dispatch(beethovanActions.getStates());
+		store.dispatch(beethovenActions.getStates());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -30,13 +30,13 @@ describe('actions', () => {
 	});
 
 	test('addressesUpdate', () => {
-		expect(beethovanActions.addressesUpdate({ test: 'test' } as any)).toMatchSnapshot();
+		expect(beethovenActions.addressesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
 
 	test('getAddresses', () => {
-		const store: any = mockStore({ beethovan: { beethovanStates: { addrPoolLength: 1 } } });
-		beethovanWapper.getAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovanActions.getAddresses());
+		const store: any = mockStore({ beethoven: { beethovenStates: { addrPoolLength: 1 } } });
+		beethovenWapper.getAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(beethovenActions.getAddresses());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -46,7 +46,7 @@ describe('actions', () => {
 	});
 
 	test('exchangePricesUpdate', () => {
-		expect(beethovanActions.exchangePricesUpdate(['test'] as any)).toMatchSnapshot();
+		expect(beethovenActions.exchangePricesUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
 	test('fetchExchangePrices 60', () => {
@@ -61,7 +61,7 @@ describe('actions', () => {
 			(src: string, period: number, start: number, end: number, pair: string) =>
 				Promise.resolve([src, period, start, end, pair])
 		);
-		store.dispatch(beethovanActions.fetchExchangePrices());
+		store.dispatch(beethovenActions.fetchExchangePrices());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -82,7 +82,7 @@ describe('actions', () => {
 			(src: string, period: number, start: number, end: number, pair: string) =>
 				Promise.resolve([src, period, start, end, pair])
 		);
-		store.dispatch(beethovanActions.fetchExchangePrices());
+		store.dispatch(beethovenActions.fetchExchangePrices());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -92,17 +92,17 @@ describe('actions', () => {
 	});
 
 	test('acceptedPricesUpdate', () => {
-		expect(beethovanActions.acceptedPricesUpdate(['test'] as any)).toMatchSnapshot();
+		expect(beethovenActions.acceptedPricesUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
 	test('fetchAcceptedPrices', () => {
 		const store: any = mockStore({
-			beethovan: {
+			beethoven: {
 				states: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 }
 			}
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(beethovanActions.fetchAcceptedPrices(CST.DUMMY_ADDR));
+		store.dispatch(beethovenActions.fetchAcceptedPrices(CST.DUMMY_ADDR));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -112,7 +112,7 @@ describe('actions', () => {
 	});
 
 	test('conversionsUpdate', () => {
-		expect(beethovanActions.conversionsUpdate(['test'] as any)).toMatchSnapshot();
+		expect(beethovenActions.conversionsUpdate(['test'] as any)).toMatchSnapshot();
 	});
 
 	test('fetchConversions', () => {
@@ -142,7 +142,7 @@ describe('actions', () => {
 			])
 		);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
-		store.dispatch(beethovanActions.fetchConversions(CST.DUMMY_ADDR));
+		store.dispatch(beethovenActions.fetchConversions(CST.DUMMY_ADDR));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -196,7 +196,7 @@ describe('actions', () => {
 		);
 		const store: any = mockStore({
 			web3: { account: CST.DUMMY_ADDR },
-			beethovan: {
+			beethoven: {
 				states: {
 					addrPoolLength: 1,
 					limitUpper: 2,
@@ -207,8 +207,8 @@ describe('actions', () => {
 			ui: { period: 5, source: 'test' }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		beethovanWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovanActions.refresh('custodian'));
+		beethovenWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(beethovenActions.refresh('custodian'));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -218,7 +218,7 @@ describe('actions', () => {
 	});
 
 	test('subscriptionUpdate', () => {
-		expect(beethovanActions.subscriptionUpdate(123)).toMatchSnapshot();
+		expect(beethovenActions.subscriptionUpdate(123)).toMatchSnapshot();
 	});
 
 	test('subscribe', () => {
@@ -255,7 +255,7 @@ describe('actions', () => {
 		);
 		const store: any = mockStore({
 			web3: { account: CST.DUMMY_ADDR },
-			beethovan: {
+			beethoven: {
 				states: {
 					addrPoolLength: 1,
 					limitUpper: 2,
@@ -266,8 +266,8 @@ describe('actions', () => {
 			ui: { period: 5, source: 'test' }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		beethovanWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovanActions.subscribe('custodian'));
+		beethovenWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(beethovenActions.subscribe('custodian'));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

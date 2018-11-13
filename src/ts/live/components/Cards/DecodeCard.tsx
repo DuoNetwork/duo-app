@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
-import { beethovanWapper } from '../../common/wrappers';
+import { beethovenWapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SInput } from './_styled';
 
@@ -26,7 +26,7 @@ export default class DecodeCard extends React.Component<{}, IState> {
 	private handleClick = () => {
 		const { input } = this.state;
 		this.setState({
-			output: JSON.stringify(beethovanWapper.decode(input), null, 4)
+			output: JSON.stringify(beethovenWapper.decode(input), null, 4)
 		});
 	};
 

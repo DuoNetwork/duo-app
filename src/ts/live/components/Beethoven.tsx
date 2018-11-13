@@ -2,7 +2,7 @@ import { Layout } from 'antd';
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from '../common/constants';
-import { IBeethovanStates, IContractPrice, IConversion, ISourceData } from '../common/types';
+import { IBeethovenStates, IContractPrice, IConversion, ISourceData } from '../common/types';
 import { web3Wrapper } from '../common/wrappers';
 import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
 import { SContent, SDivFlexCenter } from './_styled';
@@ -17,7 +17,7 @@ import Header from './Header';
 interface IProps {
 	location: object;
 	locale: string;
-	states: IBeethovanStates;
+	states: IBeethovenStates;
 	network: number;
 	account: string;
 	eth: number;
@@ -33,9 +33,9 @@ interface IProps {
 	updateLocale: (locale: string) => any;
 }
 
-export default class Beethovan extends React.Component<IProps> {
+export default class Beethoven extends React.Component<IProps> {
 	public componentDidMount() {
-		this.props.subscribe(web3Wrapper.contractAddresses.Beethovan.custodian);
+		this.props.subscribe(web3Wrapper.contractAddresses.Beethoven.custodian);
 	}
 
 	public componentWillUnmount() {
@@ -59,7 +59,7 @@ export default class Beethovan extends React.Component<IProps> {
 			updateLocale,
 			location
 		} = this.props;
-		const custodian = web3Wrapper.contractAddresses.Beethovan.custodian;
+		const custodian = web3Wrapper.contractAddresses.Beethoven.custodian;
 		return (
 			<div>
 				<MediaQuery minDeviceWidth={900}>

@@ -7,9 +7,9 @@ import demoCreate from '../../../../images/createDemo.png';
 import infoIcon from '../../../../images/info.svg';
 import demoRedeem from '../../../../images/redeemDemo.png';
 import * as CST from '../../common/constants';
-import { IBeethovanStates } from '../../common/types';
+import { IBeethovenStates } from '../../common/types';
 import util from '../../common/util';
-import { beethovanWapper } from '../../common/wrappers';
+import { beethovenWapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import Erc20Form from '../Forms/Erc20Form';
 import {
@@ -23,7 +23,7 @@ import {
 
 interface IProps {
 	locale: string;
-	states: IBeethovanStates;
+	states: IBeethovenStates;
 	eth: number;
 	aToken: number;
 	bToken: number;
@@ -153,10 +153,10 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = amtNum - fee;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
-			beethovanWapper.create(account, amtNum, (txHash: string) =>
+			beethovenWapper.create(account, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
-						beethovanWapper.web3Wrapper.contractAddresses.Beethovan.custodian,
+						beethovenWapper.web3Wrapper.contractAddresses.Beethoven.custodian,
 						account,
 						txHash,
 						true,
@@ -170,10 +170,10 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
 			const fee = ethAmount * states.redeemCommRate;
-			beethovanWapper.redeem(account, amtNum, amtNum, (txHash: string) =>
+			beethovenWapper.redeem(account, amtNum, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
-						beethovanWapper.web3Wrapper.contractAddresses.Beethovan.custodian,
+						beethovenWapper.web3Wrapper.contractAddresses.Beethoven.custodian,
 						account,
 						txHash,
 						false,

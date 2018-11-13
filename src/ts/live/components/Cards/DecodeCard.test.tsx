@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { beethovanWapper } from '../../common/wrappers';
+import { beethovenWapper } from '../../common/wrappers';
 import { SInput } from './_styled';
 import DecodeCard from './DecodeCard';
 
@@ -12,7 +12,7 @@ describe('AuthCard Test', () => {
 		});
 
 		it('Test SInput Input', async () => {
-			beethovanWapper.decode = jest.fn(() => 'decoded');
+			beethovenWapper.decode = jest.fn(() => 'decoded');
 			const wrapper = shallow(<DecodeCard />);
 			await wrapper
 				.find(SInput)
