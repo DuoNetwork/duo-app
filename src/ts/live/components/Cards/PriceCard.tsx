@@ -74,7 +74,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							: CST.TH_LOADING[locale]}
 					</SCardExtraDiv>
 				}
-				width={mobile ? '100%' : '540px'}
+				width={mobile ? '100%' : '590px'}
 				margin={mobile ? '20px 0 0 0' : '0 10px 0 0'}
 			>
 				<SDivFlexCenter horizontal={!mobile} padding="0 10px">

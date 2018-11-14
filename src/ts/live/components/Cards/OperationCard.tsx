@@ -256,7 +256,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 									<SDivFlexCenter
 										horizontal
 										width="100%"
-										padding="5px 0 0 0"
+										padding="2px 0 2px 0"
 										marginBottom="10px"
 									>
 										<button
@@ -334,8 +334,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 									<SDivFlexCenter
 										horizontal
 										width="100%"
-										padding="0"
-										marginTop="10px"
+										padding="2px 0 2px 0"
 									>
 										<button
 											className={'form-button' + (mobile ? ' mobile' : '')}

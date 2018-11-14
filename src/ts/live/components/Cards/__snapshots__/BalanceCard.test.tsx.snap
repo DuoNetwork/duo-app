@@ -68,7 +68,7 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
       />
     </styled.div>
   }
-  width="640px"
+  width="590px"
 >
   <styled.div
     horizontal={true}

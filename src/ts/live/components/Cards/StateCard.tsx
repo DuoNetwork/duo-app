@@ -114,7 +114,7 @@ export default class StateCard extends React.Component<IProps> {
 									</li>
 								)}
 							</ul>
-							<ul>
+							<ul style={{paddingTop: '10px'}}>
 								<li className="block-title">{CST.TH_CONTRACT_STATES[locale]}</li>
 								<li>
 									<span className="title">{CST.TH_PERIOD_LENGTH[locale]}</span>

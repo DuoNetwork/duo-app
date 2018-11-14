@@ -29,7 +29,7 @@ export default class BalanceCard extends React.Component<IProps> {
 						<SRefreshButton icon="reload" onClick={refreshBalance} />
 					</SCardTitle>
 				}
-				width={mobile ? '100%' : '640px'}
+				width={mobile ? '100%' : '590px'}
 				margin={mobile ? '20px 0 0 0' : '0 0 0 10px'}
 				extra={
 					<ExtendExtraDiv

@@ -47,6 +47,12 @@ injectGlobal([
 			pointer-events: none !important;
 			opacity: 0.5;
 		}
+		.sc-bZQynM.eqSxah {
+			width: 30%;
+		}
+		.sc-gzVnrw.ckhMSO {
+			width: 30%;
+		}
 	}
 `
 ] as any);
@@ -171,8 +177,8 @@ export const SCardPriceTag = styled.div`
 				props.locale === CST.LOCALE_JP
 					? '11px'
 					: props.locale === CST.LOCALE_RU
-						? '10px'
-						: '12px'};
+					? '10px'
+					: '12px'};
 			display: flex;
 			flex-direction: row;
 			color: ${ColorStyles.TextWhiteAlphaL};
@@ -259,7 +265,7 @@ export const SCardAssetTag = styled.div`
 		height: 100px;
 		width: 100px;
 		position: absolute;
-		left: ${(props: ICardAssetTagProps) => (props.mobile ? ''  : '-35px')};
+		left: ${(props: ICardAssetTagProps) => (props.mobile ? '' : '-35px')};
 		right: ${(props: ICardAssetTagProps) => (props.mobile ? '-15px' : '')};
 		top: 10px;
 	}
@@ -654,10 +660,14 @@ export const SCardConversionForm = styled.div`
 		background-color: ${ColorStyles.ButtonHoverWhite1};
 	}
 	.selected {
+		height: 22px;
 		border: 1px solid !important;
 		border-color: ${ColorStyles.BorderWhite6} !important;
 		color: ${ColorStyles.TextWhiteAlpha} !important;
 		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+	}
+	.non-select {
+		height: 22px;
 	}
 `;
 injectGlobal([
@@ -725,6 +735,9 @@ injectGlobal([
 		}
 		.address-table-action-col {
 			cursor: default !important;
+		}
+		li {
+			height: 26px;
 		}
 	}
 `
