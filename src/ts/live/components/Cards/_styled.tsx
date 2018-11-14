@@ -131,8 +131,7 @@ export const SCardPriceTag = styled.div`
 		height: 100px;
 		width: 100px;
 		position: absolute;
-		left: ${(props: ICardPriceTagProps) => (props.mobile ? '' : '-35px')};
-		right: ${(props: ICardPriceTagProps) => (props.mobile ? '-15px' : '')};
+		right: ${(props: ICardPriceTagProps) => (props.mobile ? '-15px' : '-35px')};
 		top: 10px;
 	}
 	.bg-logo > img {
@@ -254,7 +253,7 @@ export interface ICardAssetTagProps {
 
 export const SCardAssetTag = styled.div`
 	height: 100px;
-	width: ${(props: ICardAssetTagProps) => (props.mobile ? '100%' : '140px')};
+	width: ${(props: ICardAssetTagProps) => (props.mobile ? '100%' : '155px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -265,8 +264,7 @@ export const SCardAssetTag = styled.div`
 		height: 100px;
 		width: 100px;
 		position: absolute;
-		left: ${(props: ICardAssetTagProps) => (props.mobile ? '' : '-35px')};
-		right: ${(props: ICardAssetTagProps) => (props.mobile ? '-15px' : '')};
+		right: ${(props: ICardAssetTagProps) => (props.mobile ? '-15px' : '-35px')};
 		top: 10px;
 	}
 	.bg-logo > img {
@@ -429,7 +427,7 @@ export const SRadioGroup = styled(RadioGroup as any)`
 
 export interface ICardListProps {
 	noMargin?: boolean;
-}
+};
 export const SCardList = styled.div`
 	width: 100%;
 	.status-list-wrapper {
@@ -478,6 +476,7 @@ export const SCardList = styled.div`
 			flex-direction: row;
 			justify-content: space-between;
 			padding: 0 5px;
+			align-items: center;
 			.title {
 				color: ${ColorStyles.TextWhiteAlphaL};
 			}
@@ -735,9 +734,6 @@ injectGlobal([
 		}
 		.address-table-action-col {
 			cursor: default !important;
-		}
-		li {
-			height: 26px;
 		}
 	}
 `
@@ -1061,6 +1057,13 @@ injectGlobal([
 		}
 		.ant-btn.disabled, .ant-btn[disabled], .ant-btn.disabled:hover, .ant-btn[disabled]:hover, .ant-btn.disabled:focus, .ant-btn[disabled]:focus, .ant-btn.disabled:active, .ant-btn[disabled]:active, .ant-btn.disabled.active, .ant-btn[disabled].active {
 			color: ${ColorStyles.TextWhiteAlphaLLL};
+		}
+		.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
+			background: ${ColorStyles.ListHighlight};
+		}
+		.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters:hover .anticon-filter:hover, .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters:hover .ant-table-filter-icon:hover {
+			background: ${ColorStyles.ListHighlight};
+			color: ${ColorStyles.TextWhiteAlpha}
 		}
 	}
 `

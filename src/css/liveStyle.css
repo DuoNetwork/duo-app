@@ -73,7 +73,7 @@ body {
 }
 .chart-wrapper {
 	width: 760px;
-	height: 400px;
+	height: 360px;
 	margin-top: 10px;
 	border: 1px dashed;
 	border-color: rgba(255,255,255,0.1);

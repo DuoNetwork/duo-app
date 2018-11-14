@@ -252,7 +252,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 										src={isCreate ? demoCreate : demoRedeem}
 									/>
 								</li>
-								<li>
+								<li className="no-bg">
 									<SDivFlexCenter
 										horizontal
 										width="100%"

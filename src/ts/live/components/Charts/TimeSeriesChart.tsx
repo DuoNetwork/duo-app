@@ -7,7 +7,7 @@ import { IAcceptedPrice, IPrice } from '../../common/types';
 
 const margin = { top: 40, right: 34, bottom: 23, left: 38 };
 const width = 708 - margin.left - margin.right;
-const height = 400 - margin.top - margin.bottom;
+const height = 360 - margin.top - margin.bottom;
 
 function drawLines(
 	el: Element,
