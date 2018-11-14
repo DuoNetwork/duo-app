@@ -163,7 +163,12 @@ export const TH_FEE: ILocaleText = {
 };
 export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
+export const TH_ORACLES = 'Oracles';
+export const TH_CUSTODIANS = 'Custodians';
+export const TH_MAGI = 'Magi';
 export const TH_BEETHOVEN = 'Beethoven';
+export const TH_MOZART = 'Mozart';
+export const TH_COVERED_OPTIONS = 'Covered Options';
 export const TH_CHART: ILocaleText = {
 	[LOCALE_CN]: '图表',
 	[LOCALE_EN]: 'Chart',

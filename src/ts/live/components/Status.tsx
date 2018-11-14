@@ -1,14 +1,11 @@
 import { Layout } from 'antd';
 import * as React from 'react';
-import * as CST from '../common/constants';
 import { IStatus } from '../common/types';
+import Header from '../containers/HeaderContainer';
 import { SContent } from './_styled';
 import StatusCard from './Cards/StatusCard';
-import Header from './Header';
 
 interface IProps {
-	location: object;
-	network: number;
 	status: IStatus[];
 }
 
@@ -18,10 +15,10 @@ export default class Status extends React.Component<IProps> {
 	}
 
 	public render() {
-		const { status, network, location } = this.props;
+		const { status } = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_APP} location={location} width="1000px" />
+				<Header />
 				<SContent>
 					<StatusCard status={status} />
 				</SContent>

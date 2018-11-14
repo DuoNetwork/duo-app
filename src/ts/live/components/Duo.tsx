@@ -1,14 +1,18 @@
+import { Layout } from 'antd';
 import * as React from 'react';
-import { /*Link, */ Route, Switch } from 'react-router-dom';
-// import Admin from '../containers/AdminContainer';
+import { Link, Route, Switch } from 'react-router-dom';
+import * as CST from '../common/constants';
 import Beethoven from '../containers/BeethovenContainer';
+import Header from '../containers/HeaderContainer';
 import Magi from '../containers/MagiContainer';
 import Status from '../containers/StatusContainer';
-// import User from '../containers/UserContainer';
-// import { SDivFlexCenter } from './_styled';
-// import { SCard } from './Cards/_styled';
+import { SContent, SDivFlexCenter } from './_styled';
 
 export default class Duo extends React.Component {
+	public componentDidMount() {
+		document.title = 'DUO | Trustless Derivatives';
+	}
+
 	public render() {
 		return (
 			<div>
@@ -16,46 +20,39 @@ export default class Duo extends React.Component {
 					<Route exact path={'/beethoven'} render={() => <Beethoven />} />
 					<Route exact path={'/magi'} render={() => <Magi />} />
 					<Route exact path={'/status'} render={() => <Status />} />
-					{/* <Route exact path={'/admin'} render={() => <Admin />} /> */}
-					{/* <Route exact path={'/user'} render={() => <User />} /> */}
 					<Route
 						path={'/'}
 						render={() => (
-							<Beethoven />
-							// <div>
-							// 	<SDivFlexCenter center horizontal marginBottom="20px;" marginTop="20px;">
-							// 		<div>
-							// 			<Link to={'/beethoven'}>
-							// 				<SCard width="640px" margin="0 10px 0 0">
-							// 					<div style={{ color: 'white', marginTop: 10 }}> Beethoven </div>
-							// 				</SCard>
-							// 			</Link>
-							// 		</div>
-							// 		<div>
-							// 			<Link to={'/status'}>
-							// 				<SCard width="640px" margin="0 0 0 10px">
-							// 					<div style={{ color: 'white', marginTop: 10 }}> Status </div>
-							// 				</SCard>
-							// 			</Link>
-							// 		</div>
-							// 	</SDivFlexCenter>
-							// 	<SDivFlexCenter center horizontal marginBottom="20px;">
-							// 		<div>
-							// 			<Link to={'/admin'}>
-							// 				<SCard width="640px" margin="0 10px 0 0">
-							// 					<div style={{ color: 'white', marginTop: 10 }}> Admin </div>
-							// 				</SCard>
-							// 			</Link>
-							// 		</div>
-							// 		<div>
-							// 			<Link to={'/user'}>
-							// 				<SCard width="640px" margin="0 0 0 10px">
-							// 					<div style={{ color: 'white', marginTop: 10 }}> User </div>
-							// 				</SCard>
-							// 			</Link>
-							// 		</div>
-							// 	</SDivFlexCenter>
-							// </div>
+							<Layout>
+								<Header />
+								<SContent>
+									<div>{CST.TH_CUSTODIANS}</div>
+									<SDivFlexCenter
+										center
+										horizontal
+										marginBottom="20px;"
+										marginTop="20px;"
+									>
+										<div>
+											<Link to={'/' + CST.TH_BEETHOVEN.toLowerCase()}>
+												{CST.TH_BEETHOVEN.toUpperCase()}
+											</Link>
+										</div>
+										<div>{CST.TH_MOZART.toUpperCase() + ' Coming Soon'}</div>
+										<div>
+											{CST.TH_COVERED_OPTIONS.toUpperCase() + ' Coming Soon'}
+										</div>
+									</SDivFlexCenter>
+									<div>{CST.TH_CUSTODIANS}</div>
+									<SDivFlexCenter center horizontal marginBottom="20px;">
+										<div>
+											<Link to={'/' + CST.TH_MAGI.toLowerCase()}>
+												{CST.TH_MAGI.toUpperCase()}
+											</Link>
+										</div>
+									</SDivFlexCenter>
+								</SContent>
+							</Layout>
 						)}
 					/>
 				</Switch>

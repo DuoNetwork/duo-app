@@ -5,6 +5,7 @@ import * as CST from '../common/constants';
 import { IBeethovenStates, IContractPrice, IConversion, ISourceData } from '../common/types';
 import { web3Wrapper } from '../common/wrappers';
 import TimeSeriesCard from '../containers/Cards/TimeSeriesCardContainer';
+import Header from '../containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from './_styled';
 import BalanceCard from './Cards/BalanceCard';
 import ConversionCard from './Cards/ConversionCard';
@@ -12,13 +13,10 @@ import ConversionMCard from './Cards/ConversionMCard';
 import OperationCard from './Cards/OperationCard';
 import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
-import Header from './Header';
 
 interface IProps {
-	location: object;
 	locale: string;
 	states: IBeethovenStates;
-	network: number;
 	account: string;
 	eth: number;
 	aToken: number;
@@ -29,8 +27,6 @@ interface IProps {
 	subscribe: (custodian: string) => any;
 	unsubscribe: () => any;
 	refresh: (custodian: string) => any;
-	refreshBalance: (custodian: string) => any;
-	updateLocale: (locale: string) => any;
 }
 
 export default class Beethoven extends React.Component<IProps> {
@@ -55,25 +51,13 @@ export default class Beethoven extends React.Component<IProps> {
 			conversions,
 			gasPrice,
 			refresh,
-			refreshBalance,
-			network,
-			updateLocale,
-			location
 		} = this.props;
 		const custodian = web3Wrapper.contractAddresses.Beethoven.custodian;
 		return (
 			<div>
 				<MediaQuery minDeviceWidth={900}>
 					<Layout>
-						<Header
-							location={location}
-							locale={locale}
-							network={network}
-							to={CST.TH_STATUS.EN}
-							toText={CST.TH_STATUS[locale]}
-							refresh={() => refresh(custodian)}
-							updateLocale={updateLocale}
-						/>
+						<Header />
 						<SContent>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<TimeSeriesCard />
@@ -91,7 +75,7 @@ export default class Beethoven extends React.Component<IProps> {
 									eth={eth}
 									aToken={aToken}
 									bToken={bToken}
-									refresh={() => refreshBalance(custodian)}
+									refresh={() => refresh(custodian)}
 								/>
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
@@ -103,7 +87,7 @@ export default class Beethoven extends React.Component<IProps> {
 									aToken={aToken}
 									bToken={bToken}
 									account={account}
-									refresh={() => refreshBalance(custodian)}
+									refresh={() => refresh(custodian)}
 									gasPrice={gasPrice}
 								/>
 							</SDivFlexCenter>
@@ -120,7 +104,7 @@ export default class Beethoven extends React.Component<IProps> {
 							eth={eth}
 							aToken={aToken}
 							bToken={bToken}
-							refresh={() => refreshBalance(custodian)}
+							refresh={() => refresh(custodian)}
 							mobile
 						/>
 					) : null}
@@ -132,7 +116,7 @@ export default class Beethoven extends React.Component<IProps> {
 							aToken={aToken}
 							bToken={bToken}
 							account={account}
-							refresh={() => refreshBalance(custodian)}
+							refresh={() => refresh(custodian)}
 							gasPrice={gasPrice}
 							mobile
 						/>

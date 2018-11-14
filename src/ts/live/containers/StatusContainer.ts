@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { IState } from '../common/types';
 import Status from '../components/Status';
 
 function mapStateToProps(state: IState) {
 	return {
-		network: state.web3.network,
 		status: state.dynamo.status
 	};
 }
 
-export default withRouter(connect(
+export default connect(
 	mapStateToProps,
 	{}
-)(Status) as any);
+)(Status);

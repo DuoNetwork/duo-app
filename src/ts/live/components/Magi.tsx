@@ -1,15 +1,12 @@
 import { Layout } from 'antd';
 import * as React from 'react';
-import * as CST from '../common/constants';
 import { IAcceptedPrice } from '../common/types';
 import { web3Wrapper } from '../common/wrappers';
+import Header from '../containers/HeaderContainer';
 import { SContent } from './_styled';
 import AcceptPriceCard from './Cards/AcceptPriceCard';
-import Header from './Header';
 
 interface IProps {
-	location: object;
-	network: number;
 	acceptedPrices: IAcceptedPrice[];
 	subscribe: (contractAddress: string) => any;
 	unsubscribe: () => any;
@@ -26,10 +23,10 @@ export default class Magi extends React.Component<IProps> {
 	}
 
 	public render() {
-		const { acceptedPrices, network, location } = this.props;
+		const { acceptedPrices } = this.props;
 		return (
 			<Layout>
-				<Header network={network} to={CST.TH_APP} location={location} width="1000px" />
+				<Header />
 				<SContent>
 					<AcceptPriceCard acceptedPrices={acceptedPrices} />
 				</SContent>

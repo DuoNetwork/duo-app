@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import * as magiActions from '../actions/magiActions';
@@ -8,7 +7,6 @@ import Magi from '../components/Magi';
 
 function mapStateToProps(state: IState) {
 	return {
-		network: state.web3.network,
 		acceptedPrices: state.magi.acceptedPrices
 	};
 }
@@ -20,7 +18,7 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 	};
 }
 
-export default withRouter(connect(
+export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Magi) as any);
+)(Magi);
