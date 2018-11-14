@@ -8,7 +8,7 @@ const path = require('path');
 module.exports = {
 	mode: 'production',
 	entry: {
-		app: path.resolve(__dirname, 'src/ts/live/app.tsx')
+		app: path.resolve(__dirname, 'src/ts/app.tsx')
 	},
 	output: {
 		path: path.join(__dirname, 'dist/kovan'),
@@ -85,6 +85,7 @@ module.exports = {
 		]
 	},
 	resolve: {
+		modules: [path.join(__dirname, 'src'), 'node_modules'],
 		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	}
 };
