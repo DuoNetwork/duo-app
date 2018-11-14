@@ -117,6 +117,7 @@ injectGlobal([
 export interface ICardPriceTagProps {
 	mobile?: boolean;
 	locale?: string;
+	disabled?: boolean;
 }
 export const SCardPriceTag = styled.div`
 	height: 100px;
@@ -169,6 +170,140 @@ export const SCardPriceTag = styled.div`
 	}
 	.tag-content {
 		width: 120px;
+		margin-left: 20px;
+		margin-top: 10px;
+		.tag-subtext {
+			font-size: ${(props: ICardPriceTagProps) =>
+				props.locale === CST.LOCALE_JP
+					? '11px'
+					: props.locale === CST.LOCALE_RU
+					? '10px'
+					: '12px'};
+			display: flex;
+			flex-direction: row;
+			color: ${ColorStyles.TextWhiteAlphaL};
+		}
+	}
+	.tag-price {
+		color: white;
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 16px;
+		margin-bottom: 5px;
+	}
+	.tag-unit {
+		margin-left: 2px;
+		color: ${ColorStyles.TextWhiteAlphaL};
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 10px;
+		margin-top: 5.5px;
+	}
+	.tag-price-1 {
+		color: ${ColorStyles.TextTokenA};
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 16px;
+		margin-bottom: 5px;
+	}
+	.tag-price-2 {
+		color: ${ColorStyles.TextTokenB};
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 16px;
+		margin-bottom: 5px;
+	}
+	.tag-price-3 {
+		color: white;
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 12px;
+		margin-bottom: 5px;
+		margin-left: 6px;
+		width: 60px;
+		text-align: right;
+	}
+	.tag-unit-1,
+	.tag-unit-2 {
+		margin-left: 2px;
+		color: ${ColorStyles.TextWhiteAlphaL};
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 10px;
+		margin-top: 5.5px;
+	}
+	.tag-unit-3 {
+		color: ${ColorStyles.TextWhiteAlphaL};
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 10px;
+	}
+`;
+
+export const SCardTag = styled.div`
+	height: 85px;
+	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '290px')};
+	position: relative;
+	margin-top: 10px;
+	border: 1px dashed;
+	border-color: ${ColorStyles.BorderWhite1};
+	overflow: hidden;
+	padding-top: 10px;
+	transition: all .3s;
+	pointer-events: ${(props: ICardPriceTagProps) => (props.disabled ? 'none !important' : '')};
+	opacity: ${(props: ICardPriceTagProps) => (props.disabled ? '0.5' : '1')};
+	&:hover {
+		background: ${ColorStyles.HoverBackgroundSolid}
+	}
+	.bg-logo {
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		right: ${(props: ICardPriceTagProps) => (props.mobile ? '-15px' : '-35px')};
+		top: 0px;
+	}
+	.bg-logo > img {
+		height: 100%;
+		width: 100%;
+		opacity: 0.05;
+		pointer-events: none;
+	}
+	.tag-title {
+		width: 90px;
+		margin-left: 20px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		img {
+			width: 10px;
+			height: 10px;
+			margin-left: 6px;
+			opacity: 0.6;
+		}
+	}
+	.tag-title > a {
+		margin: 0;
+	}
+	.tag-title > a,
+	.tag-title > h3 {
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 12px;
+		color: ${ColorStyles.TextWhiteAlphaL};
+		margin: 0;
+		z-index: 99;
+		text-decoration: none;
+	}
+	.tag-content {
+		width: 220px;
 		margin-left: 20px;
 		margin-top: 10px;
 		.tag-subtext {
@@ -1064,6 +1199,9 @@ injectGlobal([
 		.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters:hover .anticon-filter:hover, .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters:hover .ant-table-filter-icon:hover {
 			background: ${ColorStyles.ListHighlight};
 			color: ${ColorStyles.TextWhiteAlpha}
+		}
+		.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
+			background: ${ColorStyles.HoverBackgroundSolid};
 		}
 	}
 `

@@ -1,13 +1,15 @@
 import { Layout } from 'antd';
 import * as React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
+import ethIcon from '../../../images/ethIcon.png';
 import * as CST from '../common/constants';
+import { ColorStyles } from '../common/styles';
 import Beethoven from '../containers/BeethovenContainer';
 import Header from '../containers/HeaderContainer';
 import Magi from '../containers/MagiContainer';
 import Status from '../containers/StatusContainer';
 import { SContent, SDivFlexCenter } from './_styled';
-
+import { SCard, SCardTag, SCardTitle } from './Cards/_styled';
 export default class Duo extends React.Component {
 	public componentDidMount() {
 		document.title = 'DUO | Trustless Derivatives';
@@ -26,31 +28,92 @@ export default class Duo extends React.Component {
 							<Layout>
 								<Header />
 								<SContent>
-									<div>{CST.TH_CUSTODIANS}</div>
-									<SDivFlexCenter
-										center
-										horizontal
-										marginBottom="20px;"
-										marginTop="20px;"
+									<SCard
+										title={
+											<SCardTitle>
+												{CST.TH_CUSTODIANS.toUpperCase()}
+											</SCardTitle>
+										}
+										width={'960px'}
+										margin={'0 0 20px 0'}
 									>
-										<div>
+										<SDivFlexCenter horizontal padding="0 10px">
 											<Link to={'/' + CST.TH_BEETHOVEN.toLowerCase()}>
-												{CST.TH_BEETHOVEN.toUpperCase()}
+												<SCardTag>
+													<div className="bg-logo">
+														<img src={ethIcon} />
+													</div>
+													<div className="tag-content">
+														<div className={'tag-price USD'}>
+															{CST.TH_BEETHOVEN.toUpperCase()}
+														</div>
+													</div>
+												</SCardTag>
 											</Link>
-										</div>
-										<div>{CST.TH_MOZART.toUpperCase() + ' Coming Soon'}</div>
-										<div>
-											{CST.TH_COVERED_OPTIONS.toUpperCase() + ' Coming Soon'}
-										</div>
-									</SDivFlexCenter>
-									<div>{CST.TH_CUSTODIANS}</div>
-									<SDivFlexCenter center horizontal marginBottom="20px;">
-										<div>
+											<SCardTag disabled>
+												<div className="bg-logo">
+													<img src={ethIcon} />
+												</div>
+												<div className="tag-content">
+													<div className={'tag-price USD'}>
+														{CST.TH_MOZART.toUpperCase()}
+													</div>
+												</div>
+												<div className="tag-subtext">
+													<div
+														style={{
+															color: ColorStyles.TextWhiteAlphaL,
+															marginLeft: 20
+														}}
+													>
+														Coming Soon
+													</div>
+												</div>
+											</SCardTag>
+											<SCardTag disabled>
+												<div className="bg-logo">
+													<img src={ethIcon} />
+												</div>
+												<div className="tag-content">
+													<div className={'tag-price USD'}>
+														{CST.TH_COVERED_OPTIONS.toUpperCase()}
+													</div>
+												</div>
+												<div className="tag-subtext">
+													<div
+														style={{
+															color: ColorStyles.TextWhiteAlphaL,
+															marginLeft: 20
+														}}
+													>
+														Coming Soon
+													</div>
+												</div>
+											</SCardTag>
+										</SDivFlexCenter>
+									</SCard>
+									<SCard
+										title={
+											<SCardTitle>{CST.TH_ORACLES.toUpperCase()}</SCardTitle>
+										}
+										width={'960px'}
+										margin={'0 0 0 0'}
+									>
+										<SDivFlexCenter horizontal padding="0 10px">
 											<Link to={'/' + CST.TH_MAGI.toLowerCase()}>
-												{CST.TH_MAGI.toUpperCase()}
+												<SCardTag>
+													<div className="bg-logo">
+														<img src={ethIcon} />
+													</div>
+													<div className="tag-content">
+														<div className={'tag-price USD'}>
+															{CST.TH_MAGI.toUpperCase()}
+														</div>
+													</div>
+												</SCardTag>
 											</Link>
-										</div>
-									</SDivFlexCenter>
+										</SDivFlexCenter>
+									</SCard>
 								</SContent>
 							</Layout>
 						)}
