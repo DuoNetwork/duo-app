@@ -23,7 +23,7 @@ module.exports = {
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({ filename: 'styles.[chunkhash].css' }),
 		new HtmlWebpackPlugin({
-			title: 'DUO | Beethoven',
+			title: 'DUO | Trustless Derivatives',
 			template: path.resolve(__dirname, 'src/index.ejs'),
 			favicon: path.join(__dirname, 'src/images/favicon.ico'),
 			filename: 'index.html'

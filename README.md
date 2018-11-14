@@ -1,13 +1,6 @@
 # Introduction
 Web App for DUO Network
 
-## Demo App
-[DUO Network Demo](https://duo.network/demo/)
-Demo app based on historical ETH daily prices from May 01, 2017
-
-## Live App
-Actual DApp connects to ETH blockchain
-
 # Community Reward
 As part of our bounty reward program, any bug or issue found will be rewarded with community tokens based on seriousness of the issue.
 
