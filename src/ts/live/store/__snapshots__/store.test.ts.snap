@@ -54,6 +54,10 @@ Object {
   "dynamo": Object {
     "status": Array [],
   },
+  "magi": Object {
+    "acceptedPrices": Array [],
+    "subscription": 0,
+  },
   "ui": Object {
     "locale": "EN",
     "period": 60,

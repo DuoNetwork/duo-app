@@ -13,6 +13,7 @@ export interface ISourceData<T> {
 
 export interface IState {
 	readonly beethoven: IBeethovenState;
+	readonly magi: IMagiState;
 	readonly web3: IWeb3State;
 	readonly dynamo: IDynamoState;
 	readonly ui: IUIState;
@@ -36,6 +37,11 @@ export interface IBeethovenState {
 		a: number;
 		b: number;
 	}
+}
+
+export interface IMagiState {
+	readonly subscription: number;
+	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
 }
 
 export interface IDynamoState {

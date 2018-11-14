@@ -36,6 +36,7 @@ interface IProps {
 export default class Beethoven extends React.Component<IProps> {
 	public componentDidMount() {
 		this.props.subscribe(web3Wrapper.contractAddresses.Beethoven.custodian);
+		document.title = 'DUO | Custodian';
 	}
 
 	public componentWillUnmount() {

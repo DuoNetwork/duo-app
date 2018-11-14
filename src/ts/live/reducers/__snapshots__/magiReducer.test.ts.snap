@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`magi reducer default 1`] = `
+Object {
+  "acceptedPrices": Array [],
+  "subscription": 0,
+}
+`;
+
+exports[`magi reducer magiAcceptedPrices 1`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "subscription": 0,
+}
+`;
+
+exports[`magi reducer magiSubscription off 1`] = `
+Object {
+  "acceptedPrices": Array [],
+  "subscription": 0,
+}
+`;
+
+exports[`magi reducer magiSubscription off 2`] = `
+Array [
+  Array [
+    123,
+  ],
+]
+`;
+
+exports[`magi reducer magiSubscription on 1`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "subscription": 123,
+}
+`;

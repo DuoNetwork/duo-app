@@ -7,13 +7,14 @@ export const AC_BTV_ACCEPTED_PX = 'beethovenAcceptedPrices';
 export const AC_BTV_CONVERSIONS = 'beethovenConversions';
 export const AC_BTV_BALANCES = 'beethovenBalances';
 export const AC_BTV_SUB = 'beethovenSubscription';
+export const AC_MAG_ACCEPTED_PX = 'magiAcceptedPrices';
+export const AC_MAG_SUB = 'magiSubscription';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';
 export const AC_WEB3_GAS_PX = 'web3GasPrice';
 export const AC_DNM_STATUS = 'dynamoStatus';
 export const AC_UI_LOCALE = 'uiLocale';
-export const AC_SUBSCRIBE = 'subscribe';
 export const AC_UI_PERIOD = 'uiPeriod';
 export const AC_UI_SOURCE = 'uiSource';
 
@@ -197,6 +198,7 @@ export const TH_VALUE = 'Value';
 export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
+export const TH_ACCEPTED_PX = 'Accepted Prices';
 export const TH_HOME: ILocaleText = {
 	[LOCALE_CN]: '主页',
 	[LOCALE_EN]: 'Home',

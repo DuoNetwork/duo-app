@@ -13,6 +13,10 @@ interface IProps {
 }
 
 export default class Status extends React.Component<IProps> {
+	public componentDidMount() {
+		document.title = 'DUO | Status';
+	}
+
 	public render() {
 		const { status, network, location } = this.props;
 		return (

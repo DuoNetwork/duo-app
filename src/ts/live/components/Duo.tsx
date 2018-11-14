@@ -2,6 +2,7 @@ import * as React from 'react';
 import { /*Link, */ Route, Switch } from 'react-router-dom';
 // import Admin from '../containers/AdminContainer';
 import Beethoven from '../containers/BeethovenContainer';
+import Magi from '../containers/MagiContainer';
 import Status from '../containers/StatusContainer';
 // import User from '../containers/UserContainer';
 // import { SDivFlexCenter } from './_styled';
@@ -13,6 +14,7 @@ export default class Duo extends React.Component {
 			<div>
 				<Switch>
 					<Route exact path={'/beethoven'} render={() => <Beethoven />} />
+					<Route exact path={'/magi'} render={() => <Magi />} />
 					<Route exact path={'/status'} render={() => <Status />} />
 					{/* <Route exact path={'/admin'} render={() => <Admin />} /> */}
 					{/* <Route exact path={'/user'} render={() => <User />} /> */}

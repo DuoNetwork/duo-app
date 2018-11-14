@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions acceptedPricesUpdate 1`] = `
+Object {
+  "type": "magiAcceptedPrices",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions fetchAcceptedPrices 1`] = `
+Array [
+  Object {
+    "type": "magiAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
+exports[`actions refresh 1`] = `
+Array [
+  Object {
+    "type": "magiAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
+exports[`actions subscribe 1`] = `
+Array [
+  Object {
+    "type": "magiSubscription",
+    "value": 0,
+  },
+  Object {
+    "type": "magiSubscription",
+    "value": 123,
+  },
+  Object {
+    "type": "magiAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+]
+`;
+
+exports[`actions subscriptionUpdate 1`] = `
+Object {
+  "type": "magiSubscription",
+  "value": 123,
+}
+`;
