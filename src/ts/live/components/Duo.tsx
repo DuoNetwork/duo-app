@@ -4,6 +4,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import ethIcon from '../../../images/ethIcon.png';
 import * as CST from '../common/constants';
 import { ColorStyles } from '../common/styles';
+import BeethovenAdmin from '../containers/BeethovenAdminCointainer';
 import Beethoven from '../containers/BeethovenContainer';
 import Header from '../containers/HeaderContainer';
 import Magi from '../containers/MagiContainer';
@@ -19,11 +20,11 @@ export default class Duo extends React.Component {
 		return (
 			<div>
 				<Switch>
-					<Route exact path={'/beethoven'} render={() => <Beethoven />} />
-					<Route exact path={'/magi'} render={() => <Magi />} />
-					<Route exact path={'/status'} render={() => <Status />} />
+					<Route path={'/beethoven/admin'} render={() => <BeethovenAdmin />} />
+					<Route path={'/beethoven'} render={() => <Beethoven />} />
+					<Route path={'/magi'} render={() => <Magi />} />
+					<Route path={'/status'} render={() => <Status />} />
 					<Route
-						path={'/'}
 						render={() => (
 							<Layout>
 								<Header />

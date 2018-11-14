@@ -117,13 +117,13 @@ export function conversionsUpdate(conversions: IConversion[]) {
 	};
 }
 
-export function fetchConversions(custodian: string): VoidThunkAction {
+export function fetchConversions(contractAddress: string): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const nowTimestamp = util.getUTCNowTimestamp();
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		const account = getState().web3.account;
-		const conversion = await dynamoUtil.queryConversionEvent(custodian, account, dates);
-		(await dynamoUtil.queryUIConversionEvent(custodian, account)).forEach(uc => {
+		const conversion = await dynamoUtil.queryConversionEvent(contractAddress, account, dates);
+		(await dynamoUtil.queryUIConversionEvent(contractAddress, account)).forEach(uc => {
 			if (
 				!dates.includes(moment.utc(uc.timestamp).format('YYYY-MM-DD')) ||
 				conversion.some(c => c.transactionHash === uc.transactionHash) ||
@@ -144,20 +144,37 @@ export function subscriptionUpdate(intervalId: number) {
 	};
 }
 
-export function refresh(custodian: string): VoidThunkAction {
+export function refresh(contractAddress: string): VoidThunkAction {
 	return async dispatch => {
 		await dispatch(getStates());
 		dispatch(getBalances());
 		dispatch(fetchExchangePrices());
-		dispatch(fetchAcceptedPrices(custodian));
-		dispatch(fetchConversions(custodian));
+		dispatch(fetchAcceptedPrices(contractAddress));
+		dispatch(fetchConversions(contractAddress));
 	};
 }
 
-export function subscribe(custodian: string): VoidThunkAction {
+export function subscribe(contractAddress: string): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
-		dispatch(refresh(custodian));
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh(custodian)), 60000)));
+		dispatch(refresh(contractAddress));
+		dispatch(
+			subscriptionUpdate(window.setInterval(() => dispatch(refresh(contractAddress)), 60000))
+		);
+	};
+}
+
+export function refreshAdmin(): VoidThunkAction {
+	return async dispatch => {
+		await dispatch(getStates());
+		dispatch(getAddresses());
+	};
+}
+
+export function subscribeAdmin(): VoidThunkAction {
+	return async dispatch => {
+		dispatch(subscriptionUpdate(0));
+		dispatch(refreshAdmin());
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 60000)));
 	};
 }

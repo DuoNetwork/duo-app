@@ -1,6 +1,6 @@
-import infura from '../../../../../duo-admin/src/keys/infura.json';
 import BeethovenWapper from '../../../../../duo-contract-wrapper/src/BeethovenWapper';
 import Web3Wrapper from '../../../../../duo-contract-wrapper/src/Web3Wrapper';
+import infura from '../../keys/infura.json';
 import * as CST from './constants';
 
 const provider =

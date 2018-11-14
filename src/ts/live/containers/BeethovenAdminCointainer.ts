@@ -1,25 +1,26 @@
 import { connect } from 'react-redux';
 import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
-import * as magiActions from '../actions/magiActions';
+import * as beethovenActions from '../actions/beethovenActions';
 import { IState } from '../common/types';
-import { web3Wrapper } from '../common/wrappers';
-import Magi from '../components/Magi';
+import BeethovenAdmin from '../components/BeethovenAdmin';
 
 function mapStateToProps(state: IState) {
 	return {
-		acceptedPrices: state.magi.acceptedPrices
+		states: state.beethoven.states,
+		account: state.web3.account,
+		addresses: state.beethoven.addresses
 	};
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () => dispatch(magiActions.subscribe(web3Wrapper.contractAddresses.Magi)),
-		unsubscribe: () => dispatch(magiActions.subscriptionUpdate(0))
+		subscribe: () => dispatch(beethovenActions.subscribeAdmin()),
+		unsubscribe: () => dispatch(beethovenActions.subscriptionUpdate(0))
 	};
 }
 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Magi);
+)(BeethovenAdmin);

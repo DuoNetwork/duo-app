@@ -5,6 +5,7 @@ import * as beethovenActions from '../actions/beethovenActions';
 import * as web3Actions from '../actions/web3Actions';
 import { IState } from '../common/types';
 import util from '../common/util';
+import { web3Wrapper } from '../common/wrappers';
 import Beethoven from '../components/Beethoven';
 
 function mapStateToProps(state: IState) {
@@ -23,13 +24,16 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: (custodian: string) => dispatch(beethovenActions.subscribe(custodian)),
+		subscribe: () =>
+			dispatch(beethovenActions.subscribe(web3Wrapper.contractAddresses.Beethoven.custodian)),
 		unsubscribe: () => dispatch(beethovenActions.subscriptionUpdate(0)),
-		refresh: (custodian: string) => {
+		refresh: () => {
 			dispatch(web3Actions.getBalance());
 			dispatch(beethovenActions.getBalances());
 			dispatch(beethovenActions.getStates());
-			dispatch(beethovenActions.fetchConversions(custodian));
+			dispatch(
+				beethovenActions.fetchConversions(web3Wrapper.contractAddresses.Beethoven.custodian)
+			);
 		}
 	};
 }

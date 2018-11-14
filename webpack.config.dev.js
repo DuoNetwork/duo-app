@@ -11,6 +11,7 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, "dist"),
 		filename: "[name].js",
+		publicPath: '/'
 	},
 	devServer: {
 		https: true,
@@ -18,8 +19,7 @@ module.exports = {
 		hot: true,
 		historyApiFallback: true,
 		host: "0.0.0.0",
-		disableHostCheck: true,
-		publicPath: '/'
+		disableHostCheck: true
 	},
 	plugins: [
 		new webpack.LoaderOptionsPlugin({
