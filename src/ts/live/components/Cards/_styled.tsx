@@ -120,7 +120,7 @@ export interface ICardPriceTagProps {
 }
 export const SCardPriceTag = styled.div`
 	height: 100px;
-	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '155px')};
+	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '165px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -253,7 +253,7 @@ export interface ICardAssetTagProps {
 
 export const SCardAssetTag = styled.div`
 	height: 100px;
-	width: ${(props: ICardAssetTagProps) => (props.mobile ? '100%' : '155px')};
+	width: ${(props: ICardAssetTagProps) => (props.mobile ? '100%' : '165px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -427,7 +427,7 @@ export const SRadioGroup = styled(RadioGroup as any)`
 
 export interface ICardListProps {
 	noMargin?: boolean;
-};
+}
 export const SCardList = styled.div`
 	width: 100%;
 	.status-list-wrapper {
