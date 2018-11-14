@@ -111,6 +111,16 @@ export default class Duo extends React.Component {
 															{CST.TH_MAGI.toUpperCase()}
 														</div>
 													</div>
+													<div className="tag-subtext">
+													<div
+														style={{
+															color: ColorStyles.TextWhiteAlphaL,
+															marginLeft: 20
+														}}
+													>
+														ETH / USD
+													</div>
+												</div>
 												</SCardTag>
 											</Link>
 										</SDivFlexCenter>
