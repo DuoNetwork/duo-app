@@ -2,7 +2,7 @@ import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import { IBeethovanStates, ICustodianAddresses } from '../../common/types';
+import { IBeethovenStates, ICustodianAddresses } from '../../common/types';
 import AdminInputButton from '../Common/AdminInputButton';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
@@ -10,7 +10,7 @@ const { Column } = Table;
 
 interface IProps {
 	addresses: ICustodianAddresses;
-	states: IBeethovanStates;
+	states: IBeethovenStates;
 	account: string;
 }
 

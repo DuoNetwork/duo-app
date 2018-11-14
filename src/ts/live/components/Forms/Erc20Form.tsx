@@ -76,8 +76,8 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 		const { token, address, amount } = this.state;
 		const contractAddress =
 			token === CST.TH_TOKEN_A
-				? web3Wrapper.contractAddresses.Beethovan.aToken
-				: web3Wrapper.contractAddresses.Beethovan.bToken;
+				? web3Wrapper.contractAddresses.Beethoven.aToken
+				: web3Wrapper.contractAddresses.Beethoven.bToken;
 		web3Wrapper.erc20Transfer(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};
@@ -87,8 +87,8 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 		const { token, address, amount } = this.state;
 		const contractAddress =
 			token === CST.TH_TOKEN_A
-				? web3Wrapper.contractAddresses.Beethovan.aToken
-				: web3Wrapper.contractAddresses.Beethovan.bToken;
+				? web3Wrapper.contractAddresses.Beethoven.aToken
+				: web3Wrapper.contractAddresses.Beethoven.bToken;
 		web3Wrapper.erc20Approve(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};

@@ -1,7 +1,7 @@
 // import { Layout } from 'antd';
 // import * as React from 'react';
 // import * as CST from '../common/constants';
-// import { IAddress, IBeethovanAddresses, IBeethovanPrices, IBeethovanStates } from '../common/types';
+// import { IAddress, IBeethovenAddresses, IBeethovenPrices, IBeethovenStates } from '../common/types';
 // import { SContent, SDivFlexCenter } from './_styled';
 // import AddressCard from './Cards/AddressCard';
 // import AdminCard from './Cards/AdminCard';
@@ -12,9 +12,9 @@
 // 	init: () => any;
 // 	location: object;
 // 	network: number;
-// 	addresses: IBeethovanAddresses;
-// 	states: IBeethovanStates;
-// 	prices: IBeethovanPrices;
+// 	addresses: IBeethovenAddresses;
+// 	states: IBeethovenStates;
+// 	prices: IBeethovenPrices;
 // 	addressPool: IAddress[];
 // 	account: string;
 // }

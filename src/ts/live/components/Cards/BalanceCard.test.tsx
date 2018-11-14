@@ -12,7 +12,7 @@ describe('AuthCard Test', () => {
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
 				<BalanceCard
-					refreshBalance={refreshBalance}
+					refresh={refreshBalance}
 					mobile={mobile}
 					account={account}
 					eth={0}
@@ -24,7 +24,7 @@ describe('AuthCard Test', () => {
 			expect(wrapper).toMatchSnapshot();
 			const wrapper1 = shallow(
 				<BalanceCard
-					refreshBalance={refreshBalance}
+					refresh={refreshBalance}
 					mobile={false}
 					account={account}
 					eth={0}

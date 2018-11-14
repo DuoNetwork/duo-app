@@ -7,7 +7,7 @@ import '../../css/liveStyle.css';
 import '../../static/GettingStarted.pdf';
 import '../../static/GettingStarted_CN.pdf';
 import '../../static/GettingStarted_JP.pdf';
-import * as beethovanActions from './actions/beethovanActions';
+import * as beethovenActions from './actions/beethovenActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
 import { web3Wrapper } from './common/wrappers';
@@ -18,12 +18,10 @@ const config = require(`../keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
 dynamoUtil.init(config, !__KOVAN__, '', web3Wrapper);
 
 store.dispatch(web3Actions.refresh());
-store.dispatch(beethovanActions.refresh());
 store.dispatch(dynamoActions.scanStatus());
 
 setInterval(() => {
 	store.dispatch(web3Actions.refresh());
-	store.dispatch(beethovanActions.refresh());
 	store.dispatch(dynamoActions.scanStatus());
 }, 60000);
 
@@ -34,7 +32,7 @@ web3Wrapper.onWeb3AccountUpdate((addr: string, network: number) => {
 	) {
 		store.dispatch(web3Actions.accountUpdate(addr));
 		store.dispatch(web3Actions.networkUpdate(network));
-		store.dispatch(beethovanActions.refresh());
+		store.dispatch(beethovenActions.refresh(web3Wrapper.contractAddresses.Beethoven.custodian));
 	}
 });
 

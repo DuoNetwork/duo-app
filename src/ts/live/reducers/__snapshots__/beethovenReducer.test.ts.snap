@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`beethovan reducer beethovanAcceptedPrices 1`] = `
+exports[`beethoven reducer beethovenAcceptedPrices 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -19,10 +19,11 @@ Object {
   "states": Object {
     "test": "test",
   },
+  "subscription": 0,
 }
 `;
 
-exports[`beethovan reducer beethovanAddresses 1`] = `
+exports[`beethoven reducer beethovenAddresses 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -37,10 +38,11 @@ Object {
   "states": Object {
     "test": "test",
   },
+  "subscription": 0,
 }
 `;
 
-exports[`beethovan reducer beethovanBalances 1`] = `
+exports[`beethoven reducer beethovenBalances 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -60,10 +62,11 @@ Object {
   "states": Object {
     "test": "test",
   },
+  "subscription": 0,
 }
 `;
 
-exports[`beethovan reducer beethovanConversions 1`] = `
+exports[`beethoven reducer beethovenConversions 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -84,10 +87,11 @@ Object {
   "states": Object {
     "test": "test",
   },
+  "subscription": 0,
 }
 `;
 
-exports[`beethovan reducer beethovanExchangePrices 1`] = `
+exports[`beethoven reducer beethovenExchangePrices 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -104,10 +108,11 @@ Object {
   "states": Object {
     "test": "test",
   },
+  "subscription": 0,
 }
 `;
 
-exports[`beethovan reducer beethovanStates 1`] = `
+exports[`beethoven reducer beethovenStates 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -127,10 +132,11 @@ Object {
   "states": Object {
     "test": "test",
   },
+  "subscription": 0,
 }
 `;
 
-exports[`beethovan reducer default 1`] = `
+exports[`beethoven reducer beethovenSubscription off 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -178,5 +184,90 @@ Object {
     "totalSupplyB": 0,
     "totalUsers": 0,
   },
+  "subscription": 0,
+}
+`;
+
+exports[`beethoven reducer beethovenSubscription off 2`] = `
+Array [
+  Array [
+    123,
+  ],
+]
+`;
+
+exports[`beethoven reducer beethovenSubscription on 1`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "addresses": Object {
+    "test": "test",
+  },
+  "balances": Array [
+    "test",
+  ],
+  "conversions": Array [
+    "test",
+  ],
+  "exchangePrices": Object {
+    "test": "test",
+  },
+  "states": Object {
+    "test": "test",
+  },
+  "subscription": 123,
+}
+`;
+
+exports[`beethoven reducer default 1`] = `
+Object {
+  "acceptedPrices": Array [],
+  "addresses": Object {
+    "aToken": "0x0",
+    "bToken": "0x0",
+    "feeCollector": "0x0",
+    "operator": "0x0",
+    "oracle": "0x0",
+    "roleManager": "0x0",
+  },
+  "balances": Object {
+    "a": 0,
+    "b": 0,
+  },
+  "conversions": Array [],
+  "exchangePrices": Array [],
+  "states": Object {
+    "alpha": 0,
+    "beta": 0,
+    "createCommRate": 0,
+    "ethCollateral": 0,
+    "feeBalance": 0,
+    "iterationGasThreshold": 0,
+    "lastOperationTime": 0,
+    "lastPrice": 0,
+    "lastPriceTime": 0,
+    "limitLower": 0,
+    "limitPeriodic": 0,
+    "limitUpper": 0,
+    "minBalance": 0,
+    "navA": 0,
+    "navB": 0,
+    "nextResetAddrIndex": 0,
+    "operationCoolDown": 0,
+    "period": 0,
+    "periodCoupon": 0,
+    "preResetWaitingBlocks": 0,
+    "priceFetchCoolDown": 0,
+    "redeemCommRate": 0,
+    "resetPrice": 0,
+    "resetPriceTime": 0,
+    "resetState": "",
+    "state": "Loading",
+    "totalSupplyA": 0,
+    "totalSupplyB": 0,
+    "totalUsers": 0,
+  },
+  "subscription": 0,
 }
 `;

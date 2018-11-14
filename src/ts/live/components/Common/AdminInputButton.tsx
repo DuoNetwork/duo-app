@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as CST from '../../common/constants';
-import { beethovanWapper } from '../../common/wrappers';
+import { beethovenWapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SInput } from '../Cards/_styled';
 
@@ -50,10 +50,10 @@ export default class AdminInputButton extends React.Component<IProps, IState> {
 
 		switch (type) {
 			case CST.TH_COLLECT_FEE:
-				beethovanWapper.collectFee(account, Number(value));
+				beethovenWapper.collectFee(account, Number(value));
 				break;
 			case CST.TH_SET_VALUE:
-				if (index >= 0) beethovanWapper.setValue(account, index, Number(value));
+				if (index >= 0) beethovenWapper.setValue(account, index, Number(value));
 				break;
 			default:
 				break;

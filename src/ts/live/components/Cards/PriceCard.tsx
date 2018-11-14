@@ -8,7 +8,7 @@ import ethIcon from '../../../../images/ethIcon.png';
 import infoIcon from '../../../../images/info.svg';
 import * as CST from '../../common/constants';
 import { ColorStyles } from '../../common/styles';
-import { IBeethovanStates, IContractPrice, ISourceData } from '../../common/types';
+import { IBeethovenStates, IContractPrice, ISourceData } from '../../common/types';
 import util from '../../common/util';
 import { web3Wrapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
@@ -17,7 +17,7 @@ import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
 
 interface IProps {
 	locale: string;
-	states: IBeethovanStates;
+	states: IBeethovenStates;
 	sourceLast: ISourceData<IContractPrice>;
 	mobile?: boolean;
 }
@@ -120,7 +120,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/tokens?q=' +
-									web3Wrapper.contractAddresses.Beethovan.aToken
+									web3Wrapper.contractAddresses.Beethoven.aToken
 								}
 								target="_blank"
 							>
@@ -155,7 +155,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/tokens?q=' +
-									web3Wrapper.contractAddresses.Beethovan.bToken
+									web3Wrapper.contractAddresses.Beethoven.bToken
 								}
 								target="_blank"
 							>

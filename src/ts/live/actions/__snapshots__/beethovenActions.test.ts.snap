@@ -2,7 +2,7 @@
 
 exports[`actions acceptedPricesUpdate 1`] = `
 Object {
-  "type": "beethovanAcceptedPrices",
+  "type": "beethovenAcceptedPrices",
   "value": Array [
     "test",
   ],
@@ -11,7 +11,7 @@ Object {
 
 exports[`actions addressesUpdate 1`] = `
 Object {
-  "type": "beethovanAddresses",
+  "type": "beethovenAddresses",
   "value": Object {
     "test": "test",
   },
@@ -20,7 +20,7 @@ Object {
 
 exports[`actions conversionsUpdate 1`] = `
 Object {
-  "type": "beethovanConversions",
+  "type": "beethovenConversions",
   "value": Array [
     "test",
   ],
@@ -29,7 +29,7 @@ Object {
 
 exports[`actions exchangePricesUpdate 1`] = `
 Object {
-  "type": "beethovanExchangePrices",
+  "type": "beethovenExchangePrices",
   "value": Array [
     "test",
   ],
@@ -39,7 +39,7 @@ Object {
 exports[`actions fetchAcceptedPrices 1`] = `
 Array [
   Object {
-    "type": "beethovanAcceptedPrices",
+    "type": "beethovenAcceptedPrices",
     "value": Array [
       "test",
     ],
@@ -50,7 +50,7 @@ Array [
 exports[`actions fetchConversions 1`] = `
 Array [
   Object {
-    "type": "beethovanConversions",
+    "type": "beethovenConversions",
     "value": Array [
       Object {
         "transactionHash": "aaa",
@@ -81,7 +81,7 @@ Object {
 exports[`actions fetchExchangePrices 5 1`] = `
 Array [
   Object {
-    "type": "beethovanExchangePrices",
+    "type": "beethovenExchangePrices",
     "value": Array [
       "test",
       1,
@@ -96,7 +96,7 @@ Array [
 exports[`actions fetchExchangePrices 60 1`] = `
 Array [
   Object {
-    "type": "beethovanExchangePrices",
+    "type": "beethovenExchangePrices",
     "value": Array [
       "test",
       60,
@@ -111,7 +111,7 @@ Array [
 exports[`actions getAddresses 1`] = `
 Array [
   Object {
-    "type": "beethovanAddresses",
+    "type": "beethovenAddresses",
     "value": Object {
       "test": "test",
     },
@@ -122,7 +122,7 @@ Array [
 exports[`actions getStates 1`] = `
 Array [
   Object {
-    "type": "beethovanStates",
+    "type": "beethovenStates",
     "value": Object {
       "test": "test",
     },
@@ -133,13 +133,13 @@ Array [
 exports[`actions refresh 1`] = `
 Array [
   Object {
-    "type": "beethovanStates",
+    "type": "beethovenStates",
     "value": Object {
       "test": "test",
     },
   },
   Object {
-    "type": "beethovanExchangePrices",
+    "type": "beethovenExchangePrices",
     "value": Array [
       "test",
       1,
@@ -149,13 +149,13 @@ Array [
     ],
   },
   Object {
-    "type": "beethovanAcceptedPrices",
+    "type": "beethovenAcceptedPrices",
     "value": Array [
       "test",
     ],
   },
   Object {
-    "type": "beethovanConversions",
+    "type": "beethovenConversions",
     "value": Array [
       Object {
         "transactionHash": "aaa",
@@ -171,9 +171,63 @@ Array [
 
 exports[`actions statesUpdate 1`] = `
 Object {
-  "type": "beethovanStates",
+  "type": "beethovenStates",
   "value": Object {
     "test": "test",
   },
+}
+`;
+
+exports[`actions subscribe 1`] = `
+Array [
+  Object {
+    "type": "beethovenSubscription",
+    "value": 0,
+  },
+  Object {
+    "type": "beethovenSubscription",
+    "value": 123,
+  },
+  Object {
+    "type": "beethovenStates",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "beethovenExchangePrices",
+    "value": Array [
+      "test",
+      1,
+      1210567890,
+      0,
+      "ETH|USD",
+    ],
+  },
+  Object {
+    "type": "beethovenAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
+    "type": "beethovenConversions",
+    "value": Array [
+      Object {
+        "transactionHash": "aaa",
+      },
+      Object {
+        "timestamp": 1234567890,
+        "transactionHash": "bbb",
+      },
+    ],
+  },
+]
+`;
+
+exports[`actions subscriptionUpdate 1`] = `
+Object {
+  "type": "beethovenSubscription",
+  "value": 123,
 }
 `;

@@ -5,14 +5,14 @@ import * as React from 'react';
 import successIcon from '../../../../images/stauts/success.svg';
 import warningIcon from '../../../../images/stauts/warning.svg';
 import * as CST from '../../common/constants';
-import { IBeethovanStates } from '../../common/types';
+import { IBeethovenStates } from '../../common/types';
 import { web3Wrapper } from '../../common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
 
 interface IProps {
 	locale: string;
-	states: IBeethovanStates;
+	states: IBeethovenStates;
 	mobile?: boolean;
 }
 
@@ -35,7 +35,7 @@ export default class StateCard extends React.Component<IProps> {
 								'https://' +
 								(__KOVAN__ ? 'kovan.' : '') +
 								'etherscan.io/address/' +
-								web3Wrapper.contractAddresses.Beethovan.custodian
+								web3Wrapper.contractAddresses.Beethoven.custodian
 							}
 							target="_blank"
 							style={{ color: 'white' }}

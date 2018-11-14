@@ -2,7 +2,7 @@
 
 exports[`store actions 1`] = `
 Object {
-  "beethovan": Object {
+  "beethoven": Object {
     "acceptedPrices": Array [],
     "addresses": Object {
       "aToken": "0x0",
@@ -49,6 +49,7 @@ Object {
       "totalSupplyB": 0,
       "totalUsers": 0,
     },
+    "subscription": 0,
   },
   "dynamo": Object {
     "status": Array [],

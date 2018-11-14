@@ -15,18 +15,18 @@ interface IProps {
 	aToken: number;
 	bToken: number;
 	mobile?: boolean;
-	refreshBalance: () => any;
+	refresh: () => any;
 }
 
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
-		const { eth, aToken, bToken, account, refreshBalance, locale, mobile } = this.props;
+		const { eth, aToken, bToken, account, refresh, locale, mobile } = this.props;
 		return (
 			<SCard
 				title={
 					<SCardTitle>
 						{CST.TH_BALANCE[locale].toUpperCase()}{' '}
-						<SRefreshButton icon="reload" onClick={refreshBalance} />
+						<SRefreshButton icon="reload" onClick={refresh} />
 					</SCardTitle>
 				}
 				width={mobile ? '100%' : '590px'}

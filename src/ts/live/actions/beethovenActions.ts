@@ -4,16 +4,16 @@ import chartUtil from '../common/chartUtil';
 import * as CST from '../common/constants';
 import {
 	IAcceptedPrice,
-	IBeethovanStates,
+	IBeethovenStates,
 	IConversion,
 	ICustodianAddresses,
 	IPrice,
 	VoidThunkAction
 } from '../common/types';
 import util from '../common/util';
-import { beethovanWapper } from '../common/wrappers';
+import { beethovenWapper } from '../common/wrappers';
 
-export function statesUpdate(states: IBeethovanStates) {
+export function statesUpdate(states: IBeethovenStates) {
 	return {
 		type: CST.AC_BTV_STATES,
 		value: states
@@ -22,7 +22,7 @@ export function statesUpdate(states: IBeethovanStates) {
 
 export function getStates(): VoidThunkAction {
 	return async dispatch => {
-		const states = await beethovanWapper.getStates();
+		const states = await beethovenWapper.getStates();
 		dispatch(statesUpdate(states));
 	};
 }
@@ -40,9 +40,9 @@ export function balancesUpdate(a: number, b: number) {
 export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		const { aToken, bToken } = beethovanWapper.web3Wrapper.contractAddresses.Beethovan;
-		const aBalance = await beethovanWapper.web3Wrapper.getErc20Balance(aToken, account);
-		const bBalance = await beethovanWapper.web3Wrapper.getErc20Balance(bToken, account);
+		const { aToken, bToken } = beethovenWapper.web3Wrapper.contractAddresses.Beethoven;
+		const aBalance = await beethovenWapper.web3Wrapper.getErc20Balance(aToken, account);
+		const bBalance = await beethovenWapper.web3Wrapper.getErc20Balance(bToken, account);
 		dispatch(balancesUpdate(aBalance, bBalance));
 	};
 }
@@ -56,7 +56,7 @@ export function addressesUpdate(addr: ICustodianAddresses) {
 
 export function getAddresses(): VoidThunkAction {
 	return async dispatch => {
-		dispatch(addressesUpdate(await beethovanWapper.getAddresses()));
+		dispatch(addressesUpdate(await beethovenWapper.getAddresses()));
 	};
 }
 export function exchangePricesUpdate(prices: IPrice[]) {
@@ -93,7 +93,7 @@ export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
 		const priceData = await dynamoUtil.queryAcceptPriceEvent(contractAddress, dates);
-		const states = getState().beethovan.states;
+		const states = getState().beethoven.states;
 		dispatch(
 			acceptedPricesUpdate(
 				chartUtil.mergeReset(
@@ -117,13 +117,13 @@ export function conversionsUpdate(conversions: IConversion[]) {
 	};
 }
 
-export function fetchConversions(contractAddress: string): VoidThunkAction {
+export function fetchConversions(custodian: string): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const nowTimestamp = util.getUTCNowTimestamp();
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		const account = getState().web3.account;
-		const conversion = await dynamoUtil.queryConversionEvent(contractAddress, account, dates);
-		(await dynamoUtil.queryUIConversionEvent(contractAddress, account)).forEach(uc => {
+		const conversion = await dynamoUtil.queryConversionEvent(custodian, account, dates);
+		(await dynamoUtil.queryUIConversionEvent(custodian, account)).forEach(uc => {
 			if (
 				!dates.includes(moment.utc(uc.timestamp).format('YYYY-MM-DD')) ||
 				conversion.some(c => c.transactionHash === uc.transactionHash) ||
@@ -137,13 +137,27 @@ export function fetchConversions(contractAddress: string): VoidThunkAction {
 	};
 }
 
-export function refresh(): VoidThunkAction {
+export function subscriptionUpdate(intervalId: number) {
+	return {
+		type: CST.AC_BTV_SUB,
+		value: intervalId
+	};
+}
+
+export function refresh(custodian: string): VoidThunkAction {
 	return async dispatch => {
-		const custodian = beethovanWapper.web3Wrapper.contractAddresses.Beethovan.custodian;
 		await dispatch(getStates());
 		dispatch(getBalances());
 		dispatch(fetchExchangePrices());
 		dispatch(fetchAcceptedPrices(custodian));
 		dispatch(fetchConversions(custodian));
+	};
+}
+
+export function subscribe(custodian: string): VoidThunkAction {
+	return async dispatch => {
+		dispatch(subscriptionUpdate(0));
+		dispatch(refresh(custodian));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh(custodian)), 60000)));
 	};
 }

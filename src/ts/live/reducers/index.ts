@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import { beethovanReducer } from './beethovanReducer';
+import { beethovenReducer } from './beethovenReducer';
 import { dynamoReducer } from './dynamoReducer';
 import { uiReducer } from './uiReducer';
 import { web3Reducer } from './web3Reducer';
 
 const reducers = combineReducers({
-	beethovan: beethovanReducer,
+	beethoven: beethovenReducer,
 	dynamo: dynamoReducer,
 	ui: uiReducer,
 	web3: web3Reducer

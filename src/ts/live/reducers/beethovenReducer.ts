@@ -1,8 +1,8 @@
 import { AnyAction } from 'redux';
 import * as CST from '../common/constants';
-import { IBeethovanState } from '../common/types';
+import { IBeethovenState } from '../common/types';
 
-export const initialState: IBeethovanState = {
+export const initialState: IBeethovenState = {
 	states: {
 		lastOperationTime: 0,
 		operationCoolDown: 0,
@@ -48,13 +48,14 @@ export const initialState: IBeethovanState = {
 	balances: {
 		a: 0,
 		b: 0
-	}
+	},
+	subscription: 0
 };
 
-export function beethovanReducer(
-	state: IBeethovanState = initialState,
+export function beethovenReducer(
+	state: IBeethovenState = initialState,
 	action: AnyAction
-): IBeethovanState {
+): IBeethovenState {
 	switch (action.type) {
 		case CST.AC_BTV_STATES:
 			return Object.assign({}, state, {
@@ -80,6 +81,15 @@ export function beethovanReducer(
 			return Object.assign({}, state, {
 				balances: action.value
 			});
+		case CST.AC_BTV_SUB:
+			if (action.value)
+				return Object.assign({}, state, {
+					subscription: action.value
+				});
+			else {
+				window.clearInterval(state.subscription);
+				return initialState;
+			}
 		default:
 			return state;
 	}
