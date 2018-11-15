@@ -10,12 +10,13 @@ import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
 import { IBeethovenStates, IContractPrice, ISourceData } from 'ts/common/types';
 import util from 'ts/common/util';
-import { web3Wrapper } from 'ts/common/wrappers';
+import { getBeethovenAddressByTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
 
 interface IProps {
+	tenor: string;
 	locale: string;
 	states: IBeethovenStates;
 	sourceLast: ISourceData<IContractPrice>;
@@ -31,14 +32,16 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			source: ''
 		};
 	}
+
 	public render() {
-		const { locale, states, mobile } = this.props;
+		const { locale, states, mobile, tenor } = this.props;
+		const contractAddresses = getBeethovenAddressByTenor(tenor);
 		const { source } = this.state;
 		const last: IContractPrice = CST.API_LIST.includes(source)
 			? this.props.sourceLast[source]
 			: {
-				price: states.lastPrice,
-				timestamp: states.lastPriceTime
+					price: states.lastPrice,
+					timestamp: states.lastPriceTime
 			};
 		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())
 			? util.calculateNav(
@@ -120,7 +123,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/tokens?q=' +
-									web3Wrapper.contractAddresses.Beethoven.aToken
+									contractAddresses.aToken.address
 								}
 								target="_blank"
 							>
@@ -155,7 +158,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/tokens?q=' +
-									web3Wrapper.contractAddresses.Beethoven.bToken
+									contractAddresses.bToken.address
 								}
 								target="_blank"
 							>

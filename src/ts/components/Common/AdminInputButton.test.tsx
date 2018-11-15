@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import * as CST from 'ts/common/constants';
 // import { IConversion } from 'ts/common/types';
 import AdminInputButton from './AdminInputButton';
 
@@ -12,7 +13,16 @@ describe('AuthCard Test', () => {
 		const validateInput = jest.fn();
 
 		it('test Snapshot', () => {
-			const wrapper = shallow(<AdminInputButton account={account} type={type} disabled={disabled} index={index} validateInput={validateInput} />);
+			const wrapper = shallow(
+				<AdminInputButton
+					tenor={CST.TH_PERPETUAL}
+					account={account}
+					type={type}
+					disabled={disabled}
+					index={index}
+					validateInput={validateInput}
+				/>
+			);
 			expect(wrapper).toMatchSnapshot();
 		});
 	});

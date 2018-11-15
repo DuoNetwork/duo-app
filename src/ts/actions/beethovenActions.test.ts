@@ -2,7 +2,7 @@ import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import * as CST from 'ts/common/constants';
 import util from 'ts/common/util';
-import { beethovenWapper } from 'ts/common/wrappers';
+import { beethovenWappers } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 import * as beethovenActions from './beethovenActions';
 
@@ -14,8 +14,12 @@ describe('actions', () => {
 	});
 
 	test('getStates', () => {
-		const store: any = mockStore({});
-		beethovenWapper.getStates = jest.fn(() =>
+		const store: any = mockStore({
+			beethoven: {
+				tenor: CST.TH_PERPETUAL
+			}
+		});
+		beethovenWappers.Perpetual.getStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
@@ -34,14 +38,22 @@ describe('actions', () => {
 	});
 
 	test('getBalances', () => {
-		const store: any = mockStore({ web3: { account: CST.DUMMY_ADDR } });
-		beethovenWapper.web3Wrapper.getErc20Balance = jest.fn(() => {
+		const store: any = mockStore({
+			beethoven: {
+				tenor: CST.TH_PERPETUAL
+			},
+			web3: { account: CST.DUMMY_ADDR }
+		});
+		beethovenWappers.Perpetual.web3Wrapper.getErc20Balance = jest.fn(() => {
 			Promise.resolve(123);
 		});
 		store.dispatch(beethovenActions.getBalances());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
+				expect(
+					(beethovenWappers.Perpetual.web3Wrapper.getErc20Balance as jest.Mock).mock.calls
+				).toMatchSnapshot();
 				resolve();
 			}, 0)
 		);
@@ -52,8 +64,12 @@ describe('actions', () => {
 	});
 
 	test('getAddresses', () => {
-		const store: any = mockStore({ beethoven: { beethovenStates: { addrPoolLength: 1 } } });
-		beethovenWapper.getAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+		const store: any = mockStore({
+			beethoven: {
+				tenor: CST.TH_PERPETUAL
+			}
+		});
+		beethovenWappers.Perpetual.getAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(beethovenActions.getAddresses());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -215,6 +231,7 @@ describe('actions', () => {
 		const store: any = mockStore({
 			web3: { account: CST.DUMMY_ADDR },
 			beethoven: {
+				tenor: CST.TH_PERPETUAL,
 				states: {
 					addrPoolLength: 1,
 					limitUpper: 2,
@@ -225,8 +242,8 @@ describe('actions', () => {
 			ui: { period: 5, source: 'test' }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		beethovenWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovenActions.refresh('custodian'));
+		beethovenWappers.Perpetual.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(beethovenActions.refresh(true));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -236,7 +253,7 @@ describe('actions', () => {
 	});
 
 	test('subscriptionUpdate', () => {
-		expect(beethovenActions.subscriptionUpdate(123)).toMatchSnapshot();
+		expect(beethovenActions.subscriptionUpdate('tenor', 123)).toMatchSnapshot();
 	});
 
 	test('subscribe', () => {
@@ -274,6 +291,7 @@ describe('actions', () => {
 		const store: any = mockStore({
 			web3: { account: CST.DUMMY_ADDR },
 			beethoven: {
+				tenor: CST.TH_PERPETUAL,
 				states: {
 					addrPoolLength: 1,
 					limitUpper: 2,
@@ -284,8 +302,8 @@ describe('actions', () => {
 			ui: { period: 5, source: 'test' }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		beethovenWapper.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovenActions.subscribe('custodian'));
+		beethovenWappers.Perpetual.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
+		store.dispatch(beethovenActions.subscribe(CST.TH_PERPETUAL));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -295,12 +313,12 @@ describe('actions', () => {
 	});
 
 	test('refreshAdmin', () => {
-		beethovenWapper.getStates = jest.fn(() =>
+		beethovenWappers.Perpetual.getStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
-		const store: any = mockStore({ beethoven: { beethovenStates: { addrPoolLength: 1 } } });
+		const store: any = mockStore({ beethoven: { tenor: CST.TH_PERPETUAL } });
 		store.dispatch(beethovenActions.refreshAdmin());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -311,16 +329,16 @@ describe('actions', () => {
 	});
 
 	test('subscribeAdmin', () => {
-		beethovenWapper.getStates = jest.fn(() =>
+		beethovenWappers.Perpetual.getStates = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
 			})
 		);
-		const store: any = mockStore({ beethoven: { beethovenStates: { addrPoolLength: 1 } } });
-		store.dispatch(beethovenActions.subscribeAdmin());
+		const store: any = mockStore({ beethoven: { tenor: CST.TH_PERPETUAL } });
+		store.dispatch(beethovenActions.subscribeAdmin(CST.TH_PERPETUAL));
 		return new Promise(resolve =>
 			setTimeout(() => {
-				expect(beethovenActions.subscribeAdmin()).toMatchSnapshot();
+				expect(beethovenActions.subscribeAdmin(CST.TH_PERPETUAL)).toMatchSnapshot();
 				resolve();
 			}, 0)
 		);

@@ -18,32 +18,17 @@ export default class Header extends React.Component<IProps> {
 	public render() {
 		const { location, network, refresh, updateLocale } = this.props;
 		const locale = this.props.locale || CST.LOCALE_EN;
-		const path: string = (location as any).pathname;
-		const parts = path.split('/');
-		const base = parts.slice(0, parts.length - 1).join('/') + '/';
-		const page = parts[parts.length - 1];
-		const isHome = ['', 'index.html'].includes(page);
-		const isBeethovenPage = CST.TH_BEETHOVEN.toLowerCase() === page;
+		const path = (location as any).pathname.toLowerCase();
+		const isStatusPage = path.includes(CST.TH_STATUS.EN.toLowerCase());
+		const isBeethovenPage = path.includes(CST.TH_BEETHOVEN.toLowerCase());
 		return (
 			<SHeader>
 				<SDivFlexCenter horizontal width={'1200px'}>
-					{isHome ? (
+					<Link to={'/'}>
 						<div className="icon-wrapper">
-							<a
-								href={
-									'https://duo.network' +
-									(locale === CST.LOCALE_CN ? '/cn.html' : '')
-								}
-							>
-								<img src={duoIcon} />
-							</a>
+							<img src={duoIcon} />
 						</div>
-					) : (
-						<div className="nav-button-wrapper">
-							<Link to={'/'}>{CST.TH_HOME[locale].toUpperCase()}</Link>
-						</div>
-					)}
-
+					</Link>
 					{network ? (
 						(__KOVAN__ && network !== CST.ETH_KOVAN_ID) ||
 						(!__KOVAN__ && network !== CST.ETH_MAINNET_ID) ? (
@@ -71,20 +56,12 @@ export default class Header extends React.Component<IProps> {
 								</a>
 							</div>
 						) : null}
-						{isBeethovenPage || isHome ? (
+						{!isStatusPage ? (
 							<div className="nav-button-wrapper">
-								<Link to={`${base}status`}>
-									{CST.TH_STATUS[locale].toUpperCase()}
-								</Link>
+								<Link to={'/status'}>{CST.TH_STATUS[locale].toUpperCase()}</Link>
 							</div>
-						) : (
-							<div className="nav-button-wrapper">
-								<Link to={base + CST.TH_BEETHOVEN.toLowerCase()}>
-									{CST.TH_BEETHOVEN.toUpperCase()}
-								</Link>
-							</div>
-						)}
-						<ProviderRadio refresh={() => refresh(page)} />
+						) : null}
+						<ProviderRadio refresh={() => refresh(path)} />
 						<LocaleSelect locale={locale} onSelect={updateLocale} />
 					</SDivFlexCenter>
 				</SDivFlexCenter>

@@ -1,11 +1,12 @@
 //import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { web3Wrapper } from 'ts/common/wrappers';
+import { getBeethovenAddressByTenor, web3Wrapper } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCardList, SCardTransactionForm, SInput } from '../Cards/_styled';
 
 interface IProps {
+	tenor: string;
 	locale: string;
 	account: string;
 	aToken: number;
@@ -72,23 +73,25 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 	};
 
 	private handleTransfer = () => {
-		const { account } = this.props;
+		const { account, tenor } = this.props;
 		const { token, address, amount } = this.state;
+		const beethovanAddress = getBeethovenAddressByTenor(tenor);
 		const contractAddress =
 			token === CST.TH_TOKEN_A
-				? web3Wrapper.contractAddresses.Beethoven.aToken
-				: web3Wrapper.contractAddresses.Beethoven.bToken;
+				? beethovanAddress.aToken.address
+				: beethovanAddress.bToken.address;
 		web3Wrapper.erc20Transfer(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};
 
 	private handleApprove = () => {
-		const { account } = this.props;
+		const { account, tenor } = this.props;
 		const { token, address, amount } = this.state;
+		const beethovanAddress = getBeethovenAddressByTenor(tenor);
 		const contractAddress =
 			token === CST.TH_TOKEN_A
-				? web3Wrapper.contractAddresses.Beethoven.aToken
-				: web3Wrapper.contractAddresses.Beethoven.bToken;
+				? beethovanAddress.aToken.address
+				: beethovanAddress.bToken.address;
 		web3Wrapper.erc20Approve(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};

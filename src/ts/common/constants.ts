@@ -7,6 +7,7 @@ export const AC_BTV_ACCEPTED_PX = 'beethovenAcceptedPrices';
 export const AC_BTV_CONVERSIONS = 'beethovenConversions';
 export const AC_BTV_BALANCES = 'beethovenBalances';
 export const AC_BTV_SUB = 'beethovenSubscription';
+export const AC_BTV_TYPE = 'beethovenType';
 export const AC_MAG_ACCEPTED_PX = 'magiAcceptedPrices';
 export const AC_MAG_SUB = 'magiSubscription';
 export const AC_WEB3_ACCOUNT = 'web3Account';
@@ -37,9 +38,9 @@ export interface ILocaleText {
 	JP: string;
 	[key: string]: string;
 }
-export const TH_BID = 'bid';   /************************** */
-export const TH_ASK = 'ask';	/************************** */
-export const TH_ORDERBOOK = 'Orderbook'; 	/***************** */
+
+export const TH_PERPETUAL = 'Perpetual';
+export const TH_6M = '6M';
 
 export const TH_CREATE: ILocaleText = {
 	[LOCALE_CN]: '拆分',
@@ -252,6 +253,12 @@ export const TH_CONTRACT_STATES: ILocaleText = {
 	[LOCALE_EN]: 'Contract States',
 	[LOCALE_JP]: 'コントラクトの詳細',
 	[LOCALE_RU]: 'Kонтракт'
+};
+export const TH_MATURITY: ILocaleText = {
+	[LOCALE_CN]: '到期日',
+	[LOCALE_EN]: 'Maturity',
+	[LOCALE_JP]: '満期日',
+	[LOCALE_RU]: 'Maturity'
 };
 export const TH_PERIOD_LENGTH: ILocaleText = {
 	[LOCALE_CN]: '周期',

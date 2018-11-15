@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { beethovenWapper } from 'ts/common/wrappers';
+import { getBeethovenWrapperByTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SInput } from '../Cards/_styled';
 
 interface IProps {
+	tenor: string;
 	account: string;
 	type: string;
 	disabled?: boolean;
@@ -42,11 +43,13 @@ export default class AdminInputButton extends React.Component<IProps, IState> {
 			});
 
 	private handleClick = () => {
-		const { account, type } = this.props;
+		const { account, type, tenor } = this.props;
 		const index =
 			this.props.index === null || this.props.index === undefined ? -1 : this.props.index;
 		const { value, valueError, value1Error } = this.state;
 		if (valueError || value1Error) return;
+
+		const beethovenWapper = getBeethovenWrapperByTenor(tenor);
 
 		switch (type) {
 			case CST.TH_COLLECT_FEE:

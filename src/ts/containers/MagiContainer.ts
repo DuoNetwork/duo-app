@@ -3,7 +3,6 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import * as magiActions from 'ts/actions/magiActions';
 import { IState } from 'ts/common/types';
-import { web3Wrapper } from 'ts/common/wrappers';
 import Magi from 'ts/components/Magi';
 
 function mapStateToProps(state: IState) {
@@ -14,7 +13,7 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () => dispatch(magiActions.subscribe(web3Wrapper.contractAddresses.Magi)),
+		subscribe: () => dispatch(magiActions.subscribe()),
 		unsubscribe: () => dispatch(magiActions.subscriptionUpdate(0))
 	};
 }

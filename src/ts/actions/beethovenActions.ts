@@ -10,7 +10,7 @@ import {
 	VoidThunkAction
 } from 'ts/common/types';
 import util from 'ts/common/util';
-import { beethovenWapper } from 'ts/common/wrappers';
+import { getBeethovenAddressByTenor, getBeethovenWrapperByTenor } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 
 export function statesUpdate(states: IBeethovenStates) {
@@ -21,7 +21,8 @@ export function statesUpdate(states: IBeethovenStates) {
 }
 
 export function getStates(): VoidThunkAction {
-	return async dispatch => {
+	return async (dispatch, getState) => {
+		const beethovenWapper = getBeethovenWrapperByTenor(getState().beethoven.tenor);
 		const states = await beethovenWapper.getStates();
 		dispatch(statesUpdate(states));
 	};
@@ -39,10 +40,11 @@ export function balancesUpdate(a: number, b: number) {
 
 export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) => {
+		const beethovenWapper = getBeethovenWrapperByTenor(getState().beethoven.tenor);
 		const account = getState().web3.account;
-		const { aToken, bToken } = beethovenWapper.web3Wrapper.contractAddresses.Beethoven;
-		const aBalance = await beethovenWapper.web3Wrapper.getErc20Balance(aToken, account);
-		const bBalance = await beethovenWapper.web3Wrapper.getErc20Balance(bToken, account);
+		const { aToken, bToken } = getBeethovenAddressByTenor(getState().beethoven.tenor);
+		const aBalance = await beethovenWapper.web3Wrapper.getErc20Balance(aToken.address, account);
+		const bBalance = await beethovenWapper.web3Wrapper.getErc20Balance(bToken.address, account);
 		dispatch(balancesUpdate(aBalance, bBalance));
 	};
 }
@@ -55,7 +57,8 @@ export function addressesUpdate(addr: ICustodianAddresses) {
 }
 
 export function getAddresses(): VoidThunkAction {
-	return async dispatch => {
+	return async (dispatch, getState) => {
+		const beethovenWapper = getBeethovenWrapperByTenor(getState().beethoven.tenor);
 		dispatch(addressesUpdate(await beethovenWapper.getAddresses()));
 	};
 }
@@ -137,30 +140,33 @@ export function fetchConversions(contractAddress: string): VoidThunkAction {
 	};
 }
 
-export function subscriptionUpdate(intervalId: number) {
+export function subscriptionUpdate(tenor: string, intervalId: number) {
 	return {
 		type: CST.AC_BTV_SUB,
-		value: intervalId
+		tenor: tenor,
+		id: intervalId
 	};
 }
 
-export function refresh(contractAddress: string): VoidThunkAction {
-	return async dispatch => {
+export function refresh(full: boolean): VoidThunkAction {
+	return async (dispatch, getState) => {
+		const contractAddress = getBeethovenAddressByTenor(getState().beethoven.tenor).custodian
+			.address;
 		await dispatch(getStates());
 		dispatch(getBalances());
-		dispatch(fetchExchangePrices());
-		dispatch(fetchAcceptedPrices(contractAddress));
+		if (full) {
+			dispatch(fetchExchangePrices());
+			dispatch(fetchAcceptedPrices(contractAddress));
+		}
 		dispatch(fetchConversions(contractAddress));
 	};
 }
 
-export function subscribe(contractAddress: string): VoidThunkAction {
+export function subscribe(type: string): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(0));
-		dispatch(refresh(contractAddress));
-		dispatch(
-			subscriptionUpdate(window.setInterval(() => dispatch(refresh(contractAddress)), 60000))
-		);
+		dispatch(subscriptionUpdate(type, 0));
+		dispatch(refresh(true));
+		dispatch(subscriptionUpdate(type, window.setInterval(() => dispatch(refresh(true)), 60000)));
 	};
 }
 
@@ -171,10 +177,12 @@ export function refreshAdmin(): VoidThunkAction {
 	};
 }
 
-export function subscribeAdmin(): VoidThunkAction {
+export function subscribeAdmin(type: string): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(0));
+		dispatch(subscriptionUpdate(type, 0));
 		dispatch(refreshAdmin());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 60000)));
+		dispatch(
+			subscriptionUpdate(type, window.setInterval(() => dispatch(refreshAdmin()), 60000))
+		);
 	};
 }

@@ -1,6 +1,7 @@
 import * as CST from 'ts/common/constants';
 import { IAcceptedPrice, VoidThunkAction } from 'ts/common/types';
 import util from 'ts/common/util';
+import { magiWrapper } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 
 export function acceptedPricesUpdate(acceptedPrices: IAcceptedPrice[]) {
@@ -29,17 +30,17 @@ export function subscriptionUpdate(intervalId: number) {
 	};
 }
 
-export function refresh(contractAddress: string): VoidThunkAction {
-	return async dispatch => dispatch(fetchAcceptedPrices(contractAddress));
+export function refresh(): VoidThunkAction {
+	return async dispatch => dispatch(fetchAcceptedPrices(magiWrapper.address));
 }
 
-export function subscribe(contractAddress: string): VoidThunkAction {
+export function subscribe(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
-		dispatch(refresh(contractAddress));
+		dispatch(refresh());
 		dispatch(
 			subscriptionUpdate(
-				window.setInterval(() => dispatch(refresh(contractAddress)), 1800000)
+				window.setInterval(() => dispatch(refresh()), 1800000)
 			)
 		);
 	};

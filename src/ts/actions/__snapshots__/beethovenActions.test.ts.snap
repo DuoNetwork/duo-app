@@ -141,6 +141,19 @@ Array [
 ]
 `;
 
+exports[`actions getBalances 2`] = `
+Array [
+  Array [
+    "0xbc4e4029B41B0894353C31267CE86c2192545e53",
+    "0x0",
+  ],
+  Array [
+    "0xFeCd43cd0bc217e5513116c83F48498A018A1da6",
+    "0x0",
+  ],
+]
+`;
+
 exports[`actions getStates 1`] = `
 Array [
   Object {
@@ -212,12 +225,14 @@ Object {
 exports[`actions subscribe 1`] = `
 Array [
   Object {
+    "id": 0,
+    "tenor": "Perpetual",
     "type": "beethovenSubscription",
-    "value": 0,
   },
   Object {
+    "id": 123,
+    "tenor": "Perpetual",
     "type": "beethovenSubscription",
-    "value": 123,
   },
   Object {
     "type": "beethovenStates",
@@ -267,7 +282,8 @@ exports[`actions subscribeAdmin 1`] = `[Function]`;
 
 exports[`actions subscriptionUpdate 1`] = `
 Object {
+  "id": 123,
+  "tenor": "tenor",
   "type": "beethovenSubscription",
-  "value": 123,
 }
 `;

@@ -1,16 +1,20 @@
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import { beethovenWapper } from 'ts/common/wrappers';
+import { getBeethovenWrapperByTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SInput } from './_styled';
+
+interface IProps {
+	tenor: string;
+}
 
 interface IState {
 	input: string;
 	output: any;
 }
-export default class DecodeCard extends React.Component<{}, IState> {
-	constructor(props?: any) {
+export default class DecodeCard extends React.Component<IProps, IState> {
+	constructor(props: IProps) {
 		super(props);
 		this.state = {
 			input: '',
@@ -26,7 +30,11 @@ export default class DecodeCard extends React.Component<{}, IState> {
 	private handleClick = () => {
 		const { input } = this.state;
 		this.setState({
-			output: JSON.stringify(beethovenWapper.decode(input), null, 4)
+			output: JSON.stringify(
+				getBeethovenWrapperByTenor(this.props.tenor).decode(input),
+				null,
+				4
+			)
 		});
 	};
 

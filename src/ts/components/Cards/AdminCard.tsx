@@ -9,6 +9,7 @@ import { SCard, SCardTitle, STableWrapper } from './_styled';
 const { Column } = Table;
 
 interface IProps {
+	tenor: string;
 	addresses: ICustodianAddresses;
 	states: IBeethovenStates;
 	account: string;
@@ -19,7 +20,7 @@ const validatePosInt = (value: string) =>
 
 export default class AdminCard extends React.Component<IProps> {
 	public render() {
-		const { states, account, addresses } = this.props;
+		const { states, account, addresses, tenor } = this.props;
 		const data: object[] = [];
 		let key = 0;
 		data.push({
@@ -28,6 +29,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: d3.format(',.2f')(states.feeBalance),
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					tenor={tenor}
 					account={account}
 					type={CST.TH_COLLECT_FEE}
 					disabled={
@@ -47,6 +49,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.createCommRate * 10000,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
 					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
@@ -61,6 +64,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.redeemCommRate * 10000,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
 					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
@@ -75,6 +79,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.iterationGasThreshold,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
 					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
@@ -89,6 +94,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.preResetWaitingBlocks,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
 					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}

@@ -10,7 +10,7 @@ body {
 .icon-wrapper {
 	height: 100%;
 }
-.icon-wrapper > a > img {
+.icon-wrapper > img {
 	height: 60px;
 	width: 75.6px;
 }

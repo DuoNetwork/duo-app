@@ -28,7 +28,7 @@ describe('actions', () => {
 		util.getDates = jest.fn(() => ['1970-01-15']);
 		const store: any = mockStore({});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(magiActions.refresh('contract'));
+		store.dispatch(magiActions.refresh());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -45,7 +45,7 @@ describe('actions', () => {
 		window.setInterval = jest.fn(() => 123);
 		const store: any = mockStore({});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(magiActions.subscribe('custodian'));
+		store.dispatch(magiActions.subscribe());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

@@ -6,11 +6,12 @@ import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { IBeethovenStates } from 'ts/common/types';
-import { web3Wrapper } from 'ts/common/wrappers';
+import { getBeethovenAddressByTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
 
 interface IProps {
+	tenor: string;
 	locale: string;
 	states: IBeethovenStates;
 	mobile?: boolean;
@@ -18,7 +19,7 @@ interface IProps {
 
 export default class StateCard extends React.Component<IProps> {
 	public render() {
-		const { states, mobile, locale } = this.props;
+		const { states, mobile, locale, tenor } = this.props;
 		const tooltioText =
 			states.state === CST.CTD_TRADING
 				? CST.TT_TRADING_STATE[locale]
@@ -35,7 +36,7 @@ export default class StateCard extends React.Component<IProps> {
 								'https://' +
 								(__KOVAN__ ? 'kovan.' : '') +
 								'etherscan.io/address/' +
-								web3Wrapper.contractAddresses.Beethoven.custodian
+								getBeethovenAddressByTenor(tenor).custodian.address
 							}
 							target="_blank"
 							style={{ color: 'white' }}
@@ -117,6 +118,14 @@ export default class StateCard extends React.Component<IProps> {
 							<ul style={{ paddingTop: '10px' }}>
 								<li className="block-title">{CST.TH_CONTRACT_STATES[locale]}</li>
 								<li>
+									<span className="title">{CST.TH_MATURITY[locale]}</span>
+									<span className="content">
+										{states.maturity
+											? moment(states.maturity).format('YYYY-MM-DD HH:mm')
+											: CST.TH_PERPETUAL}
+									</span>
+								</li>
+								<li>
 									<span className="title">{CST.TH_PERIOD_LENGTH[locale]}</span>
 									<span className="content">
 										{states.period / 60000 + ' mins'}
@@ -133,7 +142,9 @@ export default class StateCard extends React.Component<IProps> {
 								<li>
 									<span className="title">{CST.TH_UPPER_A[locale]}</span>
 									<span className="content">
-										{d3.format(',.4f')(states.limitPeriodic)} USD
+										{states.limitPeriodic
+											? d3.format(',.4f')(states.limitPeriodic) + ' USD'
+											: '-'}
 									</span>
 								</li>
 								<li>

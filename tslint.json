@@ -9,6 +9,7 @@
         "trailing-comma": false,
         "object-literal-shorthand": false,
         "object-literal-sort-keys": false,
+        "object-literal-key-quotes": false,
         "no-console": false,
         "no-var-requires": false,
         "arrow-parens": false,

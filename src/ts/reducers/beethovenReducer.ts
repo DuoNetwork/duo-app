@@ -20,6 +20,7 @@ export const initialState: IBeethovenState = {
 		createCommRate: 0,
 		redeemCommRate: 0,
 		period: 0,
+		maturity: 0,
 		preResetWaitingBlocks: 0,
 		priceFetchCoolDown: 0,
 		nextResetAddrIndex: 0,
@@ -49,6 +50,7 @@ export const initialState: IBeethovenState = {
 		a: 0,
 		b: 0
 	},
+	tenor: CST.TH_PERPETUAL,
 	subscription: 0
 };
 
@@ -82,13 +84,16 @@ export function beethovenReducer(
 				balances: action.value
 			});
 		case CST.AC_BTV_SUB:
-			if (action.value)
+			if (action.id)
 				return Object.assign({}, state, {
-					subscription: action.value
+					tenor: action.tenor,
+					subscription: action.id
 				});
 			else {
 				window.clearInterval(state.subscription);
-				return initialState;
+				return Object.assign({}, initialState, {
+					tenor: action.tenor
+				});
 			}
 		default:
 			return state;

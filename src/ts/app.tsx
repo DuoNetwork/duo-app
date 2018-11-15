@@ -1,4 +1,4 @@
-import 'css/liveStyle.css';
+import 'css/style.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -32,7 +32,7 @@ web3Wrapper.onWeb3AccountUpdate((addr: string, network: number) => {
 	) {
 		store.dispatch(web3Actions.accountUpdate(addr));
 		store.dispatch(web3Actions.networkUpdate(network));
-		store.dispatch(beethovenActions.refresh(web3Wrapper.contractAddresses.Beethoven.custodian));
+		store.dispatch(beethovenActions.refresh(true));
 	}
 });
 

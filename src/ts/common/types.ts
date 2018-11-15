@@ -27,6 +27,7 @@ export interface IWeb3State {
 }
 
 export interface IBeethovenState {
+	readonly tenor: string;
 	readonly subscription: number;
 	readonly states: adminTypes.IBeethovenStates;
 	readonly addresses: adminTypes.ICustodianAddresses;

@@ -15,8 +15,8 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () => dispatch(beethovenActions.subscribeAdmin()),
-		unsubscribe: () => dispatch(beethovenActions.subscriptionUpdate(0))
+		subscribe: (type: string) => dispatch(beethovenActions.subscribeAdmin(type)),
+		unsubscribe: (type: string) => dispatch(beethovenActions.subscriptionUpdate(type, 0))
 	};
 }
 

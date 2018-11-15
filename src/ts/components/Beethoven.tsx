@@ -14,6 +14,7 @@ import PriceCard from './Cards/PriceCard';
 import StateCard from './Cards/StateCard';
 
 interface IProps {
+	tenor: string;
 	locale: string;
 	states: IBeethovenStates;
 	account: string;
@@ -23,19 +24,42 @@ interface IProps {
 	sourceLast: ISourceData<IContractPrice>;
 	conversions: IConversion[];
 	gasPrice: number;
-	subscribe: () => any;
-	unsubscribe: () => any;
+	subscribe: (tenor: string) => any;
+	unsubscribe: (tenor: string) => any;
 	refresh: () => any;
 }
 
-export default class Beethoven extends React.Component<IProps> {
+interface IState {
+	tenor: string;
+}
+
+export default class Beethoven extends React.Component<IProps, IState> {
+	constructor(props: IProps) {
+		super(props);
+		this.state = {
+			tenor: props.tenor
+		};
+	}
+
 	public componentDidMount() {
-		this.props.subscribe();
+		this.props.subscribe(this.props.tenor);
 		document.title = 'DUO | Custodian';
 	}
 
+	public static getDerivedStateFromProps(props: IProps, state: IState) {
+		if (props.tenor !== state.tenor) {
+			props.unsubscribe(props.tenor);
+			props.subscribe(props.tenor);
+			return {
+				tenor: props.tenor
+			};
+		}
+
+		return null;
+	}
+
 	public componentWillUnmount() {
-		this.props.unsubscribe();
+		this.props.unsubscribe(this.props.tenor);
 	}
 
 	public render() {
@@ -49,7 +73,8 @@ export default class Beethoven extends React.Component<IProps> {
 			sourceLast,
 			conversions,
 			gasPrice,
-			refresh
+			refresh,
+			tenor
 		} = this.props;
 		return (
 			<div>
@@ -59,10 +84,11 @@ export default class Beethoven extends React.Component<IProps> {
 						<SContent>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<TimeSeriesCard />
-								<StateCard locale={locale} states={states} />
+								<StateCard tenor={tenor} locale={locale} states={states} />
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<PriceCard
+									tenor={tenor}
 									locale={locale}
 									states={states}
 									sourceLast={sourceLast}
@@ -79,6 +105,7 @@ export default class Beethoven extends React.Component<IProps> {
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<ConversionCard locale={locale} conversions={conversions} />
 								<OperationCard
+									tenor={tenor}
 									locale={locale}
 									states={states}
 									eth={eth}
@@ -93,8 +120,14 @@ export default class Beethoven extends React.Component<IProps> {
 					</Layout>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={899}>
-					<StateCard locale={locale} states={states} mobile />
-					<PriceCard locale={locale} states={states} sourceLast={sourceLast} mobile />
+					<StateCard tenor={tenor} locale={locale} states={states} mobile />
+					<PriceCard
+						tenor={tenor}
+						locale={locale}
+						states={states}
+						sourceLast={sourceLast}
+						mobile
+					/>
 					{account !== CST.DUMMY_ADDR ? (
 						<BalanceCard
 							locale={locale}
@@ -108,6 +141,7 @@ export default class Beethoven extends React.Component<IProps> {
 					) : null}
 					{account !== CST.DUMMY_ADDR ? (
 						<OperationCard
+							tenor={tenor}
 							locale={locale}
 							states={states}
 							eth={eth}

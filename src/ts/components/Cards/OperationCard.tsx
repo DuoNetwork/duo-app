@@ -8,7 +8,7 @@ import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { IBeethovenStates } from 'ts/common/types';
 import util from 'ts/common/util';
-import { beethovenWapper } from 'ts/common/wrappers';
+import { getBeethovenAddressByTenor, getBeethovenWrapperByTenor } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import { SDivFlexCenter } from '../_styled';
 import Erc20Form from '../Forms/Erc20Form';
@@ -22,6 +22,7 @@ import {
 } from './_styled';
 
 interface IProps {
+	tenor: string;
 	locale: string;
 	states: IBeethovenStates;
 	eth: number;
@@ -146,9 +147,11 @@ export default class OperationCard extends React.Component<IProps, IState> {
 	};
 
 	private handleSubmit = () => {
-		const { account, states, refresh } = this.props;
+		const { account, states, refresh, tenor } = this.props;
 		const { isCreate, amount } = this.state;
 		const amtNum = Number(amount);
+		const beethovenWapper = getBeethovenWrapperByTenor(tenor);
+		const contractAddress = getBeethovenAddressByTenor(tenor).custodian.address;
 		if (isCreate) {
 			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = amtNum - fee;
@@ -156,7 +159,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			beethovenWapper.create(account, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
-						beethovenWapper.web3Wrapper.contractAddresses.Beethoven.custodian,
+						contractAddress,
 						account,
 						txHash,
 						true,
@@ -173,7 +176,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			beethovenWapper.redeem(account, amtNum, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
-						beethovenWapper.web3Wrapper.contractAddresses.Beethoven.custodian,
+						contractAddress,
 						account,
 						txHash,
 						false,
@@ -200,16 +203,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		});
 
 	public render() {
-		const {
-			states,
-			account,
-			eth,
-			aToken,
-			bToken,
-			gasPrice,
-			locale,
-			mobile
-		} = this.props;
+		const { states, account, eth, aToken, bToken, gasPrice, locale, mobile, tenor } = this.props;
 		const { isCreate, amount, amountError, description } = this.state;
 		const limit = util.round(isCreate ? eth : Math.min(aToken, bToken));
 		const commissionRate = isCreate ? states.createCommRate : states.redeemCommRate;
@@ -331,11 +325,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 									</div>
 								</li>
 								<li>
-									<SDivFlexCenter
-										horizontal
-										width="100%"
-										padding="2px 0 2px 0"
-									>
+									<SDivFlexCenter horizontal width="100%" padding="2px 0 2px 0">
 										<button
 											className={'form-button' + (mobile ? ' mobile' : '')}
 											disabled={!amount || !!amountError}
@@ -356,6 +346,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 					</SCardList>
 				</SCardConversionForm>
 				<Erc20Form
+					tenor={tenor}
 					aToken={aToken}
 					bToken={bToken}
 					account={account}

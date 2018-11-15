@@ -31,6 +31,7 @@ Object {
       "limitLower": 0,
       "limitPeriodic": 0,
       "limitUpper": 0,
+      "maturity": 0,
       "minBalance": 0,
       "navA": 0,
       "navB": 0,
@@ -50,6 +51,7 @@ Object {
       "totalUsers": 0,
     },
     "subscription": 0,
+    "tenor": "Perpetual",
   },
   "dynamo": Object {
     "status": Array [],

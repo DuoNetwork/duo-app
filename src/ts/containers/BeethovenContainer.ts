@@ -5,7 +5,6 @@ import * as beethovenActions from 'ts/actions/beethovenActions';
 import * as web3Actions from 'ts/actions/web3Actions';
 import { IState } from 'ts/common/types';
 import util from 'ts/common/util';
-import { web3Wrapper } from 'ts/common/wrappers';
 import Beethoven from 'ts/components/Beethoven';
 
 function mapStateToProps(state: IState) {
@@ -24,16 +23,12 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () =>
-			dispatch(beethovenActions.subscribe(web3Wrapper.contractAddresses.Beethoven.custodian)),
-		unsubscribe: () => dispatch(beethovenActions.subscriptionUpdate(0)),
+		subscribe: (type: string) =>
+			dispatch(beethovenActions.subscribe(type)),
+		unsubscribe: (type: string) => dispatch(beethovenActions.subscriptionUpdate(type, 0)),
 		refresh: () => {
 			dispatch(web3Actions.getBalance());
-			dispatch(beethovenActions.getBalances());
-			dispatch(beethovenActions.getStates());
-			dispatch(
-				beethovenActions.fetchConversions(web3Wrapper.contractAddresses.Beethoven.custodian)
-			);
+			dispatch(beethovenActions.refresh(false));
 		}
 	};
 }
