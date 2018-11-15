@@ -22,6 +22,10 @@ export default class Duo extends React.Component {
 						render={() => <BeethovenAdmin tenor={CST.TH_PERPETUAL} />}
 					/>
 					<Route
+						path={'/beethoven/admin'}
+						render={() => <BeethovenAdmin tenor={CST.TH_PERPETUAL} />}
+					/>
+					<Route
 						path={'/beethoven/perpetual'}
 						render={() => <Beethoven tenor={CST.TH_PERPETUAL} />}
 					/>
