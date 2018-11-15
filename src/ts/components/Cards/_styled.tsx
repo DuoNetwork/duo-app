@@ -249,7 +249,7 @@ export const SCardPriceTag = styled.div`
 
 export const SCardTag = styled.div`
 	height: 85px;
-	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '290px')};
+	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '210px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
