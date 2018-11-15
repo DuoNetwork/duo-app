@@ -59,3 +59,7 @@ test('getUTCNowTimestamp days', () => {
 test('getUTCNowTimestamp Long Ago', () => {
 	expect(util.convertUpdateTime(moment().valueOf() - 260000000000000000)).toBe('Long Time Ago');
 });
+
+test('range', () => {
+	expect(util.range(0, 3)).toEqual([0, 1, 2]);
+});

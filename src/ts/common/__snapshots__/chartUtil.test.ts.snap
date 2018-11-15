@@ -123,6 +123,47 @@ exports[`merge last price correctly 4`] = `
 Array [
   Object {
     "base": "base",
+    "close": 205.01,
+    "high": 205.01,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528243200000,
+    "volume": 0,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528246800000,
+    "volume": 123,
+  },
+  Object {
+    "base": "base",
+    "close": 2,
+    "high": 3,
+    "low": 0,
+    "open": 1,
+    "period": 60,
+    "quote": "quote",
+    "source": "source",
+    "timestamp": 1528254000000,
+    "volume": 123,
+  },
+]
+`;
+
+exports[`merge last price correctly 5`] = `
+Array [
+  Object {
+    "base": "base",
     "close": 2,
     "high": 3,
     "low": 0,
@@ -160,7 +201,7 @@ Array [
 ]
 `;
 
-exports[`merge last price correctly 5`] = `
+exports[`merge last price correctly 6`] = `
 Array [
   Object {
     "base": "base",
@@ -264,6 +305,108 @@ Array [
     "navB": 1,
     "price": 123,
     "timestamp": 4717,
+    "transactionHash": "ddd",
+  },
+]
+`;
+
+exports[`mergeLastestToAcceptedPrices 1`] = `
+Array [
+  Object {
+    "blockNumber": 111,
+    "contractAddress": "0x0",
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 1000,
+    "transactionHash": "aaa",
+  },
+  Object {
+    "blockNumber": 222,
+    "contractAddress": "0x0",
+    "navA": 1,
+    "navB": 2,
+    "price": 123,
+    "timestamp": 2000,
+    "transactionHash": "bbb",
+  },
+  Object {
+    "blockNumber": 333,
+    "contractAddress": "0x0",
+    "navA": 1,
+    "navB": 0.25,
+    "price": 123,
+    "timestamp": 3000,
+    "transactionHash": "ccc",
+  },
+  Object {
+    "blockNumber": 444,
+    "contractAddress": "0x0",
+    "navA": 1.1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 4000,
+    "transactionHash": "ddd",
+  },
+  Object {
+    "blockNumber": 0,
+    "contractAddress": "0x0",
+    "navA": 1.025942,
+    "navB": 0.595738272490127,
+    "price": 12,
+    "timestamp": 1528243200000,
+    "transactionHash": "",
+  },
+]
+`;
+
+exports[`mergeLastestToAcceptedPrices 2`] = `Array []`;
+
+exports[`mergeLastestToAcceptedPrices 3`] = `
+Array [
+  Object {
+    "blockNumber": 111,
+    "contractAddress": "0x0",
+    "navA": 1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 1000,
+    "transactionHash": "aaa",
+  },
+  Object {
+    "blockNumber": 222,
+    "contractAddress": "0x0",
+    "navA": 1,
+    "navB": 2,
+    "price": 123,
+    "timestamp": 2000,
+    "transactionHash": "bbb",
+  },
+  Object {
+    "blockNumber": 333,
+    "contractAddress": "0x0",
+    "navA": 1,
+    "navB": 0.25,
+    "price": 123,
+    "timestamp": 3000,
+    "transactionHash": "ccc",
+  },
+  Object {
+    "blockNumber": 444,
+    "contractAddress": "0x0",
+    "navA": 1.1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": 4000,
+    "transactionHash": "ddd",
+  },
+  Object {
+    "blockNumber": 444,
+    "contractAddress": "0x0",
+    "navA": 1.1,
+    "navB": 1,
+    "price": 123,
+    "timestamp": NaN,
     "transactionHash": "ddd",
   },
 ]

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login test Snapshot 1`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    test
+  </button>
+</styled.div>
+`;

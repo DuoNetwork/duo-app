@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<styled.div>
+  <div
+    className="extend-extra-wrapper true"
+  >
+    <div
+      className="tag-title"
+    >
+      Fee in
+    </div>
+    <Styled(RadioGroup)
+      defaultValue="test"
+      onChange={[MockFunction]}
+      size="small"
+      value="test"
+    >
+      <RadioButton
+        prefixCls="ant-radio-button"
+        value="test"
+      >
+        test
+      </RadioButton>
+      <RadioButton
+        prefixCls="ant-radio-button"
+        value="test"
+      >
+        test
+      </RadioButton>
+    </Styled(RadioGroup)>
+  </div>
+</styled.div>
+`;

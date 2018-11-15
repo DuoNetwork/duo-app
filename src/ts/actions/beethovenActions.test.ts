@@ -45,7 +45,6 @@ describe('actions', () => {
 				resolve();
 			}, 0)
 		);
-		expect(beethovenActions.getBalances()).toMatchSnapshot();
 	});
 
 	test('addressesUpdate', () => {
