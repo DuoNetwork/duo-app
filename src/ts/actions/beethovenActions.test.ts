@@ -29,6 +29,25 @@ describe('actions', () => {
 		);
 	});
 
+	test('balancesUpdate', () => {
+		expect(beethovenActions.balancesUpdate(1, 2)).toMatchSnapshot();
+	});
+
+	test('getBalances', () => {
+		const store: any = mockStore({ web3: { account: CST.DUMMY_ADDR } });
+		beethovenWapper.web3Wrapper.getErc20Balance = jest.fn(() => {
+			Promise.resolve(123);
+		});
+		store.dispatch(beethovenActions.getBalances());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+		expect(beethovenActions.getBalances()).toMatchSnapshot();
+	});
+
 	test('addressesUpdate', () => {
 		expect(beethovenActions.addressesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
@@ -271,6 +290,38 @@ describe('actions', () => {
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('refreshAdmin', () => {
+		beethovenWapper.getStates = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
+		const store: any = mockStore({ beethoven: { beethovenStates: { addrPoolLength: 1 } } });
+		store.dispatch(beethovenActions.refreshAdmin());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(beethovenActions.refreshAdmin()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+
+	test('subscribeAdmin', () => {
+		beethovenWapper.getStates = jest.fn(() =>
+			Promise.resolve({
+				test: 'test'
+			})
+		);
+		const store: any = mockStore({ beethoven: { beethovenStates: { addrPoolLength: 1 } } });
+		store.dispatch(beethovenActions.subscribeAdmin());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(beethovenActions.subscribeAdmin()).toMatchSnapshot();
 				resolve();
 			}, 0)
 		);

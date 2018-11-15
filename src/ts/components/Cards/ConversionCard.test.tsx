@@ -1,6 +1,9 @@
+// import { Table } from 'antd';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import ConversionCard from './ConversionCard';
+
+// const { Column } = Table;
 
 describe('AuthCard Test', () => {
 	describe('User Login', () => {
@@ -24,6 +27,11 @@ describe('AuthCard Test', () => {
 		it('Test Snapshot', () => {
 			const wrapper = shallow(<ConversionCard locale={locale} conversions={conversions} />);
 			expect(wrapper).toMatchSnapshot();
+			// wrapper
+			// 	.find(Column)
+			// 	.at(1)
+			// 	.simulate('filter', { target: { value: 'test', record: { test: 'test' }}});
+			// expect(wrapper).toMatchSnapshot();
 		});
 	});
 });

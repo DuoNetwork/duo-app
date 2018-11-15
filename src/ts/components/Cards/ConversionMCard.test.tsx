@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
+// import { IConversion } from 'ts/common/types';
 import ConversionMCard from './ConversionMCard';
 
 describe('AuthCard Test', () => {
@@ -22,8 +23,11 @@ describe('AuthCard Test', () => {
 			}
 		];
 		it('Test Snapshot', () => {
-			const wrapper = shallow(<ConversionMCard locale={locale} conversions={conversions} />);
-			expect(wrapper).toMatchSnapshot();
+			const wrapper1 = shallow(<ConversionMCard locale={locale} conversions={conversions} />);
+			expect(wrapper1).toMatchSnapshot();
+			const conversionsNew: any = [];
+			const wrapper2 = shallow(<ConversionMCard locale={locale} conversions={conversionsNew} />);
+			expect(wrapper2).toMatchSnapshot();
 		});
 	});
 });

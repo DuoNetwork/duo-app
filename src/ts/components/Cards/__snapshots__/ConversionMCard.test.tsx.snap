@@ -35,3 +35,36 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
   </styled.div>
 </Styled(Card)>
 `;
+
+exports[`AuthCard Test User Login Test Snapshot 2`] = `
+<Styled(Card)
+  margin="20px 0 20px 0"
+  title={
+    <styled.div>
+      CONVERSION
+    </styled.div>
+  }
+  width="100%"
+>
+  <styled.div
+    horizontal={true}
+    padding="0 10px"
+  >
+    <styled.div
+      noMargin={true}
+    >
+      <div
+        className="status-list-wrapper"
+      >
+        <ul>
+          <li
+            className="block-title t-center"
+          >
+            No data
+          </li>
+        </ul>
+      </div>
+    </styled.div>
+  </styled.div>
+</Styled(Card)>
+`;

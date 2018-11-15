@@ -1,0 +1,31 @@
+import { shallow } from 'enzyme';
+import * as React from 'react';
+// import { IConversion } from 'ts/common/types';
+import ConversionEntry from './ConversionEntry';
+
+describe('AuthCard Test', () => {
+	describe('User Login', () => {
+		const timestamp = 1539843443;
+		const type = 'DUO';
+		const eth = 1;
+		const tokenA = 1;
+		const pending = true;
+		const reverted = true;
+		const locale = 'EN';
+
+		it('Test Snapshot', () => {
+			const wrapper = shallow(
+				<ConversionEntry
+					locale={locale}
+					timestamp={timestamp}
+					type={type}
+					eth={eth}
+					tokenA={tokenA}
+					pending={pending}
+					reverted={reverted}
+				/>
+			);
+			expect(wrapper).toMatchSnapshot();
+		});
+	});
+});

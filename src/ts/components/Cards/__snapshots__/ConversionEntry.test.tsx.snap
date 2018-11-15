@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<ul>
+  <li>
+    <span
+      className="title"
+    >
+      1970-01-19 03:14:03
+    </span>
+    <span
+      className="content"
+    >
+      Pending
+    </span>
+  </li>
+  <li>
+    <span
+      className="title"
+    >
+      Redeem
+    </span>
+    <span
+      className="content"
+    >
+      1.00 Token A/B =&gt; 1.00 ETH
+    </span>
+  </li>
+</ul>
+`;

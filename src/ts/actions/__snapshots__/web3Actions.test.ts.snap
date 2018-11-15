@@ -63,3 +63,24 @@ Object {
   "value": 123,
 }
 `;
+
+exports[`actions refresh 1`] = `
+Array [
+  Object {
+    "type": "web3Account",
+    "value": "0x0",
+  },
+  Object {
+    "type": "web3GasPrice",
+    "value": 456,
+  },
+  Object {
+    "type": "web3Network",
+    "value": 123,
+  },
+  Object {
+    "type": "web3Balance",
+    "value": 456,
+  },
+]
+`;

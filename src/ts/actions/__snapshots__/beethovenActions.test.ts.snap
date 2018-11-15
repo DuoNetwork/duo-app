@@ -18,6 +18,16 @@ Object {
 }
 `;
 
+exports[`actions balancesUpdate 1`] = `
+Object {
+  "type": "beethovenBalances",
+  "value": Object {
+    "a": 1,
+    "b": 2,
+  },
+}
+`;
+
 exports[`actions conversionsUpdate 1`] = `
 Object {
   "type": "beethovenConversions",
@@ -119,6 +129,18 @@ Array [
 ]
 `;
 
+exports[`actions getBalances 1`] = `
+Array [
+  Object {
+    "type": "beethovenBalances",
+    "value": Object {
+      "a": undefined,
+      "b": undefined,
+    },
+  },
+]
+`;
+
 exports[`actions getStates 1`] = `
 Array [
   Object {
@@ -136,6 +158,13 @@ Array [
     "type": "beethovenStates",
     "value": Object {
       "test": "test",
+    },
+  },
+  Object {
+    "type": "beethovenBalances",
+    "value": Object {
+      "a": undefined,
+      "b": undefined,
     },
   },
   Object {
@@ -168,6 +197,8 @@ Array [
   },
 ]
 `;
+
+exports[`actions refreshAdmin 1`] = `[Function]`;
 
 exports[`actions statesUpdate 1`] = `
 Object {
@@ -195,6 +226,13 @@ Array [
     },
   },
   Object {
+    "type": "beethovenBalances",
+    "value": Object {
+      "a": undefined,
+      "b": undefined,
+    },
+  },
+  Object {
     "type": "beethovenExchangePrices",
     "value": Array [
       "test",
@@ -224,6 +262,8 @@ Array [
   },
 ]
 `;
+
+exports[`actions subscribeAdmin 1`] = `[Function]`;
 
 exports[`actions subscriptionUpdate 1`] = `
 Object {
