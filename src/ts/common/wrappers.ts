@@ -12,16 +12,16 @@ export const beethovenWappers = {
 		web3Wrapper,
 		web3Wrapper.contractAddresses.Custodians.Beethoven.Perpetual.custodian.address
 	),
-	'6M': new BeethovenWapper(
+	M19: new BeethovenWapper(
 		web3Wrapper,
-		web3Wrapper.contractAddresses.Custodians.Beethoven['6M'].custodian.address
+		web3Wrapper.contractAddresses.Custodians.Beethoven.M19.custodian.address
 	)
 };
 
 export const getBeethovenWrapperByTenor = (tenor: string) => {
 	switch (tenor) {
-		case CST.TH_6M:
-			return beethovenWappers['6M'];
+		case CST.TH_M19:
+			return beethovenWappers.M19;
 		default:
 			return beethovenWappers.Perpetual;
 	}
@@ -29,8 +29,8 @@ export const getBeethovenWrapperByTenor = (tenor: string) => {
 
 export const getBeethovenAddressByTenor = (tenor: string) => {
 	switch (tenor) {
-		case CST.TH_6M:
-			return web3Wrapper.contractAddresses.Custodians.Beethoven['6M'];
+		case CST.TH_M19:
+			return web3Wrapper.contractAddresses.Custodians.Beethoven.M19;
 		default:
 			return web3Wrapper.contractAddresses.Custodians.Beethoven.Perpetual;
 	}
