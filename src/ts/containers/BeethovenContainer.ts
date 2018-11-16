@@ -5,7 +5,7 @@ import * as beethovenActions from 'ts/actions/beethovenActions';
 import * as web3Actions from 'ts/actions/web3Actions';
 import { IState } from 'ts/common/types';
 import util from 'ts/common/util';
-import Beethoven from 'ts/components/Beethoven';
+import Beethoven from 'ts/components/Pages/Beethoven';
 
 function mapStateToProps(state: IState) {
 	return {
@@ -23,9 +23,9 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: (type: string) =>
-			dispatch(beethovenActions.subscribe(type)),
-		unsubscribe: (type: string) => dispatch(beethovenActions.subscriptionUpdate(type, 0)),
+		subscribe: (tenor: string) =>
+			dispatch(beethovenActions.subscribe(tenor)),
+		unsubscribe: (tenor: string) => dispatch(beethovenActions.subscriptionUpdate(tenor, 0)),
 		refresh: () => {
 			dispatch(web3Actions.getBalance());
 			dispatch(beethovenActions.refresh(false));

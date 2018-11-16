@@ -15,7 +15,7 @@ describe('AuthCard Test', () => {
 		it('test Snapshot', () => {
 			const wrapper = shallow(
 				<AdminInputButton
-					tenor={CST.TH_PERPETUAL}
+					tenor={CST.TENOR_PPT}
 					account={account}
 					type={type}
 					disabled={disabled}

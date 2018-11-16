@@ -3,10 +3,10 @@ import * as React from 'react';
 // import * as CST from 'ts/common/constants';
 import { IBeethovenStates, ICustodianAddresses } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
-import { SContent, SDivFlexCenter } from './_styled';
+import { SContent, SDivFlexCenter } from '../_styled';
 // import AddressCard from './Cards/AddressCard';
-import AdminCard from './Cards/AdminCard';
-import DecodeCard from './Cards/DecodeCard';
+import AdminCard from '../Cards/AdminCard';
+import DecodeCard from '../Cards/DecodeCard';
 
 interface IProps {
 	tenor: string;

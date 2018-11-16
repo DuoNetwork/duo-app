@@ -50,7 +50,7 @@ export const initialState: IBeethovenState = {
 		a: 0,
 		b: 0
 	},
-	tenor: CST.TH_PERPETUAL,
+	tenor: CST.TENOR_PPT,
 	subscription: 0
 };
 

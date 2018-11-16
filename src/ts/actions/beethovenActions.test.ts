@@ -16,7 +16,7 @@ describe('actions', () => {
 	test('getStates', () => {
 		const store: any = mockStore({
 			beethoven: {
-				tenor: CST.TH_PERPETUAL
+				tenor: CST.TENOR_PPT
 			}
 		});
 		beethovenWappers.Perpetual.getStates = jest.fn(() =>
@@ -40,7 +40,7 @@ describe('actions', () => {
 	test('getBalances', () => {
 		const store: any = mockStore({
 			beethoven: {
-				tenor: CST.TH_PERPETUAL
+				tenor: CST.TENOR_PPT
 			},
 			web3: { account: CST.DUMMY_ADDR }
 		});
@@ -66,7 +66,7 @@ describe('actions', () => {
 	test('getAddresses', () => {
 		const store: any = mockStore({
 			beethoven: {
-				tenor: CST.TH_PERPETUAL
+				tenor: CST.TENOR_PPT
 			}
 		});
 		beethovenWappers.Perpetual.getAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
@@ -231,7 +231,7 @@ describe('actions', () => {
 		const store: any = mockStore({
 			web3: { account: CST.DUMMY_ADDR },
 			beethoven: {
-				tenor: CST.TH_PERPETUAL,
+				tenor: CST.TENOR_PPT,
 				states: {
 					addrPoolLength: 1,
 					limitUpper: 2,
@@ -291,7 +291,7 @@ describe('actions', () => {
 		const store: any = mockStore({
 			web3: { account: CST.DUMMY_ADDR },
 			beethoven: {
-				tenor: CST.TH_PERPETUAL,
+				tenor: CST.TENOR_PPT,
 				states: {
 					addrPoolLength: 1,
 					limitUpper: 2,
@@ -303,7 +303,7 @@ describe('actions', () => {
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 		beethovenWappers.Perpetual.getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
-		store.dispatch(beethovenActions.subscribe(CST.TH_PERPETUAL));
+		store.dispatch(beethovenActions.subscribe(CST.TENOR_PPT));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -318,7 +318,7 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
-		const store: any = mockStore({ beethoven: { tenor: CST.TH_PERPETUAL } });
+		const store: any = mockStore({ beethoven: { tenor: CST.TENOR_PPT } });
 		store.dispatch(beethovenActions.refreshAdmin());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -334,11 +334,11 @@ describe('actions', () => {
 				test: 'test'
 			})
 		);
-		const store: any = mockStore({ beethoven: { tenor: CST.TH_PERPETUAL } });
-		store.dispatch(beethovenActions.subscribeAdmin(CST.TH_PERPETUAL));
+		const store: any = mockStore({ beethoven: { tenor: CST.TENOR_PPT } });
+		store.dispatch(beethovenActions.subscribeAdmin(CST.TENOR_PPT));
 		return new Promise(resolve =>
 			setTimeout(() => {
-				expect(beethovenActions.subscribeAdmin(CST.TH_PERPETUAL)).toMatchSnapshot();
+				expect(beethovenActions.subscribeAdmin(CST.TENOR_PPT)).toMatchSnapshot();
 				resolve();
 			}, 0)
 		);

@@ -2,8 +2,8 @@ import { Layout } from 'antd';
 import * as React from 'react';
 import { IStatus } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
-import { SContent } from './_styled';
-import StatusCard from './Cards/StatusCard';
+import { SContent } from '../_styled';
+import StatusCard from '../Cards/StatusCard';
 
 interface IProps {
 	status: IStatus[];

@@ -3,7 +3,7 @@ import { AnyAction } from 'redux';
 import { ThunkDispatch } from 'redux-thunk';
 import * as beethovenActions from 'ts/actions/beethovenActions';
 import { IState } from 'ts/common/types';
-import BeethovenAdmin from 'ts/components/BeethovenAdmin';
+import BeethovenAdmin from 'ts/components/Pages/BeethovenAdmin';
 
 function mapStateToProps(state: IState) {
 	return {
@@ -15,8 +15,8 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: (type: string) => dispatch(beethovenActions.subscribeAdmin(type)),
-		unsubscribe: (type: string) => dispatch(beethovenActions.subscriptionUpdate(type, 0))
+		subscribe: (tenor: string) => dispatch(beethovenActions.subscribeAdmin(tenor)),
+		unsubscribe: (tenor: string) => dispatch(beethovenActions.subscriptionUpdate(tenor, 0))
 	};
 }
 

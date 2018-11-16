@@ -4,9 +4,10 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
+import { beethovenWappers } from 'ts/common/wrappers';
 import Header from 'ts/containers/HeaderContainer';
-import { SContent, SDivFlexCenter } from './_styled';
-import { SCard, SCardTag, SCardTitle } from './Cards/_styled';
+import { SContent, SDivFlexCenter } from '../_styled';
+import { SCard, SCardTag, SCardTitle } from '../Cards/_styled';
 
 export default class Duo extends React.Component {
 	public componentDidMount() {
@@ -14,6 +15,7 @@ export default class Duo extends React.Component {
 	}
 
 	public render() {
+		const beethovenTenors = Object.keys(beethovenWappers);
 		return (
 			<Layout>
 				<Header />
@@ -24,50 +26,32 @@ export default class Duo extends React.Component {
 						margin={'0 0 20px 0'}
 					>
 						<SDivFlexCenter horizontal padding="0 10px">
-							<Link to={'/' + CST.TH_BEETHOVEN.toLowerCase()}>
-								<SCardTag>
-									<div className="bg-logo">
-										<img src={ethIcon} />
-									</div>
-									<div className="tag-content">
-										<div className={'tag-price USD'}>
-											{CST.TH_BEETHOVEN.toUpperCase()}
+							{beethovenTenors.map(tenor => (
+								<Link key={tenor} to={`/${CST.TH_BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}>
+									<SCardTag>
+										<div className="bg-logo">
+											<img src={ethIcon} />
 										</div>
-									</div>
-									<div className="tag-subtext">
-										<div
-											style={{
-												color: ColorStyles.TextWhiteAlphaL,
-												marginLeft: 20
-											}}
-										>
-											{CST.TH_PERPETUAL.toUpperCase()}
+										<div className="tag-content">
+											<div className={'tag-price USD'}>
+												{CST.TH_BEETHOVEN.toUpperCase()}
+											</div>
 										</div>
-									</div>
-								</SCardTag>
-							</Link>
-							<Link to={'/' + CST.TH_BEETHOVEN.toLowerCase() + '/m19'}>
-								<SCardTag>
-									<div className="bg-logo">
-										<img src={ethIcon} />
-									</div>
-									<div className="tag-content">
-										<div className={'tag-price USD'}>
-											{CST.TH_BEETHOVEN.toUpperCase()}
+										<div className="tag-subtext">
+											<div
+												style={{
+													color: ColorStyles.TextWhiteAlphaL,
+													marginLeft: 20
+												}}
+											>
+												{tenor.toUpperCase()}
+											</div>
 										</div>
-									</div>
-									<div className="tag-subtext">
-										<div
-											style={{
-												color: ColorStyles.TextWhiteAlphaL,
-												marginLeft: 20
-											}}
-										>
-											28Jun2019 Maturity
-										</div>
-									</div>
-								</SCardTag>
-							</Link>
+									</SCardTag>
+								</Link>
+							))}
+						</SDivFlexCenter>
+						<SDivFlexCenter horizontal padding="0 10px">
 							<SCardTag disabled>
 								<div className="bg-logo">
 									<img src={ethIcon} />
@@ -88,6 +72,8 @@ export default class Duo extends React.Component {
 									</div>
 								</div>
 							</SCardTag>
+						</SDivFlexCenter>
+						<SDivFlexCenter horizontal padding="0 10px">
 							<SCardTag disabled>
 								<div className="bg-logo">
 									<img src={ethIcon} />

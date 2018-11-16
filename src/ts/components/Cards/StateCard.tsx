@@ -122,7 +122,7 @@ export default class StateCard extends React.Component<IProps> {
 									<span className="content">
 										{states.maturity
 											? moment(states.maturity).format('YYYY-MM-DD HH:mm')
-											: CST.TH_PERPETUAL}
+											: CST.TENOR_PPT}
 									</span>
 								</li>
 								<li>

@@ -8,13 +8,13 @@ import DecodeCard from './DecodeCard';
 describe('AuthCard Test', () => {
 	describe('User Login', () => {
 		it('Test Snapshot', () => {
-			const wrapper = shallow(<DecodeCard tenor={CST.TH_PERPETUAL} />);
+			const wrapper = shallow(<DecodeCard tenor={CST.TENOR_PPT} />);
 			expect(wrapper).toMatchSnapshot();
 		});
 
 		it('Test SInput Input', async () => {
 			beethovenWappers.Perpetual.decode = jest.fn(() => 'decoded');
-			const wrapper = shallow(<DecodeCard tenor={CST.TH_PERPETUAL}/>);
+			const wrapper = shallow(<DecodeCard tenor={CST.TENOR_PPT}/>);
 			await wrapper
 				.find(SInput)
 				.at(0)

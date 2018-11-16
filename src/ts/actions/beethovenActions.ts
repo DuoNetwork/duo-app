@@ -162,11 +162,11 @@ export function refresh(full: boolean): VoidThunkAction {
 	};
 }
 
-export function subscribe(type: string): VoidThunkAction {
+export function subscribe(tenor: string): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(type, 0));
+		dispatch(subscriptionUpdate(tenor, 0));
 		dispatch(refresh(true));
-		dispatch(subscriptionUpdate(type, window.setInterval(() => dispatch(refresh(true)), 60000)));
+		dispatch(subscriptionUpdate(tenor, window.setInterval(() => dispatch(refresh(true)), 60000)));
 	};
 }
 
@@ -177,12 +177,12 @@ export function refreshAdmin(): VoidThunkAction {
 	};
 }
 
-export function subscribeAdmin(type: string): VoidThunkAction {
+export function subscribeAdmin(tenor: string): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(type, 0));
+		dispatch(subscriptionUpdate(tenor, 0));
 		dispatch(refreshAdmin());
 		dispatch(
-			subscriptionUpdate(type, window.setInterval(() => dispatch(refreshAdmin()), 60000))
+			subscriptionUpdate(tenor, window.setInterval(() => dispatch(refreshAdmin()), 60000))
 		);
 	};
 }

@@ -5,13 +5,13 @@ import * as CST from 'ts/common/constants';
 import { IBeethovenStates, IContractPrice, IConversion, ISourceData } from 'ts/common/types';
 import TimeSeriesCard from 'ts/containers/Cards/TimeSeriesCardContainer';
 import Header from 'ts/containers/HeaderContainer';
-import { SContent, SDivFlexCenter } from './_styled';
-import BalanceCard from './Cards/BalanceCard';
-import ConversionCard from './Cards/ConversionCard';
-import ConversionMCard from './Cards/ConversionMCard';
-import OperationCard from './Cards/OperationCard';
-import PriceCard from './Cards/PriceCard';
-import StateCard from './Cards/StateCard';
+import { SContent, SDivFlexCenter } from '../_styled';
+import BalanceCard from '../Cards/BalanceCard';
+import ConversionCard from '../Cards/ConversionCard';
+import ConversionMCard from '../Cards/ConversionMCard';
+import OperationCard from '../Cards/OperationCard';
+import PriceCard from '../Cards/PriceCard';
+import StateCard from '../Cards/StateCard';
 
 interface IProps {
 	tenor: string;

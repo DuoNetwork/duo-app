@@ -39,9 +39,6 @@ export interface ILocaleText {
 	[key: string]: string;
 }
 
-export const TH_PERPETUAL = 'Perpetual';
-export const TH_M19 = 'M19';
-
 export const TH_CREATE: ILocaleText = {
 	[LOCALE_CN]: '拆分',
 	[LOCALE_EN]: 'Create',
