@@ -25,10 +25,10 @@ export default class Duo extends React.Component {
 						width={'960px'}
 						margin={'0 0 20px 0'}
 					>
-						<SDivFlexCenter horizontal padding="0 10px">
+						<SDivFlexCenter horizontal padding="0 10px" style={{"display": "inline-flex"}}>
 							{beethovenTenors.map(tenor => (
 								<Link key={tenor} to={`/${CST.TH_BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}>
-									<SCardTag>
+									<SCardTag style={{"marginRight": "20px"}}>
 										<div className="bg-logo">
 											<img src={ethIcon} />
 										</div>
