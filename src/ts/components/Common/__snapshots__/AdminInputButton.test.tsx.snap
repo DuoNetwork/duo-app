@@ -13,12 +13,224 @@ exports[`AuthCard Test User Login test Snapshot 1`] = `
     right={true}
     value=""
   />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
   <button
     className="form-button"
     disabled={true}
     onClick={[Function]}
   >
-    test
+    Add Address
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 2`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value="123"
+  />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Add Address
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 3`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value="123"
+  />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value="123"
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Add Address
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 4`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Add Address
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 5`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Collect Fee
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 6`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Collect Fee
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 7`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className="input-error"
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Collect Fee
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 8`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Set Value
+  </button>
+</styled.div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 9`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Set Value
   </button>
 </styled.div>
 `;

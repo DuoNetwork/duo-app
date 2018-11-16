@@ -1,13 +1,14 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
+import { SInput } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import AdminInputButton from './AdminInputButton';
 
 describe('AuthCard Test', () => {
 	describe('User Login', () => {
 		const account = 'test';
-		const type = 'test';
+		// const type = 'test';
 		const disabled = true;
 		const index = 12;
 		const validateInput = jest.fn();
@@ -17,13 +18,48 @@ describe('AuthCard Test', () => {
 				<AdminInputButton
 					tenor={CST.TENOR_PPT}
 					account={account}
-					type={type}
+					type={'Add Address'}
 					disabled={disabled}
 					index={index}
 					validateInput={validateInput}
 				/>
 			);
 			expect(wrapper).toMatchSnapshot();
+			wrapper.find(SInput).at(0).simulate('change', { target: { value: '123'} });
+			expect(wrapper).toMatchSnapshot();
+			wrapper.find(SInput).at(1).simulate('change', { target: { value: '123'} });
+			expect(wrapper).toMatchSnapshot();
+			wrapper.find('button').at(0).simulate('click');
+			expect(wrapper).toMatchSnapshot();
+			const wrapper1 = shallow(
+				<AdminInputButton
+					tenor={CST.TENOR_PPT}
+					account={account}
+					type={'Collect Fee'}
+					disabled={disabled}
+					index={index}
+					validateInput={validateInput}
+				/>
+			);
+			expect(wrapper1).toMatchSnapshot();
+			wrapper1.find('button').at(0).simulate('click');
+			expect(wrapper1).toMatchSnapshot();
+			wrapper1.setState({ valueError: 'test' });
+			wrapper1.find('button').at(0).simulate('click');
+			expect(wrapper1).toMatchSnapshot();
+			const wrapper2 = shallow (
+				<AdminInputButton
+					tenor={CST.TENOR_PPT}
+					account={account}
+					type={'Set Value'}
+					disabled={disabled}
+					index={index}
+					validateInput={validateInput}
+				/>
+			);
+			expect(wrapper2).toMatchSnapshot();
+			wrapper2.find('button').at(0).simulate('click');
+			expect(wrapper2).toMatchSnapshot();
 		});
 	});
 });
