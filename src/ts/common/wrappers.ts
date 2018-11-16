@@ -7,33 +7,21 @@ import * as CST from './constants';
 const provider =
 	(__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN) + '/' + infura.token;
 export const web3Wrapper = new Web3Wrapper(window, '', provider, !__KOVAN__);
-export const beethovenWappers = {
-	Perpetual: new BeethovenWapper(
+export const beethovenWappers: { [tenor: string]: BeethovenWapper } = {};
+for (const tenor in web3Wrapper.contractAddresses.Custodians.Beethoven)
+	beethovenWappers[tenor] = new BeethovenWapper(
 		web3Wrapper,
-		web3Wrapper.contractAddresses.Custodians.Beethoven.Perpetual.custodian.address
-	),
-	M19: new BeethovenWapper(
-		web3Wrapper,
-		web3Wrapper.contractAddresses.Custodians.Beethoven.M19.custodian.address
-	)
-};
+		web3Wrapper.contractAddresses.Custodians.Beethoven[tenor].custodian.address
+	);
 
 export const getBeethovenWrapperByTenor = (tenor: string) => {
-	switch (tenor) {
-		case CST.TH_M19:
-			return beethovenWappers.M19;
-		default:
-			return beethovenWappers.Perpetual;
-	}
+	return beethovenWappers[tenor] || beethovenWappers[CST.TENOR_PPT];
 };
 
 export const getBeethovenAddressByTenor = (tenor: string) => {
-	switch (tenor) {
-		case CST.TH_M19:
-			return web3Wrapper.contractAddresses.Custodians.Beethoven.M19;
-		default:
-			return web3Wrapper.contractAddresses.Custodians.Beethoven.Perpetual;
-	}
+	if (beethovenWappers[tenor]) return web3Wrapper.contractAddresses.Custodians.Beethoven[tenor];
+
+	return web3Wrapper.contractAddresses.Custodians.Beethoven[CST.TENOR_PPT];
 };
 
 export const magiWrapper = new MagiWrapper(
