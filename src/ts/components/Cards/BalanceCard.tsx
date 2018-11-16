@@ -33,7 +33,7 @@ export default class BalanceCard extends React.Component<IProps> {
 				margin={mobile ? '20px 0 0 0' : '0 0 0 10px'}
 				extra={
 					<ExtendExtraDiv
-						accountShow={account ? account : 'Unknown'}
+						accountShow={account && account !== CST.DUMMY_ADDR ? account : 'Unknown'}
 						account={account}
 						locale={locale}
 					/>
