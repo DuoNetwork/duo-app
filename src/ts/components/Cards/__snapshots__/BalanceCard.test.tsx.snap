@@ -5,7 +5,7 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
   extra={
     <ExtendExtraDiv
       account="0x0"
-      accountShow="0x0"
+      accountShow="Unknown"
       locale="EN"
     />
   }
@@ -53,7 +53,7 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
   extra={
     <ExtendExtraDiv
       account="0x0"
-      accountShow="0x0"
+      accountShow="Unknown"
       locale="EN"
     />
   }

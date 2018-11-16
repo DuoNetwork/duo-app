@@ -61,3 +61,127 @@ exports[`AuthCard Test User Login test Snapshot 1`] = `
   </Styled(Modal)>
 </div>
 `;
+
+exports[`AuthCard Test User Login test Snapshot 2`] = `
+<div>
+  <Styled(RadioGroup)
+    onChange={[Function]}
+    size="small"
+    value={0}
+  >
+    <RadioButton
+      prefixCls="ant-radio-button"
+      value={2}
+    >
+      MetaMask
+    </RadioButton>
+    <RadioButton
+      prefixCls="ant-radio-button"
+      value={3}
+    >
+      Ledger
+    </RadioButton>
+  </Styled(RadioGroup)>
+  <Styled(Modal)
+    footer={
+      Array [
+        <Button
+          block={false}
+          ghost={false}
+          loading={false}
+          onClick={[Function]}
+          prefixCls="ant-btn"
+          type="ghost"
+        >
+          Connect
+        </Button>,
+      ]
+    }
+    maskClosable={false}
+    onCancel={[Function]}
+    title="LEDGER ACCOUNT MANAGE"
+    visible={false}
+  >
+    Please make sure Ledger is connected.
+    <br />
+    <p
+      className="ledger-reminder"
+    >
+      <b>
+        Contract data
+      </b>
+       and 
+      <b>
+        Browser support
+      </b>
+       must be set to
+       
+      <b>
+        Yes
+      </b>
+    </p>
+  </Styled(Modal)>
+</div>
+`;
+
+exports[`AuthCard Test User Login test Snapshot 3`] = `
+<div>
+  <Styled(RadioGroup)
+    onChange={[Function]}
+    size="small"
+    value={0}
+  >
+    <RadioButton
+      prefixCls="ant-radio-button"
+      value={2}
+    >
+      MetaMask
+    </RadioButton>
+    <RadioButton
+      prefixCls="ant-radio-button"
+      value={3}
+    >
+      Ledger
+    </RadioButton>
+  </Styled(RadioGroup)>
+  <Styled(Modal)
+    footer={
+      Array [
+        <Button
+          block={false}
+          ghost={false}
+          loading={false}
+          onClick={[Function]}
+          prefixCls="ant-btn"
+          type="ghost"
+        >
+          Connect
+        </Button>,
+      ]
+    }
+    maskClosable={false}
+    onCancel={[Function]}
+    title="LEDGER ACCOUNT MANAGE"
+    visible={true}
+  >
+    Please make sure Ledger is connected.
+    <br />
+    <p
+      className="ledger-reminder"
+    >
+      <b>
+        Contract data
+      </b>
+       and 
+      <b>
+        Browser support
+      </b>
+       must be set to
+       
+      <b>
+        Yes
+      </b>
+    </p>
+  </Styled(Modal)>
+</div>
+`;
