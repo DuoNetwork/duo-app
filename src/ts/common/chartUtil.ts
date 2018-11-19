@@ -65,12 +65,12 @@ class ChartUtil {
 		limitPeriod: number
 	): IAcceptedPrice[] {
 		return price
-			.filter(p => p.navB >= limitUp || p.navB <= limitDown || p.navA >= limitPeriod)
+			.filter(p => p.navB >= limitUp || p.navB <= limitDown || (limitPeriod && p.navA >= limitPeriod))
 			.map(p => ({
 				contractAddress: p.contractAddress,
 				price: p.price,
 				navA: 1,
-				navB: 1,
+				navB: limitPeriod && p.navA >= limitPeriod ? p.navB : 1,
 				timestamp: p.timestamp + 717,
 				blockNumber: p.blockNumber,
 				transactionHash: p.transactionHash
