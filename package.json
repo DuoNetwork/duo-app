@@ -5,15 +5,14 @@
 	"description": "DUO App",
 	"author": "FinBook Pte Ltd",
 	"scripts": {
-		"clean": "rimraf dist/kovan",
+		"clean": "rimraf dist",
 		"test": "jest",
 		"tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
 		"start": "webpack-dev-server --config webpack.config.dev.js",
 		"rebuild": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js --config webpack.config.kovan.js --json | webpack-bundle-size-analyzer",
 		"rebuildLive": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js --config webpack.config.prod.js",
 		"build": "npm run clean && npm run rebuild",
-		"buildLive": "npm run clean && npm run rebuildLive",
-		"dll": "webpack --config webpack.dll.config.kovan.js"
+		"buildLive": "npm run clean && npm run rebuildLive"
 	},
 	"jest": {
 		"globals": {
@@ -62,7 +61,6 @@
 		"@types/redux-mock-store": "1.0.0",
 		"browserslist": "^4.3.4",
 		"css-loader": "^1.0.1",
-		"dll-link-webpack-plugin": "^3.2.1",
 		"enzyme": "^3.7.0",
 		"enzyme-adapter-react-16": "^1.7.0",
 		"enzyme-to-json": "^3.3.4",

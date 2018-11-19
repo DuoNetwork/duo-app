@@ -29,26 +29,71 @@ module.exports = {
 			template: path.resolve(__dirname, 'src/index.ejs'),
 			favicon: path.join(__dirname, 'src/images/favicon.ico'),
 			filename: 'index.html'
-		}),
-		new webpack.DllReferencePlugin({
-			context: __dirname,
-			manifest: require('./dist/vendors-manifest.json')
-		  })
+		})
 	],
 	optimization: {
 		minimizer: [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})],
 		splitChunks: {
+			chunks: 'all',
+			maxInitialRequests: Infinity,
+			minSize: 0,
 			cacheGroups: {
+				d3: {
+					test: /[\\/]node_modules[\\/]d3/,
+					name: 'd3',
+					priority: 100
+				},
+				moment: {
+					test: /[\\/]node_modules[\\/]moment/,
+					name: 'moment',
+					priority: 100
+				},
+				react: {
+					test: /[\\/]node_modules[\\/]react/,
+					name: 'react',
+					priority: 100
+				},
+				ant: {
+					test: /[\\/]node_modules[\\/]ant/,
+					name: 'antd',
+					priority: 100
+				},
+				antIcon: {
+					test: /[\\/]node_modules[\\/]@ant/,
+					name: 'antIcon',
+					priority: 100
+				},
+				rc: {
+					test: /[\\/]node_modules[\\/]rc/,
+					name: 'rc',
+					priority: 100
+				},
+				aws: {
+					test: /[\\/]node_modules[\\/]aws/,
+					name: 'aws',
+					priority: 100
+				},
+				web3: {
+					test: /[\\/]node_modules[\\/]web3/,
+					name: 'web3',
+					priority: 100
+				},
+				draftjs: {
+					test: /[\\/]node_modules[\\/]draft-js/,
+					name: 'draft-js',
+					priority: 100
+				},
 				commons: {
 					test: /[\\/]node_modules[\\/]/,
 					name: 'vendors',
-					chunks: 'all'
+					priority: 0
 				}
 			}
 		}
 	},
 	module: {
-		rules: [{
+		rules: [
+			{
 				enforce: 'pre',
 				test: /\.tsx?$/,
 				include: path.join(__dirname, 'src'),
@@ -78,12 +123,14 @@ module.exports = {
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif|svg)(\?.*)?$/,
-				use: [{
-					loader: 'url-loader',
-					options: {
-						limit: 20480
+				use: [
+					{
+						loader: 'url-loader',
+						options: {
+							limit: 20480
+						}
 					}
-				}]
+				]
 			},
 			{
 				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|ttc|woff|woff2|pdf)(\?.*)?$/,
