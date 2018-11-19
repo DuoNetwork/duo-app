@@ -33,10 +33,55 @@ module.exports = {
 		minimizer: [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})],
 		splitChunks: {
 			cacheGroups: {
+				d3: {
+					test: /[\\/]node_modules[\\/]d3/,
+					name: 'd3',
+					priority: 100
+				},
+				moment: {
+					test: /[\\/]node_modules[\\/]moment/,
+					name: 'moment',
+					priority: 100
+				},
+				react: {
+					test: /[\\/]node_modules[\\/]react/,
+					name: 'react',
+					priority: 100
+				},
+				ant: {
+					test: /[\\/]node_modules[\\/]ant/,
+					name: 'antd',
+					priority: 100
+				},
+				antIcon: {
+					test: /[\\/]node_modules[\\/]@ant/,
+					name: 'antIcon',
+					priority: 100
+				},
+				rc: {
+					test: /[\\/]node_modules[\\/]rc/,
+					name: 'rc',
+					priority: 100
+				},
+				aws: {
+					test: /[\\/]node_modules[\\/]aws/,
+					name: 'aws',
+					priority: 100
+				},
+				web3: {
+					test: /[\\/]node_modules[\\/]web3/,
+					name: 'web3',
+					priority: 100
+				},
+				draftjs: {
+					test: /[\\/]node_modules[\\/]draft-js/,
+					name: 'draft-js',
+					priority: 100
+				},
 				commons: {
 					test: /[\\/]node_modules[\\/]/,
 					name: 'vendors',
-					chunks: 'all'
+					priority: 0
 				}
 			}
 		}
