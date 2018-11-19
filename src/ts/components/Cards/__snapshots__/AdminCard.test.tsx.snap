@@ -1,0 +1,259 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<Styled(Card)
+  inlinetype="table"
+  margin="0 0px 0 0"
+  title={
+    <styled.div>
+      ADMIN
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div>
+    <Table
+      bordered={false}
+      className=""
+      dataSource={
+        Array [
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              tenor="test"
+              type="Collect Fee"
+              validateInput={[Function]}
+            />,
+            "State": "Fee Accumulated",
+            "Value": "123.00",
+            "key": 0,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={0}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Create Comm Rate BP",
+            "Value": 100,
+            "key": 1,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={1}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Redeem Comm Rate BP",
+            "Value": 100,
+            "key": 2,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={2}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Iteration Gas Threshold",
+            "Value": 65000,
+            "key": 3,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x0"
+              disabled={true}
+              index={3}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "PreReset Waiting Blocks",
+            "Value": 10,
+            "key": 4,
+          },
+          Object {
+            "State": "Next Reset Addr Index",
+            "Value": 0,
+            "key": 5,
+          },
+          Object {
+            "State": "Last Operation Time",
+            "Value": 123,
+            "key": 6,
+          },
+          Object {
+            "State": "Operation Cool Down",
+            "Value": 123,
+            "key": 7,
+          },
+        ]
+      }
+      indentSize={20}
+      loading={false}
+      locale={Object {}}
+      pagination={false}
+      prefixCls="ant-table"
+      rowClassName={[Function]}
+      rowKey="key"
+      showHeader={true}
+      size="default"
+      useFixedHeader={false}
+    >
+      <Column
+        dataIndex="State"
+        key="State"
+        title="State"
+      />
+      <Column
+        dataIndex="Value"
+        key="Value"
+        title="Value"
+      />
+      <Column
+        dataIndex="Action"
+        key="Action"
+        title="Action"
+      />
+    </Table>
+  </styled.div>
+</Styled(Card)>
+`;
+
+exports[`AuthCard Test User Login Test Snapshot 2`] = `
+<Styled(Card)
+  inlinetype="table"
+  margin="0 0px 0 0"
+  title={
+    <styled.div>
+      ADMIN
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div>
+    <Table
+      bordered={false}
+      className=""
+      dataSource={
+        Array [
+          Object {
+            "Action": <AdminInputButton
+              account="0x01"
+              disabled={true}
+              tenor="test"
+              type="Collect Fee"
+              validateInput={[Function]}
+            />,
+            "State": "Fee Accumulated",
+            "Value": "123.00",
+            "key": 0,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x01"
+              disabled={true}
+              index={0}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Create Comm Rate BP",
+            "Value": 100,
+            "key": 1,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x01"
+              disabled={true}
+              index={1}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Redeem Comm Rate BP",
+            "Value": 100,
+            "key": 2,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x01"
+              disabled={true}
+              index={2}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "Iteration Gas Threshold",
+            "Value": 65000,
+            "key": 3,
+          },
+          Object {
+            "Action": <AdminInputButton
+              account="0x01"
+              disabled={true}
+              index={3}
+              tenor="test"
+              type="Set Value"
+              validateInput={[Function]}
+            />,
+            "State": "PreReset Waiting Blocks",
+            "Value": 10,
+            "key": 4,
+          },
+          Object {
+            "State": "Next Reset Addr Index",
+            "Value": 0,
+            "key": 5,
+          },
+          Object {
+            "State": "Last Operation Time",
+            "Value": 123,
+            "key": 6,
+          },
+          Object {
+            "State": "Operation Cool Down",
+            "Value": 123,
+            "key": 7,
+          },
+        ]
+      }
+      indentSize={20}
+      loading={false}
+      locale={Object {}}
+      pagination={false}
+      prefixCls="ant-table"
+      rowClassName={[Function]}
+      rowKey="key"
+      showHeader={true}
+      size="default"
+      useFixedHeader={false}
+    >
+      <Column
+        dataIndex="State"
+        key="State"
+        title="State"
+      />
+      <Column
+        dataIndex="Value"
+        key="Value"
+        title="Value"
+      />
+      <Column
+        dataIndex="Action"
+        key="Action"
+        title="Action"
+      />
+    </Table>
+  </styled.div>
+</Styled(Card)>
+`;
