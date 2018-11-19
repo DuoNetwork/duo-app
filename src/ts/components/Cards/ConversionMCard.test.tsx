@@ -3,8 +3,8 @@ import * as React from 'react';
 // import { IConversion } from 'ts/common/types';
 import ConversionMCard from './ConversionMCard';
 
-describe('AuthCard Test', () => {
-	describe('User Login', () => {
+describe('ConversionMCard Test', () => {
+	describe('Test Snapshot', () => {
 		const locale = 'EN';
 		const conversions = [
 			{

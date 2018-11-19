@@ -6,7 +6,7 @@ import { SRadioGroup } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import ProviderRadio from './ProviderRadio';
 
-describe('AuthCard Test', () => {
+describe('ProviderRadio Test', () => {
 	describe('User Login', () => {
 
 		const refresh = jest.fn();

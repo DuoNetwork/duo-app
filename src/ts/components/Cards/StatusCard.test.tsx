@@ -2,8 +2,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import StatusCard from './StatusCard';
 
-describe('AuthCard Test', () => {
-	describe('User Login', () => {
+describe('StatusCard Test', () => {
+	describe('Test Snapshot', () => {
 		const status = [
 			{
 				process: 'test',

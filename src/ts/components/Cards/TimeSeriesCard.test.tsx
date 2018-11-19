@@ -2,8 +2,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import TimeSeriesCard from './TimeSeriesCard';
 
-describe('AuthCard Test', () => {
-	describe('User Login', () => {
+describe('TimeSeriesCard Test', () => {
+	describe('Test Snapshot', () => {
 		const acceptedPrices = [
 			{
 				contractAddress: '0x0',

@@ -4,7 +4,7 @@ import { SCardTitleSelector } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import CardTitleSelect from './CardTitleSelect';
 
-describe('AuthCard Test', () => {
+describe('CardTitleSelect Test', () => {
 	describe('User Login', () => {
 		const name = 'test';
 		const source = 'test';

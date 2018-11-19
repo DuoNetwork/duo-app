@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthCard Test User Login Test Snapshot 1`] = `
+exports[`RadioExtra Test User Login Test Snapshot 1`] = `
 <styled.div>
   <div
     className="extend-extra-wrapper true"

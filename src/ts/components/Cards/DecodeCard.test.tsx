@@ -5,8 +5,8 @@ import { beethovenWappers } from 'ts/common/wrappers';
 import { SInput } from './_styled';
 import DecodeCard from './DecodeCard';
 
-describe('AuthCard Test', () => {
-	describe('User Login', () => {
+describe('DecodeCard Test', () => {
+	describe('Test Snapshot', () => {
 		it('Test Snapshot', () => {
 			const wrapper = shallow(<DecodeCard tenor={CST.TENOR_PPT} />);
 			expect(wrapper).toMatchSnapshot();

@@ -4,7 +4,7 @@ import { SCardTitleSelector } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import LocaleSelect from './LocaleSelect';
 
-describe('AuthCard Test', () => {
+describe('LocaleSelect Test', () => {
 	describe('User Login', () => {
 		const locale = 'EN';
 		const onSelect = jest.fn();

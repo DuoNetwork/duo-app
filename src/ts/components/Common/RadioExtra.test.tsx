@@ -3,7 +3,7 @@ import * as React from 'react';
 // import { IConversion } from 'ts/common/types';
 import RadioExtra from './RadioExtra';
 
-describe('AuthCard Test', () => {
+describe('RadioExtra Test', () => {
 	describe('User Login', () => {
 		const text = 'test';
 		const onChange = jest.fn();

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthCard Test User Login Test Snapshot 1`] = `
+exports[`BalanceCard Test Test Snapshot Test Snapshot 1`] = `
 <Styled(Card)
   extra={
     <ExtendExtraDiv
@@ -48,7 +48,7 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
 </Styled(Card)>
 `;
 
-exports[`AuthCard Test User Login Test Snapshot 2`] = `
+exports[`BalanceCard Test Test Snapshot Test Snapshot 2`] = `
 <Styled(Card)
   extra={
     <ExtendExtraDiv

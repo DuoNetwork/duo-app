@@ -5,8 +5,8 @@ import ConversionCard from './ConversionCard';
 
 // const { Column } = Table;
 
-describe('AuthCard Test', () => {
-	describe('User Login', () => {
+describe('ConversionCard Test', () => {
+	describe('Test Snapshot', () => {
 		const locale = 'EN';
 		const conversions = [
 			{

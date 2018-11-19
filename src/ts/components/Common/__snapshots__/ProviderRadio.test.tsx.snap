@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthCard Test User Login test Snapshot 1`] = `
+exports[`ProviderRadio Test User Login test Snapshot 1`] = `
 <div>
   <Styled(RadioGroup)
     onChange={[Function]}
@@ -62,7 +62,7 @@ exports[`AuthCard Test User Login test Snapshot 1`] = `
 </div>
 `;
 
-exports[`AuthCard Test User Login test Snapshot 2`] = `
+exports[`ProviderRadio Test User Login test Snapshot 2`] = `
 <div>
   <Styled(RadioGroup)
     onChange={[Function]}
@@ -124,7 +124,7 @@ exports[`AuthCard Test User Login test Snapshot 2`] = `
 </div>
 `;
 
-exports[`AuthCard Test User Login test Snapshot 3`] = `
+exports[`ProviderRadio Test User Login test Snapshot 3`] = `
 <div>
   <Styled(RadioGroup)
     onChange={[Function]}

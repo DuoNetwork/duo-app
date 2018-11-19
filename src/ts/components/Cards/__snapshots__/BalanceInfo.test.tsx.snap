@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthCard Test User Login Test Snapshot 1`] = `
+exports[`BalanceInfo Test Test Snapshot Test Snapshot 1`] = `
 <styled.div
   mobile={true}
 >
@@ -34,7 +34,7 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
 </styled.div>
 `;
 
-exports[`AuthCard Test User Login Test Snapshot 2`] = `
+exports[`BalanceInfo Test Test Snapshot Test Snapshot 2`] = `
 <styled.div
   mobile={true}
 >
@@ -68,7 +68,7 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
 </styled.div>
 `;
 
-exports[`AuthCard Test User Login Test Snapshot 3`] = `
+exports[`BalanceInfo Test Test Snapshot Test Snapshot 3`] = `
 <styled.div
   mobile={true}
 >

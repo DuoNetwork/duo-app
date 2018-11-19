@@ -1,126 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AuthCard Test User Login test Snapshot 1`] = `
-<styled.div
-  horizontal={true}
-  padding="0"
-  width="100%"
->
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value=""
-  />
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value=""
-  />
-  <button
-    className="form-button"
-    disabled={true}
-    onClick={[Function]}
-  >
-    Add Address
-  </button>
-</styled.div>
-`;
-
-exports[`AuthCard Test User Login test Snapshot 2`] = `
-<styled.div
-  horizontal={true}
-  padding="0"
-  width="100%"
->
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value="123"
-  />
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value=""
-  />
-  <button
-    className="form-button"
-    disabled={true}
-    onClick={[Function]}
-  >
-    Add Address
-  </button>
-</styled.div>
-`;
-
-exports[`AuthCard Test User Login test Snapshot 3`] = `
-<styled.div
-  horizontal={true}
-  padding="0"
-  width="100%"
->
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value="123"
-  />
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value="123"
-  />
-  <button
-    className="form-button"
-    disabled={true}
-    onClick={[Function]}
-  >
-    Add Address
-  </button>
-</styled.div>
-`;
-
-exports[`AuthCard Test User Login test Snapshot 4`] = `
-<styled.div
-  horizontal={true}
-  padding="0"
-  width="100%"
->
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value=""
-  />
-  <styled.input
-    className=""
-    disabled={true}
-    onChange={[Function]}
-    right={true}
-    value=""
-  />
-  <button
-    className="form-button"
-    disabled={true}
-    onClick={[Function]}
-  >
-    Add Address
-  </button>
-</styled.div>
-`;
-
-exports[`AuthCard Test User Login test Snapshot 5`] = `
+exports[`AdminInputButton Test User Login change type for test click 1 1`] = `
 <styled.div
   horizontal={true}
   padding="0"
@@ -143,7 +23,7 @@ exports[`AuthCard Test User Login test Snapshot 5`] = `
 </styled.div>
 `;
 
-exports[`AuthCard Test User Login test Snapshot 6`] = `
+exports[`AdminInputButton Test User Login change type for test click 1 2`] = `
 <styled.div
   horizontal={true}
   padding="0"
@@ -166,7 +46,7 @@ exports[`AuthCard Test User Login test Snapshot 6`] = `
 </styled.div>
 `;
 
-exports[`AuthCard Test User Login test Snapshot 7`] = `
+exports[`AdminInputButton Test User Login change type for test click 1 3`] = `
 <styled.div
   horizontal={true}
   padding="0"
@@ -189,7 +69,7 @@ exports[`AuthCard Test User Login test Snapshot 7`] = `
 </styled.div>
 `;
 
-exports[`AuthCard Test User Login test Snapshot 8`] = `
+exports[`AdminInputButton Test User Login change type for test click 2 1`] = `
 <styled.div
   horizontal={true}
   padding="0"
@@ -212,7 +92,7 @@ exports[`AuthCard Test User Login test Snapshot 8`] = `
 </styled.div>
 `;
 
-exports[`AuthCard Test User Login test Snapshot 9`] = `
+exports[`AdminInputButton Test User Login change type for test click 2 2`] = `
 <styled.div
   horizontal={true}
   padding="0"
@@ -231,6 +111,126 @@ exports[`AuthCard Test User Login test Snapshot 9`] = `
     onClick={[Function]}
   >
     Set Value
+  </button>
+</styled.div>
+`;
+
+exports[`AdminInputButton Test User Login test Snapshot 1`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Add Address
+  </button>
+</styled.div>
+`;
+
+exports[`AdminInputButton Test User Login test Snapshot 2`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value="123"
+  />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Add Address
+  </button>
+</styled.div>
+`;
+
+exports[`AdminInputButton Test User Login test Snapshot 3`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value="123"
+  />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value="123"
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Add Address
+  </button>
+</styled.div>
+`;
+
+exports[`AdminInputButton Test User Login test Snapshot 4`] = `
+<styled.div
+  horizontal={true}
+  padding="0"
+  width="100%"
+>
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <styled.input
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    right={true}
+    value=""
+  />
+  <button
+    className="form-button"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Add Address
   </button>
 </styled.div>
 `;

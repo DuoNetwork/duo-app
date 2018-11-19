@@ -5,7 +5,7 @@ import { SInput } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import AdminInputButton from './AdminInputButton';
 
-describe('AuthCard Test', () => {
+describe('AdminInputButton Test', () => {
 	describe('User Login', () => {
 		const account = 'test';
 		// const type = 'test';
@@ -31,6 +31,8 @@ describe('AuthCard Test', () => {
 			expect(wrapper).toMatchSnapshot();
 			wrapper.find('button').at(0).simulate('click');
 			expect(wrapper).toMatchSnapshot();
+		});
+		it('change type for test click 1', () => {
 			const wrapper1 = shallow(
 				<AdminInputButton
 					tenor={CST.TENOR_PPT}
@@ -47,6 +49,8 @@ describe('AuthCard Test', () => {
 			wrapper1.setState({ valueError: 'test' });
 			wrapper1.find('button').at(0).simulate('click');
 			expect(wrapper1).toMatchSnapshot();
+		});
+		it('change type for test click 2', () => {
 			const wrapper2 = shallow (
 				<AdminInputButton
 					tenor={CST.TENOR_PPT}

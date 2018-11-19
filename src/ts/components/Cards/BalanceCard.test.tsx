@@ -2,8 +2,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import BalanceCard from './BalanceCard';
 
-describe('AuthCard Test', () => {
-	describe('User Login', () => {
+describe('BalanceCard Test', () => {
+	describe('Test Snapshot', () => {
 		const mobile = true;
 		const account = '0x0';
 		const locale = 'EN';
