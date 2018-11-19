@@ -21,13 +21,19 @@ module.exports = {
 			__KOVAN__: true
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-		new MiniCssExtractPlugin({ filename: 'styles.[chunkhash].css' }),
+		new MiniCssExtractPlugin({
+			filename: 'styles.[chunkhash].css'
+		}),
 		new HtmlWebpackPlugin({
 			title: 'DUO | Trustless Derivatives',
 			template: path.resolve(__dirname, 'src/index.ejs'),
 			favicon: path.join(__dirname, 'src/images/favicon.ico'),
 			filename: 'index.html'
-		})
+		}),
+		new webpack.DllReferencePlugin({
+			context: __dirname,
+			manifest: require('./dist/vendors-manifest.json')
+		  })
 	],
 	optimization: {
 		minimizer: [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})],
@@ -42,8 +48,7 @@ module.exports = {
 		}
 	},
 	module: {
-		rules: [
-			{
+		rules: [{
 				enforce: 'pre',
 				test: /\.tsx?$/,
 				include: path.join(__dirname, 'src'),
@@ -63,19 +68,22 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
-					{ loader: 'less-loader', options: { javascriptEnabled: true } }
+					{
+						loader: 'less-loader',
+						options: {
+							javascriptEnabled: true
+						}
+					}
 				]
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif|svg)(\?.*)?$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							limit: 20480
-						}
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 20480
 					}
-				]
+				}]
 			},
 			{
 				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|ttc|woff|woff2|pdf)(\?.*)?$/,
