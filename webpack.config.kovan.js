@@ -63,6 +63,31 @@ module.exports = {
 					name: 'antIcon',
 					priority: 100
 				},
+				cryptoJs: {
+					test: /[\\/]node_modules[\\/]crypto/,
+					name: 'cryptoJs',
+					priority: 100
+				},
+				lodash: {
+					test: /[\\/]node_modules[\\/]lodash/,
+					name: 'lodash',
+					priority: 100
+				},
+				bn: {
+					test: /[\\/]node_modules[\\/]bn/,
+					name: 'bn',
+					priority: 100
+				},
+				elliptic: {
+					test: /[\\/]node_modules[\\/]elliptic/,
+					name: 'elliptic',
+					priority: 100
+				},
+				coreJS: {
+					test: /[\\/]node_modules[\\/]core/,
+					name: 'coreJS',
+					priority: 100
+				},
 				rc: {
 					test: /[\\/]node_modules[\\/]rc/,
 					name: 'rc',
