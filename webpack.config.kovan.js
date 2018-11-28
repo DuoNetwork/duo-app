@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	mode: 'production',
@@ -29,6 +30,11 @@ module.exports = {
 			template: path.resolve(__dirname, 'src/index.ejs'),
 			favicon: path.join(__dirname, 'src/images/favicon.ico'),
 			filename: 'index.html'
+		}),
+		new BundleAnalyzerPlugin({
+			analyzerMode: "disabled",
+			reportFilename: "report.html",
+			generateStatsFile: true,
 		})
 	],
 	optimization: {
@@ -41,6 +47,11 @@ module.exports = {
 				d3: {
 					test: /[\\/]node_modules[\\/]d3/,
 					name: 'd3',
+					priority: 100
+				},
+				immutable: {
+					test: /[\\/]node_modules[\\/]immutable/,
+					name: 'immutable',
 					priority: 100
 				},
 				moment: {
@@ -117,8 +128,7 @@ module.exports = {
 		}
 	},
 	module: {
-		rules: [
-			{
+		rules: [{
 				enforce: 'pre',
 				test: /\.tsx?$/,
 				include: path.join(__dirname, 'src'),
@@ -148,14 +158,12 @@ module.exports = {
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif|svg)(\?.*)?$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							limit: 20480
-						}
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 20480
 					}
-				]
+				}]
 			},
 			{
 				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|ttc|woff|woff2|pdf)(\?.*)?$/,
@@ -165,6 +173,12 @@ module.exports = {
 		]
 	},
 	resolve: {
+		alias: {
+			moment: path.resolve('./node_modules/moment'),
+			'bn.js': path.resolve('../duo-contract-wrapper/node_modules/bn.js'),
+			immutable: path.resolve('./node_modules/immutable'),
+			elliptic: path.resolve('./node_modules/elliptic'),
+		},
 		modules: [path.join(__dirname, 'src'), 'node_modules'],
 		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	}

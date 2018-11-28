@@ -27,15 +27,28 @@ module.exports = {
 			template: path.resolve(__dirname, 'src/index.ejs'),
 			favicon: path.join(__dirname, 'src/images/favicon.ico'),
 			filename: 'index.html'
+		}),
+		new BundleAnalyzerPlugin({
+			analyzerMode: "disabled",
+			reportFilename: "report.html",
+			generateStatsFile: true,
 		})
 	],
 	optimization: {
 		minimizer: [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})],
 		splitChunks: {
+			chunks: 'all',
+			maxInitialRequests: Infinity,
+			minSize: 0,
 			cacheGroups: {
 				d3: {
 					test: /[\\/]node_modules[\\/]d3/,
 					name: 'd3',
+					priority: 100
+				},
+				immutable: {
+					test: /[\\/]node_modules[\\/]immutable/,
+					name: 'immutable',
 					priority: 100
 				},
 				moment: {
@@ -56,6 +69,31 @@ module.exports = {
 				antIcon: {
 					test: /[\\/]node_modules[\\/]@ant/,
 					name: 'antIcon',
+					priority: 100
+				},
+				cryptoJs: {
+					test: /[\\/]node_modules[\\/]crypto/,
+					name: 'cryptoJs',
+					priority: 100
+				},
+				lodash: {
+					test: /[\\/]node_modules[\\/]lodash/,
+					name: 'lodash',
+					priority: 100
+				},
+				bn: {
+					test: /[\\/]node_modules[\\/]bn/,
+					name: 'bn',
+					priority: 100
+				},
+				elliptic: {
+					test: /[\\/]node_modules[\\/]elliptic/,
+					name: 'elliptic',
+					priority: 100
+				},
+				coreJS: {
+					test: /[\\/]node_modules[\\/]core/,
+					name: 'coreJS',
 					priority: 100
 				},
 				rc: {
@@ -87,8 +125,7 @@ module.exports = {
 		}
 	},
 	module: {
-		rules: [
-			{
+		rules: [{
 				enforce: 'pre',
 				test: /\.tsx?$/,
 				include: path.join(__dirname, 'src'),
@@ -108,19 +145,22 @@ module.exports = {
 				use: [
 					MiniCssExtractPlugin.loader,
 					'css-loader',
-					{ loader: 'less-loader', options: { javascriptEnabled: true } }
+					{
+						loader: 'less-loader',
+						options: {
+							javascriptEnabled: true
+						}
+					}
 				]
 			},
 			{
 				test: /\.(jpg|jpeg|png|gif|svg)(\?.*)?$/,
-				use: [
-					{
-						loader: 'url-loader',
-						options: {
-							limit: 20480
-						}
+				use: [{
+					loader: 'url-loader',
+					options: {
+						limit: 20480
 					}
-				]
+				}]
 			},
 			{
 				test: /\.(xlsm|csv|ico|eot|otf|webp|ttf|ttc|woff|woff2|pdf)(\?.*)?$/,
@@ -130,6 +170,12 @@ module.exports = {
 		]
 	},
 	resolve: {
+		alias: {
+			moment: path.resolve('./node_modules/moment'),
+			'bn.js': path.resolve('../duo-contract-wrapper/node_modules/bn.js'),
+			immutable: path.resolve('./node_modules/immutable'),
+			elliptic: path.resolve('./node_modules/elliptic'),
+		},
 		modules: [path.join(__dirname, 'src'), 'node_modules'],
 		extensions: ['.js', '.jsx', '.ts', '.tsx']
 	}
