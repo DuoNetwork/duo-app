@@ -54,6 +54,11 @@ module.exports = {
 					name: 'immutable',
 					priority: 100
 				},
+				'duo-contract-wrapper': {
+					test: /duo-contract-wrapper[\\/]node_modules[\\/]/,
+					name: 'duo-contract-wrapper',
+					priority: 10
+				},
 				moment: {
 					test: /[\\/]node_modules[\\/]moment/,
 					name: 'moment',

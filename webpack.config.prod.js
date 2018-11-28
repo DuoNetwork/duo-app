@@ -21,7 +21,9 @@ module.exports = {
 			__KOVAN__: false
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-		new MiniCssExtractPlugin({ filename: 'styles.[chunkhash].css' }),
+		new MiniCssExtractPlugin({
+			filename: 'styles.[chunkhash].css'
+		}),
 		new HtmlWebpackPlugin({
 			title: 'DUO | Trustless Derivatives',
 			template: path.resolve(__dirname, 'src/index.ejs'),
@@ -50,6 +52,11 @@ module.exports = {
 					test: /[\\/]node_modules[\\/]immutable/,
 					name: 'immutable',
 					priority: 100
+				},
+				'duo-contract-wrapper': {
+					test: /duo-contract-wrapper[\\/]node_modules[\\/]/,
+					name: 'duo-contract-wrapper',
+					priority: 10
 				},
 				moment: {
 					test: /[\\/]node_modules[\\/]moment/,
