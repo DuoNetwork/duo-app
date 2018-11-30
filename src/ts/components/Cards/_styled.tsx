@@ -571,7 +571,6 @@ export const SCardList = styled.div`
 	.status-list-wrapper > ul:last-child {
 		margin: ${(props: ICardListProps) => (props.noMargin ? '10px 0 0 0 !important' : '10px 0')};
 	}
-	}
 	.status-list-wrapper > ul {
 		list-style: none;
 		margin: 10px 0;
