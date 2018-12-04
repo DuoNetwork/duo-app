@@ -15,7 +15,13 @@ import Duo from './components/Duo';
 import store from './store/store';
 
 const config = require(`./keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
-dynamoUtil.init(config, !__KOVAN__, '', web3Wrapper);
+dynamoUtil.init(config, !__KOVAN__, '', web3Wrapper.fromWei, async txHash => {
+	const txReceipt = await web3Wrapper.getTransactionReceipt(txHash);
+	if (!txReceipt) return null;
+	return {
+		status: txReceipt.status
+	};
+});
 
 store.dispatch(web3Actions.refresh());
 store.dispatch(dynamoActions.scanStatus());
@@ -35,7 +41,8 @@ web3Wrapper.onWeb3AccountUpdate((addr: string, network: number) => {
 		store.dispatch(beethovenActions.refresh(true));
 	}
 });
-
+if ((window as any).ethereum)
+	(window as any).ethereum.enable();
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
