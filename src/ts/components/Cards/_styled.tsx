@@ -879,7 +879,7 @@ export const SCardTransactionForm = styled.div`
 	.token-button {
 		outline: none;
 		cursor: pointer;
-		width: 60px;
+		width: 80px;
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-size: 10px;
 		background-color: transparent;

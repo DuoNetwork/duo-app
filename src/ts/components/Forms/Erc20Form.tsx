@@ -115,7 +115,7 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 						<ul>
 							<li className="block-title">
 								<span>{CST.TH_ERC20}</span>
-								<SDivFlexCenter horizontal width="130px">
+								<SDivFlexCenter horizontal width="170px">
 									<button
 										className={
 											isA
