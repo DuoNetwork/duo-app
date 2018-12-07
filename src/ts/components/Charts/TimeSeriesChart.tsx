@@ -454,7 +454,7 @@ function drawLines(
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(333, 27.5)')
-		.text('beETHoven');
+		.text('ETH');
 	ethLegend
 		.append('text')
 		.attr('class', 'custodian-eth-legend-text')
