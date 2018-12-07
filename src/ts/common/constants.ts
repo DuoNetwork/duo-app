@@ -53,8 +53,6 @@ export const TH_REDEEM: ILocaleText = {
 };
 export const TH_ETH = 'ETH';
 export const TH_DUO = 'DUO';
-export const TH_TOKEN_A = 'Token A';
-export const TH_TOKEN_B = 'Token B';
 export const TH_APPROVE: ILocaleText = {
 	[LOCALE_CN]: '授权',
 	[LOCALE_EN]: 'Approve',

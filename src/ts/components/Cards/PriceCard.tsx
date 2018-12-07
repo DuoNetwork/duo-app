@@ -46,6 +46,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			};
 		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())
 			? util.calculateNav(
+					type,
 					last.price || 1,
 					last.timestamp,
 					states.resetPrice,
@@ -128,7 +129,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								}
 								target="_blank"
 							>
-								{CST.TH_TOKEN_A}
+								{contractAddresses.aToken.code}
 							</a>
 							<Tooltip title={tooltipText}>
 								<img src={infoIcon} />
@@ -163,7 +164,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								}
 								target="_blank"
 							>
-								{CST.TH_TOKEN_B}
+								{contractAddresses.bToken.code}
 							</a>
 							<Tooltip title={tooltipText}>
 								<img src={infoIcon} />

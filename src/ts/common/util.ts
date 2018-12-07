@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import moment, { DurationInputArg2 } from 'moment';
+import * as CST from './constants';
 import { IContractPrice, IPriceStatus, ISourceData, IStatus } from './types';
 
 class Util {
@@ -17,6 +18,7 @@ class Util {
 	}
 
 	public calculateNav(
+		type: string,
 		price: number,
 		time: number,
 		resetPrice: number,
@@ -26,12 +28,24 @@ class Util {
 		period: number,
 		coupon: number
 	) {
-		const navParent = (price / resetPrice / beta) * (1 + alpha);
+		if (type === CST.BEETHOVEN) {
+			const navParent = (price / resetPrice / beta) * (1 + alpha);
 
-		const navA = 1 + Math.floor((time - resetTime) / 1000 / period) * coupon;
-		const navAAdj = navA * alpha;
-		if (navParent <= navAAdj) return [navParent / alpha, 0];
-		else return [navA, navParent - navAAdj];
+			const navA = 1 + Math.floor((time - resetTime) / 1000 / period) * coupon;
+			const navAAdj = navA * alpha;
+			if (navParent <= navAAdj) return [navParent / alpha, 0];
+			else return [navA, navParent - navAAdj];
+		} else {
+			const navEth = price / resetPrice;
+			const navParent = navEth * (1 + alpha);
+
+			if (navEth >= 2)
+				return [0, navParent];
+
+			if (navEth <= (2 * alpha) / (2 * alpha + 1))
+				return [navParent / alpha, 0];
+			return [2 - navEth, (2 * alpha + 1) * navEth - 2 * alpha];
+		}
 	}
 
 	public getDates(length: number, step: number, stepSize: DurationInputArg2, format: string) {

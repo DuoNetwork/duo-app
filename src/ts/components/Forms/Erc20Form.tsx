@@ -16,7 +16,7 @@ interface IProps {
 }
 
 interface IState {
-	token: string;
+	isA: boolean;
 	address: string;
 	addressError: string;
 	amount: string;
@@ -27,7 +27,7 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			token: CST.TH_TOKEN_A,
+			isA: true,
 			address: '',
 			addressError: '',
 			amount: '',
@@ -35,9 +35,9 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 		};
 	}
 
-	private handleTokenChange = (token: string) =>
+	private handleTokenChange = () =>
 		this.setState({
-			token: token,
+			isA: !this.state.isA,
 			address: '',
 			addressError: '',
 			amount: '',
@@ -75,24 +75,22 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 
 	private handleTransfer = () => {
 		const { account, tenor, type } = this.props;
-		const { token, address, amount } = this.state;
+		const { isA, address, amount } = this.state;
 		const dualClassAddress = getDualClassAddressByTypeTenor(type, tenor);
-		const contractAddress =
-			token === CST.TH_TOKEN_A
-				? dualClassAddress.aToken.address
-				: dualClassAddress.bToken.address;
+		const contractAddress = isA
+			? dualClassAddress.aToken.address
+			: dualClassAddress.bToken.address;
 		web3Wrapper.erc20Transfer(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};
 
 	private handleApprove = () => {
 		const { account, tenor, type } = this.props;
-		const { token, address, amount } = this.state;
+		const { isA, address, amount } = this.state;
 		const dualClassAddress = getDualClassAddressByTypeTenor(type, tenor);
-		const contractAddress =
-			token === CST.TH_TOKEN_A
-				? dualClassAddress.aToken.address
-				: dualClassAddress.bToken.address;
+		const contractAddress = isA
+			? dualClassAddress.aToken.address
+			: dualClassAddress.bToken.address;
 		web3Wrapper.erc20Approve(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};
@@ -106,9 +104,10 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 		});
 
 	public render() {
-		const { aToken, bToken, locale, mobile } = this.props;
-		const { token, address, amount, addressError, amountError } = this.state;
-		const limit = token === CST.TH_TOKEN_A ? aToken : bToken;
+		const { aToken, bToken, locale, mobile, type, tenor } = this.props;
+		const { isA, address, amount, addressError, amountError } = this.state;
+		const limit = isA ? aToken : bToken;
+		const dualClassAddress = getDualClassAddressByTypeTenor(type, tenor);
 		return (
 			<SCardTransactionForm>
 				<SCardList>
@@ -117,21 +116,26 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 							<li className="block-title">
 								<span>{CST.TH_ERC20}</span>
 								<SDivFlexCenter horizontal width="130px">
-									{[CST.TH_TOKEN_A, CST.TH_TOKEN_B].map(tk => (
-										<button
-											key={tk}
-											className={
-												token === tk
-													? 'token-button selected'
-													: 'token-button non-select'
-											}
-											onClick={() =>
-												token !== tk && this.handleTokenChange(tk)
-											}
-										>
-											{tk}
-										</button>
-									))}
+									<button
+										className={
+											isA
+												? 'token-button selected'
+												: 'token-button non-select'
+										}
+										onClick={() => !isA && this.handleTokenChange()}
+									>
+										{dualClassAddress.aToken.code}
+									</button>
+									<button
+										className={
+											!isA
+												? 'token-button selected'
+												: 'token-button non-select'
+										}
+										onClick={() => isA && this.handleTokenChange()}
+									>
+										{dualClassAddress.bToken.code}
+									</button>
 								</SDivFlexCenter>
 							</li>
 							<li className="input-line">

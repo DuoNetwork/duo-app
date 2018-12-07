@@ -63,6 +63,69 @@ Array [
 ]
 `;
 
+exports[`calculateNav 10`] = `
+Array [
+  0.8,
+  1.5999999999999996,
+]
+`;
+
+exports[`calculateNav 11`] = `
+Array [
+  1.2,
+  0.40000000000000036,
+]
+`;
+
+exports[`calculateNav 12`] = `
+Array [
+  0.8,
+  0,
+]
+`;
+
+exports[`calculateNav 13`] = `
+Array [
+  0.8,
+  2,
+]
+`;
+
+exports[`calculateNav 14`] = `
+Array [
+  1.2000000000000002,
+  0,
+]
+`;
+
+exports[`calculateNav 15`] = `
+Array [
+  0.6000000000000001,
+  0,
+]
+`;
+
+exports[`calculateNav 16`] = `
+Array [
+  0.8,
+  1.4,
+]
+`;
+
+exports[`calculateNav 17`] = `
+Array [
+  1.2,
+  0.6000000000000001,
+]
+`;
+
+exports[`calculateNav 18`] = `
+Array [
+  0.6000000000000001,
+  0,
+]
+`;
+
 exports[`getLastPriceFromStatus 1`] = `
 Object {
   "gdax": Object {

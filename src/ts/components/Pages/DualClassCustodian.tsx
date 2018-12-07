@@ -106,6 +106,8 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 									sourceLast={sourceLast}
 								/>
 								<BalanceCard
+									type={type}
+									tenor={tenor}
 									locale={locale}
 									account={account}
 									eth={eth}
@@ -144,6 +146,8 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 					/>
 					{account !== CST.DUMMY_ADDR ? (
 						<BalanceCard
+							type={type}
+							tenor={tenor}
 							locale={locale}
 							account={account}
 							eth={eth}

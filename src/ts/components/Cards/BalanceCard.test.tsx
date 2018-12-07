@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import * as CST from 'ts/common/constants';
 import BalanceCard from './BalanceCard';
 
 describe('BalanceCard Test', () => {
@@ -12,6 +13,8 @@ describe('BalanceCard Test', () => {
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
 				<BalanceCard
+					type={CST.BEETHOVEN}
+					tenor={CST.TENOR_PPT}
 					refresh={refreshBalance}
 					mobile={mobile}
 					account={account}
@@ -24,6 +27,8 @@ describe('BalanceCard Test', () => {
 			expect(wrapper).toMatchSnapshot();
 			const wrapper1 = shallow(
 				<BalanceCard
+					type={CST.BEETHOVEN}
+					tenor={CST.TENOR_PPT}
 					refresh={refreshBalance}
 					mobile={false}
 					account={account}
