@@ -124,7 +124,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								href={
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
-									'etherscan.io/tokens?q=' +
+									'etherscan.io/token/' +
 									contractAddresses.aToken.address
 								}
 								target="_blank"
@@ -164,7 +164,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								href={
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
-									'etherscan.io/tokens?q=' +
+									'etherscan.io/token/' +
 									contractAddresses.bToken.address
 								}
 								target="_blank"
