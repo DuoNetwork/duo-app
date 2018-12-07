@@ -1,20 +1,20 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { beethovenWappers } from 'ts/common/wrappers';
+import { dualClassWrappers } from 'ts/common/wrappers';
 import { SInput } from './_styled';
 import DecodeCard from './DecodeCard';
 
 describe('DecodeCard Test', () => {
 	describe('Test Snapshot', () => {
 		it('Test Snapshot', () => {
-			const wrapper = shallow(<DecodeCard tenor={CST.TENOR_PPT} />);
+			const wrapper = shallow(<DecodeCard type={CST.BEETHOVEN} tenor={CST.TENOR_PPT} />);
 			expect(wrapper).toMatchSnapshot();
 		});
 
 		it('Test SInput Input', async () => {
-			beethovenWappers.Perpetual.decode = jest.fn(() => 'decoded');
-			const wrapper = shallow(<DecodeCard tenor={CST.TENOR_PPT}/>);
+			dualClassWrappers[CST.BEETHOVEN][CST.TENOR_PPT].decode = jest.fn(() => 'decoded');
+			const wrapper = shallow(<DecodeCard type={CST.BEETHOVEN} tenor={CST.TENOR_PPT}/>);
 			await wrapper
 				.find(SInput)
 				.at(0)

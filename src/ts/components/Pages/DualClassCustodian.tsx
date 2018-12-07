@@ -2,7 +2,7 @@ import { Layout } from 'antd';
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from 'ts/common/constants';
-import { IBeethovenStates, IContractPrice, IConversion, ISourceData } from 'ts/common/types';
+import { IContractPrice, IConversion, IDualClassStates, ISourceData } from 'ts/common/types';
 import TimeSeriesCard from 'ts/containers/Cards/TimeSeriesCardContainer';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
@@ -14,9 +14,10 @@ import PriceCard from '../Cards/PriceCard';
 import StateCard from '../Cards/StateCard';
 
 interface IProps {
+	type: string;
 	tenor: string;
 	locale: string;
-	states: IBeethovenStates;
+	states: IDualClassStates;
 	account: string;
 	eth: number;
 	aToken: number;
@@ -24,33 +25,37 @@ interface IProps {
 	sourceLast: ISourceData<IContractPrice>;
 	conversions: IConversion[];
 	gasPrice: number;
-	subscribe: (tenor: string) => any;
-	unsubscribe: (tenor: string) => any;
+	subscribe: (type: string, tenor: string) => any;
+	unsubscribe: (type: string, tenor: string) => any;
 	refresh: () => any;
 }
 
 interface IState {
+	type: string;
 	tenor: string;
 }
 
-export default class Beethoven extends React.Component<IProps, IState> {
+export default class DualClassCustodian extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
+			type: props.type,
 			tenor: props.tenor
 		};
 	}
 
 	public componentDidMount() {
-		this.props.subscribe(this.props.tenor);
-		document.title = 'DUO | Custodian';
+		this.props.subscribe(this.props.type, this.props.tenor);
+		document.title = `DUO | ${this.props.type} ${this.props.tenor}`;
 	}
 
 	public static getDerivedStateFromProps(props: IProps, state: IState) {
-		if (props.tenor !== state.tenor) {
-			props.unsubscribe(props.tenor);
-			props.subscribe(props.tenor);
+		if (props.type !== state.type || props.tenor !== state.tenor) {
+			props.unsubscribe(props.type, props.tenor);
+			props.subscribe(props.type, props.tenor);
+			document.title = `DUO | ${props.type} ${props.tenor}`;
 			return {
+				type: props.type,
 				tenor: props.tenor
 			};
 		}
@@ -59,7 +64,7 @@ export default class Beethoven extends React.Component<IProps, IState> {
 	}
 
 	public componentWillUnmount() {
-		this.props.unsubscribe(this.props.tenor);
+		this.props.unsubscribe(this.props.type, this.props.tenor);
 	}
 
 	public render() {
@@ -74,7 +79,8 @@ export default class Beethoven extends React.Component<IProps, IState> {
 			conversions,
 			gasPrice,
 			refresh,
-			tenor
+			tenor,
+			type
 		} = this.props;
 		return (
 			<div>
@@ -84,10 +90,16 @@ export default class Beethoven extends React.Component<IProps, IState> {
 						<SContent>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<TimeSeriesCard />
-								<StateCard tenor={tenor} locale={locale} states={states} />
+								<StateCard
+									type={type}
+									tenor={tenor}
+									locale={locale}
+									states={states}
+								/>
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<PriceCard
+									type={type}
 									tenor={tenor}
 									locale={locale}
 									states={states}
@@ -105,6 +117,7 @@ export default class Beethoven extends React.Component<IProps, IState> {
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<ConversionCard locale={locale} conversions={conversions} />
 								<OperationCard
+									type={type}
 									tenor={tenor}
 									locale={locale}
 									states={states}
@@ -120,8 +133,9 @@ export default class Beethoven extends React.Component<IProps, IState> {
 					</Layout>
 				</MediaQuery>
 				<MediaQuery maxDeviceWidth={899}>
-					<StateCard tenor={tenor} locale={locale} states={states} mobile />
+					<StateCard type={type} tenor={tenor} locale={locale} states={states} mobile />
 					<PriceCard
+						type={type}
 						tenor={tenor}
 						locale={locale}
 						states={states}
@@ -141,6 +155,7 @@ export default class Beethoven extends React.Component<IProps, IState> {
 					) : null}
 					{account !== CST.DUMMY_ADDR ? (
 						<OperationCard
+							type={type}
 							tenor={tenor}
 							locale={locale}
 							states={states}

@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import { getBeethovenWrapperByTenor } from 'ts/common/wrappers';
+import { getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SInput } from './_styled';
 
 interface IProps {
+	type: string;
 	tenor: string;
 }
 
@@ -31,7 +32,7 @@ export default class DecodeCard extends React.Component<IProps, IState> {
 		const { input } = this.state;
 		this.setState({
 			output: JSON.stringify(
-				getBeethovenWrapperByTenor(this.props.tenor).decode(input),
+				getDualClassWrapperByTypeTenor(this.props.type, this.props.tenor).decode(input),
 				null,
 				4
 			)

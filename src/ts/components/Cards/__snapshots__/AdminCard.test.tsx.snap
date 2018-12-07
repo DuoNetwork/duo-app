@@ -20,8 +20,9 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
           Object {
             "Action": <AdminInputButton
               account="0x0"
+              custodianType="Beethoven"
               disabled={true}
-              tenor="test"
+              tenor="Perpetual"
               type="Collect Fee"
               validateInput={[Function]}
             />,
@@ -32,9 +33,10 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
           Object {
             "Action": <AdminInputButton
               account="0x0"
+              custodianType="Beethoven"
               disabled={true}
               index={0}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,
@@ -45,9 +47,10 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
           Object {
             "Action": <AdminInputButton
               account="0x0"
+              custodianType="Beethoven"
               disabled={true}
               index={1}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,
@@ -58,9 +61,10 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
           Object {
             "Action": <AdminInputButton
               account="0x0"
+              custodianType="Beethoven"
               disabled={true}
               index={2}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,
@@ -71,9 +75,10 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
           Object {
             "Action": <AdminInputButton
               account="0x0"
+              custodianType="Beethoven"
               disabled={true}
               index={3}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,
@@ -149,8 +154,9 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
           Object {
             "Action": <AdminInputButton
               account="0x01"
+              custodianType="Beethoven"
               disabled={true}
-              tenor="test"
+              tenor="Perpetual"
               type="Collect Fee"
               validateInput={[Function]}
             />,
@@ -161,9 +167,10 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
           Object {
             "Action": <AdminInputButton
               account="0x01"
+              custodianType="Beethoven"
               disabled={true}
               index={0}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,
@@ -174,9 +181,10 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
           Object {
             "Action": <AdminInputButton
               account="0x01"
+              custodianType="Beethoven"
               disabled={true}
               index={1}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,
@@ -187,9 +195,10 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
           Object {
             "Action": <AdminInputButton
               account="0x01"
+              custodianType="Beethoven"
               disabled={true}
               index={2}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,
@@ -200,9 +209,10 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
           Object {
             "Action": <AdminInputButton
               account="0x01"
+              custodianType="Beethoven"
               disabled={true}
               index={3}
-              tenor="test"
+              tenor="Perpetual"
               type="Set Value"
               validateInput={[Function]}
             />,

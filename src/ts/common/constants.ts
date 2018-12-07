@@ -1,13 +1,13 @@
+import {BEETHOVEN} from '../../../../duo-admin/src/common/constants';
 export * from '../../../../duo-admin/src/common/constants';
-
-export const AC_BTV_STATES = 'beethovenStates';
-export const AC_BTV_ADDRESSES = 'beethovenAddresses';
-export const AC_BTV_EX_PX = 'beethovenExchangePrices';
-export const AC_BTV_ACCEPTED_PX = 'beethovenAcceptedPrices';
-export const AC_BTV_CONVERSIONS = 'beethovenConversions';
-export const AC_BTV_BALANCES = 'beethovenBalances';
-export const AC_BTV_SUB = 'beethovenSubscription';
-export const AC_BTV_TYPE = 'beethovenType';
+export const AC_DCC_STATES = 'dualClassStates';
+export const AC_DCC_ADDRESSES = 'dualClassAddresses';
+export const AC_DCC_EX_PX = 'dualClassExchangePrices';
+export const AC_DCC_ACCEPTED_PX = 'dualClassAcceptedPrices';
+export const AC_DCC_CONVERSIONS = 'dualClassConversions';
+export const AC_DCC_BALANCES = 'dualClassBalances';
+export const AC_DCC_SUB = 'dualClassSubscription';
+export const AC_DCC_TYPE = 'dualClassType';
 export const AC_MAG_ACCEPTED_PX = 'magiAcceptedPrices';
 export const AC_MAG_SUB = 'magiSubscription';
 export const AC_WEB3_ACCOUNT = 'web3Account';
@@ -164,8 +164,6 @@ export const TH_TOOLTIP = 'Tooltip';
 export const TH_ORACLES = 'Oracles';
 export const TH_CUSTODIANS = 'Custodians';
 export const TH_MAGI = 'Magi';
-export const TH_BEETHOVEN = 'Beethoven';
-export const TH_MOZART = 'Mozart';
 export const TH_COVERED_OPTIONS = 'Covered Options';
 export const TH_CHART: ILocaleText = {
 	[LOCALE_CN]: '图表',
@@ -481,24 +479,24 @@ export const TT_INVALID_NUMBER: ILocaleText = {
 	[LOCALE_RU]: 'Некорректное число'
 };
 export const TT_BEETHOVEN_ADDR: ILocaleText = {
-	[LOCALE_CN]: '点击输入' + TH_BEETHOVEN + '地址。无法往' + TH_BEETHOVEN + '地址转账。',
+	[LOCALE_CN]: '点击输入' + BEETHOVEN + '地址。无法往' + BEETHOVEN + '地址转账。',
 	[LOCALE_EN]:
 		'Click to auto fill in ' +
-		TH_BEETHOVEN +
+		BEETHOVEN +
 		' address. Transfer to ' +
-		TH_BEETHOVEN +
+		BEETHOVEN +
 		' is disabled.',
 	[LOCALE_JP]:
 		'クリックしてオートフィルします' +
-		TH_BEETHOVEN +
+		BEETHOVEN +
 		'アドレス、' +
-		TH_BEETHOVEN +
+		BEETHOVEN +
 		'送金することができません',
 	[LOCALE_RU]:
 		'Нажмите для автозаполнения aдрес ' +
-		TH_BEETHOVEN +
+		BEETHOVEN +
 		'. Функция трансфера в ' +
-		TH_BEETHOVEN +
+		BEETHOVEN +
 		' отключена.'
 };
 // export const TT_DUO_FEE_CHECK: ILocaleText = {

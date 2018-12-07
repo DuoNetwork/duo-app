@@ -16,6 +16,7 @@ describe('AdminInputButton Test', () => {
 		it('test Snapshot', () => {
 			const wrapper = shallow(
 				<AdminInputButton
+					custodianType={CST.BEETHOVEN}
 					tenor={CST.TENOR_PPT}
 					account={account}
 					type={'Add Address'}
@@ -25,16 +26,26 @@ describe('AdminInputButton Test', () => {
 				/>
 			);
 			expect(wrapper).toMatchSnapshot();
-			wrapper.find(SInput).at(0).simulate('change', { target: { value: '123'} });
+			wrapper
+				.find(SInput)
+				.at(0)
+				.simulate('change', { target: { value: '123' } });
 			expect(wrapper).toMatchSnapshot();
-			wrapper.find(SInput).at(1).simulate('change', { target: { value: '123'} });
+			wrapper
+				.find(SInput)
+				.at(1)
+				.simulate('change', { target: { value: '123' } });
 			expect(wrapper).toMatchSnapshot();
-			wrapper.find('button').at(0).simulate('click');
+			wrapper
+				.find('button')
+				.at(0)
+				.simulate('click');
 			expect(wrapper).toMatchSnapshot();
 		});
 		it('change type for test click 1', () => {
 			const wrapper1 = shallow(
 				<AdminInputButton
+					custodianType={CST.BEETHOVEN}
 					tenor={CST.TENOR_PPT}
 					account={account}
 					type={'Collect Fee'}
@@ -44,15 +55,22 @@ describe('AdminInputButton Test', () => {
 				/>
 			);
 			expect(wrapper1).toMatchSnapshot();
-			wrapper1.find('button').at(0).simulate('click');
+			wrapper1
+				.find('button')
+				.at(0)
+				.simulate('click');
 			expect(wrapper1).toMatchSnapshot();
 			wrapper1.setState({ valueError: 'test' });
-			wrapper1.find('button').at(0).simulate('click');
+			wrapper1
+				.find('button')
+				.at(0)
+				.simulate('click');
 			expect(wrapper1).toMatchSnapshot();
 		});
 		it('change type for test click 2', () => {
-			const wrapper2 = shallow (
+			const wrapper2 = shallow(
 				<AdminInputButton
+					custodianType={CST.BEETHOVEN}
 					tenor={CST.TENOR_PPT}
 					account={account}
 					type={'Set Value'}
@@ -62,7 +80,10 @@ describe('AdminInputButton Test', () => {
 				/>
 			);
 			expect(wrapper2).toMatchSnapshot();
-			wrapper2.find('button').at(0).simulate('click');
+			wrapper2
+				.find('button')
+				.at(0)
+				.simulate('click');
 			expect(wrapper2).toMatchSnapshot();
 		});
 	});

@@ -3,34 +3,37 @@ import chartUtil from 'ts/common/chartUtil';
 import * as CST from 'ts/common/constants';
 import {
 	IAcceptedPrice,
-	IBeethovenStates,
 	IConversion,
 	ICustodianAddresses,
+	IDualClassStates,
 	IPrice,
 	VoidThunkAction
 } from 'ts/common/types';
 import util from 'ts/common/util';
-import { getBeethovenAddressByTenor, getBeethovenWrapperByTenor } from 'ts/common/wrappers';
+import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 
-export function statesUpdate(states: IBeethovenStates) {
+export function statesUpdate(states: IDualClassStates) {
 	return {
-		type: CST.AC_BTV_STATES,
+		type: CST.AC_DCC_STATES,
 		value: states
 	};
 }
 
 export function getStates(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const beethovenWapper = getBeethovenWrapperByTenor(getState().beethoven.tenor);
-		const states = await beethovenWapper.getStates();
+		const dualClassWrapper = getDualClassWrapperByTypeTenor(
+			getState().dualClass.type,
+			getState().dualClass.tenor
+		);
+		const states = await dualClassWrapper.getStates();
 		dispatch(statesUpdate(states));
 	};
 }
 
 export function balancesUpdate(a: number, b: number) {
 	return {
-		type: CST.AC_BTV_BALANCES,
+		type: CST.AC_DCC_BALANCES,
 		value: {
 			a: a,
 			b: b
@@ -40,31 +43,31 @@ export function balancesUpdate(a: number, b: number) {
 
 export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const beethovenWapper = getBeethovenWrapperByTenor(getState().beethoven.tenor);
+		const dualClassWrapper = getDualClassWrapperByTypeTenor(getState().dualClass.type, getState().dualClass.tenor);
 		const account = getState().web3.account;
-		const { aToken, bToken } = getBeethovenAddressByTenor(getState().beethoven.tenor);
-		const aBalance = await beethovenWapper.web3Wrapper.getErc20Balance(aToken.address, account);
-		const bBalance = await beethovenWapper.web3Wrapper.getErc20Balance(bToken.address, account);
+		const { aToken, bToken } = getDualClassAddressByTypeTenor(getState().dualClass.type, getState().dualClass.tenor);
+		const aBalance = await dualClassWrapper.web3Wrapper.getErc20Balance(aToken.address, account);
+		const bBalance = await dualClassWrapper.web3Wrapper.getErc20Balance(bToken.address, account);
 		dispatch(balancesUpdate(aBalance, bBalance));
 	};
 }
 
 export function addressesUpdate(addr: ICustodianAddresses) {
 	return {
-		type: CST.AC_BTV_ADDRESSES,
+		type: CST.AC_DCC_ADDRESSES,
 		value: addr
 	};
 }
 
 export function getAddresses(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const beethovenWapper = getBeethovenWrapperByTenor(getState().beethoven.tenor);
-		dispatch(addressesUpdate(await beethovenWapper.getAddresses()));
+		const dualClassWrapper = getDualClassWrapperByTypeTenor(getState().dualClass.type, getState().dualClass.tenor);
+		dispatch(addressesUpdate(await dualClassWrapper.getAddresses()));
 	};
 }
 export function exchangePricesUpdate(prices: IPrice[]) {
 	return {
-		type: CST.AC_BTV_EX_PX,
+		type: CST.AC_DCC_EX_PX,
 		value: prices
 	};
 }
@@ -87,7 +90,7 @@ export function fetchExchangePrices(): VoidThunkAction {
 
 export function acceptedPricesUpdate(acceptedPrices: IAcceptedPrice[]) {
 	return {
-		type: CST.AC_BTV_ACCEPTED_PX,
+		type: CST.AC_DCC_ACCEPTED_PX,
 		value: acceptedPrices
 	};
 }
@@ -96,7 +99,7 @@ export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const dates = util.getDates(4, 1, 'day', 'YYYY-MM-DD');
 		const priceData = await dynamoUtil.queryAcceptPriceEvent(contractAddress, dates);
-		const states = getState().beethoven.states;
+		const states = getState().dualClass.states;
 		dispatch(
 			acceptedPricesUpdate(
 				chartUtil.mergeReset(
@@ -115,7 +118,7 @@ export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 
 export function conversionsUpdate(conversions: IConversion[]) {
 	return {
-		type: CST.AC_BTV_CONVERSIONS,
+		type: CST.AC_DCC_CONVERSIONS,
 		value: conversions
 	};
 }
@@ -140,9 +143,10 @@ export function fetchConversions(contractAddress: string): VoidThunkAction {
 	};
 }
 
-export function subscriptionUpdate(tenor: string, intervalId: number) {
+export function subscriptionUpdate(type: string, tenor: string, intervalId: number) {
 	return {
-		type: CST.AC_BTV_SUB,
+		type: CST.AC_DCC_SUB,
+		custodianType: type,
 		tenor: tenor,
 		id: intervalId
 	};
@@ -150,8 +154,10 @@ export function subscriptionUpdate(tenor: string, intervalId: number) {
 
 export function refresh(full: boolean): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const contractAddress = getBeethovenAddressByTenor(getState().beethoven.tenor).custodian
-			.address;
+		const contractAddress = getDualClassAddressByTypeTenor(
+			getState().dualClass.type,
+			getState().dualClass.tenor
+		).custodian.address;
 		await dispatch(getStates());
 		dispatch(getBalances());
 		if (full) {
@@ -162,11 +168,17 @@ export function refresh(full: boolean): VoidThunkAction {
 	};
 }
 
-export function subscribe(tenor: string): VoidThunkAction {
+export function subscribe(type: string, tenor: string): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(tenor, 0));
+		dispatch(subscriptionUpdate(type, tenor, 0));
 		dispatch(refresh(true));
-		dispatch(subscriptionUpdate(tenor, window.setInterval(() => dispatch(refresh(true)), 60000)));
+		dispatch(
+			subscriptionUpdate(
+				type,
+				tenor,
+				window.setInterval(() => dispatch(refresh(true)), 60000)
+			)
+		);
 	};
 }
 
@@ -177,12 +189,16 @@ export function refreshAdmin(): VoidThunkAction {
 	};
 }
 
-export function subscribeAdmin(tenor: string): VoidThunkAction {
+export function subscribeAdmin(type: string, tenor: string): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(tenor, 0));
+		dispatch(subscriptionUpdate(type, tenor, 0));
 		dispatch(refreshAdmin());
 		dispatch(
-			subscriptionUpdate(tenor, window.setInterval(() => dispatch(refreshAdmin()), 60000))
+			subscriptionUpdate(
+				type,
+				tenor,
+				window.setInterval(() => dispatch(refreshAdmin()), 60000)
+			)
 		);
 	};
 }

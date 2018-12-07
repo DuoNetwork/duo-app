@@ -148,7 +148,7 @@ const reset = chartUtil.reset(
 	1.05
 );
 
-const beethovenStates = {
+const dualClassStates = {
 	lastOperationTime: 12,
 	operationCoolDown: 23,
 	alpha: 12,
@@ -241,17 +241,17 @@ test('mergeLastestToAcceptedPrices', () => {
 	expect(
 		chartUtil.mergeLastestToAcceptedPrices(
 			[acceptedPrice1, acceptedPrice2, acceptedPrice3, acceptedPrice4],
-			beethovenStates,
+			dualClassStates,
 			contractPrice
 		)
 	).toMatchSnapshot();
 	expect(
-		chartUtil.mergeLastestToAcceptedPrices([], beethovenStates, contractPrice)
+		chartUtil.mergeLastestToAcceptedPrices([], dualClassStates, contractPrice)
 	).toMatchSnapshot();
 	expect(
 		chartUtil.mergeLastestToAcceptedPrices(
 			[acceptedPrice1, acceptedPrice2, acceptedPrice3, acceptedPrice4, acceptedPriceNow],
-			beethovenStates,
+			dualClassStates,
 			contractPrice
 		)
 	).toMatchSnapshot();

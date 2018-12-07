@@ -23,13 +23,13 @@ export default class CardTitleSelect extends React.Component<IProps> {
 				<SDivFlexCenter horizontal noJust>
 					<div>{this.props.name}</div>
 					<SCardTitleSelector
-						defaultValue={onlySource ? source : CST.TH_BEETHOVEN}
+						defaultValue={onlySource ? source : CST.BEETHOVEN}
 						style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 						size="small"
 						onSelect={(value: any) => this.props.onSelect(value + '')}
 					>
 						{onlySource ? null : (
-							<Option value={CST.TH_BEETHOVEN}>{CST.TH_BEETHOVEN}</Option>
+							<Option value={CST.BEETHOVEN}>{CST.BEETHOVEN}</Option>
 						)}
 						{CST.API_LIST.map(src => (
 							<Option key={src.toLowerCase()} value={src.toLowerCase()}>

@@ -1,6 +1,61 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`beethoven reducer beethovenAcceptedPrices 1`] = `
+exports[`dualClass reducer default 1`] = `
+Object {
+  "acceptedPrices": Array [],
+  "addresses": Object {
+    "aToken": "0x0",
+    "bToken": "0x0",
+    "feeCollector": "0x0",
+    "operator": "0x0",
+    "oracle": "0x0",
+    "roleManager": "0x0",
+  },
+  "balances": Object {
+    "a": 0,
+    "b": 0,
+  },
+  "conversions": Array [],
+  "exchangePrices": Array [],
+  "states": Object {
+    "alpha": 0,
+    "beta": 0,
+    "createCommRate": 0,
+    "ethCollateral": 0,
+    "feeBalance": 0,
+    "iterationGasThreshold": 0,
+    "lastOperationTime": 0,
+    "lastPrice": 0,
+    "lastPriceTime": 0,
+    "limitLower": 0,
+    "limitPeriodic": 0,
+    "limitUpper": 0,
+    "maturity": 0,
+    "minBalance": 0,
+    "navA": 0,
+    "navB": 0,
+    "nextResetAddrIndex": 0,
+    "operationCoolDown": 0,
+    "period": 0,
+    "periodCoupon": 0,
+    "preResetWaitingBlocks": 0,
+    "priceFetchCoolDown": 0,
+    "redeemCommRate": 0,
+    "resetPrice": 0,
+    "resetPriceTime": 0,
+    "resetState": "",
+    "state": "Loading",
+    "totalSupplyA": 0,
+    "totalSupplyB": 0,
+    "totalUsers": 0,
+  },
+  "subscription": 0,
+  "tenor": "Perpetual",
+  "type": "Beethoven",
+}
+`;
+
+exports[`dualClass reducer dualClassAcceptedPrices 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -21,10 +76,11 @@ Object {
   },
   "subscription": 0,
   "tenor": "Perpetual",
+  "type": "Beethoven",
 }
 `;
 
-exports[`beethoven reducer beethovenAddresses 1`] = `
+exports[`dualClass reducer dualClassAddresses 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -41,10 +97,11 @@ Object {
   },
   "subscription": 0,
   "tenor": "Perpetual",
+  "type": "Beethoven",
 }
 `;
 
-exports[`beethoven reducer beethovenBalances 1`] = `
+exports[`dualClass reducer dualClassBalances 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -66,10 +123,11 @@ Object {
   },
   "subscription": 0,
   "tenor": "Perpetual",
+  "type": "Beethoven",
 }
 `;
 
-exports[`beethoven reducer beethovenConversions 1`] = `
+exports[`dualClass reducer dualClassConversions 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -92,10 +150,11 @@ Object {
   },
   "subscription": 0,
   "tenor": "Perpetual",
+  "type": "Beethoven",
 }
 `;
 
-exports[`beethoven reducer beethovenExchangePrices 1`] = `
+exports[`dualClass reducer dualClassExchangePrices 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -114,10 +173,11 @@ Object {
   },
   "subscription": 0,
   "tenor": "Perpetual",
+  "type": "Beethoven",
 }
 `;
 
-exports[`beethoven reducer beethovenStates 1`] = `
+exports[`dualClass reducer dualClassStates 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -139,10 +199,11 @@ Object {
   },
   "subscription": 0,
   "tenor": "Perpetual",
+  "type": "Beethoven",
 }
 `;
 
-exports[`beethoven reducer beethovenSubscription off 1`] = `
+exports[`dualClass reducer dualClassSubscription off 1`] = `
 Object {
   "acceptedPrices": Array [],
   "addresses": Object {
@@ -193,10 +254,11 @@ Object {
   },
   "subscription": 0,
   "tenor": "off tenor",
+  "type": "off type",
 }
 `;
 
-exports[`beethoven reducer beethovenSubscription off 2`] = `
+exports[`dualClass reducer dualClassSubscription off 2`] = `
 Array [
   Array [
     123,
@@ -204,7 +266,7 @@ Array [
 ]
 `;
 
-exports[`beethoven reducer beethovenSubscription on 1`] = `
+exports[`dualClass reducer dualClassSubscription on 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
@@ -226,59 +288,6 @@ Object {
   },
   "subscription": 123,
   "tenor": "on tenor",
-}
-`;
-
-exports[`beethoven reducer default 1`] = `
-Object {
-  "acceptedPrices": Array [],
-  "addresses": Object {
-    "aToken": "0x0",
-    "bToken": "0x0",
-    "feeCollector": "0x0",
-    "operator": "0x0",
-    "oracle": "0x0",
-    "roleManager": "0x0",
-  },
-  "balances": Object {
-    "a": 0,
-    "b": 0,
-  },
-  "conversions": Array [],
-  "exchangePrices": Array [],
-  "states": Object {
-    "alpha": 0,
-    "beta": 0,
-    "createCommRate": 0,
-    "ethCollateral": 0,
-    "feeBalance": 0,
-    "iterationGasThreshold": 0,
-    "lastOperationTime": 0,
-    "lastPrice": 0,
-    "lastPriceTime": 0,
-    "limitLower": 0,
-    "limitPeriodic": 0,
-    "limitUpper": 0,
-    "maturity": 0,
-    "minBalance": 0,
-    "navA": 0,
-    "navB": 0,
-    "nextResetAddrIndex": 0,
-    "operationCoolDown": 0,
-    "period": 0,
-    "periodCoupon": 0,
-    "preResetWaitingBlocks": 0,
-    "priceFetchCoolDown": 0,
-    "redeemCommRate": 0,
-    "resetPrice": 0,
-    "resetPriceTime": 0,
-    "resetState": "",
-    "state": "Loading",
-    "totalSupplyA": 0,
-    "totalSupplyB": 0,
-    "totalUsers": 0,
-  },
-  "subscription": 0,
-  "tenor": "Perpetual",
+  "type": "on type",
 }
 `;

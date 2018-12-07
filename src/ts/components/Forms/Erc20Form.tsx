@@ -1,11 +1,12 @@
 //import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { getBeethovenAddressByTenor, web3Wrapper } from 'ts/common/wrappers';
+import { getDualClassAddressByTypeTenor, web3Wrapper } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCardList, SCardTransactionForm, SInput } from '../Cards/_styled';
 
 interface IProps {
+	type: string;
 	tenor: string;
 	locale: string;
 	account: string;
@@ -34,9 +35,9 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 		};
 	}
 
-	private handleTokenChange = (type: string) =>
+	private handleTokenChange = (token: string) =>
 		this.setState({
-			token: type,
+			token: token,
 			address: '',
 			addressError: '',
 			amount: '',
@@ -73,25 +74,25 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 	};
 
 	private handleTransfer = () => {
-		const { account, tenor } = this.props;
+		const { account, tenor, type } = this.props;
 		const { token, address, amount } = this.state;
-		const beethovanAddress = getBeethovenAddressByTenor(tenor);
+		const dualClassAddress = getDualClassAddressByTypeTenor(type, tenor);
 		const contractAddress =
 			token === CST.TH_TOKEN_A
-				? beethovanAddress.aToken.address
-				: beethovanAddress.bToken.address;
+				? dualClassAddress.aToken.address
+				: dualClassAddress.bToken.address;
 		web3Wrapper.erc20Transfer(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};
 
 	private handleApprove = () => {
-		const { account, tenor } = this.props;
+		const { account, tenor, type } = this.props;
 		const { token, address, amount } = this.state;
-		const beethovanAddress = getBeethovenAddressByTenor(tenor);
+		const dualClassAddress = getDualClassAddressByTypeTenor(type, tenor);
 		const contractAddress =
 			token === CST.TH_TOKEN_A
-				? beethovanAddress.aToken.address
-				: beethovanAddress.bToken.address;
+				? dualClassAddress.aToken.address
+				: dualClassAddress.bToken.address;
 		web3Wrapper.erc20Approve(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};

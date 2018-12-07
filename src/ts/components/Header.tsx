@@ -20,7 +20,7 @@ export default class Header extends React.Component<IProps> {
 		const locale = this.props.locale || CST.LOCALE_EN;
 		const path = (location as any).pathname.toLowerCase();
 		const isStatusPage = path.includes(CST.TH_STATUS.EN.toLowerCase());
-		const isBeethovenPage = path.includes(CST.TH_BEETHOVEN.toLowerCase());
+		const isBeethovenPage = path.includes(CST.BEETHOVEN.toLowerCase());
 		return (
 			<SHeader>
 				<SDivFlexCenter horizontal width={'1200px'}>

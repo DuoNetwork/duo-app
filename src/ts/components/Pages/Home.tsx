@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import { beethovenWappers } from 'ts/common/wrappers';
+import { dualClassWrappers } from 'ts/common/wrappers';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
 import { SCard, SCardTag, SCardTitle } from '../Cards/_styled';
@@ -15,7 +15,8 @@ export default class Duo extends React.Component {
 	}
 
 	public render() {
-		const beethovenTenors = Object.keys(beethovenWappers);
+		const beethovenTenors = Object.keys(dualClassWrappers[CST.BEETHOVEN]);
+		const mozartTenors = Object.keys(dualClassWrappers[CST.MOZART]);
 		return (
 			<Layout>
 				<Header />
@@ -25,16 +26,23 @@ export default class Duo extends React.Component {
 						width={'960px'}
 						margin={'0 0 20px 0'}
 					>
-						<SDivFlexCenter horizontal padding="0 10px" style={{"display": "inline-flex"}}>
+						<SDivFlexCenter
+							horizontal
+							padding="0 10px"
+							style={{ display: 'inline-flex' }}
+						>
 							{beethovenTenors.map(tenor => (
-								<Link key={tenor} to={`/${CST.TH_BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}>
-									<SCardTag style={{"marginRight": "20px"}}>
+								<Link
+									key={tenor}
+									to={`/${CST.BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}
+								>
+									<SCardTag style={{ marginRight: '20px' }}>
 										<div className="bg-logo">
 											<img src={ethIcon} />
 										</div>
 										<div className="tag-content">
 											<div className={'tag-price USD'}>
-												{CST.TH_BEETHOVEN.toUpperCase()}
+												{CST.BEETHOVEN.toUpperCase()}
 											</div>
 										</div>
 										<div className="tag-subtext">
@@ -51,27 +59,38 @@ export default class Duo extends React.Component {
 								</Link>
 							))}
 						</SDivFlexCenter>
-						<SDivFlexCenter horizontal padding="0 10px">
-							<SCardTag disabled>
-								<div className="bg-logo">
-									<img src={ethIcon} />
-								</div>
-								<div className="tag-content">
-									<div className={'tag-price USD'}>
-										{CST.TH_MOZART.toUpperCase()}
-									</div>
-								</div>
-								<div className="tag-subtext">
-									<div
-										style={{
-											color: ColorStyles.TextWhiteAlphaL,
-											marginLeft: 20
-										}}
-									>
-										Coming Soon
-									</div>
-								</div>
-							</SCardTag>
+						<SDivFlexCenter
+							horizontal
+							padding="0 10px"
+							style={{ display: 'inline-flex' }}
+						>
+							{mozartTenors.map(tenor => (
+								<Link
+									key={tenor}
+									to={`/${CST.MOZART.toLowerCase()}/${tenor.toLowerCase()}`}
+								>
+									<SCardTag style={{ marginRight: '20px' }}>
+										<div className="bg-logo">
+											<img src={ethIcon} />
+										</div>
+										<div className="tag-content">
+											<div className={'tag-price USD'}>
+												{CST.MOZART.toUpperCase()}
+											</div>
+										</div>
+										<div className="tag-subtext">
+											<div
+												style={{
+													color: ColorStyles.TextWhiteAlphaL,
+													marginLeft: 20
+												}}
+											>
+												{tenor.toUpperCase()}
+											</div>
+										</div>
+									</SCardTag>
+								</Link>
+							))}
 						</SDivFlexCenter>
 						<SDivFlexCenter horizontal padding="0 10px">
 							<SCardTag disabled>

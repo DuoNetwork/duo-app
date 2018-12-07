@@ -6,9 +6,9 @@ import infoIcon from 'images/info.svg';
 import demoRedeem from 'images/redeemDemo.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IBeethovenStates } from 'ts/common/types';
+import { IDualClassStates } from 'ts/common/types';
 import util from 'ts/common/util';
-import { getBeethovenAddressByTenor, getBeethovenWrapperByTenor } from 'ts/common/wrappers';
+import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import { SDivFlexCenter } from '../_styled';
 import Erc20Form from '../Forms/Erc20Form';
@@ -22,9 +22,10 @@ import {
 } from './_styled';
 
 interface IProps {
+	type: string;
 	tenor: string;
 	locale: string;
-	states: IBeethovenStates;
+	states: IDualClassStates;
 	eth: number;
 	aToken: number;
 	bToken: number;
@@ -147,16 +148,16 @@ export default class OperationCard extends React.Component<IProps, IState> {
 	};
 
 	private handleSubmit = () => {
-		const { account, states, refresh, tenor } = this.props;
+		const { account, states, refresh, tenor, type } = this.props;
 		const { isCreate, amount } = this.state;
 		const amtNum = Number(amount);
-		const beethovenWapper = getBeethovenWrapperByTenor(tenor);
-		const contractAddress = getBeethovenAddressByTenor(tenor).custodian.address;
+		const dualClassWrapper = getDualClassWrapperByTypeTenor(type, tenor);
+		const contractAddress = getDualClassAddressByTypeTenor(type, tenor).custodian.address;
 		if (isCreate) {
 			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = amtNum - fee;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
-			beethovenWapper.create(account, amtNum, (txHash: string) =>
+			dualClassWrapper.create(account, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						contractAddress,
@@ -173,7 +174,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
 			const fee = ethAmount * states.redeemCommRate;
-			beethovenWapper.redeem(account, amtNum, amtNum, (txHash: string) =>
+			dualClassWrapper.redeem(account, amtNum, amtNum, (txHash: string) =>
 				dynamoUtil
 					.insertUIConversion(
 						contractAddress,
@@ -203,7 +204,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		});
 
 	public render() {
-		const { states, account, eth, aToken, bToken, gasPrice, locale, mobile, tenor } = this.props;
+		const { states, account, eth, aToken, bToken, gasPrice, locale, mobile, tenor, type } = this.props;
 		const { isCreate, amount, amountError, description } = this.state;
 		const limit = util.round(isCreate ? eth : Math.min(aToken, bToken));
 		const commissionRate = isCreate ? states.createCommRate : states.redeemCommRate;
@@ -346,6 +347,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 					</SCardList>
 				</SCardConversionForm>
 				<Erc20Form
+					type={type}
 					tenor={tenor}
 					aToken={aToken}
 					bToken={bToken}

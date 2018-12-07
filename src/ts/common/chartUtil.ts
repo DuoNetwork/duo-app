@@ -1,4 +1,4 @@
-import { IAcceptedPrice, IBeethovenStates, IContractPrice, IPrice } from './types';
+import { IAcceptedPrice, IContractPrice, IDualClassStates, IPrice } from './types';
 
 class ChartUtil {
 	public mergePrices(prices: IPrice[], period: number): IPrice[] {
@@ -130,7 +130,7 @@ class ChartUtil {
 
 	public mergeLastestToAcceptedPrices(
 		acceptedPrices: IAcceptedPrice[],
-		states: IBeethovenStates,
+		states: IDualClassStates,
 		last: IContractPrice
 	): IAcceptedPrice[] {
 		if (!acceptedPrices.length) return acceptedPrices;

@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import { beethovenReducer } from './beethovenReducer';
+import { dualClassReducer } from './dualClassReducer';
 import { dynamoReducer } from './dynamoReducer';
 import { magiReducer } from './magiReducer';
 import { uiReducer } from './uiReducer';
 import { web3Reducer } from './web3Reducer';
 
 const reducers = combineReducers({
-	beethoven: beethovenReducer,
+	dualClass: dualClassReducer,
 	dynamo: dynamoReducer,
 	magi: magiReducer,
 	ui: uiReducer,

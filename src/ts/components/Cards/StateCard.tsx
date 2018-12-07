@@ -5,21 +5,22 @@ import warningIcon from 'images/stauts/warning.svg';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IBeethovenStates } from 'ts/common/types';
-import { getBeethovenAddressByTenor } from 'ts/common/wrappers';
+import { IDualClassStates } from 'ts/common/types';
+import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
 
 interface IProps {
+	type: string;
 	tenor: string;
 	locale: string;
-	states: IBeethovenStates;
+	states: IDualClassStates;
 	mobile?: boolean;
 }
 
 export default class StateCard extends React.Component<IProps> {
 	public render() {
-		const { states, mobile, locale, tenor } = this.props;
+		const { states, mobile, locale, tenor, type } = this.props;
 		const tooltioText =
 			states.state === CST.CTD_TRADING
 				? CST.TT_TRADING_STATE[locale]
@@ -36,12 +37,12 @@ export default class StateCard extends React.Component<IProps> {
 								'https://' +
 								(__KOVAN__ ? 'kovan.' : '') +
 								'etherscan.io/address/' +
-								getBeethovenAddressByTenor(tenor).custodian.address
+								getDualClassAddressByTypeTenor(type, tenor).custodian.address
 							}
 							target="_blank"
 							style={{ color: 'white' }}
 						>
-							{CST.TH_BEETHOVEN.toUpperCase()}
+							{CST.BEETHOVEN.toUpperCase()}
 						</a>
 					</SCardTitle>
 				}

@@ -1,8 +1,8 @@
 import { AnyAction } from 'redux';
 import * as CST from 'ts/common/constants';
-import { IBeethovenState } from 'ts/common/types';
+import { IDualClassState } from 'ts/common/types';
 
-export const initialState: IBeethovenState = {
+export const initialState: IDualClassState = {
 	states: {
 		lastOperationTime: 0,
 		operationCoolDown: 0,
@@ -50,48 +50,51 @@ export const initialState: IBeethovenState = {
 		a: 0,
 		b: 0
 	},
+	type: CST.BEETHOVEN,
 	tenor: CST.TENOR_PPT,
 	subscription: 0
 };
 
-export function beethovenReducer(
-	state: IBeethovenState = initialState,
+export function dualClassReducer(
+	state: IDualClassState = initialState,
 	action: AnyAction
-): IBeethovenState {
+): IDualClassState {
 	switch (action.type) {
-		case CST.AC_BTV_STATES:
+		case CST.AC_DCC_STATES:
 			return Object.assign({}, state, {
 				states: action.value
 			});
-		case CST.AC_BTV_ADDRESSES:
+		case CST.AC_DCC_ADDRESSES:
 			return Object.assign({}, state, {
 				addresses: action.value
 			});
-		case CST.AC_BTV_EX_PX:
+		case CST.AC_DCC_EX_PX:
 			return Object.assign({}, state, {
 				exchangePrices: action.value
 			});
-		case CST.AC_BTV_ACCEPTED_PX:
+		case CST.AC_DCC_ACCEPTED_PX:
 			return Object.assign({}, state, {
 				acceptedPrices: action.value
 			});
-		case CST.AC_BTV_CONVERSIONS:
+		case CST.AC_DCC_CONVERSIONS:
 			return Object.assign({}, state, {
 				conversions: action.value
 			});
-		case CST.AC_BTV_BALANCES:
+		case CST.AC_DCC_BALANCES:
 			return Object.assign({}, state, {
 				balances: action.value
 			});
-		case CST.AC_BTV_SUB:
+		case CST.AC_DCC_SUB:
 			if (action.id)
 				return Object.assign({}, state, {
+					type: action.custodianType,
 					tenor: action.tenor,
 					subscription: action.id
 				});
 			else {
 				window.clearInterval(state.subscription);
 				return Object.assign({}, initialState, {
+					type: action.custodianType,
 					tenor: action.tenor
 				});
 			}

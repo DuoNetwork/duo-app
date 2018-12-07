@@ -2,7 +2,7 @@
 
 exports[`store actions 1`] = `
 Object {
-  "beethoven": Object {
+  "dualClass": Object {
     "acceptedPrices": Array [],
     "addresses": Object {
       "aToken": "0x0",
@@ -52,6 +52,7 @@ Object {
     },
     "subscription": 0,
     "tenor": "Perpetual",
+    "type": "Beethoven",
   },
   "dynamo": Object {
     "status": Array [],

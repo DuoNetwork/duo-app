@@ -8,17 +8,18 @@ import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import { IBeethovenStates, IContractPrice, ISourceData } from 'ts/common/types';
+import { IContractPrice, IDualClassStates, ISourceData } from 'ts/common/types';
 import util from 'ts/common/util';
-import { getBeethovenAddressByTenor } from 'ts/common/wrappers';
+import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
 
 interface IProps {
+	type: string;
 	tenor: string;
 	locale: string;
-	states: IBeethovenStates;
+	states: IDualClassStates;
 	sourceLast: ISourceData<IContractPrice>;
 	mobile?: boolean;
 }
@@ -34,8 +35,8 @@ export default class PriceCard extends React.Component<IProps, IState> {
 	}
 
 	public render() {
-		const { locale, states, mobile, tenor } = this.props;
-		const contractAddresses = getBeethovenAddressByTenor(tenor);
+		const { locale, states, mobile, tenor, type } = this.props;
+		const contractAddresses = getDualClassAddressByTypeTenor(type, tenor);
 		const { source } = this.state;
 		const last: IContractPrice = CST.API_LIST.includes(source)
 			? this.props.sourceLast[source]

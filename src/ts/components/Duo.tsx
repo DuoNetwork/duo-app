@@ -1,33 +1,53 @@
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import * as CST from 'ts/common/constants';
-import { beethovenWappers } from 'ts/common/wrappers';
-import BeethovenAdmin from 'ts/containers/Pages/BeethovenAdminCointainer';
-import Beethoven from 'ts/containers/Pages/BeethovenContainer';
+import { dualClassWrappers } from 'ts/common/wrappers';
+import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
+import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
 
 export default class Duo extends React.Component {
 	public render() {
-		const beethovenTenors = Object.keys(beethovenWappers);
+		const routes: any[] = [];
+		for (const type in dualClassWrappers) {
+			routes.push(
+				<Route
+					path={`/${type.toLowerCase()}/admin`}
+					render={() => (
+						<DualClassCustodianAdminCointainer type={type} tenor={CST.TENOR_PPT} />
+					)}
+				/>
+			);
+			routes.push(
+				<Route
+					path={`/${type.toLowerCase()}`}
+					render={() => <DualClassCustodianContainer type={type} tenor={CST.TENOR_PPT} />}
+				/>
+			);
+			for (const tenor in dualClassWrappers[type]) {
+				routes.push(
+					<Route
+						path={`/${type.toLowerCase()}/${tenor.toLowerCase()}/admin`}
+						render={() => (
+							<DualClassCustodianAdminCointainer type={type} tenor={tenor} />
+						)}
+					/>
+				);
+				routes.push(
+					<Route
+						path={`/${type.toLowerCase()}/${tenor.toLowerCase()}`}
+						render={() => <DualClassCustodianContainer type={type} tenor={tenor} />}
+					/>
+				);
+			}
+		}
+
 		return (
 			<div>
 				<Switch>
-					{beethovenTenors.map((tenor) => <Route key={tenor} path={`/beethoven/${tenor.toLowerCase()}/admin`} render={() => <BeethovenAdmin tenor={tenor} />} />)}
-					{beethovenTenors.map((tenor) => <Route key={tenor} path={`/beethoven/${tenor.toLowerCase()}`} render={() => <Beethoven tenor={tenor} />} />)}
-					<Route
-						path={'/beethoven/admin'}
-						render={() => <BeethovenAdmin tenor={CST.TENOR_PPT} />}
-					/>
-					<Route
-						path={'/beethoven/perpetual'}
-						render={() => <Beethoven tenor={CST.TENOR_PPT} />}
-					/>
-					<Route
-						path={'/beethoven'}
-						render={() => <Beethoven tenor={CST.TENOR_PPT} />}
-					/>
+					{routes}
 					<Route path={'/magi'} render={() => <Magi />} />
 					<Route path={'/status'} render={() => <Status />} />
 					<Route render={() => <Home />} />

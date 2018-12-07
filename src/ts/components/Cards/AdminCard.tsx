@@ -2,16 +2,17 @@ import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IBeethovenStates, ICustodianAddresses } from 'ts/common/types';
+import { ICustodianAddresses, IDualClassStates } from 'ts/common/types';
 import AdminInputButton from '../Common/AdminInputButton';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
 
 interface IProps {
+	type: string;
 	tenor: string;
 	addresses: ICustodianAddresses;
-	states: IBeethovenStates;
+	states: IDualClassStates;
 	account: string;
 }
 
@@ -20,7 +21,7 @@ const validatePosInt = (value: string) =>
 
 export default class AdminCard extends React.Component<IProps> {
 	public render() {
-		const { states, account, addresses, tenor } = this.props;
+		const { states, account, addresses, tenor, type } = this.props;
 		const data: object[] = [];
 		let key = 0;
 		data.push({
@@ -29,12 +30,11 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: d3.format(',.2f')(states.feeBalance),
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					custodianType={type}
 					tenor={tenor}
 					account={account}
 					type={CST.TH_COLLECT_FEE}
-					disabled={
-						account === CST.DUMMY_ADDR || addresses.feeCollector !== account
-					}
+					disabled={account === CST.DUMMY_ADDR || addresses.feeCollector !== account}
 					validateInput={(value: string) =>
 						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
 							? ''
@@ -49,6 +49,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.createCommRate * 10000,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					custodianType={type}
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
@@ -64,6 +65,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.redeemCommRate * 10000,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					custodianType={type}
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
@@ -79,6 +81,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.iterationGasThreshold,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					custodianType={type}
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
@@ -94,6 +97,7 @@ export default class AdminCard extends React.Component<IProps> {
 			[CST.TH_VALUE]: states.preResetWaitingBlocks,
 			[CST.TH_ACTION]: (
 				<AdminInputButton
+					custodianType={type}
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}

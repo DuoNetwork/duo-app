@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { getBeethovenWrapperByTenor } from 'ts/common/wrappers';
+import { getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SInput } from '../Cards/_styled';
 
 interface IProps {
+	custodianType: string;
 	tenor: string;
 	account: string;
 	type: string;
@@ -31,32 +32,34 @@ export default class AdminInputButton extends React.Component<IProps, IState> {
 		};
 	}
 
-	private handleChange = (value: string, index: number = 0) =>
-		index
-			? this.setState({
-					value1: value,
-					value1Error: this.props.validateInput(value)
-			})
-			: this.setState({
-					value: value,
-					valueError: this.props.validateInput(value)
+	private handleChange = (value: string, index: number = 0) => {
+		if (index)
+			this.setState({
+				value1: value,
+				value1Error: this.props.validateInput(value)
 			});
+		else
+			this.setState({
+				value: value,
+				valueError: this.props.validateInput(value)
+			});
+	};
 
 	private handleClick = () => {
-		const { account, type, tenor } = this.props;
+		const { account, type, tenor, custodianType } = this.props;
 		const index =
 			this.props.index === null || this.props.index === undefined ? -1 : this.props.index;
 		const { value, valueError, value1Error } = this.state;
 		if (valueError || value1Error) return;
 
-		const beethovenWapper = getBeethovenWrapperByTenor(tenor);
+		const dualClassWrapper = getDualClassWrapperByTypeTenor(custodianType, tenor);
 
 		switch (type) {
 			case CST.TH_COLLECT_FEE:
-				beethovenWapper.collectFee(account, Number(value));
+				dualClassWrapper.collectFee(account, Number(value));
 				break;
 			case CST.TH_SET_VALUE:
-				if (index >= 0) beethovenWapper.setValue(account, index, Number(value));
+				if (index >= 0) dualClassWrapper.setValue(account, index, Number(value));
 				break;
 			default:
 				break;

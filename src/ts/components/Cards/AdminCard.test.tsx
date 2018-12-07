@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import * as CST from 'ts/common/constants';
 import AdminCard from './AdminCard';
 
 describe('AuthCard Test', () => {
@@ -12,8 +13,6 @@ describe('AuthCard Test', () => {
 			operator: '0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a',
 			roleManager: '0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a'
 		};
-
-		const tenor = 'test';
 
 		const account = '0x0';
 		// const account1 = '0x01';
@@ -53,10 +52,24 @@ describe('AuthCard Test', () => {
 
 		it('Test Snapshot', () => {
 			const wrapper1 = shallow(
-				<AdminCard tenor={tenor} addresses={addresses} states={states} account={account} />
+				<AdminCard
+					type={CST.BEETHOVEN}
+					tenor={CST.TENOR_PPT}
+					addresses={addresses}
+					states={states}
+					account={account}
+				/>
 			);
 			expect(wrapper1).toMatchSnapshot();
-			const wrapper2 = shallow(<AdminCard tenor={tenor} addresses={addresses} states={states} account={'0x01'} />);
+			const wrapper2 = shallow(
+				<AdminCard
+					type={CST.BEETHOVEN}
+					tenor={CST.TENOR_PPT}
+					addresses={addresses}
+					states={states}
+					account={'0x01'}
+				/>
+			);
 			expect(wrapper2).toMatchSnapshot();
 		});
 		// test('dummy', () => expect(true).toBeTruthy());

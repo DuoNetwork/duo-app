@@ -7,7 +7,7 @@ import 'static/GettingStarted.pdf';
 import 'static/GettingStarted_CN.pdf';
 import 'static/GettingStarted_JP.pdf';
 import dynamoUtil from '../../../duo-admin/src/utils/dynamoUtil';
-import * as beethovenActions from './actions/beethovenActions';
+import * as dualClassActions from './actions/dualClassActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
 import { web3Wrapper } from './common/wrappers';
@@ -38,7 +38,7 @@ web3Wrapper.onWeb3AccountUpdate((addr: string, network: number) => {
 	) {
 		store.dispatch(web3Actions.accountUpdate(addr));
 		store.dispatch(web3Actions.networkUpdate(network));
-		store.dispatch(beethovenActions.refresh(true));
+		store.dispatch(dualClassActions.refresh(true));
 	}
 });
 if ((window as any).ethereum)

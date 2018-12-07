@@ -1,27 +1,34 @@
 import infura from 'ts/keys/infura.json';
-import BeethovenWapper from '../../../../duo-contract-wrapper/src/BeethovenWapper';
+import DualClassWrapper from '../../../../duo-contract-wrapper/src/DualClassWrapper';
 import MagiWrapper from '../../../../duo-contract-wrapper/src/MagiWrapper';
 import Web3Wrapper from '../../../../duo-contract-wrapper/src/Web3Wrapper';
 import * as CST from './constants';
+import { ICustodianWrappers } from './types';
 
 const provider =
 	(__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN) + '/' + infura.token;
 export const web3Wrapper = new Web3Wrapper(window, '', provider, !__KOVAN__);
-export const beethovenWappers: { [tenor: string]: BeethovenWapper } = {};
-for (const tenor in web3Wrapper.contractAddresses.Custodians.Beethoven)
-	beethovenWappers[tenor] = new BeethovenWapper(
-		web3Wrapper,
-		web3Wrapper.contractAddresses.Custodians.Beethoven[tenor].custodian.address
-	);
+export const dualClassWrappers: ICustodianWrappers = {};
+for (const type in web3Wrapper.contractAddresses.Custodians) {
+	dualClassWrappers[type] = {};
+	for (const tenor in web3Wrapper.contractAddresses.Custodians[type])
+		dualClassWrappers[type][tenor] = new DualClassWrapper(
+			web3Wrapper,
+			web3Wrapper.contractAddresses.Custodians[type][tenor].custodian.address
+		);
+}
 
-export const getBeethovenWrapperByTenor = (tenor: string) => {
-	return beethovenWappers[tenor] || beethovenWappers[CST.TENOR_PPT];
+export const getDualClassWrapperByTypeTenor = (type: string, tenor: string) => {
+	if (dualClassWrappers[type] && dualClassWrappers[type][tenor])
+		return dualClassWrappers[type][tenor];
+	return dualClassWrappers[CST.BEETHOVEN][CST.TENOR_PPT];
 };
 
-export const getBeethovenAddressByTenor = (tenor: string) => {
-	if (beethovenWappers[tenor]) return web3Wrapper.contractAddresses.Custodians.Beethoven[tenor];
+export const getDualClassAddressByTypeTenor = (type: string, tenor: string) => {
+	if (web3Wrapper.contractAddresses.Custodians[type][tenor])
+		return web3Wrapper.contractAddresses.Custodians[type][tenor];
 
-	return web3Wrapper.contractAddresses.Custodians.Beethoven[CST.TENOR_PPT];
+	return web3Wrapper.contractAddresses.Custodians[CST.BEETHOVEN][CST.TENOR_PPT];
 };
 
 export const magiWrapper = new MagiWrapper(

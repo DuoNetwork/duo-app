@@ -2,7 +2,7 @@
 
 exports[`actions acceptedPricesUpdate 1`] = `
 Object {
-  "type": "beethovenAcceptedPrices",
+  "type": "dualClassAcceptedPrices",
   "value": Array [
     "test",
   ],
@@ -11,7 +11,7 @@ Object {
 
 exports[`actions addressesUpdate 1`] = `
 Object {
-  "type": "beethovenAddresses",
+  "type": "dualClassAddresses",
   "value": Object {
     "test": "test",
   },
@@ -20,7 +20,7 @@ Object {
 
 exports[`actions balancesUpdate 1`] = `
 Object {
-  "type": "beethovenBalances",
+  "type": "dualClassBalances",
   "value": Object {
     "a": 1,
     "b": 2,
@@ -30,7 +30,7 @@ Object {
 
 exports[`actions conversionsUpdate 1`] = `
 Object {
-  "type": "beethovenConversions",
+  "type": "dualClassConversions",
   "value": Array [
     "test",
   ],
@@ -39,7 +39,7 @@ Object {
 
 exports[`actions exchangePricesUpdate 1`] = `
 Object {
-  "type": "beethovenExchangePrices",
+  "type": "dualClassExchangePrices",
   "value": Array [
     "test",
   ],
@@ -49,7 +49,7 @@ Object {
 exports[`actions fetchAcceptedPrices 1`] = `
 Array [
   Object {
-    "type": "beethovenAcceptedPrices",
+    "type": "dualClassAcceptedPrices",
     "value": Array [
       "test",
     ],
@@ -60,7 +60,7 @@ Array [
 exports[`actions fetchConversions 1`] = `
 Array [
   Object {
-    "type": "beethovenConversions",
+    "type": "dualClassConversions",
     "value": Array [
       Object {
         "transactionHash": "aaa",
@@ -91,7 +91,7 @@ Object {
 exports[`actions fetchExchangePrices 5 1`] = `
 Array [
   Object {
-    "type": "beethovenExchangePrices",
+    "type": "dualClassExchangePrices",
     "value": Array [
       "test",
       1,
@@ -106,7 +106,7 @@ Array [
 exports[`actions fetchExchangePrices 60 1`] = `
 Array [
   Object {
-    "type": "beethovenExchangePrices",
+    "type": "dualClassExchangePrices",
     "value": Array [
       "test",
       60,
@@ -121,7 +121,7 @@ Array [
 exports[`actions getAddresses 1`] = `
 Array [
   Object {
-    "type": "beethovenAddresses",
+    "type": "dualClassAddresses",
     "value": Object {
       "test": "test",
     },
@@ -132,7 +132,7 @@ Array [
 exports[`actions getBalances 1`] = `
 Array [
   Object {
-    "type": "beethovenBalances",
+    "type": "dualClassBalances",
     "value": Object {
       "a": undefined,
       "b": undefined,
@@ -144,11 +144,11 @@ Array [
 exports[`actions getBalances 2`] = `
 Array [
   Array [
-    "0xbc4e4029B41B0894353C31267CE86c2192545e53",
+    "0xC600fe64CDa57b607B251aa0879b8386e9FEd9f7",
     "0x0",
   ],
   Array [
-    "0xFeCd43cd0bc217e5513116c83F48498A018A1da6",
+    "0xa03b5171fE58fD2d6a018693E8D2CeD83b73ce00",
     "0x0",
   ],
 ]
@@ -157,7 +157,7 @@ Array [
 exports[`actions getStates 1`] = `
 Array [
   Object {
-    "type": "beethovenStates",
+    "type": "dualClassStates",
     "value": Object {
       "test": "test",
     },
@@ -168,20 +168,20 @@ Array [
 exports[`actions refresh 1`] = `
 Array [
   Object {
-    "type": "beethovenStates",
+    "type": "dualClassStates",
     "value": Object {
       "test": "test",
     },
   },
   Object {
-    "type": "beethovenBalances",
+    "type": "dualClassBalances",
     "value": Object {
       "a": undefined,
       "b": undefined,
     },
   },
   Object {
-    "type": "beethovenExchangePrices",
+    "type": "dualClassExchangePrices",
     "value": Array [
       "test",
       1,
@@ -191,13 +191,13 @@ Array [
     ],
   },
   Object {
-    "type": "beethovenAcceptedPrices",
+    "type": "dualClassAcceptedPrices",
     "value": Array [
       "test",
     ],
   },
   Object {
-    "type": "beethovenConversions",
+    "type": "dualClassConversions",
     "value": Array [
       Object {
         "transactionHash": "aaa",
@@ -215,7 +215,7 @@ exports[`actions refreshAdmin 1`] = `[Function]`;
 
 exports[`actions statesUpdate 1`] = `
 Object {
-  "type": "beethovenStates",
+  "type": "dualClassStates",
   "value": Object {
     "test": "test",
   },
@@ -225,30 +225,32 @@ Object {
 exports[`actions subscribe 1`] = `
 Array [
   Object {
+    "custodianType": "Beethoven",
     "id": 0,
     "tenor": "Perpetual",
-    "type": "beethovenSubscription",
+    "type": "dualClassSubscription",
   },
   Object {
+    "custodianType": "Beethoven",
     "id": 123,
     "tenor": "Perpetual",
-    "type": "beethovenSubscription",
+    "type": "dualClassSubscription",
   },
   Object {
-    "type": "beethovenStates",
+    "type": "dualClassStates",
     "value": Object {
       "test": "test",
     },
   },
   Object {
-    "type": "beethovenBalances",
+    "type": "dualClassBalances",
     "value": Object {
       "a": undefined,
       "b": undefined,
     },
   },
   Object {
-    "type": "beethovenExchangePrices",
+    "type": "dualClassExchangePrices",
     "value": Array [
       "test",
       1,
@@ -258,13 +260,13 @@ Array [
     ],
   },
   Object {
-    "type": "beethovenAcceptedPrices",
+    "type": "dualClassAcceptedPrices",
     "value": Array [
       "test",
     ],
   },
   Object {
-    "type": "beethovenConversions",
+    "type": "dualClassConversions",
     "value": Array [
       Object {
         "transactionHash": "aaa",
@@ -282,8 +284,9 @@ exports[`actions subscribeAdmin 1`] = `[Function]`;
 
 exports[`actions subscriptionUpdate 1`] = `
 Object {
+  "custodianType": "type",
   "id": 123,
   "tenor": "tenor",
-  "type": "beethovenSubscription",
+  "type": "dualClassSubscription",
 }
 `;
