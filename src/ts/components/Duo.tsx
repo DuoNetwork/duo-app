@@ -15,6 +15,7 @@ export default class Duo extends React.Component {
 			for (const tenor in dualClassWrappers[type]) {
 				routes.push(
 					<Route
+						key={type + tenor + 'admin'}
 						path={`/${type.toLowerCase()}/${tenor.toLowerCase()}/admin`}
 						render={() => (
 							<DualClassCustodianAdminCointainer type={type} tenor={tenor} />
@@ -23,6 +24,7 @@ export default class Duo extends React.Component {
 				);
 				routes.push(
 					<Route
+						key={type + tenor}
 						path={`/${type.toLowerCase()}/${tenor.toLowerCase()}`}
 						render={() => <DualClassCustodianContainer type={type} tenor={tenor} />}
 					/>
@@ -30,6 +32,7 @@ export default class Duo extends React.Component {
 			}
 			routes.push(
 				<Route
+					key={type + 'admin'}
 					path={`/${type.toLowerCase()}/admin`}
 					render={() => (
 						<DualClassCustodianAdminCointainer type={type} tenor={CST.TENOR_PPT} />
@@ -38,6 +41,7 @@ export default class Duo extends React.Component {
 			);
 			routes.push(
 				<Route
+					key={type}
 					path={`/${type.toLowerCase()}`}
 					render={() => <DualClassCustodianContainer type={type} tenor={CST.TENOR_PPT} />}
 				/>
