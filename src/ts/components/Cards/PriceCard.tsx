@@ -141,11 +141,16 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-unit-1'}>USD</div>
 							</div>
 							<div className="tag-subtext">
-								{d3.format('.2%')(
-									(states.periodCoupon * 365 * 24 * 3600000) / states.period || 0
-								) +
+								{type === CST.BEETHOVEN
+									? d3.format('.2%')(
+											(states.periodCoupon * 365 * 24 * 3600000) /
+												states.period || 0
+									) +
 									' ' +
-									CST.TH_PA[locale].toLowerCase()}
+									CST.TH_PA[locale].toLowerCase()
+									: d3.format('.2f')((2 - navA) / (navA || 1)) +
+									'x ' +
+									CST.TH_LEVERAGE[locale].toLowerCase()}
 							</div>
 						</div>
 					</SCardPriceTag>
@@ -176,7 +181,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-unit-2'}>USD</div>
 							</div>
 							<div className="tag-subtext">
-								{d3.format('.2f')((navA + navB) / (navB || 1)) +
+								{d3.format('.2f')((1 + navB) / (navB || 1)) +
 									'x ' +
 									CST.TH_LEVERAGE[locale].toLowerCase()}
 							</div>
