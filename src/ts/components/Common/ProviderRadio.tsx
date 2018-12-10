@@ -4,7 +4,7 @@ import { Button, Radio } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { web3Wrapper } from 'ts/common/wrappers';
-import { Wallet } from '../../../../../duo-contract-wrapper/src/Web3Wrapper';
+import { Wallet } from '../../../../../duo-contract-wrapper/src/types';
 import { SRadioGroup } from '../Cards/_styled';
 import { SModal } from './_styled';
 

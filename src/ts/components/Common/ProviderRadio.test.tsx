@@ -1,7 +1,7 @@
 import { Radio } from 'antd';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Wallet } from '../../../../../duo-contract-wrapper/src/Web3Wrapper';
+import { Wallet } from '../../../../../duo-contract-wrapper/src/types';
 import { SRadioGroup } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import ProviderRadio from './ProviderRadio';

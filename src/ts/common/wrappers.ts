@@ -1,3 +1,5 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
 import infura from 'ts/keys/infura.json';
 import DualClassWrapper from '../../../../duo-contract-wrapper/src/DualClassWrapper';
 import EsplanadeWrapper from '../../../../duo-contract-wrapper/src/EsplanadeWrapper';
