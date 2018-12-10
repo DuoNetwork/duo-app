@@ -12,7 +12,10 @@ const height = 360 - margin.top - margin.bottom;
 function drawLines(
 	el: Element,
 	acceptedPrices: IAcceptedPrice[],
-	prices: IPrice[]
+	prices: IPrice[],
+	underlying: string,
+	tokenA: string,
+	tokenB: string
 ) {
 	const dataLoaded = acceptedPrices.length && prices.length;
 	if (!dataLoaded) {
@@ -454,7 +457,7 @@ function drawLines(
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(333, 27.5)')
-		.text('ETH');
+		.text(underlying);
 	ethLegend
 		.append('text')
 		.attr('class', 'custodian-eth-legend-text')
@@ -478,7 +481,7 @@ function drawLines(
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(523, 27.5)')
-		.text('Token A');
+		.text(tokenA);
 	tokenALegend
 		.append('text')
 		.attr('class', 'custodian-tokenA-legend-text')
@@ -500,7 +503,7 @@ function drawLines(
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(618, 27.5)')
-		.text('Token B');
+		.text(tokenB);
 	tokenBLegend
 		.append('text')
 		.attr('class', 'custodian-tokenB-legend-text')
@@ -757,6 +760,9 @@ function drawLines(
 interface IProps {
 	prices: IPrice[];
 	acceptedPrices: IAcceptedPrice[];
+	underlying: string;
+	tokenA: string;
+	tokenB: string;
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
@@ -767,17 +773,20 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { acceptedPrices, prices } = this.props;
-		drawLines(this.chartRef.current as Element, acceptedPrices, prices);
+		const { acceptedPrices, prices, underlying, tokenA, tokenB } = this.props;
+		drawLines(this.chartRef.current as Element, acceptedPrices, prices, underlying, tokenA, tokenB);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		const { acceptedPrices, prices } = nextProps;
+		const { acceptedPrices, prices, underlying, tokenA, tokenB } = nextProps;
 		if (
+			underlying !== this.props.underlying ||
+			tokenA !== this.props.tokenA ||
+			tokenB !== this.props.tokenB ||
 			JSON.stringify(prices) !== JSON.stringify(this.props.prices) ||
 			JSON.stringify(acceptedPrices) !== JSON.stringify(this.props.acceptedPrices)
 		)
-			drawLines(this.chartRef.current as Element, acceptedPrices, prices);
+			drawLines(this.chartRef.current as Element, acceptedPrices, prices, underlying, tokenA, tokenB);
 
 		return false;
 	}

@@ -22,11 +22,37 @@ describe('ConversionMCard Test', () => {
 				refreshBalance: jest.fn(() => 123)
 			}
 		];
+		const contractAddress = {
+			custodian: {
+				code: 'BEETHOVEN-PPT',
+				address: '0x95B3BE483e9e3685Ed631e9611b8cDba4C13641E'
+			},
+			aToken: {
+				code: 'aETH',
+				address: '0xC600fe64CDa57b607B251aa0879b8386e9FEd9f7'
+			},
+			bToken: {
+				code: 'bETH',
+				address: '0xa03b5171fE58fD2d6a018693E8D2CeD83b73ce00'
+			}
+		};
 		it('Test Snapshot', () => {
-			const wrapper1 = shallow(<ConversionMCard locale={locale} conversions={conversions} />);
+			const wrapper1 = shallow(
+				<ConversionMCard
+					contractAddress={contractAddress}
+					locale={locale}
+					conversions={conversions}
+				/>
+			);
 			expect(wrapper1).toMatchSnapshot();
 			const conversionsNew: any = [];
-			const wrapper2 = shallow(<ConversionMCard locale={locale} conversions={conversionsNew} />);
+			const wrapper2 = shallow(
+				<ConversionMCard
+					contractAddress={contractAddress}
+					locale={locale}
+					conversions={conversionsNew}
+				/>
+			);
 			expect(wrapper2).toMatchSnapshot();
 		});
 	});

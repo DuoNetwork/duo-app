@@ -3,6 +3,7 @@ import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from 'ts/common/constants';
 import { IContractPrice, IConversion, IDualClassStates, ISourceData } from 'ts/common/types';
+import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
 import TimeSeriesCard from 'ts/containers/Cards/TimeSeriesCardContainer';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
@@ -82,6 +83,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 			tenor,
 			type
 		} = this.props;
+		const contractAddress = getDualClassAddressByTypeTenor(type, tenor);
 		return (
 			<div>
 				<MediaQuery minDeviceWidth={900}>
@@ -89,7 +91,11 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 						<Header />
 						<SContent>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
-								<TimeSeriesCard />
+								<TimeSeriesCard
+									underlying={CST.TH_ETH}
+									tokenA={contractAddress.aToken.code}
+									tokenB={contractAddress.bToken.code}
+								/>
 								<StateCard
 									type={type}
 									tenor={tenor}
@@ -100,14 +106,13 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<PriceCard
 									type={type}
-									tenor={tenor}
+									contractAddress={contractAddress}
 									locale={locale}
 									states={states}
 									sourceLast={sourceLast}
 								/>
 								<BalanceCard
-									type={type}
-									tenor={tenor}
+									contractAddress={contractAddress}
 									locale={locale}
 									account={account}
 									eth={eth}
@@ -117,7 +122,11 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 								/>
 							</SDivFlexCenter>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
-								<ConversionCard locale={locale} conversions={conversions} />
+								<ConversionCard
+									contractAddress={contractAddress}
+									locale={locale}
+									conversions={conversions}
+								/>
 								<OperationCard
 									type={type}
 									tenor={tenor}
@@ -138,7 +147,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 					<StateCard type={type} tenor={tenor} locale={locale} states={states} mobile />
 					<PriceCard
 						type={type}
-						tenor={tenor}
+						contractAddress={contractAddress}
 						locale={locale}
 						states={states}
 						sourceLast={sourceLast}
@@ -146,8 +155,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 					/>
 					{account !== CST.DUMMY_ADDR ? (
 						<BalanceCard
-							type={type}
-							tenor={tenor}
+							contractAddress={contractAddress}
 							locale={locale}
 							account={account}
 							eth={eth}
@@ -173,7 +181,11 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 						/>
 					) : null}
 					{account !== CST.DUMMY_ADDR ? (
-						<ConversionMCard locale={locale} conversions={conversions} />
+						<ConversionMCard
+							contractAddress={contractAddress}
+							locale={locale}
+							conversions={conversions}
+						/>
 					) : null}
 				</MediaQuery>
 			</div>

@@ -1,6 +1,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as CST from 'ts/common/constants';
+import * as CST from 'ts/common/constants'
+import { dualClassWrappers } from 'ts/common/wrappers';
 import { SInput } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import AdminInputButton from './AdminInputButton';
@@ -12,6 +13,8 @@ describe('AdminInputButton Test', () => {
 		const disabled = true;
 		const index = 12;
 		const validateInput = jest.fn();
+		dualClassWrappers[CST.BEETHOVEN][CST.TENOR_PPT].setValue = jest.fn(() => Promise.resolve());
+		dualClassWrappers[CST.BEETHOVEN][CST.TENOR_PPT].collectFee = jest.fn(() => Promise.resolve());
 
 		it('test Snapshot', () => {
 			const wrapper = shallow(

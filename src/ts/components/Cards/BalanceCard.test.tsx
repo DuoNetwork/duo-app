@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as CST from 'ts/common/constants';
 import BalanceCard from './BalanceCard';
 
 describe('BalanceCard Test', () => {
@@ -9,12 +8,25 @@ describe('BalanceCard Test', () => {
 		const account = '0x0';
 		const locale = 'EN';
 		const refreshBalance = jest.fn(() => 123);
+		const contractAddress = {
+			custodian: {
+				code: 'BEETHOVEN-PPT',
+				address: '0x95B3BE483e9e3685Ed631e9611b8cDba4C13641E'
+			},
+			aToken: {
+				code: 'aETH',
+				address: '0xC600fe64CDa57b607B251aa0879b8386e9FEd9f7'
+			},
+			bToken: {
+				code: 'bETH',
+				address: '0xa03b5171fE58fD2d6a018693E8D2CeD83b73ce00'
+			}
+		};
 
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
 				<BalanceCard
-					type={CST.BEETHOVEN}
-					tenor={CST.TENOR_PPT}
+					contractAddress={contractAddress}
 					refresh={refreshBalance}
 					mobile={mobile}
 					account={account}
@@ -27,8 +39,7 @@ describe('BalanceCard Test', () => {
 			expect(wrapper).toMatchSnapshot();
 			const wrapper1 = shallow(
 				<BalanceCard
-					type={CST.BEETHOVEN}
-					tenor={CST.TENOR_PPT}
+					contractAddress={contractAddress}
 					refresh={refreshBalance}
 					mobile={false}
 					account={account}

@@ -8,6 +8,9 @@ import RadioExtra from '../Common/RadioExtra';
 import { SCard } from './_styled';
 
 interface IProps {
+	underlying: string;
+	tokenA: string;
+	tokenB: string;
 	locale: string;
 	prices: IPrice[];
 	source: string;
@@ -18,8 +21,19 @@ interface IProps {
 }
 
 export default class TimeSeriesCard extends React.Component<IProps> {
-		public render() {
-		const { locale, acceptedPrices, prices, period, source, handleSourceUpdate, handlePeriodUpdate } = this.props;
+	public render() {
+		const {
+			locale,
+			acceptedPrices,
+			prices,
+			period,
+			source,
+			handleSourceUpdate,
+			handlePeriodUpdate,
+			underlying,
+			tokenA,
+			tokenB
+		} = this.props;
 		return (
 			<SCard
 				title={
@@ -44,6 +58,9 @@ export default class TimeSeriesCard extends React.Component<IProps> {
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
 					<TimeSeriesChart
+						underlying={underlying}
+						tokenA={tokenA}
+						tokenB={tokenB}
 						acceptedPrices={acceptedPrices}
 						prices={prices}
 					/>

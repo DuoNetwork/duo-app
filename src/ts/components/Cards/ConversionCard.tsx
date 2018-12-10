@@ -5,19 +5,20 @@ import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IConversion, ITableRecord } from 'ts/common/types';
+import { IConversion, ICustodianContractAddress, ITableRecord } from 'ts/common/types';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
 
 interface IProps {
+	contractAddress: ICustodianContractAddress;
 	locale: string;
 	conversions: IConversion[];
 }
 
 export default class ConversionCard extends React.Component<IProps> {
 	public render() {
-		const { conversions, locale } = this.props;
+		const { conversions, locale, contractAddress } = this.props;
 		return (
 			<LocaleProvider locale={locale === CST.LOCALE_CN ? antdCn : antdEn}>
 				<SCard
@@ -34,11 +35,12 @@ export default class ConversionCard extends React.Component<IProps> {
 								[CST.TH_STATUS.EN]: c.pending
 									? CST.TH_PENDING[locale]
 									: c.reverted
-										? CST.TH_REVERTED[locale]
-										: CST.TH_MINED[locale],
+									? CST.TH_REVERTED[locale]
+									: CST.TH_MINED[locale],
 								[CST.TH_TYPE.EN]: c.type,
 								[CST.TH_ETH]: d3.format(',.8f')(c.eth),
-								[CST.TH_TOKEN_AB]: d3.format(',.8f')(c.tokenA),
+								[CST.TH_TOKEN_A]: d3.format(',.8f')(c.tokenA),
+								[CST.TH_TOKEN_B]: d3.format(',.8f')(c.tokenB),
 								[CST.TH_FEE.EN]: d3.format(',.8f')(c.fee) + ' ' + CST.TH_ETH,
 								[CST.TH_LINK]:
 									'https://' +
@@ -116,9 +118,15 @@ export default class ConversionCard extends React.Component<IProps> {
 							/>
 							<Column title={CST.TH_ETH} dataIndex={CST.TH_ETH} className="eth" />
 							<Column
-								title={CST.TH_TOKEN_AB}
-								dataIndex={CST.TH_TOKEN_AB}
+								title={contractAddress.aToken.code + '/' + contractAddress.bToken.code}
 								className="token-ab"
+								render={record => (
+									<div>
+										{record[CST.TH_TOKEN_A]}
+										<br />
+										{record[CST.TH_TOKEN_B]}
+									</div>
+								)}
 							/>
 							<Column
 								title={CST.TH_FEE[locale]}

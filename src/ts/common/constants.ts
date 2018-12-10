@@ -150,7 +150,8 @@ export const TH_TYPE: ILocaleText = {
 	[LOCALE_JP]: 'タイプ',
 	[LOCALE_RU]: 'Тип'
 };
-export const TH_TOKEN_AB = 'Token A/B';
+export const TH_TOKEN_A = 'Token A';
+export const TH_TOKEN_B = 'Token B';
 export const TH_FEE: ILocaleText = {
 	[LOCALE_CN]: '手续费',
 	[LOCALE_EN]: 'Fee',

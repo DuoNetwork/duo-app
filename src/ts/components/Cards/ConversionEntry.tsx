@@ -8,7 +8,10 @@ interface IProps {
 	timestamp: number;
 	type: string;
 	eth: number;
+	tokenACode: string;
 	tokenA: number;
+	tokenBCode: string;
+	tokenB: number;
 	pending?: boolean;
 	reverted?: boolean;
 	locale: string;
@@ -16,7 +19,26 @@ interface IProps {
 
 export default class ConversionEntry extends React.Component<IProps> {
 	public render() {
-		const { timestamp, type, eth, tokenA, pending, reverted, locale } = this.props;
+		const {
+			timestamp,
+			type,
+			eth,
+			tokenA,
+			tokenB,
+			tokenACode,
+			tokenBCode,
+			pending,
+			reverted,
+			locale
+		} = this.props;
+		const tokenString =
+			d3.format(',.2f')(tokenA) +
+			' ' +
+			tokenACode +
+			'/' +
+			d3.format(',.2f')(tokenB) +
+			' ' +
+			tokenBCode;
 		return (
 			<ul>
 				<li>
@@ -35,14 +57,8 @@ export default class ConversionEntry extends React.Component<IProps> {
 					</span>
 					<span className="content">
 						{type === 'Create'
-							? d3.format(',.2f')(eth) +
-							' ETH => ' +
-							d3.format(',.2f')(tokenA) +
-							' Token A/B'
-							: d3.format(',.2f')(tokenA) +
-							' Token A/B => ' +
-							d3.format(',.2f')(eth) +
-							' ETH'}
+							? d3.format(',.2f')(eth) + ' ETH => ' + tokenString
+							: tokenString + ' => ' + d3.format(',.2f')(eth) + ' ETH'}
 					</span>
 				</li>
 			</ul>

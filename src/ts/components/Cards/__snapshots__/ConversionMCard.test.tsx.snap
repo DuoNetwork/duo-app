@@ -28,6 +28,9 @@ exports[`ConversionMCard Test Test Snapshot Test Snapshot 1`] = `
           reverted={true}
           timestamp={1539843443}
           tokenA={1}
+          tokenACode="aETH"
+          tokenB={2}
+          tokenBCode="bETH"
           type="DUO"
         />
       </div>

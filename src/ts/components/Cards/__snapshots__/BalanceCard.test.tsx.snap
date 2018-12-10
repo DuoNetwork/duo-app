@@ -41,7 +41,7 @@ exports[`BalanceCard Test Test Snapshot Test Snapshot 1`] = `
     <BalanceInfo
       icon={null}
       mobile={true}
-      name="aETH"
+      name="bETH"
       value={0}
     />
   </styled.div>
@@ -89,7 +89,7 @@ exports[`BalanceCard Test Test Snapshot Test Snapshot 2`] = `
     <BalanceInfo
       icon={null}
       mobile={false}
-      name="aETH"
+      name="bETH"
       value={0}
     />
   </styled.div>

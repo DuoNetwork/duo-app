@@ -3,15 +3,14 @@ import classBIcon from 'images/ClassB_white.png';
 import ethIcon from 'images/ethIcon.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
+import { ICustodianContractAddress } from 'ts/common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SRefreshButton } from './_styled';
 import BalanceInfo from './Balanceinfo';
 import ExtendExtraDiv from './ExtendExtraDiv';
 
 interface IProps {
-	type: string;
-	tenor: string;
+	contractAddress: ICustodianContractAddress;
 	locale: string;
 	account: string;
 	eth: number;
@@ -23,8 +22,7 @@ interface IProps {
 
 export default class BalanceCard extends React.Component<IProps> {
 	public render() {
-		const { eth, aToken, bToken, account, refresh, locale, mobile, type, tenor } = this.props;
-		const contractAddresses = getDualClassAddressByTypeTenor(type, tenor);
+		const { eth, aToken, bToken, account, refresh, locale, mobile, contractAddress} = this.props;
 		return (
 			<SCard
 				title={
@@ -52,13 +50,13 @@ export default class BalanceCard extends React.Component<IProps> {
 					/>
 					<BalanceInfo
 						icon={classAIcon}
-						name={contractAddresses.aToken.code}
+						name={contractAddress.aToken.code}
 						value={aToken}
 						mobile={mobile}
 					/>
 					<BalanceInfo
 						icon={classBIcon}
-						name={contractAddresses.aToken.code}
+						name={contractAddress.bToken.code}
 						value={bToken}
 						mobile={mobile}
 					/>

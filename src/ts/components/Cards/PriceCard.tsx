@@ -8,16 +8,20 @@ import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import { IContractPrice, IDualClassStates, ISourceData } from 'ts/common/types';
+import {
+	IContractPrice,
+	ICustodianContractAddress,
+	IDualClassStates,
+	ISourceData
+} from 'ts/common/types';
 import util from 'ts/common/util';
-import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
 
 interface IProps {
 	type: string;
-	tenor: string;
+	contractAddress: ICustodianContractAddress;
 	locale: string;
 	states: IDualClassStates;
 	sourceLast: ISourceData<IContractPrice>;
@@ -35,8 +39,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 	}
 
 	public render() {
-		const { locale, states, mobile, tenor, type } = this.props;
-		const contractAddresses = getDualClassAddressByTypeTenor(type, tenor);
+		const { locale, states, mobile, contractAddress, type } = this.props;
 		const { source } = this.state;
 		const last: IContractPrice = CST.API_LIST.includes(source)
 			? this.props.sourceLast[source]
@@ -125,11 +128,11 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/token/' +
-									contractAddresses.aToken.address
+									contractAddress.aToken.address
 								}
 								target="_blank"
 							>
-								{contractAddresses.aToken.code}
+								{contractAddress.aToken.code}
 							</a>
 							<Tooltip title={tooltipText}>
 								<img src={infoIcon} />
@@ -165,11 +168,11 @@ export default class PriceCard extends React.Component<IProps, IState> {
 									'https://' +
 									(__KOVAN__ ? 'kovan.' : '') +
 									'etherscan.io/token/' +
-									contractAddresses.bToken.address
+									contractAddress.bToken.address
 								}
 								target="_blank"
 							>
-								{contractAddresses.bToken.code}
+								{contractAddress.bToken.code}
 							</a>
 							<Tooltip title={tooltipText}>
 								<img src={infoIcon} />

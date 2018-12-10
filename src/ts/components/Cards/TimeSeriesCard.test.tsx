@@ -37,6 +37,9 @@ describe('TimeSeriesCard Test', () => {
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
 				<TimeSeriesCard
+					underlying={'underlying'}
+					tokenA={'tokenA'}
+					tokenB={'tokenB'}
 					acceptedPrices={acceptedPrices}
 					locale={locale}
 					period={period}

@@ -23,7 +23,7 @@ exports[`ConversionEntry Test Test Snapshot Test Snapshot 1`] = `
     <span
       className="content"
     >
-      1.00 Token A/B =&gt; 1.00 ETH
+      1.00 tokenA/1.00 tokenB =&gt; 1.00 ETH
     </span>
   </li>
 </ul>
