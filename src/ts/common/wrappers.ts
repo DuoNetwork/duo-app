@@ -1,5 +1,6 @@
 import infura from 'ts/keys/infura.json';
 import DualClassWrapper from '../../../../duo-contract-wrapper/src/DualClassWrapper';
+import EsplanadeWrapper from '../../../../duo-contract-wrapper/src/EsplanadeWrapper';
 import MagiWrapper from '../../../../duo-contract-wrapper/src/MagiWrapper';
 import Web3Wrapper from '../../../../duo-contract-wrapper/src/Web3Wrapper';
 import * as CST from './constants';
@@ -34,4 +35,9 @@ export const getDualClassAddressByTypeTenor = (type: string, tenor: string) => {
 export const magiWrapper = new MagiWrapper(
 	web3Wrapper,
 	web3Wrapper.contractAddresses.Oracles[0].address
+);
+
+export const esplanadeWrapper = new EsplanadeWrapper(
+	web3Wrapper,
+	web3Wrapper.contractAddresses.MultiSigManagers[0].address
 );

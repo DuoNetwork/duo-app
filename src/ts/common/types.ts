@@ -14,6 +14,7 @@ export interface ISourceData<T> {
 export interface IState {
 	readonly dualClass: IDualClassState;
 	readonly magi: IMagiState;
+	readonly esplanade: IEsplanadeState;
 	readonly web3: IWeb3State;
 	readonly dynamo: IDynamoState;
 	readonly ui: IUIState;
@@ -39,6 +40,12 @@ export interface IDualClassState {
 		a: number;
 		b: number;
 	}
+}
+
+export interface IEsplanadeState {
+	readonly subscription: number;
+	readonly esplanadeStates: adminTypes.IEsplanadeStates;
+	readonly esplanadeAddrs: adminTypes.IEsplanadeAddresses;
 }
 
 export interface IMagiState {

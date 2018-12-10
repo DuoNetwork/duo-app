@@ -1,6 +1,7 @@
 import {BEETHOVEN} from '../../../../duo-admin/src/common/constants';
 export * from '../../../../duo-admin/src/common/constants';
 export const AC_DCC_STATES = 'dualClassStates';
+export const AC_ESP_STATES = 'espStates';
 export const AC_DCC_ADDRESSES = 'dualClassAddresses';
 export const AC_DCC_EX_PX = 'dualClassExchangePrices';
 export const AC_DCC_ACCEPTED_PX = 'dualClassAcceptedPrices';
@@ -10,6 +11,7 @@ export const AC_DCC_SUB = 'dualClassSubscription';
 export const AC_DCC_TYPE = 'dualClassType';
 export const AC_MAG_ACCEPTED_PX = 'magiAcceptedPrices';
 export const AC_MAG_SUB = 'magiSubscription';
+export const AC_ESP_SUB = 'espSubscription';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';
@@ -18,6 +20,8 @@ export const AC_DNM_STATUS = 'dynamoStatus';
 export const AC_UI_LOCALE = 'uiLocale';
 export const AC_UI_PERIOD = 'uiPeriod';
 export const AC_UI_SOURCE = 'uiSource';
+
+export const TH_POOL_ADDRESS = 'Pool Address';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
@@ -199,6 +203,8 @@ export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
 export const TH_ACCEPTED_PX = 'Accepted Prices';
+export const TH_HOT_ADDRESS = 'Hot Address';
+export const TH_COLD_ADDRESS = 'Cold Address';
 export const TH_HOME: ILocaleText = {
 	[LOCALE_CN]: '主页',
 	[LOCALE_EN]: 'Home',
