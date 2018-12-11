@@ -20,8 +20,14 @@ export const initialState: IEsplanadeState = {
 		}
 	},
 	esplanadeAddrs: {
-		moderator:  CST.DUMMY_ADDR,
-		candidate: CST.DUMMY_ADDR
+		moderator: {
+			address:  CST.DUMMY_ADDR,
+			balance: 0
+		},
+		candidate: {
+			address: CST.DUMMY_ADDR,
+			balance: 0
+		}
 	},
 	subscription: 0
 };
@@ -34,6 +40,10 @@ export function espReducer(
 		case CST.AC_ESP_STATES:
 			return Object.assign({}, state, {
 				esplanadeStates: action.value
+			});
+		case CST.AC_ESP_ADDRS:
+			return Object.assign({}, state, {
+				esplanadeAddrs: action.value
 			});
 		case CST.AC_ESP_SUB:
 			if (action.value)

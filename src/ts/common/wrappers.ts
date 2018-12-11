@@ -30,7 +30,6 @@ export const getDualClassWrapperByTypeTenor = (type: string, tenor: string) => {
 export const getDualClassAddressByTypeTenor = (type: string, tenor: string) => {
 	if (web3Wrapper.contractAddresses.Custodians[type][tenor])
 		return web3Wrapper.contractAddresses.Custodians[type][tenor];
-
 	return web3Wrapper.contractAddresses.Custodians[CST.BEETHOVEN][CST.TENOR_PPT];
 };
 

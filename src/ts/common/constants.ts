@@ -2,6 +2,7 @@ import {BEETHOVEN} from '../../../../duo-admin/src/common/constants';
 export * from '../../../../duo-admin/src/common/constants';
 export const AC_DCC_STATES = 'dualClassStates';
 export const AC_ESP_STATES = 'espStates';
+export const AC_ESP_ADDRS = 'espAddrs';
 export const AC_DCC_ADDRESSES = 'dualClassAddresses';
 export const AC_DCC_EX_PX = 'dualClassExchangePrices';
 export const AC_DCC_ACCEPTED_PX = 'dualClassAcceptedPrices';
@@ -22,6 +23,7 @@ export const AC_UI_PERIOD = 'uiPeriod';
 export const AC_UI_SOURCE = 'uiSource';
 
 export const TH_POOL_ADDRESS = 'Pool Address';
+export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
@@ -166,6 +168,7 @@ export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
 export const TH_ORACLES = 'Oracles';
 export const TH_CUSTODIANS = 'Custodians';
+export const TH_OTHER_CONTRACT = 'OtherContract';
 export const TH_MAGI = 'Magi';
 export const TH_COVERED_OPTIONS = 'Covered Options';
 export const TH_CHART: ILocaleText = {
@@ -525,4 +528,25 @@ export const TT_NETWORK_CHECK: ILocaleText = {
 		'Данная страница предназначена для ' +
 		(__KOVAN__ ? 'KOVAN' : 'MainNet') +
 		', выберите необходимую сеть в MetaMask'
+};
+
+export const TH_ESP_IS_STARTED: ILocaleText = {
+	[LOCALE_CN]: '是否启动',
+	[LOCALE_EN]: 'is started',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_LAST_OPT_TIME: ILocaleText = {
+	[LOCALE_CN]: '上次操作时间',
+	[LOCALE_EN]: 'last operation time',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_OPT_COOL_DOWN: ILocaleText = {
+	[LOCALE_CN]: '操作冷却',
+	[LOCALE_EN]: 'Operation Cooldown',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
 };

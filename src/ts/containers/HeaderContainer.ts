@@ -28,7 +28,7 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 			if (lowerPath.includes(CST.BEETHOVEN.toLowerCase()))
 				dispatch(dualClassActions.refresh(true));
 			else if (lowerPath.includes(CST.TH_MAGI.toLowerCase())) dispatch(magiActions.refresh());
-			else if (lowerPath.includes('esplanade')) dispatch(esplanadeActions.refresh());
+			else if (lowerPath.includes('esplanade')) dispatch(esplanadeActions.refreshAdmin());
 		},
 		updateLocale: (locale: string) => dispatch(uiActions.localeUpdate(locale))
 	};

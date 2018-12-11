@@ -59,8 +59,14 @@ Object {
   },
   "esplanade": Object {
     "esplanadeAddrs": Object {
-      "candidate": "0x0",
-      "moderator": "0x0",
+      "candidate": Object {
+        "address": "0x0",
+        "balance": 0,
+      },
+      "moderator": Object {
+        "address": "0x0",
+        "balance": 0,
+      },
     },
     "esplanadeStates": Object {
       "custodianContractAddrs": Array [],

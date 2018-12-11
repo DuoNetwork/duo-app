@@ -1,11 +1,18 @@
 import * as CST from 'ts/common/constants';
-import { IEsplanadeStates, VoidThunkAction } from 'ts/common/types';
+import {IEsplanadeAddresses, IEsplanadeStates, VoidThunkAction  } from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 
 export function statesUpdate(states: IEsplanadeStates) {
 	return {
 		type: CST.AC_ESP_STATES,
 		value: states
+	};
+}
+
+export function addressesUpdate(addrs: IEsplanadeAddresses) {
+	return {
+		type: CST.AC_ESP_ADDRS,
+		value: addrs
 	};
 }
 
@@ -16,6 +23,12 @@ export function getStates(): VoidThunkAction {
 	};
 }
 
+export function getAddresses(): VoidThunkAction {
+	return async dispatch => {
+		dispatch(addressesUpdate(await esplanadeWrapper.getAddrs()));
+	};
+}
+
 export function subscriptionUpdate(intervalId: number) {
 	return {
 		type: CST.AC_ESP_SUB,
@@ -23,23 +36,24 @@ export function subscriptionUpdate(intervalId: number) {
 	};
 }
 
-export function refresh(): VoidThunkAction {
-	return async dispatch => {
-		await dispatch(getStates());
-	};
-}
+// export function refresh(): VoidThunkAction {
+// 	return async dispatch => {
+// 		await dispatch(getStates());
+// 	};
+// }
 
-export function subscribe(): VoidThunkAction {
-	return async dispatch => {
-		dispatch(subscriptionUpdate(0));
-		dispatch(refresh());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 60000)));
-	};
-}
+// export function subscribe(): VoidThunkAction {
+// 	return async dispatch => {
+// 		dispatch(subscriptionUpdate(0));
+// 		dispatch(refresh());
+// 		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 60000)));
+// 	};
+// }
 
 export function refreshAdmin(): VoidThunkAction {
 	return async dispatch => {
 		await dispatch(getStates());
+		dispatch(getAddresses());
 	};
 }
 
