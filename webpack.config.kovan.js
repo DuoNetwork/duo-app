@@ -13,7 +13,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, 'dist/kovan'),
-		filename: '[name].[chunkhash].js'
+		filename: '[name].[contenthash].js'
 	},
 	plugins: [
 		new webpack.DefinePlugin({
@@ -23,7 +23,7 @@ module.exports = {
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({
-			filename: 'styles.[chunkhash].css'
+			filename: 'styles.[contenthash].css'
 		}),
 		new HtmlWebpackPlugin({
 			title: 'DUO | Trustless Derivatives',
@@ -35,10 +35,12 @@ module.exports = {
 			analyzerMode: "disabled",
 			reportFilename: "report.html",
 			generateStatsFile: true,
-		})
+		}),
+		new webpack.HashedModuleIdsPlugin()
 	],
 	optimization: {
 		minimizer: [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})],
+		runtimeChunk: 'single',
 		splitChunks: {
 			chunks: 'all',
 			maxInitialRequests: Infinity,

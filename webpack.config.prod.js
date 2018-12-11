@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	mode: 'production',
@@ -12,7 +13,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: '[name].[chunkhash].js'
+		filename: '[name].[contenthash].js'
 	},
 	plugins: [
 		new webpack.DefinePlugin({
@@ -22,7 +23,7 @@ module.exports = {
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({
-			filename: 'styles.[chunkhash].css'
+			filename: 'styles.[contenthash].css'
 		}),
 		new HtmlWebpackPlugin({
 			title: 'DUO | Trustless Derivatives',
@@ -34,10 +35,12 @@ module.exports = {
 			analyzerMode: "disabled",
 			reportFilename: "report.html",
 			generateStatsFile: true,
-		})
+		}),
+		new webpack.HashedModuleIdsPlugin()
 	],
 	optimization: {
 		minimizer: [new TerserPlugin({}), new OptimizeCssAssetsPlugin({})],
+		runtimeChunk: 'single',
 		splitChunks: {
 			chunks: 'all',
 			maxInitialRequests: Infinity,
