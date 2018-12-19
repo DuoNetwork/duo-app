@@ -144,11 +144,11 @@ Array [
 exports[`actions getBalances 2`] = `
 Array [
   Array [
-    "0xC600fe64CDa57b607B251aa0879b8386e9FEd9f7",
+    "0x59E6B3d43F762310626d2905148939973db2BBd3",
     "0x0",
   ],
   Array [
-    "0xa03b5171fE58fD2d6a018693E8D2CeD83b73ce00",
+    "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
     "0x0",
   ],
 ]
