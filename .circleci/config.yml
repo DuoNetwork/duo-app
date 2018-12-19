@@ -13,13 +13,7 @@ jobs:
         - run: git clone https://github.com/FinBook/duo-contract-wrapper.git /home/circleci/duo-contract-wrapper
         - run: cd /home/circleci/duo-contract-wrapper
         - run:
-            name: install-npm
-            command: npm install
-        - run: cd /home/circleci
-        - run: git clone https://github.com/FinBook/duo-contract.git /home/circleci/duo-contract
-        - run: cd /home/circleci/duo-contract
-        - run:
-            name: install-npm
+            name: npm install
             command: npm install
         - run: cd /home/circleci
         - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
