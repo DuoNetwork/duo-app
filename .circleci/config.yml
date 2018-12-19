@@ -18,7 +18,7 @@ jobs:
             name: install npm admin
             command: npm install
         - run: cd /home/circleci
-        - run: git clone https://github.com/FinBook/duo-app.git /home/circleci/duo-app
+        - checkout
         - run: cd /home/circleci/duo-app
         - run:
             name: npm install app
