@@ -5,6 +5,12 @@ jobs:
       docker: 
         - image: circleci/node:8.11.1 
       steps:
+        - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
+        - run: cd /home/circleci/duo-admin
+        - run:
+            name: install npm admin
+            command: npm install
+        - run: cd /home/circleci
         - run: git clone https://github.com/FinBook/duo-app.git /home/circleci/duo-app1
         - run: cd /home/circleci/duo-app1
         - run:
@@ -15,12 +21,6 @@ jobs:
         - run: cd /home/circleci/duo-contract-wrapper
         - run:
             name: npm install contract wrapper
-            command: npm install
-        - run: cd /home/circleci
-        - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
-        - run: cd /home/circleci/duo-admin
-        - run:
-            name: install npm admin
             command: npm install
         - run: cd /home/circleci/duo-app1
         - run:
