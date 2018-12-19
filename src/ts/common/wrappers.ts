@@ -1,12 +1,14 @@
 // fix for @ledgerhq/hw-transport-u2f 4.28.0
 import '@babel/polyfill';
-import infura from 'ts/keys/infura.json';
+// import infura from 'ts/keys/infura.json';
 import DualClassWrapper from '../../../../duo-contract-wrapper/src/DualClassWrapper';
 import EsplanadeWrapper from '../../../../duo-contract-wrapper/src/EsplanadeWrapper';
 import MagiWrapper from '../../../../duo-contract-wrapper/src/MagiWrapper';
 import Web3Wrapper from '../../../../duo-contract-wrapper/src/Web3Wrapper';
 import * as CST from './constants';
 import { ICustodianWrappers } from './types';
+
+const infura = require('ts/keys/infura.json');
 
 const provider =
 	(__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN) + '/' + infura.token;
