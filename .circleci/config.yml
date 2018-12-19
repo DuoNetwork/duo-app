@@ -22,6 +22,6 @@ jobs:
             name: install npm admin
             command: npm install
         - run: cd ~/duo-app
-        - run: 
+        - run:
             name: test
-            command: npm test -- -u --max_old_space_size=2048
+            command: npm test -- -u -w 1
