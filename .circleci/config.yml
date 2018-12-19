@@ -22,7 +22,7 @@ jobs:
         - run:
             name: install npm admin
             command: npm install
-        - run: cd /home/circleci/
+        - run: cd /home/circleci/duo-app1
         - run:
             name: test
             command: npm test -- -u -w 1
