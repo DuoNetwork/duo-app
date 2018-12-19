@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  build:
+      working_directory: /home/circleci/duo-app
+      docker: 
+        - image: circleci/node:8.11.1 
+      steps:
+        - checkout
+        - run:
+            name: install-npm-wee
+            command: npm install
+        - run: cd /home/circleci
+        - run: git clone https://github.com/FinBook/duo-contract-wrapper.git /home/circleci/duo-contract-wrapper
+        - run: cd /home/circleci/duo-contract-wrapper
+        - run:
+            name: install-npm
+            command: npm install
+        - run: cd /home/circleci
+        - run: git clone https://github.com/FinBook/duo-contract.git /home/circleci/duo-contract
+        - run: cd /home/circleci/duo-contract
+        - run:
+            name: install-npm
+            command: npm install
+        - run: cd /home/circleci
+        - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
+        - run: cd /home/circleci/duo-admin
+        - run:
+            name: install-npm
+            command: npm install
+        - run: cd ~/duo-app
+            name: test
+            command: npm test -- -u
