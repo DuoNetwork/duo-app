@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-      working_driectory: /home/circleci/duo-app1    
+      working_directory: /home/circleci/duo-app1    
       docker: 
         - image: circleci/node:8.11.1 
       steps:
