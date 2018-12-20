@@ -23,6 +23,9 @@ jobs:
             name: npm install contract wrapper
             command: npm install
         - run: cd /home/circleci/duo-app
+        - run: npm install aws-sdk
+        - run: npm install moment
+        - run: npm install web3
         - run:
             name: test
             command: npm test -- -w 1
