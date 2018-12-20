@@ -4,9 +4,9 @@ import ethIcon from 'images/ethIcon.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { ICustodianContractAddress } from 'ts/common/types';
+import BalanceInfo from 'ts/components/Cards/BalanceInfo';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SRefreshButton } from './_styled';
-import BalanceInfo from './Balanceinfo';
 import ExtendExtraDiv from './ExtendExtraDiv';
 
 interface IProps {
