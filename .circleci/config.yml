@@ -1,32 +1,60 @@
 version: 2
 jobs:
-  test:
-      working_directory: /home/circleci/duo-app   
-      docker: 
-        - image: circleci/node:8.11.1 
-      resource_class: large
-      steps:
-        - run: git clone https://github.com/FinBook/duo-app.git /home/circleci/duo-app
-        - run: cd /home/circleci/duo-app
-        - run:
-            name: npm install app
-            command: npm install -d
-        - run: cd /home/circleci
-        - run: git clone https://github.com/FinBook/duo-contract-wrapper.git /home/circleci/duo-contract-wrapper
-        - run: cd /home/circleci/duo-contract-wrapper
-        - run:
-            name: npm install contract wrapper
-            command: npm install -d
-        - run: npm install web3
-        - run: cd /home/circleci
-        - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
-        - run: cd /home/circleci/duo-admin
-        - run:
-            name: install npm admin
-            command: npm install -d
-        - run: npm install aws-sdk
-        - run: npm install moment
-        - run: cd /home/circleci/duo-app
-        - run:
-            name: test
-            command: npm test -- -u -w 1
+    build-duo-contract-wrapper:
+        working_directory: /home/circleci/duo-contract-wrapper
+        docker: 
+            - image: circleci/node:8.11.1
+        steps:
+            - run: git clone https://github.com/FinBook/duo-contract-wrapper.git /home/circleci/duo-contract-wrapper
+            - run: cd /home/circleci/duo-contract-wrapper
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+            - run:
+                name: Install npm wee
+                command: npm install
+            - save_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+    build-duo-admin:
+        working_directory: /home/circleci/duo-admin
+        docker: 
+            - image: circleci/node:8.11.1
+        steps:
+            - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
+            - run: cd /home/circleci/duo-admin
+            - restore_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+            - run:
+                name: Install npm wee
+                command: npm install
+            - save_cache:
+                key: dependency-cache-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+    test:
+        working_directory: /home/circleci/duo-app   
+        docker: 
+            - image: circleci/node:8.11.1 
+        steps:
+            - checkout
+            - run:
+                name: Install npm wee
+                command: npm install
+            - run:
+                name: Test
+                command: npm test
+    workflows:
+        version: 2
+        build_and_test:
+            jobs:
+                - checkout_code
+                - build-duo-contract-wrapper
+                - build-duo-admin
+                - test:
+                    requires:
+                        - build-duo-contract-wrapper
+                        - build-duo-admin
+                    filters:
+                        branches:
+                            only: master
