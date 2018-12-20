@@ -40,6 +40,7 @@ jobs:
             - checkout
             - restore_cache:
                 key: dependency-cache-{{ .Environment.CIRCLE_COMPARE_URL }}
+            - restore_cache:
                 key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
             - run:
                 name: Install npm wee
