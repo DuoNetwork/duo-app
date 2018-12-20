@@ -1,10 +1,11 @@
 version: 2
 jobs:
   build:
-      working_directory: /home/circleci/duo-admin   
+      working_directory: /home/circleci/duo-app   
       docker: 
         - image: circleci/node:8.11.1 
       steps:
+        - run: cd /home/circleci
         - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
         - run: cd /home/circleci/duo-admin
         - run:
