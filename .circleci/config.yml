@@ -24,12 +24,12 @@ jobs:
             - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
             - run: cd /home/circleci/duo-admin
             - restore_cache:
-                key: dependency-cache-{{ .Environment.CIRCLE_COMPARE_URL }}
+                key: dependency-assets-{{ .Environment.CIRCLE_SHA1 }}
             - run:
                 name: Install npm wee
                 command: npm install
             - save_cache:
-                key: dependency-cache-{{ .Environment.CIRCLE_COMPARE_URL }}
+                key: dependency-assets-{{ .Environment.CIRCLE_SHA1 }}
                 paths:
                     - /home/circleci/duo-admin
     test:
@@ -41,7 +41,7 @@ jobs:
             - restore_cache:
                 key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
             - restore_cache:
-                key: dependency-cache-{{ .Environment.CIRCLE_COMPARE_URL }}
+                key: dependency-assets-{{ .Environment.CIRCLE_SHA1 }}
             - run:
                 name: Install npm wee
                 command: npm install
