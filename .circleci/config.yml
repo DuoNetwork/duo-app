@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
       working_directory: /home/circleci/duo-app   
       docker: 
         - image: circleci/node:8.11.1 
