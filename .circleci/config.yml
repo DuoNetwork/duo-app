@@ -52,6 +52,8 @@ workflows:
     version: 2
     build_and_test:
         jobs:
+            - build-duo-contract-wrapper
+            - build-duo-admin
             - test:
                 requires:
                     - build-duo-contract-wrapper
