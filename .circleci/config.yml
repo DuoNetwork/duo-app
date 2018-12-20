@@ -11,8 +11,8 @@ jobs:
             name: install npm admin
             command: npm install
         - run: cd /home/circleci
-        - run: git clone https://github.com/FinBook/duo-app.git /home/circleci/duo-app1
-        - run: cd /home/circleci/duo-app1
+        - run: git clone https://github.com/FinBook/duo-app.git /home/circleci/duo-app
+        - run: cd /home/circleci/duo-app
         - run:
             name: npm install app
             command: npm install 
@@ -22,7 +22,7 @@ jobs:
         - run:
             name: npm install contract wrapper
             command: npm install
-        - run: cd /home/circleci/duo-app1
+        - run: cd /home/circleci/duo-app
         - run:
             name: test
-            command: npm test -- -u -w 1
+            command: npm test -w 1
