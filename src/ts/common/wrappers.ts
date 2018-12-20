@@ -8,7 +8,15 @@ import Web3Wrapper from '../../../../duo-contract-wrapper/src/Web3Wrapper';
 import * as CST from './constants';
 import { ICustodianWrappers } from './types';
 
-const infura = require('ts/keys/infura.json');
+let infura = {
+	token: '',
+};
+
+try {
+	infura = require('ts/keys/infura.json');
+} catch (e) {
+	console.log(e)
+}
 
 const provider =
 	(__KOVAN__ ? CST.PROVIDER_INFURA_KOVAN : CST.PROVIDER_INFURA_MAIN) + '/' + infura.token;
