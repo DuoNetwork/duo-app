@@ -8,14 +8,14 @@ jobs:
             - run: git clone https://github.com/FinBook/duo-contract-wrapper.git /home/circleci/duo-contract-wrapper
             - run: cd /home/circleci/duo-contract-wrapper
             - restore_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
+                key: dependency-cache-{{ "contract" }}
             - run:
                 name: Install npm wee
                 command: npm install
             - save_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
+                key: dependency-cache-{{ "contract" }}
                 paths:
-                    - node_modules
+                    - /home/circleci/duo-contract-wrapper
     build-duo-admin:
         working_directory: /home/circleci/duo-admin
         docker: 
@@ -24,20 +24,23 @@ jobs:
             - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
             - run: cd /home/circleci/duo-admin
             - restore_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
+                key: dependency-cache-{{ "admin" }}
             - run:
                 name: Install npm wee
                 command: npm install
             - save_cache:
-                key: dependency-cache-{{ checksum "package.json" }}
+                key: dependency-cache-{{ "admin" }}
                 paths:
-                    - node_modules
+                    - /home/circleci/duo-admin
     test:
         working_directory: /home/circleci/duo-app   
         docker: 
             - image: circleci/node:8.11.1 
         steps:
             - checkout
+            - restore_cache:
+                key: dependency-cache-{{ "admin" }}
+                key: dependency-cache-{{ "contract" }}
             - run:
                 name: Install npm wee
                 command: npm install
@@ -48,8 +51,6 @@ workflows:
     version: 2
     build_and_test:
         jobs:
-            - build-duo-contract-wrapper
-            - build-duo-admin
             - test:
                 requires:
                     - build-duo-contract-wrapper
