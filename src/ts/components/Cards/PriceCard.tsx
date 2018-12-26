@@ -14,7 +14,7 @@ import {
 	IDualClassStates,
 	ISourceData
 } from 'ts/common/types';
-import util from 'ts/common/util';
+import { calculateNav, getTokenInterestOrLeverage } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
 import { SCard, SCardExtraDiv, SCardPriceTag } from './_styled';
@@ -48,17 +48,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					timestamp: states.lastPriceTime
 			};
 		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())
-			? util.calculateNav(
-					type,
-					last.price || 1,
-					last.timestamp,
-					states.resetPrice,
-					states.resetPriceTime,
-					states.alpha,
-					states.beta,
-					states.period,
-					states.periodCoupon
-			)
+			? calculateNav(states, type === CST.BEETHOVEN, last.price || 1, last.timestamp)
 			: [states.navA, states.navB];
 		const ethChange = last.price / states.resetPrice - 1;
 		const tooltipText = (!CST.API_LIST.includes(source.toUpperCase())
@@ -146,12 +136,13 @@ export default class PriceCard extends React.Component<IProps, IState> {
 							<div className="tag-subtext">
 								{type === CST.BEETHOVEN
 									? d3.format('.2%')(
-											(states.periodCoupon * 365 * 24 * 3600000) /
-												states.period || 0
+											getTokenInterestOrLeverage(states, true, true)
 									) +
 									' ' +
 									CST.TH_PA[locale].toLowerCase()
-									: d3.format('.2f')((2 - navA) / (navA || 1)) +
+									: d3.format('.2f')(
+											getTokenInterestOrLeverage(states, false, true)
+									) +
 									'x ' +
 									CST.TH_LEVERAGE[locale].toLowerCase()}
 							</div>
@@ -184,7 +175,13 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-unit-2'}>USD</div>
 							</div>
 							<div className="tag-subtext">
-								{d3.format('.2f')((1 + navB) / (navB || 1)) +
+								{d3.format('.2f')(
+									getTokenInterestOrLeverage(
+										states,
+										type === CST.BEETHOVEN,
+										false
+									)
+								) +
 									'x ' +
 									CST.TH_LEVERAGE[locale].toLowerCase()}
 							</div>
