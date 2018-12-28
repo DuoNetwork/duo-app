@@ -9,10 +9,12 @@
 		"test": "jest",
 		"tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
 		"start": "webpack-dev-server --config webpack.config.dev.js",
-		"analyze": "webpack-bundle-analyzer dist/kovan/stats.json",
-		"rebuild": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js --config webpack.config.kovan.js --json > webpack.json",
-		"rebuildLive": "node --max_old_space_size=2048 ./node_modules/webpack/bin/webpack.js --config webpack.config.prod.js",
-		"build": "npm run clean && npm run rebuild && npm run analyze",
+		"analyze": "npm run clean && npm run analyze:build && npm run analyze:no:build",
+		"analyze:build": "webpack --config webpack.config.analyze.js",
+		"analyze:no:build": "webpack-bundle-analyzer dist/kovan/stats.json",
+		"rebuild": "webpack --config webpack.config.kovan.js",
+		"rebuildLive": "webpack --config webpack.config.prod.js",
+		"build": "npm run clean && npm run rebuild",
 		"buildLive": "npm run clean && npm run rebuildLive"
 	},
 	"jest": {
