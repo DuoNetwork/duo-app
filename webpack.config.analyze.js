@@ -12,7 +12,7 @@ module.exports = {
 		app: path.resolve(__dirname, 'src/ts/app.tsx')
 	},
 	output: {
-		path: path.join(__dirname, 'dist/kovan'),
+		path: path.join(__dirname, 'dist'),
 		filename: '[name].[contenthash].js'
 	},
 	plugins: [
