@@ -95,13 +95,6 @@ workflows:
                 filters:
                     branches:
                         only: master
-            - test-coverage:
-                requires:
-                    - build-duo-contract-wrapper
-                    - build-duo-admin
-                filters:
-                    branches:
-                        only: master
     schedule_deploy:
         triggers:
             - schedule:
