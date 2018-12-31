@@ -1,24 +1,7 @@
 import moment from 'moment';
 import status from '../../../../duo-admin/src/samples/dynamo/status.json';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
-import * as CST from './constants';
 import util from './util';
-
-[CST.BEETHOVEN, CST.MOZART].forEach(type =>
-	test('calculateNav', () => {
-		expect(util.calculateNav(type, 120, 10, 100, 0, 1, 1, 5, 0.000001)).toMatchSnapshot();
-		expect(util.calculateNav(type, 80, 10, 100, 0, 1, 1, 5, 0.000001)).toMatchSnapshot();
-		expect(util.calculateNav(type, 40, 10, 100, 0, 1, 1, 5, 0.000001)).toMatchSnapshot();
-
-		expect(util.calculateNav(type, 120, 10, 100, 0, 2, 1, 5, 0.000001)).toMatchSnapshot();
-		expect(util.calculateNav(type, 80, 10, 100, 0, 2, 1, 5, 0.000001)).toMatchSnapshot();
-		expect(util.calculateNav(type, 40, 10, 100, 0, 2, 1, 5, 0.000001)).toMatchSnapshot();
-
-		expect(util.calculateNav(type, 120, 10, 100, 0, 0.5, 1, 5, 0.000001)).toMatchSnapshot();
-		expect(util.calculateNav(type, 80, 10, 100, 0, 0.5, 1, 5, 0.000001)).toMatchSnapshot();
-		expect(util.calculateNav(type, 20, 10, 100, 0, 0.5, 1, 5, 0.000001)).toMatchSnapshot();
-	})
-);
 
 const convertedStatus = dynamoUtil.parseStatus(status);
 test('getLastPriceFromStatus', () =>
@@ -61,8 +44,4 @@ test('getUTCNowTimestamp days', () => {
 
 test('getUTCNowTimestamp Long Ago', () => {
 	expect(util.convertUpdateTime(moment().valueOf() - 260000000000000000)).toBe('Long Time Ago');
-});
-
-test('range', () => {
-	expect(util.range(0, 3)).toEqual([0, 1, 2]);
 });

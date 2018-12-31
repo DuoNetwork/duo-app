@@ -91,7 +91,7 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 		const contractAddress = isA
 			? dualClassAddress.aToken.address
 			: dualClassAddress.bToken.address;
-		web3Wrapper.erc20Approve(contractAddress, account, address, Number(amount));
+		web3Wrapper.erc20Approve(contractAddress, account, address, Number(amount), () => ({}));
 		this.handleClear();
 	};
 

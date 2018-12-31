@@ -9,13 +9,13 @@ import * as CST from './constants';
 import { ICustodianWrappers } from './types';
 
 let infura = {
-	token: '',
+	token: ''
 };
 
 try {
 	infura = require('ts/keys/infura.json');
 } catch (e) {
-	console.log(e)
+	console.log(e);
 }
 
 const provider =
@@ -52,3 +52,7 @@ export const esplanadeWrapper = new EsplanadeWrapper(
 	web3Wrapper,
 	web3Wrapper.contractAddresses.MultiSigManagers[0].address
 );
+
+export const calculateNav = DualClassWrapper.calculateNav;
+
+export const getTokenInterestOrLeverage = DualClassWrapper.getTokenInterestOrLeverage;

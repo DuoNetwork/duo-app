@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
 	mode: 'production',
@@ -18,7 +19,7 @@ module.exports = {
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production'),
 			__DEV__: false,
-			__KOVAN__: false
+			__KOVAN__: true
 		}),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 		new MiniCssExtractPlugin({
@@ -29,6 +30,11 @@ module.exports = {
 			template: path.resolve(__dirname, 'src/index.ejs'),
 			favicon: path.join(__dirname, 'src/images/favicon.ico'),
 			filename: 'index.html'
+		}),
+		new BundleAnalyzerPlugin({
+			analyzerMode: "disabled",
+			reportFilename: "report.html",
+			generateStatsFile: true,
 		}),
 		new webpack.HashedModuleIdsPlugin()
 	],
