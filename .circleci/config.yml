@@ -65,8 +65,8 @@ jobs:
                 name: test
                 command: npm test -- -w 1
             - run:
-                  name: coverage
-                  command: npm test -- --coverage
+                name: coverage
+                command: npm test -- --coverage --forceExit
             - save_cache:
                   key: dependency-test-{{ .Environment.CIRCLE_SHA1 }}
                   paths:
@@ -89,6 +89,13 @@ workflows:
             - build-duo-contract-wrapper
             - build-duo-admin
             - test:
+                requires:
+                    - build-duo-contract-wrapper
+                    - build-duo-admin
+                filters:
+                    branches:
+                        only: master
+            - test-coverage:
                 requires:
                     - build-duo-contract-wrapper
                     - build-duo-admin
