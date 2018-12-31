@@ -66,7 +66,7 @@ jobs:
                 command: npm test -- -w 1
             - run:
                 name: coverage
-                command: npm test -- --coverage --forceExit --detectOpenHandles
+                command: npm test -- -w 1 --coverage --forceExit --detectOpenHandles
             - save_cache:
                   key: dependency-test-{{ .Environment.CIRCLE_SHA1 }}
                   paths:
