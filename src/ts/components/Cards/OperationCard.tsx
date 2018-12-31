@@ -147,7 +147,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		});
 	};
 
-	private handleSubmit = () => {
+	private handleSubmit = async () => {
 		const { account, states, refresh, tenor, type } = this.props;
 		const { isCreate, amount } = this.state;
 		const amtNum = Number(amount);
@@ -157,37 +157,35 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = amtNum - fee;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
-			dualClassWrapper.create(account, amtNum, (txHash: string) =>
-				dynamoUtil
-					.insertUIConversion(
-						contractAddress,
-						account,
-						txHash,
-						true,
-						ethNetOfFee,
-						tokenA,
-						tokenB,
-						fee
-					)
-					.then(() => refresh())
-			);
+			const txHash = await dualClassWrapper.create(account, amtNum, '');
+			dynamoUtil
+				.insertUIConversion(
+					contractAddress,
+					account,
+					txHash,
+					true,
+					ethNetOfFee,
+					tokenA,
+					tokenB,
+					fee
+				)
+				.then(() => refresh());
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
 			const fee = ethAmount * states.redeemCommRate;
-			dualClassWrapper.redeem(account, amtNum, amtNum, (txHash: string) =>
-				dynamoUtil
-					.insertUIConversion(
-						contractAddress,
-						account,
-						txHash,
-						false,
-						ethAmount - fee,
-						amtNum,
-						amtNum,
-						fee
-					)
-					.then(() => refresh())
-			);
+			const txHash = await dualClassWrapper.redeem(account, amtNum, amtNum);
+			dynamoUtil
+				.insertUIConversion(
+					contractAddress,
+					account,
+					txHash,
+					false,
+					ethAmount - fee,
+					amtNum,
+					amtNum,
+					fee
+				)
+				.then(() => refresh());
 		}
 		this.setState({
 			amount: '',
@@ -204,7 +202,18 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		});
 
 	public render() {
-		const { states, account, eth, aToken, bToken, gasPrice, locale, mobile, tenor, type } = this.props;
+		const {
+			states,
+			account,
+			eth,
+			aToken,
+			bToken,
+			gasPrice,
+			locale,
+			mobile,
+			tenor,
+			type
+		} = this.props;
 		const { isCreate, amount, amountError, description } = this.state;
 		const limit = util.round(isCreate ? eth : Math.min(aToken, bToken));
 		const commissionRate = isCreate ? states.createCommRate : states.redeemCommRate;
