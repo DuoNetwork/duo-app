@@ -47,11 +47,11 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					price: states.lastPrice,
 					timestamp: states.lastPriceTime
 			};
-		const [navA, navB] = CST.API_LIST.includes(source.toUpperCase())
+		const [navA, navB] = CST.API_LIST.includes(source)
 			? calculateNav(states, type === CST.BEETHOVEN, last.price || 1, last.timestamp)
 			: [states.navA, states.navB];
 		const ethChange = last.price / states.resetPrice - 1;
-		const tooltipText = (!CST.API_LIST.includes(source.toUpperCase())
+		const tooltipText = (!CST.API_LIST.includes(source)
 			? CST.TT_CTD_NAV
 			: CST.TT_EST_NAV)[locale];
 		return (
