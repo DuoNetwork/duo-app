@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/FinBook/duo-app.svg?style=svg)](https://circleci.com/gh/FinBook/duo-app)
+[![Coverage Status](https://coveralls.io/repos/github/FinBook/duo-app/badge.svg)](https://coveralls.io/github/FinBook/duo-app)
 # Introduction
 Web App for DUO Network
 
