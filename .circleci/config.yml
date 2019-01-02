@@ -67,6 +67,9 @@ jobs:
             - run:
                 name: coverage
                 command: npm test -- -w 1 --coverage --forceExit --detectOpenHandles
+            -  run : 
+                name :  post coverage
+                command: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls 
             - save_cache:
                   key: dependency-test-{{ .Environment.CIRCLE_SHA1 }}
                   paths:
