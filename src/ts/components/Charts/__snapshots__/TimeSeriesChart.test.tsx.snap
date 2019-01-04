@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthCard Test User Login Test Snapshot 1`] = `
+<div
+  className="chart-wrapper"
+/>
+`;
