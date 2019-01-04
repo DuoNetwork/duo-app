@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Styled Test CSS 1`] = `
+.c0 {
+  background: rgba(35,36,37,1);
+  padding: 0;
+  border-radius: 0;
+}
+
+<Menu
+  className="c0"
+  focusable={false}
+  prefixCls="ant-menu"
+  theme="light"
+/>
+`;
+
+exports[`Styled Test CSS 2`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: rgba(255,255,255,.4);
+  font-size: 10px;
+  font-weight: 400;
+  font-family: 'Roboto','Microsoft YaHei';
+  padding: 5px 10px;
+}
+
+.c0 .picker-box {
+  width: 12px;
+  height: 12px;
+  border: 1px solid;
+  border-color: rgba(255,255,255,.4);
+  margin-right: 5px;
+}
+
+.c0:hover {
+  background: rgba(45,46,47,1);
+}
+
+<MenuItem
+  className="c0"
+/>
+`;
+
+exports[`Styled Test CSS 3`] = `
+.c0 {
+  color: rgba(255,255,255,.8);
+}
+
+.c0 .ant-modal-content {
+  border-radius: 0;
+  background: rgba(25,26,28,1);
+}
+
+.c0 .ant-modal-header {
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.c0 .ant-modal-footer {
+  border-radius: 0;
+  background: transparent;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.c0 .ant-modal-title {
+  color: rgba(255,255,255,.8);
+}
+
+.c0 .ant-modal-close {
+  color: rgba(255,255,255,.4);
+}
+
+.c0 .ant-modal-close:focus,
+.c0 .ant-modal-close:hover {
+  color: rgba(255,255,255,.6);
+}
+
+<Modal
+  cancelButtonDisabled={false}
+  className="c0"
+  confirmLoading={false}
+  maskTransitionName="fade"
+  okButtonDisabled={false}
+  okType="primary"
+  prefixCls="ant-modal"
+  transitionName="zoom"
+  visible={false}
+  width={520}
+/>
+`;
