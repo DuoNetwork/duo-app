@@ -12,6 +12,10 @@ class Util {
 		else return 'Long Time Ago';
 	}
 
+	public formatTime(e: number) {
+		return moment(e).format('YYYY-MM-DD HH:mm:ss');
+	}
+
 	public getUTCNowTimestamp() {
 		return moment().valueOf();
 	}
