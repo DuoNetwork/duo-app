@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ConversionEntry Test Test Snapshot Test Snapshot 1`] = `
+<ul>
+  <li>
+    <span
+      className="title"
+    >
+      1970-01-01 07:30:00
+    </span>
+    <span
+      className="content"
+    />
+  </li>
+  <li>
+    <span
+      className="title"
+    />
+    <span
+      className="content"
+    >
+      123.00 test/123.00 test =&gt; 123.00 ETH
+    </span>
+  </li>
+</ul>
+`;
