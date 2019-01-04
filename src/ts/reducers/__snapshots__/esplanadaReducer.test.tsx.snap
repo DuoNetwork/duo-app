@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ui reducer default 1`] = `
+Object {
+  "esplanadeAddrs": Object {
+    "candidate": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "moderator": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+  },
+  "esplanadeStates": Object {
+    "custodianContractAddrs": Array [],
+    "isStarted": false,
+    "lastOperationTime": 0,
+    "operationCoolDown": 0,
+    "otherContractAddrs": Array [],
+    "poolAddrsCold": Array [],
+    "poolAddrsHot": Array [],
+    "votingData": Object {
+      "started": 0,
+      "totalVoters": 0,
+      "votedAgainst": 0,
+      "votedFor": 0,
+    },
+    "votingStage": "",
+  },
+  "subscription": 0,
+}
+`;
+
+exports[`ui reducer espAddrs 1`] = `
+Object {
+  "esplanadeAddrs": Array [
+    Object {
+      "esplanadeAddrs": "test",
+    },
+  ],
+  "esplanadeStates": Array [
+    Object {
+      "esplanadeStates": "test",
+    },
+  ],
+  "subscription": 0,
+}
+`;
+
+exports[`ui reducer espStates 1`] = `
+Object {
+  "esplanadeAddrs": Object {
+    "candidate": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "moderator": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+  },
+  "esplanadeStates": Array [
+    Object {
+      "esplanadeStates": "test",
+    },
+  ],
+  "subscription": 0,
+}
+`;
+
+exports[`ui reducer espSubscription 1`] = `
+Object {
+  "esplanadeAddrs": Array [
+    Object {
+      "esplanadeAddrs": "test",
+    },
+  ],
+  "esplanadeStates": Array [
+    Object {
+      "esplanadeStates": "test",
+    },
+  ],
+  "subscription": Array [
+    Object {
+      "subscription": "test",
+    },
+  ],
+}
+`;
