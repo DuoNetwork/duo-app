@@ -12,10 +12,6 @@ test('round', () => {
 });
 
 test('formatNumber', () => {
-	expect(util.formatTime(1234567890)).toBe('1970-01-15 14:26:07');
-});
-
-test('formatNumber', () => {
 	expect(util.formatNumber(1e-9)).toBe('0.000');
 	expect(util.formatNumber(0.0123456)).toBe('0.01235');
 	expect(util.formatNumber(1234.56789)).toBe('1,234.57');
