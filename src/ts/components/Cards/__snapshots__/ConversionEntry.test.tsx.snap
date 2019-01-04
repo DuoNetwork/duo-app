@@ -6,7 +6,7 @@ exports[`ConversionEntry Test Test Snapshot Test Snapshot 1`] = `
     <span
       className="title"
     >
-      1970-01-01 07:30:00
+      1970-01-01 12:00:00
     </span>
     <span
       className="content"

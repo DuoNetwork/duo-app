@@ -1,5 +1,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import util from 'ts/common/util';
 import ConversionEntry from './ConversionEntry';
 
 describe('ConversionEntry Test', () => {
@@ -15,6 +16,7 @@ describe('ConversionEntry Test', () => {
 		const reverted = true;
 		const locale = 'test';
 		it('Test Snapshot', () => {
+			util.formatTime = jest.fn(() => '1970-01-01 12:00:00');
 			const wrapper = shallow(
 				<ConversionEntry
 					timestamp={timestamp}

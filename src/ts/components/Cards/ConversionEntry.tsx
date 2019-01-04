@@ -1,8 +1,8 @@
 //import { Table, Tooltip } from 'antd';
 import * as d3 from 'd3';
-import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
+import util from 'ts/common/util';
 
 interface IProps {
 	timestamp: number;
@@ -42,7 +42,7 @@ export default class ConversionEntry extends React.Component<IProps> {
 		return (
 			<ul>
 				<li>
-					<span className="title">{moment(timestamp).format('YYYY-MM-DD HH:mm:ss')}</span>
+					<span className="title">{util.formatTime(timestamp)}</span>
 					<span className="content">
 						{pending
 							? CST.TH_PENDING[locale]
