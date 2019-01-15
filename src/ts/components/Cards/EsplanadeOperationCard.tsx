@@ -50,8 +50,8 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 		return null;
 	}
 
-	public handleAddCustodian = (account: string) =>
-		esplanadeWrapper.addCustodian(account, this.state.address);
+	public handleAddCustodian = () =>
+		esplanadeWrapper.addCustodian( this.state.address);
 
 	private handleAddressChange = (addr: string) =>
 		this.setState({
@@ -60,7 +60,7 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 		});
 
 	public render() {
-		const { account, gasPrice, locale, states } = this.props;
+		const { gasPrice, locale, states } = this.props;
 		const { addressError } = this.state;
 
 		return (
@@ -93,7 +93,7 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 								/>
 								<button
 									className={'form-button'}
-									onClick={() => this.handleAddCustodian(account)}
+									onClick={() => this.handleAddCustodian()}
 								>
 									{CST.TH_ADD_CUSTODIAN}
 								</button>
