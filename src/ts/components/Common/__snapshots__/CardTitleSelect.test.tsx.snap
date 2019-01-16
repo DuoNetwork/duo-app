@@ -39,6 +39,12 @@ exports[`CardTitleSelect Test User Login test Snapshot 1`] = `
       >
         GDAX
       </Option>
+      <Option
+        key="bitstamp"
+        value="bitstamp"
+      >
+        BITSTAMP
+      </Option>
     </Styled(Select)>
   </styled.div>
 </styled.div>
@@ -82,6 +88,12 @@ exports[`CardTitleSelect Test User Login test Snapshot 2`] = `
         value="gdax"
       >
         GDAX
+      </Option>
+      <Option
+        key="bitstamp"
+        value="bitstamp"
+      >
+        BITSTAMP
       </Option>
     </Styled(Select)>
   </styled.div>

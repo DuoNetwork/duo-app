@@ -1,5 +1,7 @@
 import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import * as React from 'react';
+import RadioExtra from '../Common/RadioExtra';
 import TimeSeriesCard from './TimeSeriesCard';
 
 describe('TimeSeriesCard Test', () => {
@@ -50,6 +52,23 @@ describe('TimeSeriesCard Test', () => {
 				/>
 			);
 			expect(wrapper).toMatchSnapshot();
+		});
+		it('Test Snapshot', () => {
+			const wrapper = mount(
+				<TimeSeriesCard
+					underlying={'underlying'}
+					tokenA={'tokenA'}
+					tokenB={'tokenB'}
+					acceptedPrices={acceptedPrices}
+					locale={locale}
+					period={5}
+					prices={prices}
+					source={source}
+					handleSourceUpdate={handleSourceUpdate}
+					handlePeriodUpdate={handlePeriodUpdate}
+				/>
+			);
+			wrapper.find(RadioExtra).simulate('change', { target: { value: '5' } });
 		});
 	});
 });
