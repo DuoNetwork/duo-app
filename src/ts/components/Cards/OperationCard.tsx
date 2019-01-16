@@ -157,7 +157,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = amtNum - fee;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
-			const txHash = await dualClassWrapper.create(account, amtNum, '');
+			const txHash = await dualClassWrapper.create( account, amtNum, '');
 			dynamoUtil
 				.insertUIConversion(
 					contractAddress,

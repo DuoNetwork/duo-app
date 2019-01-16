@@ -46,7 +46,7 @@ export default class AdminInputButton extends React.Component<IProps, IState> {
 	};
 
 	private handleClick = () => {
-		const { account, type, tenor, custodianType } = this.props;
+		const {account,  type, tenor, custodianType } = this.props;
 		const index =
 			this.props.index === null || this.props.index === undefined ? -1 : this.props.index;
 		const { value, valueError, value1Error } = this.state;

@@ -74,12 +74,18 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 	};
 
 	private handleTransfer = () => {
+
 		const { account, tenor, type } = this.props;
 		const { isA, address, amount } = this.state;
 		const dualClassAddress = getDualClassAddressByTypeTenor(type, tenor);
+		console.log('######################");')
+
+		console.log(account);
+		console.log(address);
 		const contractAddress = isA
 			? dualClassAddress.aToken.address
 			: dualClassAddress.bToken.address;
+		console.log(contractAddress);
 		web3Wrapper.erc20Transfer(contractAddress, account, address, Number(amount));
 		this.handleClear();
 	};
