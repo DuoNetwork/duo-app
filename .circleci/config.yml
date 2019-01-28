@@ -46,25 +46,6 @@ jobs:
                 name: Install npm
                 command: npm install
             - run:
-                name: test
-                command: npm test -- -w 1
-    test-coverage:
-        working_directory: /home/circleci/duo-app   
-        docker: 
-            - image: circleci/node:8.11.1 
-        steps:
-            - checkout
-            - restore_cache:
-                key: dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
-            - restore_cache:
-                key: dependency-assets-{{ .Environment.CIRCLE_SHA1 }}
-            - run:
-                name: Install npm
-                command: npm install
-            - run:
-                name: test
-                command: npm test -- -w 1
-            - run:
                 name: coverage
                 command: npm test -- -w 1 --coverage --forceExit --detectOpenHandles
             -  run : 
@@ -95,16 +76,6 @@ workflows:
                 requires:
                     - build-duo-contract-wrapper
                     - build-duo-admin
-                filters:
-                    branches:
-                        only: master
-            - test-coverage:
-                requires:
-                    - build-duo-contract-wrapper
-                    - build-duo-admin
-                filters:
-                    branches:
-                        only: master
     schedule_deploy:
         triggers:
             - schedule:
@@ -115,7 +86,7 @@ workflows:
         jobs:
             - build-duo-contract-wrapper
             - build-duo-admin
-            - test-coverage:
+            - test:
                 requires:
                     - build-duo-contract-wrapper
                     - build-duo-admin
@@ -124,4 +95,4 @@ workflows:
                         only: master
             - deploy:
                   requires:
-                      - test-coverage
+                      - test
