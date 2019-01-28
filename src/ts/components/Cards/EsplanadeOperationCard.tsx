@@ -51,7 +51,7 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 	}
 
 	public handleAddCustodian = () =>
-		esplanadeWrapper.addCustodian( this.state.address);
+		esplanadeWrapper.addCustodian(this.props.account, this.state.address);
 
 	private handleAddressChange = (addr: string) =>
 		this.setState({

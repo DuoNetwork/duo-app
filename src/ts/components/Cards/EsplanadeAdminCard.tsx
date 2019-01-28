@@ -51,7 +51,7 @@ export default class EsplanadeAdminCard extends React.Component<IProps> {
 					<button
 						className="form-button"
 						disabled={!isModerator}
-						onClick={() => esplanadeWrapper.removeAddress(addr.address, true)}
+						onClick={() => esplanadeWrapper.removeAddress(account, addr.address, true)}
 					>
 						{CST.TH_RM_ADDR}
 					</button>
@@ -74,7 +74,7 @@ export default class EsplanadeAdminCard extends React.Component<IProps> {
 					<button
 						className="form-button"
 						disabled={!isModerator}
-						onClick={() => esplanadeWrapper.removeAddress(addr.address, false)}
+						onClick={() => esplanadeWrapper.removeAddress(account, addr.address, false)}
 					>
 						{CST.TH_RM_ADDR}
 					</button>

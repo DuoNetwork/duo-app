@@ -23,8 +23,6 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 		refresh: (path: string) => {
 			dispatch(web3Actions.refresh());
 			const lowerPath = path.toLocaleLowerCase();
-			console.log('lowerPath, ###########');
-			console.log(lowerPath);
 			if (lowerPath.includes(CST.BEETHOVEN.toLowerCase()))
 				dispatch(dualClassActions.refresh(true));
 			else if (lowerPath.includes(CST.TH_MAGI.toLowerCase())) dispatch(magiActions.refresh());

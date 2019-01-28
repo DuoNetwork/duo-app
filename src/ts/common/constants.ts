@@ -1,4 +1,4 @@
-import {BEETHOVEN} from '../../../../duo-admin/src/common/constants';
+import { BEETHOVEN } from '../../../../duo-admin/src/common/constants';
 export * from '../../../../duo-admin/src/common/constants';
 export const AC_DCC_STATES = 'dualClassStates';
 export const AC_ESP_STATES = 'espStates';
@@ -58,6 +58,7 @@ export const TH_REDEEM: ILocaleText = {
 	[LOCALE_RU]: 'Вывести'
 };
 export const TH_ETH = 'ETH';
+export const TH_WETH = 'WETH';
 export const TH_DUO = 'DUO';
 export const TH_APPROVE: ILocaleText = {
 	[LOCALE_CN]: '授权',
@@ -468,9 +469,17 @@ export const TT_RESULT_VARY: ILocaleText = {
 	[LOCALE_JP]: '際の結果と異なる場合がありえます',
 	[LOCALE_RU]: 'Может отличаться от конечной суммы'
 };
-export const TT_INPUT_AMOUNT: ILocaleText = {
-	[LOCALE_CN]: '请输入数量',
-	[LOCALE_EN]: 'Please input amount',
+export const TT_INPUT_ETH_AMOUNT: ILocaleText = {
+	///////////////////////////
+	[LOCALE_CN]: '请输入ETH数量',
+	[LOCALE_EN]: 'Please input ETH amount',
+	[LOCALE_JP]: '数量を入力してください',
+	[LOCALE_RU]: 'Введите сумму'
+};
+export const TT_INPUT_WETH_AMOUNT: ILocaleText = {
+	/////////////////////////////
+	[LOCALE_CN]: '请输入WETH数量',
+	[LOCALE_EN]: 'Please input WETH amount',
 	[LOCALE_JP]: '数量を入力してください',
 	[LOCALE_RU]: 'Введите сумму'
 };

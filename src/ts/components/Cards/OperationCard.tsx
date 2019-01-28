@@ -6,7 +6,8 @@ import infoIcon from 'images/info.svg';
 import demoRedeem from 'images/redeemDemo.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IDualClassStates } from 'ts/common/types';
+import DualClassWrapper from '../../../../../duo-contract-wrapper/src/DualClassWrapper';
+import { IDualClassStates, ICustodianContractAddress } from 'ts/common/types';
 import util from 'ts/common/util';
 import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
@@ -26,6 +27,7 @@ interface IProps {
 	tenor: string;
 	locale: string;
 	states: IDualClassStates;
+	contractAddress: ICustodianContractAddress;
 	eth: number;
 	aToken: number;
 	bToken: number;
@@ -50,7 +52,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			isCreate: true,
 			amount: '',
 			amountError: '',
-			description: '',
+			description: this.getConversionDescription(0, 0, true),
 			locale: props.locale
 		};
 	}
@@ -67,13 +69,14 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		return null;
 	}
 
-	private handleTypeChange = () =>
+	private handleTypeChange = () => {
 		this.setState({
 			isCreate: !this.state.isCreate,
 			amount: '',
 			amountError: '',
-			description: ''
+			description: this.getConversionDescription(0, 0, !this.state.isCreate)
 		});
+	};
 
 	private handleAmountInputChange = (value: string) =>
 		this.setState({
@@ -91,18 +94,36 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		});
 
 	private getConversionDescription = (eth: number, ab: number, isCreate: boolean) => {
+		const amount = isCreate ? eth : ab;
+		const { states, contractAddress } = this.props;
+
+		if (amount === 0)
+			return isCreate
+				? `Create ${contractAddress.aToken.code} and ${
+						contractAddress.bToken.code
+				  } with ETH`
+				: `Redeem ETH from ${contractAddress.aToken.code} and ${
+						contractAddress.bToken.code
+				  }`;
+		const [aTokenPerEth, bTokenPerEth] = states
+			? DualClassWrapper.getTokensPerEth(states)
+			: [0, 0];
+
+		const ethNum = isCreate ? amount : Number(amount) / aTokenPerEth;
+		const feeNum = Number(ethNum) * (isCreate ? states.createCommRate : states.redeemCommRate);
+		const ethAfterFeeNum = Number(ethNum) - feeNum;
+		const aTokenAmt = util.formatBalance(ethAfterFeeNum * aTokenPerEth);
+		const bTokenAmt = util.formatBalance(ethAfterFeeNum * bTokenPerEth);
+		const feeAmt = util.formatBalance(feeNum);
+		const ethAmt = util.formatBalance(ethAfterFeeNum);
+
 		return isCreate
-			? d3.formatPrefix(',.8', 1)(eth) +
-					' ' +
-					CST.TH_ETH +
-					' --> ' +
-					d3.formatPrefix(',.8', 1)(ab) +
-					' Token A/B '
-			: d3.formatPrefix(',.8', 1)(ab) +
-					' Token A/B --> ' +
-					d3.formatPrefix(',.8', 1)(eth) +
-					' ' +
-					CST.TH_ETH;
+			? `${ethAmt}(after fee ${feeAmt}) ETH --> ${aTokenAmt} ${
+					contractAddress.aToken.code
+			  } + ${bTokenAmt} ${contractAddress.bToken.code}`
+			: `${aTokenAmt} ${contractAddress.aToken.code} + ${bTokenAmt} ${
+					contractAddress.bToken.code
+			  } --> ${ethAmt}(after fee ${feeAmt}) ETH`;
 	};
 
 	private getDescription = (amount: string) => {
@@ -157,7 +178,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			const fee = amtNum * states.createCommRate;
 			const ethNetOfFee = amtNum - fee;
 			const [tokenA, tokenB] = this.getABFromEth(ethNetOfFee);
-			const txHash = await dualClassWrapper.create( account, amtNum, '');
+			const txHash = await dualClassWrapper.create(account, amtNum, '');
 			dynamoUtil
 				.insertUIConversion(
 					contractAddress,
@@ -212,7 +233,8 @@ export default class OperationCard extends React.Component<IProps, IState> {
 			locale,
 			mobile,
 			tenor,
-			type
+			type,
+			contractAddress
 		} = this.props;
 		const { isCreate, amount, amountError, description } = this.state;
 		const limit = util.round(isCreate ? eth : Math.min(aToken, bToken));
@@ -313,11 +335,17 @@ export default class OperationCard extends React.Component<IProps, IState> {
 										onChange={e => this.handleAmountInputChange(e.target.value)}
 										width={mobile ? '140px' : ''}
 										onBlur={() => this.handleAmountBlur(limit)}
-										placeholder={CST.TT_INPUT_AMOUNT[locale]}
+										placeholder={
+											isCreate
+												? CST.TT_INPUT_ETH_AMOUNT[locale]
+												: `Please input ${
+														contractAddress.aToken.code
+												  } amount`
+										}
 										right
 									/>
 								</li>
-								<li className="description">
+								<li className="description" style={{ height: 40 }}>
 									<div>{amountError || description}</div>
 									<Tooltip title={tooltipText}>
 										<img src={infoIcon} />

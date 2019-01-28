@@ -128,6 +128,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 									conversions={conversions}
 								/>
 								<OperationCard
+									contractAddress={contractAddress}
 									type={type}
 									tenor={tenor}
 									locale={locale}
@@ -167,6 +168,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 					) : null}
 					{account !== CST.DUMMY_ADDR ? (
 						<OperationCard
+							contractAddress={contractAddress}
 							type={type}
 							tenor={tenor}
 							locale={locale}
