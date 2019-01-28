@@ -23,8 +23,12 @@ interface IProps {
 }
 
 interface IState {
-	addressError: string;
-	address: string;
+	custodianAddressErr: string;
+	otherContractAddressErr: string;
+	custodianAddress: string;
+	otherContractAddress: string;
+	firstAddressToAdd: string;
+	secondAddressToAdd: string;
 	locale: string;
 }
 
@@ -32,8 +36,12 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			addressError: '',
-			address: '',
+			custodianAddressErr: '',
+			otherContractAddressErr: '',
+			custodianAddress: '',
+			otherContractAddress: '',
+			firstAddressToAdd: '',
+			secondAddressToAdd: '',
 			locale: props.locale
 		};
 	}
@@ -51,17 +59,31 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 	}
 
 	public handleAddCustodian = () =>
-		esplanadeWrapper.addCustodian(this.props.account, this.state.address);
+		esplanadeWrapper.addCustodian(this.props.account, this.state.custodianAddress);
 
-	private handleAddressChange = (addr: string) =>
+	public handleAddOtherContract = () =>
+		esplanadeWrapper.addOtherContracts(this.props.account, this.state.otherContractAddress);
+
+	private handleCustodianAddressChange = (addr: string) =>
 		this.setState({
-			address: addr,
-			addressError: esplanadeWrapper.web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address'
+			custodianAddress: addr,
+			custodianAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address'
 		});
+	private handleOtherContractAddressChange = (addr: string) =>
+		this.setState({
+			otherContractAddress: addr,
+			otherContractAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address'
+		});
+
+	// private handleAddAddressChange = (index: number, addr: string) =>
+	// 	this.setState({
+	// 		(index === 0? firstAddressToAdd: secondAddressToAdd): addr,
+	// 		otherContractAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address'
+	// 	});
 
 	public render() {
 		const { gasPrice, locale, states } = this.props;
-		const { addressError } = this.state;
+		const { custodianAddressErr, otherContractAddressErr } = this.state;
 
 		return (
 			<SCard
@@ -84,11 +106,11 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 						<ul>
 							<li className="no-bg">
 								<SInput
-									className={addressError ? 'input-error' : ''}
+									className={custodianAddressErr ? 'input-error' : ''}
 									placeholder={CST.TT_INPUT_ADDR[locale]}
-									width={'300px'}
-									value={this.state.address}
-									onChange={e => this.handleAddressChange(e.target.value)}
+									width={'400px'}
+									value={this.state.custodianAddress}
+									onChange={e => this.handleCustodianAddressChange(e.target.value)}
 									small
 								/>
 								<button
@@ -96,6 +118,23 @@ export default class EspOperationCard extends React.Component<IProps, IState> {
 									onClick={() => this.handleAddCustodian()}
 								>
 									{CST.TH_ADD_CUSTODIAN}
+								</button>
+							</li>
+
+							<li className="no-bg">
+								<SInput
+									className={otherContractAddressErr ? 'input-error' : ''}
+									placeholder={CST.TT_INPUT_ADDR[locale]}
+									width={'400px'}
+									value={this.state.otherContractAddress}
+									onChange={e => this.handleOtherContractAddressChange(e.target.value)}
+									small
+								/>
+								<button
+									className={'form-button'}
+									onClick={() => this.handleAddOtherContract()}
+								>
+									{CST.TH_ADD_OTHER_CONTRACT}
 								</button>
 							</li>
 						</ul>

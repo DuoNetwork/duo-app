@@ -1,5 +1,5 @@
 import * as CST from 'ts/common/constants';
-import {IEsplanadeAddresses, IEsplanadeStates, VoidThunkAction  } from 'ts/common/types';
+import { IEsplanadeStates, VoidThunkAction } from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 
 export function statesUpdate(states: IEsplanadeStates) {
@@ -9,10 +9,32 @@ export function statesUpdate(states: IEsplanadeStates) {
 	};
 }
 
-export function addressesUpdate(addrs: IEsplanadeAddresses) {
+export function addressUpdate(isHot: boolean, index: number, addr: string, balance: number) {
 	return {
-		type: CST.AC_ESP_ADDRS,
-		value: addrs
+		type: CST.AC_ESP_POOL_ADDR,
+		value: {
+			address: addr,
+			isHot: isHot,
+			index: index,
+			balance: balance
+		}
+	};
+}
+
+export function custodianAddressUpdate(
+	isCustodian: boolean,
+	index: number,
+	addr: string,
+	balance: number
+) {
+	return {
+		type: CST.AC_ESP_CONTRACT_ADDR,
+		value: {
+			address: addr,
+			isCustodian: isCustodian,
+			index: index,
+			balance: balance
+		}
 	};
 }
 
@@ -25,7 +47,49 @@ export function getStates(): VoidThunkAction {
 
 export function getAddresses(): VoidThunkAction {
 	return async dispatch => {
-		dispatch(addressesUpdate(await esplanadeWrapper.getAddrs()));
+		const hotPoolSize = await esplanadeWrapper.getPoolSize(true);
+		const coldPoolSize = await esplanadeWrapper.getPoolSize(false);
+		const custodianSize = await esplanadeWrapper.getContractSize(true);
+		const otherContractSize = await esplanadeWrapper.getContractSize(false);
+		for (let i = 0; i < hotPoolSize; i++)
+			esplanadeWrapper
+				.getPoolAddr(true, i)
+				.then(address =>
+					esplanadeWrapper.web3Wrapper
+						.getEthBalance(address)
+						.then(balance => dispatch(addressUpdate(true, i, address, balance)))
+				);
+
+		for (let j = 0; j < coldPoolSize; j++)
+			esplanadeWrapper
+				.getPoolAddr(false, j)
+				.then(address =>
+					esplanadeWrapper.web3Wrapper
+						.getEthBalance(address)
+						.then(balance => dispatch(addressUpdate(true, j, address, balance)))
+				);
+
+		for (let m = 0; m < custodianSize; m++)
+			esplanadeWrapper
+				.getContractAddr(true, m)
+				.then(address =>
+					esplanadeWrapper.web3Wrapper
+						.getEthBalance(address)
+						.then(balance =>
+							dispatch(custodianAddressUpdate(true, m, address, balance))
+						)
+				);
+
+		for (let n = 0; n < otherContractSize; n++)
+			esplanadeWrapper
+				.getContractAddr(false, n)
+				.then(address =>
+					esplanadeWrapper.web3Wrapper
+						.getEthBalance(address)
+						.then(balance =>
+							dispatch(custodianAddressUpdate(false, n, address, balance))
+						)
+				);
 	};
 }
 

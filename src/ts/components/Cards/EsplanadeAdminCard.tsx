@@ -17,26 +17,32 @@ interface IProps {
 
 export default class EsplanadeAdminCard extends React.Component<IProps> {
 	public render() {
-		const { addresses, states, account } = this.props;
+		const { addresses, account } = this.props;
 		const addrData: object[] = [];
 		const contractData: object[] = [];
 		const isModerator = account === addresses.moderator.address;
-		for (const role in addresses) {
-			const addr = addresses[role];
-			addrData.push({
-				key: role,
-				[CST.TH_ROLE]: role,
-				[CST.TH_ADDRESS.EN]: addr.address,
-				[CST.TH_BALANCE.EN]: util.formatBalance(addr.balance),
-				[CST.TH_LINK]:
-					'https://' +
-					(__KOVAN__ ? 'kovan.' : '') +
-					'etherscan.io/address/' +
-					addr.address,
-				[CST.TH_ACTION]: ''
-			});
-		}
-		states.poolAddrsHot.forEach((addr, i) =>
+
+		addrData.push({
+			key: addresses.moderator,
+			[CST.TH_ROLE]: addresses.moderator,
+			[CST.TH_ADDRESS.EN]: addresses.moderator.address,
+			[CST.TH_BALANCE.EN]: util.formatBalance(addresses.moderator.balance),
+			[CST.TH_LINK]:
+				'https://' + (__KOVAN__ ? 'kovan.' : '') + 'etherscan.io/address/' + addresses.moderator.address,
+			[CST.TH_ACTION]: ''
+		});
+
+		addrData.push({
+			key: addresses.candidate,
+			[CST.TH_ROLE]: addresses.candidate,
+			[CST.TH_ADDRESS.EN]: addresses.candidate.address,
+			[CST.TH_BALANCE.EN]: util.formatBalance(addresses.candidate.balance),
+			[CST.TH_LINK]:
+				'https://' + (__KOVAN__ ? 'kovan.' : '') + 'etherscan.io/address/' + addresses.candidate.address,
+			[CST.TH_ACTION]: ''
+		});
+
+		addresses.poolAddrs.hot.forEach((addr, i) =>
 			addrData.push({
 				key: CST.TH_POOL + i,
 				[CST.TH_ROLE]: CST.TH_HOT_ADDRESS + '' + i,
@@ -59,7 +65,7 @@ export default class EsplanadeAdminCard extends React.Component<IProps> {
 			})
 		);
 
-		states.poolAddrsCold.forEach((addr, i) =>
+		addresses.poolAddrs.cold.forEach((addr, i) =>
 			addrData.push({
 				key: CST.TH_POOL + i,
 				[CST.TH_ROLE]: CST.TH_COLD_ADDRESS + '' + i,
@@ -82,7 +88,7 @@ export default class EsplanadeAdminCard extends React.Component<IProps> {
 			})
 		);
 
-		states.custodianContractAddrs.forEach((addr, i) =>
+		addresses.poolAddrs.custodian.forEach((addr, i) =>
 			contractData.push({
 				key: CST.TH_CUSTODIANS + i,
 				[CST.TH_ROLE]: CST.TH_CUSTODIANS + '' + i,
@@ -96,7 +102,7 @@ export default class EsplanadeAdminCard extends React.Component<IProps> {
 			})
 		);
 
-		states.otherContractAddrs.forEach((addr, i) =>
+		addresses.poolAddrs.otherContract.forEach((addr, i) =>
 			contractData.push({
 				key: CST.TH_OTHER_CONTRACT + i,
 				[CST.TH_ROLE]: CST.TH_OTHER_CONTRACT + '' + i,

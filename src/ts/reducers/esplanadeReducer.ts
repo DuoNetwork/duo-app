@@ -6,27 +6,29 @@ export const initialState: IEsplanadeState = {
 	esplanadeStates: {
 		isStarted: false,
 		votingStage: '',
-		poolAddrsHot: [],
-		poolAddrsCold: [],
-		custodianContractAddrs: [],
-		otherContractAddrs: [],
 		operationCoolDown: 0,
 		lastOperationTime: 0,
-		votingData: {
-			started: 0,
-			votedFor: 0,
-			votedAgainst: 0,
-			totalVoters: 0
+		poolSizes: {
+			cold: 0,
+			hot: 0,
+			custodian: 0,
+			otherContract: 0
 		}
 	},
 	esplanadeAddrs: {
 		moderator: {
-			address:  CST.DUMMY_ADDR,
+			address: CST.DUMMY_ADDR,
 			balance: 0
 		},
 		candidate: {
 			address: CST.DUMMY_ADDR,
 			balance: 0
+		},
+		poolAddrs: {
+			cold: [],
+			hot: [],
+			custodian: [],
+			otherContract: []
 		}
 	},
 	subscription: 0
@@ -41,10 +43,32 @@ export function espReducer(
 			return Object.assign({}, state, {
 				esplanadeStates: action.value
 			});
-		case CST.AC_ESP_ADDRS:
-			return Object.assign({}, state, {
-				esplanadeAddrs: action.value
-			});
+		case CST.AC_ESP_POOL_ADDR:
+			const { isHot, indexPool, addressPool, balancePool } = action.value;
+			if (isHot)
+				state.esplanadeAddrs.poolAddrs.hot[indexPool] = {
+					balance: balancePool,
+					address: addressPool
+				};
+			else
+				state.esplanadeAddrs.poolAddrs.cold[indexPool] = {
+					balance: balancePool,
+					address: addressPool
+				};
+			return state;
+		case CST.AC_ESP_CONTRACT_ADDR:
+			const { isCustodian, indexContract, addressContract, balanceContract } = action.value;
+			if (isCustodian)
+				state.esplanadeAddrs.poolAddrs.custodian[indexContract] = {
+					balance: balanceContract,
+					address: addressContract
+				};
+			else
+				state.esplanadeAddrs.poolAddrs.otherContract[indexContract] = {
+					balance: balanceContract,
+					address: addressContract
+				};
+			return state;
 		case CST.AC_ESP_SUB:
 			if (action.value)
 				return Object.assign({}, state, {

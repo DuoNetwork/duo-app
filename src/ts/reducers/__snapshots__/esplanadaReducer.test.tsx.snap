@@ -11,20 +11,22 @@ Object {
       "address": "0x0",
       "balance": 0,
     },
+    "poolAddrs": Object {
+      "cold": Array [],
+      "custodian": Array [],
+      "hot": Array [],
+      "otherContract": Array [],
+    },
   },
   "esplanadeStates": Object {
-    "custodianContractAddrs": Array [],
     "isStarted": false,
     "lastOperationTime": 0,
     "operationCoolDown": 0,
-    "otherContractAddrs": Array [],
-    "poolAddrsCold": Array [],
-    "poolAddrsHot": Array [],
-    "votingData": Object {
-      "started": 0,
-      "totalVoters": 0,
-      "votedAgainst": 0,
-      "votedFor": 0,
+    "poolSizes": Object {
+      "cold": 0,
+      "custodian": 0,
+      "hot": 0,
+      "otherContract": 0,
     },
     "votingStage": "",
   },
@@ -34,11 +36,22 @@ Object {
 
 exports[`ui reducer espAddrs 1`] = `
 Object {
-  "esplanadeAddrs": Array [
-    Object {
-      "esplanadeAddrs": "test",
+  "esplanadeAddrs": Object {
+    "candidate": Object {
+      "address": "0x0",
+      "balance": 0,
     },
-  ],
+    "moderator": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolAddrs": Object {
+      "cold": Array [],
+      "custodian": Array [],
+      "hot": Array [],
+      "otherContract": Array [],
+    },
+  },
   "esplanadeStates": Array [
     Object {
       "esplanadeStates": "test",
@@ -59,6 +72,12 @@ Object {
       "address": "0x0",
       "balance": 0,
     },
+    "poolAddrs": Object {
+      "cold": Array [],
+      "custodian": Array [],
+      "hot": Array [],
+      "otherContract": Array [],
+    },
   },
   "esplanadeStates": Array [
     Object {
@@ -71,11 +90,22 @@ Object {
 
 exports[`ui reducer espSubscription 1`] = `
 Object {
-  "esplanadeAddrs": Array [
-    Object {
-      "esplanadeAddrs": "test",
+  "esplanadeAddrs": Object {
+    "candidate": Object {
+      "address": "0x0",
+      "balance": 0,
     },
-  ],
+    "moderator": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "poolAddrs": Object {
+      "cold": Array [],
+      "custodian": Array [],
+      "hot": Array [],
+      "otherContract": Array [],
+    },
+  },
   "esplanadeStates": Array [
     Object {
       "esplanadeStates": "test",

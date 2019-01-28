@@ -3,6 +3,12 @@ export * from '../../../../duo-admin/src/common/constants';
 export const AC_DCC_STATES = 'dualClassStates';
 export const AC_ESP_STATES = 'espStates';
 export const AC_ESP_ADDRS = 'espAddrs';
+export const AC_ESP_POOL_ADDR = 'espPoolAddr';
+export const AC_ESP_HOT_ADDR = 'espHotAddr';
+export const AC_ESP_COLD_ADDR = 'espColdAddr';
+export const AC_ESP_CONTRACT_ADDR = 'espContractAddr';
+export const AC_ESP_CUSTODIAN_ADDR = 'espCustodianAddr';
+export const AC_ESP_OTHER_CONTRACT_ADDR = 'espOtherContractAddr';
 export const AC_DCC_ADDRESSES = 'dualClassAddresses';
 export const AC_DCC_EX_PX = 'dualClassExchangePrices';
 export const AC_DCC_ACCEPTED_PX = 'dualClassAcceptedPrices';
@@ -24,6 +30,7 @@ export const AC_UI_SOURCE = 'uiSource';
 
 export const TH_POOL_ADDRESS = 'Pool Address';
 export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
+export const TH_ADD_OTHER_CONTRACT = 'ADD OTHER CONTRACT';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
