@@ -632,9 +632,9 @@ export const TH_ESP_VOTED_AGAINST: ILocaleText = {
 	[LOCALE_RU]: ''
 };
 
-export const TH_ESP_TOTAL_VOTES: ILocaleText = {
+export const TH_ESP_TOTAL_VOTERS: ILocaleText = {
 	[LOCALE_CN]: '总票数',
-	[LOCALE_EN]: 'total votes',
+	[LOCALE_EN]: 'total voters',
 	[LOCALE_JP]: '',
 	[LOCALE_RU]: ''
 };

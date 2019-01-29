@@ -145,6 +145,7 @@ export function refresh(): VoidThunkAction {
 	return async dispatch => {
 		await dispatch(getStates());
 		dispatch(getAddresses());
+		dispatch(getVotingData());
 	};
 }
 

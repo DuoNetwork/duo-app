@@ -98,25 +98,6 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 									<span className="title">{CST.TH_ESP_CANDIDATE[locale]}</span>
 									<span className="content">{candidate}</span>
 								</li>
-								<li>
-									<span className="title">{CST.TH_ESP_STARTED[locale]}</span>
-									<span className="content">{votingData.started}</span>
-								</li>
-								<li>
-									<span className="title">{CST.TH_ESP_VOTED_FOR[locale]}</span>
-									<span className="content">{votingData.votedFor}</span>
-								</li>
-								<li>
-									<span className="title">
-										{CST.TH_ESP_VOTED_AGAINST[locale]}
-									</span>
-									<span className="content">{votingData.votedAgainst}</span>
-								</li>
-								<li>
-									<span className="title">{CST.TH_ESP_TOTAL_VOTES[locale]}</span>
-									<span className="content">{votingData.totalVoters}</span>
-								</li>
-
 								<li className="no-bg">
 									<button
 										className={'form-button'}
@@ -132,6 +113,24 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 									>
 										{CST.TH_VOTE_AGAINST}
 									</button>
+								</li>
+								<li>
+									<span className="title">{CST.TH_ESP_STARTED[locale]}</span>
+									<span className="content">{votingData.started || 'never'}</span>
+								</li>
+								<li>
+									<span className="title">{CST.TH_ESP_VOTED_FOR[locale]}</span>
+									<span className="content">{votingData.votedFor}</span>
+								</li>
+								<li>
+									<span className="title">
+										{CST.TH_ESP_VOTED_AGAINST[locale]}
+									</span>
+									<span className="content">{votingData.votedAgainst}</span>
+								</li>
+								<li>
+									<span className="title">{CST.TH_ESP_TOTAL_VOTERS[locale]}</span>
+									<span className="content">{votingData.totalVoters}</span>
 								</li>
 
 								<li className="no-bg">

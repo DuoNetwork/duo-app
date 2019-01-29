@@ -198,6 +198,8 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 									onChange={e => this.handleAddAddressChange(1, e.target.value)}
 									small
 								/>
+							</li>
+							<li>
 								<button
 									className={'form-button'}
 									disabled={!isModerator}
