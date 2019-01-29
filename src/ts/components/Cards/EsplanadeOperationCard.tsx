@@ -57,12 +57,16 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 	private handleCustodianAddressChange = (addr: string) =>
 		this.setState({
 			custodianAddress: addr,
-			custodianAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address'
+			custodianAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+				? ''
+				: 'Invalid Address'
 		});
 	private handleOtherContractAddressChange = (addr: string) =>
 		this.setState({
 			otherContractAddress: addr,
-			otherContractAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address'
+			otherContractAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+				? ''
+				: 'Invalid Address'
 		});
 
 	// private handleAddAddressChange = (index: number, addr: string) =>
@@ -72,7 +76,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 	// 	});
 
 	public render() {
-		const { gasPrice, locale, states } = this.props;
+		const { gasPrice, locale, states, account } = this.props;
 		const { custodianAddressErr, otherContractAddressErr } = this.state;
 
 		return (
@@ -95,12 +99,22 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 					<div className="status-list-wrapper">
 						<ul>
 							<li className="no-bg">
+								<button
+									className={'form-button'}
+									onClick={() => esplanadeWrapper.startManager(account)}
+								>
+									{CST.TH_START_ESP}
+								</button>
+							</li>
+							<li className="no-bg">
 								<SInput
 									className={custodianAddressErr ? 'input-error' : ''}
 									placeholder={CST.TT_INPUT_ADDR[locale]}
 									width={'400px'}
 									value={this.state.custodianAddress}
-									onChange={e => this.handleCustodianAddressChange(e.target.value)}
+									onChange={e =>
+										this.handleCustodianAddressChange(e.target.value)
+									}
 									small
 								/>
 								<button
@@ -117,7 +131,9 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 									placeholder={CST.TT_INPUT_ADDR[locale]}
 									width={'400px'}
 									value={this.state.otherContractAddress}
-									onChange={e => this.handleOtherContractAddressChange(e.target.value)}
+									onChange={e =>
+										this.handleOtherContractAddressChange(e.target.value)
+									}
 									small
 								/>
 								<button

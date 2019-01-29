@@ -85,7 +85,7 @@ export function getAddresses(): VoidThunkAction {
 		const {hot, cold, custodian, otherContract} = getState().esplanade.states.poolSizes;
 		for (let i = 0; i < hot; i++)
 			esplanadeWrapper
-				.getPoolAddr(true, i)
+				.getAddressPoolAddress(true, i)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)
@@ -94,7 +94,7 @@ export function getAddresses(): VoidThunkAction {
 
 		for (let j = 0; j < cold; j++)
 			esplanadeWrapper
-				.getPoolAddr(false, j)
+				.getAddressPoolAddress(false, j)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)
@@ -103,7 +103,7 @@ export function getAddresses(): VoidThunkAction {
 
 		for (let m = 0; m < custodian; m++)
 			esplanadeWrapper
-				.getContractAddr(true, m)
+				.getContractPoolAddress(true, m)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)
@@ -112,7 +112,7 @@ export function getAddresses(): VoidThunkAction {
 
 		for (let n = 0; n < otherContract; n++)
 			esplanadeWrapper
-				.getContractAddr(false, n)
+				.getContractPoolAddress(false, n)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)

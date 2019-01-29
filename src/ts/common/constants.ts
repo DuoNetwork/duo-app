@@ -30,6 +30,7 @@ export const AC_UI_SOURCE = 'uiSource';
 export const TH_POOL_ADDRESS = 'Pool Address';
 export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
 export const TH_ADD_OTHER_CONTRACT = 'ADD OTHER CONTRACT';
+export const TH_START_ESP = 'Start Esplanade';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
