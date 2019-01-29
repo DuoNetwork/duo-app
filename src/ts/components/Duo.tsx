@@ -4,7 +4,7 @@ import * as CST from 'ts/common/constants';
 import { dualClassWrappers } from 'ts/common/wrappers';
 import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
 import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
-import EsplanadeAdmin from 'ts/containers/Pages/EsplanadeAdminCointainer';
+import Esplanade from 'ts/containers/Pages/EsplanadeCointainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
@@ -53,10 +53,7 @@ export default class Duo extends React.Component {
 			<div>
 				<Switch>
 					{routes}
-					<Route
-						path={'/esplanade'}
-						render={() => <EsplanadeAdmin />}
-					/>
+					<Route path={'/esplanade'} render={() => <Esplanade />} />
 					<Route path={'/magi'} render={() => <Magi />} />
 					<Route path={'/status'} render={() => <Status />} />
 					<Route render={() => <Home />} />

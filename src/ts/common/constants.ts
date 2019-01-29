@@ -1,14 +1,6 @@
 import { BEETHOVEN } from '../../../../duo-admin/src/common/constants';
 export * from '../../../../duo-admin/src/common/constants';
 export const AC_DCC_STATES = 'dualClassStates';
-export const AC_ESP_STATES = 'espStates';
-export const AC_ESP_ADDRS = 'espAddrs';
-export const AC_ESP_POOL_ADDR = 'espPoolAddr';
-export const AC_ESP_HOT_ADDR = 'espHotAddr';
-export const AC_ESP_COLD_ADDR = 'espColdAddr';
-export const AC_ESP_CONTRACT_ADDR = 'espContractAddr';
-export const AC_ESP_CUSTODIAN_ADDR = 'espCustodianAddr';
-export const AC_ESP_OTHER_CONTRACT_ADDR = 'espOtherContractAddr';
 export const AC_DCC_ADDRESSES = 'dualClassAddresses';
 export const AC_DCC_EX_PX = 'dualClassExchangePrices';
 export const AC_DCC_ACCEPTED_PX = 'dualClassAcceptedPrices';
@@ -18,7 +10,14 @@ export const AC_DCC_SUB = 'dualClassSubscription';
 export const AC_DCC_TYPE = 'dualClassType';
 export const AC_MAG_ACCEPTED_PX = 'magiAcceptedPrices';
 export const AC_MAG_SUB = 'magiSubscription';
-export const AC_ESP_SUB = 'espSubscription';
+export const AC_ESP_SUB = 'esplanadeSubscription';
+export const AC_ESP_MODERATOR = 'esplanadeModerator';
+export const AC_ESP_CANDIDATE = 'esplanadeCandidate';
+export const AC_ESP_STATES = 'esplanadeStates';
+export const AC_ESP_HOT_ADDR = 'esplanadeHotAddress';
+export const AC_ESP_COLD_ADDR = 'esplanadeColdAddress';
+export const AC_ESP_CUSTODIAN_ADDR = 'esplanadeCustodianAddress';
+export const AC_ESP_OTHER_CONTRACT_ADDR = 'esplanadeOtherContractAddress';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';
@@ -176,7 +175,7 @@ export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
 export const TH_ORACLES = 'Oracles';
 export const TH_CUSTODIANS = 'Custodians';
-export const TH_OTHER_CONTRACT = 'OtherContract';
+export const TH_OTHER_CONTRACTS = 'Other Contracts';
 export const TH_MAGI = 'Magi';
 export const TH_COVERED_OPTIONS = 'Covered Options';
 export const TH_CHART: ILocaleText = {
@@ -214,8 +213,8 @@ export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
 export const TH_ACCEPTED_PX = 'Accepted Prices';
-export const TH_HOT_ADDRESS = 'Hot Address';
-export const TH_COLD_ADDRESS = 'Cold Address';
+export const TH_HOT_ADDR = 'Hot Addresses';
+export const TH_COLD_ADDR = 'Cold Addresses';
 export const TH_HOME: ILocaleText = {
 	[LOCALE_CN]: '主页',
 	[LOCALE_EN]: 'Home',

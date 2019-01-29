@@ -23,10 +23,10 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 		refresh: (path: string) => {
 			dispatch(web3Actions.refresh());
 			const lowerPath = path.toLocaleLowerCase();
-			if (lowerPath.includes(CST.BEETHOVEN.toLowerCase()))
+			if (lowerPath.includes(CST.BEETHOVEN.toLowerCase()) || lowerPath.includes(CST.MOZART.toLowerCase()))
 				dispatch(dualClassActions.refresh(true));
 			else if (lowerPath.includes(CST.TH_MAGI.toLowerCase())) dispatch(magiActions.refresh());
-			else if (lowerPath.includes('esplanade')) dispatch(esplanadeActions.refreshAdmin());
+			else if (lowerPath.includes('esplanade')) dispatch(esplanadeActions.refresh());
 		},
 		updateLocale: (locale: string) => dispatch(uiActions.localeUpdate(locale))
 	};

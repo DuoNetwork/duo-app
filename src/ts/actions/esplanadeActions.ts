@@ -9,85 +9,115 @@ export function statesUpdate(states: IEsplanadeStates) {
 	};
 }
 
-export function addressUpdate(isHot: boolean, index: number, addr: string, balance: number) {
+export function moderatorUpdate(address: string, balance: number) {
 	return {
-		type: CST.AC_ESP_POOL_ADDR,
-		value: {
-			address: addr,
-			isHot: isHot,
-			index: index,
-			balance: balance
-		}
+		type: CST.AC_ESP_MODERATOR,
+		address: address,
+		balance: balance
 	};
 }
 
-export function custodianAddressUpdate(
-	isCustodian: boolean,
-	index: number,
-	addr: string,
-	balance: number
-) {
+export function candidateUpdate(address: string, balance: number) {
 	return {
-		type: CST.AC_ESP_CONTRACT_ADDR,
-		value: {
-			address: addr,
-			isCustodian: isCustodian,
-			index: index,
-			balance: balance
-		}
+		type: CST.AC_ESP_CANDIDATE,
+		address: address,
+		balance: balance
+	};
+}
+
+export function hotPoolAddressUpdate(addr: string, balance: number, index: number) {
+	return {
+		type: CST.AC_ESP_HOT_ADDR,
+		address: addr,
+		index: index,
+		balance: balance
+	};
+}
+
+export function coldPoolAddressUpdate(addr: string, balance: number, index: number) {
+	return {
+		type: CST.AC_ESP_COLD_ADDR,
+		address: addr,
+		index: index,
+		balance: balance
+	};
+}
+
+export function custodianPoolAddressUpdate(addr: string, balance: number, index: number) {
+	return {
+		type: CST.AC_ESP_CUSTODIAN_ADDR,
+		address: addr,
+		index: index,
+		balance: balance
+	};
+}
+
+export function otherContractPoolAddressUpdate(addr: string, balance: number, index: number) {
+	return {
+		type: CST.AC_ESP_OTHER_CONTRACT_ADDR,
+		address: addr,
+		index: index,
+		balance: balance
 	};
 }
 
 export function getStates(): VoidThunkAction {
-	return async dispatch => {
-		const states = await esplanadeWrapper.getStates();
-		dispatch(statesUpdate(states));
-	};
+	return async dispatch => dispatch(statesUpdate(await esplanadeWrapper.getStates()));
 }
 
 export function getAddresses(): VoidThunkAction {
-	return async dispatch => {
-		const hotPoolSize = await esplanadeWrapper.getPoolSize(true);
-		const coldPoolSize = await esplanadeWrapper.getPoolSize(false);
-		const custodianSize = await esplanadeWrapper.getContractSize(true);
-		const otherContractSize = await esplanadeWrapper.getContractSize(false);
-		for (let i = 0; i < hotPoolSize; i++)
+	return async (dispatch, getState) => {
+		esplanadeWrapper
+			.getModerator()
+			.then(address =>
+				esplanadeWrapper.web3Wrapper
+					.getEthBalance(address)
+					.then(balance => dispatch(moderatorUpdate(address, balance)))
+			);
+		esplanadeWrapper
+			.getCandidate()
+			.then(address =>
+				esplanadeWrapper.web3Wrapper
+					.getEthBalance(address)
+					.then(balance => dispatch(candidateUpdate(address, balance)))
+			);
+
+		const {hot, cold, custodian, otherContract} = getState().esplanade.states.poolSizes;
+		for (let i = 0; i < hot; i++)
 			esplanadeWrapper
 				.getPoolAddr(true, i)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)
-						.then(balance => dispatch(addressUpdate(true, i, address, balance)))
+						.then(balance => dispatch(hotPoolAddressUpdate(address, balance, i)))
 				);
 
-		for (let j = 0; j < coldPoolSize; j++)
+		for (let j = 0; j < cold; j++)
 			esplanadeWrapper
 				.getPoolAddr(false, j)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)
-						.then(balance => dispatch(addressUpdate(true, j, address, balance)))
+						.then(balance => dispatch(coldPoolAddressUpdate(address, balance, j)))
 				);
 
-		for (let m = 0; m < custodianSize; m++)
+		for (let m = 0; m < custodian; m++)
 			esplanadeWrapper
 				.getContractAddr(true, m)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)
-						.then(balance =>
-							dispatch(custodianAddressUpdate(true, m, address, balance))
-						)
+						.then(balance => dispatch(custodianPoolAddressUpdate(address, balance, m)))
 				);
 
-		for (let n = 0; n < otherContractSize; n++)
+		for (let n = 0; n < otherContract; n++)
 			esplanadeWrapper
 				.getContractAddr(false, n)
 				.then(address =>
 					esplanadeWrapper.web3Wrapper
 						.getEthBalance(address)
 						.then(balance =>
-							dispatch(custodianAddressUpdate(false, n, address, balance))
+							dispatch(otherContractPoolAddressUpdate(address, balance, n))
 						)
 				);
 	};
@@ -100,31 +130,17 @@ export function subscriptionUpdate(intervalId: number) {
 	};
 }
 
-// export function refresh(): VoidThunkAction {
-// 	return async dispatch => {
-// 		await dispatch(getStates());
-// 	};
-// }
-
-// export function subscribe(): VoidThunkAction {
-// 	return async dispatch => {
-// 		dispatch(subscriptionUpdate(0));
-// 		dispatch(refresh());
-// 		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 60000)));
-// 	};
-// }
-
-export function refreshAdmin(): VoidThunkAction {
+export function refresh(): VoidThunkAction {
 	return async dispatch => {
 		await dispatch(getStates());
 		dispatch(getAddresses());
 	};
 }
 
-export function subscribeAdmin(): VoidThunkAction {
+export function subscribe(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
-		dispatch(refreshAdmin());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 60000)));
+		dispatch(refresh());
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 60000)));
 	};
 }

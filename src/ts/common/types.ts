@@ -39,13 +39,30 @@ export interface IDualClassState {
 	readonly balances: {
 		a: number;
 		b: number;
-	}
+	};
 }
 
 export interface IEsplanadeState {
 	readonly subscription: number;
-	readonly esplanadeStates: adminTypes.IEsplanadeStates;
-	readonly esplanadeAddrs: adminTypes.IEsplanadeAddresses;
+	readonly states: adminTypes.IEsplanadeStates;
+	readonly moderator: {
+		address: string;
+		balance: number;
+	};
+	readonly candidate: {
+		address: string;
+		balance: number;
+	};
+	readonly coldAddressPool: IEsplanadeAddresses;
+	readonly hotAddressPool: IEsplanadeAddresses;
+	readonly custodianPool: IEsplanadeAddresses;
+	readonly otherContractPool: IEsplanadeAddresses;
+}
+export interface IEsplanadeAddresses {
+	[address: string]: {
+		balance: number;
+		index: number;
+	};
 }
 
 export interface IMagiState {
@@ -66,7 +83,7 @@ export interface IUIState {
 export type VoidThunkAction = ThunkAction<void, IState, undefined, AnyAction>;
 
 export interface ITableRecord {
-	[key: string]: any
+	[key: string]: any;
 }
 
 export enum WsChannelMessageTypes {

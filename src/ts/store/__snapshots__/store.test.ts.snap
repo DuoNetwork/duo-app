@@ -58,23 +58,19 @@ Object {
     "status": Array [],
   },
   "esplanade": Object {
-    "esplanadeAddrs": Object {
-      "candidate": Object {
-        "address": "0x0",
-        "balance": 0,
-      },
-      "moderator": Object {
-        "address": "0x0",
-        "balance": 0,
-      },
-      "poolAddrs": Object {
-        "cold": Array [],
-        "custodian": Array [],
-        "hot": Array [],
-        "otherContract": Array [],
-      },
+    "candidate": Object {
+      "address": "0x0",
+      "balance": 0,
     },
-    "esplanadeStates": Object {
+    "coldAddressPool": Object {},
+    "custodianPool": Object {},
+    "hotAddressPool": Object {},
+    "moderator": Object {
+      "address": "0x0",
+      "balance": 0,
+    },
+    "otherContractPool": Object {},
+    "states": Object {
       "isStarted": false,
       "lastOperationTime": 0,
       "operationCoolDown": 0,

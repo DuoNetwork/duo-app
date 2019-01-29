@@ -3,7 +3,7 @@ import * as CST from 'ts/common/constants';
 import { IEsplanadeState } from 'ts/common/types';
 
 export const initialState: IEsplanadeState = {
-	esplanadeStates: {
+	states: {
 		isStarted: false,
 		votingStage: '',
 		operationCoolDown: 0,
@@ -15,22 +15,18 @@ export const initialState: IEsplanadeState = {
 			otherContract: 0
 		}
 	},
-	esplanadeAddrs: {
-		moderator: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		},
-		candidate: {
-			address: CST.DUMMY_ADDR,
-			balance: 0
-		},
-		poolAddrs: {
-			cold: [],
-			hot: [],
-			custodian: [],
-			otherContract: []
-		}
+	moderator: {
+		address: CST.DUMMY_ADDR,
+		balance: 0
 	},
+	candidate: {
+		address: CST.DUMMY_ADDR,
+		balance: 0
+	},
+	coldAddressPool: {},
+	hotAddressPool: {},
+	custodianPool: {},
+	otherContractPool: {},
 	subscription: 0
 };
 
@@ -41,34 +37,60 @@ export function espReducer(
 	switch (action.type) {
 		case CST.AC_ESP_STATES:
 			return Object.assign({}, state, {
-				esplanadeStates: action.value
+				states: action.value
 			});
-		case CST.AC_ESP_POOL_ADDR:
-			const { isHot, indexPool, addressPool, balancePool } = action.value;
-			if (isHot)
-				state.esplanadeAddrs.poolAddrs.hot[indexPool] = {
-					balance: balancePool,
-					address: addressPool
-				};
-			else
-				state.esplanadeAddrs.poolAddrs.cold[indexPool] = {
-					balance: balancePool,
-					address: addressPool
-				};
-			return state;
-		case CST.AC_ESP_CONTRACT_ADDR:
-			const { isCustodian, indexContract, addressContract, balanceContract } = action.value;
-			if (isCustodian)
-				state.esplanadeAddrs.poolAddrs.custodian[indexContract] = {
-					balance: balanceContract,
-					address: addressContract
-				};
-			else
-				state.esplanadeAddrs.poolAddrs.otherContract[indexContract] = {
-					balance: balanceContract,
-					address: addressContract
-				};
-			return state;
+		case CST.AC_ESP_CANDIDATE:
+			return Object.assign({}, state, {
+				candidate: {
+					address: action.address,
+					balance: action.balance
+				}
+			});
+		case CST.AC_ESP_MODERATOR:
+			return Object.assign({}, state, {
+				moderator: {
+					address: action.address,
+					balance: action.balance
+				}
+			});
+		case CST.AC_ESP_HOT_ADDR:
+			return Object.assign({}, state, {
+				hotAddressPool: Object.assign({}, state.hotAddressPool, {
+					[action.address]: {
+						balance: action.balance,
+						index: action.index
+					}
+				})
+			});
+		case CST.AC_ESP_COLD_ADDR:
+			return Object.assign({}, state, {
+				coldAddressPool: Object.assign({}, state.coldAddressPool, {
+					[action.address]: {
+						balance: action.balance,
+						index: action.index
+					}
+				})
+			});
+		case CST.AC_ESP_CUSTODIAN_ADDR:
+			return Object.assign({}, state, {
+				custodianPool: Object.assign({}, state.custodianPool, {
+					[action.address]: {
+						balance: action.balance,
+						index: action.index
+					}
+				})
+			});
+
+		case CST.AC_ESP_OTHER_CONTRACT_ADDR:
+			return Object.assign({}, state, {
+				otherContractPool: Object.assign({}, state.otherContractPool, {
+					[action.address]: {
+						balance: action.balance,
+						index: action.index
+					}
+				})
+			});
+
 		case CST.AC_ESP_SUB:
 			if (action.value)
 				return Object.assign({}, state, {

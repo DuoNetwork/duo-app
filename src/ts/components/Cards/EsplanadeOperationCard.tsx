@@ -1,17 +1,7 @@
-//import moment from 'moment';
-// import { Tooltip } from 'antd';
-// import * as d3 from 'd3';
-// import demoCreate from 'images/createDemo.png';
-// import infoIcon from 'images/info.svg';
-// import demoRedeem from 'images/redeemDemo.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { IEsplanadeStates } from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
-// import util from 'ts/common/util';
-// import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
-// import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
-// import Erc20Form from '../Forms/Erc20Form';
 import { SCard, SCardExtraDiv, SCardList, SCardTitle, SInput } from './_styled';
 
 interface IProps {
@@ -32,7 +22,7 @@ interface IState {
 	locale: string;
 }
 
-export default class EspOperationCard extends React.Component<IProps, IState> {
+export default class EsplanadeOperationCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
