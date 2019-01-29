@@ -1,0 +1,475 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`esplanade reducer default 1`] = `
+Object {
+  "candidate": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "coldAddressPool": Object {},
+  "custodianPool": Object {},
+  "hotAddressPool": Object {},
+  "moderator": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": false,
+    "lastOperationTime": 0,
+    "operationCoolDown": 0,
+    "poolSizes": Object {
+      "cold": 0,
+      "custodian": 0,
+      "hot": 0,
+      "otherContract": 0,
+    },
+    "votingStage": "",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espCandidate 1`] = `
+Object {
+  "candidate": Object {
+    "address": "candidateAddress",
+    "balance": 100,
+  },
+  "coldAddressPool": Object {},
+  "custodianPool": Object {},
+  "hotAddressPool": Object {},
+  "moderator": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espColdAddr 1`] = `
+Object {
+  "candidate": Object {
+    "address": "candidateAddress",
+    "balance": 100,
+  },
+  "coldAddressPool": Object {
+    "coldAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "custodianPool": Object {},
+  "hotAddressPool": Object {
+    "hotAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "moderator": Object {
+    "address": "moderatorAddress",
+    "balance": 100,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espCustodianAddr 1`] = `
+Object {
+  "candidate": Object {
+    "address": "candidateAddress",
+    "balance": 100,
+  },
+  "coldAddressPool": Object {
+    "coldAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "custodianPool": Object {
+    "custodianAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "hotAddressPool": Object {
+    "hotAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "moderator": Object {
+    "address": "moderatorAddress",
+    "balance": 100,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espHotAddr 1`] = `
+Object {
+  "candidate": Object {
+    "address": "candidateAddress",
+    "balance": 100,
+  },
+  "coldAddressPool": Object {},
+  "custodianPool": Object {},
+  "hotAddressPool": Object {
+    "hotAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "moderator": Object {
+    "address": "moderatorAddress",
+    "balance": 100,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espModerator 1`] = `
+Object {
+  "candidate": Object {
+    "address": "candidateAddress",
+    "balance": 100,
+  },
+  "coldAddressPool": Object {},
+  "custodianPool": Object {},
+  "hotAddressPool": Object {},
+  "moderator": Object {
+    "address": "moderatorAddress",
+    "balance": 100,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espOtherContractAddr 1`] = `
+Object {
+  "candidate": Object {
+    "address": "candidateAddress",
+    "balance": 100,
+  },
+  "coldAddressPool": Object {
+    "coldAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "custodianPool": Object {
+    "custodianAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "hotAddressPool": Object {
+    "hotAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "moderator": Object {
+    "address": "moderatorAddress",
+    "balance": 100,
+  },
+  "otherContractPool": Object {
+    "otherContractAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espStates 1`] = `
+Object {
+  "candidate": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "coldAddressPool": Object {},
+  "custodianPool": Object {},
+  "hotAddressPool": Object {},
+  "moderator": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espSubscription off 1`] = `
+Object {
+  "candidate": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "coldAddressPool": Object {},
+  "custodianPool": Object {},
+  "hotAddressPool": Object {},
+  "moderator": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": false,
+    "lastOperationTime": 0,
+    "operationCoolDown": 0,
+    "poolSizes": Object {
+      "cold": 0,
+      "custodian": 0,
+      "hot": 0,
+      "otherContract": 0,
+    },
+    "votingStage": "",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espSubscription off 2`] = `
+Array [
+  Array [
+    123,
+  ],
+]
+`;
+
+exports[`esplanade reducer espSubscription on 1`] = `
+Object {
+  "candidate": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "coldAddressPool": Object {},
+  "custodianPool": Object {},
+  "hotAddressPool": Object {},
+  "moderator": Object {
+    "address": "0x0",
+    "balance": 0,
+  },
+  "otherContractPool": Object {},
+  "states": Object {
+    "isStarted": false,
+    "lastOperationTime": 0,
+    "operationCoolDown": 0,
+    "poolSizes": Object {
+      "cold": 0,
+      "custodian": 0,
+      "hot": 0,
+      "otherContract": 0,
+    },
+    "votingStage": "",
+  },
+  "subscription": 123,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 0,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
+
+exports[`esplanade reducer espVotingData 1`] = `
+Object {
+  "candidate": Object {
+    "address": "candidateAddress",
+    "balance": 100,
+  },
+  "coldAddressPool": Object {
+    "coldAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "custodianPool": Object {
+    "custodianAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "hotAddressPool": Object {
+    "hotAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "moderator": Object {
+    "address": "moderatorAddress",
+    "balance": 100,
+  },
+  "otherContractPool": Object {
+    "otherContractAddr": Object {
+      "balance": 100,
+      "index": 1,
+    },
+  },
+  "states": Object {
+    "isStarted": true,
+    "lastOperationTime": 123456789,
+    "operationCoolDown": 1000,
+    "poolSizes": Object {
+      "cold": 3,
+      "custodian": 3,
+      "hot": 3,
+      "otherContract": 3,
+    },
+    "votingStage": "Moderator",
+  },
+  "subscription": 0,
+  "votingData": Object {
+    "started": 0,
+    "totalVoters": 10,
+    "votedAgainst": 0,
+    "votedFor": 0,
+  },
+}
+`;
