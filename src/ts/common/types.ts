@@ -1,7 +1,8 @@
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-export * from '../../../../duo-admin/src/common/types';
 import * as adminTypes from '../../../../duo-admin/src/common/types';
+import { IVotingData } from '../../../../duo-contract-wrapper/src/types';
+export * from '../../../../duo-admin/src/common/types';
 
 export interface ISourceData<T> {
 	// bitfinex: T;
@@ -57,6 +58,7 @@ export interface IEsplanadeState {
 	readonly hotAddressPool: IEsplanadeAddresses;
 	readonly custodianPool: IEsplanadeAddresses;
 	readonly otherContractPool: IEsplanadeAddresses;
+	readonly votingData: IVotingData;
 }
 export interface IEsplanadeAddresses {
 	[address: string]: {

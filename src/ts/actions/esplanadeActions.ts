@@ -1,5 +1,5 @@
 import * as CST from 'ts/common/constants';
-import { IEsplanadeStates, VoidThunkAction } from 'ts/common/types';
+import { IEsplanadeStates, IVotingData, VoidThunkAction } from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 
 export function statesUpdate(states: IEsplanadeStates) {
@@ -61,6 +61,13 @@ export function otherContractPoolAddressUpdate(addr: string, balance: number, in
 	};
 }
 
+export function votingDataUpdate(votingData: IVotingData) {
+	return {
+		type: CST.AC_ESP_VOTING_DATA,
+		value: votingData
+	};
+}
+
 export function getStates(): VoidThunkAction {
 	return async dispatch => dispatch(statesUpdate(await esplanadeWrapper.getStates()));
 }
@@ -82,7 +89,7 @@ export function getAddresses(): VoidThunkAction {
 					.then(balance => dispatch(candidateUpdate(address, balance)))
 			);
 
-		const {hot, cold, custodian, otherContract} = getState().esplanade.states.poolSizes;
+		const { hot, cold, custodian, otherContract } = getState().esplanade.states.poolSizes;
 		for (let i = 0; i < hot; i++)
 			esplanadeWrapper
 				.getAddressPoolAddress(true, i)
@@ -121,6 +128,10 @@ export function getAddresses(): VoidThunkAction {
 						)
 				);
 	};
+}
+
+export function getVotingData(): VoidThunkAction {
+	return async dispatch => dispatch(votingDataUpdate(await esplanadeWrapper.getVotingData()));
 }
 
 export function subscriptionUpdate(intervalId: number) {

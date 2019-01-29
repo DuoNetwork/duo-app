@@ -1,12 +1,13 @@
 import { Layout } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IEsplanadeAddresses, IEsplanadeStates } from 'ts/common/types';
+import { IEsplanadeAddresses, IEsplanadeStates, IVotingData } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 import AddressCard from '../Cards/AddressCard';
 import EsplanadeOperationCard from '../Cards/EsplanadeOperationCard';
 import EsplanadeStateCard from '../Cards/EsplanadeStateCard';
+import EsplanadeVotingCard from '../Cards/EsplanadeVotingCard';
 
 interface IProps {
 	states: IEsplanadeStates;
@@ -18,6 +19,7 @@ interface IProps {
 	moderator: { address: string; balance: number };
 	candidate: { address: string; balance: number };
 	gasPrice: number;
+	votingData: IVotingData;
 	subscribe: () => any;
 	unsubscribe: () => any;
 	refresh: () => any;
@@ -43,6 +45,7 @@ export default class Esplanade extends React.Component<IProps> {
 			states,
 			account,
 			refresh,
+			votingData,
 			gasPrice
 		} = this.props;
 		return (
@@ -56,6 +59,15 @@ export default class Esplanade extends React.Component<IProps> {
 						account={account}
 						gasPrice={gasPrice}
 						refresh={refresh}
+						moderator={moderator.address}
+					/>
+					<EsplanadeVotingCard
+						account={account}
+						coldAddressPool={coldAddressPool}
+						states={states}
+						locale={'EN'}
+						votingData={votingData}
+						moderator={moderator.address}
 					/>
 					<AddressCard
 						title={CST.TH_HOT_ADDR}

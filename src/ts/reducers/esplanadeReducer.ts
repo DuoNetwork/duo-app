@@ -27,6 +27,12 @@ export const initialState: IEsplanadeState = {
 	hotAddressPool: {},
 	custodianPool: {},
 	otherContractPool: {},
+	votingData: {
+		started: 0,
+		votedFor: 0,
+		votedAgainst: 0,
+		totalVoters: 0
+	},
 	subscription: 0
 };
 
@@ -100,6 +106,10 @@ export function espReducer(
 				window.clearInterval(state.subscription);
 				return initialState;
 			}
+		case CST.AC_ESP_VOTING_DATA:
+			return Object.assign({}, state, {
+				votingData: action.value
+			})
 		default:
 			return state;
 	}

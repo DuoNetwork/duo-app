@@ -18,6 +18,8 @@ export const AC_ESP_HOT_ADDR = 'esplanadeHotAddress';
 export const AC_ESP_COLD_ADDR = 'esplanadeColdAddress';
 export const AC_ESP_CUSTODIAN_ADDR = 'esplanadeCustodianAddress';
 export const AC_ESP_OTHER_CONTRACT_ADDR = 'esplanadeOtherContractAddress';
+export const AC_ESP_VOTING_STAGE = 'esplanadeVotingStage';
+export const AC_ESP_VOTING_DATA = 'esplanadeVotingData';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';
@@ -31,6 +33,12 @@ export const TH_POOL_ADDRESS = 'Pool Address';
 export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
 export const TH_ADD_OTHER_CONTRACT = 'ADD OTHER CONTRACT';
 export const TH_START_ESP = 'Start Esplanade';
+export const TH_VOTE_FOR = 'Vote For';
+export const TH_VOTE_AGAINST = 'Vote Against';
+export const TH_TERMINATE_VOTING = 'Terminate Voting';
+export const TH_TERMINATE_BY_TIME_OUT = 'Terminate By Time Out';
+export const TH_START_CONTRACT_VOTING = 'Start Contract Voting';
+export const TH_START_MODERATOR_VOTING = 'Start Moderator Voting';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
@@ -563,6 +571,69 @@ export const TH_ESP_LAST_OPT_TIME: ILocaleText = {
 export const TH_ESP_OPT_COOL_DOWN: ILocaleText = {
 	[LOCALE_CN]: '操作冷却',
 	[LOCALE_EN]: 'Operation Cooldown',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_VOTING_STAGE: ILocaleText = {
+	[LOCALE_CN]: '投票阶段',
+	[LOCALE_EN]: 'Voting Stage',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_COLD_POOL_SIZE: ILocaleText = {
+	[LOCALE_CN]: '冷地址个数',
+	[LOCALE_EN]: 'cold pool size',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_HOT_POOL_SIZE: ILocaleText = {
+	[LOCALE_CN]: '热地址个数',
+	[LOCALE_EN]: 'hot pool size',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_CUSTODIAN_POOL_SIZE: ILocaleText = {
+	[LOCALE_CN]: '合约个数',
+	[LOCALE_EN]: 'custodian pool size',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_OTHER_CONTRACT_POOL_SIZE: ILocaleText = {
+	[LOCALE_CN]: '其他合约个数',
+	[LOCALE_EN]: 'other contract pool size',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_STARTED: ILocaleText = {
+	[LOCALE_CN]: '开始时间',
+	[LOCALE_EN]: 'started',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_VOTED_FOR: ILocaleText = {
+	[LOCALE_CN]: '赞成票',
+	[LOCALE_EN]: 'voted for',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_VOTED_AGAINST: ILocaleText = {
+	[LOCALE_CN]: '反对票',
+	[LOCALE_EN]: 'voted against',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_TOTAL_VOTES: ILocaleText = {
+	[LOCALE_CN]: '总票数',
+	[LOCALE_EN]: 'total votes',
 	[LOCALE_JP]: '',
 	[LOCALE_RU]: ''
 };

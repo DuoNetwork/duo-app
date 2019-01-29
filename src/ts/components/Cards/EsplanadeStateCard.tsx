@@ -52,15 +52,51 @@ export default class EsplanadeStateCard extends React.Component<IProps> {
 									</span>
 								</li>
 								<li>
-									<span className="title">{CST.TH_ESP_LAST_OPT_TIME[locale]}</span>
+									<span className="title">
+										{CST.TH_ESP_LAST_OPT_TIME[locale]}
+									</span>
 									<span className="content">
-										{moment.utc(states.lastOperationTime).format('YYYY-MM-DD HH:mm:SS')}
+										{moment
+											.utc(states.lastOperationTime)
+											.format('YYYY-MM-DD HH:mm:SS')}
 									</span>
 								</li>
 								<li>
-									<span className="title">{CST.TH_ESP_OPT_COOL_DOWN[locale]}</span>
+									<span className="title">
+										{CST.TH_ESP_OPT_COOL_DOWN[locale]}
+									</span>
 									<span className="content">
 										{states.operationCoolDown / (60 * 60 * 1000) + ' hours'}
+									</span>
+								</li>
+								<li>
+									<span className="title">{CST.TH_ESP_VOTING_STAGE[locale]}</span>
+									<span className="content">{states.votingStage}</span>
+								</li>
+								<li>
+									<span className="title">
+										{CST.TH_ESP_COLD_POOL_SIZE[locale]}
+									</span>
+									<span className="content">{states.poolSizes.cold}</span>
+								</li>
+								<li>
+									<span className="title">
+										{CST.TH_ESP_HOT_POOL_SIZE[locale]}
+									</span>
+									<span className="content">{states.poolSizes.hot}</span>
+								</li>
+								<li>
+									<span className="title">
+										{CST.TH_ESP_CUSTODIAN_POOL_SIZE[locale]}
+									</span>
+									<span className="content">{states.poolSizes.custodian}</span>
+								</li>
+								<li>
+									<span className="title">
+										{CST.TH_ESP_OTHER_CONTRACT_POOL_SIZE[locale]}
+									</span>
+									<span className="content">
+										{states.poolSizes.otherContract}
 									</span>
 								</li>
 							</ul>

@@ -83,6 +83,12 @@ Object {
       "votingStage": "",
     },
     "subscription": 0,
+    "votingData": Object {
+      "started": 0,
+      "totalVoters": 0,
+      "votedAgainst": 0,
+      "votedFor": 0,
+    },
   },
   "magi": Object {
     "acceptedPrices": Array [],

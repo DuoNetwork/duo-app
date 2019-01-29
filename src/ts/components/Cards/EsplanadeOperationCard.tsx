@@ -8,6 +8,7 @@ interface IProps {
 	states: IEsplanadeStates;
 	locale: string;
 	account: string;
+	moderator: string;
 	gasPrice: number;
 	refresh: () => any;
 }
@@ -18,7 +19,9 @@ interface IState {
 	custodianAddress: string;
 	otherContractAddress: string;
 	firstAddressToAdd: string;
+	firstAddressToAddErr: string;
 	secondAddressToAdd: string;
+	secondAddressToAddErr: string;
 	locale: string;
 }
 
@@ -32,6 +35,8 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 			otherContractAddress: '',
 			firstAddressToAdd: '',
 			secondAddressToAdd: '',
+			firstAddressToAddErr: '',
+			secondAddressToAddErr: '',
 			locale: props.locale
 		};
 	}
@@ -54,6 +59,21 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 	public handleAddOtherContract = () =>
 		esplanadeWrapper.addOtherContracts(this.props.account, this.state.otherContractAddress);
 
+	public handleAddAddresses = (isHot: boolean) => {
+		if (
+			this.state.firstAddressToAdd &&
+			this.state.secondAddressToAdd &&
+			!this.state.firstAddressToAddErr &&
+			!this.state.secondAddressToAddErr
+		)
+			esplanadeWrapper.addAddress(
+				this.props.account,
+				this.state.firstAddressToAdd,
+				this.state.secondAddressToAdd,
+				isHot
+			);
+	};
+
 	private handleCustodianAddressChange = (addr: string) =>
 		this.setState({
 			custodianAddress: addr,
@@ -69,15 +89,27 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 				: 'Invalid Address'
 		});
 
-	// private handleAddAddressChange = (index: number, addr: string) =>
-	// 	this.setState({
-	// 		(index === 0? firstAddressToAdd: secondAddressToAdd): addr,
-	// 		otherContractAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address'
-	// 	});
+	private handleAddAddressChange = (index: number, addr: string) => {
+		if (index === 0)
+			this.setState({
+				firstAddressToAdd: addr,
+				firstAddressToAddErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+					? ''
+					: 'Invalid Address'
+			});
+		else
+			this.setState({
+				secondAddressToAdd: addr,
+				secondAddressToAddErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+					? ''
+					: 'Invalid Address'
+			});
+	};
 
 	public render() {
-		const { gasPrice, locale, states, account } = this.props;
+		const { gasPrice, locale, states, account, moderator } = this.props;
 		const { custodianAddressErr, otherContractAddressErr } = this.state;
+		const isModerator = moderator === account;
 
 		return (
 			<SCard
@@ -101,6 +133,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 							<li className="no-bg">
 								<button
 									className={'form-button'}
+									disabled={!isModerator}
 									onClick={() => esplanadeWrapper.startManager(account)}
 								>
 									{CST.TH_START_ESP}
@@ -119,6 +152,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 								/>
 								<button
 									className={'form-button'}
+									disabled={!isModerator}
 									onClick={() => this.handleAddCustodian()}
 								>
 									{CST.TH_ADD_CUSTODIAN}
@@ -138,9 +172,45 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 								/>
 								<button
 									className={'form-button'}
+									disabled={!isModerator}
 									onClick={() => this.handleAddOtherContract()}
 								>
 									{CST.TH_ADD_OTHER_CONTRACT}
+								</button>
+							</li>
+
+							<li className="no-bg">
+								<SInput
+									className={otherContractAddressErr ? 'input-error' : ''}
+									placeholder={CST.TT_INPUT_ADDR[locale]}
+									width={'400px'}
+									value={''}
+									onChange={e => this.handleAddAddressChange(0, e.target.value)}
+									small
+								/>
+
+								<SInput
+									className={otherContractAddressErr ? 'input-error' : ''}
+									placeholder={CST.TT_INPUT_ADDR[locale]}
+									disabled={!isModerator}
+									width={'400px'}
+									value={''}
+									onChange={e => this.handleAddAddressChange(1, e.target.value)}
+									small
+								/>
+								<button
+									className={'form-button'}
+									disabled={!isModerator}
+									onClick={() => this.handleAddAddresses(true)}
+								>
+									{CST.TH_ADD_ADDR + ` to hot`}
+								</button>
+								<button
+									className={'form-button'}
+									disabled={!isModerator}
+									onClick={() => this.handleAddAddresses(false)}
+								>
+									{CST.TH_ADD_ADDR + ` to cold`}
 								</button>
 							</li>
 						</ul>
