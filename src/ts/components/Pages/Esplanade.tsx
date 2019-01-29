@@ -46,7 +46,8 @@ export default class Esplanade extends React.Component<IProps> {
 			account,
 			refresh,
 			votingData,
-			gasPrice
+			gasPrice,
+			candidate
 		} = this.props;
 		return (
 			<Layout>
@@ -68,6 +69,7 @@ export default class Esplanade extends React.Component<IProps> {
 						locale={'EN'}
 						votingData={votingData}
 						moderator={moderator.address}
+						candidate={candidate.address}
 					/>
 					<AddressCard
 						title={CST.TH_HOT_ADDR}

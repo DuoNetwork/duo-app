@@ -13,6 +13,7 @@ interface IProps {
 	account: string;
 	coldAddressPool: IEsplanadeAddresses;
 	moderator: string;
+	candidate: string;
 }
 
 interface IState {
@@ -55,7 +56,7 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 
 	public handleTerminateByTimeout = () => esplanadeWrapper.terminateByTimeout(this.props.account);
 	public render() {
-		const { locale, votingData, states, coldAddressPool, moderator } = this.props;
+		const { locale, votingData, states, coldAddressPool, moderator, candidate } = this.props;
 		const { candidateContractAddr, candidateContractAddrErr } = this.state;
 
 		const isInVoting = states.votingStage !== 'NotStarted';
@@ -78,7 +79,7 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 							target="_blank"
 							style={{ color: 'white' }}
 						>
-							{CST.VOTING.toUpperCase()}
+							{CST.TH_VOTING.toUpperCase()}
 						</a>
 					</SCardTitle>
 				}
@@ -89,6 +90,14 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 					<SCardList noMargin>
 						<div className="status-list-wrapper">
 							<ul style={{ paddingTop: '10px' }}>
+								<li>
+									<span className="title">{CST.TH_ESP_MODERATOR[locale]}</span>
+									<span className="content">{moderator}</span>
+								</li>
+								<li>
+									<span className="title">{CST.TH_ESP_CANDIDATE[locale]}</span>
+									<span className="content">{candidate}</span>
+								</li>
 								<li>
 									<span className="title">{CST.TH_ESP_STARTED[locale]}</span>
 									<span className="content">{votingData.started}</span>

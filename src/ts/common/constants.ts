@@ -33,6 +33,7 @@ export const TH_POOL_ADDRESS = 'Pool Address';
 export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
 export const TH_ADD_OTHER_CONTRACT = 'ADD OTHER CONTRACT';
 export const TH_START_ESP = 'Start Esplanade';
+export const TH_VOTING = 'Voting';
 export const TH_VOTE_FOR = 'Vote For';
 export const TH_VOTE_AGAINST = 'Vote Against';
 export const TH_TERMINATE_VOTING = 'Terminate Voting';
@@ -634,6 +635,20 @@ export const TH_ESP_VOTED_AGAINST: ILocaleText = {
 export const TH_ESP_TOTAL_VOTES: ILocaleText = {
 	[LOCALE_CN]: '总票数',
 	[LOCALE_EN]: 'total votes',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_MODERATOR: ILocaleText = {
+	[LOCALE_CN]: '管理员',
+	[LOCALE_EN]: 'moderator',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ESP_CANDIDATE: ILocaleText = {
+	[LOCALE_CN]: '候选地址',
+	[LOCALE_EN]: 'candidate',
 	[LOCALE_JP]: '',
 	[LOCALE_RU]: ''
 };
