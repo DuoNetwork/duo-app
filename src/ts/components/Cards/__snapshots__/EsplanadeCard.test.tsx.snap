@@ -1,0 +1,355 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
+<Styled(Card)
+  className="card-disable"
+  extra={
+    <styled.div>
+      <button
+        className="form-button"
+        disabled={true}
+        onClick={[Function]}
+      >
+        Start Esplanade
+      </button>
+    </styled.div>
+  }
+  margin="0 0 0 10px"
+  title={
+    <styled.div>
+      <a
+        className="tag-content"
+        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+        target="_blank"
+      >
+        ESPLANADE
+      </a>
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div>
+    <div
+      className="status-list-wrapper"
+    >
+      <ul>
+        <li>
+          <span
+            className="title"
+          >
+            Last Operation Time
+          </span>
+          <span
+            className="content"
+          >
+            1970-01-01 00:00:00
+          </span>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Operation Cooldown
+          </span>
+          <span
+            className="content"
+          >
+            0 hours
+          </span>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Cold Addresses
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            disabled={true}
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={true}
+            onClick={[Function]}
+          >
+            Add Address to cold
+          </button>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Hot Addresses
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={true}
+            onClick={[Function]}
+          >
+            Add Address
+          </button>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Custodians
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={true}
+            onClick={[Function]}
+          >
+            ADD CUSTODIAN
+          </button>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Other Contracts
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={true}
+            onClick={[Function]}
+          >
+            ADD OTHER CONTRACT
+          </button>
+        </li>
+      </ul>
+    </div>
+  </styled.div>
+</Styled(Card)>
+`;
+
+exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
+<Styled(Card)
+  className="card-disable"
+  extra={
+    <styled.div>
+      <button
+        className="form-button"
+        disabled={false}
+        onClick={[Function]}
+      >
+        Start Esplanade
+      </button>
+    </styled.div>
+  }
+  margin="0 0 0 10px"
+  title={
+    <styled.div>
+      <a
+        className="tag-content"
+        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+        target="_blank"
+      >
+        ESPLANADE
+      </a>
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div>
+    <div
+      className="status-list-wrapper"
+    >
+      <ul>
+        <li>
+          <span
+            className="title"
+          >
+            Last Operation Time
+          </span>
+          <span
+            className="content"
+          >
+            1970-01-01 00:00:00
+          </span>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Operation Cooldown
+          </span>
+          <span
+            className="content"
+          >
+            0 hours
+          </span>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Cold Addresses
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            disabled={false}
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            Add Address to cold
+          </button>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Hot Addresses
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            Add Address
+          </button>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Custodians
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            ADD CUSTODIAN
+          </button>
+        </li>
+        <li>
+          <span
+            className="title"
+          >
+            Other Contracts
+          </span>
+          <span
+            className="content"
+          >
+            0
+          </span>
+          <styled.input
+            className=""
+            onChange={[Function]}
+            placeholder="Please input address"
+            small={true}
+            value=""
+            width="400px"
+          />
+          <button
+            className="form-button"
+            disabled={false}
+            onClick={[Function]}
+          >
+            ADD OTHER CONTRACT
+          </button>
+        </li>
+      </ul>
+    </div>
+  </styled.div>
+</Styled(Card)>
+`;
