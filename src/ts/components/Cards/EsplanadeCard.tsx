@@ -1,3 +1,4 @@
+import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { IEsplanadeStates } from 'ts/common/types';
@@ -9,7 +10,6 @@ interface IProps {
 	locale: string;
 	account: string;
 	moderator: string;
-	gasPrice: number;
 	refresh: () => any;
 }
 
@@ -107,39 +107,108 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 	};
 
 	public render() {
-		const { gasPrice, locale, states, account, moderator } = this.props;
+		const { locale, states, account, moderator } = this.props;
 		const { custodianAddressErr, otherContractAddressErr } = this.state;
 		const isModerator = moderator === account;
 
 		return (
 			<SCard
-				title={<SCardTitle>{CST.TH_OPERATION[locale].toUpperCase()}</SCardTitle>}
-				width={'440px'}
+				title={
+					<SCardTitle>
+						<a
+							className="tag-content"
+							href={
+								'https://' +
+								(__KOVAN__ ? 'kovan.' : '') +
+								'etherscan.io/address/' +
+								esplanadeWrapper.web3Wrapper.contractAddresses.MultiSigManagers[0]
+									.address
+							}
+							target="_blank"
+							style={{ color: 'white' }}
+						>
+							{CST.ESPLANADE.toUpperCase()}
+						</a>
+					</SCardTitle>
+				}
+				width={'1000px'}
 				margin={'0 0 0 10px'}
 				className={!states.isStarted ? 'card-disable' : ''}
 				extra={
 					<SCardExtraDiv>
-						{CST.TH_NETWORK_GAS_PRICE[locale] +
-							': ' +
-							(gasPrice
-								? +Math.round(gasPrice / 1e9) + ' Gwei'
-								: CST.TH_LOADING[locale])}
+						{states.isStarted ? (
+							'STARTED'
+						) : (
+							<button
+								className={'form-button'}
+								disabled={!isModerator}
+								onClick={() => esplanadeWrapper.startManager(account)}
+							>
+								{CST.TH_START_ESP}
+							</button>
+						)}
 					</SCardExtraDiv>
 				}
 			>
 				<SCardList>
 					<div className="status-list-wrapper">
 						<ul>
-							<li className="no-bg">
+							<li>
+								<span className="title">{CST.TH_LAST_OPT_TIME}</span>
+								<span className="content">
+									{moment
+										.utc(states.lastOperationTime)
+										.format('YYYY-MM-DD HH:mm:SS')}
+								</span>
+							</li>
+							<li>
+								<span className="title">{CST.TH_OPT_COOL_DOWN}</span>
+								<span className="content">
+									{states.operationCoolDown / (60 * 60 * 1000) + ' hours'}
+								</span>
+							</li>
+							<li>
+								<span className="title">{CST.TH_COLD_ADDR}</span>
+								<span className="content">{states.poolSizes.cold}</span>
+								<SInput
+									className={otherContractAddressErr ? 'input-error' : ''}
+									placeholder={CST.TT_INPUT_ADDR[locale]}
+									disabled={!isModerator}
+									width={'400px'}
+									value={''}
+									onChange={e => this.handleAddAddressChange(1, e.target.value)}
+									small
+								/>
 								<button
 									className={'form-button'}
 									disabled={!isModerator}
-									onClick={() => esplanadeWrapper.startManager(account)}
+									onClick={() => this.handleAddAddresses(false)}
 								>
-									{CST.TH_START_ESP}
+									{CST.TH_ADD_ADDR + ` to cold`}
 								</button>
 							</li>
-							<li className="no-bg">
+							<li>
+								<span className="title">{CST.TH_HOT_ADDR}</span>
+								<span className="content">{states.poolSizes.hot}</span>
+								<SInput
+									className={otherContractAddressErr ? 'input-error' : ''}
+									placeholder={CST.TT_INPUT_ADDR[locale]}
+									width={'400px'}
+									value={''}
+									onChange={e => this.handleAddAddressChange(0, e.target.value)}
+									small
+								/>
+								<button
+									className={'form-button'}
+									disabled={!isModerator}
+									onClick={() => this.handleAddAddresses(true)}
+								>
+									{CST.TH_ADD_ADDR}
+								</button>
+							</li>
+							<li>
+								<span className="title">{CST.TH_CUSTODIANS}</span>
+								<span className="content">{states.poolSizes.custodian}</span>
 								<SInput
 									className={custodianAddressErr ? 'input-error' : ''}
 									placeholder={CST.TT_INPUT_ADDR[locale]}
@@ -158,8 +227,9 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 									{CST.TH_ADD_CUSTODIAN}
 								</button>
 							</li>
-
-							<li className="no-bg">
+							<li>
+								<span className="title">{CST.TH_OTHER_CONTRACTS}</span>
+								<span className="content">{states.poolSizes.otherContract}</span>
 								<SInput
 									className={otherContractAddressErr ? 'input-error' : ''}
 									placeholder={CST.TT_INPUT_ADDR[locale]}
@@ -176,43 +246,6 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 									onClick={() => this.handleAddOtherContract()}
 								>
 									{CST.TH_ADD_OTHER_CONTRACT}
-								</button>
-							</li>
-
-							<li className="no-bg">
-								<SInput
-									className={otherContractAddressErr ? 'input-error' : ''}
-									placeholder={CST.TT_INPUT_ADDR[locale]}
-									width={'400px'}
-									value={''}
-									onChange={e => this.handleAddAddressChange(0, e.target.value)}
-									small
-								/>
-
-								<SInput
-									className={otherContractAddressErr ? 'input-error' : ''}
-									placeholder={CST.TT_INPUT_ADDR[locale]}
-									disabled={!isModerator}
-									width={'400px'}
-									value={''}
-									onChange={e => this.handleAddAddressChange(1, e.target.value)}
-									small
-								/>
-							</li>
-							<li>
-								<button
-									className={'form-button'}
-									disabled={!isModerator}
-									onClick={() => this.handleAddAddresses(true)}
-								>
-									{CST.TH_ADD_ADDR + ` to hot`}
-								</button>
-								<button
-									className={'form-button'}
-									disabled={!isModerator}
-									onClick={() => this.handleAddAddresses(false)}
-								>
-									{CST.TH_ADD_ADDR + ` to cold`}
 								</button>
 							</li>
 						</ul>

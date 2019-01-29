@@ -5,9 +5,8 @@ import { IEsplanadeAddresses, IEsplanadeStates, IVotingData } from 'ts/common/ty
 import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 import AddressCard from '../Cards/AddressCard';
-import EsplanadeOperationCard from '../Cards/EsplanadeOperationCard';
-import EsplanadeStateCard from '../Cards/EsplanadeStateCard';
-import EsplanadeVotingCard from '../Cards/EsplanadeVotingCard';
+import EsplanadeCard from '../Cards/EsplanadeCard';
+import VotingCard from '../Cards/VotingCard';
 
 interface IProps {
 	states: IEsplanadeStates;
@@ -18,7 +17,6 @@ interface IProps {
 	account: string;
 	moderator: { address: string; balance: number };
 	candidate: { address: string; balance: number };
-	gasPrice: number;
 	votingData: IVotingData;
 	subscribe: () => any;
 	unsubscribe: () => any;
@@ -46,23 +44,20 @@ export default class Esplanade extends React.Component<IProps> {
 			account,
 			refresh,
 			votingData,
-			gasPrice,
 			candidate
 		} = this.props;
 		return (
 			<Layout>
 				<Header />
 				<SContent>
-					<EsplanadeStateCard locale={'EN'} states={states} />
-					<EsplanadeOperationCard
+					<EsplanadeCard
 						states={states}
 						locale={'EN'}
 						account={account}
-						gasPrice={gasPrice}
 						refresh={refresh}
 						moderator={moderator.address}
 					/>
-					<EsplanadeVotingCard
+					<VotingCard
 						account={account}
 						coldAddressPool={coldAddressPool}
 						states={states}

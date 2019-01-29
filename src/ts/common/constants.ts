@@ -555,100 +555,10 @@ export const TT_NETWORK_CHECK: ILocaleText = {
 		', выберите необходимую сеть в MetaMask'
 };
 
-export const TH_ESP_IS_STARTED: ILocaleText = {
-	[LOCALE_CN]: '是否启动',
-	[LOCALE_EN]: 'is started',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_LAST_OPT_TIME: ILocaleText = {
-	[LOCALE_CN]: '上次操作时间',
-	[LOCALE_EN]: 'last operation time',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_OPT_COOL_DOWN: ILocaleText = {
-	[LOCALE_CN]: '操作冷却',
-	[LOCALE_EN]: 'Operation Cooldown',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_VOTING_STAGE: ILocaleText = {
-	[LOCALE_CN]: '投票阶段',
-	[LOCALE_EN]: 'Voting Stage',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_COLD_POOL_SIZE: ILocaleText = {
-	[LOCALE_CN]: '冷地址个数',
-	[LOCALE_EN]: 'cold pool size',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_HOT_POOL_SIZE: ILocaleText = {
-	[LOCALE_CN]: '热地址个数',
-	[LOCALE_EN]: 'hot pool size',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_CUSTODIAN_POOL_SIZE: ILocaleText = {
-	[LOCALE_CN]: '合约个数',
-	[LOCALE_EN]: 'custodian pool size',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_OTHER_CONTRACT_POOL_SIZE: ILocaleText = {
-	[LOCALE_CN]: '其他合约个数',
-	[LOCALE_EN]: 'other contract pool size',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_STARTED: ILocaleText = {
-	[LOCALE_CN]: '开始时间',
-	[LOCALE_EN]: 'started',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_VOTED_FOR: ILocaleText = {
-	[LOCALE_CN]: '赞成票',
-	[LOCALE_EN]: 'voted for',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_VOTED_AGAINST: ILocaleText = {
-	[LOCALE_CN]: '反对票',
-	[LOCALE_EN]: 'voted against',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_TOTAL_VOTERS: ILocaleText = {
-	[LOCALE_CN]: '总票数',
-	[LOCALE_EN]: 'total voters',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_MODERATOR: ILocaleText = {
-	[LOCALE_CN]: '管理员',
-	[LOCALE_EN]: 'moderator',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_CANDIDATE: ILocaleText = {
-	[LOCALE_CN]: '候选地址',
-	[LOCALE_EN]: 'candidate',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
+export const TH_IS_STARTED = 'Is Started';
+export const TH_LAST_OPT_TIME = 'Last Operation Time';
+export const TH_OPT_COOL_DOWN = 'Operation Cooldown';
+export const TH_VOTING_STAGE = 'Voting Stage';
+export const TH_STARTED = 'Started';
+export const TH_MODERATOR = 'Moderator';
+export const TH_CANDIDATE = 'Candidate';

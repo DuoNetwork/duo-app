@@ -16,8 +16,7 @@ function mapStateToProps(state: IState) {
 		otherContractPool: state.esplanade.otherContractPool,
 		moderator: state.esplanade.moderator,
 		candidate: state.esplanade.candidate,
-		votingData: state.esplanade.votingData,
-		gasPrice: state.web3.gasPrice
+		votingData: state.esplanade.votingData
 	};
 }
 

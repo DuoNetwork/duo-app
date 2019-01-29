@@ -55,6 +55,7 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 		esplanadeWrapper.terminateContractVoting(this.props.account);
 
 	public handleTerminateByTimeout = () => esplanadeWrapper.terminateByTimeout(this.props.account);
+
 	public render() {
 		const { locale, votingData, states, coldAddressPool, moderator, candidate } = this.props;
 		const { candidateContractAddr, candidateContractAddrErr } = this.state;
@@ -83,7 +84,7 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 						</a>
 					</SCardTitle>
 				}
-				width={'420px'}
+				width={'1000px'}
 				margin={'0 10px 0 10px'}
 			>
 				<SDivFlexCenter horizontal padding="0 10px">
@@ -91,14 +92,47 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 						<div className="status-list-wrapper">
 							<ul style={{ paddingTop: '10px' }}>
 								<li>
-									<span className="title">{CST.TH_ESP_MODERATOR[locale]}</span>
-									<span className="content">{moderator}</span>
+									<span className="title">{CST.TH_VOTING_STAGE}</span>
+									<span className="content">{states.votingStage}</span>
 								</li>
 								<li>
-									<span className="title">{CST.TH_ESP_CANDIDATE[locale]}</span>
-									<span className="content">{candidate}</span>
+									<span className="title">{CST.TH_MODERATOR}</span>
+									<span className="content">{moderator}</span>
+									<button
+										className={'form-button'}
+										disabled={!isInCold}
+										onClick={() => this.handleStartModeratorVoting()}
+									>
+										{CST.TH_START_MODERATOR_VOTING}
+									</button>
 								</li>
-								<li className="no-bg">
+								<li>
+									<span className="title">{CST.TH_CANDIDATE}</span>
+									<span className="content">{candidate}</span>
+									<button
+										className={'form-button'}
+										disabled={!isInCold}
+										onClick={() => this.handleTerminateByTimeout()}
+									>
+										{CST.TH_TERMINATE_BY_TIME_OUT}
+									</button>
+								</li>
+								<li>
+									<span className="title">{CST.TH_STARTED}</span>
+									<span className="content">{votingData.started || 'never'}</span>
+									<button
+										className={'form-button'}
+										disabled={!isModerator}
+										onClick={() => this.handleTerminateVoting()}
+									>
+										{CST.TH_TERMINATE_VOTING}
+									</button>
+								</li>
+								<li>
+									<span className="title">{CST.TH_VOTE_FOR}</span>
+									<span className="content">{`${votingData.votedFor}/${
+										votingData.totalVoters
+									}`}</span>
 									<button
 										className={'form-button'}
 										disabled={!isInVoting || isInCold}
@@ -106,6 +140,12 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 									>
 										{CST.TH_VOTE_FOR}
 									</button>
+								</li>
+								<li>
+									<span className="title">{CST.TH_VOTE_AGAINST}</span>
+									<span className="content">{`${votingData.votedAgainst}/${
+										votingData.totalVoters
+									}`}</span>
 									<button
 										className={'form-button'}
 										disabled={!isInVoting || isInCold}
@@ -114,26 +154,8 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 										{CST.TH_VOTE_AGAINST}
 									</button>
 								</li>
-								<li>
-									<span className="title">{CST.TH_ESP_STARTED[locale]}</span>
-									<span className="content">{votingData.started || 'never'}</span>
-								</li>
-								<li>
-									<span className="title">{CST.TH_ESP_VOTED_FOR[locale]}</span>
-									<span className="content">{votingData.votedFor}</span>
-								</li>
-								<li>
-									<span className="title">
-										{CST.TH_ESP_VOTED_AGAINST[locale]}
-									</span>
-									<span className="content">{votingData.votedAgainst}</span>
-								</li>
-								<li>
-									<span className="title">{CST.TH_ESP_TOTAL_VOTERS[locale]}</span>
-									<span className="content">{votingData.totalVoters}</span>
-								</li>
-
 								<li className="no-bg">
+									<span className="title">{CST.TH_START_CONTRACT_VOTING}</span>
 									<SInput
 										className={candidateContractAddrErr ? 'input-error' : ''}
 										placeholder={CST.TT_INPUT_ADDR[locale]}
@@ -152,35 +174,6 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 										onClick={() => this.handleStartContractVoting()}
 									>
 										{CST.TH_START_CONTRACT_VOTING}
-									</button>
-								</li>
-
-								<li className="no-bg">
-									<button
-										className={'form-button'}
-										disabled={!isInCold}
-										onClick={() => this.handleStartModeratorVoting()}
-									>
-										{CST.TH_START_MODERATOR_VOTING}
-									</button>
-								</li>
-								<li className="no-bg">
-									<button
-										className={'form-button'}
-										disabled={!isModerator}
-										onClick={() => this.handleTerminateVoting()}
-									>
-										{CST.TH_TERMINATE_VOTING}
-									</button>
-								</li>
-
-								<li className="no-bg">
-									<button
-										className={'form-button'}
-										disabled={!isInCold}
-										onClick={() => this.handleTerminateByTimeout()}
-									>
-										{CST.TH_TERMINATE_BY_TIME_OUT}
 									</button>
 								</li>
 							</ul>
