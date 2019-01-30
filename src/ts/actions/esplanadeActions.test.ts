@@ -1,7 +1,5 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-// import * as CST from 'ts/common/constants';
-// import util from 'ts/common/util';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 import * as esplanadeActions from './esplanadeActions';
 

@@ -1,6 +1,6 @@
+import { ICustodianAddresses, IDualClassStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
-import { ICustodianAddresses, IDualClassStates } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
 import AdminCard from '../Cards/AdminCard';

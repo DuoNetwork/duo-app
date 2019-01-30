@@ -1,9 +1,10 @@
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { AnyAction } from 'redux';
 import * as CST from 'ts/common/constants';
 import { IWeb3State } from 'ts/common/types';
 
 export const initialState: IWeb3State = {
-	account: CST.DUMMY_ADDR,
+	account: WrapperConstants.DUMMY_ADDR,
 	network: 0,
 	gasPrice: 0,
 	balance: 0

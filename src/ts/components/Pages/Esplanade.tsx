@@ -1,7 +1,8 @@
+import { IEsplanadeStates, IVotingData } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IEsplanadeAddresses, IEsplanadeStates, IVotingData } from 'ts/common/types';
+import { IEsplanadeAddresses } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 import AddressCard from '../Cards/AddressCard';

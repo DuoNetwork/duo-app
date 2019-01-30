@@ -1,3 +1,4 @@
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { AnyAction } from 'redux';
 import * as CST from 'ts/common/constants';
 import { IEsplanadeState } from 'ts/common/types';
@@ -16,11 +17,11 @@ export const initialState: IEsplanadeState = {
 		}
 	},
 	moderator: {
-		address: CST.DUMMY_ADDR,
+		address: WrapperConstants.DUMMY_ADDR,
 		balance: 0
 	},
 	candidate: {
-		address: CST.DUMMY_ADDR,
+		address: WrapperConstants.DUMMY_ADDR,
 		balance: 0
 	},
 	coldAddressPool: {},
@@ -109,7 +110,7 @@ export function espReducer(
 		case CST.AC_ESP_VOTING_DATA:
 			return Object.assign({}, state, {
 				votingData: action.value
-			})
+			});
 		default:
 			return state;
 	}

@@ -1,3 +1,7 @@
+import {
+	Constants as WrapperConstants,
+	ICustodianContractAddress
+} from '@finbook/duo-contract-wrapper';
 import { LocaleProvider, Table, Tooltip } from 'antd';
 import antdEn from 'antd/lib/locale-provider/en_US';
 import antdCn from 'antd/lib/locale-provider/zh_CN';
@@ -5,7 +9,7 @@ import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IConversion, ICustodianContractAddress, ITableRecord } from 'ts/common/types';
+import { IConversion, ITableRecord } from 'ts/common/types';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;
@@ -111,14 +115,16 @@ export default class ConversionCard extends React.Component<IProps> {
 								}
 								width={90}
 								render={text =>
-									text === CST.EVENT_CREATE
+									text === WrapperConstants.EVENT_CREATE
 										? CST.TH_CREATE[locale]
 										: CST.TH_REDEEM[locale]
 								}
 							/>
 							<Column title={CST.TH_ETH} dataIndex={CST.TH_ETH} className="eth" />
 							<Column
-								title={contractAddress.aToken.code + '/' + contractAddress.bToken.code}
+								title={
+									contractAddress.aToken.code + '/' + contractAddress.bToken.code
+								}
 								className="token-ab"
 								render={record => (
 									<div>

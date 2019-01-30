@@ -1,3 +1,4 @@
+import { Constants as WrapperConstants, IDualClassStates } from '@finbook/duo-contract-wrapper';
 import { Tooltip } from 'antd';
 import * as d3 from 'd3';
 import successIcon from 'images/stauts/success.svg';
@@ -5,7 +6,7 @@ import warningIcon from 'images/stauts/warning.svg';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IDualClassStates } from 'ts/common/types';
+import {} from 'ts/common/types';
 import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardExtraDivSolid, SCardList, SCardListProgressBar, SCardTitle } from './_styled';
@@ -22,9 +23,9 @@ export default class StateCard extends React.Component<IProps> {
 	public render() {
 		const { states, mobile, locale, tenor, type } = this.props;
 		const tooltioText =
-			states.state === CST.CTD_TRADING
+			states.state === WrapperConstants.CTD_TRADING
 				? CST.TT_TRADING_STATE[locale]
-				: states.state === CST.CTD_INCEPTION
+				: states.state === WrapperConstants.CTD_INCEPTION
 				? 'Inception state, please wait until the system is started.'
 				: CST.TT_RESET_STATE[locale];
 		return (
@@ -53,7 +54,11 @@ export default class StateCard extends React.Component<IProps> {
 						<Tooltip title={tooltioText}>
 							<div>{states.state}</div>
 							<img
-								src={states.state === CST.CTD_TRADING ? successIcon : warningIcon}
+								src={
+									states.state === WrapperConstants.CTD_TRADING
+										? successIcon
+										: warningIcon
+								}
 							/>
 						</Tooltip>
 					</SCardExtraDivSolid>
@@ -64,8 +69,8 @@ export default class StateCard extends React.Component<IProps> {
 						<div className="status-list-wrapper">
 							<ul>
 								<li className="block-title">
-									{states.state !== CST.CTD_LOADING ? (
-										states.state === CST.CTD_TRADING ? (
+									{states.state !== WrapperConstants.CTD_LOADING ? (
+										states.state === WrapperConstants.CTD_TRADING ? (
 											<div className="last-reset-title">
 												<span>{CST.TH_LAST_RESET[locale]}</span>
 												<span className="last-reset-title-span">
@@ -83,8 +88,8 @@ export default class StateCard extends React.Component<IProps> {
 										CST.TH_LOADING[locale]
 									)}
 								</li>
-								{states.state !== CST.CTD_LOADING ? (
-									states.state === CST.CTD_TRADING ? (
+								{states.state !== WrapperConstants.CTD_LOADING ? (
+									states.state === WrapperConstants.CTD_TRADING ? (
 										<li>
 											<span className="title">ETH</span>
 											<span className="content">
@@ -123,7 +128,7 @@ export default class StateCard extends React.Component<IProps> {
 									<span className="content">
 										{states.maturity
 											? moment(states.maturity).format('YYYY-MM-DD HH:mm')
-											: CST.TENOR_PPT}
+											: WrapperConstants.TENOR_PPT}
 									</span>
 								</li>
 								<li>

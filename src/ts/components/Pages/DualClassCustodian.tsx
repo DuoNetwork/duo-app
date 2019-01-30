@@ -1,8 +1,13 @@
+import {
+	Constants as WrapperConstants,
+	IContractPrice,
+	IDualClassStates
+} from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from 'ts/common/constants';
-import { IContractPrice, IConversion, IDualClassStates, ISourceData } from 'ts/common/types';
+import { IConversion, ISourceData } from 'ts/common/types';
 import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
 import TimeSeriesCard from 'ts/containers/Cards/TimeSeriesCardContainer';
 import Header from 'ts/containers/HeaderContainer';
@@ -154,7 +159,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 						sourceLast={sourceLast}
 						mobile
 					/>
-					{account !== CST.DUMMY_ADDR ? (
+					{account !== WrapperConstants.DUMMY_ADDR ? (
 						<BalanceCard
 							contractAddress={contractAddress}
 							locale={locale}
@@ -166,7 +171,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 							mobile
 						/>
 					) : null}
-					{account !== CST.DUMMY_ADDR ? (
+					{account !== WrapperConstants.DUMMY_ADDR ? (
 						<OperationCard
 							contractAddress={contractAddress}
 							type={type}
@@ -182,7 +187,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 							mobile
 						/>
 					) : null}
-					{account !== CST.DUMMY_ADDR ? (
+					{account !== WrapperConstants.DUMMY_ADDR ? (
 						<ConversionMCard
 							contractAddress={contractAddress}
 							locale={locale}

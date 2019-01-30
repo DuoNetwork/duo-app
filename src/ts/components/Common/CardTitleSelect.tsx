@@ -1,5 +1,4 @@
-//import * as d3 from 'd3';
-//import moment from 'moment';
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { Select } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
@@ -23,13 +22,15 @@ export default class CardTitleSelect extends React.Component<IProps> {
 				<SDivFlexCenter horizontal noJust>
 					<div>{this.props.name}</div>
 					<SCardTitleSelector
-						defaultValue={onlySource ? source : CST.BEETHOVEN}
+						defaultValue={onlySource ? source : WrapperConstants.BEETHOVEN}
 						style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
 						size="small"
 						onSelect={(value: any) => this.props.onSelect(value + '')}
 					>
 						{onlySource ? null : (
-							<Option value={CST.BEETHOVEN}>{CST.BEETHOVEN}</Option>
+							<Option value={WrapperConstants.BEETHOVEN}>
+								{WrapperConstants.BEETHOVEN}
+							</Option>
 						)}
 						{CST.API_LIST.map(src => (
 							<Option key={src.toLowerCase()} value={src.toLowerCase()}>

@@ -1,6 +1,8 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import * as CST from 'ts/common/constants';
 import util from 'ts/common/util';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 import * as magiActions from './magiActions';
@@ -15,7 +17,7 @@ describe('actions', () => {
 	test('fetchAcceptedPrices', () => {
 		const store: any = mockStore({});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		store.dispatch(magiActions.fetchAcceptedPrices(CST.DUMMY_ADDR));
+		store.dispatch(magiActions.fetchAcceptedPrices(WrapperConstants.DUMMY_ADDR));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

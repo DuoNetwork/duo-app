@@ -1,10 +1,10 @@
 //import * as d3 from 'd3';
 //import moment from 'moment';
+import { Wallet } from '@finbook/duo-contract-wrapper';
 import { Button, Radio } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { web3Wrapper } from 'ts/common/wrappers';
-import { Wallet } from '../../../../../duo-contract-wrapper/src/types';
 import { SRadioGroup } from '../Cards/_styled';
 import { SModal } from './_styled';
 

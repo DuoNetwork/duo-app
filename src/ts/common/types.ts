@@ -1,7 +1,12 @@
+import {
+	ICustodianAddresses,
+	IDualClassStates,
+	IEsplanadeStates,
+	IVotingData
+} from '@finbook/duo-contract-wrapper';
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import * as adminTypes from '../../../../duo-admin/src/common/types';
-import { IVotingData } from '../../../../duo-contract-wrapper/src/types';
 export * from '../../../../duo-admin/src/common/types';
 
 export interface ISourceData<T> {
@@ -32,8 +37,8 @@ export interface IDualClassState {
 	readonly type: string;
 	readonly tenor: string;
 	readonly subscription: number;
-	readonly states: adminTypes.IDualClassStates;
-	readonly addresses: adminTypes.ICustodianAddresses;
+	readonly states: IDualClassStates;
+	readonly addresses: ICustodianAddresses;
 	readonly exchangePrices: adminTypes.IPrice[];
 	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
 	readonly conversions: adminTypes.IConversion[];
@@ -45,7 +50,7 @@ export interface IDualClassState {
 
 export interface IEsplanadeState {
 	readonly subscription: number;
-	readonly states: adminTypes.IEsplanadeStates;
+	readonly states: IEsplanadeStates;
 	readonly moderator: {
 		address: string;
 		balance: number;

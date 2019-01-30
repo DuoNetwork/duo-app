@@ -1,6 +1,8 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as CST from 'ts/common/constants';
 import { dualClassWrappers } from 'ts/common/wrappers';
 import { SInput } from './_styled';
 import DecodeCard from './DecodeCard';
@@ -8,13 +10,19 @@ import DecodeCard from './DecodeCard';
 describe('DecodeCard Test', () => {
 	describe('Test Snapshot', () => {
 		it('Test Snapshot', () => {
-			const wrapper = shallow(<DecodeCard type={CST.BEETHOVEN} tenor={CST.TENOR_PPT} />);
+			const wrapper = shallow(
+				<DecodeCard type={WrapperConstants.BEETHOVEN} tenor={WrapperConstants.TENOR_PPT} />
+			);
 			expect(wrapper).toMatchSnapshot();
 		});
 
 		it('Test SInput Input', async () => {
-			dualClassWrappers[CST.BEETHOVEN][CST.TENOR_PPT].decode = jest.fn(() => 'decoded');
-			const wrapper = shallow(<DecodeCard type={CST.BEETHOVEN} tenor={CST.TENOR_PPT}/>);
+			dualClassWrappers[WrapperConstants.BEETHOVEN][
+				WrapperConstants.TENOR_PPT
+			].decode = jest.fn(() => 'decoded');
+			const wrapper = shallow(
+				<DecodeCard type={WrapperConstants.BEETHOVEN} tenor={WrapperConstants.TENOR_PPT} />
+			);
 			await wrapper
 				.find(SInput)
 				.at(0)

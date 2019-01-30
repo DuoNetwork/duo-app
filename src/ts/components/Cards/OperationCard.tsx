@@ -1,4 +1,10 @@
 //import moment from 'moment';
+import {
+	Constants as WrapperConstants,
+	DualClassWrapper,
+	ICustodianContractAddress,
+	IDualClassStates
+} from '@finbook/duo-contract-wrapper';
 import { Tooltip } from 'antd';
 import * as d3 from 'd3';
 import demoCreate from 'images/createDemo.png';
@@ -6,14 +12,19 @@ import infoIcon from 'images/info.svg';
 import demoRedeem from 'images/redeemDemo.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { ICustodianContractAddress, IDualClassStates } from 'ts/common/types';
 import util from 'ts/common/util';
 import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
-import DualClassWrapper from '../../../../../duo-contract-wrapper/src/DualClassWrapper';
 import { SDivFlexCenter } from '../_styled';
 import Erc20Form from '../Forms/Erc20Form';
-import { SCard, SCardConversionForm, SCardExtraDiv, SCardList, SCardTitle, SInput } from './_styled';
+import {
+	SCard,
+	SCardConversionForm,
+	SCardExtraDiv,
+	SCardList,
+	SCardTitle,
+	SInput
+} from './_styled';
 
 interface IProps {
 	type: string;
@@ -243,14 +254,14 @@ export default class OperationCard extends React.Component<IProps, IState> {
 				title={
 					<SCardTitle>
 						{CST.TH_OPERATION[locale].toUpperCase() +
-							(states.state !== CST.CTD_TRADING
+							(states.state !== WrapperConstants.CTD_TRADING
 								? '(' + CST.TH_DISABLED[locale] + ')'
 								: '')}
 					</SCardTitle>
 				}
 				width={mobile ? '100%' : '440px'}
 				margin={mobile ? '20px 0 0 0' : '0 0 0 10px'}
-				className={states.state !== CST.CTD_TRADING ? 'card-disable' : ''}
+				className={states.state !== WrapperConstants.CTD_TRADING ? 'card-disable' : ''}
 				extra={
 					<SCardExtraDiv>
 						{CST.TH_NETWORK_GAS_PRICE[locale] +

@@ -1,4 +1,4 @@
-import { BEETHOVEN } from '../../../../duo-admin/src/common/constants';
+import { Constants } from '@finbook/duo-contract-wrapper';
 export * from '../../../../duo-admin/src/common/constants';
 export const AC_DCC_STATES = 'dualClassStates';
 export const AC_DCC_ADDRESSES = 'dualClassAddresses';
@@ -512,24 +512,25 @@ export const TT_INVALID_NUMBER: ILocaleText = {
 	[LOCALE_RU]: 'Некорректное число'
 };
 export const TT_BEETHOVEN_ADDR: ILocaleText = {
-	[LOCALE_CN]: '点击输入' + BEETHOVEN + '地址。无法往' + BEETHOVEN + '地址转账。',
+	[LOCALE_CN]:
+		'点击输入' + Constants.BEETHOVEN + '地址。无法往' + Constants.BEETHOVEN + '地址转账。',
 	[LOCALE_EN]:
 		'Click to auto fill in ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		' address. Transfer to ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		' is disabled.',
 	[LOCALE_JP]:
 		'クリックしてオートフィルします' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		'アドレス、' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		'送金することができません',
 	[LOCALE_RU]:
 		'Нажмите для автозаполнения aдрес ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		'. Функция трансфера в ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		' отключена.'
 };
 // export const TT_DUO_FEE_CHECK: ILocaleText = {

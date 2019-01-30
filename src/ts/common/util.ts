@@ -1,6 +1,7 @@
+import { IContractPrice } from '@finbook/duo-contract-wrapper';
 import * as d3 from 'd3';
 import moment, { DurationInputArg2 } from 'moment';
-import { IContractPrice, IPriceStatus, ISourceData, IStatus } from './types';
+import { IPriceStatus, ISourceData, IStatus } from './types';
 
 class Util {
 	public convertUpdateTime(timestamp: number): string {

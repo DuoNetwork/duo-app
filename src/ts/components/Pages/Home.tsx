@@ -1,3 +1,4 @@
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import ethIcon from 'images/ethIcon.png';
 import * as React from 'react';
@@ -15,8 +16,8 @@ export default class Duo extends React.Component {
 	}
 
 	public render() {
-		const beethovenTenors = Object.keys(dualClassWrappers[CST.BEETHOVEN]);
-		const mozartTenors = Object.keys(dualClassWrappers[CST.MOZART]);
+		const beethovenTenors = Object.keys(dualClassWrappers[WrapperConstants.BEETHOVEN]);
+		const mozartTenors = Object.keys(dualClassWrappers[WrapperConstants.MOZART]);
 		return (
 			<Layout>
 				<Header />
@@ -34,7 +35,7 @@ export default class Duo extends React.Component {
 							{beethovenTenors.map(tenor => (
 								<Link
 									key={tenor}
-									to={`/${CST.BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}
+									to={`/${WrapperConstants.BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}
 								>
 									<SCardTag style={{ marginRight: '20px' }}>
 										<div className="bg-logo">
@@ -42,7 +43,7 @@ export default class Duo extends React.Component {
 										</div>
 										<div className="tag-content">
 											<div className={'tag-price USD'}>
-												{CST.BEETHOVEN.toUpperCase()}
+												{WrapperConstants.BEETHOVEN.toUpperCase()}
 											</div>
 										</div>
 										<div className="tag-subtext">
@@ -67,7 +68,7 @@ export default class Duo extends React.Component {
 							{mozartTenors.map(tenor => (
 								<Link
 									key={tenor}
-									to={`/${CST.MOZART.toLowerCase()}/${tenor.toLowerCase()}`}
+									to={`/${WrapperConstants.MOZART.toLowerCase()}/${tenor.toLowerCase()}`}
 								>
 									<SCardTag style={{ marginRight: '20px' }}>
 										<div className="bg-logo">
@@ -75,7 +76,7 @@ export default class Duo extends React.Component {
 										</div>
 										<div className="tag-content">
 											<div className={'tag-price USD'}>
-												{CST.MOZART.toUpperCase()}
+												{WrapperConstants.MOZART.toUpperCase()}
 											</div>
 										</div>
 										<div className="tag-subtext">

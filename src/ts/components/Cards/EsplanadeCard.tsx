@@ -1,7 +1,8 @@
+import { Constants as WrapperConstants, IEsplanadeStates } from '@finbook/duo-contract-wrapper';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IEsplanadeStates } from 'ts/common/types';
+import {} from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 import { SCard, SCardExtraDiv, SCardList, SCardTitle, SInput } from './_styled';
 
@@ -127,7 +128,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 							target="_blank"
 							style={{ color: 'white' }}
 						>
-							{CST.ESPLANADE.toUpperCase()}
+							{WrapperConstants.ESPLANADE.toUpperCase()}
 						</a>
 					</SCardTitle>
 				}

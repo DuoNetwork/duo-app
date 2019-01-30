@@ -1,3 +1,5 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
 import * as CST from 'ts/common/constants';
 import { initialState, web3Reducer } from './web3Reducer';
 

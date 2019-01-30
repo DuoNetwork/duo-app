@@ -1,7 +1,8 @@
 // import moment from 'moment';
+import { IEsplanadeStates, IVotingData } from '@finbook/duo-contract-wrapper';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IEsplanadeAddresses, IEsplanadeStates, IVotingData } from 'ts/common/types';
+import { IEsplanadeAddresses } from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardList, SCardTitle, SInput } from './_styled';

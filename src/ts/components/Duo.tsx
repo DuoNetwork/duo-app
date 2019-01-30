@@ -1,6 +1,6 @@
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import * as CST from 'ts/common/constants';
 import { dualClassWrappers } from 'ts/common/wrappers';
 import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
 import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
@@ -36,7 +36,10 @@ export default class Duo extends React.Component {
 					key={type + 'admin'}
 					path={`/${type.toLowerCase()}/admin`}
 					render={() => (
-						<DualClassCustodianAdminCointainer type={type} tenor={CST.TENOR_PPT} />
+						<DualClassCustodianAdminCointainer
+							type={type}
+							tenor={WrapperConstants.TENOR_PPT}
+						/>
 					)}
 				/>
 			);
@@ -44,7 +47,12 @@ export default class Duo extends React.Component {
 				<Route
 					key={type}
 					path={`/${type.toLowerCase()}`}
-					render={() => <DualClassCustodianContainer type={type} tenor={CST.TENOR_PPT} />}
+					render={() => (
+						<DualClassCustodianContainer
+							type={type}
+							tenor={WrapperConstants.TENOR_PPT}
+						/>
+					)}
 				/>
 			);
 		}

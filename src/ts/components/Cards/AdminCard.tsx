@@ -1,8 +1,12 @@
+import {
+	Constants as WrapperConstants,
+	ICustodianAddresses,
+	IDualClassStates
+} from '@finbook/duo-contract-wrapper';
 import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { ICustodianAddresses, IDualClassStates } from 'ts/common/types';
 import AdminInputButton from '../Common/AdminInputButton';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
@@ -34,7 +38,10 @@ export default class AdminCard extends React.Component<IProps> {
 					tenor={tenor}
 					account={account}
 					type={CST.TH_COLLECT_FEE}
-					disabled={account === CST.DUMMY_ADDR || addresses.feeCollector !== account}
+					disabled={
+						account === WrapperConstants.DUMMY_ADDR ||
+						addresses.feeCollector !== account
+					}
 					validateInput={(value: string) =>
 						!value || (value.match(CST.RX_NUM_P) && Number(value) > 0)
 							? ''
@@ -53,7 +60,9 @@ export default class AdminCard extends React.Component<IProps> {
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
+					disabled={
+						account === WrapperConstants.DUMMY_ADDR || addresses.operator !== account
+					}
 					index={0}
 					validateInput={validatePosInt}
 				/>
@@ -69,7 +78,9 @@ export default class AdminCard extends React.Component<IProps> {
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
+					disabled={
+						account === WrapperConstants.DUMMY_ADDR || addresses.operator !== account
+					}
 					index={1}
 					validateInput={validatePosInt}
 				/>
@@ -85,7 +96,9 @@ export default class AdminCard extends React.Component<IProps> {
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
+					disabled={
+						account === WrapperConstants.DUMMY_ADDR || addresses.operator !== account
+					}
 					index={2}
 					validateInput={validatePosInt}
 				/>
@@ -101,7 +114,9 @@ export default class AdminCard extends React.Component<IProps> {
 					tenor={tenor}
 					account={account}
 					type={CST.TH_SET_VALUE}
-					disabled={account === CST.DUMMY_ADDR || addresses.operator !== account}
+					disabled={
+						account === WrapperConstants.DUMMY_ADDR || addresses.operator !== account
+					}
 					index={3}
 					validateInput={validatePosInt}
 				/>

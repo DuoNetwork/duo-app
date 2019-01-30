@@ -1,5 +1,6 @@
+import { IEsplanadeStates, IVotingData } from '@finbook/duo-contract-wrapper';
 import * as CST from 'ts/common/constants';
-import { IEsplanadeStates, IVotingData, VoidThunkAction } from 'ts/common/types';
+import { VoidThunkAction } from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 
 export function statesUpdate(states: IEsplanadeStates) {
