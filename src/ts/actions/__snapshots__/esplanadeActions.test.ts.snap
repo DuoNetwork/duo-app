@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`refresh 1`] = `
+Array [
+  Object {
+    "type": "esplanadeStates",
+    "value": Object {
+      "isStarted": false,
+      "lastOperationTime": 123456789,
+      "operationCoolDown": 1000,
+      "poolSizes": Object {
+        "cold": 3,
+        "custodian": 3,
+        "hot": 3,
+        "otherContract": 3,
+      },
+      "votingStage": "NotStarted",
+    },
+  },
+  Object {
+    "address": "0xModerator",
+    "balance": 100,
+    "type": "esplanadeModerator",
+  },
+  Object {
+    "address": "0xCandidate",
+    "balance": 100,
+    "type": "esplanadeCandidate",
+  },
+  Object {
+    "address": "hotAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeHotAddress",
+  },
+  Object {
+    "address": "hotAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeHotAddress",
+  },
+  Object {
+    "address": "hotAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeHotAddress",
+  },
+  Object {
+    "address": "coldAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeColdAddress",
+  },
+  Object {
+    "address": "coldAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeColdAddress",
+  },
+  Object {
+    "address": "coldAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeColdAddress",
+  },
+  Object {
+    "address": "custodianAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeCustodianAddress",
+  },
+  Object {
+    "address": "custodianAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeCustodianAddress",
+  },
+  Object {
+    "address": "custodianAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeCustodianAddress",
+  },
+  Object {
+    "address": "otherContractAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeOtherContractAddress",
+  },
+  Object {
+    "address": "otherContractAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeOtherContractAddress",
+  },
+  Object {
+    "address": "otherContractAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeOtherContractAddress",
+  },
+  Object {
+    "type": "esplanadeVotingData",
+    "value": Object {
+      "started": 0,
+      "totalVoters": 10,
+      "votedAgainst": 0,
+      "votedFor": 0,
+    },
+  },
+]
+`;
+
+exports[`subscribe 1`] = `
+Array [
+  Object {
+    "id": 0,
+    "type": "esplanadeSubscription",
+  },
+  Object {
+    "id": 123,
+    "type": "esplanadeSubscription",
+  },
+  Object {
+    "type": "esplanadeStates",
+    "value": Object {
+      "isStarted": false,
+      "lastOperationTime": 123456789,
+      "operationCoolDown": 1000,
+      "poolSizes": Object {
+        "cold": 3,
+        "custodian": 3,
+        "hot": 3,
+        "otherContract": 3,
+      },
+      "votingStage": "NotStarted",
+    },
+  },
+  Object {
+    "address": "0xModerator",
+    "balance": 100,
+    "type": "esplanadeModerator",
+  },
+  Object {
+    "address": "0xCandidate",
+    "balance": 100,
+    "type": "esplanadeCandidate",
+  },
+  Object {
+    "address": "hotAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeHotAddress",
+  },
+  Object {
+    "address": "hotAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeHotAddress",
+  },
+  Object {
+    "address": "hotAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeHotAddress",
+  },
+  Object {
+    "address": "coldAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeColdAddress",
+  },
+  Object {
+    "address": "coldAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeColdAddress",
+  },
+  Object {
+    "address": "coldAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeColdAddress",
+  },
+  Object {
+    "address": "custodianAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeCustodianAddress",
+  },
+  Object {
+    "address": "custodianAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeCustodianAddress",
+  },
+  Object {
+    "address": "custodianAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeCustodianAddress",
+  },
+  Object {
+    "address": "otherContractAddress0",
+    "balance": 100,
+    "index": 0,
+    "type": "esplanadeOtherContractAddress",
+  },
+  Object {
+    "address": "otherContractAddress1",
+    "balance": 100,
+    "index": 1,
+    "type": "esplanadeOtherContractAddress",
+  },
+  Object {
+    "address": "otherContractAddress2",
+    "balance": 100,
+    "index": 2,
+    "type": "esplanadeOtherContractAddress",
+  },
+  Object {
+    "type": "esplanadeVotingData",
+    "value": Object {
+      "started": 0,
+      "totalVoters": 10,
+      "votedAgainst": 0,
+      "votedFor": 0,
+    },
+  },
+]
+`;
+
+exports[`subscriptionUpdate 1`] = `
+Object {
+  "id": 123,
+  "type": "esplanadeSubscription",
+}
+`;

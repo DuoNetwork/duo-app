@@ -1,7 +1,13 @@
+import {
+	ICustodianAddresses,
+	IDualClassStates,
+	IEsplanadeStates,
+	IVotingData
+} from '@finbook/duo-contract-wrapper';
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-export * from '../../../../duo-admin/src/common/types';
 import * as adminTypes from '../../../../duo-admin/src/common/types';
+export * from '../../../../duo-admin/src/common/types';
 
 export interface ISourceData<T> {
 	// bitfinex: T;
@@ -31,21 +37,39 @@ export interface IDualClassState {
 	readonly type: string;
 	readonly tenor: string;
 	readonly subscription: number;
-	readonly states: adminTypes.IDualClassStates;
-	readonly addresses: adminTypes.ICustodianAddresses;
+	readonly states: IDualClassStates;
+	readonly addresses: ICustodianAddresses;
 	readonly exchangePrices: adminTypes.IPrice[];
 	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
 	readonly conversions: adminTypes.IConversion[];
 	readonly balances: {
 		a: number;
 		b: number;
-	}
+	};
 }
 
 export interface IEsplanadeState {
 	readonly subscription: number;
-	readonly esplanadeStates: adminTypes.IEsplanadeStates;
-	readonly esplanadeAddrs: adminTypes.IEsplanadeAddresses;
+	readonly states: IEsplanadeStates;
+	readonly moderator: {
+		address: string;
+		balance: number;
+	};
+	readonly candidate: {
+		address: string;
+		balance: number;
+	};
+	readonly coldAddressPool: IEsplanadeAddresses;
+	readonly hotAddressPool: IEsplanadeAddresses;
+	readonly custodianPool: IEsplanadeAddresses;
+	readonly otherContractPool: IEsplanadeAddresses;
+	readonly votingData: IVotingData;
+}
+export interface IEsplanadeAddresses {
+	[address: string]: {
+		balance: number;
+		index: number;
+	};
 }
 
 export interface IMagiState {
@@ -66,7 +90,7 @@ export interface IUIState {
 export type VoidThunkAction = ThunkAction<void, IState, undefined, AnyAction>;
 
 export interface ITableRecord {
-	[key: string]: any
+	[key: string]: any;
 }
 
 export enum WsChannelMessageTypes {

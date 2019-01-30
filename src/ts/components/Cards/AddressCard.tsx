@@ -1,118 +1,82 @@
-// import { Table } from 'antd';
-// import * as React from 'react';
-// import * as CST from '../../common/constants';
-// // import contract from '../../common/contract';
-// import {IEsplanadeAddresses, IEsplanadeStates, ITableRecord } from '../../common/types';
-// import util from '../../common/util';
-// import { SCard, SCardTitle, STableWrapper } from './_styled';
+import { Table } from 'antd';
+import * as React from 'react';
+import * as CST from 'ts/common/constants';
+import { IEsplanadeAddresses, ITableRecord } from 'ts/common/types';
+import util from 'ts/common/util';
+import { esplanadeWrapper } from 'ts/common/wrappers';
+import { SCard, SCardTitle, STableWrapper } from './_styled';
 
-// const { Column } = Table;
+const { Column } = Table;
 
-// interface IProps {
-// 	addresses: IEsplanadeAddresses;
-// 	states: IEsplanadeStates;
-// 	account: string;
-// }
+interface IProps {
+	addresses: IEsplanadeAddresses;
+	moderator: string;
+	account: string;
+	title: string;
+	showRemove?: boolean;
+	isHot?: boolean;
+}
 
-// export default class AddressCard extends React.Component<IProps> {
-// 	public render() {
-// 		const { addresses, states, account } = this.props;
-// 		const data: object[] = [];
-// 		const isInHotPool = states.poolAddrsHot.findIndex(a => a.address === account) >= 0;
-// 		const isInColdPool = states.poolAddrsCold.findIndex(a => a.address === account) >= 0;
-// 		const isModerator = account === addresses.moderator.address;
-// 		for (const role in addresses) {
-// 			const addr = addresses[role];
-// 			data.push({
-// 				key: role,
-// 				[CST.TH_ROLE]: role,
-// 				[CST.TH_ADDRESS.EN]: addr.address,
-// 				[CST.TH_BALANCE.EN]: util.formatBalance(addr.balance),
-// 				[CST.TH_LINK]:
-// 					'https://' +
-// 					(__KOVAN__ ? 'kovan.' : '') +
-// 					'etherscan.io/address/' +
-// 					addr.address
-// 			});
-// 		}
-// 		states.poolAddrsHot.forEach((addr, i) =>
-// 			data.push({
-// 				key: CST.TH_POOL + i,
-// 				[CST.TH_ROLE]: CST.TH_HOT_ADDRESS + i,
-// 				[CST.TH_ADDRESS.EN]: addr.address,
-// 				[CST.TH_BALANCE.EN]: util.formatBalance(addr.balance),
-// 				[CST.TH_LINK]:
-// 					'https://' +
-// 					(__KOVAN__ ? 'kovan.' : '') +
-// 					'etherscan.io/address/' +
-// 					addr.address
-// 				// [CST.TH_ACTION]: (
-// 				// 	<button
-// 				// 		className="form-button"
-// 				// 		disabled={!isModerator}
-// 				// 		onClick={() => contract.removeAddress(account, addr.address)}
-// 				// 	>
-// 				// 		{CST.TH_RM_ADDR}
-// 				// 	</button>
-// 				// )
-// 			})
-// 		);
+export default class AddressCard extends React.Component<IProps> {
+	public render() {
+		const { addresses, account, title, showRemove, moderator, isHot } = this.props;
+		const isModerator = account === moderator;
+		const dataSource: ITableRecord[] = [];
+		for (const address in addresses) {
+			const { balance, index } = addresses[address];
+			dataSource.push({
+				key: index,
+				[CST.TH_ADDRESS.EN]: address,
+				[CST.TH_BALANCE.EN]: util.formatBalance(balance),
+				[CST.TH_ACTION]: address,
+				[CST.TH_LINK]:
+					'https://' + (__KOVAN__ ? 'kovan.' : '') + 'etherscan.io/address/' + address
+			});
+		}
 
-// 		states.poolAddrsCold.forEach((addr, i) =>
-// 			data.push({
-// 				key: CST.TH_POOL + i,
-// 				[CST.TH_ROLE]: CST.TH_COLD_ADDRESS + i,
-// 				[CST.TH_ADDRESS.EN]: addr.address,
-// 				[CST.TH_BALANCE.EN]: util.formatBalance(addr.balance),
-// 				[CST.TH_LINK]:
-// 					'https://' +
-// 					(__KOVAN__ ? 'kovan.' : '') +
-// 					'etherscan.io/address/' +
-// 					addr.address
-// 				// [CST.TH_ACTION]: (
-// 				// 	<button
-// 				// 		className="form-button"
-// 				// 		disabled={!isModerator}
-// 				// 		onClick={() => contract.removeAddress(account, addr.address)}
-// 				// 	>
-// 				// 		{CST.TH_RM_ADDR}
-// 				// 	</button>
-// 				// )
-// 			})
-// 		);
+		dataSource.sort((a, b) => a.key - b.key);
 
-// 		return (
-// 			<SCard
-// 				title={<SCardTitle>{CST.TH_ADDRESS.EN.toUpperCase()}</SCardTitle>}
-// 				width="1000px"
-// 				margin="0 0 0 0"
-// 				inlinetype="table"
-// 			>
-// 				<STableWrapper>
-// 					<Table dataSource={data} pagination={false}>
-// 						{[
-// 							CST.TH_ROLE,
-// 							CST.TH_ADDRESS.EN,
-// 							CST.TH_BALANCE.EN
-// 						].map(th => (
-// 							<Column
-// 								title={th}
-// 								dataIndex={th}
-// 								key={th}
-// 								onCell={(record: ITableRecord) => ({
-// 									onClick: () => window.open(record[CST.TH_LINK])
-// 								})}
-// 							/>
-// 						))}
-// 						{/* <Column
-// 							title={CST.TH_ACTION}
-// 							dataIndex={CST.TH_ACTION}
-// 							key={CST.TH_ACTION}
-// 							className={'address-table-action-col'}
-// 						/> */}
-// 					</Table>
-// 				</STableWrapper>
-// 			</SCard>
-// 		);
-// 	}
-// }
+		return (
+			<SCard
+				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
+				width="1000px"
+				margin="0 0 0 0"
+				inlinetype="table"
+			>
+				<STableWrapper>
+					<Table dataSource={dataSource} pagination={false}>
+						{[CST.TH_ADDRESS.EN, CST.TH_BALANCE.EN].map(th => (
+							<Column
+								title={th}
+								dataIndex={th}
+								key={th}
+								onCell={(record: ITableRecord) => ({
+									onClick: () => window.open(record[CST.TH_LINK])
+								})}
+							/>
+						))}
+						{showRemove ? (
+							<Column
+								title={CST.TH_ACTION}
+								dataIndex={CST.TH_ACTION}
+								key={CST.TH_ACTION}
+								className={'address-table-action-col'}
+								render={text => (
+									<button
+										className="form-button"
+										disabled={!isModerator}
+										onClick={() =>
+											esplanadeWrapper.removeAddress(account, text, !!isHot)
+										}
+									>
+										{CST.TH_RM_ADDR}
+									</button>
+								)}
+							/>
+						) : null}
+					</Table>
+				</STableWrapper>
+			</SCard>
+		);
+	}
+}

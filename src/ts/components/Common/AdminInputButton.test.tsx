@@ -1,6 +1,8 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as CST from 'ts/common/constants'
 import { dualClassWrappers } from 'ts/common/wrappers';
 import { SInput } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
@@ -13,14 +15,18 @@ describe('AdminInputButton Test', () => {
 		const disabled = true;
 		const index = 12;
 		const validateInput = jest.fn();
-		dualClassWrappers[CST.BEETHOVEN][CST.TENOR_PPT].setValue = jest.fn(() => Promise.resolve());
-		dualClassWrappers[CST.BEETHOVEN][CST.TENOR_PPT].collectFee = jest.fn(() => Promise.resolve());
+		dualClassWrappers[WrapperConstants.BEETHOVEN][
+			WrapperConstants.TENOR_PPT
+		].setValue = jest.fn(() => Promise.resolve());
+		dualClassWrappers[WrapperConstants.BEETHOVEN][
+			WrapperConstants.TENOR_PPT
+		].collectFee = jest.fn(() => Promise.resolve());
 
 		it('test Snapshot', () => {
 			const wrapper = shallow(
 				<AdminInputButton
-					custodianType={CST.BEETHOVEN}
-					tenor={CST.TENOR_PPT}
+					custodianType={WrapperConstants.BEETHOVEN}
+					tenor={WrapperConstants.TENOR_PPT}
 					account={account}
 					type={'Add Address'}
 					disabled={disabled}
@@ -48,8 +54,8 @@ describe('AdminInputButton Test', () => {
 		it('change type for test click 1', () => {
 			const wrapper1 = shallow(
 				<AdminInputButton
-					custodianType={CST.BEETHOVEN}
-					tenor={CST.TENOR_PPT}
+					custodianType={WrapperConstants.BEETHOVEN}
+					tenor={WrapperConstants.TENOR_PPT}
 					account={account}
 					type={'Collect Fee'}
 					disabled={disabled}
@@ -73,8 +79,8 @@ describe('AdminInputButton Test', () => {
 		it('change type for test click 2', () => {
 			const wrapper2 = shallow(
 				<AdminInputButton
-					custodianType={CST.BEETHOVEN}
-					tenor={CST.TENOR_PPT}
+					custodianType={WrapperConstants.BEETHOVEN}
+					tenor={WrapperConstants.TENOR_PPT}
 					account={account}
 					type={'Set Value'}
 					disabled={disabled}

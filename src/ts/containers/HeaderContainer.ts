@@ -1,3 +1,4 @@
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { AnyAction } from 'redux';
@@ -23,10 +24,13 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 		refresh: (path: string) => {
 			dispatch(web3Actions.refresh());
 			const lowerPath = path.toLocaleLowerCase();
-			if (lowerPath.includes(CST.BEETHOVEN.toLowerCase()))
+			if (
+				lowerPath.includes(WrapperConstants.BEETHOVEN.toLowerCase()) ||
+				lowerPath.includes(WrapperConstants.MOZART.toLowerCase())
+			)
 				dispatch(dualClassActions.refresh(true));
 			else if (lowerPath.includes(CST.TH_MAGI.toLowerCase())) dispatch(magiActions.refresh());
-			else if (lowerPath.includes('esplanade')) dispatch(esplanadeActions.refreshAdmin());
+			else if (lowerPath.includes('esplanade')) dispatch(esplanadeActions.refresh());
 		},
 		updateLocale: (locale: string) => dispatch(uiActions.localeUpdate(locale))
 	};

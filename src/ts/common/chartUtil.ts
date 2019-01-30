@@ -1,4 +1,5 @@
-import { IAcceptedPrice, IContractPrice, IDualClassStates, IPrice } from './types';
+import { IContractPrice, IDualClassStates } from '@finbook/duo-contract-wrapper';
+import { IAcceptedPrice, IPrice } from './types';
 
 class ChartUtil {
 	public mergePrices(prices: IPrice[], period: number): IPrice[] {
@@ -65,7 +66,12 @@ class ChartUtil {
 		limitPeriod: number
 	): IAcceptedPrice[] {
 		return price
-			.filter(p => p.navB >= limitUp || p.navB <= limitDown || (limitPeriod && p.navA >= limitPeriod))
+			.filter(
+				p =>
+					p.navB >= limitUp ||
+					p.navB <= limitDown ||
+					(limitPeriod && p.navA >= limitPeriod)
+			)
 			.map(p => ({
 				contractAddress: p.contractAddress,
 				price: p.price,

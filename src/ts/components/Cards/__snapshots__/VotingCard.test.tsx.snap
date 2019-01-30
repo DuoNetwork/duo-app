@@ -1,0 +1,353 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
+<Styled(Card)
+  margin="0 10px 0 10px"
+  title={
+    <styled.div>
+      <a
+        className="tag-content"
+        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+        target="_blank"
+      >
+        VOTING
+      </a>
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div
+    horizontal={true}
+    padding="0 10px"
+  >
+    <styled.div
+      noMargin={true}
+    >
+      <div
+        className="status-list-wrapper"
+      >
+        <ul
+          style={
+            Object {
+              "paddingTop": "10px",
+            }
+          }
+        >
+          <li>
+            <span
+              className="title"
+            >
+              Voting Stage
+            </span>
+            <span
+              className="content"
+            >
+              NotStarted
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Moderator
+            </span>
+            <span
+              className="content"
+            >
+              moderator
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Start Moderator Voting
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Candidate
+            </span>
+            <span
+              className="content"
+            >
+              candidate
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Terminate By Time Out
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Started
+            </span>
+            <span
+              className="content"
+            >
+              never
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Terminate Voting
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Vote For
+            </span>
+            <span
+              className="content"
+            >
+              1/10
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Vote For
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Vote Against
+            </span>
+            <span
+              className="content"
+            >
+              2/10
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Vote Against
+            </button>
+          </li>
+          <li
+            className="no-bg"
+          >
+            <span
+              className="title"
+            >
+              Start Contract Voting
+            </span>
+            <styled.input
+              className=""
+              onChange={[Function]}
+              placeholder="Please input address"
+              small={true}
+              value=""
+              width="400px"
+            />
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Start Contract Voting
+            </button>
+          </li>
+        </ul>
+      </div>
+    </styled.div>
+  </styled.div>
+</Styled(Card)>
+`;
+
+exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
+<Styled(Card)
+  margin="0 10px 0 10px"
+  title={
+    <styled.div>
+      <a
+        className="tag-content"
+        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        style={
+          Object {
+            "color": "white",
+          }
+        }
+        target="_blank"
+      >
+        VOTING
+      </a>
+    </styled.div>
+  }
+  width="1000px"
+>
+  <styled.div
+    horizontal={true}
+    padding="0 10px"
+  >
+    <styled.div
+      noMargin={true}
+    >
+      <div
+        className="status-list-wrapper"
+      >
+        <ul
+          style={
+            Object {
+              "paddingTop": "10px",
+            }
+          }
+        >
+          <li>
+            <span
+              className="title"
+            >
+              Voting Stage
+            </span>
+            <span
+              className="content"
+            >
+              NotStarted
+            </span>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Moderator
+            </span>
+            <span
+              className="content"
+            >
+              moderator
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Start Moderator Voting
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Candidate
+            </span>
+            <span
+              className="content"
+            >
+              candidate
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Terminate By Time Out
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Started
+            </span>
+            <span
+              className="content"
+            >
+              never
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Terminate Voting
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Vote For
+            </span>
+            <span
+              className="content"
+            >
+              1/10
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Vote For
+            </button>
+          </li>
+          <li>
+            <span
+              className="title"
+            >
+              Vote Against
+            </span>
+            <span
+              className="content"
+            >
+              2/10
+            </span>
+            <button
+              className="form-button"
+              disabled={true}
+              onClick={[Function]}
+            >
+              Vote Against
+            </button>
+          </li>
+          <li
+            className="no-bg"
+          >
+            <span
+              className="title"
+            >
+              Start Contract Voting
+            </span>
+            <styled.input
+              className=""
+              onChange={[Function]}
+              placeholder="Please input address"
+              small={true}
+              value=""
+              width="400px"
+            />
+            <button
+              className="form-button"
+              disabled={false}
+              onClick={[Function]}
+            >
+              Start Contract Voting
+            </button>
+          </li>
+        </ul>
+      </div>
+    </styled.div>
+  </styled.div>
+</Styled(Card)>
+`;

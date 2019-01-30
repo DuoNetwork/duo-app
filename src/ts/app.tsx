@@ -1,3 +1,5 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
 import 'css/style.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';

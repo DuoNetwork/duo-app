@@ -1,14 +1,8 @@
+import { ICustodianAddresses, IDualClassStates } from '@finbook/duo-contract-wrapper';
 import moment from 'moment';
 import chartUtil from 'ts/common/chartUtil';
 import * as CST from 'ts/common/constants';
-import {
-	IAcceptedPrice,
-	IConversion,
-	ICustodianAddresses,
-	IDualClassStates,
-	IPrice,
-	VoidThunkAction
-} from 'ts/common/types';
+import { IAcceptedPrice, IConversion, IPrice, VoidThunkAction } from 'ts/common/types';
 import util from 'ts/common/util';
 import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
@@ -43,11 +37,23 @@ export function balancesUpdate(a: number, b: number) {
 
 export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const dualClassWrapper = getDualClassWrapperByTypeTenor(getState().dualClass.type, getState().dualClass.tenor);
+		const dualClassWrapper = getDualClassWrapperByTypeTenor(
+			getState().dualClass.type,
+			getState().dualClass.tenor
+		);
 		const account = getState().web3.account;
-		const { aToken, bToken } = getDualClassAddressByTypeTenor(getState().dualClass.type, getState().dualClass.tenor);
-		const aBalance = await dualClassWrapper.web3Wrapper.getErc20Balance(aToken.address, account);
-		const bBalance = await dualClassWrapper.web3Wrapper.getErc20Balance(bToken.address, account);
+		const { aToken, bToken } = getDualClassAddressByTypeTenor(
+			getState().dualClass.type,
+			getState().dualClass.tenor
+		);
+		const aBalance = await dualClassWrapper.web3Wrapper.getErc20Balance(
+			aToken.address,
+			account
+		);
+		const bBalance = await dualClassWrapper.web3Wrapper.getErc20Balance(
+			bToken.address,
+			account
+		);
 		dispatch(balancesUpdate(aBalance, bBalance));
 	};
 }
@@ -61,7 +67,10 @@ export function addressesUpdate(addr: ICustodianAddresses) {
 
 export function getAddresses(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		const dualClassWrapper = getDualClassWrapperByTypeTenor(getState().dualClass.type, getState().dualClass.tenor);
+		const dualClassWrapper = getDualClassWrapperByTypeTenor(
+			getState().dualClass.type,
+			getState().dualClass.tenor
+		);
 		dispatch(addressesUpdate(await dualClassWrapper.getAddresses()));
 	};
 }

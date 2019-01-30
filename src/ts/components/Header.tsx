@@ -1,3 +1,4 @@
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import duoIcon from 'images/DUO_icon.png';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
@@ -20,7 +21,7 @@ export default class Header extends React.Component<IProps> {
 		const locale = this.props.locale || CST.LOCALE_EN;
 		const path = (location as any).pathname.toLowerCase();
 		const isStatusPage = path.includes(CST.TH_STATUS.EN.toLowerCase());
-		const isBeethovenPage = path.includes(CST.BEETHOVEN.toLowerCase());
+		const isBeethovenPage = path.includes(WrapperConstants.BEETHOVEN.toLowerCase());
 		return (
 			<SHeader>
 				<SDivFlexCenter horizontal width={'1200px'}>
@@ -30,8 +31,8 @@ export default class Header extends React.Component<IProps> {
 						</div>
 					</Link>
 					{network ? (
-						(__KOVAN__ && network !== CST.ETH_KOVAN_ID) ||
-						(!__KOVAN__ && network !== CST.ETH_MAINNET_ID) ? (
+						(__KOVAN__ && network !== WrapperConstants.ETH_KOVAN_ID) ||
+						(!__KOVAN__ && network !== WrapperConstants.ETH_MAINNET_ID) ? (
 							<span className="error-msg">{CST.TT_NETWORK_CHECK[locale]}</span>
 						) : (
 							''

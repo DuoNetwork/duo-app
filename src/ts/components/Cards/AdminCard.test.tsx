@@ -1,6 +1,8 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import * as CST from 'ts/common/constants';
 import AdminCard from './AdminCard';
 
 describe('AuthCard Test', () => {
@@ -53,8 +55,8 @@ describe('AuthCard Test', () => {
 		it('Test Snapshot', () => {
 			const wrapper1 = shallow(
 				<AdminCard
-					type={CST.BEETHOVEN}
-					tenor={CST.TENOR_PPT}
+					type={WrapperConstants.BEETHOVEN}
+					tenor={WrapperConstants.TENOR_PPT}
 					addresses={addresses}
 					states={states}
 					account={account}
@@ -63,8 +65,8 @@ describe('AuthCard Test', () => {
 			expect(wrapper1).toMatchSnapshot();
 			const wrapper2 = shallow(
 				<AdminCard
-					type={CST.BEETHOVEN}
-					tenor={CST.TENOR_PPT}
+					type={WrapperConstants.BEETHOVEN}
+					tenor={WrapperConstants.TENOR_PPT}
 					addresses={addresses}
 					states={states}
 					account={'0x01'}

@@ -1,3 +1,5 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
 import { shallow } from 'enzyme';
 import 'jest-styled-components';
 import * as React from 'react';

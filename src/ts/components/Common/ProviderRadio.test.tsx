@@ -1,7 +1,9 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
+import { Wallet } from '@finbook/duo-contract-wrapper';
 import { Radio } from 'antd';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Wallet } from '../../../../../duo-contract-wrapper/src/types';
 import { SRadioGroup } from '../Cards/_styled';
 // import { IConversion } from 'ts/common/types';
 import ProviderRadio from './ProviderRadio';

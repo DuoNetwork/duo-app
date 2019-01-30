@@ -50,11 +50,6 @@ module.exports = {
 					name: 'immutable',
 					priority: 100
 				},
-				'duo-contract-wrapper': {
-					test: /duo-contract-wrapper[\\/]node_modules[\\/]/,
-					name: 'duo-contract-wrapper',
-					priority: 10
-				},
 				moment: {
 					test: /[\\/]node_modules[\\/]moment/,
 					name: 'moment',
@@ -176,7 +171,7 @@ module.exports = {
 	resolve: {
 		alias: {
 			moment: path.resolve('./node_modules/moment'),
-			'bn.js': path.resolve('../duo-contract-wrapper/node_modules/bn.js'),
+			'bn.js': path.resolve('./node_modules/bn.js'),
 			immutable: path.resolve('./node_modules/immutable'),
 			elliptic: path.resolve('./node_modules/elliptic'),
 		},

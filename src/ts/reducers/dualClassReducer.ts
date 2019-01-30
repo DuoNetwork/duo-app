@@ -1,3 +1,4 @@
+import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { AnyAction } from 'redux';
 import * as CST from 'ts/common/constants';
 import { IDualClassState } from 'ts/common/types';
@@ -6,7 +7,7 @@ export const initialState: IDualClassState = {
 	states: {
 		lastOperationTime: 0,
 		operationCoolDown: 0,
-		state: CST.CTD_LOADING,
+		state: WrapperConstants.CTD_LOADING,
 		minBalance: 0,
 		totalSupplyA: 0,
 		totalSupplyB: 0,
@@ -36,12 +37,12 @@ export const initialState: IDualClassState = {
 		iterationGasThreshold: 0
 	},
 	addresses: {
-		operator: CST.DUMMY_ADDR,
-		feeCollector: CST.DUMMY_ADDR,
-		roleManager: CST.DUMMY_ADDR,
-		oracle: CST.DUMMY_ADDR,
-		aToken: CST.DUMMY_ADDR,
-		bToken: CST.DUMMY_ADDR
+		operator: WrapperConstants.DUMMY_ADDR,
+		feeCollector: WrapperConstants.DUMMY_ADDR,
+		roleManager: WrapperConstants.DUMMY_ADDR,
+		oracle: WrapperConstants.DUMMY_ADDR,
+		aToken: WrapperConstants.DUMMY_ADDR,
+		bToken: WrapperConstants.DUMMY_ADDR
 	},
 	exchangePrices: [],
 	acceptedPrices: [],
@@ -50,8 +51,8 @@ export const initialState: IDualClassState = {
 		a: 0,
 		b: 0
 	},
-	type: CST.BEETHOVEN,
-	tenor: CST.TENOR_PPT,
+	type: WrapperConstants.BEETHOVEN,
+	tenor: WrapperConstants.TENOR_PPT,
 	subscription: 0
 };
 

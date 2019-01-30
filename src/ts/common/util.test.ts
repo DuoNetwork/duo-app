@@ -1,3 +1,5 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
 import moment from 'moment';
 import status from '../../../../duo-admin/src/samples/dynamo/status.json';
 import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';

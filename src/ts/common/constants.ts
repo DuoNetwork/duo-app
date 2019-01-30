@@ -1,8 +1,6 @@
-import { BEETHOVEN } from '../../../../duo-admin/src/common/constants';
+import { Constants } from '@finbook/duo-contract-wrapper';
 export * from '../../../../duo-admin/src/common/constants';
 export const AC_DCC_STATES = 'dualClassStates';
-export const AC_ESP_STATES = 'espStates';
-export const AC_ESP_ADDRS = 'espAddrs';
 export const AC_DCC_ADDRESSES = 'dualClassAddresses';
 export const AC_DCC_EX_PX = 'dualClassExchangePrices';
 export const AC_DCC_ACCEPTED_PX = 'dualClassAcceptedPrices';
@@ -12,7 +10,16 @@ export const AC_DCC_SUB = 'dualClassSubscription';
 export const AC_DCC_TYPE = 'dualClassType';
 export const AC_MAG_ACCEPTED_PX = 'magiAcceptedPrices';
 export const AC_MAG_SUB = 'magiSubscription';
-export const AC_ESP_SUB = 'espSubscription';
+export const AC_ESP_SUB = 'esplanadeSubscription';
+export const AC_ESP_MODERATOR = 'esplanadeModerator';
+export const AC_ESP_CANDIDATE = 'esplanadeCandidate';
+export const AC_ESP_STATES = 'esplanadeStates';
+export const AC_ESP_HOT_ADDR = 'esplanadeHotAddress';
+export const AC_ESP_COLD_ADDR = 'esplanadeColdAddress';
+export const AC_ESP_CUSTODIAN_ADDR = 'esplanadeCustodianAddress';
+export const AC_ESP_OTHER_CONTRACT_ADDR = 'esplanadeOtherContractAddress';
+export const AC_ESP_VOTING_STAGE = 'esplanadeVotingStage';
+export const AC_ESP_VOTING_DATA = 'esplanadeVotingData';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';
@@ -24,6 +31,15 @@ export const AC_UI_SOURCE = 'uiSource';
 
 export const TH_POOL_ADDRESS = 'Pool Address';
 export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
+export const TH_ADD_OTHER_CONTRACT = 'ADD OTHER CONTRACT';
+export const TH_START_ESP = 'Start Esplanade';
+export const TH_VOTING = 'Voting';
+export const TH_VOTE_FOR = 'Vote For';
+export const TH_VOTE_AGAINST = 'Vote Against';
+export const TH_TERMINATE_VOTING = 'Terminate Voting';
+export const TH_TERMINATE_BY_TIME_OUT = 'Terminate By Time Out';
+export const TH_START_CONTRACT_VOTING = 'Start Contract Voting';
+export const TH_START_MODERATOR_VOTING = 'Start Moderator Voting';
 
 export const RX_NUM = /^-?[0-9]+(\.[0-9]+)?$/;
 export const RX_NUM_P = /^[0-9]+(\.[0-9]+)?$/;
@@ -169,7 +185,7 @@ export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
 export const TH_ORACLES = 'Oracles';
 export const TH_CUSTODIANS = 'Custodians';
-export const TH_OTHER_CONTRACT = 'OtherContract';
+export const TH_OTHER_CONTRACTS = 'Other Contracts';
 export const TH_MAGI = 'Magi';
 export const TH_COVERED_OPTIONS = 'Covered Options';
 export const TH_CHART: ILocaleText = {
@@ -207,8 +223,8 @@ export const TH_ACTION = 'Action';
 export const TH_DECODE = 'Decode';
 export const TH_ACCOUNT = 'Account';
 export const TH_ACCEPTED_PX = 'Accepted Prices';
-export const TH_HOT_ADDRESS = 'Hot Address';
-export const TH_COLD_ADDRESS = 'Cold Address';
+export const TH_HOT_ADDR = 'Hot Addresses';
+export const TH_COLD_ADDR = 'Cold Addresses';
 export const TH_HOME: ILocaleText = {
 	[LOCALE_CN]: '主页',
 	[LOCALE_EN]: 'Home',
@@ -496,24 +512,25 @@ export const TT_INVALID_NUMBER: ILocaleText = {
 	[LOCALE_RU]: 'Некорректное число'
 };
 export const TT_BEETHOVEN_ADDR: ILocaleText = {
-	[LOCALE_CN]: '点击输入' + BEETHOVEN + '地址。无法往' + BEETHOVEN + '地址转账。',
+	[LOCALE_CN]:
+		'点击输入' + Constants.BEETHOVEN + '地址。无法往' + Constants.BEETHOVEN + '地址转账。',
 	[LOCALE_EN]:
 		'Click to auto fill in ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		' address. Transfer to ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		' is disabled.',
 	[LOCALE_JP]:
 		'クリックしてオートフィルします' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		'アドレス、' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		'送金することができません',
 	[LOCALE_RU]:
 		'Нажмите для автозаполнения aдрес ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		'. Функция трансфера в ' +
-		BEETHOVEN +
+		Constants.BEETHOVEN +
 		' отключена.'
 };
 // export const TT_DUO_FEE_CHECK: ILocaleText = {
@@ -539,23 +556,10 @@ export const TT_NETWORK_CHECK: ILocaleText = {
 		', выберите необходимую сеть в MetaMask'
 };
 
-export const TH_ESP_IS_STARTED: ILocaleText = {
-	[LOCALE_CN]: '是否启动',
-	[LOCALE_EN]: 'is started',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_LAST_OPT_TIME: ILocaleText = {
-	[LOCALE_CN]: '上次操作时间',
-	[LOCALE_EN]: 'last operation time',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
-
-export const TH_ESP_OPT_COOL_DOWN: ILocaleText = {
-	[LOCALE_CN]: '操作冷却',
-	[LOCALE_EN]: 'Operation Cooldown',
-	[LOCALE_JP]: '',
-	[LOCALE_RU]: ''
-};
+export const TH_IS_STARTED = 'Is Started';
+export const TH_LAST_OPT_TIME = 'Last Operation Time';
+export const TH_OPT_COOL_DOWN = 'Operation Cooldown';
+export const TH_VOTING_STAGE = 'Voting Stage';
+export const TH_STARTED = 'Started';
+export const TH_MODERATOR = 'Moderator';
+export const TH_CANDIDATE = 'Candidate';

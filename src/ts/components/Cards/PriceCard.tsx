@@ -1,3 +1,9 @@
+import {
+	Constants as WrapperConstants,
+	IContractPrice,
+	ICustodianContractAddress,
+	IDualClassStates
+} from '@finbook/duo-contract-wrapper';
 import { Tooltip } from 'antd';
 import * as d3 from 'd3';
 import classAIcon from 'images/ClassA_white.png';
@@ -8,12 +14,7 @@ import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import {
-	IContractPrice,
-	ICustodianContractAddress,
-	IDualClassStates,
-	ISourceData
-} from 'ts/common/types';
+import { ISourceData } from 'ts/common/types';
 import { calculateNav, getTokenInterestOrLeverage } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import CardTitleSelect from '../Common/CardTitleSelect';
@@ -48,12 +49,17 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					timestamp: states.lastPriceTime
 			};
 		const [navA, navB] = CST.API_LIST.includes(source)
-			? calculateNav(states, type === CST.BEETHOVEN, last.price || 1, last.timestamp)
+			? calculateNav(
+					states,
+					type === WrapperConstants.BEETHOVEN,
+					last.price || 1,
+					last.timestamp
+			)
 			: [states.navA, states.navB];
 		const ethChange = last.price / states.resetPrice - 1;
-		const tooltipText = (!CST.API_LIST.includes(source)
-			? CST.TT_CTD_NAV
-			: CST.TT_EST_NAV)[locale];
+		const tooltipText = (!CST.API_LIST.includes(source) ? CST.TT_CTD_NAV : CST.TT_EST_NAV)[
+			locale
+		];
 		return (
 			<SCard
 				title={
@@ -134,7 +140,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								<div className={'tag-unit-1'}>USD</div>
 							</div>
 							<div className="tag-subtext">
-								{type === CST.BEETHOVEN
+								{type === WrapperConstants.BEETHOVEN
 									? d3.format('.2%')(
 											getTokenInterestOrLeverage(states, true, true)
 									) +
@@ -178,7 +184,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 								{d3.format('.2f')(
 									getTokenInterestOrLeverage(
 										states,
-										type === CST.BEETHOVEN,
+										type === WrapperConstants.BEETHOVEN,
 										false
 									)
 								) +
