@@ -1,5 +1,5 @@
-// import moment from 'moment';
 import { IEsplanadeStates, IVotingData } from '@finbook/duo-contract-wrapper';
+import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { IEsplanadeAddresses } from 'ts/common/types';
@@ -120,10 +120,16 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 								</li>
 								<li>
 									<span className="title">{CST.TH_STARTED}</span>
-									<span className="content">{votingData.started || 'never'}</span>
+									<span className="content">
+										{votingData.started
+											? moment
+													.utc(votingData.started)
+													.format('YYYY-MM-DD HH:mm:SS')
+											: 'never'}
+									</span>
 									<button
 										className={'form-button'}
-										disabled={!isModerator}
+										disabled={!isModerator || states.votingStage !== 'Contract'}
 										onClick={() => this.handleTerminateVoting()}
 									>
 										{CST.TH_TERMINATE_VOTING}
@@ -136,7 +142,7 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 									}`}</span>
 									<button
 										className={'form-button'}
-										disabled={!isInVoting || isInCold}
+										disabled={!isInVoting || !isInCold}
 										onClick={() => this.handleVote(true)}
 									>
 										{CST.TH_VOTE_FOR}
@@ -149,7 +155,7 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 									}`}</span>
 									<button
 										className={'form-button'}
-										disabled={!isInVoting || isInCold}
+										disabled={!isInVoting || !isInCold}
 										onClick={() => this.handleVote(false)}
 									>
 										{CST.TH_VOTE_AGAINST}

@@ -2,7 +2,6 @@
 
 exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
 <Styled(Card)
-  className="card-disable"
   extra={
     <styled.div>
       <button
@@ -19,7 +18,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
     <styled.div>
       <a
         className="tag-content"
-        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        href="https://kovan.etherscan.io/address/0x22651d362F49CBE1d6c6d9c6d9bA46C23d20941C"
         style={
           Object {
             "color": "white",
@@ -179,7 +178,6 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
 
 exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
 <Styled(Card)
-  className="card-disable"
   extra={
     <styled.div>
       <button
@@ -196,7 +194,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
     <styled.div>
       <a
         className="tag-content"
-        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        href="https://kovan.etherscan.io/address/0x22651d362F49CBE1d6c6d9c6d9bA46C23d20941C"
         style={
           Object {
             "color": "white",

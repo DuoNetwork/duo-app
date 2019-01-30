@@ -1,3 +1,5 @@
+// fix for @ledgerhq/hw-transport-u2f 4.28.0
+import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import { esplanadeWrapper } from 'ts/common/wrappers';

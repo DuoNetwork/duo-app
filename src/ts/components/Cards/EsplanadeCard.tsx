@@ -110,7 +110,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 	public render() {
 		const { locale, states, account, moderator } = this.props;
 		const { custodianAddressErr, otherContractAddressErr } = this.state;
-		const isModerator = moderator === account;
+		const isModerator = moderator.toLowerCase() === account.toLowerCase();
 
 		return (
 			<SCard
@@ -134,7 +134,6 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 				}
 				width={'1000px'}
 				margin={'0 0 0 10px'}
-				className={!states.isStarted ? 'card-disable' : ''}
 				extra={
 					<SCardExtraDiv>
 						{states.isStarted ? (
