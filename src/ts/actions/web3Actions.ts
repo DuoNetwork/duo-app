@@ -32,7 +32,7 @@ export function gasPriceUpdate(gasPrice: number) {
 }
 
 export function getGasPrice(): VoidThunkAction {
-	return async dispatch => dispatch(gasPriceUpdate(await web3Wrapper.getGasPrice()));
+	return async dispatch => dispatch(gasPriceUpdate(Number(await web3Wrapper.getGasPrice())));
 }
 
 export function balanceUpdate(balance: number) {

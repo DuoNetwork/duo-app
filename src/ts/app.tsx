@@ -1,5 +1,6 @@
 // fix for @ledgerhq/hw-transport-u2f 4.28.0
 import '@babel/polyfill';
+import { Web3Wrapper} from '@finbook/duo-contract-wrapper';
 import 'css/style.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -21,7 +22,7 @@ dynamoUtil.init(
 	config,
 	!__KOVAN__,
 	'',
-	(value: string | number) => web3Wrapper.fromWei(value),
+	(value: string | number) => Web3Wrapper.fromWei(value),
 	async txHash => {
 		const txReceipt = await web3Wrapper.getTransactionReceipt(txHash);
 		if (!txReceipt) return null;

@@ -1,4 +1,4 @@
-import { IEsplanadeStates, IVotingData } from '@finbook/duo-contract-wrapper';
+import { IEsplanadeStates, IVotingData , Web3Wrapper} from '@finbook/duo-contract-wrapper';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
@@ -33,7 +33,7 @@ export default class EsplanadeVotingCard extends React.Component<IProps, IState>
 	private handleCandidateContractAddressChange = (address: string) =>
 		this.setState({
 			candidateContractAddr: address,
-			candidateContractAddrErr: esplanadeWrapper.web3Wrapper.checkAddress(address)
+			candidateContractAddrErr: Web3Wrapper.checkAddress(address)
 				? ''
 				: 'Invalid Address'
 		});
