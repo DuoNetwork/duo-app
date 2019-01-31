@@ -2,6 +2,7 @@ import {
 	ICustodianAddresses,
 	IDualClassStates,
 	IEsplanadeStates,
+	IMagiStates,
 	IVotingData
 } from '@finbook/duo-contract-wrapper';
 import { AnyAction } from 'redux';
@@ -74,6 +75,8 @@ export interface IEsplanadeAddresses {
 
 export interface IMagiState {
 	readonly subscription: number;
+	readonly states: IMagiStates;
+	readonly addresses: string[];
 	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
 }
 

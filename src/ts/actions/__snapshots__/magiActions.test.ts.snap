@@ -28,6 +28,35 @@ Array [
       "test",
     ],
   },
+  Object {
+    "type": "esplanadeStates",
+    "value": Object {
+      "firstPrice": Object {
+        "price": 100,
+        "source": "source1",
+        "timestamp": 1234567890000,
+      },
+      "isStarted": false,
+      "numOfPrices": 1,
+      "priceFeedTimeTolerance": 100,
+      "priceFeedTolerance": 0.5,
+      "priceTolerance": 0.1,
+      "priceUpdateCoolDown": 1000,
+      "secondPrice": Object {
+        "price": 102,
+        "source": "source2",
+        "timestamp": 1234567890000,
+      },
+    },
+  },
+  Object {
+    "type": "esplanadeAddresses",
+    "value": Array [
+      "pf1",
+      "pf2",
+      "pf3",
+    ],
+  },
 ]
 `;
 
@@ -45,6 +74,35 @@ Array [
     "type": "magiAcceptedPrices",
     "value": Array [
       "test",
+    ],
+  },
+  Object {
+    "type": "esplanadeStates",
+    "value": Object {
+      "firstPrice": Object {
+        "price": 100,
+        "source": "source1",
+        "timestamp": 1234567890000,
+      },
+      "isStarted": false,
+      "numOfPrices": 1,
+      "priceFeedTimeTolerance": 100,
+      "priceFeedTolerance": 0.5,
+      "priceTolerance": 0.1,
+      "priceUpdateCoolDown": 1000,
+      "secondPrice": Object {
+        "price": 102,
+        "source": "source2",
+        "timestamp": 1234567890000,
+      },
+    },
+  },
+  Object {
+    "type": "esplanadeAddresses",
+    "value": Array [
+      "pf1",
+      "pf2",
+      "pf3",
     ],
   },
 ]

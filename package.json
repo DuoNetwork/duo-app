@@ -95,6 +95,7 @@
 	"dependencies": {
 		"@babel/polyfill": "^7.0.0",
 		"@finbook/duo-contract-wrapper": "^1.1.0",
+		"@finbook/duo-market-data": "^1.0.0",
 		"antd": "^3.10.7",
 		"aws-sdk": "^2.354.0",
 		"d3": "^5.7.0",

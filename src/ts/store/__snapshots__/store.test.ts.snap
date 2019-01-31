@@ -92,6 +92,25 @@ Object {
   },
   "magi": Object {
     "acceptedPrices": Array [],
+    "addresses": Array [],
+    "states": Object {
+      "firstPrice": Object {
+        "price": 0,
+        "source": "",
+        "timestamp": 0,
+      },
+      "isStarted": false,
+      "numOfPrices": 0,
+      "priceFeedTimeTolerance": 0,
+      "priceFeedTolerance": 0,
+      "priceTolerance": 0,
+      "priceUpdateCoolDown": 0,
+      "secondPrice": Object {
+        "price": 0,
+        "source": "",
+        "timestamp": 0,
+      },
+    },
     "subscription": 0,
   },
   "ui": Object {
