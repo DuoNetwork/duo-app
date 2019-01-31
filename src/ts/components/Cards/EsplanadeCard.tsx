@@ -1,4 +1,4 @@
-import { Constants as WrapperConstants, IEsplanadeStates } from '@finbook/duo-contract-wrapper';
+import { Constants as WrapperConstants, IEsplanadeStates, Web3Wrapper } from '@finbook/duo-contract-wrapper';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
@@ -78,14 +78,14 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 	private handleCustodianAddressChange = (addr: string) =>
 		this.setState({
 			custodianAddress: addr,
-			custodianAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+			custodianAddressErr: Web3Wrapper.checkAddress(addr)
 				? ''
 				: 'Invalid Address'
 		});
 	private handleOtherContractAddressChange = (addr: string) =>
 		this.setState({
 			otherContractAddress: addr,
-			otherContractAddressErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+			otherContractAddressErr: Web3Wrapper.checkAddress(addr)
 				? ''
 				: 'Invalid Address'
 		});
@@ -94,14 +94,14 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 		if (index === 0)
 			this.setState({
 				firstAddressToAdd: addr,
-				firstAddressToAddErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+				firstAddressToAddErr: Web3Wrapper.checkAddress(addr)
 					? ''
 					: 'Invalid Address'
 			});
 		else
 			this.setState({
 				secondAddressToAdd: addr,
-				secondAddressToAddErr: esplanadeWrapper.web3Wrapper.checkAddress(addr)
+				secondAddressToAddErr: Web3Wrapper.checkAddress(addr)
 					? ''
 					: 'Invalid Address'
 			});

@@ -1,4 +1,5 @@
 //import moment from 'moment';
+import { Web3Wrapper } from '@finbook/duo-contract-wrapper';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { getDualClassAddressByTypeTenor, web3Wrapper } from 'ts/common/wrappers';
@@ -47,7 +48,7 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 	private handleAddressChange = (addr: string) =>
 		this.setState({
 			address: addr,
-			addressError: web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address',
+			addressError: Web3Wrapper.checkAddress(addr) ? '' : 'Invalid Address',
 			amount: '',
 			amountError: ''
 		});
