@@ -5,6 +5,7 @@ import { dualClassWrappers } from 'ts/common/wrappers';
 import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
 import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
 import Esplanade from 'ts/containers/Pages/EsplanadeCointainer';
+import MagiAdmin from 'ts/containers/Pages/MagiAdminContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
@@ -57,10 +58,14 @@ export default class Duo extends React.Component {
 			);
 		}
 
+		// <Route path={'/magi/admin'} render={() => <MagiAdmin />} />
+		// routes.push();
+
 		return (
 			<div>
 				<Switch>
 					{routes}
+					<Route key={'magiAdmin'} path={`/magi/admin`} render={() => <MagiAdmin />} />
 					<Route path={'/esplanade'} render={() => <Esplanade />} />
 					<Route path={'/magi'} render={() => <Magi />} />
 					<Route path={'/status'} render={() => <Status />} />

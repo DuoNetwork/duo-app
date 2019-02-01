@@ -457,6 +457,97 @@ export const TH_UPDATE_DAILY: ILocaleText = {
 	[LOCALE_RU]: 'Оповещать ежедневно'
 };
 
+export const TH_PRICE_FEED: ILocaleText = {
+	[LOCALE_CN]: '报价器地址',
+	[LOCALE_EN]: 'price feed',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_NUM_OF_PRICE: ILocaleText = {
+	[LOCALE_CN]: '价格数量',
+	[LOCALE_EN]: '# of price',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_FIRST_PRICE: ILocaleText = {
+	[LOCALE_CN]: '第一个价格',
+	[LOCALE_EN]: 'first price',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_SECOND_PRICE: ILocaleText = {
+	[LOCALE_CN]: '第二个价格',
+	[LOCALE_EN]: 'second price',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_DATA_SOURCE: ILocaleText = {
+	[LOCALE_CN]: '价格源',
+	[LOCALE_EN]: 'data source',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_PRICE_FEED_TIME_TOLERANCE: ILocaleText = {
+	[LOCALE_CN]: '报价器时间间隔误差',
+	[LOCALE_EN]: 'price feed time tolerance',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_PRICE_FEED_TOLERANCE: ILocaleText = {
+	[LOCALE_CN]: '报价器价格误差',
+	[LOCALE_EN]: 'price feed tolerance',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_PRICE_FEED_COOL_DOWN: ILocaleText = {
+	[LOCALE_CN]: '报价器冷却时间',
+	[LOCALE_EN]: 'price cool down',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_PRICE_TOLERANCE: ILocaleText = {
+	[LOCALE_CN]: '价格误差',
+	[LOCALE_EN]: 'price tolerance',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_UPDATE_PRICE_FEED: ILocaleText = {
+	[LOCALE_CN]: '更改报价器',
+	[LOCALE_EN]: 'update price feed',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_UPDATE_OPERATOR: ILocaleText = {
+	[LOCALE_CN]: '更改管理者',
+	[LOCALE_EN]: 'update operator',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_UPDATE_ESP: ILocaleText = {
+	[LOCALE_CN]: '更改治理合约',
+	[LOCALE_EN]: 'update role manager',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_SET_MAG_VALUE: ILocaleText = {
+	[LOCALE_CN]: '更改参数',
+	[LOCALE_EN]: 'Set Value',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
 export const TT_TRADING_STATE: ILocaleText = {
 	[LOCALE_CN]: '交易状态， 可执行所有操作',
 	[LOCALE_EN]: 'Trading state, operations are permitted during current state',
@@ -507,6 +598,21 @@ export const TT_INPUT_ADDR: ILocaleText = {
 	[LOCALE_JP]: 'アドレスを入力してください',
 	[LOCALE_RU]: 'Введите адрес'
 };
+
+export const TT_INPUT_INDEX: ILocaleText = {
+	[LOCALE_CN]: '请输入序列号码',
+	[LOCALE_EN]: 'Please input index',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TT_INPUT_VALUE: ILocaleText = {
+	[LOCALE_CN]: '请输入数值',
+	[LOCALE_EN]: 'Please input number',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
 export const TT_INVALID_NUMBER: ILocaleText = {
 	[LOCALE_CN]: '输入有误',
 	[LOCALE_EN]: 'Invalid Number',
@@ -563,5 +669,6 @@ export const TH_LAST_OPT_TIME = 'Last Operation Time';
 export const TH_OPT_COOL_DOWN = 'Operation Cooldown';
 export const TH_VOTING_STAGE = 'Voting Stage';
 export const TH_STARTED = 'Started';
+export const TH_NOT_STARTED = 'Not Started';
 export const TH_MODERATOR = 'Moderator';
 export const TH_CANDIDATE = 'Candidate';

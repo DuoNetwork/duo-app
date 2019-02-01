@@ -23,12 +23,6 @@ Array [
 exports[`actions refresh 1`] = `
 Array [
   Object {
-    "type": "magiAcceptedPrices",
-    "value": Array [
-      "test",
-    ],
-  },
-  Object {
     "type": "esplanadeStates",
     "value": Object {
       "firstPrice": Object {
@@ -55,6 +49,12 @@ Array [
       "pf1",
       "pf2",
       "pf3",
+    ],
+  },
+  Object {
+    "type": "magiAcceptedPrices",
+    "value": Array [
+      "test",
     ],
   },
 ]
@@ -71,12 +71,6 @@ Array [
     "value": 123,
   },
   Object {
-    "type": "magiAcceptedPrices",
-    "value": Array [
-      "test",
-    ],
-  },
-  Object {
     "type": "esplanadeStates",
     "value": Object {
       "firstPrice": Object {
@@ -103,6 +97,12 @@ Array [
       "pf1",
       "pf2",
       "pf3",
+    ],
+  },
+  Object {
+    "type": "magiAcceptedPrices",
+    "value": Array [
+      "test",
     ],
   },
 ]

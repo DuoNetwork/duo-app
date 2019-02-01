@@ -39,7 +39,6 @@ export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 
 export function getStates(): VoidThunkAction {
 	return async dispatch => {
-		console.log('###########')
 		dispatch(statesUpdate(await magiWrapper.getStates()));
 	}
 }
@@ -57,9 +56,10 @@ export function subscriptionUpdate(intervalId: number) {
 
 export function refresh(): VoidThunkAction {
 	return async dispatch => {
-		dispatch(fetchAcceptedPrices(magiWrapper.address));
+		const addrs = await magiWrapper.getAddresses();
 		dispatch(statesUpdate(await magiWrapper.getStates()));
-		dispatch(addressesUpdate(await magiWrapper.getAddresses()));
+		dispatch(fetchAcceptedPrices(magiWrapper.address));
+		dispatch(addressesUpdate(addrs));
 	};
 }
 
@@ -67,6 +67,6 @@ export function subscribe(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
 		dispatch(refresh());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 1800000)));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 60000)));
 	};
 }
