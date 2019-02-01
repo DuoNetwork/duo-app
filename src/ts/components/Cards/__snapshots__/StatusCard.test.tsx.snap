@@ -31,10 +31,15 @@ exports[`StatusCard Test Test Snapshot Test Snapshot 1`] = `
       loading={false}
       locale={Object {}}
       pagination={false}
-      prefixCls="ant-table"
       rowKey="key"
       showHeader={true}
       size="default"
+      sortDirections={
+        Array [
+          "ascend",
+          "descend",
+        ]
+      }
       useFixedHeader={false}
     >
       <Column

@@ -2,7 +2,7 @@
 import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
+import dynamoUtil from 'ts/common/dynamoUtil';
 import * as dynamoActions from './dynamoActions';
 
 const mockStore = configureMockStore([thunk]);

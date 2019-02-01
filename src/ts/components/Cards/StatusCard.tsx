@@ -1,7 +1,7 @@
+import { INodeStatus, IPriceStatus, IStatus } from '@finbook/duo-market-data';
 import { Table } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { INodeStatus, IPriceStatus, IStatus } from 'ts/common/types';
 import util from 'ts/common/util';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 

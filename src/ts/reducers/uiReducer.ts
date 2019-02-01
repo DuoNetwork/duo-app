@@ -1,3 +1,4 @@
+import { Constants } from '@finbook/duo-market-data';
 import { AnyAction } from 'redux';
 import * as CST from 'ts/common/constants';
 import { IUIState } from 'ts/common/types';
@@ -6,7 +7,7 @@ const lan = navigator.language.toUpperCase();
 
 export const initialState: IUIState = {
 	period: 60,
-	source: CST.API_KRAKEN,
+	source: Constants.API_KRAKEN,
 	locale: lan.includes(CST.LOCALE_CN)
 		? CST.LOCALE_CN
 		: lan.includes('JA')

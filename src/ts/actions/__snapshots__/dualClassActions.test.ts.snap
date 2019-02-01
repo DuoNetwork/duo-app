@@ -66,6 +66,8 @@ Array [
         "transactionHash": "aaa",
       },
       Object {
+        "pending": true,
+        "reverted": false,
         "timestamp": 1234567890,
         "transactionHash": "bbb",
       },
@@ -76,6 +78,8 @@ Array [
 
 exports[`actions fetchConversions 2`] = `
 Object {
+  "pending": true,
+  "reverted": false,
   "timestamp": 1234567890,
   "transactionHash": "aaa",
 }
@@ -83,6 +87,8 @@ Object {
 
 exports[`actions fetchConversions 3`] = `
 Object {
+  "pending": true,
+  "reverted": false,
   "timestamp": 0,
   "transactionHash": "ccc",
 }
@@ -203,6 +209,8 @@ Array [
         "transactionHash": "aaa",
       },
       Object {
+        "pending": true,
+        "reverted": false,
         "timestamp": 1234567890,
         "transactionHash": "bbb",
       },
@@ -272,6 +280,8 @@ Array [
         "transactionHash": "aaa",
       },
       Object {
+        "pending": true,
+        "reverted": false,
         "timestamp": 1234567890,
         "transactionHash": "bbb",
       },

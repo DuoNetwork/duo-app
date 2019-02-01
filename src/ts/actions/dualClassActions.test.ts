@@ -3,9 +3,9 @@ import '@babel/polyfill';
 import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import dynamoUtil from 'ts/common/dynamoUtil';
 import util from 'ts/common/util';
-import { dualClassWrappers } from 'ts/common/wrappers';
-import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
+import { dualClassWrappers, web3Wrapper } from 'ts/common/wrappers';
 import * as dualClassActions from './dualClassActions';
 
 const mockStore = configureMockStore([thunk]);
@@ -164,6 +164,7 @@ describe('actions', () => {
 	test('fetchConversions', () => {
 		const store: any = mockStore({ web3: { account: WrapperConstants.DUMMY_ADDR } });
 		util.getDates = jest.fn(() => ['1970-01-15']);
+		web3Wrapper.getTransactionReceipt = jest.fn(() => Promise.resolve());
 		dynamoUtil.queryConversionEvent = jest.fn(() =>
 			Promise.resolve([
 				{

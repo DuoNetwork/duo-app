@@ -7,10 +7,13 @@
 			"path": "..\\duo-admin"
 		},
 		{
-			"path": "..\\duo-contract"
+			"path": "..\\duo-market-data"
 		},
 		{
 			"path": "..\\duo-contract-wrapper"
+		},
+		{
+			"path": "..\\duo-contract"
 		}
 	],
 	"settings": {

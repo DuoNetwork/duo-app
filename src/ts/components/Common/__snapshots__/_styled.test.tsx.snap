@@ -10,7 +10,6 @@ exports[`Styled Test CSS 1`] = `
 <Menu
   className="c0"
   focusable={false}
-  prefixCls="ant-menu"
   theme="light"
 />
 `;
@@ -94,7 +93,6 @@ exports[`Styled Test CSS 3`] = `
   maskTransitionName="fade"
   okButtonDisabled={false}
   okType="primary"
-  prefixCls="ant-modal"
   transitionName="zoom"
   visible={false}
   width={520}

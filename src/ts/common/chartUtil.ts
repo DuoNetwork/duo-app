@@ -1,5 +1,5 @@
 import { IContractPrice, IDualClassStates } from '@finbook/duo-contract-wrapper';
-import { IAcceptedPrice, IPrice } from './types';
+import { IAcceptedPrice, IPrice } from '@finbook/duo-market-data';
 
 class ChartUtil {
 	public mergePrices(prices: IPrice[], period: number): IPrice[] {

@@ -20,7 +20,9 @@ export const initialState: IMagiState = {
 		priceFeedTolerance: 0,
 		priceFeedTimeTolerance: 0,
 		priceUpdateCoolDown: 0,
-		numOfPrices: 0
+		numOfPrices: 0,
+		lastOperationTime: 0,
+		operationCoolDown: 0
 	},
 	addresses: [],
 	subscription: 0

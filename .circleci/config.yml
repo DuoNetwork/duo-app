@@ -1,59 +1,25 @@
 version: 2
 jobs:
-    build-duo-admin:
-        working_directory: /home/circleci/duo-admin
-        docker: 
+    test:
+        working_directory: /home/circleci/duo-app
+        docker:
             - image: circleci/node:8.11.1
         steps:
-            - run: git clone https://github.com/FinBook/duo-admin.git /home/circleci/duo-admin
-            - run: cd /home/circleci/duo-admin
-            - run:
-                name: Install npm wee
-                command: npm install
-            - save_cache:
-                key: dependency-assets-{{ .Environment.CIRCLE_SHA1 }}
-                paths:
-                    - /home/circleci/duo-admin
-    test:
-        working_directory: /home/circleci/duo-app   
-        docker: 
-            - image: circleci/node:8.11.1 
-        steps:
             - checkout
-            - restore_cache:
-                key: dependency-assets-{{ .Environment.CIRCLE_SHA1 }}
             - run:
-                name: Install npm
-                command: npm install
+                  name: Install npm
+                  command: npm install
             - run:
-                name: coverage
-                command: npm test -- -w 1 --coverage --forceExit --detectOpenHandles
-            -  run : 
-                name :  post coverage
-                command: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls 
-            - save_cache:
-                  key: dependency-test-{{ .Environment.CIRCLE_SHA1 }}
-                  paths:
-                      - /home/circleci/duo-app
-    deploy:
-        docker:
-            - image: circleci/python:2.7-jessie
-        working_directory: /home/circleci/test
-        steps:
+                  name: coverage
+                  command: npm test -- -w 1 --coverage --forceExit --detectOpenHandles
             - run:
-                  name: Install awscli
-                  command: sudo pip install awscli
-            - restore_cache:
-                  key: dependency-test-{{ .Environment.CIRCLE_SHA1 }}
-            - run: aws s3 sync /home/circleci/duo-app/coverage/lcov-report s3://duo-coverage
+                  name: post coverage
+                  command: cat ./coverage/lcov.info | ./node_modules/.bin/coveralls
 workflows:
     version: 2
     build_and_test:
         jobs:
-            - build-duo-admin
             - test:
-                requires:
-                    - build-duo-admin
     schedule_deploy:
         triggers:
             - schedule:
@@ -62,13 +28,7 @@ workflows:
                       branches:
                           only: master
         jobs:
-            - build-duo-admin
             - test:
-                requires:
-                    - build-duo-admin
-                filters:
-                    branches:
-                        only: master
-            - deploy:
-                  requires:
-                      - test
+                  filters:
+                      branches:
+                          only: master

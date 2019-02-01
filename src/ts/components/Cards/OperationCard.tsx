@@ -12,9 +12,9 @@ import infoIcon from 'images/info.svg';
 import demoRedeem from 'images/redeemDemo.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
+import dynamoUtil from 'ts/common/dynamoUtil';
 import util from 'ts/common/util';
 import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
-import dynamoUtil from '../../../../../duo-admin/src/utils/dynamoUtil';
 import { SDivFlexCenter } from '../_styled';
 import Erc20Form from '../Forms/Erc20Form';
 import {

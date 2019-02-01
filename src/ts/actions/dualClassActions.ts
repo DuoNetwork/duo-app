@@ -1,11 +1,16 @@
 import { ICustodianAddresses, IDualClassStates } from '@finbook/duo-contract-wrapper';
+import { IAcceptedPrice, IConversion, IPrice } from '@finbook/duo-market-data';
 import moment from 'moment';
 import chartUtil from 'ts/common/chartUtil';
 import * as CST from 'ts/common/constants';
-import { IAcceptedPrice, IConversion, IPrice, VoidThunkAction } from 'ts/common/types';
+import dynamoUtil from 'ts/common/dynamoUtil';
+import { VoidThunkAction } from 'ts/common/types';
 import util from 'ts/common/util';
-import { getDualClassAddressByTypeTenor, getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
-import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
+import {
+	getDualClassAddressByTypeTenor,
+	getDualClassWrapperByTypeTenor,
+	web3Wrapper
+} from 'ts/common/wrappers';
 
 export function statesUpdate(states: IDualClassStates) {
 	return {
@@ -138,7 +143,16 @@ export function fetchConversions(contractAddress: string): VoidThunkAction {
 		const dates = util.getDates(7, 1, 'day', 'YYYY-MM-DD');
 		const account = getState().web3.account;
 		const conversion = await dynamoUtil.queryConversionEvent(contractAddress, account, dates);
-		(await dynamoUtil.queryUIConversionEvent(contractAddress, account)).forEach(uc => {
+		const uiConversions = await dynamoUtil.queryUIConversionEvent(contractAddress, account);
+		for (const uc of uiConversions) {
+			try {
+				const receipt = await web3Wrapper.getTransactionReceipt(uc.transactionHash);
+				uc.pending = !receipt;
+				uc.reverted = !!receipt && !receipt.status;
+			} catch (error) {
+				continue;
+			}
+
 			if (
 				!dates.includes(moment.utc(uc.timestamp).format('YYYY-MM-DD')) ||
 				conversion.some(c => c.transactionHash === uc.transactionHash) ||
@@ -146,7 +160,8 @@ export function fetchConversions(contractAddress: string): VoidThunkAction {
 			)
 				dynamoUtil.deleteUIConversionEvent(account, uc);
 			else conversion.push(uc);
-		});
+		}
+
 		conversion.sort((a, b) => -a.timestamp + b.timestamp);
 		dispatch(conversionsUpdate(conversion));
 	};

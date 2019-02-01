@@ -3,9 +3,9 @@ import '@babel/polyfill';
 import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import dynamoUtil from 'ts/common/dynamoUtil';
 import util from 'ts/common/util';
 import { magiWrapper } from 'ts/common/wrappers';
-import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 import * as magiActions from './magiActions';
 
 const mockStore = configureMockStore([thunk]);

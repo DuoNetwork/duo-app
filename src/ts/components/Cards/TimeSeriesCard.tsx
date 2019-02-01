@@ -1,6 +1,6 @@
+import { IAcceptedPrice, IPrice } from '@finbook/duo-market-data';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IAcceptedPrice, IPrice } from 'ts/common/types';
 import { SDivFlexCenter } from '../_styled';
 import TimeSeriesChart from '../Charts/TimeSeriesChart';
 import CardTitleSelect from '../Common/CardTitleSelect';

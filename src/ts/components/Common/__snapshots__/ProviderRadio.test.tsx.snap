@@ -8,13 +8,11 @@ exports[`ProviderRadio Test User Login test Snapshot 1`] = `
     value={0}
   >
     <RadioButton
-      prefixCls="ant-radio-button"
       value={2}
     >
       MetaMask
     </RadioButton>
     <RadioButton
-      prefixCls="ant-radio-button"
       value={3}
     >
       Ledger
@@ -28,7 +26,6 @@ exports[`ProviderRadio Test User Login test Snapshot 1`] = `
           ghost={false}
           loading={false}
           onClick={[Function]}
-          prefixCls="ant-btn"
           type="ghost"
         >
           Connect
@@ -70,13 +67,11 @@ exports[`ProviderRadio Test User Login test Snapshot 2`] = `
     value={0}
   >
     <RadioButton
-      prefixCls="ant-radio-button"
       value={2}
     >
       MetaMask
     </RadioButton>
     <RadioButton
-      prefixCls="ant-radio-button"
       value={3}
     >
       Ledger
@@ -90,7 +85,6 @@ exports[`ProviderRadio Test User Login test Snapshot 2`] = `
           ghost={false}
           loading={false}
           onClick={[Function]}
-          prefixCls="ant-btn"
           type="ghost"
         >
           Connect
@@ -132,13 +126,11 @@ exports[`ProviderRadio Test User Login test Snapshot 3`] = `
     value={0}
   >
     <RadioButton
-      prefixCls="ant-radio-button"
       value={2}
     >
       MetaMask
     </RadioButton>
     <RadioButton
-      prefixCls="ant-radio-button"
       value={3}
     >
       Ledger
@@ -152,7 +144,6 @@ exports[`ProviderRadio Test User Login test Snapshot 3`] = `
           ghost={false}
           loading={false}
           onClick={[Function]}
-          prefixCls="ant-btn"
           type="ghost"
         >
           Connect

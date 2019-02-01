@@ -17,13 +17,11 @@ exports[`RadioExtra Test User Login Test Snapshot 1`] = `
       value="test"
     >
       <RadioButton
-        prefixCls="ant-radio-button"
         value="test"
       >
         test
       </RadioButton>
       <RadioButton
-        prefixCls="ant-radio-button"
         value="test"
       >
         test

@@ -1,7 +1,7 @@
 import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
+import { Constants as DataConstants } from '@finbook/duo-market-data';
 import { Select } from 'antd';
 import * as React from 'react';
-import * as CST from 'ts/common/constants';
 import { SDivFlexCenter } from '../_styled';
 import { SCardTitle, SCardTitleSelector } from '../Cards/_styled';
 
@@ -32,7 +32,12 @@ export default class CardTitleSelect extends React.Component<IProps> {
 								{WrapperConstants.BEETHOVEN}
 							</Option>
 						)}
-						{CST.API_LIST.map(src => (
+						{[
+							DataConstants.API_KRAKEN,
+							DataConstants.API_GEMINI,
+							DataConstants.API_GDAX,
+							DataConstants.API_BITSTAMP
+						].map(src => (
 							<Option key={src.toLowerCase()} value={src.toLowerCase()}>
 								{src.toUpperCase()}
 							</Option>

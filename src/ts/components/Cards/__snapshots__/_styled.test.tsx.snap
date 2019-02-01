@@ -71,7 +71,6 @@ exports[`Styled Test CSS 3`] = `
 <Select
   choiceTransitionName="zoom"
   className="c0"
-  prefixCls="ant-select"
   showSearch={false}
   transitionName="slide-up"
 />
@@ -498,7 +497,6 @@ exports[`Styled Test CSS 10`] = `
   buttonStyle="outline"
   className="c0"
   disabled={false}
-  prefixCls="ant-radio"
 />
 `;
 
@@ -1109,6 +1107,5 @@ exports[`Styled Test CSS 17`] = `
   className="c0"
   ghost={false}
   loading={false}
-  prefixCls="ant-btn"
 />
 `;

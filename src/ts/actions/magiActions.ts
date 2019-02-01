@@ -1,9 +1,10 @@
-import { IMagiStates } from '@finbook/duo-contract-wrapper';
+import { IMagiAddresses, IMagiStates } from '@finbook/duo-contract-wrapper';
+import { IAcceptedPrice } from '@finbook/duo-market-data';
 import * as CST from 'ts/common/constants';
-import { IAcceptedPrice, VoidThunkAction } from 'ts/common/types';
+import dynamoUtil from 'ts/common/dynamoUtil';
+import { VoidThunkAction } from 'ts/common/types';
 import util from 'ts/common/util';
 import { magiWrapper } from 'ts/common/wrappers';
-import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 
 export function acceptedPricesUpdate(acceptedPrices: IAcceptedPrice[]) {
 	return {
@@ -18,7 +19,7 @@ export function statesUpdate(states: IMagiStates) {
 		value: states
 	};
 }
-export function addressesUpdate(addresses: string[]) {
+export function addressesUpdate(addresses: IMagiAddresses) {
 	return {
 		type: CST.AC_MAG_ADDRS,
 		value: addresses
@@ -40,7 +41,7 @@ export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 export function getStates(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(statesUpdate(await magiWrapper.getStates()));
-	}
+	};
 }
 
 export function getAddressess(): VoidThunkAction {

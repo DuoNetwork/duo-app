@@ -1,6 +1,5 @@
 // fix for @ledgerhq/hw-transport-u2f 4.28.0
 import '@babel/polyfill';
-import { Web3Wrapper} from '@finbook/duo-contract-wrapper';
 import 'css/style.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -9,28 +8,12 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import 'static/GettingStarted.pdf';
 import 'static/GettingStarted_CN.pdf';
 import 'static/GettingStarted_JP.pdf';
-import dynamoUtil from '../../../duo-admin/src/utils/dynamoUtil';
 import * as dualClassActions from './actions/dualClassActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
 import { web3Wrapper } from './common/wrappers';
 import Duo from './components/Duo';
 import store from './store/store';
-
-const config = require(`./keys/aws.ui.${__KOVAN__ ? 'dev' : 'live'}.json`);
-dynamoUtil.init(
-	config,
-	!__KOVAN__,
-	'',
-	(value: string | number) => Web3Wrapper.fromWei(value),
-	async txHash => {
-		const txReceipt = await web3Wrapper.getTransactionReceipt(txHash);
-		if (!txReceipt) return null;
-		return {
-			status: txReceipt.status
-		};
-	}
-);
 
 store.dispatch(web3Actions.refresh());
 store.dispatch(dynamoActions.scanStatus());

@@ -1,6 +1,6 @@
 import * as CST from 'ts/common/constants';
+import dynamoUtil from 'ts/common/dynamoUtil';
 import { VoidThunkAction } from 'ts/common/types';
-import dynamoUtil from '../../../../duo-admin/src/utils/dynamoUtil';
 
 export function statusUpdate(status: object) {
 	return {

@@ -1,9 +1,9 @@
+import { IAcceptedPrice, IPrice } from '@finbook/duo-market-data';
 import * as d3 from 'd3';
 import loadingImg from 'images/loadingDUO.png';
 import moment from 'moment';
 import * as React from 'react';
 import { ColorStyles } from 'ts/common/styles';
-import { IAcceptedPrice, IPrice } from 'ts/common/types';
 
 const margin = { top: 40, right: 34, bottom: 23, left: 38 };
 const width = 708 - margin.left - margin.right;
@@ -66,12 +66,10 @@ function drawLines(
 	};
 	const colums = displayColums(timeStep);
 	const maxDate =
-		d3.max(
-			[
-				acceptedPrices[acceptedPrices.length - 1].timestamp,
-				prices[prices.length - 1].timestamp
-			]
-		) || 0;
+		d3.max([
+			acceptedPrices[acceptedPrices.length - 1].timestamp,
+			prices[prices.length - 1].timestamp
+		]) || 0;
 	const minDate = maxDate - timeStep * colums;
 	//Time Scale
 	const xStart = minDate;
@@ -88,19 +86,15 @@ function drawLines(
 		-colums / custodianSourceTimestepRatio(timeStep)
 	);
 	const maxPrice =
-		d3.max(
-			[
-				d3.max(slicedCustodianData.map(d => d.price)) || 0,
-				d3.max(prices.map(d => d.high).slice(-colums)) || 0
-			]
-		) || 0;
+		d3.max([
+			d3.max(slicedCustodianData.map(d => d.price)) || 0,
+			d3.max(prices.map(d => d.high).slice(-colums)) || 0
+		]) || 0;
 	const minPrice =
-		d3.min(
-			[
-				d3.min(slicedCustodianData.map(d => d.price)) || 0,
-				d3.min(prices.map(d => d.low).slice(-colums)) || 0
-			]
-		) || 0;
+		d3.min([
+			d3.min(slicedCustodianData.map(d => d.price)) || 0,
+			d3.min(prices.map(d => d.low).slice(-colums)) || 0
+		]) || 0;
 	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
 	const rangeBottom = d3.max([0, minPrice - 0.2 * (maxPrice - minPrice)]) || 0;
 	//Data Range Volumn
@@ -109,13 +103,15 @@ function drawLines(
 
 	//Data Range (Nav A/B)
 	const maxNav =
-		d3.max(
-			[...slicedCustodianData.map(d => d.navA), ...slicedCustodianData.map(d => d.navB)]
-		) || 0;
+		d3.max([
+			...slicedCustodianData.map(d => d.navA),
+			...slicedCustodianData.map(d => d.navB)
+		]) || 0;
 	const minNav =
-		d3.min(
-			[...slicedCustodianData.map(d => d.navA), ...slicedCustodianData.map(d => d.navB)]
-		) || 0;
+		d3.min([
+			...slicedCustodianData.map(d => d.navA),
+			...slicedCustodianData.map(d => d.navB)
+		]) || 0;
 	const rangeTopNav = maxNav + 0.1 * (maxNav - minNav);
 	const rangeBottomNav = d3.max([0, minNav - 0.2 * (maxNav - minNav)]) || 0;
 	//ETH Linear YScale
@@ -774,7 +770,14 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 
 	public componentDidMount() {
 		const { acceptedPrices, prices, underlying, tokenA, tokenB } = this.props;
-		drawLines(this.chartRef.current as Element, acceptedPrices, prices, underlying, tokenA, tokenB);
+		drawLines(
+			this.chartRef.current as Element,
+			acceptedPrices,
+			prices,
+			underlying,
+			tokenA,
+			tokenB
+		);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
@@ -786,7 +789,14 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 			JSON.stringify(prices) !== JSON.stringify(this.props.prices) ||
 			JSON.stringify(acceptedPrices) !== JSON.stringify(this.props.acceptedPrices)
 		)
-			drawLines(this.chartRef.current as Element, acceptedPrices, prices, underlying, tokenA, tokenB);
+			drawLines(
+				this.chartRef.current as Element,
+				acceptedPrices,
+				prices,
+				underlying,
+				tokenA,
+				tokenB
+			);
 
 		return false;
 	}

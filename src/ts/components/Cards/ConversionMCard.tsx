@@ -1,7 +1,7 @@
 import { ICustodianContractAddress } from '@finbook/duo-contract-wrapper';
+import { IConversion } from '@finbook/duo-market-data';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IConversion } from 'ts/common/types';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardList, SCardTitle } from './_styled';
 import ConversionEntry from './ConversionEntry';

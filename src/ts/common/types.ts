@@ -5,10 +5,9 @@ import {
 	IMagiStates,
 	IVotingData
 } from '@finbook/duo-contract-wrapper';
+import { IAcceptedPrice, IConversion, IPrice, IStatus } from '@finbook/duo-market-data';
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import * as adminTypes from '../../../../duo-admin/src/common/types';
-export * from '../../../../duo-admin/src/common/types';
 
 export interface ISourceData<T> {
 	// bitfinex: T;
@@ -40,9 +39,9 @@ export interface IDualClassState {
 	readonly subscription: number;
 	readonly states: IDualClassStates;
 	readonly addresses: ICustodianAddresses;
-	readonly exchangePrices: adminTypes.IPrice[];
-	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
-	readonly conversions: adminTypes.IConversion[];
+	readonly exchangePrices: IPrice[];
+	readonly acceptedPrices: IAcceptedPrice[];
+	readonly conversions: IConversion[];
 	readonly balances: {
 		a: number;
 		b: number;
@@ -77,11 +76,11 @@ export interface IMagiState {
 	readonly subscription: number;
 	readonly states: IMagiStates;
 	readonly addresses: string[];
-	readonly acceptedPrices: adminTypes.IAcceptedPrice[];
+	readonly acceptedPrices: IAcceptedPrice[];
 }
 
 export interface IDynamoState {
-	readonly status: adminTypes.IStatus[];
+	readonly status: IStatus[];
 }
 
 export interface IUIState {

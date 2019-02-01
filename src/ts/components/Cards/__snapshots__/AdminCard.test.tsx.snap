@@ -107,11 +107,16 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
       loading={false}
       locale={Object {}}
       pagination={false}
-      prefixCls="ant-table"
       rowClassName={[Function]}
       rowKey="key"
       showHeader={true}
       size="default"
+      sortDirections={
+        Array [
+          "ascend",
+          "descend",
+        ]
+      }
       useFixedHeader={false}
     >
       <Column
@@ -241,11 +246,16 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
       loading={false}
       locale={Object {}}
       pagination={false}
-      prefixCls="ant-table"
       rowClassName={[Function]}
       rowKey="key"
       showHeader={true}
       size="default"
+      sortDirections={
+        Array [
+          "ascend",
+          "descend",
+        ]
+      }
       useFixedHeader={false}
     >
       <Column
