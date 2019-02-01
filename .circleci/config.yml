@@ -19,7 +19,7 @@ workflows:
     version: 2
     build_and_test:
         jobs:
-            - test:
+            - test
     schedule_deploy:
         triggers:
             - schedule:
@@ -28,7 +28,4 @@ workflows:
                       branches:
                           only: master
         jobs:
-            - test:
-                  filters:
-                      branches:
-                          only: master
+            - test
