@@ -1,8 +1,8 @@
+import { IAcceptedPrice } from '@finbook/duo-market-data';
 import { Table } from 'antd';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IAcceptedPrice } from 'ts/common/types';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;

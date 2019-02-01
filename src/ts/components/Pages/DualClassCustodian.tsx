@@ -1,13 +1,10 @@
-import {
-	Constants as WrapperConstants,
-	IContractPrice,
-	IDualClassStates
-} from '@finbook/duo-contract-wrapper';
+import { Constants as WrapperConstants, IContractPrice, IDualClassStates } from '@finbook/duo-contract-wrapper';
+import { IConversion } from '@finbook/duo-market-data';
 import { Layout } from 'antd';
 import * as React from 'react';
 import MediaQuery from 'react-responsive';
 import * as CST from 'ts/common/constants';
-import { IConversion, ISourceData } from 'ts/common/types';
+import { ISourceData } from 'ts/common/types';
 import { getDualClassAddressByTypeTenor } from 'ts/common/wrappers';
 import TimeSeriesCard from 'ts/containers/Cards/TimeSeriesCardContainer';
 import Header from 'ts/containers/HeaderContainer';

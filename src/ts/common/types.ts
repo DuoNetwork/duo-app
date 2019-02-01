@@ -3,7 +3,7 @@ import {
 	IDualClassStates,
 	IEsplanadeStates,
 	IMagiStates,
-	IVotingData
+	IVotingData,
 } from '@finbook/duo-contract-wrapper';
 import { IAcceptedPrice, IConversion, IPrice, IStatus } from '@finbook/duo-market-data';
 import { AnyAction } from 'redux';

@@ -2,6 +2,7 @@ import {
 	Constants as WrapperConstants,
 	ICustodianContractAddress
 } from '@finbook/duo-contract-wrapper';
+import { IConversion } from '@finbook/duo-market-data';
 import { LocaleProvider, Table, Tooltip } from 'antd';
 import antdEn from 'antd/lib/locale-provider/en_US';
 import antdCn from 'antd/lib/locale-provider/zh_CN';
@@ -9,7 +10,7 @@ import * as d3 from 'd3';
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IConversion, ITableRecord } from 'ts/common/types';
+import { ITableRecord } from 'ts/common/types';
 import { SCard, SCardTitle, STableWrapper } from './_styled';
 
 const { Column } = Table;

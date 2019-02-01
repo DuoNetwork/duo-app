@@ -4,6 +4,7 @@ import {
 	ICustodianContractAddress,
 	IDualClassStates
 } from '@finbook/duo-contract-wrapper';
+import { Constants } from '@finbook/duo-market-data';
 import { Tooltip } from 'antd';
 import * as d3 from 'd3';
 import classAIcon from 'images/ClassA_white.png';
@@ -42,13 +43,19 @@ export default class PriceCard extends React.Component<IProps, IState> {
 	public render() {
 		const { locale, states, mobile, contractAddress, type } = this.props;
 		const { source } = this.state;
-		const last: IContractPrice = CST.API_LIST.includes(source)
+		const API_LIST = [
+			Constants.API_GDAX,
+			Constants.API_GEMINI,
+			Constants.API_BITSTAMP,
+			Constants.API_KRAKEN
+		];
+		const last: IContractPrice = API_LIST.includes(source)
 			? this.props.sourceLast[source]
 			: {
 					price: states.lastPrice,
 					timestamp: states.lastPriceTime
 			};
-		const [navA, navB] = CST.API_LIST.includes(source)
+		const [navA, navB] = API_LIST.includes(source)
 			? calculateNav(
 					states,
 					type === WrapperConstants.BEETHOVEN,
@@ -57,9 +64,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 			)
 			: [states.navA, states.navB];
 		const ethChange = last.price / states.resetPrice - 1;
-		const tooltipText = (!CST.API_LIST.includes(source) ? CST.TT_CTD_NAV : CST.TT_EST_NAV)[
-			locale
-		];
+		const tooltipText = (!API_LIST.includes(source) ? CST.TT_CTD_NAV : CST.TT_EST_NAV)[locale];
 		return (
 			<SCard
 				title={
