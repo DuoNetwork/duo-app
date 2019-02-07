@@ -11,7 +11,7 @@
 		"start": "webpack-dev-server --config webpack.config.dev.js",
 		"analyze": "npm run clean && npm run analyze:build && npm run analyze:no:build",
 		"analyze:build": "webpack --config webpack.config.analyze.js",
-		"analyze:no:build": "webpack-bundle-analyzer dist/kovan/stats.json",
+		"analyze:no:build": "webpack-bundle-analyzer dist/stats.json",
 		"rebuild": "webpack --config webpack.config.kovan.js",
 		"rebuildLive": "webpack --config webpack.config.prod.js",
 		"build": "npm run clean && npm run rebuild",

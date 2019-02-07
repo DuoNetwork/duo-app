@@ -46,6 +46,31 @@ module.exports = {
 			maxInitialRequests: Infinity,
 			minSize: 0,
 			cacheGroups: {
+				finbook: {
+					test: /[\\/]node_modules[\\/]@finbook/,
+					name: 'finbook',
+					priority: 100
+				},
+				'idna-uts46-hx': {
+					test: /[\\/]node_modules[\\/]idna-uts46-hx/,
+					name: 'idna-uts46-hx',
+					priority: 100
+				},
+				bip39: {
+					test: /[\\/]node_modules[\\/]bip39/,
+					name: 'bip39',
+					priority: 100
+				},
+				unorm: {
+					test: /[\\/]node_modules[\\/]unorm/,
+					name: 'unorm',
+					priority: 100
+				},
+				eth: {
+					test: /[\\/]node_modules[\\/]eth/,
+					name: 'eth',
+					priority: 100
+				},
 				d3: {
 					test: /[\\/]node_modules[\\/]d3/,
 					name: 'd3',
@@ -62,7 +87,7 @@ module.exports = {
 					priority: 100
 				},
 				react: {
-					test: /[\\/]node_modules[\\/]react/,
+					test: /[\\/]node_modules[\\/]react|redux/,
 					name: 'react',
 					priority: 100
 				},
@@ -87,7 +112,7 @@ module.exports = {
 					priority: 100
 				},
 				bn: {
-					test: /[\\/]node_modules[\\/]bn/,
+					test: /[\\/]node_modules[\\/]bn|bignumber/,
 					name: 'bn',
 					priority: 100
 				},
