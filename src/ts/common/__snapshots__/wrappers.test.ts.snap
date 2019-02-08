@@ -1,0 +1,546 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DualClassWrapper 1`] = `
+Object {
+  "Beethoven": Object {
+    "M19": Object {
+      "contract": "dualClassWrapper",
+    },
+    "Perpetual": Object {
+      "contract": "dualClassWrapper",
+    },
+  },
+  "Mozart": Object {
+    "M19": Object {
+      "contract": "dualClassWrapper",
+    },
+    "Perpetual": Object {
+      "contract": "dualClassWrapper",
+    },
+  },
+}
+`;
+
+exports[`DualClassWrapper 2`] = `
+Array [
+  Array [
+    Object {
+      "contractAddresses": Object {
+        "Custodians": Object {
+          "Beethoven": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0xB608f08d94662453ac8fce91f5956CCd00031449",
+                "code": "aETH-M19",
+              },
+              "bToken": Object {
+                "address": "0xe6c92061a8890FFC429485c36fa76853ddC4f07D",
+                "code": "bETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x1e20057a6Ddc009b275926d7d54cCA19625c974E",
+                "code": "BEETHOVEN-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x59E6B3d43F762310626d2905148939973db2BBd3",
+                "code": "aETH",
+              },
+              "bToken": Object {
+                "address": "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
+                "code": "bETH",
+              },
+              "custodian": Object {
+                "address": "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+                "code": "BEETHOVEN-PPT",
+              },
+            },
+          },
+          "Mozart": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0x2B675f1A282954Ce4FEeb93b9504a6f78B616DE9",
+                "code": "sETH-M19",
+              },
+              "bToken": Object {
+                "address": "0x47aC357b44d1b3A0799D91741fA1bD717C1f7900",
+                "code": "LETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x56e2727e56F9D6717e462418f822a8FE08Be4711",
+                "code": "MOZART-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x2cB7CDDF82AD7fF2b207AD43586976FEB19BA985",
+                "code": "sETH",
+              },
+              "bToken": Object {
+                "address": "0x977feC72C295EdAf7E7deA5681E42CaFf69749e3",
+                "code": "LETH",
+              },
+              "custodian": Object {
+                "address": "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+                "code": "MOZART-PPT",
+              },
+            },
+          },
+        },
+        "MultiSigManagers": Array [
+          Object {
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+            "code": "Esplanade",
+          },
+        ],
+        "Oracles": Array [
+          Object {
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+            "code": "Magi",
+          },
+        ],
+      },
+    },
+    "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+  ],
+  Array [
+    Object {
+      "contractAddresses": Object {
+        "Custodians": Object {
+          "Beethoven": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0xB608f08d94662453ac8fce91f5956CCd00031449",
+                "code": "aETH-M19",
+              },
+              "bToken": Object {
+                "address": "0xe6c92061a8890FFC429485c36fa76853ddC4f07D",
+                "code": "bETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x1e20057a6Ddc009b275926d7d54cCA19625c974E",
+                "code": "BEETHOVEN-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x59E6B3d43F762310626d2905148939973db2BBd3",
+                "code": "aETH",
+              },
+              "bToken": Object {
+                "address": "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
+                "code": "bETH",
+              },
+              "custodian": Object {
+                "address": "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+                "code": "BEETHOVEN-PPT",
+              },
+            },
+          },
+          "Mozart": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0x2B675f1A282954Ce4FEeb93b9504a6f78B616DE9",
+                "code": "sETH-M19",
+              },
+              "bToken": Object {
+                "address": "0x47aC357b44d1b3A0799D91741fA1bD717C1f7900",
+                "code": "LETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x56e2727e56F9D6717e462418f822a8FE08Be4711",
+                "code": "MOZART-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x2cB7CDDF82AD7fF2b207AD43586976FEB19BA985",
+                "code": "sETH",
+              },
+              "bToken": Object {
+                "address": "0x977feC72C295EdAf7E7deA5681E42CaFf69749e3",
+                "code": "LETH",
+              },
+              "custodian": Object {
+                "address": "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+                "code": "MOZART-PPT",
+              },
+            },
+          },
+        },
+        "MultiSigManagers": Array [
+          Object {
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+            "code": "Esplanade",
+          },
+        ],
+        "Oracles": Array [
+          Object {
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+            "code": "Magi",
+          },
+        ],
+      },
+    },
+    "0x1e20057a6Ddc009b275926d7d54cCA19625c974E",
+  ],
+  Array [
+    Object {
+      "contractAddresses": Object {
+        "Custodians": Object {
+          "Beethoven": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0xB608f08d94662453ac8fce91f5956CCd00031449",
+                "code": "aETH-M19",
+              },
+              "bToken": Object {
+                "address": "0xe6c92061a8890FFC429485c36fa76853ddC4f07D",
+                "code": "bETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x1e20057a6Ddc009b275926d7d54cCA19625c974E",
+                "code": "BEETHOVEN-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x59E6B3d43F762310626d2905148939973db2BBd3",
+                "code": "aETH",
+              },
+              "bToken": Object {
+                "address": "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
+                "code": "bETH",
+              },
+              "custodian": Object {
+                "address": "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+                "code": "BEETHOVEN-PPT",
+              },
+            },
+          },
+          "Mozart": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0x2B675f1A282954Ce4FEeb93b9504a6f78B616DE9",
+                "code": "sETH-M19",
+              },
+              "bToken": Object {
+                "address": "0x47aC357b44d1b3A0799D91741fA1bD717C1f7900",
+                "code": "LETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x56e2727e56F9D6717e462418f822a8FE08Be4711",
+                "code": "MOZART-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x2cB7CDDF82AD7fF2b207AD43586976FEB19BA985",
+                "code": "sETH",
+              },
+              "bToken": Object {
+                "address": "0x977feC72C295EdAf7E7deA5681E42CaFf69749e3",
+                "code": "LETH",
+              },
+              "custodian": Object {
+                "address": "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+                "code": "MOZART-PPT",
+              },
+            },
+          },
+        },
+        "MultiSigManagers": Array [
+          Object {
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+            "code": "Esplanade",
+          },
+        ],
+        "Oracles": Array [
+          Object {
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+            "code": "Magi",
+          },
+        ],
+      },
+    },
+    "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+  ],
+  Array [
+    Object {
+      "contractAddresses": Object {
+        "Custodians": Object {
+          "Beethoven": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0xB608f08d94662453ac8fce91f5956CCd00031449",
+                "code": "aETH-M19",
+              },
+              "bToken": Object {
+                "address": "0xe6c92061a8890FFC429485c36fa76853ddC4f07D",
+                "code": "bETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x1e20057a6Ddc009b275926d7d54cCA19625c974E",
+                "code": "BEETHOVEN-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x59E6B3d43F762310626d2905148939973db2BBd3",
+                "code": "aETH",
+              },
+              "bToken": Object {
+                "address": "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
+                "code": "bETH",
+              },
+              "custodian": Object {
+                "address": "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+                "code": "BEETHOVEN-PPT",
+              },
+            },
+          },
+          "Mozart": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0x2B675f1A282954Ce4FEeb93b9504a6f78B616DE9",
+                "code": "sETH-M19",
+              },
+              "bToken": Object {
+                "address": "0x47aC357b44d1b3A0799D91741fA1bD717C1f7900",
+                "code": "LETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x56e2727e56F9D6717e462418f822a8FE08Be4711",
+                "code": "MOZART-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x2cB7CDDF82AD7fF2b207AD43586976FEB19BA985",
+                "code": "sETH",
+              },
+              "bToken": Object {
+                "address": "0x977feC72C295EdAf7E7deA5681E42CaFf69749e3",
+                "code": "LETH",
+              },
+              "custodian": Object {
+                "address": "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+                "code": "MOZART-PPT",
+              },
+            },
+          },
+        },
+        "MultiSigManagers": Array [
+          Object {
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+            "code": "Esplanade",
+          },
+        ],
+        "Oracles": Array [
+          Object {
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+            "code": "Magi",
+          },
+        ],
+      },
+    },
+    "0x56e2727e56F9D6717e462418f822a8FE08Be4711",
+  ],
+]
+`;
+
+exports[`EsplanadeWrapper 1`] = `
+Object {
+  "contract": "EsplanadeWrapper",
+}
+`;
+
+exports[`EsplanadeWrapper 2`] = `
+Array [
+  Array [
+    Object {
+      "contractAddresses": Object {
+        "Custodians": Object {
+          "Beethoven": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0xB608f08d94662453ac8fce91f5956CCd00031449",
+                "code": "aETH-M19",
+              },
+              "bToken": Object {
+                "address": "0xe6c92061a8890FFC429485c36fa76853ddC4f07D",
+                "code": "bETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x1e20057a6Ddc009b275926d7d54cCA19625c974E",
+                "code": "BEETHOVEN-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x59E6B3d43F762310626d2905148939973db2BBd3",
+                "code": "aETH",
+              },
+              "bToken": Object {
+                "address": "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
+                "code": "bETH",
+              },
+              "custodian": Object {
+                "address": "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+                "code": "BEETHOVEN-PPT",
+              },
+            },
+          },
+          "Mozart": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0x2B675f1A282954Ce4FEeb93b9504a6f78B616DE9",
+                "code": "sETH-M19",
+              },
+              "bToken": Object {
+                "address": "0x47aC357b44d1b3A0799D91741fA1bD717C1f7900",
+                "code": "LETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x56e2727e56F9D6717e462418f822a8FE08Be4711",
+                "code": "MOZART-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x2cB7CDDF82AD7fF2b207AD43586976FEB19BA985",
+                "code": "sETH",
+              },
+              "bToken": Object {
+                "address": "0x977feC72C295EdAf7E7deA5681E42CaFf69749e3",
+                "code": "LETH",
+              },
+              "custodian": Object {
+                "address": "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+                "code": "MOZART-PPT",
+              },
+            },
+          },
+        },
+        "MultiSigManagers": Array [
+          Object {
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+            "code": "Esplanade",
+          },
+        ],
+        "Oracles": Array [
+          Object {
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+            "code": "Magi",
+          },
+        ],
+      },
+    },
+    "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+  ],
+]
+`;
+
+exports[`MagiWrapper 1`] = `
+Object {
+  "contract": "MagiWrapper",
+}
+`;
+
+exports[`MagiWrapper 2`] = `
+Array [
+  Array [
+    Object {
+      "contractAddresses": Object {
+        "Custodians": Object {
+          "Beethoven": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0xB608f08d94662453ac8fce91f5956CCd00031449",
+                "code": "aETH-M19",
+              },
+              "bToken": Object {
+                "address": "0xe6c92061a8890FFC429485c36fa76853ddC4f07D",
+                "code": "bETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x1e20057a6Ddc009b275926d7d54cCA19625c974E",
+                "code": "BEETHOVEN-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x59E6B3d43F762310626d2905148939973db2BBd3",
+                "code": "aETH",
+              },
+              "bToken": Object {
+                "address": "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
+                "code": "bETH",
+              },
+              "custodian": Object {
+                "address": "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+                "code": "BEETHOVEN-PPT",
+              },
+            },
+          },
+          "Mozart": Object {
+            "M19": Object {
+              "aToken": Object {
+                "address": "0x2B675f1A282954Ce4FEeb93b9504a6f78B616DE9",
+                "code": "sETH-M19",
+              },
+              "bToken": Object {
+                "address": "0x47aC357b44d1b3A0799D91741fA1bD717C1f7900",
+                "code": "LETH-M19",
+              },
+              "custodian": Object {
+                "address": "0x56e2727e56F9D6717e462418f822a8FE08Be4711",
+                "code": "MOZART-M19",
+              },
+            },
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x2cB7CDDF82AD7fF2b207AD43586976FEB19BA985",
+                "code": "sETH",
+              },
+              "bToken": Object {
+                "address": "0x977feC72C295EdAf7E7deA5681E42CaFf69749e3",
+                "code": "LETH",
+              },
+              "custodian": Object {
+                "address": "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+                "code": "MOZART-PPT",
+              },
+            },
+          },
+        },
+        "MultiSigManagers": Array [
+          Object {
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+            "code": "Esplanade",
+          },
+        ],
+        "Oracles": Array [
+          Object {
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+            "code": "Magi",
+          },
+        ],
+      },
+    },
+    "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+  ],
+]
+`;
+
+exports[`Web3Wrapper 1`] = `
+Array [
+  Array [
+    [Window],
+    "",
+    "https://kovan.infura.io",
+    false,
+  ],
+]
+`;
