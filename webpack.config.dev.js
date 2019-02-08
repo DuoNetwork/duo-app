@@ -98,12 +98,14 @@ module.exports = {
 		]
 	},
 	resolve: {
+		alias: {
+			moment: path.resolve('./node_modules/moment'),
+			'bn.js': path.resolve('./node_modules/bn.js'),
+			'bignumber.js': path.resolve('./node_modules/bignumber.js'),
+			immutable: path.resolve('./node_modules/immutable'),
+			elliptic: path.resolve('./node_modules/elliptic')
+		},
 		modules: [path.join(__dirname, 'src'), 'node_modules'],
 		extensions: ['.js', '.jsx', '.ts', '.tsx']
-	},
-	node: {
-		fs: 'empty',
-		child_process: 'empty',
-		net: 'empty'
 	}
 };
