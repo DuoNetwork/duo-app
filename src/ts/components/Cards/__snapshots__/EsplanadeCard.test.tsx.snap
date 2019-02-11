@@ -78,7 +78,6 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
             onChange={[Function]}
             placeholder="Please input address"
             small={true}
-            value=""
             width="400px"
           />
           <button
@@ -86,7 +85,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
             disabled={true}
             onClick={[Function]}
           >
-            Add Address to cold
+            Add Address
           </button>
         </li>
         <li>
@@ -105,7 +104,6 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
             onChange={[Function]}
             placeholder="Please input address"
             small={true}
-            value=""
             width="400px"
           />
           <button
@@ -254,7 +252,6 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
             onChange={[Function]}
             placeholder="Please input address"
             small={true}
-            value=""
             width="400px"
           />
           <button
@@ -262,7 +259,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
             disabled={false}
             onClick={[Function]}
           >
-            Add Address to cold
+            Add Address
           </button>
         </li>
         <li>
@@ -281,7 +278,6 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
             onChange={[Function]}
             placeholder="Please input address"
             small={true}
-            value=""
             width="400px"
           />
           <button

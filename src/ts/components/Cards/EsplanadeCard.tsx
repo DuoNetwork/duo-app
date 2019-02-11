@@ -141,7 +141,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 						) : (
 							<button
 								className={'form-button'}
-								disabled={!isModerator}
+								disabled={!isModerator || states.isStarted}
 								onClick={() => esplanadeWrapper.startManager(account)}
 							>
 								{CST.TH_START_ESP}
@@ -175,8 +175,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 									placeholder={CST.TT_INPUT_ADDR[locale]}
 									disabled={!isModerator}
 									width={'400px'}
-									value={''}
-									onChange={e => this.handleAddAddressChange(1, e.target.value)}
+									onChange={e => this.handleAddAddressChange(0, e.target.value)}
 									small
 								/>
 								<button
@@ -184,7 +183,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 									disabled={!isModerator}
 									onClick={() => this.handleAddAddresses(false)}
 								>
-									{CST.TH_ADD_ADDR + ` to cold`}
+									{CST.TH_ADD_ADDR}
 								</button>
 							</li>
 							<li>
@@ -194,8 +193,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 									className={otherContractAddressErr ? 'input-error' : ''}
 									placeholder={CST.TT_INPUT_ADDR[locale]}
 									width={'400px'}
-									value={''}
-									onChange={e => this.handleAddAddressChange(0, e.target.value)}
+									onChange={e => this.handleAddAddressChange(1, e.target.value)}
 									small
 								/>
 								<button
