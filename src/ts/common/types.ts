@@ -2,7 +2,6 @@ import {
 	ICustodianAddresses,
 	IDualClassStates,
 	IEsplanadeStates,
-	IMagiAddresses,
 	IMagiStates,
 	IVotingData
 } from '@finbook/duo-contract-wrapper';
@@ -76,8 +75,22 @@ export interface IEsplanadeAddresses {
 export interface IMagiState {
 	readonly subscription: number;
 	readonly states: IMagiStates;
-	readonly addresses: IMagiAddresses;
+	readonly operator: IAccount;
+	readonly roleManager: IAccount;
+	readonly priceFeeds: IMagiPriceFeed;
 	readonly acceptedPrices: IAcceptedPrice[];
+}
+
+export interface IAccount {
+	balance: number;
+	address: string;
+}
+
+export interface IMagiPriceFeed {
+	[address: string]: {
+		balance: number;
+		index: number;
+	};
 }
 
 export interface IDynamoState {

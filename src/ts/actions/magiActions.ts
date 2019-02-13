@@ -1,4 +1,4 @@
-import { IMagiAddresses, IMagiStates } from '@finbook/duo-contract-wrapper';
+import { IMagiStates } from '@finbook/duo-contract-wrapper';
 import { IAcceptedPrice } from '@finbook/duo-market-data';
 import * as CST from 'ts/common/constants';
 import dynamoUtil from 'ts/common/dynamoUtil';
@@ -19,10 +19,26 @@ export function statesUpdate(states: IMagiStates) {
 		value: states
 	};
 }
-export function addressesUpdate(addresses: IMagiAddresses) {
+export function priceFeedUpdate(address: string, balance: number, index: number) {
 	return {
-		type: CST.AC_MAG_ADDRS,
-		value: addresses
+		type: CST.AC_MAG_PF,
+		balance: balance,
+		address: address,
+		index: index
+	};
+}
+
+export function operatorUpdate(account: { address: string; balance: number }) {
+	return {
+		type: CST.AC_MAG_OPT,
+		value: account
+	};
+}
+
+export function roleManagerUpdate(account: { address: string; balance: number }) {
+	return {
+		type: CST.AC_MAG_ROLE_MNG,
+		value: account
 	};
 }
 
@@ -50,7 +66,29 @@ export function refresh(): VoidThunkAction {
 		const addrs = await magiWrapper.getAddresses();
 		dispatch(statesUpdate(await magiWrapper.getStates()));
 		dispatch(fetchAcceptedPrices(magiWrapper.address));
-		dispatch(addressesUpdate(addrs));
+		magiWrapper.web3Wrapper.getEthBalance(addrs.operator).then(optBalance =>
+			dispatch(
+				operatorUpdate({
+					address: addrs.operator,
+					balance: optBalance
+				})
+			)
+		);
+
+		magiWrapper.web3Wrapper.getEthBalance(addrs.roleManagerAddress).then(roleManagerBalance =>
+			dispatch(
+				roleManagerUpdate({
+					address: addrs.operator,
+					balance: roleManagerBalance
+				})
+			)
+		);
+
+		addrs.priceFeed.map((pf, i) => {
+			magiWrapper.web3Wrapper
+				.getEthBalance(pf)
+				.then(pfBalance => dispatch(priceFeedUpdate(pf, pfBalance, i)));
+		});
 	};
 }
 

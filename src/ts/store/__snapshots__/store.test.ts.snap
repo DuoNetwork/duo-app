@@ -92,10 +92,14 @@ Object {
   },
   "magi": Object {
     "acceptedPrices": Array [],
-    "addresses": Object {
-      "operator": "",
-      "priceFeed": Array [],
-      "roleManagerAddress": "",
+    "operator": Object {
+      "address": "",
+      "balance": 0,
+    },
+    "priceFeeds": Object {},
+    "roleManager": Object {
+      "address": "",
+      "balance": 0,
     },
     "states": Object {
       "firstPrice": Object {

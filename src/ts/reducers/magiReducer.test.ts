@@ -46,13 +46,33 @@ describe('magi reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
-	test('magiStates', () => {
+	test('magipriceFeeds', () => {
 		state = magiReducer(state, {
-			type: CST.AC_MAG_ADDRS,
+			type: CST.AC_MAG_PF,
+			address: 'pf',
+			balance: 100,
+			index: 0
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('magiOperator', () => {
+		state = magiReducer(state, {
+			type: CST.AC_MAG_OPT,
 			value: {
-				priceFeed: ['pf1', 'pf2', 'pf3'],
-				operator: 'operator',
-				roleManagerAddress: 'roleManagerAddr'
+				address: 'newMagiOperator',
+				balance: 101
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('magiRoleManager', () => {
+		state = magiReducer(state, {
+			type: CST.AC_MAG_ROLE_MNG,
+			value: {
+				address: 'newMagiRoleManager',
+				balance: 102
 			}
 		});
 		expect(state).toMatchSnapshot();

@@ -538,8 +538,8 @@ exports[`Web3Wrapper 1`] = `
 Array [
   Array [
     [Window],
-    "",
     "https://kovan.infura.io",
+    "",
     false,
   ],
 ]

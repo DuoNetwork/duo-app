@@ -24,10 +24,14 @@ export const initialState: IMagiState = {
 		lastOperationTime: 0,
 		operationCoolDown: 0
 	},
-	addresses: {
-		priceFeed: [],
-		operator: '',
-		roleManagerAddress: ''
+	priceFeeds: {},
+	operator: {
+		address: '',
+		balance: 0
+	},
+	roleManager: {
+		address: '',
+		balance: 0
 	},
 	subscription: 0
 };
@@ -38,9 +42,22 @@ export function magiReducer(state: IMagiState = initialState, action: AnyAction)
 			return Object.assign({}, state, {
 				states: action.value
 			});
-		case CST.AC_MAG_ADDRS:
+		case CST.AC_MAG_PF:
 			return Object.assign({}, state, {
-				addresses: action.value
+				priceFeeds: Object.assign({}, state.priceFeeds, {
+					[action.address]: {
+						balance: action.balance,
+						index: action.index
+					}
+				})
+			});
+		case CST.AC_MAG_OPT:
+			return Object.assign({}, state, {
+				operator: action.value
+			});
+		case CST.AC_MAG_ROLE_MNG:
+			return Object.assign({}, state, {
+				roleManager: action.value
 			});
 		case CST.AC_MAG_ACCEPTED_PX:
 			return Object.assign({}, state, {

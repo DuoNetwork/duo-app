@@ -31,7 +31,17 @@ describe('actions', () => {
 			numOfPrices: 1
 		})
 	);
-	magiWrapper.getAddresses = jest.fn(() => Promise.resolve(['pf1', 'pf2', 'pf3']));
+	magiWrapper.getAddresses = jest.fn(() =>
+		Promise.resolve({
+			operator: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0',
+			roleManagerAddress: '0x08cb8054201a9FdfE63fbdB1b3028E12d284D0dD',
+			priceFeed: [
+				'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a',
+				'0x002002812b42601Ae5026344F0395E68527bb0F8',
+				'0x00476E55e02673B0E4D2B474071014D5a366Ed4E'
+			]
+		})
+	);
 	dynamoUtil.queryAcceptPriceEvent = jest.fn(() =>
 		Promise.resolve([
 			{ timestamp: 1234567890000, price: 100 },

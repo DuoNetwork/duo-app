@@ -51,14 +51,6 @@ Array [
     },
   },
   Object {
-    "type": "magiAddresses",
-    "value": Array [
-      "pf1",
-      "pf2",
-      "pf3",
-    ],
-  },
-  Object {
     "type": "magiAcceptedPrices",
     "value": Array [
       Object {
@@ -104,14 +96,6 @@ Array [
         "timestamp": 1234567890000,
       },
     },
-  },
-  Object {
-    "type": "magiAddresses",
-    "value": Array [
-      "pf1",
-      "pf2",
-      "pf3",
-    ],
   },
   Object {
     "type": "magiAcceptedPrices",
@@ -165,14 +149,6 @@ Array [
         "timestamp": 1234567890000,
       },
     },
-  },
-  Object {
-    "type": "magiAddresses",
-    "value": Array [
-      "pf1",
-      "pf2",
-      "pf3",
-    ],
   },
   Object {
     "type": "magiAcceptedPrices",

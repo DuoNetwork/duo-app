@@ -1,13 +1,15 @@
 import { IMagiStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
-import { IEsplanadeAddresses } from 'ts/common/types';
+import { IEsplanadeAddresses, IMagiPriceFeed } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
 import MagiAdminCard from '../Cards/MagiAdminCard';
 
 interface IProps {
-	priceFeedAddrs: string[];
+	priceFeeds: IMagiPriceFeed;
+	operator: { balance: number; address: string };
+	roleManager: { balance: number; address: string };
 	states: IMagiStates;
 	account: string;
 	locale: string;
@@ -31,7 +33,16 @@ export default class MagiAdmin extends React.Component<IProps> {
 	}
 
 	public render() {
-		const { priceFeedAddrs, states, account, locale, refresh, coldAddresses } = this.props;
+		const {
+			priceFeeds,
+			states,
+			account,
+			locale,
+			refresh,
+			coldAddresses,
+			operator,
+			roleManager
+		} = this.props;
 		const isColdAddr = Object.keys(coldAddresses).includes(account);
 		return (
 			<Layout>
@@ -40,7 +51,9 @@ export default class MagiAdmin extends React.Component<IProps> {
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<MagiAdminCard
 							states={states}
-							priceFeedAddrs={priceFeedAddrs}
+							priceFeeds={priceFeeds}
+							operator={operator}
+							roleManager={roleManager}
 							locale={locale}
 							isColdAddr={isColdAddr}
 							account={account}

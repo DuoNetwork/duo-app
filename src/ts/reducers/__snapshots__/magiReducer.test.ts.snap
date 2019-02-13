@@ -3,10 +3,14 @@
 exports[`magi reducer default 1`] = `
 Object {
   "acceptedPrices": Array [],
-  "addresses": Object {
-    "operator": "",
-    "priceFeed": Array [],
-    "roleManagerAddress": "",
+  "operator": Object {
+    "address": "",
+    "balance": 0,
+  },
+  "priceFeeds": Object {},
+  "roleManager": Object {
+    "address": "",
+    "balance": 0,
   },
   "states": Object {
     "firstPrice": Object {
@@ -37,10 +41,14 @@ Object {
   "acceptedPrices": Array [
     "test",
   ],
-  "addresses": Object {
-    "operator": "",
-    "priceFeed": Array [],
-    "roleManagerAddress": "",
+  "operator": Object {
+    "address": "",
+    "balance": 0,
+  },
+  "priceFeeds": Object {},
+  "roleManager": Object {
+    "address": "",
+    "balance": 0,
   },
   "states": Object {
     "firstPrice": Object {
@@ -66,15 +74,24 @@ Object {
 }
 `;
 
-exports[`magi reducer magiStates 1`] = `
+exports[`magi reducer magiOperator 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
   ],
-  "addresses": Object {
-    "operator": "",
-    "priceFeed": Array [],
-    "roleManagerAddress": "",
+  "operator": Object {
+    "address": "newMagiOperator",
+    "balance": 101,
+  },
+  "priceFeeds": Object {
+    "pf": Object {
+      "balance": 100,
+      "index": 0,
+    },
+  },
+  "roleManager": Object {
+    "address": "",
+    "balance": 0,
   },
   "states": Object {
     "firstPrice": Object {
@@ -100,19 +117,62 @@ Object {
 }
 `;
 
-exports[`magi reducer magiStates 2`] = `
+exports[`magi reducer magiRoleManager 1`] = `
 Object {
   "acceptedPrices": Array [
     "test",
   ],
-  "addresses": Object {
-    "operator": "operator",
-    "priceFeed": Array [
-      "pf1",
-      "pf2",
-      "pf3",
-    ],
-    "roleManagerAddress": "roleManagerAddr",
+  "operator": Object {
+    "address": "newMagiOperator",
+    "balance": 101,
+  },
+  "priceFeeds": Object {
+    "pf": Object {
+      "balance": 100,
+      "index": 0,
+    },
+  },
+  "roleManager": Object {
+    "address": "newMagiRoleManager",
+    "balance": 102,
+  },
+  "states": Object {
+    "firstPrice": Object {
+      "price": 100,
+      "source": "pf1",
+      "timestamp": 1234567890000,
+    },
+    "isStarted": true,
+    "lastOperationTime": 1000,
+    "numOfPrices": 1000,
+    "operationCoolDown": 1000,
+    "priceFeedTimeTolerance": 1000,
+    "priceFeedTolerance": 1000,
+    "priceTolerance": 1000,
+    "priceUpdateCoolDown": 1000,
+    "secondPrice": Object {
+      "price": 102,
+      "source": "pf2",
+      "timestamp": 1234567890000,
+    },
+  },
+  "subscription": 0,
+}
+`;
+
+exports[`magi reducer magiStates 1`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "operator": Object {
+    "address": "",
+    "balance": 0,
+  },
+  "priceFeeds": Object {},
+  "roleManager": Object {
+    "address": "",
+    "balance": 0,
   },
   "states": Object {
     "firstPrice": Object {
@@ -141,10 +201,14 @@ Object {
 exports[`magi reducer magiSubscription off 1`] = `
 Object {
   "acceptedPrices": Array [],
-  "addresses": Object {
-    "operator": "",
-    "priceFeed": Array [],
-    "roleManagerAddress": "",
+  "operator": Object {
+    "address": "",
+    "balance": 0,
+  },
+  "priceFeeds": Object {},
+  "roleManager": Object {
+    "address": "",
+    "balance": 0,
   },
   "states": Object {
     "firstPrice": Object {
@@ -183,14 +247,19 @@ Object {
   "acceptedPrices": Array [
     "test",
   ],
-  "addresses": Object {
-    "operator": "operator",
-    "priceFeed": Array [
-      "pf1",
-      "pf2",
-      "pf3",
-    ],
-    "roleManagerAddress": "roleManagerAddr",
+  "operator": Object {
+    "address": "newMagiOperator",
+    "balance": 101,
+  },
+  "priceFeeds": Object {
+    "pf": Object {
+      "balance": 100,
+      "index": 0,
+    },
+  },
+  "roleManager": Object {
+    "address": "newMagiRoleManager",
+    "balance": 102,
   },
   "states": Object {
     "firstPrice": Object {
@@ -213,5 +282,48 @@ Object {
     },
   },
   "subscription": 123,
+}
+`;
+
+exports[`magi reducer magipriceFeeds 1`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "operator": Object {
+    "address": "",
+    "balance": 0,
+  },
+  "priceFeeds": Object {
+    "pf": Object {
+      "balance": 100,
+      "index": 0,
+    },
+  },
+  "roleManager": Object {
+    "address": "",
+    "balance": 0,
+  },
+  "states": Object {
+    "firstPrice": Object {
+      "price": 100,
+      "source": "pf1",
+      "timestamp": 1234567890000,
+    },
+    "isStarted": true,
+    "lastOperationTime": 1000,
+    "numOfPrices": 1000,
+    "operationCoolDown": 1000,
+    "priceFeedTimeTolerance": 1000,
+    "priceFeedTolerance": 1000,
+    "priceTolerance": 1000,
+    "priceUpdateCoolDown": 1000,
+    "secondPrice": Object {
+      "price": 102,
+      "source": "pf2",
+      "timestamp": 1234567890000,
+    },
+  },
+  "subscription": 0,
 }
 `;
