@@ -78,7 +78,7 @@ export function refresh(): VoidThunkAction {
 		magiWrapper.web3Wrapper.getEthBalance(addrs.roleManagerAddress).then(roleManagerBalance =>
 			dispatch(
 				roleManagerUpdate({
-					address: addrs.operator,
+					address: addrs.roleManagerAddress,
 					balance: roleManagerBalance
 				})
 			)
