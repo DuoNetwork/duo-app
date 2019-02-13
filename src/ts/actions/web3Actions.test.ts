@@ -46,7 +46,7 @@ describe('actions', () => {
 
 	test('getGasPrice', () => {
 		const store: any = mockStore({});
-		web3Wrapper.getGasPrice = jest.fn(() => Promise.resolve(456));
+		web3Wrapper.getGasPrice = jest.fn(() => Promise.resolve('456'));
 		store.dispatch(web3Actions.getGasPrice());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -83,7 +83,7 @@ describe('actions', () => {
 			}
 		});
 		web3Wrapper.getCurrentAddress = jest.fn(() => Promise.resolve('0x0'));
-		web3Wrapper.getGasPrice = jest.fn(() => Promise.resolve(456));
+		web3Wrapper.getGasPrice = jest.fn(() => Promise.resolve('456'));
 		web3Wrapper.getCurrentNetwork = jest.fn(() => Promise.resolve(123));
 		web3Wrapper.getEthBalance = jest.fn(() => Promise.resolve(456));
 		store.dispatch(web3Actions.refresh());

@@ -109,7 +109,7 @@ describe('actions', () => {
 		});
 		dynamoUtil.getPrices = jest.fn(
 			(src: string, period: number, start: number, end: number, pair: string) =>
-				Promise.resolve([src, period, start, end, pair])
+				Promise.resolve([src, period, start, end, pair] as any)
 		);
 		store.dispatch(dualClassActions.fetchExchangePrices());
 		return new Promise(resolve =>
@@ -130,7 +130,7 @@ describe('actions', () => {
 		});
 		dynamoUtil.getPrices = jest.fn(
 			(src: string, period: number, start: number, end: number, pair: string) =>
-				Promise.resolve([src, period, start, end, pair])
+				Promise.resolve([src, period, start, end, pair] as any)
 		);
 		store.dispatch(dualClassActions.fetchExchangePrices());
 		return new Promise(resolve =>
@@ -151,7 +151,7 @@ describe('actions', () => {
 				states: { limitUpper: 2, limitLower: 0.25, limitPeriodic: 1.035 }
 			}
 		});
-		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test'] as any));
 		store.dispatch(dualClassActions.fetchAcceptedPrices(WrapperConstants.DUMMY_ADDR));
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -168,12 +168,12 @@ describe('actions', () => {
 	test('fetchConversions', () => {
 		const store: any = mockStore({ web3: { account: WrapperConstants.DUMMY_ADDR } });
 		util.getDates = jest.fn(() => ['1970-01-15']);
-		web3Wrapper.getTransactionReceipt = jest.fn(() => Promise.resolve());
+		web3Wrapper.getTransactionReceipt = jest.fn(() => Promise.resolve()) as any;
 		dynamoUtil.queryConversionEvent = jest.fn(() =>
 			Promise.resolve([
 				{
 					transactionHash: 'aaa'
-				}
+				} as any
 			])
 		);
 		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
@@ -190,7 +190,7 @@ describe('actions', () => {
 					transactionHash: 'ccc',
 					timestamp: 0
 				}
-			])
+			] as any)
 		);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
 		store.dispatch(dualClassActions.fetchConversions(WrapperConstants.DUMMY_ADDR));
@@ -220,7 +220,7 @@ describe('actions', () => {
 			Promise.resolve([
 				{
 					transactionHash: 'aaa'
-				}
+				} as any
 			])
 		);
 		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
@@ -237,13 +237,13 @@ describe('actions', () => {
 					transactionHash: 'ccc',
 					timestamp: 0
 				}
-			])
+			] as any)
 		);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
 		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
 		dynamoUtil.getPrices = jest.fn(
 			(src: string, period: number, start: number, end: number, pair: string) =>
-				Promise.resolve([src, period, start, end, pair])
+				Promise.resolve([src, period, start, end, pair] as any)
 		);
 		const store: any = mockStore({
 			web3: { account: WrapperConstants.DUMMY_ADDR },
@@ -259,7 +259,7 @@ describe('actions', () => {
 			},
 			ui: { period: 5, source: 'test' }
 		});
-		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test'] as any));
 		store.dispatch(dualClassActions.refresh(true));
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -280,7 +280,7 @@ describe('actions', () => {
 			Promise.resolve([
 				{
 					transactionHash: 'aaa'
-				}
+				} as any
 			])
 		);
 		dynamoUtil.queryUIConversionEvent = jest.fn(() =>
@@ -297,13 +297,13 @@ describe('actions', () => {
 					transactionHash: 'ccc',
 					timestamp: 0
 				}
-			])
+			] as any)
 		);
 		dynamoUtil.deleteUIConversionEvent = jest.fn(() => Promise.resolve());
 		util.getUTCNowTimestamp = jest.fn(() => 1234567890);
 		dynamoUtil.getPrices = jest.fn(
 			(src: string, period: number, start: number, end: number, pair: string) =>
-				Promise.resolve([src, period, start, end, pair])
+				Promise.resolve([src, period, start, end, pair] as any)
 		);
 		const store: any = mockStore({
 			web3: { account: WrapperConstants.DUMMY_ADDR },
@@ -319,7 +319,7 @@ describe('actions', () => {
 			},
 			ui: { period: 5, source: 'test' }
 		});
-		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
+		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test'] as any));
 		store.dispatch(
 			dualClassActions.subscribe(WrapperConstants.BEETHOVEN, WrapperConstants.TENOR_PPT)
 		);

@@ -17,7 +17,7 @@ describe('actions', () => {
 		dynamoUtil.scanStatus = jest.fn(() =>
 			Promise.resolve({
 				test: 'test'
-			})
+			} as any)
 		);
 		store.dispatch(dynamoActions.scanStatus());
 		return new Promise(resolve =>

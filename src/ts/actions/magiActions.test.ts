@@ -28,7 +28,9 @@ describe('actions', () => {
 			priceFeedTolerance: 0.5,
 			priceFeedTimeTolerance: 100,
 			priceUpdateCoolDown: 1000,
-			numOfPrices: 1
+			numOfPrices: 1,
+			lastOperationTime: 0,
+			operationCoolDown: 1234
 		})
 	);
 	magiWrapper.getAddresses = jest.fn(() =>
@@ -46,7 +48,7 @@ describe('actions', () => {
 		Promise.resolve([
 			{ timestamp: 1234567890000, price: 100 },
 			{ timestamp: 1234567880000, price: 102 }
-		])
+		] as any)
 	);
 
 	test('acceptedPricesUpdate', () => {
@@ -95,7 +97,7 @@ describe('actions', () => {
 				{ timestamp: 1234567870000, price: 106 },
 				{ timestamp: 1234567890000, price: 100 },
 				{ timestamp: 1234567880000, price: 102 }
-			])
+			] as any)
 		);
 		return new Promise(resolve =>
 			setTimeout(() => {

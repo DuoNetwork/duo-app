@@ -19,7 +19,7 @@ describe('DecodeCard Test', () => {
 		it('Test SInput Input', async () => {
 			dualClassWrappers[WrapperConstants.BEETHOVEN][
 				WrapperConstants.TENOR_PPT
-			].decode = jest.fn(() => 'decoded');
+			].decode = jest.fn(() => 'decoded' as any);
 			const wrapper = shallow(
 				<DecodeCard type={WrapperConstants.BEETHOVEN} tenor={WrapperConstants.TENOR_PPT} />
 			);
