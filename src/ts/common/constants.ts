@@ -523,6 +523,20 @@ export const TH_PRICE_TOLERANCE: ILocaleText = {
 	[LOCALE_RU]: ''
 };
 
+export const TH_OPERATOR: ILocaleText = {
+	[LOCALE_CN]: '管理者',
+	[LOCALE_EN]: 'operator',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
+export const TH_ROLE_MANAGER: ILocaleText = {
+	[LOCALE_CN]: '仲裁者',
+	[LOCALE_EN]: 'role manager',
+	[LOCALE_JP]: '',
+	[LOCALE_RU]: ''
+};
+
 export const TH_UPDATE_PRICE_FEED: ILocaleText = {
 	[LOCALE_CN]: '更改报价器',
 	[LOCALE_EN]: 'update price feed',

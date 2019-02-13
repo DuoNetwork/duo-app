@@ -11,8 +11,8 @@ import { SCard, SCardExtraDiv, SCardList, SCardTitle, SInput, STableWrapper } fr
 interface IProps {
 	states: IMagiStates;
 	priceFeeds: IMagiPriceFeed;
-	operator: {address: string; balance: number};
-	roleManager: {address: string; balance: number};
+	operator: { address: string; balance: number };
+	roleManager: { address: string; balance: number };
 	locale: string;
 	account: string;
 	isColdAddr: boolean;
@@ -61,10 +61,7 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 		});
 
 	private handleSetValue = async () => {
-		if (
-			this.state.setValueIndex >= 0 &&
-			!this.state.setValueNumberErr
-		)
+		if (this.state.setValueIndex >= 0 && !this.state.setValueNumberErr)
 			magiWrapper.setValue(
 				this.props.account,
 				this.state.setValueIndex,
@@ -79,7 +76,15 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 		});
 
 	public render() {
-		const {account, priceFeeds, locale, states, isColdAddr , operator} = this.props;
+		const {
+			account,
+			priceFeeds,
+			locale,
+			states,
+			isColdAddr,
+			operator,
+			roleManager
+		} = this.props;
 		const { roleManagerErr, setValueIndex, setValueNumberErr } = this.state;
 
 		const dataSource: ITableRecord[] = [];
@@ -138,17 +143,24 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										<span className="content">{states.numOfPrices}</span>
 									</li>
 									<li>
-										<span className="title" style={{width: "200px"}}>
+										<span className="title" style={{ width: '200px' }}>
 											{CST.TH_PRICE_FEED_COOL_DOWN[locale]}
 										</span>
-										<span className="content">
+										<span className="content"  style={{ width: '300px' }}>
 											{states.priceUpdateCoolDown / 1000 / 60 + ' minutes'}
 										</span>
 										<SInput
-											className={setValueIndex === 3 && setValueNumberErr ? 'input-error' : ''}
+											className={
+												setValueIndex === 3 && setValueNumberErr
+													? 'input-error'
+													: ''
+											}
 											placeholder={CST.TT_INPUT_VALUE[locale]}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
-											width={'400px'}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
+											width={'300px'}
 											onChange={e =>
 												this.handleSetValueNumberChange(3, e.target.value)
 											}
@@ -156,24 +168,34 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										/>
 										<button
 											className={'form-button'}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
 											onClick={() => this.handleSetValue()}
 										>
 											{CST.TH_UPDATE}
 										</button>
 									</li>
 									<li>
-										<span className="title" style={{width: "200px"}}>
+										<span className="title" style={{ width: '200px' }}>
 											{CST.TH_PRICE_FEED_TIME_TOLERANCE[locale]}
 										</span>
-										<span className="content">
+										<span className="content"  style={{ width: '300px' }}>
 											{states.priceFeedTimeTolerance / 1000 + ' seconds'}
 										</span>
 										<SInput
-											className={setValueIndex === 2 && setValueNumberErr ? 'input-error' : ''}
+											className={
+												setValueIndex === 2 && setValueNumberErr
+													? 'input-error'
+													: ''
+											}
 											placeholder={CST.TT_INPUT_VALUE[locale]}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
-											width={'400px'}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
+											width={'300px'}
 											onChange={e =>
 												this.handleSetValueNumberChange(2, e.target.value)
 											}
@@ -181,24 +203,34 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										/>
 										<button
 											className={'form-button'}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
 											onClick={() => this.handleSetValue()}
 										>
 											{CST.TH_UPDATE}
 										</button>
 									</li>
 									<li>
-										<span className="title" style={{width: "200px"}}>
+										<span className="title" style={{ width: '200px' }}>
 											{CST.TH_PRICE_FEED_TOLERANCE[locale]}
 										</span>
-										<span className="content">
+										<span className="content"  style={{ width: '300px' }}>
 											{states.priceFeedTolerance * 100 + '%'}
 										</span>
 										<SInput
-											className={setValueIndex === 1 && setValueNumberErr ? 'input-error' : ''}
+											className={
+												setValueIndex === 1 && setValueNumberErr
+													? 'input-error'
+													: ''
+											}
 											placeholder={CST.TT_INPUT_VALUE[locale]}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
-											width={'400px'}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
+											width={'300px'}
 											onChange={e =>
 												this.handleSetValueNumberChange(1, e.target.value)
 											}
@@ -206,24 +238,34 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										/>
 										<button
 											className={'form-button'}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
 											onClick={() => this.handleSetValue()}
 										>
 											{CST.TH_UPDATE}
 										</button>
 									</li>
 									<li>
-										<span className="title" style={{width: "200px"}}>
+										<span className="title" style={{ width: '200px' }}>
 											{CST.TH_PRICE_TOLERANCE[locale]}
 										</span>
-										<span className="content">
+										<span className="content" style={{ width: '300px' }}>
 											{states.priceTolerance * 100 + '%'}
 										</span>
 										<SInput
-											className={setValueIndex === 0 && setValueNumberErr ? 'input-error' : ''}
+											className={
+												setValueIndex === 0 && setValueNumberErr
+													? 'input-error'
+													: ''
+											}
 											placeholder={CST.TT_INPUT_VALUE[locale]}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
-											width={'400px'}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
+											width={'300px'}
 											onChange={e =>
 												this.handleSetValueNumberChange(0, e.target.value)
 											}
@@ -231,10 +273,54 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										/>
 										<button
 											className={'form-button'}
-											disabled={account.toLowerCase() !== operator.address.toLowerCase()}
+											disabled={
+												account.toLowerCase() !==
+												operator.address.toLowerCase()
+											}
 											onClick={() => this.handleSetValue()}
 										>
 											{CST.TH_UPDATE}
+										</button>
+									</li>
+
+									<li>
+										<span className="title" style={{ width: '200px' }}>
+											{CST.TH_ROLE_MANAGER[locale]}
+										</span>
+										<span className="content" style={{ width: '300px' }}>
+											{roleManager.address}
+										</span>
+										<SInput
+											className={roleManagerErr ? 'input-error' : ''}
+											placeholder={CST.TT_INPUT_ADDR[locale]}
+											onChange={e =>
+												this.handleRoleManagerChange(e.target.value)
+											}
+											width={'300px'}
+											small
+										/>
+										<button
+											className={'form-button'}
+											disabled={!isColdAddr}
+											onClick={() => this.handleUpdateRoleManager()}
+										>
+											{CST.TH_UPDATE_ESP[locale]}
+										</button>
+									</li>
+
+									<li>
+										<span className="title" style={{ width: '200px' }}>
+											{CST.TH_OPERATOR[locale]}
+										</span>
+										<span className="content" style={{ width: '300px' }}>
+											{operator.address}
+										</span>
+										<button
+											className={'form-button'}
+											disabled={!isColdAddr}
+											onClick={() => this.handleUpdateOperator()}
+										>
+											{CST.TH_UPDATE_OPERATOR[locale]}
 										</button>
 									</li>
 								</ul>
@@ -288,97 +374,6 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 								}
 							</Table>
 						</STableWrapper>
-					</SCard>
-
-					<SCard
-						title={<SCardTitle>{CST.TH_OPERATION.EN.toUpperCase()}</SCardTitle>}
-						width="1000px"
-						margin="0 0 0 0"
-						inlinetype="table"
-					>
-						<SCardList>
-							<div className="status-list-wrapper">
-								<ul>
-									<li className="no-bg">
-										<SDivFlexCenter
-											horizontal
-											width="100%"
-											padding="2px 0 2px 0"
-											marginBottom="10px"
-										>
-											{' '}
-											<SInput
-												className={roleManagerErr ? 'input-error' : ''}
-												placeholder={CST.TT_INPUT_ADDR[locale]}
-												width={'700px'}
-												onChange={e =>
-													this.handleRoleManagerChange(e.target.value)
-												}
-												small
-											/>
-											<button
-												className={'form-button'}
-												onClick={() => this.handleUpdateRoleManager()}
-											>
-												{CST.TH_UPDATE_ESP[locale]}
-											</button>
-										</SDivFlexCenter>
-									</li>
-
-									{/* <li className="no-bg">
-										<SDivFlexCenter
-											horizontal
-											width="100%"
-											padding="2px 0 2px 0"
-											marginBottom="10px"
-										>
-											{' '}
-											<SInput
-												className={roleManagerErr ? 'input-error' : ''}
-												placeholder={CST.TT_INPUT_INDEX[locale]}
-												width={'200px'}
-												onChange={e =>
-													this.handleSetValueIdxChange(e.target.value)
-												}
-												small
-											/>
-											<SInput
-												className={roleManagerErr ? 'input-error' : ''}
-												placeholder={CST.TT_INPUT_VALUE[locale]}
-												width={'430px'}
-												onChange={e =>
-													this.handleSetValueChange(e.target.value)
-												}
-												small
-											/>
-											<button
-												className={'form-button'}
-												onClick={() => this.handleSetValue()}
-											>
-												{CST.TH_SET_MAG_VALUE[locale]}
-											</button>
-										</SDivFlexCenter>
-									</li> */}
-
-									<li className="no-bg">
-										<SDivFlexCenter
-											horizontal
-											width="100%"
-											padding="2px 0 2px 0"
-											marginBottom="10px"
-										>
-											<button
-												className={'form-button'}
-												disabled={!isColdAddr}
-												onClick={() => this.handleUpdateOperator()}
-											>
-												{CST.TH_UPDATE_OPERATOR[locale]}
-											</button>
-										</SDivFlexCenter>
-									</li>
-								</ul>
-							</div>
-						</SCardList>
 					</SCard>
 				</SDivFlexCenter>
 			</SCard>
