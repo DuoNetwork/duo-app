@@ -454,6 +454,10 @@ test('round', () => {
 	expect(util.round(1.23456789012)).toBe(1.23456789);
 });
 
+test('formatTime', () => {
+	expect(util.formatTime(1550028472000)).toMatchSnapshot();
+})
+
 test('formatNumber', () => {
 	expect(util.formatNumber(1e-9)).toBe('0.000');
 	expect(util.formatNumber(0.0123456)).toBe('0.01235');

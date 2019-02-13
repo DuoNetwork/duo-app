@@ -38,16 +38,6 @@ export function fetchAcceptedPrices(contractAddress: string): VoidThunkAction {
 		);
 }
 
-// export function getStates(): VoidThunkAction {
-// 	return async dispatch => {
-// 		dispatch(statesUpdate(await magiWrapper.getStates()));
-// 	};
-// }
-
-// export function getAddressess(): VoidThunkAction {
-// 	return async dispatch => dispatch(addressesUpdate(await magiWrapper.getAddresses()));
-// }
-
 export function subscriptionUpdate(intervalId: number) {
 	return {
 		type: CST.AC_MAG_SUB,

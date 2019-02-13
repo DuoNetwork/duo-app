@@ -19,6 +19,45 @@ describe('magi reducer', () => {
 		expect(state).toMatchSnapshot();
 	});
 
+	test('magiStates', () => {
+		state = magiReducer(state, {
+			type: CST.AC_MAG_STATES,
+			value: {
+				isStarted: true,
+				firstPrice: {
+					price: 100,
+					timestamp: 1234567890000,
+					source: 'pf1'
+				},
+				secondPrice: {
+					price: 102,
+					timestamp: 1234567890000,
+					source: 'pf2'
+				},
+				priceTolerance: 1000,
+				priceFeedTolerance: 1000,
+				priceFeedTimeTolerance: 1000,
+				priceUpdateCoolDown: 1000,
+				numOfPrices: 1000,
+				lastOperationTime: 1000,
+				operationCoolDown: 1000
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
+
+	test('magiStates', () => {
+		state = magiReducer(state, {
+			type: CST.AC_MAG_ADDRS,
+			value: {
+				priceFeed: ['pf1', 'pf2', 'pf3'],
+				operator: 'operator',
+				roleManagerAddress: 'roleManagerAddr'
+			}
+		});
+		expect(state).toMatchSnapshot();
+	});
+
 	test('magiSubscription on', () => {
 		state = magiReducer(state, {
 			type: CST.AC_MAG_SUB,

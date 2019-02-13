@@ -58,6 +58,74 @@ Object {
 }
 `;
 
+exports[`magi reducer magiStates 1`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "addresses": Array [],
+  "states": Object {
+    "firstPrice": Object {
+      "price": 100,
+      "source": "pf1",
+      "timestamp": 1234567890000,
+    },
+    "isStarted": true,
+    "lastOperationTime": 1000,
+    "numOfPrices": 1000,
+    "operationCoolDown": 1000,
+    "priceFeedTimeTolerance": 1000,
+    "priceFeedTolerance": 1000,
+    "priceTolerance": 1000,
+    "priceUpdateCoolDown": 1000,
+    "secondPrice": Object {
+      "price": 102,
+      "source": "pf2",
+      "timestamp": 1234567890000,
+    },
+  },
+  "subscription": 0,
+}
+`;
+
+exports[`magi reducer magiStates 2`] = `
+Object {
+  "acceptedPrices": Array [
+    "test",
+  ],
+  "addresses": Object {
+    "operator": "operator",
+    "priceFeed": Array [
+      "pf1",
+      "pf2",
+      "pf3",
+    ],
+    "roleManagerAddress": "roleManagerAddr",
+  },
+  "states": Object {
+    "firstPrice": Object {
+      "price": 100,
+      "source": "pf1",
+      "timestamp": 1234567890000,
+    },
+    "isStarted": true,
+    "lastOperationTime": 1000,
+    "numOfPrices": 1000,
+    "operationCoolDown": 1000,
+    "priceFeedTimeTolerance": 1000,
+    "priceFeedTolerance": 1000,
+    "priceTolerance": 1000,
+    "priceUpdateCoolDown": 1000,
+    "secondPrice": Object {
+      "price": 102,
+      "source": "pf2",
+      "timestamp": 1234567890000,
+    },
+  },
+  "subscription": 0,
+}
+`;
+
 exports[`magi reducer magiSubscription off 1`] = `
 Object {
   "acceptedPrices": Array [],
@@ -99,25 +167,33 @@ Object {
   "acceptedPrices": Array [
     "test",
   ],
-  "addresses": Array [],
+  "addresses": Object {
+    "operator": "operator",
+    "priceFeed": Array [
+      "pf1",
+      "pf2",
+      "pf3",
+    ],
+    "roleManagerAddress": "roleManagerAddr",
+  },
   "states": Object {
     "firstPrice": Object {
-      "price": 0,
-      "source": "",
-      "timestamp": 0,
+      "price": 100,
+      "source": "pf1",
+      "timestamp": 1234567890000,
     },
-    "isStarted": false,
-    "lastOperationTime": 0,
-    "numOfPrices": 0,
-    "operationCoolDown": 0,
-    "priceFeedTimeTolerance": 0,
-    "priceFeedTolerance": 0,
-    "priceTolerance": 0,
-    "priceUpdateCoolDown": 0,
+    "isStarted": true,
+    "lastOperationTime": 1000,
+    "numOfPrices": 1000,
+    "operationCoolDown": 1000,
+    "priceFeedTimeTolerance": 1000,
+    "priceFeedTolerance": 1000,
+    "priceTolerance": 1000,
+    "priceUpdateCoolDown": 1000,
     "secondPrice": Object {
-      "price": 0,
-      "source": "",
-      "timestamp": 0,
+      "price": 102,
+      "source": "pf2",
+      "timestamp": 1234567890000,
     },
   },
   "subscription": 123,
