@@ -1,7 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`formatTime 1`] = `"2019-02-13 11:27:52"`;
-
 exports[`getLastPriceFromStatus 1`] = `
 Object {
   "gdax": Object {
