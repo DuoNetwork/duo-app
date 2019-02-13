@@ -3,7 +3,11 @@
 exports[`magi reducer default 1`] = `
 Object {
   "acceptedPrices": Array [],
-  "addresses": Array [],
+  "addresses": Object {
+    "operator": "",
+    "priceFeed": Array [],
+    "roleManagerAddress": "",
+  },
   "states": Object {
     "firstPrice": Object {
       "price": 0,
@@ -33,7 +37,11 @@ Object {
   "acceptedPrices": Array [
     "test",
   ],
-  "addresses": Array [],
+  "addresses": Object {
+    "operator": "",
+    "priceFeed": Array [],
+    "roleManagerAddress": "",
+  },
   "states": Object {
     "firstPrice": Object {
       "price": 0,
@@ -63,7 +71,11 @@ Object {
   "acceptedPrices": Array [
     "test",
   ],
-  "addresses": Array [],
+  "addresses": Object {
+    "operator": "",
+    "priceFeed": Array [],
+    "roleManagerAddress": "",
+  },
   "states": Object {
     "firstPrice": Object {
       "price": 100,
@@ -129,7 +141,11 @@ Object {
 exports[`magi reducer magiSubscription off 1`] = `
 Object {
   "acceptedPrices": Array [],
-  "addresses": Array [],
+  "addresses": Object {
+    "operator": "",
+    "priceFeed": Array [],
+    "roleManagerAddress": "",
+  },
   "states": Object {
     "firstPrice": Object {
       "price": 0,

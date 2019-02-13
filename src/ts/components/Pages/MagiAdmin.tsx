@@ -5,10 +5,9 @@ import { IEsplanadeAddresses } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
 import MagiAdminCard from '../Cards/MagiAdminCard';
-// import DecodeCard from '../Cards/DecodeCard';
 
 interface IProps {
-	addresses: string[];
+	priceFeedAddrs: string[];
 	states: IMagiStates;
 	account: string;
 	locale: string;
@@ -17,11 +16,6 @@ interface IProps {
 	unsubscribe: () => any;
 	refresh: () => any;
 }
-
-// interface IState {
-// 	type: string;
-// 	tenor: string;
-// }
 
 export default class MagiAdmin extends React.Component<IProps> {
 	constructor(props: IProps) {
@@ -37,9 +31,7 @@ export default class MagiAdmin extends React.Component<IProps> {
 	}
 
 	public render() {
-		const { addresses, states, account, locale, refresh, coldAddresses } = this.props;
-		console.log('cold address ###################');
-		console.log(coldAddresses);
+		const { priceFeedAddrs, states, account, locale, refresh, coldAddresses } = this.props;
 		const isColdAddr = Object.keys(coldAddresses).includes(account);
 		return (
 			<Layout>
@@ -48,14 +40,13 @@ export default class MagiAdmin extends React.Component<IProps> {
 					<SDivFlexCenter center horizontal marginBottom="20px;">
 						<MagiAdminCard
 							states={states}
-							addresses={addresses}
+							priceFeedAddrs={priceFeedAddrs}
 							locale={locale}
 							isColdAddr={isColdAddr}
 							account={account}
 							refresh={refresh}
 						/>
 					</SDivFlexCenter>
-					{/* <DecodeCard type={type} tenor={tenor} /> */}
 				</SContent>
 			</Layout>
 		);

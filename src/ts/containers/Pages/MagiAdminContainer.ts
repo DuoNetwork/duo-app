@@ -9,7 +9,7 @@ import MagiAdmin from 'ts/components/Pages/MagiAdmin';
 function mapStateToProps(state: IState) {
 	return {
 		states: state.magi.states,
-		addresses: state.magi.addresses,
+		priceFeedAddrs: state.magi.addresses.priceFeed,
 		account: state.web3.account,
 		coldAddresses: state.esplanade.coldAddressPool,
 		locale: state.ui.locale,

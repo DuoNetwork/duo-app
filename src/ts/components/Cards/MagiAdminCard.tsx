@@ -15,7 +15,7 @@ import {
 
 interface IProps {
 	states: IMagiStates;
-	addresses: string[];
+	priceFeedAddrs: string[];
 	locale: string;
 	account: string;
 	isColdAddr: boolean;
@@ -105,13 +105,13 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 			priceFeedIndexErr:
 				value.match(CST.RX_NUM_P) &&
 				Number(value) >= 0 &&
-				Number(value) < this.props.addresses.length
+				Number(value) < this.props.priceFeedAddrs.length
 					? ''
 					: CST.TT_INVALID_NUMBER[this.props.locale]
 		});
 
 	public render() {
-		const { addresses, locale, states, isColdAddr } = this.props;
+		const { priceFeedAddrs, locale, states, isColdAddr } = this.props;
 		// const isPriceFeed = addresses.includes(account);
 		console.log('is cold address');
 		console.log(isColdAddr);
@@ -188,7 +188,7 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 					<SCardList>
 						<div className="status-list-wrapper">
 							<ul>
-								{addresses.map((address, i) => (
+								{priceFeedAddrs.map((address, i) => (
 									<li className="block-title">
 										<span className="title">
 											{CST.TH_PRICE_FEED[locale] + i}

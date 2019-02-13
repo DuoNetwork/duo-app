@@ -24,7 +24,11 @@ export const initialState: IMagiState = {
 		lastOperationTime: 0,
 		operationCoolDown: 0
 	},
-	addresses: [],
+	addresses: {
+		priceFeed: [],
+		operator: '',
+		roleManagerAddress: ''
+	},
 	subscription: 0
 };
 
