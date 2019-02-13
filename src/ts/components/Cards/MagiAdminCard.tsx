@@ -140,13 +140,23 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 								<ul>
 									<li>
 										<span className="title">{CST.TH_NUM_OF_PRICE[locale]}</span>
-										<span className="content">{states.numOfPrices}</span>
+										<span className="content" style={{ width: '200px' }}>
+											{!states.numOfPrices ? '0' : states.numOfPrices}
+										</span>
+									</li>
+									<li>
+										<span className="title">{CST.TH_OPT_COOL_DOWN}</span>
+										<span className="content" style={{ width: '200px' }}>{states.operationCoolDown}</span>
+									</li>
+									<li>
+										<span className="title">{CST.TH_LAST_OPT_TIME}</span>
+										<span className="content" style={{ width: '200px' }}>{states.lastOperationTime}</span>
 									</li>
 									<li>
 										<span className="title" style={{ width: '200px' }}>
 											{CST.TH_PRICE_FEED_COOL_DOWN[locale]}
 										</span>
-										<span className="content"  style={{ width: '300px' }}>
+										<span className="content" style={{ width: '300px' }}>
 											{states.priceUpdateCoolDown / 1000 / 60 + ' minutes'}
 										</span>
 										<SInput
@@ -181,7 +191,7 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										<span className="title" style={{ width: '200px' }}>
 											{CST.TH_PRICE_FEED_TIME_TOLERANCE[locale]}
 										</span>
-										<span className="content"  style={{ width: '300px' }}>
+										<span className="content" style={{ width: '300px' }}>
 											{states.priceFeedTimeTolerance / 1000 + ' seconds'}
 										</span>
 										<SInput
@@ -216,7 +226,7 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										<span className="title" style={{ width: '200px' }}>
 											{CST.TH_PRICE_FEED_TOLERANCE[locale]}
 										</span>
-										<span className="content"  style={{ width: '300px' }}>
+										<span className="content" style={{ width: '300px' }}>
 											{states.priceFeedTolerance * 100 + '%'}
 										</span>
 										<SInput

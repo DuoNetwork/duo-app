@@ -18,7 +18,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
     <styled.div>
       <a
         className="tag-content"
-        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        href="https://kovan.etherscan.io/address/0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079"
         style={
           Object {
             "color": "white",
@@ -192,7 +192,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
     <styled.div>
       <a
         className="tag-content"
-        href="https://kovan.etherscan.io/address/0xD728681490d63582047A6Cd2fC80B1343C6AbA20"
+        href="https://kovan.etherscan.io/address/0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079"
         style={
           Object {
             "color": "white",
