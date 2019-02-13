@@ -14,7 +14,14 @@ Array [
   Object {
     "type": "magiAcceptedPrices",
     "value": Array [
-      "test",
+      Object {
+        "price": 100,
+        "timestamp": 1234567890000,
+      },
+      Object {
+        "price": 102,
+        "timestamp": 1234567880000,
+      },
     ],
   },
 ]
@@ -54,7 +61,14 @@ Array [
   Object {
     "type": "magiAcceptedPrices",
     "value": Array [
-      "test",
+      Object {
+        "price": 100,
+        "timestamp": 1234567890000,
+      },
+      Object {
+        "price": 102,
+        "timestamp": 1234567880000,
+      },
     ],
   },
 ]
@@ -102,7 +116,79 @@ Array [
   Object {
     "type": "magiAcceptedPrices",
     "value": Array [
-      "test",
+      Object {
+        "price": 100,
+        "timestamp": 1234567890000,
+      },
+      Object {
+        "price": 102,
+        "timestamp": 1234567880000,
+      },
+      Object {
+        "price": 106,
+        "timestamp": 1234567870000,
+      },
+    ],
+  },
+]
+`;
+
+exports[`actions subscribe 2`] = `60000`;
+
+exports[`actions subscribe 3`] = `
+Array [
+  Object {
+    "type": "magiSubscription",
+    "value": 0,
+  },
+  Object {
+    "type": "magiSubscription",
+    "value": 123,
+  },
+  Object {
+    "type": "esplanadeStates",
+    "value": Object {
+      "firstPrice": Object {
+        "price": 100,
+        "source": "source1",
+        "timestamp": 1234567890000,
+      },
+      "isStarted": false,
+      "numOfPrices": 1,
+      "priceFeedTimeTolerance": 100,
+      "priceFeedTolerance": 0.5,
+      "priceTolerance": 0.1,
+      "priceUpdateCoolDown": 1000,
+      "secondPrice": Object {
+        "price": 102,
+        "source": "source2",
+        "timestamp": 1234567890000,
+      },
+    },
+  },
+  Object {
+    "type": "esplanadeAddresses",
+    "value": Array [
+      "pf1",
+      "pf2",
+      "pf3",
+    ],
+  },
+  Object {
+    "type": "magiAcceptedPrices",
+    "value": Array [
+      Object {
+        "price": 100,
+        "timestamp": 1234567890000,
+      },
+      Object {
+        "price": 102,
+        "timestamp": 1234567880000,
+      },
+      Object {
+        "price": 106,
+        "timestamp": 1234567870000,
+      },
     ],
   },
 ]

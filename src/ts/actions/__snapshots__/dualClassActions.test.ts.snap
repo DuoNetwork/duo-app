@@ -129,7 +129,12 @@ Array [
   Object {
     "type": "dualClassAddresses",
     "value": Object {
-      "test": "test",
+      "aToken": "aTokenAddr",
+      "bToken": "bTokenAddr",
+      "feeCollector": "feeCollectorAddr",
+      "operator": "operatorAddr",
+      "oracle": "oracleAddr",
+      "roleManager": "roleManagerAddr",
     },
   },
 ]
@@ -140,8 +145,8 @@ Array [
   Object {
     "type": "dualClassBalances",
     "value": Object {
-      "a": undefined,
-      "b": undefined,
+      "a": 100,
+      "b": 100,
     },
   },
 ]
@@ -180,13 +185,6 @@ Array [
     },
   },
   Object {
-    "type": "dualClassBalances",
-    "value": Object {
-      "a": undefined,
-      "b": undefined,
-    },
-  },
-  Object {
     "type": "dualClassExchangePrices",
     "value": Array [
       "test",
@@ -201,6 +199,13 @@ Array [
     "value": Array [
       "test",
     ],
+  },
+  Object {
+    "type": "dualClassBalances",
+    "value": Object {
+      "a": 100,
+      "b": 100,
+    },
   },
   Object {
     "type": "dualClassConversions",
@@ -251,10 +256,63 @@ Array [
     },
   },
   Object {
+    "type": "dualClassExchangePrices",
+    "value": Array [
+      "test",
+      1,
+      1210567890,
+      0,
+      "ETH|USD",
+    ],
+  },
+  Object {
+    "type": "dualClassAcceptedPrices",
+    "value": Array [
+      "test",
+    ],
+  },
+  Object {
     "type": "dualClassBalances",
     "value": Object {
-      "a": undefined,
-      "b": undefined,
+      "a": 100,
+      "b": 100,
+    },
+  },
+  Object {
+    "type": "dualClassConversions",
+    "value": Array [
+      Object {
+        "transactionHash": "aaa",
+      },
+      Object {
+        "pending": true,
+        "reverted": false,
+        "timestamp": 1234567890,
+        "transactionHash": "bbb",
+      },
+    ],
+  },
+]
+`;
+
+exports[`actions subscribe 2`] = `
+Array [
+  Object {
+    "custodianType": "Beethoven",
+    "id": 0,
+    "tenor": "Perpetual",
+    "type": "dualClassSubscription",
+  },
+  Object {
+    "custodianType": "Beethoven",
+    "id": 123,
+    "tenor": "Perpetual",
+    "type": "dualClassSubscription",
+  },
+  Object {
+    "type": "dualClassStates",
+    "value": Object {
+      "test": "test",
     },
   },
   Object {
@@ -274,6 +332,13 @@ Array [
     ],
   },
   Object {
+    "type": "dualClassBalances",
+    "value": Object {
+      "a": 100,
+      "b": 100,
+    },
+  },
+  Object {
     "type": "dualClassConversions",
     "value": Array [
       Object {
@@ -291,6 +356,40 @@ Array [
 `;
 
 exports[`actions subscribeAdmin 1`] = `[Function]`;
+
+exports[`actions subscribeAdmin 2`] = `
+Array [
+  Object {
+    "custodianType": "Beethoven",
+    "id": 0,
+    "tenor": "Perpetual",
+    "type": "dualClassSubscription",
+  },
+  Object {
+    "custodianType": "Beethoven",
+    "id": 123,
+    "tenor": "Perpetual",
+    "type": "dualClassSubscription",
+  },
+  Object {
+    "type": "dualClassStates",
+    "value": Object {
+      "test": "test",
+    },
+  },
+  Object {
+    "type": "dualClassAddresses",
+    "value": Object {
+      "aToken": "aTokenAddr",
+      "bToken": "bTokenAddr",
+      "feeCollector": "feeCollectorAddr",
+      "operator": "operatorAddr",
+      "oracle": "oracleAddr",
+      "roleManager": "roleManagerAddr",
+    },
+  },
+]
+`;
 
 exports[`actions subscriptionUpdate 1`] = `
 Object {

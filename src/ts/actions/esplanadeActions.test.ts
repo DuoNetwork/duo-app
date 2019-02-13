@@ -110,10 +110,12 @@ test('subscribe', () => {
 			totalVoters: 10
 		})
 	);
-	// dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
 	store.dispatch(esplanadeActions.subscribe());
 	return new Promise(resolve =>
 		setTimeout(() => {
+			expect(store.getActions()).toMatchSnapshot();
+			expect((window.setInterval as jest.Mock).mock.calls[0][1]).toMatchSnapshot();
+			(window.setInterval as jest.Mock).mock.calls[0][0]();
 			expect(store.getActions()).toMatchSnapshot();
 			resolve();
 		}, 0)

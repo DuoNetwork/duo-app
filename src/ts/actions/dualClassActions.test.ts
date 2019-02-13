@@ -11,6 +11,22 @@ import * as dualClassActions from './dualClassActions';
 const mockStore = configureMockStore([thunk]);
 
 describe('actions', () => {
+	dualClassWrappers[WrapperConstants.BEETHOVEN][WrapperConstants.TENOR_PPT] = {
+		getStates: jest.fn(() => Promise.resolve({ test: 'test' })),
+		getAddresses: jest.fn(() =>
+			Promise.resolve({
+				feeCollector: 'feeCollectorAddr',
+				oracle: 'oracleAddr',
+				aToken: 'aTokenAddr',
+				bToken: 'bTokenAddr',
+				operator: 'operatorAddr',
+				roleManager: 'roleManagerAddr'
+			})
+		),
+		web3Wrapper: {
+			getErc20Balance: jest.fn(() => Promise.resolve(100))
+		}
+	} as any;
 	test('statesUpdate', () => {
 		expect(dualClassActions.statesUpdate({ test: 'test' } as any)).toMatchSnapshot();
 	});
@@ -22,13 +38,7 @@ describe('actions', () => {
 				tenor: WrapperConstants.TENOR_PPT
 			}
 		});
-		dualClassWrappers[WrapperConstants.BEETHOVEN][
-			WrapperConstants.TENOR_PPT
-		].getStates = jest.fn(() =>
-			Promise.resolve({
-				test: 'test'
-			})
-		);
+
 		store.dispatch(dualClassActions.getStates());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -50,11 +60,7 @@ describe('actions', () => {
 			},
 			web3: { account: WrapperConstants.DUMMY_ADDR }
 		});
-		dualClassWrappers[WrapperConstants.BEETHOVEN][
-			WrapperConstants.TENOR_PPT
-		].web3Wrapper.getErc20Balance = jest.fn(() => {
-			Promise.resolve(123);
-		});
+
 		store.dispatch(dualClassActions.getBalances());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -79,9 +85,7 @@ describe('actions', () => {
 				tenor: WrapperConstants.TENOR_PPT
 			}
 		});
-		dualClassWrappers[WrapperConstants.BEETHOVEN][
-			WrapperConstants.TENOR_PPT
-		].getAddresses = jest.fn(() => Promise.resolve({ test: 'test' }));
+
 		store.dispatch(dualClassActions.getAddresses());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -256,9 +260,6 @@ describe('actions', () => {
 			ui: { period: 5, source: 'test' }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		dualClassWrappers[WrapperConstants.BEETHOVEN][
-			WrapperConstants.TENOR_PPT
-		].getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(dualClassActions.refresh(true));
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -319,14 +320,13 @@ describe('actions', () => {
 			ui: { period: 5, source: 'test' }
 		});
 		dynamoUtil.queryAcceptPriceEvent = jest.fn(() => Promise.resolve(['test']));
-		dualClassWrappers[WrapperConstants.BEETHOVEN][
-			WrapperConstants.TENOR_PPT
-		].getStates = jest.fn(() => Promise.resolve({ test: 'test' }));
 		store.dispatch(
 			dualClassActions.subscribe(WrapperConstants.BEETHOVEN, WrapperConstants.TENOR_PPT)
 		);
 		return new Promise(resolve =>
 			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				(window.setInterval as jest.Mock).mock.calls[0][0]();
 				expect(store.getActions()).toMatchSnapshot();
 				resolve();
 			}, 0)
@@ -334,13 +334,6 @@ describe('actions', () => {
 	});
 
 	test('refreshAdmin', () => {
-		dualClassWrappers[WrapperConstants.BEETHOVEN][
-			WrapperConstants.TENOR_PPT
-		].getStates = jest.fn(() =>
-			Promise.resolve({
-				test: 'test'
-			})
-		);
 		const store: any = mockStore({
 			dualClass: { type: WrapperConstants.BEETHOVEN, tenor: WrapperConstants.TENOR_PPT }
 		});
@@ -354,13 +347,7 @@ describe('actions', () => {
 	});
 
 	test('subscribeAdmin', () => {
-		dualClassWrappers[WrapperConstants.BEETHOVEN][
-			WrapperConstants.TENOR_PPT
-		].getStates = jest.fn(() =>
-			Promise.resolve({
-				test: 'test'
-			})
-		);
+		window.setInterval = jest.fn(() => 123);
 		const store: any = mockStore({
 			dualClass: { type: WrapperConstants.BEETHOVEN, tenor: WrapperConstants.TENOR_PPT }
 		});
@@ -375,6 +362,8 @@ describe('actions', () => {
 						WrapperConstants.TENOR_PPT
 					)
 				).toMatchSnapshot();
+				(window.setInterval as jest.Mock).mock.calls[0][0]();
+				expect(store.getActions()).toMatchSnapshot();
 				resolve();
 			}, 0)
 		);
