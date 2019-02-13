@@ -90,13 +90,13 @@ Array [
         },
         "MultiSigManagers": Array [
           Object {
-            "address": "0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079",
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
             "code": "Esplanade",
           },
         ],
         "Oracles": Array [
           Object {
-            "address": "0x202262d64160919E46651E373B0D3eb870Ce3914",
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
             "code": "Magi",
           },
         ],
@@ -171,13 +171,13 @@ Array [
         },
         "MultiSigManagers": Array [
           Object {
-            "address": "0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079",
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
             "code": "Esplanade",
           },
         ],
         "Oracles": Array [
           Object {
-            "address": "0x202262d64160919E46651E373B0D3eb870Ce3914",
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
             "code": "Magi",
           },
         ],
@@ -252,13 +252,13 @@ Array [
         },
         "MultiSigManagers": Array [
           Object {
-            "address": "0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079",
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
             "code": "Esplanade",
           },
         ],
         "Oracles": Array [
           Object {
-            "address": "0x202262d64160919E46651E373B0D3eb870Ce3914",
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
             "code": "Magi",
           },
         ],
@@ -333,13 +333,13 @@ Array [
         },
         "MultiSigManagers": Array [
           Object {
-            "address": "0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079",
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
             "code": "Esplanade",
           },
         ],
         "Oracles": Array [
           Object {
-            "address": "0x202262d64160919E46651E373B0D3eb870Ce3914",
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
             "code": "Magi",
           },
         ],
@@ -425,19 +425,19 @@ Array [
         },
         "MultiSigManagers": Array [
           Object {
-            "address": "0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079",
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
             "code": "Esplanade",
           },
         ],
         "Oracles": Array [
           Object {
-            "address": "0x202262d64160919E46651E373B0D3eb870Ce3914",
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
             "code": "Magi",
           },
         ],
       },
     },
-    "0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079",
+    "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
   ],
 ]
 `;
@@ -517,19 +517,19 @@ Array [
         },
         "MultiSigManagers": Array [
           Object {
-            "address": "0xa43f6d00b3F2efe39012b56aaA04Eee58a0F5079",
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
             "code": "Esplanade",
           },
         ],
         "Oracles": Array [
           Object {
-            "address": "0x202262d64160919E46651E373B0D3eb870Ce3914",
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
             "code": "Magi",
           },
         ],
       },
     },
-    "0x202262d64160919E46651E373B0D3eb870Ce3914",
+    "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
   ],
 ]
 `;
