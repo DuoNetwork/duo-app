@@ -140,23 +140,23 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 								<ul>
 									<li>
 										<span className="title">{CST.TH_NUM_OF_PRICE[locale]}</span>
-										<span className="content" style={{ width: '200px' }}>
+										<span className="content" style={{ width: '160px' }}>
 											{!states.numOfPrices ? '0' : states.numOfPrices}
 										</span>
 									</li>
 									<li>
 										<span className="title">{CST.TH_OPT_COOL_DOWN}</span>
-										<span className="content" style={{ width: '200px' }}>{states.operationCoolDown}</span>
+										<span className="content" style={{ width: '160px' }}>{states.operationCoolDown}</span>
 									</li>
 									<li>
 										<span className="title">{CST.TH_LAST_OPT_TIME}</span>
-										<span className="content" style={{ width: '200px' }}>{states.lastOperationTime}</span>
+										<span className="content" style={{ width: '160px' }}>{states.lastOperationTime}</span>
 									</li>
 									<li>
-										<span className="title" style={{ width: '200px' }}>
+										<span className="title" style={{ width: '160px' }}>
 											{CST.TH_PRICE_FEED_COOL_DOWN[locale]}
 										</span>
-										<span className="content" style={{ width: '300px' }}>
+										<span className="content" style={{ width: '340px' }}>
 											{states.priceUpdateCoolDown / 1000 / 60 + ' minutes'}
 										</span>
 										<SInput
@@ -188,10 +188,10 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										</button>
 									</li>
 									<li>
-										<span className="title" style={{ width: '200px' }}>
+										<span className="title" style={{ width: '160px' }}>
 											{CST.TH_PRICE_FEED_TIME_TOLERANCE[locale]}
 										</span>
-										<span className="content" style={{ width: '300px' }}>
+										<span className="content" style={{ width: '340px' }}>
 											{states.priceFeedTimeTolerance / 1000 + ' seconds'}
 										</span>
 										<SInput
@@ -223,10 +223,10 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										</button>
 									</li>
 									<li>
-										<span className="title" style={{ width: '200px' }}>
+										<span className="title" style={{ width: '160px' }}>
 											{CST.TH_PRICE_FEED_TOLERANCE[locale]}
 										</span>
-										<span className="content" style={{ width: '300px' }}>
+										<span className="content" style={{ width: '340px' }}>
 											{states.priceFeedTolerance * 100 + '%'}
 										</span>
 										<SInput
@@ -258,10 +258,10 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 										</button>
 									</li>
 									<li>
-										<span className="title" style={{ width: '200px' }}>
+										<span className="title" style={{ width: '160px' }}>
 											{CST.TH_PRICE_TOLERANCE[locale]}
 										</span>
-										<span className="content" style={{ width: '300px' }}>
+										<span className="content" style={{ width: '340px' }}>
 											{states.priceTolerance * 100 + '%'}
 										</span>
 										<SInput
@@ -292,12 +292,11 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 											{CST.TH_UPDATE}
 										</button>
 									</li>
-
 									<li>
-										<span className="title" style={{ width: '200px' }}>
+										<span className="title" style={{ width: '160px' }}>
 											{CST.TH_ROLE_MANAGER[locale]}
 										</span>
-										<span className="content" style={{ width: '300px' }}>
+										<span className="content" style={{ width: '340px' }}>
 											{roleManager.address}
 										</span>
 										<SInput
@@ -319,10 +318,10 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 									</li>
 
 									<li>
-										<span className="title" style={{ width: '200px' }}>
+										<span className="title" style={{ width: '160px' }}>
 											{CST.TH_OPERATOR[locale]}
 										</span>
-										<span className="content" style={{ width: '300px' }}>
+										<span className="content" style={{ width: '340px' }}>
 											{operator.address}
 										</span>
 										<button
