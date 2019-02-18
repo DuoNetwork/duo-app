@@ -14,12 +14,20 @@ describe('CardTitleSelect Test', () => {
 		const onSelect = jest.fn();
 
 		it('test Snapshot', () => {
-			const wrapper = shallow(<CardTitleSelect name={name} source={source} onSelect={onSelect} onlySource={onlySource}/>);
+			const wrapper = shallow(
+				<CardTitleSelect
+					name={name}
+					source={source}
+					custodian={'custodian'}
+					onSelect={onSelect}
+					onlySource={onlySource}
+				/>
+			);
 			expect(wrapper).toMatchSnapshot();
 			wrapper
 				.find(SCardTitleSelector)
 				.at(0)
-				.simulate('select', {target: { value: '123'} });
+				.simulate('select', { target: { value: '123' } });
 			expect(wrapper).toMatchSnapshot();
 		});
 	});

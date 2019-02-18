@@ -41,6 +41,7 @@ describe('TimeSeriesCard Test', () => {
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
 				<TimeSeriesCard
+					type={'type'}
 					underlying={'underlying'}
 					tokenA={'tokenA'}
 					tokenB={'tokenB'}
@@ -58,6 +59,7 @@ describe('TimeSeriesCard Test', () => {
 		it('Test Snapshot', () => {
 			const wrapper = mount(
 				<TimeSeriesCard
+					type={'type'}
 					underlying={'underlying'}
 					tokenA={'tokenA'}
 					tokenB={'tokenB'}

@@ -73,6 +73,10 @@ class Util {
 			price: 0,
 			timestamp: 0
 		};
+		const bitstamp: IContractPrice = {
+			price: 0,
+			timestamp: 0
+		};
 		status.forEach(s => {
 			// if (s.process === 'PRICE_AWS_PUBLIC_BITFINEX') {
 			// 	bitfinex.price = (s as IPriceStatus).price;
@@ -87,14 +91,17 @@ class Util {
 			} else if (s.process === 'TRADE_AWS_PUBLIC_GDAX') {
 				gdax.price = (s as IPriceStatus).price;
 				gdax.timestamp = (s as IPriceStatus).timestamp;
+			} else if (s.process === 'TRADE_AWS_PUBLIC_BITSTAMP') {
+				bitstamp.price = (s as IPriceStatus).price;
+				bitstamp.timestamp = (s as IPriceStatus).timestamp;
 			}
 		});
 
 		return {
-			// bitfinex,
 			kraken,
 			gemini,
-			gdax
+			gdax,
+			bitstamp
 		};
 	}
 }

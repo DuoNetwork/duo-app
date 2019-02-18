@@ -71,6 +71,7 @@ export default class PriceCard extends React.Component<IProps, IState> {
 					<CardTitleSelect
 						name={CST.TH_PRICE[locale].toUpperCase()}
 						source={''}
+						custodian={type}
 						onSelect={(src: string) => this.setState({ source: src })}
 					/>
 				}

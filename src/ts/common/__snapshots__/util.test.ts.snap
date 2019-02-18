@@ -2,6 +2,10 @@
 
 exports[`getLastPriceFromStatus 1`] = `
 Object {
+  "bitstamp": Object {
+    "price": 617.38,
+    "timestamp": 1528081780000,
+  },
   "gdax": Object {
     "price": 616.14,
     "timestamp": 1528081164613,

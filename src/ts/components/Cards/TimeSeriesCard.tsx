@@ -8,6 +8,7 @@ import RadioExtra from '../Common/RadioExtra';
 import { SCard } from './_styled';
 
 interface IProps {
+	type: string;
 	underlying: string;
 	tokenA: string;
 	tokenB: string;
@@ -23,6 +24,7 @@ interface IProps {
 export default class TimeSeriesCard extends React.Component<IProps> {
 	public render() {
 		const {
+			type,
 			locale,
 			acceptedPrices,
 			prices,
@@ -40,6 +42,7 @@ export default class TimeSeriesCard extends React.Component<IProps> {
 					<CardTitleSelect
 						name={CST.TH_CHART[locale].toUpperCase()}
 						source={source}
+						custodian={type}
 						onSelect={handleSourceUpdate}
 						onlySource
 					/>

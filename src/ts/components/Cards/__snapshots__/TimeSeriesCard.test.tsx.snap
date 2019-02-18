@@ -14,6 +14,7 @@ exports[`TimeSeriesCard Test Test Snapshot Test Snapshot 1`] = `
   margin="0 10px 0 0"
   title={
     <CardTitleSelect
+      custodian="type"
       name="CHART"
       onSelect={[MockFunction]}
       onlySource={true}

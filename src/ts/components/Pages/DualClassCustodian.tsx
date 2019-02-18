@@ -94,6 +94,7 @@ export default class DualClassCustodian extends React.Component<IProps, IState> 
 						<SContent>
 							<SDivFlexCenter center horizontal marginBottom="20px;">
 								<TimeSeriesCard
+									type={type}
 									underlying={CST.TH_ETH}
 									tokenA={contractAddress.aToken.code}
 									tokenB={contractAddress.bToken.code}

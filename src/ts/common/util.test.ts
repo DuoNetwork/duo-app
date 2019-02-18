@@ -230,7 +230,7 @@ const convertedStatus = dynamoUtil.parseStatus({
 		},
 		{
 			process: {
-				S: 'TRADE_AWS_PUBLIC_BITFINEX'
+				S: 'TRADE_AWS_PUBLIC_BITSTAMP'
 			},
 			amount: {
 				N: '1.608'
