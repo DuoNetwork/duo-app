@@ -4,13 +4,14 @@ exports[`Styled Test CSS 1`] = `
 .c0 {
   overflow: hidden;
   max-width: 1000px;
-  background: rgba(32,31,33,.5);
+  background: rgba(255,255,255,1);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
-  border-radius: 0px;
+  border-radius: 4px;
   border: none !important;
 }
 
 .c0 > .ant-card-head {
+  background: rgba(0,114,206,1) !important;
   background: none;
   border-bottom: none;
   padding: 0 16px;
@@ -27,7 +28,7 @@ exports[`Styled Test CSS 1`] = `
 
 exports[`Styled Test CSS 2`] = `
 .c0 {
-  color: rgba(255,255,255,.8);
+  color: rgba(255,255,255,1);
   font-family: 'Roboto','Microsoft YaHei';
   font-weight: 500;
   -webkit-letter-spacing: 2px;
@@ -46,10 +47,10 @@ exports[`Styled Test CSS 2`] = `
 exports[`Styled Test CSS 3`] = `
 .c0 .ant-select-selection {
   border-radius: 0;
-  color: rgba(255,255,255,.6);
+  color: rgba(255,255,255,.8);
   background-color: transparent;
   border: 1px solid;
-  border-color: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.3);
   font-size: 10px;
   font-family: 'Roboto','Microsoft YaHei';
   font-weight: 400;
@@ -60,7 +61,7 @@ exports[`Styled Test CSS 3`] = `
 }
 
 .c0 .ant-select-selection span {
-  color: rgba(255,255,255,.2);
+  color: rgba(255,255,255,.6);
 }
 
 .c0 .ant-select-selection:focus {
@@ -83,7 +84,7 @@ exports[`Styled Test CSS 4`] = `
   position: relative;
   margin-top: 10px;
   border: 1px dashed;
-  border-color: rgba(255,255,255,.1);
+  border-color: rgba(64,79,84,.3);
   overflow: hidden;
   padding-top: 10px;
 }
@@ -139,7 +140,7 @@ exports[`Styled Test CSS 4`] = `
   -ms-letter-spacing: 1px;
   letter-spacing: 1px;
   font-size: 12px;
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
   margin: 0;
   z-index: 99;
   -webkit-text-decoration: none;
@@ -161,11 +162,11 @@ exports[`Styled Test CSS 4`] = `
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
 }
 
 .c0 .tag-price {
-  color: white;
+  color: rgba(64,79,84,1);
   font-family: 'Roboto','Microsoft YaHei';
   font-weight: 500;
   -webkit-letter-spacing: 1px;
@@ -265,7 +266,7 @@ exports[`Styled Test CSS 5`] = `
   position: relative;
   margin-top: 10px;
   border: 1px dashed;
-  border-color: rgba(255,255,255,.1);
+  border-color: rgba(64,79,84,.3);
   overflow: hidden;
   padding-top: 10px;
 }
@@ -298,7 +299,7 @@ exports[`Styled Test CSS 5`] = `
   -ms-letter-spacing: 1px;
   letter-spacing: 1px;
   font-size: 12px;
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
   margin: 0;
 }
 
@@ -309,12 +310,12 @@ exports[`Styled Test CSS 5`] = `
 }
 
 .c0 .tag-subtext {
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
   font-size: 10px;
 }
 
 .c0 .tag-price {
-  color: rgba(255,255,255,.8);
+  color: rgba(64,79,84,1);
   font-family: 'Roboto','Microsoft YaHei';
   font-weight: 500;
   -webkit-letter-spacing: 1px;
@@ -335,7 +336,7 @@ body .c0.eqSxah {
 }
 
 .c1 {
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.8);
   font-size: 10px;
   padding-right: 10px;
   line-height: 24px;
@@ -383,7 +384,7 @@ body .c0.ckhMSO {
 exports[`Styled Test CSS 8`] = `
 .c0 {
   font-family: 'Roboto','Microsoft YaHei';
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.8);
   font-size: 10px;
   padding-right: 10px;
   line-height: 24px;
@@ -434,7 +435,7 @@ exports[`Styled Test CSS 8`] = `
 exports[`Styled Test CSS 9`] = `
 .c0 {
   font-family: 'Roboto','Microsoft YaHei';
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.8);
   font-size: 10px;
   line-height: 24px;
 }
@@ -482,14 +483,14 @@ exports[`Styled Test CSS 10`] = `
   border: 1px dashed;
   border-color: rgba(255,255,255,.2);
   color: rgba(255,255,255,.2);
-  background: rgba(55,54,56,.2);
+  background: transparent;
 }
 
 .c0 .ant-radio-button-wrapper-checked {
   border: 1px solid;
-  border-color: rgba(255,255,255,.4);
-  color: rgba(255,255,255,.6);
-  background: rgba(55,54,56,.6);
+  border-color: rgba(255,255,255,1);
+  color: rgba(255,255,255,.8);
+  background: rgba(255,255,255,.1);
   box-shadow: -1px 0 0 0 rgba(255,255,255,.6);
 }
 
@@ -518,7 +519,7 @@ exports[`Styled Test CSS 11`] = `
   margin: 10px 0;
   padding: 10px 5px;
   border: 1px dashed;
-  border-color: rgba(255,255,255,.1);
+  border-color: rgba(64,79,84,.3);
 }
 
 .c0 .status-list-wrapper > ul li:nth-child(even) {
@@ -534,7 +535,7 @@ exports[`Styled Test CSS 11`] = `
 
 .c0 .status-list-wrapper > ul .block-title {
   font-weight: 600;
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,1);
   margin-bottom: 5px;
 }
 
@@ -558,7 +559,7 @@ exports[`Styled Test CSS 11`] = `
 }
 
 .c0 .status-list-wrapper > ul .block-title .last-reset-title .last-reset-title-span {
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,.8);
   font-size: 10px;
 }
 
@@ -586,14 +587,15 @@ exports[`Styled Test CSS 11`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  border-bottom: 1px solid rgba(64,79,84,.1);
 }
 
 .c0 .status-list-wrapper > ul li .title {
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
 }
 
 .c0 .status-list-wrapper > ul li .content {
-  color: rgba(255,255,255,.8);
+  color: rgba(64,79,84,1);
 }
 
 .c0 .status-list-wrapper > ul li .percent-button {
@@ -601,7 +603,7 @@ exports[`Styled Test CSS 11`] = `
   cursor: pointer;
   font-family: 'Roboto','Microsoft YaHei';
   background-color: transparent;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,1);
   border: 1px dashed;
   border-color: rgba(255,255,255,.2);
   font-size: 10px;
@@ -624,7 +626,7 @@ exports[`Styled Test CSS 11`] = `
 
 .c0 .status-list-wrapper > ul li .align-right {
   width: 100%;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,1);
   font-size: 12px;
   text-align: right;
 }
@@ -632,7 +634,7 @@ exports[`Styled Test CSS 11`] = `
 .c0 .status-list-wrapper > ul li .default-button {
   cursor: pointer;
   font-size: 10px;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,1);
   border: 1px dashed;
   border-color: rgba(255,255,255,.2);
   padding: 0 5px;
@@ -643,6 +645,10 @@ exports[`Styled Test CSS 11`] = `
 .c0 .status-list-wrapper > ul li .default-button:hover {
   color: rgba(255,255,255,.8);
   border-color: rgba(255,255,255,.6);
+}
+
+.c0 .status-list-wrapper > ul li:last-child {
+  border-bottom: none;
 }
 
 .c0 .status-list-wrapper > ul .input-line {
@@ -683,7 +689,7 @@ exports[`Styled Test CSS 11`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
   margin-bottom: 5px;
   font-size: 12px;
 }
@@ -744,7 +750,7 @@ exports[`Styled Test CSS 12`] = `
 .c0 .bar-bg {
   width: 285px;
   height: 12px;
-  background: rgba(35,36,37,1);
+  background: rgba(255,255,255,1);
   box-shadow: inset 0 1px 6px 0px rgba(0,0,0,0.6);
   border-radius: 6px;
   display: -webkit-box;
@@ -957,7 +963,7 @@ exports[`Styled Test CSS 15`] = `
 .c0 {
   outline: none;
   font-size: 12px;
-  background: rgba(35,36,37,1);
+  background: rgba(255,255,255,1);
   box-shadow: inset 0 1px 6px 0px rgba(0,0,0,0.4);
   color: rgba(255,255,255,.8);
   border: none;
@@ -1022,7 +1028,7 @@ exports[`Styled Test CSS 16`] = `
 }
 
 .c0 tbody > tr:hover > td {
-  background: rgba(45,46,47,1);
+  background: rgba(25,112,197,1);
 }
 
 .c0 td {
@@ -1038,23 +1044,23 @@ exports[`Styled Test CSS 16`] = `
 }
 
 .c0 tbody > tr > .fee {
-  color: rgba(255,94,94,.8);
+  color: rgba(245,83,83,.8);
 }
 
 .c0 .Redeem .eth {
-  color: rgba(78,255,78,.8);
+  color: rgba(97,206,94,.8);
 }
 
 .c0 .Redeem .token-ab {
-  color: rgba(255,94,94,.8);
+  color: rgba(245,83,83,.8);
 }
 
 .c0 .Create .token-ab {
-  color: rgba(78,255,78,.8);
+  color: rgba(97,206,94,.8);
 }
 
 .c0 .Create .eth {
-  color: rgba(255,94,94,.8);
+  color: rgba(245,83,83,.8);
 }
 
 .c0 .ant-table table {

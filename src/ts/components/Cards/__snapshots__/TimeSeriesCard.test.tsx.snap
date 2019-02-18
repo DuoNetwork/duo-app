@@ -25,7 +25,6 @@ exports[`TimeSeriesCard Test Test Snapshot Test Snapshot 1`] = `
 >
   <styled.div
     horizontal={true}
-    padding="0 10px"
   >
     <TimeSeriesChart
       acceptedPrices={

@@ -1,10 +1,14 @@
 @import '~antd/dist/antd.css';
 body {
 	font-family: 'Roboto', 'Microsoft YaHei';
-	background: #121416;
+	background: #F5F5F5;
 }
 .ant-layout {
-	background: #121416;
+	background: #F5F5F5;
+}
+.ant-layout-header {
+	height: 60px;
+	line-height: 60px;
 }
 /* Header */
 .icon-wrapper {
@@ -73,10 +77,8 @@ body {
 }
 .chart-wrapper {
 	width: 760px;
-	height: 360px;
+	height: 380px;
 	margin-top: 10px;
-	border: 1px dashed;
-	border-color: rgba(255,255,255,0.1);
 }
 .x-axis text,
 .ly-axis text,
@@ -92,16 +94,16 @@ body {
 .ry-axis path,
 .ry-axis line {
 	fill: none;
-	stroke: #303132;
+	stroke: #adadad;
 	shape-rendering: crispEdges;
 	pointer-events: none;
 }
 path.domain {
-	stroke: #303132 !important;
+	stroke: #adadad !important;
 	stroke-width: 0.5px;
 }
 .grid line {
-	stroke: rgba(34, 34, 34, 1);
+	stroke: #c0c0c0;
 	stroke-opacity: 0.7;
 	shape-rendering: crispEdges;
 	z-index: 0;

@@ -2,7 +2,7 @@
 
 exports[`Styled Test CSS 1`] = `
 .c0 {
-  background: rgba(35,36,37,1);
+  background: rgba(255,255,255,1);
   padding: 0;
   border-radius: 0;
 }
@@ -43,7 +43,7 @@ exports[`Styled Test CSS 2`] = `
 }
 
 .c0:hover {
-  background: rgba(45,46,47,1);
+  background: rgba(25,112,197,1);
 }
 
 <MenuItem

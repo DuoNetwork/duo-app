@@ -19,9 +19,10 @@ export const SCard = styled(Card)`
 	display: ${(props: ICardProps) => (props.inlinetype ? 'inline-table' : '')};
 	background: ${ColorStyles.CardBackground};
 	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
-	border-radius: 0px;
+	border-radius: 4px;
 	border: none !important;
 	& > .ant-card-head {
+		background: ${ColorStyles.MainColor} !important;
 		background: none;
 		border-bottom: none;
 		padding: 0 16px;
@@ -58,7 +59,7 @@ injectGlobal([
 ] as any);
 
 export const SCardTitle = styled.div`
-	color: ${ColorStyles.TextWhiteAlpha};
+	color: ${ColorStyles.TextWhite};
 	font-family: 'Roboto', 'Microsoft YaHei';
 	font-weight: 500;
 	letter-spacing: 2px;
@@ -69,16 +70,16 @@ export const SCardTitle = styled.div`
 export const SCardTitleSelector = styled(Select as any)`
 	.ant-select-selection {
 		border-radius: 0;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.TextWhiteAlpha};
 		background-color: transparent;
 		border: 1px solid;
-		border-color: ${ColorStyles.BorderWhite1};
+		border-color: ${ColorStyles.BorderWhite3};
 		font-size: 10px;
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 400;
 		letter-spacing: 0;
 		span {
-			color: ${ColorStyles.TextWhiteAlphaLLL};
+			color: ${ColorStyles.TextWhiteAlphaL};
 		}
 	}
 	.ant-select-selection:focus {
@@ -94,7 +95,7 @@ injectGlobal([
 			border-radius: 0;
 			font-size: 10px;
 			font-family: 'Roboto', 'Microsoft YaHei';
-			background: ${ColorStyles.CardBackgroundSolid};
+			background: ${ColorStyles.HeaderBackground};
 			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
 		}
 		.ant-select-dropdown-menu-item {
@@ -125,7 +126,7 @@ export const SCardPriceTag = styled.div`
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
-	border-color: ${ColorStyles.BorderWhite1};
+	border-color: ${ColorStyles.BorderBlack3};
 	overflow: hidden;
 	padding-top: 10px;
 	.bg-logo {
@@ -163,7 +164,7 @@ export const SCardPriceTag = styled.div`
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		margin: 0;
 		z-index: 99;
 		text-decoration: none;
@@ -181,11 +182,11 @@ export const SCardPriceTag = styled.div`
 					: '12px'};
 			display: flex;
 			flex-direction: row;
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 	}
 	.tag-price {
-		color: white;
+		color: ${ColorStyles.ThemeText};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -253,7 +254,7 @@ export const SCardTag = styled.div`
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
-	border-color: ${ColorStyles.BorderWhite1};
+	border-color: ${ColorStyles.BorderBlack3};
 	overflow: hidden;
 	padding-top: 10px;
 	transition: all .3s;
@@ -392,7 +393,7 @@ export const SCardAssetTag = styled.div`
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
-	border-color: ${ColorStyles.BorderWhite1};
+	border-color: ${ColorStyles.BorderBlack3};
 	overflow: hidden;
 	padding-top: 10px;
 	.bg-logo {
@@ -417,7 +418,7 @@ export const SCardAssetTag = styled.div`
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		margin: 0;
 	}
 	.tag-content {
@@ -426,11 +427,11 @@ export const SCardAssetTag = styled.div`
 		margin-top: 10px;
 	}
 	.tag-subtext {
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		font-size: 10px;
 	}
 	.tag-price {
-		color: ${ColorStyles.TextWhiteAlpha};
+		color: ${ColorStyles.ThemeText};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -439,7 +440,7 @@ export const SCardAssetTag = styled.div`
 `;
 
 export const SCardExtraDiv = styled.div`
-	color: ${ColorStyles.TextWhiteAlphaLL};
+	color: ${ColorStyles.TextWhiteAlpha};
 	font-size: 10px;
 	padding-right: 10px;
 	line-height: 24px;
@@ -487,7 +488,7 @@ export interface ICardExtraProps {
 
 export const SCardExtendExtraDiv = styled.div`
 	font-family: 'Roboto', 'Microsoft YaHei';
-	color: ${ColorStyles.TextWhiteAlphaLL};
+	color: ${ColorStyles.TextWhiteAlpha};
 	font-size: 10px;
 	padding-right: 10px;
 	line-height: 24px;
@@ -519,7 +520,7 @@ export const SCardExtendExtraDiv = styled.div`
 
 export const SCardRadioExtraDiv = styled.div`
 	font-family: 'Roboto', 'Microsoft YaHei';
-	color: ${ColorStyles.TextWhiteAlphaLL};
+	color: ${ColorStyles.TextWhiteAlpha};
 	font-size: 10px;
 	line-height: 24px;
 	& > .extend-extra-wrapper {
@@ -553,8 +554,8 @@ export const SRadioGroup = styled(RadioGroup as any)`
 	}
 	.ant-radio-button-wrapper-checked {
 		border: 1px solid;
-		border-color: ${ColorStyles.BorderWhite4};
-		color: ${ColorStyles.TextWhiteAlphaL};
+		border-color: ${ColorStyles.BorderWhite10};
+		color: ${ColorStyles.TextWhiteAlpha};
 		background: ${ColorStyles.ButtonRadioChekedBG};
 		box-shadow: ${() => '-1px 0 0 0 ' + ColorStyles.BorderWhite6};
 	}
@@ -576,7 +577,7 @@ export const SCardList = styled.div`
 		margin: 10px 0;
 		padding: 10px 5px;
 		border: 1px dashed;
-		border-color: ${ColorStyles.BorderWhite1};
+		border-color: ${ColorStyles.BorderBlack3};
 		li:nth-child(even) {
 			background-color: ${ColorStyles.ListHighlight};
 		}
@@ -588,7 +589,7 @@ export const SCardList = styled.div`
 		}
 		.block-title {
 			font-weight: 600;
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeText};
 			margin-bottom: 5px;
 			.last-reset-title {
 				width: 100%;
@@ -597,7 +598,7 @@ export const SCardList = styled.div`
 				align-items: center;
 				justify-content: space-between;
 				.last-reset-title-span {
-					color: ${ColorStyles.TextWhiteAlphaLL};
+					color: ${ColorStyles.ThemeTextAlpha};
 					font-size: 10px;
 				}
 			}
@@ -611,18 +612,19 @@ export const SCardList = styled.div`
 			justify-content: space-between;
 			padding: 0 5px;
 			align-items: center;
+			border-bottom: 1px solid ${ColorStyles.BorderBlack1};
 			.title {
-				color: ${ColorStyles.TextWhiteAlphaL};
+				color: ${ColorStyles.ThemeTextAlpha};
 			}
 			.content {
-				color: ${ColorStyles.TextWhiteAlpha};
+				color: ${ColorStyles.ThemeText};
 			}
 			.percent-button {
 				outline: none;
 				cursor: pointer;
 				font-family: 'Roboto', 'Microsoft YaHei';
 				background-color: transparent;
-				color: ${ColorStyles.TextWhiteAlphaLL};
+				color: ${ColorStyles.ThemeText};
 				border: 1px dashed;
 				border-color: ${ColorStyles.BorderWhite2};
 				font-size: 10px;
@@ -641,14 +643,14 @@ export const SCardList = styled.div`
 			}
 			.align-right {
 				width: 100%;
-				color: ${ColorStyles.TextWhiteAlphaLL};
+				color: ${ColorStyles.ThemeText};
 				font-size: 12px;
 				text-align: right;
 			}
 			.default-button {
 				cursor: pointer;
 				font-size: 10px;
-				color: ${ColorStyles.TextWhiteAlphaLL};
+				color: ${ColorStyles.ThemeText};
 				border: 1px dashed;
 				border-color: ${ColorStyles.BorderWhite2};
 				padding: 0 5px;
@@ -658,6 +660,9 @@ export const SCardList = styled.div`
 				color: ${ColorStyles.TextWhiteAlpha};
 				border-color: ${ColorStyles.BorderWhite6};
 			}
+		}
+		li:last-child {
+			border-bottom: none;
 		}
 		.input-line {
 			padding: 5px 5px;
@@ -677,7 +682,7 @@ export const SCardList = styled.div`
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 			margin-bottom: 5px;
 			font-size: 12px;
 			img {
@@ -1142,7 +1147,7 @@ injectGlobal([
 		}
 		.ant-select-selection {
 			font-size: 12px;
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.TextWhiteAlpha};
 			border-radius: 0;
 			border: 1px solid;
 			border-color: ${ColorStyles.BorderWhite1};
@@ -1174,7 +1179,7 @@ injectGlobal([
 			color: ${ColorStyles.TextWhiteAlphaL};
 		}
 		.ant-select-selection:hover, .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active{
-			border-color: ${ColorStyles.BorderWhite3};
+			border-color: ${ColorStyles.BorderWhite6};
 		}
 		.ant-select-open, .ant-select-selection {
 			box-shadow: none !important;

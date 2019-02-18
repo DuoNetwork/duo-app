@@ -366,7 +366,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 											CST.TH_ETH}
 									</div>
 								</li>
-								<li>
+								<li className="no-bg">
 									<SDivFlexCenter horizontal width="100%" padding="2px 0 2px 0">
 										<button
 											className={'form-button' + (mobile ? ' mobile' : '')}

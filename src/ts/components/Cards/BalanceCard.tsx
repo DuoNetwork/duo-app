@@ -2,9 +2,9 @@ import {
 	Constants as WrapperConstants,
 	ICustodianContractAddress
 } from '@finbook/duo-contract-wrapper';
-import classAIcon from 'images/ClassA_white.png';
-import classBIcon from 'images/ClassB_white.png';
-import ethIcon from 'images/ethIcon.png';
+import classAIcon from 'images/ClassA_black.png';
+import classBIcon from 'images/ClassB_black.png';
+import ethIcon from 'images/ethIconB.png';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import {} from 'ts/common/types';

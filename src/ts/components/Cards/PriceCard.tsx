@@ -7,9 +7,9 @@ import {
 import { Constants } from '@finbook/duo-market-data';
 import { Tooltip } from 'antd';
 import * as d3 from 'd3';
-import classAIcon from 'images/ClassA_white.png';
-import classBIcon from 'images/ClassB_white.png';
-import ethIcon from 'images/ethIcon.png';
+import classAIcon from 'images/ClassA_black.png';
+import classBIcon from 'images/ClassB_black.png';
+import ethIcon from 'images/ethIconB.png';
 import infoIcon from 'images/info.svg';
 import moment from 'moment';
 import * as React from 'react';

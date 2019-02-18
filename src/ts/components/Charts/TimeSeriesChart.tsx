@@ -5,9 +5,9 @@ import moment from 'moment';
 import * as React from 'react';
 import { ColorStyles } from 'ts/common/styles';
 
-const margin = { top: 40, right: 34, bottom: 23, left: 38 };
-const width = 708 - margin.left - margin.right;
-const height = 360 - margin.top - margin.bottom;
+const margin = { top: 40, right: 34, bottom: 23, left: 32 };
+const width = 728 - margin.left - margin.right;
+const height = 380 - margin.top - margin.bottom;
 
 function drawLines(
 	el: Element,
@@ -234,7 +234,7 @@ function drawLines(
 		.attr('width', rectWidth)
 		.attr('height', (d: any) => height - volYScale(d.volume))
 		.style('fill', (d: any) => {
-			return isUpday(d) ? ColorStyles.TextGreenAlphaLLLL : ColorStyles.TextRedAlphaLLLL;
+			return isUpday(d) ? ColorStyles.TextGreenAlphaLL : ColorStyles.TextRedAlphaLL;
 		});
 	bars.append('rect')
 		.attr('class', 'bar-rect')
@@ -251,10 +251,10 @@ function drawLines(
 				: ethYScale(d.close) - ethYScale(d.open);
 		})
 		.style('fill', (d: any) => {
-			return isUpday(d) ? ColorStyles.TextGreenAlphaLLL : ColorStyles.TextRedAlphaLLL;
+			return isUpday(d) ? ColorStyles.TextGreenAlphaLL : ColorStyles.TextRedAlphaLL;
 		})
 		.style('stroke', (d: any) => {
-			return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+			return isUpday(d) ? ColorStyles.TextGreen : ColorStyles.TextRed;
 		});
 	bars.append('path')
 		.attr('class', 'bar-line1')
@@ -268,7 +268,7 @@ function drawLines(
 			]);
 		})
 		.style('stroke', (d: any) => {
-			return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+			return isUpday(d) ? ColorStyles.TextGreen : ColorStyles.TextRed;
 		});
 	bars.append('path')
 		.attr('class', 'bar-line2')
@@ -282,7 +282,7 @@ function drawLines(
 			]);
 		})
 		.style('stroke', (d: any) => {
-			return isUpday(d) ? ColorStyles.TextGreenAlphaSolid : ColorStyles.TextRedAlphaSolid;
+			return isUpday(d) ? ColorStyles.TextGreen : ColorStyles.TextRed;
 		});
 
 	//Hourly Lines
@@ -295,8 +295,8 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.TextTokenAAlpha)
-		.attr('stroke-width', 1);
+		.attr('stroke', ColorStyles.TextTokenA)
+		.attr('stroke-width', 2);
 	chartdata
 		.append('path')
 		.attr('class', 'line-custodian-navB ' + (!isHourly ? 'dashed' : ''))
@@ -305,8 +305,8 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.TextTokenBAlpha)
-		.attr('stroke-width', 1);
+		.attr('stroke', ColorStyles.TextTokenB)
+		.attr('stroke-width', 2);
 	//Draw Custodian ETH Line
 	chartdata
 		.append('path')
@@ -316,8 +316,8 @@ function drawLines(
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.TextWhiteAlphaSolid)
-		.attr('stroke-width', 1.2);
+		.attr('stroke', ColorStyles.ThemeText)
+		.attr('stroke-width', 1.5);
 	if (!isHourly) {
 		//Non-hourly dots
 		const segments = chartdata.append('g').attr('class', 'segments');
@@ -333,7 +333,7 @@ function drawLines(
 			.attr('cx', (d: any) => xScale(d.timestamp))
 			.attr('cy', (d: any) => ethYScale(d.price))
 			.attr('r', 2)
-			.style('fill', 'white');
+			.style('fill', ColorStyles.ThemeText);
 		['navA', 'navB'].forEach(s => {
 			segBar
 				.append('circle')
@@ -362,35 +362,35 @@ function drawLines(
 	const legendBar = svg.append('g').attr('class', 'legend-bar');
 	legendBar
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(37, 27.5)')
 		.text('O:');
 	legendBar
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(82, 27.5)')
 		.text('H:');
 	legendBar
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(127, 27.5)')
 		.text('L:');
 	legendBar
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(169, 27.5)')
 		.text('C:');
 	legendBar
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(211, 27.5)')
@@ -400,7 +400,7 @@ function drawLines(
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-open')
-		.attr('fill', ColorStyles.TextWhite)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(48, 27.5)')
@@ -408,7 +408,7 @@ function drawLines(
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-high')
-		.attr('fill', ColorStyles.TextWhite)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(93, 27.5)')
@@ -416,7 +416,7 @@ function drawLines(
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-low')
-		.attr('fill', ColorStyles.TextWhite)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(137, 27.5)')
@@ -424,7 +424,7 @@ function drawLines(
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-close')
-		.attr('fill', ColorStyles.TextWhite)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(179, 27.5)')
@@ -432,7 +432,7 @@ function drawLines(
 	sourceLegend
 		.append('text')
 		.attr('class', 'source-legend-text-vol')
-		.attr('fill', ColorStyles.TextWhite)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(228, 27.5)')
@@ -446,10 +446,10 @@ function drawLines(
 		.attr('height', 8)
 		.attr('x', 320)
 		.attr('y', 20)
-		.style('fill', 'white');
+		.style('fill', ColorStyles.ThemeText);
 	ethLegend
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(333, 27.5)')
@@ -457,7 +457,7 @@ function drawLines(
 	ethLegend
 		.append('text')
 		.attr('class', 'custodian-eth-legend-text')
-		.attr('fill', ColorStyles.TextWhite)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(386, 27.5)')
@@ -473,7 +473,7 @@ function drawLines(
 		.style('fill', ColorStyles.TextTokenA);
 	tokenALegend
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(523, 27.5)')
@@ -495,7 +495,7 @@ function drawLines(
 		.style('fill', ColorStyles.TextTokenB);
 	tokenBLegend
 		.append('text')
-		.attr('fill', ColorStyles.TextWhiteAlphaL)
+		.attr('fill', ColorStyles.ThemeText)
 		.attr('font-size', 10)
 		.attr('font-family', 'Roboto')
 		.attr('transform', 'translate(618, 27.5)')
@@ -524,7 +524,7 @@ function drawLines(
 					}
 				]);
 			})
-			.attr('stroke', ColorStyles.BorderWhite1)
+			.attr('stroke', ColorStyles.BorderBlack4)
 			.attr('stroke-width', 1);
 		svg.append('path')
 			.attr('class', 'assist-line-y')
@@ -537,7 +537,7 @@ function drawLines(
 					}
 				]);
 			})
-			.attr('stroke', ColorStyles.BorderWhite1)
+			.attr('stroke', ColorStyles.BorderBlack4)
 			.attr('stroke-width', 1);
 		const lyAxisBox = svg.append('g').attr('class', 'ly-axis-box');
 		const ryAxisBox = svg.append('g').attr('class', 'ry-axis-box');
@@ -551,12 +551,12 @@ function drawLines(
 			.attr('height', 18)
 			.attr('transform', 'translate(-31, -9)')
 			.style('fill', ColorStyles.CardBackgroundSolid)
-			.style('stroke', ColorStyles.BorderWhite3);
+			.style('stroke', ColorStyles.ThemeText);
 		lyAxisBox
 			.append('text')
 			.attr('class', 'ly-axis-box-text')
-			.attr('transform', 'translate(12.5,' + (ethYScale(yPosL) + margin.top + 4) + ')')
-			.attr('fill', ColorStyles.TextWhiteAlphaL)
+			.attr('transform', 'translate(6,' + (ethYScale(yPosL) + margin.top + 4) + ')')
+			.attr('fill', ColorStyles.ThemeText)
 			.attr('font-size', 10)
 			.attr('font-family', 'Roboto')
 			.text(d3.format(',.0f')(yPosL));
@@ -569,7 +569,7 @@ function drawLines(
 			.attr('height', 18)
 			.attr('transform', 'translate(4, -9)')
 			.style('fill', ColorStyles.CardBackgroundSolid)
-			.style('stroke', ColorStyles.BorderWhite3);
+			.style('stroke', ColorStyles.ThemeText);
 		ryAxisBox
 			.append('text')
 			.attr('class', 'ry-axis-box-text')
@@ -581,7 +581,7 @@ function drawLines(
 					(ethYScale(yPosL) + margin.top + 4) +
 					')'
 			)
-			.attr('fill', ColorStyles.TextWhiteAlphaL)
+			.attr('fill', ColorStyles.ThemeText)
 			.attr('font-size', 10)
 			.attr('font-family', 'Roboto')
 			.text(d3.format(',.3f')(yPosR));
@@ -594,7 +594,7 @@ function drawLines(
 			.attr('height', 16)
 			.attr('transform', 'translate(-20, 3)')
 			.style('fill', ColorStyles.CardBackgroundSolid)
-			.style('stroke', ColorStyles.BorderWhite3);
+			.style('stroke', ColorStyles.ThemeText);
 		xAxisBox
 			.append('text')
 			.attr('class', 'x-axis-box-text')
@@ -606,7 +606,7 @@ function drawLines(
 					(height + margin.top + 14.5) +
 					')'
 			)
-			.attr('fill', ColorStyles.TextWhiteAlphaL)
+			.attr('fill', ColorStyles.ThemeText)
 			.attr('font-size', 10)
 			.attr('font-family', 'Roboto')
 			.text(moment(xPos).format('HH:mm'));
@@ -665,7 +665,7 @@ function drawLines(
 			.attr('x', margin.left)
 			.attr('y', ethYScale(yPosL) + margin.top);
 		d3.selectAll('.ly-axis-box-text')
-			.attr('transform', 'translate(12.5,' + (ethYScale(yPosL) + margin.top + 4) + ')')
+			.attr('transform', 'translate(6,' + (ethYScale(yPosL) + margin.top + 4) + ')')
 			.text(d3.format(',.0f')(yPosL));
 		d3.selectAll('.ry-axis-box-rect')
 			.attr('x', width + margin.left)
@@ -731,9 +731,9 @@ function drawLines(
 					.attr('cx', xScale(item.timestamp) + margin.left)
 					.attr('cy', ethYScale(item.price) + margin.top)
 					.attr('r', 4.8)
-					.style('fill', isHourly ? 'white' : 'transparent')
+					.style('fill', isHourly ? ColorStyles.ThemeText : 'transparent')
 					.style('stroke-width', 1)
-					.style('stroke', 'white')
+					.style('stroke', ColorStyles.ThemeText)
 					.on('mouseover', () => {
 						drawAssisLine();
 						findBar(x);

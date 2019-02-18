@@ -59,7 +59,7 @@ export default class TimeSeriesCard extends React.Component<IProps> {
 					/>
 				}
 			>
-				<SDivFlexCenter horizontal padding="0 10px">
+				<SDivFlexCenter horizontal>
 					<TimeSeriesChart
 						underlying={underlying}
 						tokenA={tokenA}
