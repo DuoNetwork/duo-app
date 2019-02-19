@@ -30,30 +30,30 @@ export const SItem = styled(Menu.Item)`
 `;
 
 export const SModal = styled(Modal as any)`
-	color: ${ColorStyles.TextWhiteAlpha};
+	color: ${ColorStyles.ThemeTextAlpha};
 	.ant-modal-content {
 		border-radius: 0;
-		background: ${ColorStyles.CardBackgroundDarkSolid};
+		background: ${ColorStyles.CardBackgroundSolid};
 	}
 	.ant-modal-header {
 		border-radius: 0;
 		background: transparent;
-		border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 	}
 	.ant-modal-footer {
 		border-radius: 0;
 		background: transparent;
-		border-top: 1px solid rgba(255, 255, 255, 0.05);
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
 	}
 	.ant-modal-title {
-		color: ${ColorStyles.TextWhiteAlpha};
+		color: ${ColorStyles.ThemeTextAlpha};
 	}
 	.ant-modal-close {
-		color: ${ColorStyles.TextWhiteAlphaLL};
+		color: ${ColorStyles.ThemeTextAlphaL};
 	}
 	.ant-modal-close:focus,
 	.ant-modal-close:hover {
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 	}
 `;
 
@@ -93,35 +93,35 @@ injectGlobal([
 			line-height: 14px;
 		}
 		.ant-btn:before {
-			background: ${ColorStyles.BorderWhite2};
+			background: ${ColorStyles.BorderBlack2};
 		}
 		.ant-btn-ghost {
 			background-color: transparent;
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 			border: 1px solid;
-			border-color: ${ColorStyles.BorderWhite4};
+			border-color: ${ColorStyles.BorderBlack2};
 			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 				background-color 0.2s ease-in-out;
 		}
 		.ant-btn-ghost:hover, .ant-btn-ghost:focus {
-			color: ${ColorStyles.TextWhiteAlpha};
-			border-color: ${ColorStyles.BorderWhite6};
-			background-color: ${ColorStyles.ButtonHoverWhite1};
+			color: ${ColorStyles.ThemeText};
+			border-color: ${ColorStyles.BorderBlack4};
+			background-color: ${ColorStyles.LightHoverSolid};
 		}
 		.ledger-account-selector > .ant-radio-wrapper {
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 			width: 100%;
 			padding: 2px 0;
 		}
 		.ledger-account-selector > .ant-radio-wrapper:nth-child(odd) {
-			background: ${ColorStyles.ListHighlight};
+			background: transparent;
 		}
 		.ledger-account-selector > .ant-radio-wrapper:hover {
-			background: ${ColorStyles.HoverBackgroundSolid};
+			background: ${ColorStyles.LightHoverSolid};
 		}
 		.ledger-account-selector > .ant-radio-wrapper-checked {
 			background: ${ColorStyles.SelectBackgroundSolid} !important;
-			box-shadow:inset 0px 0px 0px 1px ${ColorStyles.BorderWhite3};
+			box-shadow:inset 0px 0px 0px 1px ${ColorStyles.BorderBlack3};
 		}
 		.locale-select {
 			display: flex;

@@ -261,7 +261,7 @@ export const SCardTag = styled.div`
 	pointer-events: ${(props: ICardPriceTagProps) => (props.disabled ? 'none !important' : '')};
 	opacity: ${(props: ICardPriceTagProps) => (props.disabled ? '0.5' : '1')};
 	&:hover {
-		background: ${ColorStyles.HoverBackgroundSolid}
+		background: ${ColorStyles.LightHoverSolid}
 	}
 	.bg-logo {
 		height: 100px;
@@ -298,7 +298,7 @@ export const SCardTag = styled.div`
 		font-weight: 500;
 		letter-spacing: 1px;
 		font-size: 12px;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		margin: 0;
 		z-index: 99;
 		text-decoration: none;
@@ -316,11 +316,11 @@ export const SCardTag = styled.div`
 					: '12px'};
 			display: flex;
 			flex-direction: row;
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 	}
 	.tag-price {
-		color: white;
+		color: ${ColorStyles.ThemeText};;
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -329,7 +329,7 @@ export const SCardTag = styled.div`
 	}
 	.tag-unit {
 		margin-left: 2px;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -353,7 +353,7 @@ export const SCardTag = styled.div`
 		margin-bottom: 5px;
 	}
 	.tag-price-3 {
-		color: white;
+		color: ${ColorStyles.ThemeText};;
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -366,7 +366,7 @@ export const SCardTag = styled.div`
 	.tag-unit-1,
 	.tag-unit-2 {
 		margin-left: 2px;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -374,7 +374,7 @@ export const SCardTag = styled.div`
 		margin-top: 5.5px;
 	}
 	.tag-unit-3 {
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -471,12 +471,12 @@ injectGlobal([
 		}
 		.ant-tooltip-inner {
 			max-width: 400px;
-			border-radius: 0;
+			border-radius: 2px;
 			font-size: 10px;
 			font-family: 'Roboto', 'Microsoft YaHei';
 			background: ${ColorStyles.CardBackgroundSolid};
-			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
-			color: ${ColorStyles.TextWhiteAlpha};
+			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
+			color: ${ColorStyles.ThemeText};
 		}
 	}
 `
@@ -606,6 +606,9 @@ export const SCardList = styled.div`
 		.t-center {
 			justify-content: center;
 		}
+		.no-borderbottom {
+			border-bottom: none !important;
+		}
 		li {
 			display: flex;
 			flex-direction: row;
@@ -624,9 +627,9 @@ export const SCardList = styled.div`
 				cursor: pointer;
 				font-family: 'Roboto', 'Microsoft YaHei';
 				background-color: transparent;
-				color: ${ColorStyles.ThemeText};
+				color: ${ColorStyles.ThemeTextAlpha};
 				border: 1px dashed;
-				border-color: ${ColorStyles.BorderWhite2};
+				border-color: ${ColorStyles.BorderBlack2};
 				font-size: 10px;
 				height: 24px;
 				width: 40px;
@@ -637,8 +640,8 @@ export const SCardList = styled.div`
 				font-size: 9px !important;
 			}
 			.percent-button:hover {
-				color: ${ColorStyles.TextWhiteAlphaL};
-				border-color: ${ColorStyles.BorderWhite4};
+				color: ${ColorStyles.ThemeText};
+				border-color: ${ColorStyles.BorderBlack4};
 				background-color: ${ColorStyles.ButtonHoverWhite1};
 			}
 			.align-right {
@@ -652,13 +655,13 @@ export const SCardList = styled.div`
 				font-size: 10px;
 				color: ${ColorStyles.ThemeText};
 				border: 1px dashed;
-				border-color: ${ColorStyles.BorderWhite2};
+				border-color: ${ColorStyles.BorderBlack2};
 				padding: 0 5px;
 				transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 			}
 			.default-button:hover {
-				color: ${ColorStyles.TextWhiteAlpha};
-				border-color: ${ColorStyles.BorderWhite6};
+				color: ${ColorStyles.ThemeText};
+				border-color: ${ColorStyles.BorderBlack4};
 			}
 		}
 		li:last-child {
@@ -783,9 +786,9 @@ export const SCardConversionForm = styled.div`
 		width: 180px;
 		font-family: 'Roboto', 'Microsoft YaHei';
 		background-color: transparent;
-		color: ${ColorStyles.TextWhiteAlphaLL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		border: 1px dashed;
-		border-color: ${ColorStyles.BorderWhite2};
+		border-color: ${ColorStyles.BorderBlack2};
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
 	}
@@ -793,16 +796,16 @@ export const SCardConversionForm = styled.div`
 		width: 46% !important;
 	}
 	.conv-button:hover {
-		color: ${ColorStyles.TextWhiteAlphaL};
-		border-color: ${ColorStyles.BorderWhite4};
-		background-color: ${ColorStyles.ButtonHoverWhite1};
+		color: ${ColorStyles.ThemeText};
+		border-color: ${ColorStyles.BorderBlack3};
+		background-color: ${ColorStyles.LightHoverSolid};
 	}
 	.selected {
 		height: 22px;
 		border: 1px solid !important;
-		border-color: ${ColorStyles.BorderWhite6} !important;
-		color: ${ColorStyles.TextWhiteAlpha} !important;
-		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+		border-color: ${ColorStyles.BorderBlack4} !important;
+		color: ${ColorStyles.ThemeText} !important;
+		background-color: 'transparent' !important;
 	}
 	.non-select {
 		height: 22px;
@@ -830,22 +833,22 @@ injectGlobal([
 			padding: 10px 10px;
 		}
 		.ant-popover-message {
-			color: ${ColorStyles.TextWhiteAlpha};
+			color: ${ColorStyles.ThemeText};
 		}
 		.ant-btn-sm {
 			padding: 0 10px;
 			font-size: 12px;
 			border-radius: 0;
 			border: 1px solid;
-			border-color: ${ColorStyles.BorderWhite4};
+			border-color: ${ColorStyles.BorderBlack2};
 			height: 20px;
 			background: none;
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 		.ant-btn-sm:hover {
-			color: ${ColorStyles.TextWhiteAlpha} !important;
-			border-color: ${ColorStyles.BorderWhite6} !important;
-			background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+			color: ${ColorStyles.ThemeText} !important;
+			border-color: ${ColorStyles.BorderBlack4} !important;
+			background-color: ${ColorStyles.LightHoverSolid} !important;
 		}
 		.ant-popover-buttons {
 			margin-bottom: 0px;
@@ -856,9 +859,9 @@ injectGlobal([
 			width: 180px;
 			font-family: 'Roboto', 'Microsoft YaHei';
 			background-color: transparent;
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 			border: 1px solid;
-			border-color: ${ColorStyles.BorderWhite4};
+			border-color: ${ColorStyles.BorderBlack2};
 			transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 				background-color 0.2s ease-in-out;
 		}
@@ -867,9 +870,9 @@ injectGlobal([
 			opacity: 0.2 !important;
 		}
 		.form-button:hover {
-			color: ${ColorStyles.TextWhiteAlpha};
-			border-color: ${ColorStyles.BorderWhite6};
-			background-color: ${ColorStyles.ButtonHoverWhite1};
+			color: ${ColorStyles.ThemeText};
+			border-color: ${ColorStyles.BorderBlack4};
+			background-color: ${ColorStyles.LightHoverSolid};
 		}
 		.address-table-action-col {
 			cursor: default !important;
@@ -888,16 +891,16 @@ export const SCardTransactionForm = styled.div`
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-size: 10px;
 		background-color: transparent;
-		color: ${ColorStyles.TextWhiteAlphaLL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		border: 1px dashed;
-		border-color: ${ColorStyles.BorderWhite2};
+		border-color: ${ColorStyles.BorderBlack3};
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
 	}
 	.token-button:hover {
-		color: ${ColorStyles.TextWhiteAlphaL};
-		border-color: ${ColorStyles.BorderWhite4};
-		background-color: ${ColorStyles.ButtonHoverWhite1};
+		color: ${ColorStyles.ThemeText};
+		border-color: ${ColorStyles.BorderBlack3};
+		background-color: ${ColorStyles.LightHoverSolid};
 	}
 	.trans-button {
 		outline: none;
@@ -905,9 +908,9 @@ export const SCardTransactionForm = styled.div`
 		width: 115px;
 		font-family: 'Roboto', 'Microsoft YaHei';
 		background-color: transparent;
-		color: ${ColorStyles.TextWhiteAlphaLL};
+		color: ${ColorStyles.ThemeTextAlpha};
 		border: 1px dashed;
-		border-color: ${ColorStyles.BorderWhite2};
+		border-color: ${ColorStyles.BorderBlack3};
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
 		.superscript {
@@ -916,15 +919,15 @@ export const SCardTransactionForm = styled.div`
 		}
 	}
 	.trans-button:hover {
-		color: ${ColorStyles.TextWhiteAlphaL};
-		border-color: ${ColorStyles.BorderWhite4};
-		background-color: ${ColorStyles.ButtonHoverWhite1};
+		color: ${ColorStyles.ThemeText};
+		border-color: ${ColorStyles.BorderBlack3};
+		background-color: ${ColorStyles.LightHoverSolid};
 	}
 	.selected {
 		border: 1px solid !important;
-		border-color: ${ColorStyles.BorderWhite6} !important;
-		color: ${ColorStyles.TextWhiteAlpha} !important;
-		background-color: ${ColorStyles.ButtonHoverWhite1} !important;
+		border-color: ${ColorStyles.BorderBlack3} !important;
+		color: ${ColorStyles.ThemeText} !important;
+		background-color: 'transparent' !important;
 	}
 	.wide {
 		width: 175px !important;
@@ -935,9 +938,9 @@ export const SCardTransactionForm = styled.div`
 		width: 120px;
 		font-family: 'Roboto', 'Microsoft YaHei';
 		background-color: transparent;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeText};
 		border: 1px solid;
-		border-color: ${ColorStyles.BorderWhite4};
+		border-color: ${ColorStyles.BorderBlack3};
 		transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out,
 			background-color 0.2s ease-in-out;
 	}
@@ -945,9 +948,9 @@ export const SCardTransactionForm = styled.div`
 		width: 30% !important;
 	}
 	.form-button:hover {
-		color: ${ColorStyles.TextWhiteAlpha};
+		color: ${ColorStyles.ThemeText};
 		border-color: ${ColorStyles.BorderWhite6};
-		background-color: ${ColorStyles.ButtonHoverWhite1};
+		background-color: ${ColorStyles.LightHoverSolid};
 	}
 	.form-button:disabled {
 		pointer-events: none;
@@ -958,7 +961,7 @@ export const SCardTransactionForm = styled.div`
 		font-size: 12px;
 		padding: 0 10px;
 		text-align: justify;
-		color: ${ColorStyles.TextWhiteAlphaLL};
+		color: ${ColorStyles.ThemeTextAlphaL};
 	}
 `;
 export interface ISInputProps {
@@ -970,22 +973,21 @@ export const SInput = styled.input`
 	outline: none;
 	font-size: ${(props: ISInputProps) => (props.small ? '9px' : '12px')};
 	background: ${ColorStyles.CardBackgroundSolid};
-	box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4);
-	color: ${ColorStyles.TextWhiteAlpha};
-	border: none;
+	color: ${ColorStyles.ThemeText};
+	border: 1px solid ${ColorStyles.BorderBlack3};
 	width: ${(props: ISInputProps) => (props.width ? props.width : '160px')};
 	height: 28px;
 	padding: 0 8px;
 	text-align: ${(props: ISInputProps) => (props.right ? 'right' : 'left')};
 	transition: box-shadow 0.3s;
 	&:focus {
-		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 255, 255, 0.05);
+		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.1), 0 0 2px 2px rgba(255, 255, 255, 0.05);
 	}
 	&::placeholder {
-		color: ${ColorStyles.TextWhiteAlphaLLL};
+		color: ${ColorStyles.ThemeTextAlphaL};
 	}
 	&.input-error {
-		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.4), 0 0 2px 2px rgba(255, 86, 86, 0.2) !important;
+		box-shadow: inset 0 1px 6px 0px rgba(0, 0, 0, 0.1), 0 0 2px 2px rgba(255, 86, 86, 0.2) !important;
 	}
 	&:disabled {
 		cursor: not-allowed;
@@ -995,12 +997,12 @@ export const SInput = styled.input`
 export const STableWrapper = styled.div`
 	margin-top: 10px;
 	thead > tr > th {
-		background: ${ColorStyles.ListHighlight};
-		color: ${ColorStyles.TextWhiteAlphaL};
+		background: 'transparent';
+		color: ${ColorStyles.ThemeTextAlpha};
 		border-bottom: 0;
 	}
 	tbody > tr:nth-child(even) > td {
-		background: ${ColorStyles.ListHighlight};
+		background: 'transparent';
 	}
 	tbody > tr:nth-child(odd) > td {
 		background: transparent;
@@ -1011,7 +1013,7 @@ export const STableWrapper = styled.div`
 	td {
 		cursor: pointer;
 		border-bottom: 0 !important;
-		color: ${ColorStyles.TextWhiteAlphaL};
+		color: ${ColorStyles.ThemeTextAlpha};
 	}
 	tr > .eth,
 	tr > .token-ab,
@@ -1019,27 +1021,27 @@ export const STableWrapper = styled.div`
 		text-align: right;
 	}
 	tbody > tr > .fee {
-		color: ${ColorStyles.TextRedAlpha};
+		color: ${ColorStyles.TextRed};
 	}
 	.Redeem {
 		.eth {
-			color: ${ColorStyles.TextGreenAlpha};
+			color: ${ColorStyles.TextGreen};
 		}
 		.token-ab {
-			color: ${ColorStyles.TextRedAlpha};
+			color: ${ColorStyles.TextRed};
 		}
 	}
 	.Create {
 		.token-ab {
-			color: ${ColorStyles.TextGreenAlpha};
+			color: ${ColorStyles.TextGreen};
 		}
 		.eth {
-			color: ${ColorStyles.TextRedAlpha};
+			color: ${ColorStyles.TextRed};
 		}
 	}
 	.ant-table table {
 		border: 1px dashed;
-		border-color: ${ColorStyles.BorderWhite1};
+		border-color: ${ColorStyles.BorderBlack3};
 		border-radius: 0;
 	}
 	.ant-table-placeholder {
@@ -1048,34 +1050,34 @@ export const STableWrapper = styled.div`
 		border-bottom: 1px dashed;
 		border-left: 1px dashed;
 		border-right: 1px dashed;
-		border-color: ${ColorStyles.BorderWhite1};
+		border-color: ${ColorStyles.BorderBlack3};
 		border-radius: 0;
-		color: ${ColorStyles.TextWhiteAlphaLL};
+		color: ${ColorStyles.ThemeText};
 	}
 `;
 injectGlobal([
 	`
 	body {
 		.ant-table-thead > tr > th .anticon-filter {
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 		.ant-table-thead > tr > th .anticon-filter:hover, .ant-table-thead > tr > th .ant-table-filter-icon:hover {
-			color: ${ColorStyles.TextWhiteAlpha};
+			color: ${ColorStyles.ThemeText};
 		}
 		.ant-table-thead > tr > th .ant-table-filter-selected.anticon-filter {
-			color: ${ColorStyles.TextWhiteAlpha};
+			color: ${ColorStyles.ThemeText};
 		}
 		.ant-table-column-sorter {
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.ThemeText};
 		}
 		.ant-table-thead > tr > th, .ant-table-tbody > tr > td {
 			padding: 10px 10px;
 		}
 		.ant-table-column-sorter-up:hover .anticon, .ant-table-column-sorter-down:hover .anticon {
-			color: ${ColorStyles.TextWhiteAlpha};
+			color: ${ColorStyles.ThemeText};
 		}
 		.ant-table-column-sorter-up.on .anticon-caret-up, .ant-table-column-sorter-down.on .anticon-caret-up, .ant-table-column-sorter-up.on .anticon-caret-down, .ant-table-column-sorter-down.on .anticon-caret-down {
-			color: ${ColorStyles.TextWhiteAlpha};
+			color: ${ColorStyles.ThemeText};
 		}
 		.ant-table-thead > tr > th.ant-table-column-sort {
 			background: ${ColorStyles.ListHighlight};
@@ -1087,20 +1089,23 @@ injectGlobal([
 			border-radius: 0;
 			background: ${ColorStyles.CardBackgroundSolid};
 		}
+		.ant-table-filter-dropdown > ul > li:hover {
+			background: ${ColorStyles.LightHoverSolid} !important;
+		}
 		.ant-table-filter-dropdown-btns {
 			border-top: 1px dashed;
-			border-color: ${ColorStyles.BorderWhite1};
+			border-color: ${ColorStyles.BorderBlack3};
 		}
 		.ant-table-filter-dropdown-link {
 			font-family: "Roboto";
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 		.ant-table-filter-dropdown-link:hover {
-			color: ${ColorStyles.TextWhiteAlpha};
+			color: ${ColorStyles.ThemeText};
 		}
 		.ant-dropdown-menu-item {
 			font-family: "Roboto";
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 			padding: 5px 10px 5px 5px;
 		}
 		.ant-radio {
@@ -1117,7 +1122,7 @@ injectGlobal([
 			width: 100%;
 		}
 		.ant-pagination-total-text {
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 		}
 		.ant-pagination-item {
 			background: transparent;
@@ -1125,58 +1130,58 @@ injectGlobal([
 			border-radius: 0;
 		}
 		.ant-pagination-item-active:focus, .ant-pagination-item-active:hover {
-			border-color: ${ColorStyles.BorderWhite3};
+			border-color: ${ColorStyles.BorderBlack3};
 		}
 		.ant-pagination-item-active {
-			border-color: ${ColorStyles.BorderWhite3};
+			border-color: ${ColorStyles.BorderBlack3};
 		}
 		.ant-pagination-item a {
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 		}
 		.ant-pagination-item-active a, .ant-pagination-item-active:focus a, .ant-pagination-item-active:hover a, .ant-pagination-item:focus a, .ant-pagination-item:hover a {
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 		.ant-pagination-disabled a, .ant-pagination-disabled:hover a, .ant-pagination-disabled:focus a, .ant-pagination-disabled .ant-pagination-item-link, .ant-pagination-disabled:hover .ant-pagination-item-link, .ant-pagination-disabled:focus .ant-pagination-item-link {
-			color: ${ColorStyles.TextWhiteAlphaLLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 		}
 		.ant-pagination-prev a, .ant-pagination-next a {
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 		}
 		.ant-pagination-prev:focus .ant-pagination-item-link, .ant-pagination-next:focus .ant-pagination-item-link, .ant-pagination-prev:hover .ant-pagination-item-link, .ant-pagination-next:hover .ant-pagination-item-link {
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 		.ant-select-selection {
 			font-size: 12px;
-			color: ${ColorStyles.TextWhiteAlpha};
+			color: ${ColorStyles.ThemeText};
 			border-radius: 0;
 			border: 1px solid;
 			border-color: ${ColorStyles.BorderWhite1};
 			background: transparent;
 		}
 		.ant-select-arrow, .ant-pagination-options-quick-jumper {
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 		}
 		.ant-pagination-options-quick-jumper input {
-			color: ${ColorStyles.TextWhiteAlphaLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 			background-color: transparent;
 			background-image: none;
 			border: 1px solid;
-			border-color: ${ColorStyles.BorderWhite1};
+			border-color: ${ColorStyles.BorderBlack3};
 			border-radius: 0;
 		}
 		.ant-pagination-options-quick-jumper input:focus {
 			-webkit-box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
 			box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.1);
-			border-color: ${ColorStyles.BorderWhite3};
+			border-color: ${ColorStyles.BorderBlack3};
 		}
 		.ant-pagination-options-quick-jumper input:hover {
-			border-color: ${ColorStyles.BorderWhite3};
+			border-color: ${ColorStyles.BorderBlack3};
 		}
 		.ant-pagination-jump-prev:after, .ant-pagination-jump-next:after {
-			color: ${ColorStyles.TextWhiteAlphaLLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 		}
 		.ant-pagination-jump-prev:focus:after, .ant-pagination-jump-next:focus:after, .ant-pagination-jump-prev:hover:after, .ant-pagination-jump-next:hover:after {
-			color: ${ColorStyles.TextWhiteAlphaL};
+			color: ${ColorStyles.ThemeTextAlpha};
 		}
 		.ant-select-selection:hover, .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active{
 			border-color: ${ColorStyles.BorderWhite6};
@@ -1195,17 +1200,17 @@ injectGlobal([
 			cursor: default !important;
 		}
 		.ant-btn.disabled, .ant-btn[disabled], .ant-btn.disabled:hover, .ant-btn[disabled]:hover, .ant-btn.disabled:focus, .ant-btn[disabled]:focus, .ant-btn.disabled:active, .ant-btn[disabled]:active, .ant-btn.disabled.active, .ant-btn[disabled].active {
-			color: ${ColorStyles.TextWhiteAlphaLLL};
+			color: ${ColorStyles.ThemeTextAlphaL};
 		}
 		.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-sorters:hover {
 			background: ${ColorStyles.ListHighlight};
 		}
 		.ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters:hover .anticon-filter:hover, .ant-table-thead > tr > th.ant-table-column-has-actions.ant-table-column-has-filters:hover .ant-table-filter-icon:hover {
 			background: ${ColorStyles.ListHighlight};
-			color: ${ColorStyles.TextWhiteAlpha}
+			color: ${ColorStyles.ThemeTextAlpha}
 		}
 		.ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td {
-			background: ${ColorStyles.HoverBackgroundSolid};
+			background: ${ColorStyles.LightHoverSolid};
 		}
 	}
 `

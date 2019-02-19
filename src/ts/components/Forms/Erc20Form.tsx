@@ -114,7 +114,7 @@ export default class Erc20Form extends React.Component<IProps, IState> {
 				<SCardList>
 					<div className="status-list-wrapper">
 						<ul>
-							<li className="block-title">
+							<li className="block-title no-borderbottom">
 								<span>{CST.TH_ERC20}</span>
 								<SDivFlexCenter horizontal width="170px">
 									<button

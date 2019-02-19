@@ -570,6 +570,10 @@ exports[`Styled Test CSS 11`] = `
   justify-content: center;
 }
 
+.c0 .status-list-wrapper > ul .no-borderbottom {
+  border-bottom: none !important;
+}
+
 .c0 .status-list-wrapper > ul li {
   display: -webkit-box;
   display: -webkit-flex;
@@ -603,9 +607,9 @@ exports[`Styled Test CSS 11`] = `
   cursor: pointer;
   font-family: 'Roboto','Microsoft YaHei';
   background-color: transparent;
-  color: rgba(64,79,84,1);
+  color: rgba(64,79,84,.8);
   border: 1px dashed;
-  border-color: rgba(255,255,255,.2);
+  border-color: rgba(64,79,84,.2);
   font-size: 10px;
   height: 24px;
   width: 40px;
@@ -619,8 +623,8 @@ exports[`Styled Test CSS 11`] = `
 }
 
 .c0 .status-list-wrapper > ul li .percent-button:hover {
-  color: rgba(255,255,255,.6);
-  border-color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,1);
+  border-color: rgba(64,79,84,.4);
   background-color: rgba(255,255,255,0.1);
 }
 
@@ -636,15 +640,15 @@ exports[`Styled Test CSS 11`] = `
   font-size: 10px;
   color: rgba(64,79,84,1);
   border: 1px dashed;
-  border-color: rgba(255,255,255,.2);
+  border-color: rgba(64,79,84,.2);
   padding: 0 5px;
   -webkit-transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out;
 }
 
 .c0 .status-list-wrapper > ul li .default-button:hover {
-  color: rgba(255,255,255,.8);
-  border-color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,1);
+  border-color: rgba(64,79,84,.4);
 }
 
 .c0 .status-list-wrapper > ul li:last-child {
@@ -823,9 +827,9 @@ exports[`Styled Test CSS 13`] = `
   width: 180px;
   font-family: 'Roboto','Microsoft YaHei';
   background-color: transparent;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,.8);
   border: 1px dashed;
-  border-color: rgba(255,255,255,.2);
+  border-color: rgba(64,79,84,.2);
   -webkit-transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
@@ -835,17 +839,17 @@ exports[`Styled Test CSS 13`] = `
 }
 
 .c0 .conv-button:hover {
-  color: rgba(255,255,255,.6);
-  border-color: rgba(255,255,255,.4);
-  background-color: rgba(255,255,255,0.1);
+  color: rgba(64,79,84,1);
+  border-color: rgba(64,79,84,.3);
+  background-color: #e6f7ff;
 }
 
 .c0 .selected {
   height: 22px;
   border: 1px solid !important;
-  border-color: rgba(255,255,255,.6) !important;
-  color: rgba(255,255,255,.8) !important;
-  background-color: rgba(255,255,255,0.1) !important;
+  border-color: rgba(64,79,84,.4) !important;
+  color: rgba(64,79,84,1) !important;
+  background-color: 'transparent' !important;
 }
 
 .c0 .non-select {
@@ -870,17 +874,17 @@ exports[`Styled Test CSS 14`] = `
   font-family: 'Roboto','Microsoft YaHei';
   font-size: 10px;
   background-color: transparent;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,.8);
   border: 1px dashed;
-  border-color: rgba(255,255,255,.2);
+  border-color: rgba(64,79,84,.3);
   -webkit-transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
 
 .c0 .token-button:hover {
-  color: rgba(255,255,255,.6);
-  border-color: rgba(255,255,255,.4);
-  background-color: rgba(255,255,255,0.1);
+  color: rgba(64,79,84,1);
+  border-color: rgba(64,79,84,.3);
+  background-color: #e6f7ff;
 }
 
 .c0 .trans-button {
@@ -889,9 +893,9 @@ exports[`Styled Test CSS 14`] = `
   width: 115px;
   font-family: 'Roboto','Microsoft YaHei';
   background-color: transparent;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,.8);
   border: 1px dashed;
-  border-color: rgba(255,255,255,.2);
+  border-color: rgba(64,79,84,.3);
   -webkit-transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
@@ -902,16 +906,16 @@ exports[`Styled Test CSS 14`] = `
 }
 
 .c0 .trans-button:hover {
-  color: rgba(255,255,255,.6);
-  border-color: rgba(255,255,255,.4);
-  background-color: rgba(255,255,255,0.1);
+  color: rgba(64,79,84,1);
+  border-color: rgba(64,79,84,.3);
+  background-color: #e6f7ff;
 }
 
 .c0 .selected {
   border: 1px solid !important;
-  border-color: rgba(255,255,255,.6) !important;
-  color: rgba(255,255,255,.8) !important;
-  background-color: rgba(255,255,255,0.1) !important;
+  border-color: rgba(64,79,84,.3) !important;
+  color: rgba(64,79,84,1) !important;
+  background-color: 'transparent' !important;
 }
 
 .c0 .wide {
@@ -924,9 +928,9 @@ exports[`Styled Test CSS 14`] = `
   width: 120px;
   font-family: 'Roboto','Microsoft YaHei';
   background-color: transparent;
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,1);
   border: 1px solid;
-  border-color: rgba(255,255,255,.4);
+  border-color: rgba(64,79,84,.3);
   -webkit-transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out,border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
 }
@@ -936,9 +940,9 @@ exports[`Styled Test CSS 14`] = `
 }
 
 .c0 .form-button:hover {
-  color: rgba(255,255,255,.8);
+  color: rgba(64,79,84,1);
   border-color: rgba(255,255,255,.6);
-  background-color: rgba(255,255,255,0.1);
+  background-color: #e6f7ff;
 }
 
 .c0 .form-button:disabled {
@@ -951,7 +955,7 @@ exports[`Styled Test CSS 14`] = `
   font-size: 12px;
   padding: 0 10px;
   text-align: justify;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,.6);
 }
 
 <div
@@ -964,9 +968,8 @@ exports[`Styled Test CSS 15`] = `
   outline: none;
   font-size: 12px;
   background: rgba(255,255,255,1);
-  box-shadow: inset 0 1px 6px 0px rgba(0,0,0,0.4);
-  color: rgba(255,255,255,.8);
-  border: none;
+  color: rgba(64,79,84,1);
+  border: 1px solid rgba(64,79,84,.3);
   width: 160px;
   height: 28px;
   padding: 0 8px;
@@ -976,27 +979,27 @@ exports[`Styled Test CSS 15`] = `
 }
 
 .c0:focus {
-  box-shadow: inset 0 1px 6px 0px rgba(0,0,0,0.4),0 0 2px 2px rgba(255,255,255,0.05);
+  box-shadow: inset 0 1px 6px 0px rgba(0,0,0,0.1),0 0 2px 2px rgba(255,255,255,0.05);
 }
 
 .c0::-webkit-input-placeholder {
-  color: rgba(255,255,255,.2);
+  color: rgba(64,79,84,.6);
 }
 
 .c0::-moz-placeholder {
-  color: rgba(255,255,255,.2);
+  color: rgba(64,79,84,.6);
 }
 
 .c0:-ms-input-placeholder {
-  color: rgba(255,255,255,.2);
+  color: rgba(64,79,84,.6);
 }
 
 .c0::placeholder {
-  color: rgba(255,255,255,.2);
+  color: rgba(64,79,84,.6);
 }
 
 .c0.input-error {
-  box-shadow: inset 0 1px 6px 0px rgba(0,0,0,0.4),0 0 2px 2px rgba(255,86,86,0.2) !important;
+  box-shadow: inset 0 1px 6px 0px rgba(0,0,0,0.1),0 0 2px 2px rgba(255,86,86,0.2) !important;
 }
 
 .c0:disabled {
@@ -1014,13 +1017,13 @@ exports[`Styled Test CSS 16`] = `
 }
 
 .c0 thead > tr > th {
-  background: rgba(255,255,255,.04);
-  color: rgba(255,255,255,.6);
+  background: 'transparent';
+  color: rgba(64,79,84,.8);
   border-bottom: 0;
 }
 
 .c0 tbody > tr:nth-child(even) > td {
-  background: rgba(255,255,255,.04);
+  background: 'transparent';
 }
 
 .c0 tbody > tr:nth-child(odd) > td {
@@ -1034,7 +1037,7 @@ exports[`Styled Test CSS 16`] = `
 .c0 td {
   cursor: pointer;
   border-bottom: 0 !important;
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
 }
 
 .c0 tr > .eth,
@@ -1044,28 +1047,28 @@ exports[`Styled Test CSS 16`] = `
 }
 
 .c0 tbody > tr > .fee {
-  color: rgba(245,83,83,.8);
+  color: rgb(245,83,83);
 }
 
 .c0 .Redeem .eth {
-  color: rgba(97,206,94,.8);
+  color: rgb(97,206,94);
 }
 
 .c0 .Redeem .token-ab {
-  color: rgba(245,83,83,.8);
+  color: rgb(245,83,83);
 }
 
 .c0 .Create .token-ab {
-  color: rgba(97,206,94,.8);
+  color: rgb(97,206,94);
 }
 
 .c0 .Create .eth {
-  color: rgba(245,83,83,.8);
+  color: rgb(245,83,83);
 }
 
 .c0 .ant-table table {
   border: 1px dashed;
-  border-color: rgba(255,255,255,.1);
+  border-color: rgba(64,79,84,.3);
   border-radius: 0;
 }
 
@@ -1075,9 +1078,9 @@ exports[`Styled Test CSS 16`] = `
   border-bottom: 1px dashed;
   border-left: 1px dashed;
   border-right: 1px dashed;
-  border-color: rgba(255,255,255,.1);
+  border-color: rgba(64,79,84,.3);
   border-radius: 0;
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,1);
 }
 
 <div

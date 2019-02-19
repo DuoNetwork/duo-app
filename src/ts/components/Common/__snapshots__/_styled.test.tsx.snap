@@ -53,37 +53,37 @@ exports[`Styled Test CSS 2`] = `
 
 exports[`Styled Test CSS 3`] = `
 .c0 {
-  color: rgba(255,255,255,.8);
+  color: rgba(64,79,84,.8);
 }
 
 .c0 .ant-modal-content {
   border-radius: 0;
-  background: rgba(25,26,28,1);
+  background: rgba(255,255,255,1);
 }
 
 .c0 .ant-modal-header {
   border-radius: 0;
   background: transparent;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 
 .c0 .ant-modal-footer {
   border-radius: 0;
   background: transparent;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .c0 .ant-modal-title {
-  color: rgba(255,255,255,.8);
+  color: rgba(64,79,84,.8);
 }
 
 .c0 .ant-modal-close {
-  color: rgba(255,255,255,.4);
+  color: rgba(64,79,84,.6);
 }
 
 .c0 .ant-modal-close:focus,
 .c0 .ant-modal-close:hover {
-  color: rgba(255,255,255,.6);
+  color: rgba(64,79,84,.8);
 }
 
 <Modal

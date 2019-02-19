@@ -14,6 +14,7 @@ export const ColorStyles = {
 	HoverBackgroundSolid: 'rgba(25,112,197,1)',
 	SelectBackgroundSolid: 'rgba(12,98,182,1)',
 	ListHighlight: 'rgba(255,255,255,.04)',
+	LightHoverSolid: '#e6f7ff',
 	//Border Colors
 	BorderWhite1: 'rgba(255,255,255,.1)',
 	BorderWhite2: 'rgba(255,255,255,.2)',

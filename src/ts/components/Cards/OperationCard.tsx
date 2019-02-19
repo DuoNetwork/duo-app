@@ -276,7 +276,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 					<SCardList>
 						<div className="status-list-wrapper">
 							<ul>
-								<li className="img-line no-bg">
+								<li className="img-line no-bg no-borderbottom">
 									<img
 										className="demo-img"
 										src={isCreate ? demoCreate : demoRedeem}

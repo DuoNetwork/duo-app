@@ -1,6 +1,6 @@
 import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
-import ethIcon from 'images/ethIcon.png';
+import ethIcon from 'images/ethIconB.png';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as CST from 'ts/common/constants';
@@ -49,7 +49,7 @@ export default class Duo extends React.Component {
 										<div className="tag-subtext">
 											<div
 												style={{
-													color: ColorStyles.TextWhiteAlphaL,
+													color: ColorStyles.ThemeTextAlpha,
 													marginLeft: 20
 												}}
 											>
@@ -82,7 +82,7 @@ export default class Duo extends React.Component {
 										<div className="tag-subtext">
 											<div
 												style={{
-													color: ColorStyles.TextWhiteAlphaL,
+													color: ColorStyles.ThemeTextAlpha,
 													marginLeft: 20
 												}}
 											>
@@ -106,7 +106,7 @@ export default class Duo extends React.Component {
 								<div className="tag-subtext">
 									<div
 										style={{
-											color: ColorStyles.TextWhiteAlphaL,
+											color: ColorStyles.ThemeTextAlpha,
 											marginLeft: 20
 										}}
 									>
@@ -135,7 +135,7 @@ export default class Duo extends React.Component {
 									<div className="tag-subtext">
 										<div
 											style={{
-												color: ColorStyles.TextWhiteAlphaL,
+												color: ColorStyles.ThemeTextAlpha,
 												marginLeft: 20
 											}}
 										>
