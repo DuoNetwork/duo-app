@@ -941,7 +941,7 @@ exports[`Styled Test CSS 14`] = `
 
 .c0 .form-button:hover {
   color: rgba(64,79,84,1);
-  border-color: rgba(255,255,255,.6);
+  border-color: rgba(64,79,84,.4);
   background-color: #e6f7ff;
 }
 

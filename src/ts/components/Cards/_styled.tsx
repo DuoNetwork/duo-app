@@ -949,7 +949,7 @@ export const SCardTransactionForm = styled.div`
 	}
 	.form-button:hover {
 		color: ${ColorStyles.ThemeText};
-		border-color: ${ColorStyles.BorderWhite6};
+		border-color: ${ColorStyles.BorderBlack4};
 		background-color: ${ColorStyles.LightHoverSolid};
 	}
 	.form-button:disabled {
