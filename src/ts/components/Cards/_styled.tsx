@@ -22,6 +22,7 @@ export const SCard = styled(Card)`
 	border-radius: 4px;
 	border: none !important;
 	& > .ant-card-head {
+		height: 50px;
 		background: ${ColorStyles.MainColor} !important;
 		background: none;
 		border-bottom: none;
@@ -35,6 +36,9 @@ export const SCard = styled(Card)`
 injectGlobal([
 	`
 	body {
+		.ant-card-head-title {
+			padding: 12px 0;
+		}
 		.ant-card-wider-padding .ant-card-head{
 			padding: 0 16px;
 		}
@@ -63,7 +67,7 @@ export const SCardTitle = styled.div`
 	font-family: 'Roboto', 'Microsoft YaHei';
 	font-weight: 500;
 	letter-spacing: 2px;
-	font-size: 18px;
+	font-size: 16px;
 	padding-left: 12px;
 `;
 
@@ -1040,17 +1044,16 @@ export const STableWrapper = styled.div`
 		}
 	}
 	.ant-table table {
-		border: 1px dashed;
-		border-color: ${ColorStyles.BorderBlack3};
+		border: none;
 		border-radius: 0;
 	}
 	.ant-table-placeholder {
-		width: 708px;
+		width: 100%;
 		background: none !important;
-		border-bottom: 1px dashed;
-		border-left: 1px dashed;
-		border-right: 1px dashed;
-		border-color: ${ColorStyles.BorderBlack3};
+		border-bottom: 1px solid;
+		border-left: 1px solid;
+		border-right: 1px solid;
+		border-color: ${ColorStyles.BorderBlack1};
 		border-radius: 0;
 		color: ${ColorStyles.ThemeText};
 	}

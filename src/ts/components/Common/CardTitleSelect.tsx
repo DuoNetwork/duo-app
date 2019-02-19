@@ -23,7 +23,7 @@ export default class CardTitleSelect extends React.Component<IProps> {
 					<div>{this.props.name}</div>
 					<SCardTitleSelector
 						defaultValue={onlySource ? source : custodian}
-						style={{ width: 120, paddingTop: 1.5, marginLeft: 12 }}
+						style={{ width: 120, marginLeft: 12 }}
 						size="small"
 						onSelect={(value: any) => this.props.onSelect(value + '')}
 					>

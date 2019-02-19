@@ -11,6 +11,7 @@ exports[`Styled Test CSS 1`] = `
 }
 
 .c0 > .ant-card-head {
+  height: 50px;
   background: rgba(0,114,206,1) !important;
   background: none;
   border-bottom: none;
@@ -35,7 +36,7 @@ exports[`Styled Test CSS 2`] = `
   -moz-letter-spacing: 2px;
   -ms-letter-spacing: 2px;
   letter-spacing: 2px;
-  font-size: 18px;
+  font-size: 16px;
   padding-left: 12px;
 }
 
@@ -1067,18 +1068,17 @@ exports[`Styled Test CSS 16`] = `
 }
 
 .c0 .ant-table table {
-  border: 1px dashed;
-  border-color: rgba(64,79,84,.3);
+  border: none;
   border-radius: 0;
 }
 
 .c0 .ant-table-placeholder {
-  width: 708px;
+  width: 100%;
   background: none !important;
-  border-bottom: 1px dashed;
-  border-left: 1px dashed;
-  border-right: 1px dashed;
-  border-color: rgba(64,79,84,.3);
+  border-bottom: 1px solid;
+  border-left: 1px solid;
+  border-right: 1px solid;
+  border-color: rgba(64,79,84,.1);
   border-radius: 0;
   color: rgba(64,79,84,1);
 }

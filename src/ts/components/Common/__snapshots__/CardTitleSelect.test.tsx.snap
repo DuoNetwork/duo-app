@@ -16,7 +16,6 @@ exports[`CardTitleSelect Test User Login test Snapshot 1`] = `
       style={
         Object {
           "marginLeft": 12,
-          "paddingTop": 1.5,
           "width": 120,
         }
       }
@@ -66,7 +65,6 @@ exports[`CardTitleSelect Test User Login test Snapshot 2`] = `
       style={
         Object {
           "marginLeft": 12,
-          "paddingTop": 1.5,
           "width": 120,
         }
       }
