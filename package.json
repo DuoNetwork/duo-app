@@ -8,7 +8,7 @@
 		"clean": "rimraf dist",
 		"test": "jest",
 		"tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
-		"start": "webpack-dev-server --config webpack.config.prod.js",
+		"start": "webpack-dev-server --config webpack.config.dev.js",
 		"analyze": "npm run clean && npm run analyze:build && npm run analyze:no:build",
 		"analyze:build": "webpack --config webpack.config.analyze.js",
 		"analyze:no:build": "webpack-bundle-analyzer dist/stats.json",
