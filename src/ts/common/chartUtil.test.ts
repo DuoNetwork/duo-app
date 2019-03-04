@@ -180,7 +180,7 @@ const dualClassStates = {
 	totalSupplyB: 82880.4753362674,
 	usersLength: 295,
 	minBalance: 6,
-	ethCollateral: 6,
+	collateral: 6,
 	lastPrice: 6,
 	lastPriceTime: 6,
 	resetPrice: 6,

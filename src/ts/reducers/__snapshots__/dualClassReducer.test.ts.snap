@@ -20,8 +20,8 @@ Object {
   "states": Object {
     "alpha": 0,
     "beta": 0,
+    "collateral": 0,
     "createCommRate": 0,
-    "ethCollateral": 0,
     "feeBalance": 0,
     "iterationGasThreshold": 0,
     "lastOperationTime": 0,
@@ -223,8 +223,8 @@ Object {
   "states": Object {
     "alpha": 0,
     "beta": 0,
+    "collateral": 0,
     "createCommRate": 0,
-    "ethCollateral": 0,
     "feeBalance": 0,
     "iterationGasThreshold": 0,
     "lastOperationTime": 0,

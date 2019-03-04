@@ -184,7 +184,7 @@ export default class StateCard extends React.Component<IProps> {
 								<li>
 									<span className="title">{CST.TH_ETH_BALANCE[locale]}</span>
 									<span className="content">
-										{d3.format(',.2f')(states.ethCollateral)}
+										{d3.format(',.2f')(states.collateral)}
 									</span>
 								</li>
 								<li>
