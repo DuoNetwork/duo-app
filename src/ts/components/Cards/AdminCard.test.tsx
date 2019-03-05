@@ -32,7 +32,7 @@ describe('AuthCard Test', () => {
 			minBalance: 1,
 			totalSupplyA: 82880.4753362674,
 			totalSupplyB: 82880.4753362674,
-			ethCollateral: 1,
+			collateral: 1,
 			navA: 1.026299,
 			navB: 0.5862017153842389,
 			lastPrice: 12,

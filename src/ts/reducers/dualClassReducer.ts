@@ -11,7 +11,7 @@ export const initialState: IDualClassState = {
 		minBalance: 0,
 		totalSupplyA: 0,
 		totalSupplyB: 0,
-		ethCollateral: 0,
+		collateral: 0,
 		navA: 0,
 		navB: 0,
 		lastPrice: 0,

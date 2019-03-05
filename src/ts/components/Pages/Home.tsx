@@ -93,28 +93,6 @@ export default class Duo extends React.Component {
 								</Link>
 							))}
 						</SDivFlexCenter>
-						<SDivFlexCenter horizontal padding="0 10px">
-							<SCardTag disabled>
-								<div className="bg-logo">
-									<img src={ethIcon} />
-								</div>
-								<div className="tag-content">
-									<div className={'tag-price USD'}>
-										{CST.TH_COVERED_OPTIONS.toUpperCase()}
-									</div>
-								</div>
-								<div className="tag-subtext">
-									<div
-										style={{
-											color: ColorStyles.ThemeTextAlpha,
-											marginLeft: 20
-										}}
-									>
-										Coming Soon
-									</div>
-								</div>
-							</SCardTag>
-						</SDivFlexCenter>
 					</SCard>
 					<SCard
 						title={<SCardTitle>{CST.TH_ORACLES.toUpperCase()}</SCardTitle>}
