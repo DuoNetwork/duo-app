@@ -12,7 +12,7 @@ module.exports = {
 	},
 	output: {
 		path: path.join(__dirname, 'dist'),
-		filename: '[name].[contenthash].js',
+		filename: '[name].[contenthash].js'
 	},
 	plugins: [
 		new webpack.DefinePlugin({
