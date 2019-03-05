@@ -14,14 +14,6 @@ module.exports = {
 		path: path.join(__dirname, 'dist'),
 		filename: '[name].[contenthash].js',
 	},
-	devServer: {
-		https: true,
-		contentBase: './dist',
-		hot: true,
-		historyApiFallback: true,
-		host: '0.0.0.0',
-		disableHostCheck: true
-	},
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('production'),
