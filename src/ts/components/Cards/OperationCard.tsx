@@ -158,7 +158,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 
 	private getEthFromAB = (amount: number) => {
 		const { states } = this.props;
-		return (2 * amount) / states.resetPrice / states.beta;
+		return ((1 + states.alpha) * amount) / states.resetPrice / states.alpha / states.beta;
 	};
 
 	private handleAmountBlur = (limit: number) => {
@@ -198,7 +198,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 		} else {
 			const ethAmount = this.getEthFromAB(amtNum);
 			const fee = ethAmount * states.redeemCommRate;
-			const txHash = await dualClassWrapper.redeem(account, amtNum, amtNum);
+			const txHash = await dualClassWrapper.redeem(account, amtNum, amtNum / states.alpha);
 			dynamoUtil
 				.insertUIConversion(
 					contractAddress,
@@ -207,7 +207,7 @@ export default class OperationCard extends React.Component<IProps, IState> {
 					false,
 					ethAmount - fee,
 					amtNum,
-					amtNum,
+					amtNum / states.alpha,
 					fee
 				)
 				.then(() => refresh());
