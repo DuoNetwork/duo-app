@@ -39,7 +39,7 @@ export default class Header extends React.Component<IProps> {
 						)
 					) : null}
 					<SDivFlexCenter horizontal>
-						{isBeethovenPage ? (
+						{isBeethovenPage && __KOVAN__ ? (
 							<div className="nav-button-wrapper">
 								<a
 									href={
@@ -57,7 +57,7 @@ export default class Header extends React.Component<IProps> {
 								</a>
 							</div>
 						) : null}
-						{!isStatusPage ? (
+						{!isStatusPage && __KOVAN__ ? (
 							<div className="nav-button-wrapper">
 								<Link to={'/status'}>{CST.TH_STATUS[locale].toUpperCase()}</Link>
 							</div>
