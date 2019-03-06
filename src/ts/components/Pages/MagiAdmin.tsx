@@ -4,6 +4,7 @@ import * as React from 'react';
 import { IEsplanadeAddresses, IMagiPriceFeed } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
+import DecodeCard from '../Cards/DecodeCard';
 import MagiAdminCard from '../Cards/MagiAdminCard';
 
 interface IProps {
@@ -60,6 +61,7 @@ export default class MagiAdmin extends React.Component<IProps> {
 							refresh={refresh}
 						/>
 					</SDivFlexCenter>
+					<DecodeCard type={''} tenor={''}  contractName={'MAGI'}/>
 				</SContent>
 			</Layout>
 		);

@@ -68,7 +68,7 @@ export default class DualClassCustodianAdmin extends React.Component<IProps, ISt
 							account={account}
 						/>
 					</SDivFlexCenter>
-					<DecodeCard type={type} tenor={tenor} />
+					<DecodeCard type={type} tenor={tenor}  contractName={'DUAL'}/>
 				</SContent>
 			</Layout>
 		);

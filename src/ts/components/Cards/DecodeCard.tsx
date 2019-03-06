@@ -1,11 +1,12 @@
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import { getDualClassWrapperByTypeTenor } from 'ts/common/wrappers';
+import { esplanadeWrapper, getDualClassWrapperByTypeTenor, magiWrapper } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardTitle, SInput } from './_styled';
 
 interface IProps {
+	contractName: string;
 	type: string;
 	tenor: string;
 }
@@ -30,17 +31,30 @@ export default class DecodeCard extends React.Component<IProps, IState> {
 
 	private handleClick = () => {
 		const { input } = this.state;
+		let output: any = '';
+		switch (this.props.contractName) {
+			case 'DUAL':
+				output = JSON.stringify(
+					getDualClassWrapperByTypeTenor(this.props.type, this.props.tenor).decode(input),
+					null,
+					4
+				);
+				break;
+			case 'ESP':
+				output = JSON.stringify(esplanadeWrapper.decode(input), null, 4);
+				break;
+			case 'MAGI':
+				output = JSON.stringify(magiWrapper.decode(input), null, 4);
+				break;
+			default:
+				return;
+		}
 		this.setState({
-			output: JSON.stringify(
-				getDualClassWrapperByTypeTenor(this.props.type, this.props.tenor).decode(input),
-				null,
-				4
-			)
+			output: output
 		});
 	};
 
 	public render() {
-		// const {output} = this.state;
 		return (
 			<SCard
 				title={<SCardTitle>{CST.TH_DECODE.toUpperCase()}</SCardTitle>}

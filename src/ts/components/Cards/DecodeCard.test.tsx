@@ -11,7 +11,11 @@ describe('DecodeCard Test', () => {
 	describe('Test Snapshot', () => {
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
-				<DecodeCard type={WrapperConstants.BEETHOVEN} tenor={WrapperConstants.TENOR_PPT} />
+				<DecodeCard
+					type={WrapperConstants.BEETHOVEN}
+					tenor={WrapperConstants.TENOR_PPT}
+					contractName={'DUAL'}
+				/>
 			);
 			expect(wrapper).toMatchSnapshot();
 		});
@@ -21,7 +25,11 @@ describe('DecodeCard Test', () => {
 				WrapperConstants.TENOR_PPT
 			].decode = jest.fn(() => 'decoded' as any);
 			const wrapper = shallow(
-				<DecodeCard type={WrapperConstants.BEETHOVEN} tenor={WrapperConstants.TENOR_PPT} />
+				<DecodeCard
+					type={WrapperConstants.BEETHOVEN}
+					tenor={WrapperConstants.TENOR_PPT}
+					contractName={'DUAL'}
+				/>
 			);
 			await wrapper
 				.find(SInput)
