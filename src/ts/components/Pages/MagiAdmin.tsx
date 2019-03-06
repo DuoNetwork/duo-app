@@ -49,19 +49,19 @@ export default class MagiAdmin extends React.Component<IProps> {
 			<Layout>
 				<Header />
 				<SContent>
-					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<MagiAdminCard
-							states={states}
-							priceFeeds={priceFeeds}
-							operator={operator}
-							roleManager={roleManager}
-							locale={locale}
-							isColdAddr={isColdAddr}
-							account={account}
-							refresh={refresh}
-						/>
+					<SDivFlexCenter center style={{alignItems: 'center'}}>
+					<MagiAdminCard
+						states={states}
+						priceFeeds={priceFeeds}
+						operator={operator}
+						roleManager={roleManager}
+						locale={locale}
+						isColdAddr={isColdAddr}
+						account={account}
+						refresh={refresh}
+					/>
+					<DecodeCard type={''} tenor={''} contractName={'MAGI'} />
 					</SDivFlexCenter>
-					<DecodeCard type={''} tenor={''}  contractName={'MAGI'}/>
 				</SContent>
 			</Layout>
 		);

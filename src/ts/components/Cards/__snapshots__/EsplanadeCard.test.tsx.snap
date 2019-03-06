@@ -13,7 +13,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 1`] = `
       </button>
     </styled.div>
   }
-  margin="0 0 0 10px"
+  margin="0 0 0 0"
   title={
     <styled.div>
       <a
@@ -187,7 +187,7 @@ exports[`EsplanadeCard Test EsplanadeCard Test Snapshot 2`] = `
       </button>
     </styled.div>
   }
-  margin="0 0 0 10px"
+  margin="0 0 0 0"
   title={
     <styled.div>
       <a

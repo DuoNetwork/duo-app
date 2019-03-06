@@ -59,10 +59,10 @@ export default class DecodeCard extends React.Component<IProps, IState> {
 			<SCard
 				title={<SCardTitle>{CST.TH_DECODE.toUpperCase()}</SCardTitle>}
 				width="1000px"
-				margin="0 0 0 0"
+				margin="20px 0 0 0"
 				inlinetype="table"
 			>
-				<SDivFlexCenter horizontal width="100%" padding="0">
+				<SDivFlexCenter horizontal width="100%" padding="20px 0 0 0">
 					<SInput onChange={e => this.handleChange(e.target.value)} width="760px" />
 					<button className="form-button" onClick={this.handleClick}>
 						{CST.TH_DECODE}
