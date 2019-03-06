@@ -133,7 +133,7 @@ export default class EsplanadeOperationCard extends React.Component<IProps, ISta
 					</SCardTitle>
 				}
 				width={'1000px'}
-				margin={'0 0 0 10px'}
+				margin={'0 0 0 0'}
 				extra={
 					<SCardExtraDiv>
 						{states.isStarted ? (

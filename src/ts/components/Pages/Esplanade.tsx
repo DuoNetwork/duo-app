@@ -6,6 +6,7 @@ import { IEsplanadeAddresses } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 import AddressCard from '../Cards/AddressCard';
+import DecodeCard from '../Cards/DecodeCard';
 import EsplanadeCard from '../Cards/EsplanadeCard';
 import VotingCard from '../Cards/VotingCard';
 
@@ -94,6 +95,7 @@ export default class Esplanade extends React.Component<IProps> {
 						account={account}
 						moderator={moderator.address}
 					/>
+					<DecodeCard type={''} tenor={''}  contractName={'ESP'}/>
 				</SContent>
 			</Layout>
 		);

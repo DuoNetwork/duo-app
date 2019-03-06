@@ -4,6 +4,7 @@ import * as React from 'react';
 import { IEsplanadeAddresses, IMagiPriceFeed } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
+import DecodeCard from '../Cards/DecodeCard';
 import MagiAdminCard from '../Cards/MagiAdminCard';
 
 interface IProps {
@@ -48,17 +49,18 @@ export default class MagiAdmin extends React.Component<IProps> {
 			<Layout>
 				<Header />
 				<SContent>
-					<SDivFlexCenter center horizontal marginBottom="20px;">
-						<MagiAdminCard
-							states={states}
-							priceFeeds={priceFeeds}
-							operator={operator}
-							roleManager={roleManager}
-							locale={locale}
-							isColdAddr={isColdAddr}
-							account={account}
-							refresh={refresh}
-						/>
+					<SDivFlexCenter center style={{alignItems: 'center'}}>
+					<MagiAdminCard
+						states={states}
+						priceFeeds={priceFeeds}
+						operator={operator}
+						roleManager={roleManager}
+						locale={locale}
+						isColdAddr={isColdAddr}
+						account={account}
+						refresh={refresh}
+					/>
+					<DecodeCard type={''} tenor={''} contractName={'MAGI'} />
 					</SDivFlexCenter>
 				</SContent>
 			</Layout>

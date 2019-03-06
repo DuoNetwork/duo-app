@@ -3,7 +3,7 @@
 exports[`DecodeCard Test Test Snapshot Test Snapshot 1`] = `
 <Styled(Card)
   inlinetype="table"
-  margin="0 0 0 0"
+  margin="20px 0 0 0"
   title={
     <styled.div>
       DECODE
@@ -13,7 +13,7 @@ exports[`DecodeCard Test Test Snapshot Test Snapshot 1`] = `
 >
   <styled.div
     horizontal={true}
-    padding="0"
+    padding="20px 0 0 0"
     width="100%"
   >
     <styled.input
