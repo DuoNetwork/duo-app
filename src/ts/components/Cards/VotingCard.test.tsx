@@ -21,15 +21,18 @@ describe('EsplanadeCard Test', () => {
 		const coldAddressPool = {
 			address0: {
 				balance: 10,
-				index: 0
+				index: 0,
+				label: ''
 			},
 			address1: {
 				balance: 20,
-				index: 1
+				index: 1,
+				label: ''
 			},
 			address2: {
 				balance: 30,
-				index: 2
+				index: 2,
+				label: ''
 			}
 		};
 		const votingData = {

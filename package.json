@@ -94,7 +94,7 @@
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.2.5",
-		"@finbook/duo-contract-wrapper": "^1.3.3",
+		"@finbook/duo-contract-wrapper": "^1.3.6",
 		"@finbook/duo-market-data": "^1.0.4",
 		"antd": "^3.13.0",
 		"d3": "^5.8.0",

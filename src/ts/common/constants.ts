@@ -170,6 +170,9 @@ export const TH_BALANCE: ILocaleText = {
 	[LOCALE_JP]: '残高',
 	[LOCALE_RU]: 'Баланс'
 };
+
+export const TH_LABEL = 'Label';
+
 export const TH_ERC20 = 'ERC20';
 export const TH_TYPE: ILocaleText = {
 	[LOCALE_CN]: '类别',
