@@ -2,7 +2,7 @@ import { IEsplanadeStates, IVotingData } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IEsplanadeAddresses } from 'ts/common/types';
+import { IAddresses } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 import AddressCard from '../Cards/AddressCard';
@@ -12,10 +12,10 @@ import VotingCard from '../Cards/VotingCard';
 
 interface IProps {
 	states: IEsplanadeStates;
-	hotAddressPool: IEsplanadeAddresses;
-	coldAddressPool: IEsplanadeAddresses;
-	custodianPool: IEsplanadeAddresses;
-	otherContractPool: IEsplanadeAddresses;
+	hotAddressPool: IAddresses;
+	coldAddressPool: IAddresses;
+	custodianPool: IAddresses;
+	otherContractPool: IAddresses;
 	account: string;
 	moderator: { address: string; balance: number };
 	candidate: { address: string; balance: number };
@@ -72,30 +72,32 @@ export default class Esplanade extends React.Component<IProps> {
 						title={CST.TH_HOT_ADDR}
 						addresses={hotAddressPool}
 						account={account}
-						moderator={moderator.address}
-						showRemove
+						isModerator={moderator.address === account}
+						showAction
+						showBalance
 						isHot
 					/>
 					<AddressCard
 						title={CST.TH_COLD_ADDR}
 						addresses={coldAddressPool}
 						account={account}
-						moderator={moderator.address}
-						showRemove
+						isModerator={moderator.address === account}
+						showAction
+						showBalance
 					/>
 					<AddressCard
 						title={CST.TH_CUSTODIANS}
 						addresses={custodianPool}
 						account={account}
-						moderator={moderator.address}
+						isModerator={moderator.address === account}
 					/>
 					<AddressCard
 						title={CST.TH_OTHER_CONTRACTS}
 						addresses={otherContractPool}
 						account={account}
-						moderator={moderator.address}
+						isModerator={moderator.address === account}
 					/>
-					<DecodeCard type={''} tenor={''}  contractName={'ESP'}/>
+					<DecodeCard type={''} tenor={''} contractName={'ESP'} />
 				</SContent>
 			</Layout>
 		);

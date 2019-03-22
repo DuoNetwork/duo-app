@@ -1,8 +1,11 @@
 import { ICustodianAddresses, IDualClassStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
+import * as CST from 'ts/common/constants';
+import { IAddresses } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
+import AddressCard from '../Cards/AddressCard';
 import AdminCard from '../Cards/AdminCard';
 import DecodeCard from '../Cards/DecodeCard';
 
@@ -55,6 +58,15 @@ export default class DualClassCustodianAdmin extends React.Component<IProps, ISt
 
 	public render() {
 		const { addresses, states, account, tenor, type } = this.props;
+		const addressToList: IAddresses = {};
+		Object.keys(addresses).map((key, index) => {
+			const address = (addresses as any)[key] as string;
+			addressToList[address] = {
+				index: index,
+				label: key
+			};
+		});
+
 		return (
 			<Layout>
 				<Header />
@@ -68,7 +80,15 @@ export default class DualClassCustodianAdmin extends React.Component<IProps, ISt
 							account={account}
 						/>
 					</SDivFlexCenter>
-					<DecodeCard type={type} tenor={tenor}  contractName={'DUAL'}/>
+					<SDivFlexCenter center horizontal marginBottom="20px;">
+						<AddressCard
+							addresses={addressToList}
+							account={account}
+							title={CST.TH_ADDRESS.EN}
+							showLabel
+						/>
+					</SDivFlexCenter>
+					<DecodeCard type={type} tenor={tenor} contractName={'DUAL'} />
 				</SContent>
 			</Layout>
 		);

@@ -2,7 +2,7 @@ import { IEsplanadeStates, IVotingData , Web3Wrapper} from '@finbook/duo-contrac
 import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
-import { IEsplanadeAddresses } from 'ts/common/types';
+import { IAddresses } from 'ts/common/types';
 import { esplanadeWrapper } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import { SCard, SCardList, SCardTitle, SInput } from './_styled';
@@ -12,7 +12,7 @@ interface IProps {
 	states: IEsplanadeStates;
 	votingData: IVotingData;
 	account: string;
-	coldAddressPool: IEsplanadeAddresses;
+	coldAddressPool: IAddresses;
 	moderator: string;
 	candidate: string;
 }

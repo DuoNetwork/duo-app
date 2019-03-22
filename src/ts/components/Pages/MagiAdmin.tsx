@@ -1,7 +1,7 @@
 import { IMagiStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
-import { IEsplanadeAddresses, IMagiPriceFeed } from 'ts/common/types';
+import { IAddresses, IMagiPriceFeed } from 'ts/common/types';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
 import DecodeCard from '../Cards/DecodeCard';
@@ -14,7 +14,7 @@ interface IProps {
 	states: IMagiStates;
 	account: string;
 	locale: string;
-	coldAddresses: IEsplanadeAddresses;
+	coldAddresses: IAddresses;
 	subscribe: () => any;
 	unsubscribe: () => any;
 	refresh: () => any;

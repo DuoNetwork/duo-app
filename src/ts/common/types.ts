@@ -59,16 +59,17 @@ export interface IEsplanadeState {
 		address: string;
 		balance: number;
 	};
-	readonly coldAddressPool: IEsplanadeAddresses;
-	readonly hotAddressPool: IEsplanadeAddresses;
-	readonly custodianPool: IEsplanadeAddresses;
-	readonly otherContractPool: IEsplanadeAddresses;
+	readonly coldAddressPool: IAddresses;
+	readonly hotAddressPool: IAddresses;
+	readonly custodianPool: IAddresses;
+	readonly otherContractPool: IAddresses;
 	readonly votingData: IVotingData;
 }
-export interface IEsplanadeAddresses {
+export interface IAddresses {
 	[address: string]: {
-		balance: number;
 		index: number;
+		balance?: number;
+		label?: string;
 	};
 }
 
