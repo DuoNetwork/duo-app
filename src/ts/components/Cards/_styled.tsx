@@ -641,7 +641,7 @@ export const SStakingButtonM = styled.div`
 	font-weight: 500;
 	color: white;
 	border: 1px solid #FF5E5E;
-	background: #FF9191;
+	background: #FC7676;
 	text-align: center;
 	cursor: pointer;
 `;
@@ -657,8 +657,8 @@ export const SStakingButtonF = styled.div`
 	font-size: 14px;
 	line-height: 34px;
 	font-weight: 500;
-	color: #FF9191;
-	border: 1px solid #FF9191;
+	color: #FC7676;
+	border: 1px solid #FC7676;
 	background: transparent;
 	text-align: center;
 	cursor: pointer;
