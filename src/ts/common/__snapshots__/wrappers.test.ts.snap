@@ -75,6 +75,7 @@ Array [
             },
           },
         },
+        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -87,6 +88,7 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": "0x23a777f13844eb5ca0f2304f1ce8c7392bb27235",
       },
     },
     "0x13016f27945f3f7b39A5Daae068D698e34E55491",
@@ -144,6 +146,7 @@ Array [
             },
           },
         },
+        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -156,6 +159,7 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": "0x23a777f13844eb5ca0f2304f1ce8c7392bb27235",
       },
     },
     "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
@@ -213,6 +217,7 @@ Array [
             },
           },
         },
+        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -225,6 +230,7 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": "0x23a777f13844eb5ca0f2304f1ce8c7392bb27235",
       },
     },
     "0x32a42AeDe34Cd0D2D76e02E0d3A3440706A9c619",
@@ -293,6 +299,7 @@ Array [
             },
           },
         },
+        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -305,6 +312,7 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": "0x23a777f13844eb5ca0f2304f1ce8c7392bb27235",
       },
     },
     "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -373,6 +381,7 @@ Array [
             },
           },
         },
+        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -385,6 +394,7 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": "0x23a777f13844eb5ca0f2304f1ce8c7392bb27235",
       },
     },
     "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
@@ -396,7 +406,7 @@ exports[`Web3Wrapper 1`] = `
 Array [
   Array [
     [Window],
-    "https://kovan.infura.io",
+    "https://kovan.infura.io/v3",
     "",
     false,
   ],

@@ -122,6 +122,28 @@ export default class Duo extends React.Component {
 									</div>
 								</SCardTag>
 							</Link>
+							<Link to={'/' + 'staking'}>
+								<SCardTag>
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-content">
+										<div className={'tag-price USD'}>
+											STAKING
+										</div>
+									</div>
+									<div className="tag-subtext">
+										<div
+											style={{
+												color: ColorStyles.ThemeTextAlpha,
+												marginLeft: 20
+											}}
+										>
+											DUO
+										</div>
+									</div>
+								</SCardTag>
+							</Link>
 						</SDivFlexCenter>
 					</SCard>
 				</SContent>
