@@ -332,11 +332,7 @@ exports[`Styled Test CSS 5`] = `
 `;
 
 exports[`Styled Test CSS 6`] = `
-body .c0.eqSxah {
-  width: 30%;
-}
-
-.c1 {
+.c0 {
   color: rgba(255,255,255,.8);
   font-size: 10px;
   padding-right: 10px;
@@ -344,16 +340,12 @@ body .c0.eqSxah {
 }
 
 <div
-  className="c0 c1"
+  className="c0"
 />
 `;
 
 exports[`Styled Test CSS 7`] = `
-body .c0.ckhMSO {
-  width: 30%;
-}
-
-.c1 span {
+.c0 span {
   color: rgba(255,255,255,.6);
   font-size: 12px;
   padding-right: 10px;
@@ -371,14 +363,14 @@ body .c0.ckhMSO {
   align-items: center;
 }
 
-.c1 span img {
+.c0 span img {
   margin-left: 4px;
   width: 10px;
   height: 10px;
 }
 
 <div
-  className="c0 c1"
+  className="c0"
 />
 `;
 

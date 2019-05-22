@@ -99,9 +99,9 @@ export default class Duo extends React.Component {
 						width={'960px'}
 						margin={'0 0 0 0'}
 					>
-						<SDivFlexCenter horizontal padding="0 10px">
+						<SDivFlexCenter horizontal padding="0 10px" style={{ display: 'inline-flex' }}>
 							<Link to={'/' + CST.TH_MAGI.toLowerCase()}>
-								<SCardTag>
+								<SCardTag style={{ marginRight: '40px' }}>
 									<div className="bg-logo">
 										<img src={ethIcon} />
 									</div>

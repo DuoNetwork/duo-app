@@ -2,6 +2,7 @@ import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { dualClassWrappers } from 'ts/common/wrappers';
+import Staking from 'ts/components/Pages/Staking';
 import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
 import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
 import Esplanade from 'ts/containers/Pages/EsplanadeCointainer';
@@ -69,6 +70,7 @@ export default class Duo extends React.Component {
 					<Route path={'/esplanade'} render={() => <Esplanade />} />
 					<Route path={'/magi'} render={() => <Magi />} />
 					<Route path={'/status'} render={() => <Status />} />
+					<Route path={'/staking'} render={() => <Staking />} />
 					<Route render={() => <Home />} />
 				</Switch>
 			</div>
