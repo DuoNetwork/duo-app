@@ -3,6 +3,8 @@ import {
 	IDualClassStates,
 	IEsplanadeStates,
 	IMagiStates,
+	IStakeAddress,
+	IStakeStates,
 	IVotingData
 } from '@finbook/duo-contract-wrapper';
 import { IAcceptedPrice, IConversion, IPrice, IStatus } from '@finbook/duo-market-data';
@@ -24,6 +26,7 @@ export interface IState {
 	readonly web3: IWeb3State;
 	readonly dynamo: IDynamoState;
 	readonly ui: IUIState;
+	readonly stake: IStakeState;
 }
 
 export interface IWeb3State {
@@ -47,6 +50,13 @@ export interface IDualClassState {
 		b: number;
 		duo: number;
 	};
+}
+
+export interface IStakeState {
+	readonly states: IStakeStates;
+	readonly duo: number;
+	readonly subscription: number;
+	readonly addresses: IStakeAddress;
 }
 
 export interface IEsplanadeState {

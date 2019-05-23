@@ -124,6 +124,22 @@ Object {
     },
     "subscription": 0,
   },
+  "stake": Object {
+    "addresses": Object {
+      "operator": "0x0",
+      "priceFeedList": Array [],
+    },
+    "duo": 0,
+    "states": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerPf": 0,
+      "minStakeAmt": 0,
+      "totalAwardsToDistribute": 0,
+    },
+    "subscription": 0,
+  },
   "ui": Object {
     "locale": "EN",
     "period": 60,

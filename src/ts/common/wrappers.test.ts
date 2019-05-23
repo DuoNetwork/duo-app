@@ -14,14 +14,27 @@ jest.mock('@finbook/duo-contract-wrapper', () => ({
 	}))
 }));
 
+jest.mock('@finbook/duo-contract-wrapper/dist/StakeContractWrapper', () => ({
+	StakeContractWrapper: jest.fn(() => ({
+		contract: 'StakeContractWrapper'
+	}))
+}));
+
 import {
 	DualClassWrapper,
 	EsplanadeWrapper,
 	MagiWrapper,
 	Web3Wrapper
 } from '@finbook/duo-contract-wrapper';
+import { StakeContractWrapper } from '@finbook/duo-contract-wrapper/dist/StakeContractWrapper';
 
-import { dualClassWrappers, esplanadeWrapper, magiWrapper, web3Wrapper } from './wrappers';
+import {
+	dualClassWrappers,
+	esplanadeWrapper,
+	magiWrapper,
+	stakeWrapper,
+	web3Wrapper
+} from './wrappers';
 
 test('Web3Wrapper', () => {
 	expect(web3Wrapper).toBeTruthy();
@@ -41,4 +54,9 @@ test('EsplanadeWrapper', () => {
 test('MagiWrapper', () => {
 	expect(magiWrapper).toMatchSnapshot();
 	expect((MagiWrapper as any).mock.calls).toMatchSnapshot();
+});
+
+test('StakeContractWrapper', () => {
+	expect(stakeWrapper).toMatchSnapshot();
+	expect((StakeContractWrapper as any).mock.calls).toMatchSnapshot();
 });

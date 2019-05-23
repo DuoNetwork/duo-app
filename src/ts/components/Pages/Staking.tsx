@@ -8,11 +8,13 @@ import { SContent } from '../_styled';
 
 interface IProps {
 	account: string;
-	duoBalance: number
+	duoBalance: number;
+	subscribe: () => any;
 }
 
 export default class Staking extends React.Component<IProps> {
 	public componentDidMount() {
+		this.props.subscribe();
 		document.title = 'DUO | Staking';
 	}
 
