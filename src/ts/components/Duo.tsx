@@ -2,12 +2,12 @@ import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import * as React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { dualClassWrappers } from 'ts/common/wrappers';
-import Staking from 'ts/components/Pages/Staking';
 import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
 import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
 import Esplanade from 'ts/containers/Pages/EsplanadeCointainer';
 import MagiAdmin from 'ts/containers/Pages/MagiAdminContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
+import Staking from 'ts/containers/Pages/StakingContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
 

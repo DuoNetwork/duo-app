@@ -514,7 +514,7 @@ export const SCardTag2 = styled.div`
 	}
 `;
 export const SCardTag3 = styled.div`
-	height: 80px;
+	height: 90px;
 	width: 180px;
 	position: relative;
 	margin-top: 10px;
@@ -559,6 +559,7 @@ export const SCardTag3 = styled.div`
 		width: 180px;
 		margin-left: 10px;
 		.tag-subtext {
+			margin-top: 8px;
 			font-size: 18px;
 			display: flex;
 			flex-direction: row;
@@ -634,10 +635,10 @@ export const SStakingButtonM = styled.div`
 	}
 	transition: all .3s;
 	width: 100%;
-	height: 34px;
-	border-radius: 17px;
+	height: 26px;
+	border-radius: 13px;
 	font-size: 14px;
-	line-height: 34px;
+	line-height: 26px;
 	font-weight: 500;
 	color: white;
 	border: 1px solid #FF5E5E;
@@ -652,10 +653,10 @@ export const SStakingButtonF = styled.div`
 	}
 	transition: all .3s;
 	width: 100%;
-	height: 34px;
-	border-radius: 17px;
+	height: 26px;
+	border-radius: 13px;
 	font-size: 14px;
-	line-height: 34px;
+	line-height: 26px;
 	font-weight: 500;
 	color: #FC7676;
 	border: 1px solid #FC7676;
@@ -663,6 +664,21 @@ export const SStakingButtonF = styled.div`
 	text-align: center;
 	cursor: pointer;
 `;
+export const SStakingInput = styled.input`
+ 	&::placeholder {
+		font-size: 12px;
+		color: rgba(0,0,0,.3);
+	}
+	&:focus {
+		box-shadow: 0 0 0 2px rgba(125, 196, 252, .8)
+	}
+	font-size: 12px;
+	padding-left: 5px;
+	outline: none;
+	border: 1px solid rgba(180,180,180,1);
+	border-radius: 3px;
+`;
+
 export interface ICardAssetTagProps {
 	mobile?: boolean;
 	value?: number;

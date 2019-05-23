@@ -7,7 +7,7 @@
 import * as d3 from 'd3';
 import * as React from 'react';
 //import * as CST from 'ts/common/constants';
-import { SCard, SCardTag3, SCardTitle, SStakingButtonF, SStakingButtonM } from './_styled';
+import { SCard, SCardTag3, SCardTitle, SStakingButtonF, SStakingButtonM, SStakingInput } from './_styled';
 
 interface IProps {
 	title: string;
@@ -40,7 +40,8 @@ export default class AdminCard extends React.Component<IProps> {
 									fontSize: 28,
 									fontWeight: 500,
 									color: '#5CA4DE',
-									textAlign: 'right'
+									textAlign: 'right',
+									paddingTop: 8
 								}}
 							>
 								{d3.format(',.0f')(poolSize)}
@@ -61,7 +62,8 @@ export default class AdminCard extends React.Component<IProps> {
 									fontSize: 28,
 									fontWeight: 500,
 									color: '#FF7A00',
-									textAlign: 'right'
+									textAlign: 'right',
+									paddingTop: 8
 								}}
 							>
 								{d3.format(',.2%')(estReturn)}
@@ -81,7 +83,8 @@ export default class AdminCard extends React.Component<IProps> {
 									fontSize: 28,
 									fontWeight: 500,
 									color: '#042F5C',
-									textAlign: 'right'
+									textAlign: 'right',
+									paddingTop: 8
 								}}
 							>
 								{d3.format(',.0f')(myStake)}
@@ -102,7 +105,8 @@ export default class AdminCard extends React.Component<IProps> {
 									fontSize: 28,
 									fontWeight: 500,
 									color: '#042F5C',
-									textAlign: 'right'
+									textAlign: 'right',
+									paddingTop: 8
 								}}
 							>
 								{d3.format(',.0f')(myReward)}
@@ -110,8 +114,11 @@ export default class AdminCard extends React.Component<IProps> {
 							</div>
 						</div>
 					</SCardTag3>
-					<div style={{width: 145, marginTop: 10, height: 80, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-						<SStakingButtonM>Join Node</SStakingButtonM>
+					<div style={{width: 145, marginTop: 10, height: 90, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+						<div style={{width: '100%', height: 60, display: 'flex', flexDirection: 'column', justifyContent: 'space-between', border: '1px dashed rgba(0,0,0,.2)', padding: 2}}>
+							<SStakingInput placeholder="Input stake number"/>
+							<SStakingButtonM>Join Node</SStakingButtonM>
+						</div>
 						<SStakingButtonF>Unstake</SStakingButtonF>
 					</div>
 				</div>
