@@ -8,6 +8,7 @@ import { SContent } from '../_styled';
 
 interface IProps {
 	account: string;
+	duoBalance: number
 }
 
 export default class Staking extends React.Component<IProps> {
@@ -16,12 +17,12 @@ export default class Staking extends React.Component<IProps> {
 	}
 
 	public render() {
-		const {account} = this.props
+		const {account, duoBalance} = this.props
 		return (
 			<Layout>
 				<Header />
 				<SContent>
-					<StakingPersonalCard address={account} duoBalance={45768}/>
+					<StakingPersonalCard address={account} duoBalance={duoBalance}/>
 					<StakingNodeCard title={'Staking Node 1'} poolSize={142189} estReturn={0.494} myStake={6150} />
 					<StakingNodeCard title={'Staking Node 2'} poolSize={132120} estReturn={0.518} myStake={0} />
 					<StakingNodeCard title={'Staking Node 3'} poolSize={168270} estReturn={0.453} myStake={2000} />

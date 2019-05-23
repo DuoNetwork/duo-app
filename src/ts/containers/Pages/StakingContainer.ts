@@ -12,6 +12,7 @@ import Staking from 'ts/components/Pages/Staking';
 function mapStateToProps(state: IState) {
 	return {
 		account: state.web3.account,
+		duoBalance: state.dualClass.balances.duo
 	};
 }
 

@@ -30,12 +30,13 @@ export function getStates(): VoidThunkAction {
 	};
 }
 
-export function balancesUpdate(a: number, b: number) {
+export function balancesUpdate(a: number, b: number, duo: number) {
 	return {
 		type: CST.AC_DCC_BALANCES,
 		value: {
 			a: a,
-			b: b
+			b: b,
+			duo: duo
 		}
 	};
 }
@@ -59,7 +60,11 @@ export function getBalances(): VoidThunkAction {
 			bToken.address,
 			account
 		);
-		dispatch(balancesUpdate(aBalance, bBalance));
+		const duoBalance = await dualClassWrapper.web3Wrapper.getErc20Balance(
+			'0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355',
+			account
+		);
+		dispatch(balancesUpdate(aBalance, bBalance, duoBalance));
 	};
 }
 
