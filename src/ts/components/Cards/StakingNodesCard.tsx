@@ -3,6 +3,7 @@
 // 	ICustodianAddresses,
 // 	IDualClassStates
 // } from '@finbook/duo-contract-wrapper';
+import { IStakeLot, Web3Wrapper } from '@finbook/duo-contract-wrapper';
 //import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
@@ -22,7 +23,7 @@ interface IProps {
 	poolSize: number;
 	estReturn: number;
 	myDUO: number;
-	myStake: number;
+	myStake: { [key: string]: IStakeLot[] };
 	myAddr: string;
 	oracleAddr: string;
 }
@@ -48,11 +49,10 @@ export default class AdminCard extends React.Component<IProps, IState> {
 	private handleStake = async () => {
 		const { myAddr, oracleAddr, myDUO } = this.props;
 		const { inputValue } = this.state;
-		console.log('Stake Params-------------')
-		console.log(myAddr)
-		console.log(oracleAddr)
 		if (inputValue <= myDUO) {
-			const txHash = await stakeWrapper.stake(myAddr, oracleAddr, inputValue, {gasLimit: 100000});
+			const txHash = await stakeWrapper.stake(myAddr, oracleAddr, inputValue, {
+				gasLimit: 1000000
+			});
 			this.setState({ inputText: '', inputValue: 0 });
 			console.log('Transaction submit: ' + txHash);
 		} else {
@@ -60,10 +60,23 @@ export default class AdminCard extends React.Component<IProps, IState> {
 			this.setState({ inputText: '', inputValue: 0 });
 		}
 	};
+	private handleUnstake = async () => {
+		const { myAddr, oracleAddr } = this.props;
+		const txHash = await stakeWrapper.unstake(myAddr, oracleAddr, {
+			gasLimit: 1000000
+		});
+		console.log('Transaction submit: ' + txHash);
+	};
 	public render() {
-		const { title, poolSize, estReturn, myStake } = this.props;
+		const { title, poolSize, estReturn, myStake, oracleAddr } = this.props;
 		const { inputText } = this.state;
-		const myReward = myStake * estReturn;
+		const myStakeList = myStake[oracleAddr];
+		let myAccStake = 0;
+		if (myStakeList)
+			myStakeList.forEach(result => {
+				myAccStake += Web3Wrapper.fromWei((result as any)['amtInWei']);
+			});
+		const myReward = myAccStake * estReturn;
 		return (
 			<SCard
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
@@ -131,7 +144,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 									paddingTop: 8
 								}}
 							>
-								{d3.format(',.0f')(myStake)}
+								{d3.format(',.0f')(myAccStake)}
 								<span style={{ fontSize: 10, marginLeft: 5 }}>duo</span>
 							</div>
 						</div>
@@ -186,7 +199,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 							/>
 							<SStakingButtonM onClick={this.handleStake}>Join Node</SStakingButtonM>
 						</div>
-						<SStakingButtonF>Unstake</SStakingButtonF>
+						<SStakingButtonF onClick={this.handleUnstake}>Unstake</SStakingButtonF>
 					</div>
 				</div>
 			</SCard>

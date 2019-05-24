@@ -130,6 +130,7 @@ Object {
       "priceFeedList": Array [],
     },
     "duo": 0,
+    "oracleStake": Object {},
     "states": Object {
       "canStake": false,
       "canUnstake": false,

@@ -22,14 +22,12 @@ export default class Staking extends React.Component<IProps> {
 
 	private handleStake = async (operator: boolean) => {
 		const { account } = this.props;
-		const txHash = operator ? await stakeWrapper.enableStakingAndUnstaking(account, {gasLimit: 100000}) : await stakeWrapper.disableStakingAndUnstaking(account, {gasLimit: 100000})
+		const txHash = operator ? await stakeWrapper.enableStakingAndUnstaking(account, {gasLimit: 100000}) : await stakeWrapper.disableStakingAndUnstaking(account, {gasLimit: 1000000})
 		console.log(txHash);
 	};
 
 	public render() {
-		const { addresses, contractStates } = this.props;
-		console.log(addresses);
-		console.log(addresses.priceFeedList);
+		const { contractStates } = this.props;
 		return (
 			<Layout>
 				<Header />

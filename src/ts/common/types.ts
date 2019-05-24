@@ -58,7 +58,8 @@ export interface IStakeState {
 	readonly duo: number;
 	readonly subscription: number;
 	readonly addresses: IStakeAddress;
-	readonly userStake: { [key: string]: IStakeLot[] }
+	readonly userStake: { [key: string]: IStakeLot[] };
+	readonly oracleStake: { [key: string]: number };
 }
 
 export interface IEsplanadeState {

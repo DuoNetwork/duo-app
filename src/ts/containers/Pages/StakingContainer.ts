@@ -14,7 +14,8 @@ function mapStateToProps(state: IState) {
 		account: state.web3.account,
 		duoBalance: state.stake.duo,
 		addresses: state.stake.addresses,
-		userStakes: state.stake.userStake
+		userStakes: state.stake.userStake,
+		oracleStakes: state.stake.oracleStake
 	};
 }
 

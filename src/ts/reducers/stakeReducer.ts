@@ -18,7 +18,8 @@ export const initialState: IStakeState = {
 		priceFeedList: []
 	},
 	subscription: 0,
-	userStake: {}
+	userStake: {},
+	oracleStake: {}
 };
 
 export function stakeReducer(state: IStakeState = initialState, action: AnyAction): IStakeState {
@@ -42,6 +43,10 @@ export function stakeReducer(state: IStakeState = initialState, action: AnyActio
 		case CST.AC_STK_USERSTAKE:
 			return Object.assign({}, state, {
 				userStake: action.value
+			});
+		case CST.AC_STK_ORACLESTAKE:
+			return Object.assign({}, state, {
+				oracleStake: action.value
 			});
 		default:
 			return state;

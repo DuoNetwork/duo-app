@@ -15,7 +15,6 @@ export function statesUpdate(states: IStakeStates) {
 export function getStates(): VoidThunkAction {
 	return async dispatch => {
 		const states = await stakeWrapper.getStates();
-		console.log(states)
 		dispatch(statesUpdate(states));
 	};
 }
@@ -62,8 +61,26 @@ export function userStakeUpdate(userStake: { [key: string]: IStakeLot[] }) {
 export function getUserStake(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		const userStake = await stakeWrapper.getUserStakes(account)
+		const pfList = await stakeWrapper.getPfList()
+		const userStake = await stakeWrapper.getUserStakes(account, pfList)
 		dispatch(userStakeUpdate(userStake));
+	};
+}
+
+export function oracleStakeUpdate(oracleStake: { [key: string]: number }) {
+	return {
+		type: CST.AC_STK_ORACLESTAKE,
+		value: oracleStake
+	};
+}
+
+export function getOracleStake(): VoidThunkAction {
+	return async (dispatch) => {
+		console.log("Getting Oracle Stakes **************")
+		const oracleStake = await stakeWrapper.getOracleStakes()
+		console.log("Oracle Stakes **************")
+		console.log(oracleStake)
+		dispatch(oracleStakeUpdate(oracleStake));
 	};
 }
 
@@ -75,12 +92,12 @@ export function subscriptionUpdate(intervalId: number) {
 }
 
 export function refresh(): VoidThunkAction {
-	console.log('sub to stake contract');
 	return async dispatch => {
 		await dispatch(getStates());
 		dispatch(getBalances());
 		dispatch(getAddresses());
 		dispatch(getUserStake());
+		dispatch(getOracleStake());
 
 	};
 }
@@ -89,7 +106,7 @@ export function subscribe(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
 		dispatch(refresh());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 10000)));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 30000)));
 	};
 }
 
@@ -104,6 +121,6 @@ export function subscribeAdmin(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
 		dispatch(refreshAdmin());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 10000)));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 30000)));
 	};
 }

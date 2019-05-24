@@ -11,7 +11,8 @@ interface IProps {
 	account: string;
 	duoBalance: number;
 	addresses: IStakeAddress;
-	userStakes: { [key: string]: IStakeLot[] }
+	userStakes: { [key: string]: IStakeLot[] };
+	oracleStakes: { [key: string]: number };
 	subscribe: () => any;
 }
 
@@ -27,7 +28,6 @@ export default class Staking extends React.Component<IProps> {
 		console.log(addresses.priceFeedList);
 		console.log("********userStakes");
 		console.log(userStakes);
-		console.log("********userStakes");
 		return (
 			<Layout>
 				<Header />
@@ -41,7 +41,7 @@ export default class Staking extends React.Component<IProps> {
 								poolSize={0}
 								estReturn={0}
 								myDUO={duoBalance}
-								myStake={0}
+								myStake={userStakes}
 								myAddr={account}
 								oracleAddr={addr}
 							/>
