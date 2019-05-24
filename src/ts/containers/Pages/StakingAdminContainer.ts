@@ -7,14 +7,14 @@ import * as stakeActions from 'ts/actions/stakeActions';
 import { IState } from 'ts/common/types';
 //import { web3Wrapper } from 'ts/common/wrappers';
 //import util from 'ts/common/util';
-import Staking from 'ts/components/Pages/Staking';
+import StakingAdmin from 'ts/components/Pages/StakingAdmin';
 
 function mapStateToProps(state: IState) {
 	return {
 		account: state.web3.account,
 		duoBalance: state.stake.duo,
 		addresses: state.stake.addresses,
-		userStakes: state.stake.userStake
+		contractStates: state.stake.states
 	};
 }
 
@@ -28,4 +28,4 @@ function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(Staking);
+)(StakingAdmin);

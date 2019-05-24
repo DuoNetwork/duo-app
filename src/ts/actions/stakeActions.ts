@@ -1,4 +1,4 @@
-import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
+import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wrapper';
 //import moment from 'moment';
 import * as CST from 'ts/common/constants';
 import { VoidThunkAction } from 'ts/common/types';
@@ -13,9 +13,9 @@ export function statesUpdate(states: IStakeStates) {
 }
 
 export function getStates(): VoidThunkAction {
-	console.log('get State')
 	return async dispatch => {
 		const states = await stakeWrapper.getStates();
+		console.log(states)
 		dispatch(statesUpdate(states));
 	};
 }
@@ -29,14 +29,11 @@ export function balancesUpdate(duo: number) {
 
 export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		console.log('get Balance');
 		const account = getState().web3.account;
-		console.log(account)
 		const duoBalance = await web3Wrapper.getErc20Balance(
 			web3Wrapper.contractAddresses.DUO,
 			account
 		);
-		console.log(duoBalance);
 		dispatch(balancesUpdate(duoBalance));
 	};
 }
@@ -51,9 +48,22 @@ export function addressesUpdate(addr: IStakeAddress) {
 export function getAddresses(): VoidThunkAction {
 	return async dispatch => {
 		const addr = await stakeWrapper.getAddresses();
-		console.log("Get Addresses*********")
-		console.log(addr)
 		dispatch(addressesUpdate(addr))
+	};
+}
+
+export function userStakeUpdate(userStake: { [key: string]: IStakeLot[] }) {
+	return {
+		type: CST.AC_STK_USERSTAKE,
+		value: userStake
+	};
+}
+
+export function getUserStake(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		const account = getState().web3.account;
+		const userStake = await stakeWrapper.getUserStakes(account)
+		dispatch(userStakeUpdate(userStake));
 	};
 }
 
@@ -65,11 +75,12 @@ export function subscriptionUpdate(intervalId: number) {
 }
 
 export function refresh(): VoidThunkAction {
-	console.log('sub to stake');
+	console.log('sub to stake contract');
 	return async dispatch => {
 		await dispatch(getStates());
 		dispatch(getBalances());
 		dispatch(getAddresses());
+		dispatch(getUserStake());
 
 	};
 }
@@ -78,7 +89,7 @@ export function subscribe(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
 		dispatch(refresh());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 60000)));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 10000)));
 	};
 }
 
@@ -93,6 +104,6 @@ export function subscribeAdmin(): VoidThunkAction {
 	return async dispatch => {
 		dispatch(subscriptionUpdate(0));
 		dispatch(refreshAdmin());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 60000)));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 10000)));
 	};
 }

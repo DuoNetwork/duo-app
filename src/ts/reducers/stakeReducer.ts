@@ -15,15 +15,13 @@ export const initialState: IStakeState = {
 	duo: 0,
 	addresses: {
 		operator: WrapperConstants.DUMMY_ADDR,
-		priceFeedList: [],
+		priceFeedList: []
 	},
 	subscription: 0,
+	userStake: {}
 };
 
-export function stakeReducer(
-	state: IStakeState = initialState,
-	action: AnyAction
-): IStakeState {
+export function stakeReducer(state: IStakeState = initialState, action: AnyAction): IStakeState {
 	switch (action.type) {
 		case CST.AC_STK_STATES:
 			return Object.assign({}, state, {
@@ -40,6 +38,10 @@ export function stakeReducer(
 		case CST.AC_STK_SUB:
 			return Object.assign({}, state, {
 				subscription: action.id
+			});
+		case CST.AC_STK_USERSTAKE:
+			return Object.assign({}, state, {
+				userStake: action.value
 			});
 		default:
 			return state;

@@ -139,6 +139,7 @@ Object {
       "totalAwardsToDistribute": 0,
     },
     "subscription": 0,
+    "userStake": Object {},
   },
   "ui": Object {
     "locale": "EN",

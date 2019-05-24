@@ -7,6 +7,7 @@ import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianC
 import Esplanade from 'ts/containers/Pages/EsplanadeCointainer';
 import MagiAdmin from 'ts/containers/Pages/MagiAdminContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
+import StakingAdmin from 'ts/containers/Pages/StakingAdminContainer';
 import Staking from 'ts/containers/Pages/StakingContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
@@ -71,6 +72,7 @@ export default class Duo extends React.Component {
 					<Route path={'/magi'} render={() => <Magi />} />
 					<Route path={'/status'} render={() => <Status />} />
 					<Route path={'/staking'} render={() => <Staking />} />
+					<Route path={'/stakingadmin'} render={() => <StakingAdmin />} />
 					<Route render={() => <Home />} />
 				</Switch>
 			</div>

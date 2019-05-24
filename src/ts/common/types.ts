@@ -4,6 +4,7 @@ import {
 	IEsplanadeStates,
 	IMagiStates,
 	IStakeAddress,
+	IStakeLot,
 	IStakeStates,
 	IVotingData
 } from '@finbook/duo-contract-wrapper';
@@ -57,6 +58,7 @@ export interface IStakeState {
 	readonly duo: number;
 	readonly subscription: number;
 	readonly addresses: IStakeAddress;
+	readonly userStake: { [key: string]: IStakeLot[] }
 }
 
 export interface IEsplanadeState {

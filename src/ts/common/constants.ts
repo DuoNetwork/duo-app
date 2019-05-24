@@ -28,6 +28,7 @@ export const AC_STK_BALANCE = 'stakeBalance';
 export const AC_STK_STATES = 'stakeStates';
 export const AC_STK_ADDRESSES = 'stakeAddresses';
 export const AC_STK_SUB = 'stakeSubscription';
+export const AC_STK_USERSTAKE = 'userStake';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';

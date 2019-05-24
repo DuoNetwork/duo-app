@@ -1,4 +1,5 @@
 //import { IStatus } from '@finbook/duo-market-data';
+import { IStakeAddress, IStakeLot } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
 import StakingNodeCard from 'ts/components/Cards/StakingNodesCard';
@@ -9,6 +10,8 @@ import { SContent } from '../_styled';
 interface IProps {
 	account: string;
 	duoBalance: number;
+	addresses: IStakeAddress;
+	userStakes: { [key: string]: IStakeLot[] }
 	subscribe: () => any;
 }
 
@@ -19,15 +22,47 @@ export default class Staking extends React.Component<IProps> {
 	}
 
 	public render() {
-		const {account, duoBalance} = this.props
+		const { account, duoBalance, addresses, userStakes } = this.props;
+		console.log(addresses);
+		console.log(addresses.priceFeedList);
+		console.log("********userStakes");
+		console.log(userStakes);
+		console.log("********userStakes");
 		return (
 			<Layout>
 				<Header />
 				<SContent>
-					<StakingPersonalCard address={account} duoBalance={duoBalance}/>
-					<StakingNodeCard title={'Staking Node 1'} poolSize={142189} estReturn={0.494} myStake={6150} />
-					<StakingNodeCard title={'Staking Node 2'} poolSize={132120} estReturn={0.518} myStake={0} />
-					<StakingNodeCard title={'Staking Node 3'} poolSize={168270} estReturn={0.453} myStake={2000} />
+					<StakingPersonalCard address={account} duoBalance={duoBalance} />
+					{addresses.priceFeedList.length ? (
+						addresses.priceFeedList.map((addr, i) => (
+							<StakingNodeCard
+								title={'Staking Node ' + (i + 1)}
+								key={i}
+								poolSize={0}
+								estReturn={0}
+								myDUO={duoBalance}
+								myStake={0}
+								myAddr={account}
+								oracleAddr={addr}
+							/>
+						))
+					) : (
+						<div
+							style={{
+								width: 960,
+								height: 150,
+								display: 'flex',
+								justifyContent: 'center',
+								alignItems: 'center',
+								border: '1px dashed rgba(0,0,0,.3)',
+								borderRadius: 4,
+								fontSize: 16,
+								color: 'rgba(0,0,0,.6)'
+							}}
+						>
+							Loading Nodes...
+						</div>
+					)}
 				</SContent>
 			</Layout>
 		);
