@@ -20,12 +20,12 @@ import {
 
 interface IProps {
 	title: string;
-	poolSize: number;
 	estReturn: number;
 	myDUO: number;
 	myStake: { [key: string]: IStakeLot[] };
 	myAddr: string;
 	oracleAddr: string;
+	oracleStakes: { [key: string]: number };
 }
 
 interface IState {
@@ -68,7 +68,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 		console.log('Transaction submit: ' + txHash);
 	};
 	public render() {
-		const { title, poolSize, estReturn, myStake, oracleAddr } = this.props;
+		const { title, estReturn, myStake, oracleAddr, oracleStakes } = this.props;
 		const { inputText } = this.state;
 		const myStakeList = myStake[oracleAddr];
 		let myAccStake = 0;
@@ -101,8 +101,8 @@ export default class AdminCard extends React.Component<IProps, IState> {
 									paddingTop: 8
 								}}
 							>
-								{d3.format(',.0f')(poolSize)}
-								<span style={{ fontSize: 10, marginLeft: 5 }}>duo</span>
+								{d3.format(',.0f')(oracleStakes[oracleAddr])}
+								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 							</div>
 						</div>
 					</SCardTag3>
@@ -124,6 +124,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 								}}
 							>
 								{d3.format(',.2%')(estReturn)}
+								<span style={{ fontSize: 10, marginLeft: 5 }}>p.a.</span>
 							</div>
 						</div>
 					</SCardTag3>
@@ -145,7 +146,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 								}}
 							>
 								{d3.format(',.0f')(myAccStake)}
-								<span style={{ fontSize: 10, marginLeft: 5 }}>duo</span>
+								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 							</div>
 						</div>
 					</SCardTag3>
@@ -167,7 +168,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 								}}
 							>
 								{d3.format(',.0f')(myReward)}
-								<span style={{ fontSize: 10, marginLeft: 5 }}>duo</span>
+								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 							</div>
 						</div>
 					</SCardTag3>
@@ -193,7 +194,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 							}}
 						>
 							<SStakingInput
-								placeholder="Input stake number"
+								placeholder="Input staking amount"
 								value={inputText}
 								onChange={e => this.handleInputChange(e.target.value)}
 							/>

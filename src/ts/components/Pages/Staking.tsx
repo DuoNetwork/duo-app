@@ -2,6 +2,7 @@
 import { IStakeAddress, IStakeLot } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
+import * as CST from 'ts/common/constants';
 import StakingNodeCard from 'ts/components/Cards/StakingNodesCard';
 import StakingPersonalCard from 'ts/components/Cards/StakingPersonalCard';
 import Header from 'ts/containers/HeaderContainer';
@@ -23,11 +24,7 @@ export default class Staking extends React.Component<IProps> {
 	}
 
 	public render() {
-		const { account, duoBalance, addresses, userStakes } = this.props;
-		console.log(addresses);
-		console.log(addresses.priceFeedList);
-		console.log("********userStakes");
-		console.log(userStakes);
+		const { account, duoBalance, addresses, userStakes, oracleStakes } = this.props;
 		return (
 			<Layout>
 				<Header />
@@ -36,14 +33,14 @@ export default class Staking extends React.Component<IProps> {
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (
 							<StakingNodeCard
-								title={'Staking Node ' + (i + 1)}
+								title={'Priceing Node (' + CST.AC_STK_NODES[i] + ')'}
 								key={i}
-								poolSize={0}
 								estReturn={0}
 								myDUO={duoBalance}
 								myStake={userStakes}
 								myAddr={account}
 								oracleAddr={addr}
+								oracleStakes={oracleStakes}
 							/>
 						))
 					) : (

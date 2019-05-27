@@ -39,6 +39,8 @@ export const AC_UI_LOCALE = 'uiLocale';
 export const AC_UI_PERIOD = 'uiPeriod';
 export const AC_UI_SOURCE = 'uiSource';
 
+export const AC_STK_NODES = ["Azure", "AWS", "GCP"];
+
 export const TH_POOL_ADDRESS = 'Pool Address';
 export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
 export const TH_ADD_OTHER_CONTRACT = 'ADD OTHER CONTRACT';
