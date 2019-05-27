@@ -153,7 +153,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								My Reward
+								Est Reward
 							</div>
 						</div>
 						<div className="tag-subtext">

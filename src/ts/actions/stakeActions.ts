@@ -47,7 +47,7 @@ export function addressesUpdate(addr: IStakeAddress) {
 export function getAddresses(): VoidThunkAction {
 	return async dispatch => {
 		const addr = await stakeWrapper.getAddresses();
-		dispatch(addressesUpdate(addr))
+		dispatch(addressesUpdate(addr));
 	};
 }
 
@@ -61,8 +61,8 @@ export function userStakeUpdate(userStake: { [key: string]: IStakeLot[] }) {
 export function getUserStake(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		const pfList = await stakeWrapper.getPfList()
-		const userStake = await stakeWrapper.getUserStakes(account, pfList)
+		const pfList = await stakeWrapper.getPfList();
+		const userStake = await stakeWrapper.getUserStakes(account, pfList);
 		dispatch(userStakeUpdate(userStake));
 	};
 }
@@ -75,12 +75,26 @@ export function oracleStakeUpdate(oracleStake: { [key: string]: number }) {
 }
 
 export function getOracleStake(): VoidThunkAction {
-	return async (dispatch) => {
-		console.log("Getting Oracle Stakes **************")
-		const oracleStake = await stakeWrapper.getOracleStakes()
-		console.log("Oracle Stakes **************")
-		console.log(oracleStake)
+	return async dispatch => {
+		const oracleStake = await stakeWrapper.getOracleStakes();
 		dispatch(oracleStakeUpdate(oracleStake));
+	};
+}
+
+export function userAwardUpdate(userAward: number) {
+	return {
+		type: CST.AC_STK_AWARD,
+		value: userAward
+	};
+}
+
+export function getUserAward(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		console.log('Getting Award');
+		const account = getState().web3.account;
+		const userAward = await stakeWrapper.getUserAward(account);
+		console.log('User award: ' + userAward);
+		dispatch(userAwardUpdate(userAward));
 	};
 }
 
@@ -98,7 +112,7 @@ export function refresh(): VoidThunkAction {
 		dispatch(getAddresses());
 		dispatch(getUserStake());
 		dispatch(getOracleStake());
-
+		dispatch(getUserAward());
 	};
 }
 

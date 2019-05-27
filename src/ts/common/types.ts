@@ -60,6 +60,7 @@ export interface IStakeState {
 	readonly addresses: IStakeAddress;
 	readonly userStake: { [key: string]: IStakeLot[] };
 	readonly oracleStake: { [key: string]: number };
+	readonly userAward: number;
 }
 
 export interface IEsplanadeState {

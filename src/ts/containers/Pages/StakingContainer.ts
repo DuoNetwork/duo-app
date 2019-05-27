@@ -11,18 +11,19 @@ import Staking from 'ts/components/Pages/Staking';
 
 function mapStateToProps(state: IState) {
 	return {
+		contractStates: state.stake.states,
 		account: state.web3.account,
 		duoBalance: state.stake.duo,
 		addresses: state.stake.addresses,
 		userStakes: state.stake.userStake,
-		oracleStakes: state.stake.oracleStake
+		oracleStakes: state.stake.oracleStake,
+		userAward: state.stake.userAward
 	};
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () =>
-			dispatch(stakeActions.subscribe())
+		subscribe: () => dispatch(stakeActions.subscribe())
 	};
 }
 

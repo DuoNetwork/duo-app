@@ -98,6 +98,7 @@
 		"@finbook/duo-market-data": "^1.0.4",
 		"antd": "^3.13.0",
 		"d3": "^5.8.0",
+		"ethereumjs-abi": "^0.6.7",
 		"isomorphic-ws": "^4.0.1",
 		"lodash": "^4.17.11",
 		"moment": "^2.24.0",

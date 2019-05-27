@@ -140,6 +140,7 @@ Object {
       "totalAwardsToDistribute": 0,
     },
     "subscription": 0,
+    "userAward": 0,
     "userStake": Object {},
   },
   "ui": Object {

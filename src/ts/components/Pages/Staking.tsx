@@ -1,5 +1,5 @@
 //import { IStatus } from '@finbook/duo-market-data';
-import { IStakeAddress, IStakeLot } from '@finbook/duo-contract-wrapper';
+import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
@@ -9,11 +9,13 @@ import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 
 interface IProps {
+	contractStates: IStakeStates;
 	account: string;
 	duoBalance: number;
 	addresses: IStakeAddress;
 	userStakes: { [key: string]: IStakeLot[] };
 	oracleStakes: { [key: string]: number };
+	userAward: number;
 	subscribe: () => any;
 }
 
@@ -24,12 +26,25 @@ export default class Staking extends React.Component<IProps> {
 	}
 
 	public render() {
-		const { account, duoBalance, addresses, userStakes, oracleStakes } = this.props;
+		const {
+			contractStates,
+			account,
+			duoBalance,
+			addresses,
+			userStakes,
+			oracleStakes,
+			userAward
+		} = this.props;
 		return (
 			<Layout>
 				<Header />
 				<SContent>
-					<StakingPersonalCard address={account} duoBalance={duoBalance} />
+					<StakingPersonalCard
+						enabled={contractStates.canStake}
+						address={account}
+						duoBalance={duoBalance}
+						award={userAward}
+					/>
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (
 							<StakingNodeCard
