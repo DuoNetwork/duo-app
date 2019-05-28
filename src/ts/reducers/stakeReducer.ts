@@ -9,7 +9,7 @@ export const initialState: IStakeState = {
 		canUnstake: false,
 		lockMinTimeInSecond: 0,
 		minStakeAmt: 0,
-		maxStakePerPf: 0,
+		maxStakePerOracle: 0,
 		totalAwardsToDistribute: 0
 	},
 	duo: 0,

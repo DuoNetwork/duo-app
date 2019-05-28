@@ -124,7 +124,9 @@ export default class AdminCard extends React.Component<IProps> {
 					>
 						<SStakingButtonM onClick={this.handleApprove}>Approve DUO</SStakingButtonM>
 						<SStakingButtonM
+							style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
 							onClick={() =>
+								enabled &&
 								stakeWrapper.claimAward(address, {
 									gasLimit: 1000000
 								})

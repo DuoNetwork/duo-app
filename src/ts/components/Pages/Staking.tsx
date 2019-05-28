@@ -48,6 +48,7 @@ export default class Staking extends React.Component<IProps> {
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (
 							<StakingNodeCard
+								enabled={contractStates.canStake}
 								title={'Priceing Node (' + CST.AC_STK_NODES[i] + ')'}
 								key={i}
 								estReturn={0}

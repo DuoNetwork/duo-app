@@ -19,6 +19,7 @@ import {
 } from './_styled';
 
 interface IProps {
+	enabled: boolean;
 	title: string;
 	estReturn: number;
 	myDUO: number;
@@ -68,10 +69,11 @@ export default class AdminCard extends React.Component<IProps, IState> {
 		console.log('Transaction submit: ' + txHash);
 	};
 	public render() {
-		const { title, estReturn, myStake, oracleAddr, oracleStakes } = this.props;
+		const { enabled, title, estReturn, myStake, oracleAddr, oracleStakes } = this.props;
 		const { inputText } = this.state;
 		const myStakeList = myStake[oracleAddr];
 		let myAccStake = 0;
+		console.log(myStakeList);
 		if (myStakeList)
 			myStakeList.forEach(result => {
 				myAccStake += Web3Wrapper.fromWei((result as any)['amtInWei']);
@@ -198,9 +200,25 @@ export default class AdminCard extends React.Component<IProps, IState> {
 								value={inputText}
 								onChange={e => this.handleInputChange(e.target.value)}
 							/>
-							<SStakingButtonM onClick={this.handleStake}>Join Node</SStakingButtonM>
+							<SStakingButtonM
+								style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
+								onClick={() => enabled && this.handleStake()}
+							>
+								Join Node
+							</SStakingButtonM>
 						</div>
-						<SStakingButtonF onClick={this.handleUnstake}>Unstake</SStakingButtonF>
+						<SStakingButtonF
+							style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
+							onClick={() => enabled && this.handleUnstake()}
+						>
+							Unstake (
+							{myStakeList
+								? (myStakeList[0] as any)['amtInWei'] === '0'
+									? 0
+									: myStakeList.length
+								: 0}
+							)
+						</SStakingButtonF>
 					</div>
 				</div>
 			</SCard>

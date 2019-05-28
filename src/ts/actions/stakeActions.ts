@@ -61,7 +61,7 @@ export function userStakeUpdate(userStake: { [key: string]: IStakeLot[] }) {
 export function getUserStake(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		const pfList = await stakeWrapper.getPfList();
+		const pfList = await stakeWrapper.getOracleList();
 		const userStake = await stakeWrapper.getUserStakes(account, pfList);
 		dispatch(userStakeUpdate(userStake));
 	};
@@ -76,7 +76,8 @@ export function oracleStakeUpdate(oracleStake: { [key: string]: number }) {
 
 export function getOracleStake(): VoidThunkAction {
 	return async dispatch => {
-		const oracleStake = await stakeWrapper.getOracleStakes();
+		const addr = await stakeWrapper.getAddresses();
+		const oracleStake = await stakeWrapper.getOracleStakes(addr.priceFeedList);
 		dispatch(oracleStakeUpdate(oracleStake));
 	};
 }
@@ -90,10 +91,8 @@ export function userAwardUpdate(userAward: number) {
 
 export function getUserAward(): VoidThunkAction {
 	return async (dispatch, getState) => {
-		console.log('Getting Award');
 		const account = getState().web3.account;
 		const userAward = await stakeWrapper.getUserAward(account);
-		console.log('User award: ' + userAward);
 		dispatch(userAwardUpdate(userAward));
 	};
 }

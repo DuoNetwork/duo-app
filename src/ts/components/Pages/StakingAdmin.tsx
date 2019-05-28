@@ -90,7 +90,7 @@ export default class Staking extends React.Component<IProps, IState> {
 							MinStakeAmt: <b>{contractStates.minStakeAmt}</b>
 						</div>
 						<div>
-							MaxStakePerPf: <b>{contractStates.maxStakePerPf}</b>
+							MaxStakePerPf: <b>{contractStates.maxStakePerOracle}</b>
 						</div>
 						<div>
 							TotalAwardsToDistribute: <b>{contractStates.totalAwardsToDistribute}</b>

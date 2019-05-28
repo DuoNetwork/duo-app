@@ -135,7 +135,7 @@ Object {
       "canStake": false,
       "canUnstake": false,
       "lockMinTimeInSecond": 0,
-      "maxStakePerPf": 0,
+      "maxStakePerOracle": 0,
       "minStakeAmt": 0,
       "totalAwardsToDistribute": 0,
     },
