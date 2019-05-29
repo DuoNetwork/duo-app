@@ -72,7 +72,6 @@ export default class AdminCard extends React.Component<IProps, IState> {
 		const { inputText } = this.state;
 		const myStakeList = myStake[oracleAddr];
 		let myAccStake = 0;
-		console.log(myStakeList);
 		if (myStakeList)
 			myStakeList.forEach(result => {
 				myAccStake += Web3Wrapper.fromWei((result as any)['amtInWei']);
@@ -105,7 +104,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 									paddingTop: 8
 								}}
 							>
-								{d3.format(',.0f')(oracleStakes[oracleAddr])}
+								{d3.format(',.0f')(oracleStakes[oracleAddr] || 0)}
 								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 							</div>
 						</div>
@@ -157,7 +156,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								Est Reward
+								Est Annual Reward
 							</div>
 						</div>
 						<div className="tag-subtext">
