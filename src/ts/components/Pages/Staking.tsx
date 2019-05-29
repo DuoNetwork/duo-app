@@ -51,7 +51,6 @@ export default class Staking extends React.Component<IProps> {
 								enabled={contractStates.canStake}
 								title={'Priceing Node (' + CST.AC_STK_NODES[i] + ')'}
 								key={i}
-								estReturn={0}
 								myDUO={duoBalance}
 								myStake={userStakes}
 								myAddr={account}

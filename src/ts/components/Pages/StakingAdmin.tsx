@@ -11,6 +11,7 @@ interface IProps {
 	duoBalance: number;
 	addresses: IStakeAddress;
 	contractStates: IStakeStates;
+	contractDUO: number;
 	subscribe: () => any;
 }
 
@@ -18,7 +19,7 @@ interface IState {
 	addr: string;
 	award: string;
 }
-export default class Staking extends React.Component<IProps, IState> {
+export default class StakingAdmin extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -26,6 +27,7 @@ export default class Staking extends React.Component<IProps, IState> {
 			award: ''
 		};
 	}
+	private inputRef = React.createRef<HTMLInputElement>();
 	public componentDidMount() {
 		this.props.subscribe();
 		document.title = 'DUO | Staking Admin';
@@ -51,8 +53,9 @@ export default class Staking extends React.Component<IProps, IState> {
 	};
 
 	public render() {
-		const { account, contractStates } = this.props;
+		const { account, contractStates, contractDUO } = this.props;
 		const { addr, award } = this.state;
+
 		return (
 			<Layout>
 				<Header />
@@ -95,6 +98,9 @@ export default class Staking extends React.Component<IProps, IState> {
 						<div>
 							TotalAwardsToDistribute: <b>{contractStates.totalAwardsToDistribute}</b>
 						</div>
+						<div>
+							Contract DUO Amount: <b>{contractDUO}</b>
+						</div>
 					</div>
 					<div
 						style={{
@@ -126,7 +132,8 @@ export default class Staking extends React.Component<IProps, IState> {
 							placeholder="address"
 							style={{
 								width: '100%',
-								marginBottom: 10
+								marginBottom: 10,
+								paddingLeft: 5
 							}}
 							value={addr}
 							onChange={e => this.handleAddr(e.target.value)}
@@ -135,7 +142,8 @@ export default class Staking extends React.Component<IProps, IState> {
 							placeholder="award amount"
 							style={{
 								width: '100%',
-								marginBottom: 10
+								marginBottom: 10,
+								paddingLeft: 5
 							}}
 							value={award}
 							onChange={e => this.handleAward(e.target.value)}
@@ -149,6 +157,37 @@ export default class Staking extends React.Component<IProps, IState> {
 						>
 							Update Award
 						</button>
+					</div>
+					<div
+						style={{
+							width: 400,
+							padding: 10,
+							border: '1px dashed rgba(0,0,0,.3)',
+							borderRadius: 4,
+							marginBottom: 20,
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center'
+						}}
+					>
+						<b
+							style={{
+								fontSize: 18,
+								marginBottom: 15
+							}}
+						>
+							Batch Add Award
+						</b>
+						<input
+							placeholder="imput csv"
+							style={{
+								width: '100%',
+								marginBottom: 10
+							}}
+							type="file"
+							ref={this.inputRef}
+						/>
+						<button>Upload CSV</button>
 					</div>
 				</SContent>
 			</Layout>

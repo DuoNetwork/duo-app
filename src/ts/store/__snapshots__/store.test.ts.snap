@@ -129,6 +129,7 @@ Object {
       "operator": "0x0",
       "priceFeedList": Array [],
     },
+    "contractDUO": 0,
     "duo": 0,
     "oracleStake": Object {},
     "states": Object {

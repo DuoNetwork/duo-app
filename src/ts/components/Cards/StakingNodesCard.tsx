@@ -21,7 +21,6 @@ import {
 interface IProps {
 	enabled: boolean;
 	title: string;
-	estReturn: number;
 	myDUO: number;
 	myStake: { [key: string]: IStakeLot[] };
 	myAddr: string;
@@ -69,7 +68,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 		console.log('Transaction submit: ' + txHash);
 	};
 	public render() {
-		const { enabled, title, estReturn, myStake, oracleAddr, oracleStakes } = this.props;
+		const { enabled, title, myStake, oracleAddr, oracleStakes } = this.props;
 		const { inputText } = this.state;
 		const myStakeList = myStake[oracleAddr];
 		let myAccStake = 0;
@@ -78,6 +77,9 @@ export default class AdminCard extends React.Component<IProps, IState> {
 			myStakeList.forEach(result => {
 				myAccStake += Web3Wrapper.fromWei((result as any)['amtInWei']);
 			});
+		const estReturn =
+			(3036 * Math.pow(2, Math.log(oracleStakes[oracleAddr]) / 2.3)) /
+				oracleStakes[oracleAddr] || 0;
 		const myReward = myAccStake * estReturn;
 		return (
 			<SCard
@@ -125,7 +127,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 									paddingTop: 8
 								}}
 							>
-								{d3.format(',.2%')(estReturn)}
+								{d3.format(',.0%')(estReturn)}
 								<span style={{ fontSize: 10, marginLeft: 5 }}>p.a.</span>
 							</div>
 						</div>

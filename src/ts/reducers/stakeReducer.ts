@@ -20,7 +20,8 @@ export const initialState: IStakeState = {
 	subscription: 0,
 	userStake: {},
 	oracleStake: {},
-	userAward: 0
+	userAward: 0,
+	contractDUO: 0
 };
 
 export function stakeReducer(state: IStakeState = initialState, action: AnyAction): IStakeState {
@@ -52,6 +53,10 @@ export function stakeReducer(state: IStakeState = initialState, action: AnyActio
 		case CST.AC_STK_AWARD:
 			return Object.assign({}, state, {
 				userAward: action.value
+			});
+		case CST.AC_STK_CONTRACTDUO:
+			return Object.assign({}, state, {
+				contractDUO: action.value
 			});
 		default:
 			return state;

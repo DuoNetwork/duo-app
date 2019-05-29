@@ -633,6 +633,7 @@ export const SStakingButtonM = styled.div`
 	&:hover {
 		background: #FF5E5E;
 	}
+	user-select: none;
 	transition: all .3s;
 	width: 100%;
 	height: 26px;
@@ -647,23 +648,24 @@ export const SStakingButtonM = styled.div`
 	cursor: pointer;
 `;
 export const SStakingButtonF = styled.div`
-	&:hover {
-		border: 1px solid #FF5E5E;
-		color: #FF5E5E;
-	}
-	transition: all .3s;
-	width: 100%;
-	height: 26px;
-	border-radius: 13px;
-	font-size: 14px;
-	line-height: 26px;
-	font-weight: 500;
-	color: #FC7676;
-	border: 1px solid #FC7676;
-	background: transparent;
-	text-align: center;
-	cursor: pointer;
-`;
+			&:hover {
+				border: 1px solid #ff5e5e;
+				color: #ff5e5e;
+			}
+			user-select: none;
+			transition: all 0.3s;
+			width: 100%;
+			height: 26px;
+			border-radius: 13px;
+			font-size: 14px;
+			line-height: 26px;
+			font-weight: 500;
+			color: #fc7676;
+			border: 1px solid #fc7676;
+			background: transparent;
+			text-align: center;
+			cursor: pointer;
+		`;
 export const SStakingInput = styled.input`
  	&::placeholder {
 		font-size: 12px;

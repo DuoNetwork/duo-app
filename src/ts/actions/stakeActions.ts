@@ -96,6 +96,22 @@ export function getUserAward(): VoidThunkAction {
 		dispatch(userAwardUpdate(userAward));
 	};
 }
+export function contractDUOUpdate(duoAmount: number) {
+	return {
+		type: CST.AC_STK_CONTRACTDUO,
+		value: duoAmount
+	};
+}
+
+export function gerContractDUO(): VoidThunkAction {
+	return async dispatch => {
+		const duoAmount = await web3Wrapper.getErc20Balance(
+			web3Wrapper.contractAddresses.DUO,
+			web3Wrapper.contractAddresses.Stake
+		);
+		dispatch(contractDUOUpdate(duoAmount));
+	};
+}
 
 export function subscriptionUpdate(intervalId: number) {
 	return {
@@ -112,6 +128,7 @@ export function refresh(): VoidThunkAction {
 		dispatch(getUserStake());
 		dispatch(getOracleStake());
 		dispatch(getUserAward());
+		dispatch(gerContractDUO());
 	};
 }
 

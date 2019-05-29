@@ -14,14 +14,14 @@ function mapStateToProps(state: IState) {
 		account: state.web3.account,
 		duoBalance: state.stake.duo,
 		addresses: state.stake.addresses,
-		contractStates: state.stake.states
+		contractStates: state.stake.states,
+		contractDUO: state.stake.contractDUO
 	};
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () =>
-			dispatch(stakeActions.subscribe())
+		subscribe: () => dispatch(stakeActions.subscribe())
 	};
 }
 
