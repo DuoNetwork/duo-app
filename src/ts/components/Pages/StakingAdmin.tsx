@@ -1,6 +1,10 @@
 //import { IStatus } from '@finbook/duo-market-data';
 import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
+import {
+	csvParse
+	//	 DSVRowArray
+} from 'd3-dsv';
 import * as React from 'react';
 import { stakeWrapper } from 'ts/common/wrappers';
 import Header from 'ts/containers/HeaderContainer';
@@ -18,13 +22,15 @@ interface IProps {
 interface IState {
 	addr: string;
 	award: string;
+	batchArray: { address: string[]; award: number[] };
 }
 export default class StakingAdmin extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
 			addr: '',
-			award: ''
+			award: '',
+			batchArray: { address: [], award: [] }
 		};
 	}
 	private inputRef = React.createRef<HTMLInputElement>();
@@ -52,10 +58,30 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		});
 	};
 
+	private handleFile = (file: any) => {
+		const reader = new FileReader();
+		console.log(file.name);
+		reader.onload = e => {
+			const rawData = (e.target as any).result;
+			const csvData = csvParse(rawData);
+			console.log(csvData);
+			const addrList: string[] = [];
+			const awardList: number[] = [];
+			csvData.forEach(item => {
+				addrList.push((item as any).Address);
+				awardList.push((item as any).Award);
+			});
+			this.setState({
+				batchArray: { address: addrList, award: awardList }
+			});
+		};
+		reader.readAsText(file, '');
+	};
+
 	public render() {
 		const { account, contractStates, contractDUO } = this.props;
-		const { addr, award } = this.state;
-
+		const { addr, award, batchArray } = this.state;
+		console.log(batchArray);
 		return (
 			<Layout>
 				<Header />
@@ -125,9 +151,20 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							padding: 10,
 							border: '1px dashed rgba(0,0,0,.3)',
 							borderRadius: 4,
-							marginBottom: 20
+							marginBottom: 20,
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center'
 						}}
 					>
+						<b
+							style={{
+								fontSize: 18,
+								marginBottom: 15
+							}}
+						>
+							Single Add Award
+						</b>
 						<input
 							placeholder="address"
 							style={{
@@ -186,8 +223,61 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							}}
 							type="file"
 							ref={this.inputRef}
+							onChange={e => this.handleFile((e.target.files as any)[0])}
 						/>
-						<button>Upload CSV</button>
+						<button
+							onClick={() =>
+								batchArray.address.length > 20
+									? window.alert('CSV file must not exceed 20 rows')
+									: stakeWrapper.batchAddAward(
+											account,
+											batchArray.address,
+											batchArray.award,
+											{
+												gasLimit: 1000000
+											}
+									)
+							}
+						>
+							Batch Add Award
+						</button>
+					</div>
+					<div
+						style={{
+							width: 400,
+							padding: 10,
+							border: '1px dashed rgba(0,0,0,.3)',
+							borderRadius: 4,
+							marginBottom: 20,
+							display: 'flex',
+							flexDirection: 'column',
+							alignItems: 'center'
+						}}
+					>
+						{batchArray.address.length ? (
+							<table style={{ width: '100%' }}>
+								<thead>
+									<tr>
+										<th style={{ width: 30 }}>Id</th>
+										<th>Address</th>
+										<th style={{ textAlign: 'right' }}>Award</th>
+									</tr>
+								</thead>
+								<tbody>
+									{batchArray.address.map((item, i) => (
+										<tr key={i}>
+											<td style={{ width: 30 }}>{i + 1}</td>
+											<td style={{ fontSize: 11 }}>{item}</td>
+											<td style={{ textAlign: 'right' }}>
+												{batchArray.award[i]}
+											</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						) : (
+							'CSV Preview'
+						)}
 					</div>
 				</SContent>
 			</Layout>
