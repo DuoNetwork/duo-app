@@ -123,6 +123,26 @@ Object {
     },
     "subscription": 0,
   },
+  "stake": Object {
+    "addresses": Object {
+      "operator": "0x0",
+      "priceFeedList": Array [],
+    },
+    "contractDUO": 0,
+    "duo": 0,
+    "oracleStake": Object {},
+    "states": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "totalAwardsToDistribute": 0,
+    },
+    "subscription": 0,
+    "userAward": 0,
+    "userStake": Object {},
+  },
   "ui": Object {
     "locale": "EN",
     "period": 60,

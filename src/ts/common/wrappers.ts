@@ -4,6 +4,7 @@ import {
 	EsplanadeWrapper,
 	ICustodianWrappers,
 	MagiWrapper,
+	StakeWrapper,
 	Web3Wrapper
 } from '@finbook/duo-contract-wrapper';
 
@@ -45,6 +46,11 @@ export const magiWrapper = new MagiWrapper(
 export const esplanadeWrapper = new EsplanadeWrapper(
 	web3Wrapper,
 	web3Wrapper.contractAddresses.MultiSigManagers[0].address
+);
+
+export const stakeWrapper = new StakeWrapper(
+	web3Wrapper,
+	web3Wrapper.contractAddresses.Stake.address
 );
 
 export const calculateNav = DualClassWrapper.calculateNav;

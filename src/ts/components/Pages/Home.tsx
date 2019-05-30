@@ -99,9 +99,9 @@ export default class Duo extends React.Component {
 						width={'960px'}
 						margin={'0 0 0 0'}
 					>
-						<SDivFlexCenter horizontal padding="0 10px">
+						<SDivFlexCenter horizontal padding="0 10px" style={{ display: 'inline-flex' }}>
 							<Link to={'/' + CST.TH_MAGI.toLowerCase()}>
-								<SCardTag>
+								<SCardTag style={{ marginRight: '40px' }}>
 									<div className="bg-logo">
 										<img src={ethIcon} />
 									</div>
@@ -118,6 +118,28 @@ export default class Duo extends React.Component {
 											}}
 										>
 											ETH / USD
+										</div>
+									</div>
+								</SCardTag>
+							</Link>
+							<Link to={'/' + 'staking'}>
+								<SCardTag>
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-content">
+										<div className={'tag-price USD'}>
+											STAKING
+										</div>
+									</div>
+									<div className="tag-subtext">
+										<div
+											style={{
+												color: ColorStyles.ThemeTextAlpha,
+												marginLeft: 20
+											}}
+										>
+											DUO
 										</div>
 									</div>
 								</SCardTag>

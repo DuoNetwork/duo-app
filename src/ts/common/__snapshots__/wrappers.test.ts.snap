@@ -75,6 +75,10 @@ Array [
             },
           },
         },
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -87,6 +91,10 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x13016f27945f3f7b39A5Daae068D698e34E55491",
@@ -144,6 +152,10 @@ Array [
             },
           },
         },
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -156,6 +168,10 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
@@ -213,6 +229,10 @@ Array [
             },
           },
         },
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -225,6 +245,10 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x32a42AeDe34Cd0D2D76e02E0d3A3440706A9c619",
@@ -293,6 +317,10 @@ Array [
             },
           },
         },
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -305,6 +333,10 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -373,6 +405,10 @@ Array [
             },
           },
         },
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -385,9 +421,101 @@ Array [
             "code": "Magi",
           },
         ],
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+  ],
+]
+`;
+
+exports[`StakeWrapper 1`] = `
+Object {
+  "contract": "StakeWrapper",
+}
+`;
+
+exports[`StakeWrapper 2`] = `
+Array [
+  Array [
+    Object {
+      "contractAddresses": Object {
+        "Custodians": Object {
+          "Beethoven": Object {
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x59E6B3d43F762310626d2905148939973db2BBd3",
+                "code": "aETH",
+              },
+              "bToken": Object {
+                "address": "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
+                "code": "bETH",
+              },
+              "custodian": Object {
+                "address": "0x13016f27945f3f7b39A5Daae068D698e34E55491",
+                "code": "BEETHOVEN-PPT",
+              },
+            },
+          },
+          "Mozart": Object {
+            "Perpetual": Object {
+              "aToken": Object {
+                "address": "0x2cB7CDDF82AD7fF2b207AD43586976FEB19BA985",
+                "code": "sETH",
+              },
+              "bToken": Object {
+                "address": "0x977feC72C295EdAf7E7deA5681E42CaFf69749e3",
+                "code": "LETH",
+              },
+              "custodian": Object {
+                "address": "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
+                "code": "MOZART-PPT",
+              },
+            },
+          },
+          "Vivaldi": Object {
+            "100C-1H": Object {
+              "aToken": Object {
+                "address": "0x75Bcb8C5f50Cc05d0B82c6321f22E848FEbB5F88",
+                "code": "ETH-100C-1H",
+              },
+              "bToken": Object {
+                "address": "0xCfC7C9792975193a9d0E78f0350041Ceb4fa388C",
+                "code": "ETH-100P-1H",
+              },
+              "custodian": Object {
+                "address": "0x32a42AeDe34Cd0D2D76e02E0d3A3440706A9c619",
+                "code": "VIVALDI-100C-1H",
+              },
+            },
+          },
+        },
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
+        "MultiSigManagers": Array [
+          Object {
+            "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
+            "code": "Esplanade",
+          },
+        ],
+        "Oracles": Array [
+          Object {
+            "address": "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
+            "code": "Magi",
+          },
+        ],
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
+      },
+    },
+    "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
   ],
 ]
 `;
@@ -396,7 +524,7 @@ exports[`Web3Wrapper 1`] = `
 Array [
   Array [
     [Window],
-    "https://kovan.infura.io",
+    "https://kovan.infura.io/v3",
     "",
     false,
   ],

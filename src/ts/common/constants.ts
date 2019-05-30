@@ -24,6 +24,14 @@ export const AC_ESP_CUSTODIAN_ADDR = 'esplanadeCustodianAddress';
 export const AC_ESP_OTHER_CONTRACT_ADDR = 'esplanadeOtherContractAddress';
 export const AC_ESP_VOTING_STAGE = 'esplanadeVotingStage';
 export const AC_ESP_VOTING_DATA = 'esplanadeVotingData';
+export const AC_STK_BALANCE = 'stakeBalance';
+export const AC_STK_STATES = 'stakeStates';
+export const AC_STK_ADDRESSES = 'stakeAddresses';
+export const AC_STK_SUB = 'stakeSubscription';
+export const AC_STK_USERSTAKE = 'userStake';
+export const AC_STK_ORACLESTAKE = 'orcaleStake';
+export const AC_STK_AWARD = 'userAward';
+export const AC_STK_CONTRACTDUO = 'contractDUO';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';
@@ -32,6 +40,8 @@ export const AC_DNM_STATUS = 'dynamoStatus';
 export const AC_UI_LOCALE = 'uiLocale';
 export const AC_UI_PERIOD = 'uiPeriod';
 export const AC_UI_SOURCE = 'uiSource';
+
+export const AC_STK_NODES = ['Azure', 'AWS', 'GCP'];
 
 export const TH_POOL_ADDRESS = 'Pool Address';
 export const TH_ADD_CUSTODIAN = 'ADD CUSTODIAN';
