@@ -35,7 +35,7 @@ describe('actions', () => {
 	});
 
 	test('getBalances', () => {
-		const store: any = stakeStore({});
+		const store: any = stakeStore({ web3: { account: '0x00' } });
 		store.dispatch(stakeActions.getBalances());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -45,14 +45,16 @@ describe('actions', () => {
 		);
 	});
 	test('addressesUpdate', () => {
-		expect(stakeActions.addressesUpdate({
-			operator: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0',
-			priceFeedList: [
-				'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a',
-				'0x002002812b42601Ae5026344F0395E68527bb0F8',
-				'0x00476E55e02673B0E4D2B474071014D5a366Ed4E'
-			]
-		})).toMatchSnapshot();
+		expect(
+			stakeActions.addressesUpdate({
+				operator: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0',
+				priceFeedList: [
+					'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a',
+					'0x002002812b42601Ae5026344F0395E68527bb0F8',
+					'0x00476E55e02673B0E4D2B474071014D5a366Ed4E'
+				]
+			})
+		).toMatchSnapshot();
 	});
 	test('getAddresses', () => {
 		const store: any = stakeStore({});
@@ -69,7 +71,9 @@ describe('actions', () => {
 	});
 
 	test('getUserStake', () => {
-		const store: any = stakeStore({});
+		const store: any = stakeStore({
+			web3: { account: '0x00' }
+		});
 		store.dispatch(stakeActions.getUserStake());
 		return new Promise(resolve =>
 			setTimeout(() => {
@@ -83,7 +87,7 @@ describe('actions', () => {
 	});
 
 	test('getUserAward', () => {
-		const store: any = stakeStore({});
+		const store: any = stakeStore({ web3: { account: '0x00' } });
 		store.dispatch(stakeActions.getUserAward());
 		return new Promise(resolve =>
 			setTimeout(() => {
