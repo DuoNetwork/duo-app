@@ -1,10 +1,7 @@
 //import { IStatus } from '@finbook/duo-market-data';
 import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
-import {
-	csvParse
-	//	 DSVRowArray
-} from 'd3-dsv';
+import { csvParse } from 'd3';
 import * as React from 'react';
 import { stakeWrapper } from 'ts/common/wrappers';
 import Header from 'ts/containers/HeaderContainer';
