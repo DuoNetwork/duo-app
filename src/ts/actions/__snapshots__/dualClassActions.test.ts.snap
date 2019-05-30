@@ -24,7 +24,6 @@ Object {
   "value": Object {
     "a": 1,
     "b": 2,
-    "duo": 3,
   },
 }
 `;
@@ -148,7 +147,6 @@ Array [
     "value": Object {
       "a": 100,
       "b": 100,
-      "duo": 100,
     },
   },
 ]
@@ -162,10 +160,6 @@ Array [
   ],
   Array [
     "0x8A3bEca74E0E737460bDE45a09594A8D7D8c9886",
-    "0x0",
-  ],
-  Array [
-    "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
     "0x0",
   ],
 ]
@@ -211,7 +205,6 @@ Array [
     "value": Object {
       "a": 100,
       "b": 100,
-      "duo": 100,
     },
   },
   Object {
@@ -283,7 +276,6 @@ Array [
     "value": Object {
       "a": 100,
       "b": 100,
-      "duo": 100,
     },
   },
   Object {
@@ -344,7 +336,6 @@ Array [
     "value": Object {
       "a": 100,
       "b": 100,
-      "duo": 100,
     },
   },
   Object {

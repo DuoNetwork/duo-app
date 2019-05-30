@@ -49,7 +49,7 @@ describe('actions', () => {
 	});
 
 	test('balancesUpdate', () => {
-		expect(dualClassActions.balancesUpdate(1, 2, 3)).toMatchSnapshot();
+		expect(dualClassActions.balancesUpdate(1, 2)).toMatchSnapshot();
 	});
 
 	test('getBalances', () => {

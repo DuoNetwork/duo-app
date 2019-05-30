@@ -49,8 +49,7 @@ export const initialState: IDualClassState = {
 	conversions: [],
 	balances: {
 		a: 0,
-		b: 0,
-		duo: 0
+		b: 0
 	},
 	type: WrapperConstants.BEETHOVEN,
 	tenor: WrapperConstants.TENOR_PPT,

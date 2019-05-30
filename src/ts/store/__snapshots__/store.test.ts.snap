@@ -15,7 +15,6 @@ Object {
     "balances": Object {
       "a": 0,
       "b": 0,
-      "duo": 0,
     },
     "conversions": Array [],
     "exchangePrices": Array [],

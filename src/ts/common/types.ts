@@ -49,7 +49,6 @@ export interface IDualClassState {
 	readonly balances: {
 		a: number;
 		b: number;
-		duo: number;
 	};
 }
 
