@@ -28,7 +28,14 @@ Object {
 }
 `;
 
-exports[`actions gerContractDUO 1`] = `Array []`;
+exports[`actions gerContractDUO 1`] = `
+Array [
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+]
+`;
 
 exports[`actions getAddresses 1`] = `
 Array [
@@ -46,13 +53,57 @@ Array [
 ]
 `;
 
-exports[`actions getBalances 1`] = `Array []`;
+exports[`actions getBalances 1`] = `
+Array [
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+]
+`;
 
-exports[`actions getOracleStake 1`] = `Array []`;
+exports[`actions getOracleStake 1`] = `
+Array [
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
+    },
+  },
+]
+`;
 
-exports[`actions getUserAward 1`] = `Array []`;
+exports[`actions getUserAward 1`] = `
+Array [
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+]
+`;
 
-exports[`actions getUserStake 1`] = `Array []`;
+exports[`actions getUserStake 1`] = `
+Array [
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+]
+`;
 
 exports[`actions oracleStakeUpdate 1`] = `
 Object {
@@ -75,6 +126,10 @@ Array [
     },
   },
   Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -83,6 +138,38 @@ Array [
         "0x002002812b42601Ae5026344F0395E68527bb0F8",
         "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
       ],
+    },
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
     },
   },
 ]
@@ -110,6 +197,10 @@ Array [
     },
   },
   Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -118,6 +209,38 @@ Array [
         "0x002002812b42601Ae5026344F0395E68527bb0F8",
         "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
       ],
+    },
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
     },
   },
 ]
@@ -147,6 +270,10 @@ Array [
     },
   },
   Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -155,6 +282,38 @@ Array [
         "0x002002812b42601Ae5026344F0395E68527bb0F8",
         "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
       ],
+    },
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
     },
   },
 ]

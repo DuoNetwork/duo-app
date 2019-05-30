@@ -3,7 +3,7 @@ import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import util from 'ts/common/util';
-import { stakeWrapper } from 'ts/common/wrappers';
+import { stakeWrapper, web3Wrapper } from 'ts/common/wrappers';
 import * as stakeActions from './stakeActions';
 
 const stakeStore = configureMockStore([thunk]);
@@ -29,6 +29,29 @@ describe('actions', () => {
 			]
 		})
 	);
+	stakeWrapper.getOracleList = jest.fn(() =>
+		Promise.resolve([
+			'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a',
+			'0x002002812b42601Ae5026344F0395E68527bb0F8',
+			'0x00476E55e02673B0E4D2B474071014D5a366Ed4E'
+		])
+	);
+	stakeWrapper.getUserStakes = jest.fn(() =>
+		Promise.resolve({
+			'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a': [{timestamp: 1234567890, amount: 123}],
+			'0x002002812b42601Ae5026344F0395E68527bb0F8': [{timestamp: 1234567890, amount: 123}],
+		})
+	);
+	stakeWrapper.getOracleStakes = jest.fn(() =>
+		Promise.resolve({
+			'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a': 123,
+			'0x002002812b42601Ae5026344F0395E68527bb0F8': 234
+		})
+	);
+	stakeWrapper.getUserAward = jest.fn(() =>
+		Promise.resolve(500)
+	);
+	web3Wrapper.getErc20Balance = jest.fn(() => Promise.resolve(100));
 
 	test('balancesUpdate', () => {
 		expect(stakeActions.balancesUpdate(123)).toMatchSnapshot();
