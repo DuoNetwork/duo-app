@@ -197,4 +197,39 @@ describe('actions', () => {
 			}, 0)
 		);
 	});
+	test('refreshAdmin', () => {
+		util.getDates = jest.fn(() => ['1970-01-15']);
+		const store: any = stakeStore({
+			stake: {
+				states: {},
+				addresses: []
+			},
+			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
+		});
+
+		store.dispatch(stakeActions.refreshAdmin());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+	test('subscribeAdmin', () => {
+		window.setInterval = jest.fn(() => 123);
+		const store: any = stakeStore({
+			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
+		});
+		store.dispatch(stakeActions.subscribeAdmin());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				expect((window.setInterval as jest.Mock).mock.calls[0][1]).toMatchSnapshot();
+
+				(window.setInterval as jest.Mock).mock.calls[0][0]();
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
 });
