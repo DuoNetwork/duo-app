@@ -26,9 +26,9 @@ export default class AdminCard extends React.Component<IProps> {
 	private handleApprove = async () => {
 		const { address } = this.props;
 		const txHash = await web3Wrapper.erc20Approve(
-			web3Wrapper.contractAddresses.DUO,
+			web3Wrapper.contractAddresses.DUO.address,
 			address,
-			web3Wrapper.contractAddresses.Stake,
+			web3Wrapper.contractAddresses.Stake.address,
 			0,
 			true
 		);

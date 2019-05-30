@@ -75,7 +75,10 @@ Array [
             },
           },
         },
-        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -88,7 +91,10 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x13016f27945f3f7b39A5Daae068D698e34E55491",
@@ -146,7 +152,10 @@ Array [
             },
           },
         },
-        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -159,7 +168,10 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
@@ -217,7 +229,10 @@ Array [
             },
           },
         },
-        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -230,7 +245,10 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x32a42AeDe34Cd0D2D76e02E0d3A3440706A9c619",
@@ -299,7 +317,10 @@ Array [
             },
           },
         },
-        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -312,7 +333,10 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -381,7 +405,10 @@ Array [
             },
           },
         },
-        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -394,7 +421,10 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
@@ -402,13 +432,13 @@ Array [
 ]
 `;
 
-exports[`StakeContractWrapper 1`] = `
+exports[`StakeWrapper 1`] = `
 Object {
-  "contract": "StakeContractWrapper",
+  "contract": "StakeWrapper",
 }
 `;
 
-exports[`StakeContractWrapper 2`] = `
+exports[`StakeWrapper 2`] = `
 Array [
   Array [
     Object {
@@ -463,7 +493,10 @@ Array [
             },
           },
         },
-        "DUO": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+        "DUO": Object {
+          "address": "0x61ca89cfc5e8099702e64e97d9b5fc457cf1d355",
+          "code": "DUO",
+        },
         "MultiSigManagers": Array [
           Object {
             "address": "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -476,7 +509,10 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+        "Stake": Object {
+          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+          "code": "Stake",
+        },
       },
     },
     "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",

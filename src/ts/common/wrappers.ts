@@ -4,9 +4,9 @@ import {
 	EsplanadeWrapper,
 	ICustodianWrappers,
 	MagiWrapper,
+	StakeWrapper,
 	Web3Wrapper
 } from '@finbook/duo-contract-wrapper';
-import {StakeContractWrapper} from '@finbook/duo-contract-wrapper/dist/StakeContractWrapper';
 
 export const web3Wrapper = new Web3Wrapper(
 	window,
@@ -48,7 +48,10 @@ export const esplanadeWrapper = new EsplanadeWrapper(
 	web3Wrapper.contractAddresses.MultiSigManagers[0].address
 );
 
-export const stakeWrapper = new StakeContractWrapper(web3Wrapper, web3Wrapper.contractAddresses.Stake);
+export const stakeWrapper = new StakeWrapper(
+	web3Wrapper,
+	web3Wrapper.contractAddresses.Stake.address
+);
 
 export const calculateNav = DualClassWrapper.calculateNav;
 

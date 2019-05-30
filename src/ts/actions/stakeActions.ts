@@ -30,7 +30,7 @@ export function getBalances(): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
 		const duoBalance = await web3Wrapper.getErc20Balance(
-			web3Wrapper.contractAddresses.DUO,
+			web3Wrapper.contractAddresses.DUO.address,
 			account
 		);
 		dispatch(balancesUpdate(duoBalance));
@@ -106,8 +106,8 @@ export function contractDUOUpdate(duoAmount: number) {
 export function gerContractDUO(): VoidThunkAction {
 	return async dispatch => {
 		const duoAmount = await web3Wrapper.getErc20Balance(
-			web3Wrapper.contractAddresses.DUO,
-			web3Wrapper.contractAddresses.Stake
+			web3Wrapper.contractAddresses.DUO.address,
+			web3Wrapper.contractAddresses.Stake.address
 		);
 		dispatch(contractDUOUpdate(duoAmount));
 	};
