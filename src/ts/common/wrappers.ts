@@ -10,7 +10,7 @@ import {
 
 export const web3Wrapper = new Web3Wrapper(
 	window,
-	__KOVAN__ ? WrapperConstants.PROVIDER_INFURA_KOVAN : WrapperConstants.PROVIDER_INFURA_MAIN,
+	(__KOVAN__ ? WrapperConstants.PROVIDER_INFURA_KOVAN : WrapperConstants.PROVIDER_INFURA_MAIN).replace('/v3', ''),
 	'',
 	!__KOVAN__
 );
