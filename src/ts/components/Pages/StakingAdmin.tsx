@@ -104,6 +104,9 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							Contract States
 						</b>
 						<div>
+							<b>{account}</b>
+						</div>
+						<div>
 							Can Stake: <b>{contractStates.canStake.toString()}</b>
 						</div>
 						<div>
