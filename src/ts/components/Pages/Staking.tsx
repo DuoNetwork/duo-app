@@ -22,6 +22,8 @@ interface IProps {
 export default class Staking extends React.Component<IProps> {
 	public componentDidMount() {
 		this.props.subscribe();
+		const el = document.getElementsByClassName('locale-select');
+		if (el.length) (el[0] as any).style.display = 'none';
 		document.title = 'DUO | Staking';
 	}
 

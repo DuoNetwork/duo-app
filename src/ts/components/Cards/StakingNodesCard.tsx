@@ -214,9 +214,11 @@ export default class AdminCard extends React.Component<IProps, IState> {
 						>
 							Unstake (
 							{myStakeList
-								? (myStakeList[0] as any)['amtInWei'] === '0'
-									? 0
-									: myStakeList.length
+								? myStakeList[0]
+									? (myStakeList[0] as any)['amtInWei'] === '0'
+										? 0
+										: myStakeList.length
+									: 0
 								: 0}
 							)
 						</SStakingButtonF>
