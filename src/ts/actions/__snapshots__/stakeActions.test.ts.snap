@@ -14,6 +14,13 @@ Object {
 }
 `;
 
+exports[`actions allowanceUpdate 1`] = `
+Object {
+  "type": "stakeAllowance",
+  "value": 123,
+}
+`;
+
 exports[`actions balancesUpdate 1`] = `
 Object {
   "type": "stakeBalance",
@@ -49,6 +56,15 @@ Array [
         "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
       ],
     },
+  },
+]
+`;
+
+exports[`actions getAllowance 1`] = `
+Array [
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
   },
 ]
 `;
@@ -127,6 +143,10 @@ Array [
   },
   Object {
     "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
     "value": 100,
   },
   Object {
@@ -228,6 +248,10 @@ Array [
     "value": 100,
   },
   Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+  Object {
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -298,6 +322,10 @@ Array [
   },
   Object {
     "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
     "value": 100,
   },
   Object {

@@ -14,10 +14,12 @@ function mapStateToProps(state: IState) {
 		contractStates: state.stake.states,
 		account: state.web3.account,
 		duoBalance: state.stake.duo,
+		duoAllowance: state.stake.allowance,
 		addresses: state.stake.addresses,
 		userStakes: state.stake.userStake,
 		oracleStakes: state.stake.oracleStake,
-		userAward: state.stake.userAward
+		userAward: state.stake.userAward,
+		locale: state.ui.locale,
 	};
 }
 

@@ -7,6 +7,7 @@ import { IStakeLot, Web3Wrapper } from '@finbook/duo-contract-wrapper';
 //import { Table } from 'antd';
 import * as d3 from 'd3';
 import * as React from 'react';
+import * as StakingCST from 'ts/common/stakingCST';
 import { stakeWrapper } from 'ts/common/wrappers';
 //import * as CST from 'ts/common/constants';
 import {
@@ -19,6 +20,7 @@ import {
 } from './_styled';
 
 interface IProps {
+	locale: string;
 	enabled: boolean;
 	title: string;
 	myDUO: number;
@@ -47,7 +49,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 		this.setState({ inputText: newText, inputValue: parseInt(value, 0) });
 	};
 	private handleStake = async () => {
-		const { myAddr, oracleAddr, myDUO } = this.props;
+		const { myAddr, oracleAddr, myDUO, locale } = this.props;
 		const { inputValue } = this.state;
 		if (inputValue <= myDUO) {
 			const txHash = await stakeWrapper.stake(myAddr, oracleAddr, inputValue, {
@@ -56,7 +58,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 			this.setState({ inputText: '', inputValue: 0 });
 			console.log('Transaction submit: ' + txHash);
 		} else {
-			window.alert('Not enough DUO balance');
+			window.alert(StakingCST.STK_WARING[locale]);
 			this.setState({ inputText: '', inputValue: 0 });
 		}
 	};
@@ -68,7 +70,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 		console.log('Transaction submit: ' + txHash);
 	};
 	public render() {
-		const { enabled, title, myStake, oracleAddr, oracleStakes } = this.props;
+		const { enabled, title, myStake, oracleAddr, oracleStakes, locale } = this.props;
 		const { inputText } = this.state;
 		const myStakeList = myStake[oracleAddr];
 		let myAccStake = 0;
@@ -79,7 +81,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 		const estReturn =
 			(3036 * Math.pow(2, Math.log(oracleStakes[oracleAddr]) / 2.3)) /
 				oracleStakes[oracleAddr] || 0;
-		const myReward = myAccStake * estReturn;
+		const myReward = myAccStake * estReturn / 52;
 		return (
 			<SCard
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
@@ -90,7 +92,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								Pool Size
+								{StakingCST.STK_POOLSIZE[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext">
@@ -112,7 +114,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								Est Return
+								{StakingCST.STK_ESTREUTRN[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext">
@@ -134,7 +136,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								My Stake
+								{StakingCST.STK_MYSTAKE[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext">
@@ -156,7 +158,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								Est Annual Reward
+								{StakingCST.STK_ESTAWARD[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext">
@@ -197,7 +199,7 @@ export default class AdminCard extends React.Component<IProps, IState> {
 							}}
 						>
 							<SStakingInput
-								placeholder="Input staking amount"
+								placeholder={StakingCST.STK_PLACEHODLER[locale]}
 								value={inputText}
 								onChange={e => this.handleInputChange(e.target.value)}
 							/>
@@ -205,14 +207,14 @@ export default class AdminCard extends React.Component<IProps, IState> {
 								style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
 								onClick={() => enabled && this.handleStake()}
 							>
-								Join Node
+								{StakingCST.STK_STAKE[locale]}
 							</SStakingButtonM>
 						</div>
 						<SStakingButtonF
 							style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
 							onClick={() => enabled && this.handleUnstake()}
 						>
-							Unstake (
+							{StakingCST.STK_UNSTAKE[locale]} (
 							{myStakeList
 								? myStakeList[0]
 									? (myStakeList[0] as any)['amtInWei'] === '0'

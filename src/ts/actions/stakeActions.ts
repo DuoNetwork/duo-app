@@ -37,6 +37,25 @@ export function getBalances(): VoidThunkAction {
 	};
 }
 
+export function allowanceUpdate(duo: number) {
+	return {
+		type: CST.AC_STK_ALLOWANCE,
+		value: duo
+	};
+}
+
+export function getAllowance(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		const account = getState().web3.account;
+		const duoAllowance = await web3Wrapper.getErc20Allowance(
+			web3Wrapper.contractAddresses.DUO.address,
+			account,
+			web3Wrapper.contractAddresses.Stake.address
+		);
+		dispatch(allowanceUpdate(duoAllowance));
+	};
+}
+
 export function addressesUpdate(addr: IStakeAddress) {
 	return {
 		type: CST.AC_STK_ADDRESSES,
@@ -124,6 +143,7 @@ export function refresh(): VoidThunkAction {
 	return async dispatch => {
 		await dispatch(getStates());
 		dispatch(getBalances());
+		dispatch(getAllowance());
 		dispatch(getAddresses());
 		dispatch(getUserStake());
 		dispatch(getOracleStake());

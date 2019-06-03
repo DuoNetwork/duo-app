@@ -55,6 +55,7 @@ export interface IDualClassState {
 export interface IStakeState {
 	readonly states: IStakeStates;
 	readonly duo: number;
+	readonly allowance: number;
 	readonly subscription: number;
 	readonly addresses: IStakeAddress;
 	readonly userStake: { [key: string]: IStakeLot[] };

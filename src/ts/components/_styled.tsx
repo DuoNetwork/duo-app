@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import styled from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 import { ColorStyles } from 'ts/common/styles';
 
 const { Header, Content } = Layout;
@@ -50,3 +50,22 @@ export const SDivFlexCenter = styled.div`
 	margin-bottom: ${(props: IDivFlexCenterProps) => (props.marginBottom)};
 	margin-top: ${(props: IDivFlexCenterProps) => (props.marginTop)};
 `;
+
+injectGlobal([
+	`
+	body {
+		.ant-modal-header {
+			background: rgba(0,114,206,1) !important;
+		}
+		.ant-modal-title {
+			color: ${ColorStyles.TextWhite};
+		}
+		.ant-modal-close {
+			color: ${ColorStyles.TextWhiteAlpha};
+		}
+		.ant-modal-close:focus, .ant-modal-close:hover {
+			color: ${ColorStyles.TextWhite};
+		}
+	}
+`
+] as any);

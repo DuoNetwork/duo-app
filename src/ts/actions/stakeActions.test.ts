@@ -52,6 +52,7 @@ describe('actions', () => {
 		Promise.resolve(500)
 	);
 	web3Wrapper.getErc20Balance = jest.fn(() => Promise.resolve(100));
+	web3Wrapper.getErc20Allowance = jest.fn(() => Promise.resolve(100));
 
 	test('balancesUpdate', () => {
 		expect(stakeActions.balancesUpdate(123)).toMatchSnapshot();
@@ -62,6 +63,22 @@ describe('actions', () => {
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
 		store.dispatch(stakeActions.getBalances());
+		return new Promise(resolve =>
+			setTimeout(() => {
+				expect(store.getActions()).toMatchSnapshot();
+				resolve();
+			}, 0)
+		);
+	});
+	test('allowanceUpdate', () => {
+		expect(stakeActions.allowanceUpdate(123)).toMatchSnapshot();
+	});
+
+	test('getAllowance', () => {
+		const store: any = stakeStore({
+			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
+		});
+		store.dispatch(stakeActions.getAllowance());
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
