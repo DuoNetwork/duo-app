@@ -1,8 +1,10 @@
 //import { IStatus } from '@finbook/duo-market-data';
 import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wrapper';
-import { Layout } from 'antd';
+import { Button, Layout, Modal } from 'antd';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
+import * as StakingCST from 'ts/common/stakingCST';
+import { web3Wrapper } from 'ts/common/wrappers';
 import StakingNodeCard from 'ts/components/Cards/StakingNodesCard';
 import StakingPersonalCard from 'ts/components/Cards/StakingPersonalCard';
 import Header from 'ts/containers/HeaderContainer';
@@ -12,19 +14,59 @@ interface IProps {
 	contractStates: IStakeStates;
 	account: string;
 	duoBalance: number;
+	duoAllowance: number;
 	addresses: IStakeAddress;
 	userStakes: { [key: string]: IStakeLot[] };
 	oracleStakes: { [key: string]: number };
 	userAward: number;
 	subscribe: () => any;
+	locale: string;
 }
 
-export default class Staking extends React.Component<IProps> {
+interface IState {
+	visible: boolean;
+	showed: boolean;
+}
+
+export default class Staking extends React.Component<IProps, IState> {
+	constructor(props: IProps) {
+		super(props);
+		this.state = {
+			visible: false,
+			showed: false
+		};
+	}
 	public componentDidMount() {
 		this.props.subscribe();
 		document.title = 'DUO | Staking';
 	}
 
+	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+		const { duoAllowance, addresses } = nextProps;
+		if (addresses.priceFeedList.length > 0 && duoAllowance === 0 && !prevState.showed)
+			return {
+				visible: true,
+				showed: true
+			};
+
+		return null;
+	}
+	private handleCancel = () => {
+		this.setState({ visible: false });
+	};
+
+	private handleApprove = async () => {
+		const { account } = this.props;
+		const txHash = await web3Wrapper.erc20Approve(
+			web3Wrapper.contractAddresses.DUO.address,
+			account,
+			web3Wrapper.contractAddresses.Stake.address,
+			0,
+			true
+		);
+		this.setState({ visible: false });
+		console.log('Transaction submit: ' + txHash);
+	};
 	public render() {
 		const {
 			contractStates,
@@ -33,13 +75,29 @@ export default class Staking extends React.Component<IProps> {
 			addresses,
 			userStakes,
 			oracleStakes,
-			userAward
+			userAward,
+			locale
 		} = this.props;
+		const { visible } = this.state;
 		return (
 			<Layout>
 				<Header />
+				<Modal
+					visible={visible}
+					title={StakingCST.STK_REMIUNDER[locale]}
+					onOk={this.handleCancel}
+					onCancel={this.handleCancel}
+					footer={[
+						<Button key="ok" type="primary" onClick={this.handleApprove}>
+							{StakingCST.STK_OK[locale]}
+						</Button>
+					]}
+				>
+					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
+				</Modal>
 				<SContent>
 					<StakingPersonalCard
+						locale={locale}
 						enabled={contractStates.canStake}
 						address={account}
 						duoBalance={duoBalance}
@@ -48,8 +106,11 @@ export default class Staking extends React.Component<IProps> {
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (
 							<StakingNodeCard
+								locale={locale}
 								enabled={contractStates.canStake}
-								title={'Priceing Node (' + CST.AC_STK_NODES[i] + ')'}
+								title={
+									StakingCST.STK_ORACKE[locale] + ' (' + CST.AC_STK_NODES[i] + ')'
+								}
 								key={i}
 								myDUO={duoBalance}
 								myStake={userStakes}
@@ -72,7 +133,7 @@ export default class Staking extends React.Component<IProps> {
 								color: 'rgba(0,0,0,.6)'
 							}}
 						>
-							Loading Nodes...
+							{StakingCST.STK_LOADINGNODES[locale]}
 						</div>
 					)}
 				</SContent>

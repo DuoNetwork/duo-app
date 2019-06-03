@@ -43,6 +43,13 @@ describe('stake reducer', () => {
 		});
 		expect(state).toMatchSnapshot();
 	});
+	test('stakeAllowance', () => {
+		state = stakeReducer(state, {
+			type: CST.AC_STK_ALLOWANCE,
+			value: 1000
+		});
+		expect(state).toMatchSnapshot();
+	});
 	test('stakeSub On', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_SUB,

@@ -13,6 +13,7 @@ export const initialState: IStakeState = {
 		totalAwardsToDistribute: 0
 	},
 	duo: 0,
+	allowance: 0,
 	addresses: {
 		operator: WrapperConstants.DUMMY_ADDR,
 		priceFeedList: []
@@ -37,6 +38,10 @@ export function stakeReducer(state: IStakeState = initialState, action: AnyActio
 		case CST.AC_STK_BALANCE:
 			return Object.assign({}, state, {
 				duo: action.value
+			});
+		case CST.AC_STK_ALLOWANCE:
+			return Object.assign({}, state, {
+				allowance: action.value
 			});
 		case CST.AC_STK_SUB:
 			return Object.assign({}, state, {

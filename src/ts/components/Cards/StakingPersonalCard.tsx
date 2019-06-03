@@ -10,12 +10,13 @@ import avt from 'images/avatar.png';
 import duo3d from 'images/duo-3d.png';
 import duoIcon from 'images/Duo_black.png';
 import * as React from 'react';
+import * as StakingCST from 'ts/common/stakingCST';
 //import { ColorStyles } from 'ts/common/styles';
-import { web3Wrapper } from 'ts/common/wrappers';
-import { stakeWrapper } from 'ts/common/wrappers';
+import { stakeWrapper, web3Wrapper } from 'ts/common/wrappers';
 import { SCard, SCardTag2, SCardTitle, SStakingButtonM } from './_styled';
 
 interface IProps {
+	locale: string;
 	enabled: boolean;
 	address: string;
 	duoBalance: number;
@@ -36,14 +37,22 @@ export default class AdminCard extends React.Component<IProps> {
 	};
 
 	public render() {
-		const { enabled, address, duoBalance, award } = this.props;
+		const { enabled, address, duoBalance, award, locale } = this.props;
 		return (
 			<SCard
 				title={
 					<SCardTitle>
-						DUO Staking
+						{StakingCST.STK_TITLE[locale]}
 						<span style={{ fontSize: 14, marginLeft: 10 }}>
-							{'(Staking/Unstaking ' + (enabled ? 'Enabled' : 'Disabled') + ')'}
+							{'(' +
+								StakingCST.STK_STAKE[locale] +
+								'/' +
+								StakingCST.STK_UNSTAKE[locale] +
+								' ' +
+								(enabled
+									? StakingCST.STK_ENABLED[locale]
+									: StakingCST.STK_DISABLED[locale]) +
+								')'}
 						</span>
 					</SCardTitle>
 				}
@@ -55,7 +64,8 @@ export default class AdminCard extends React.Component<IProps> {
 						style={{ width: 16, height: 16, marginRight: 10, marginLeft: 5 }}
 						src={avt}
 					/>
-					My address: <span style={{ color: '#5CA4DE' }}>{address}</span>
+					{StakingCST.STK_ADDRESS[locale]}:{' '}
+					<span style={{ color: '#5CA4DE' }}>{address}</span>
 				</div>
 				<img
 					style={{
@@ -74,7 +84,7 @@ export default class AdminCard extends React.Component<IProps> {
 						</div>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								DUO Balance
+								{StakingCST.STK_BALANCE[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext">
@@ -87,6 +97,7 @@ export default class AdminCard extends React.Component<IProps> {
 								}}
 							>
 								{d3.format(',.2f')(duoBalance)}
+								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 							</div>
 						</div>
 					</SCardTag2>
@@ -96,7 +107,7 @@ export default class AdminCard extends React.Component<IProps> {
 						</div>
 						<div className="tag-content">
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								Staking Award
+								{StakingCST.STK_AWARD[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext">
@@ -122,7 +133,7 @@ export default class AdminCard extends React.Component<IProps> {
 							paddingBottom: 10
 						}}
 					>
-						<SStakingButtonM onClick={this.handleApprove}>Approve DUO</SStakingButtonM>
+						<SStakingButtonM onClick={this.handleApprove}>{StakingCST.STK_APPROVE[locale]}</SStakingButtonM>
 						<SStakingButtonM
 							style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
 							onClick={() =>
@@ -132,7 +143,7 @@ export default class AdminCard extends React.Component<IProps> {
 								})
 							}
 						>
-							Claim Award
+							{StakingCST.STK_CLAIM[locale]}
 						</SStakingButtonM>
 					</div>
 				</div>

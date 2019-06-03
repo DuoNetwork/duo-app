@@ -26,24 +26,6 @@ exports[`LocaleSelect Test User Login test Snapshot 1`] = `
     />
     中文
   </Option>
-  <Option
-    value="JP"
-  >
-    <img
-      className="locale-img"
-      src={null}
-    />
-    日本語
-  </Option>
-  <Option
-    value="RU"
-  >
-    <img
-      className="locale-img"
-      src={null}
-    />
-    PУССКИЙ
-  </Option>
 </Styled(Select)>
 `;
 
@@ -72,24 +54,6 @@ exports[`LocaleSelect Test User Login test Snapshot 2`] = `
       src={null}
     />
     中文
-  </Option>
-  <Option
-    value="JP"
-  >
-    <img
-      className="locale-img"
-      src={null}
-    />
-    日本語
-  </Option>
-  <Option
-    value="RU"
-  >
-    <img
-      className="locale-img"
-      src={null}
-    />
-    PУССКИЙ
   </Option>
 </Styled(Select)>
 `;

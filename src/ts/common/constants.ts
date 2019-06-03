@@ -25,6 +25,7 @@ export const AC_ESP_OTHER_CONTRACT_ADDR = 'esplanadeOtherContractAddress';
 export const AC_ESP_VOTING_STAGE = 'esplanadeVotingStage';
 export const AC_ESP_VOTING_DATA = 'esplanadeVotingData';
 export const AC_STK_BALANCE = 'stakeBalance';
+export const AC_STK_ALLOWANCE = 'stakeAllowance';
 export const AC_STK_STATES = 'stakeStates';
 export const AC_STK_ADDRESSES = 'stakeAddresses';
 export const AC_STK_SUB = 'stakeSubscription';
