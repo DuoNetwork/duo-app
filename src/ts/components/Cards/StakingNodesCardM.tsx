@@ -35,7 +35,7 @@ interface IState {
 	inputValue: number;
 }
 
-export default class StakingNodesCard extends React.Component<IProps, IState> {
+export default class StakingNodesCardM extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -85,12 +85,12 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 		return (
 			<SCard
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
-				width="960px"
+				width="95%"
 				margin="0 0 20px 0"
 			>
-				<div style={{ display: 'flex' }}>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
-						<div className="tag-content">
+				<div>
+					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
+						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_POOLSIZE[locale]}
 							</div>
@@ -111,8 +111,8 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
-						<div className="tag-content">
+					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
+						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_ESTREUTRN[locale]}
 							</div>
@@ -133,8 +133,8 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
-						<div className="tag-content">
+					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
+						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_MYSTAKE[locale]}
 							</div>
@@ -155,8 +155,8 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
-						<div className="tag-content">
+					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
+						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_ESTAWARD[locale]}
 							</div>
@@ -179,23 +179,19 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 					</SCardTag3>
 					<div
 						style={{
-							width: 145,
+							width: '100%',
 							marginTop: 10,
-							height: 90,
 							display: 'flex',
-							flexDirection: 'column',
 							justifyContent: 'space-between'
 						}}
 					>
 						<div
 							style={{
-								width: '100%',
+								width: '45%',
 								height: 60,
 								display: 'flex',
 								flexDirection: 'column',
-								justifyContent: 'space-between',
-								border: '1px dashed rgba(0,0,0,.2)',
-								padding: 2
+								justifyContent: 'space-between'
 							}}
 						>
 							<SStakingInput
@@ -211,7 +207,7 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 							</SStakingButtonM>
 						</div>
 						<SStakingButtonF
-							style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
+							style={{ cursor: !enabled ? 'not-allowed' : 'default', width: '45%', marginTop: 34 }}
 							onClick={() => enabled && this.handleUnstake()}
 						>
 							{StakingCST.STK_UNSTAKE[locale]} (

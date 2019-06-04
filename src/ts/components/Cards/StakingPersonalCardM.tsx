@@ -23,7 +23,7 @@ interface IProps {
 	award: number;
 }
 
-export default class StakingPersonalCard extends React.Component<IProps> {
+export default class StakingPersonalCardM extends React.Component<IProps> {
 	private handleApprove = async () => {
 		const { address } = this.props;
 		const txHash = await web3Wrapper.erc20Approve(
@@ -56,29 +56,29 @@ export default class StakingPersonalCard extends React.Component<IProps> {
 						</span>
 					</SCardTitle>
 				}
-				width="960px"
-				margin="0 0 20px 0"
+				width="95%"
+				margin="10px 0 20px 0"
 			>
 				<div style={{ marginTop: 15 }}>
 					<img
-						style={{ width: 16, height: 16, marginRight: 10, marginLeft: 5 }}
+						style={{ width: 16, height: 16, marginRight: 10 }}
 						src={avt}
 					/>
 					{StakingCST.STK_ADDRESS[locale]}:{' '}
-					<span style={{ color: '#5CA4DE' }}>{address}</span>
+					<div style={{ color: '#5CA4DE', marginTop: 10 }}>{address}</div>
 				</div>
 				<img
 					style={{
 						position: 'absolute',
-						right: 15,
-						bottom: 10,
-						height: 100,
-						width: 220
+						right: 10,
+						top: 55,
+						height: 30,
+						width: 65
 					}}
 					src={duo3d}
 				/>
-				<div style={{ width: 560, display: 'flex', justifyContent: 'space-between' }}>
-					<SCardTag2 style={{ pointerEvents: 'none' }}>
+				<div>
+					<SCardTag2 style={{ pointerEvents: 'none', width: '100%', paddingTop: 0, height: 75 }}>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -90,10 +90,11 @@ export default class StakingPersonalCard extends React.Component<IProps> {
 						<div className="tag-subtext">
 							<div
 								style={{
-									marginLeft: 20,
+									marginRight: 10,
 									fontSize: 20,
 									fontWeight: 500,
-									color: '#5CA4DE'
+									color: '#5CA4DE',
+									textAlign: 'right'
 								}}
 							>
 								{d3.format(',.2f')(duoBalance)}
@@ -101,7 +102,7 @@ export default class StakingPersonalCard extends React.Component<IProps> {
 							</div>
 						</div>
 					</SCardTag2>
-					<SCardTag2 style={{ pointerEvents: 'none' }}>
+					<SCardTag2 style={{ pointerEvents: 'none', width: '100%', paddingTop: 0, height: 75 }}>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -113,29 +114,30 @@ export default class StakingPersonalCard extends React.Component<IProps> {
 						<div className="tag-subtext">
 							<div
 								style={{
-									marginLeft: 20,
+									marginRight: 10,
 									fontSize: 20,
 									fontWeight: 500,
-									color: '#5CA4DE'
+									color: '#5CA4DE',
+									textAlign: 'right'
 								}}
 							>
 								{d3.format(',.2f')(award)}
+								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 							</div>
 						</div>
 					</SCardTag2>
 					<div
 						style={{
-							width: 120,
-							marginTop: 20,
+							width: '100%',
+							marginTop: 10,
 							display: 'flex',
-							flexDirection: 'column',
 							justifyContent: 'space-between',
 							paddingBottom: 10
 						}}
 					>
-						<SStakingButtonM onClick={this.handleApprove}>{StakingCST.STK_APPROVE[locale]}</SStakingButtonM>
+						<SStakingButtonM style={{width: '45%'}} onClick={this.handleApprove}>{StakingCST.STK_APPROVE[locale]}</SStakingButtonM>
 						<SStakingButtonM
-							style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
+							style={{ cursor: !enabled ? 'not-allowed' : 'default', width: '45%' }}
 							onClick={() =>
 								enabled ||
 								stakeWrapper.claimAward(address, {
