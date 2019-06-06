@@ -45,9 +45,7 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 						{StakingCST.STK_TITLE[locale]}
 						<span style={{ fontSize: 14, marginLeft: 10 }}>
 							{'(' +
-								StakingCST.STK_STAKE[locale] +
-								'/' +
-								StakingCST.STK_UNSTAKE[locale] +
+								StakingCST.STK_STATUS[locale] +
 								' ' +
 								(enabled
 									? StakingCST.STK_ENABLED[locale]
@@ -60,12 +58,18 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 				margin="10px 0 20px 0"
 			>
 				<div style={{ marginTop: 15 }}>
-					<img
-						style={{ width: 16, height: 16, marginRight: 10 }}
-						src={avt}
-					/>
-					{StakingCST.STK_ADDRESS[locale]}:{' '}
-					<div style={{ color: '#5CA4DE', marginTop: 10 }}>{address}</div>
+					<a
+						style={{ color: 'rgba(0,0,0,.6)' }}
+						target="_blank"
+						href={
+							'https://etherscan.io/token/0x56e0b2c7694e6e10391e870774daa45cf6583486?a=' +
+							address
+						}
+					>
+						<img style={{ width: 16, height: 16, marginRight: 10 }} src={avt} />
+						{StakingCST.STK_ADDRESS[locale]}:{' '}
+						<div style={{ color: '#5CA4DE', marginTop: 10 }}>{address}</div>
+					</a>
 				</div>
 				<img
 					style={{
@@ -78,7 +82,9 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 					src={duo3d}
 				/>
 				<div>
-					<SCardTag2 style={{ pointerEvents: 'none', width: '100%', paddingTop: 0, height: 75 }}>
+					<SCardTag2
+						style={{ pointerEvents: 'none', width: '100%', paddingTop: 0, height: 75 }}
+					>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -102,7 +108,9 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 							</div>
 						</div>
 					</SCardTag2>
-					<SCardTag2 style={{ pointerEvents: 'none', width: '100%', paddingTop: 0, height: 75 }}>
+					<SCardTag2
+						style={{ pointerEvents: 'none', width: '100%', paddingTop: 0, height: 75 }}
+					>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -135,7 +143,9 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 							paddingBottom: 10
 						}}
 					>
-						<SStakingButtonM style={{width: '45%'}} onClick={this.handleApprove}>{StakingCST.STK_APPROVE[locale]}</SStakingButtonM>
+						<SStakingButtonM style={{ width: '45%' }} onClick={this.handleApprove}>
+							{StakingCST.STK_APPROVE[locale]}
+						</SStakingButtonM>
 						<SStakingButtonM
 							style={{ cursor: !enabled ? 'not-allowed' : 'default', width: '45%' }}
 							onClick={() =>

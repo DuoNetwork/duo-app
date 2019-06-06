@@ -45,9 +45,7 @@ export default class StakingPersonalCard extends React.Component<IProps> {
 						{StakingCST.STK_TITLE[locale]}
 						<span style={{ fontSize: 14, marginLeft: 10 }}>
 							{'(' +
-								StakingCST.STK_STAKE[locale] +
-								'/' +
-								StakingCST.STK_UNSTAKE[locale] +
+								StakingCST.STK_STATUS[locale] +
 								' ' +
 								(enabled
 									? StakingCST.STK_ENABLED[locale]
@@ -60,12 +58,21 @@ export default class StakingPersonalCard extends React.Component<IProps> {
 				margin="0 0 20px 0"
 			>
 				<div style={{ marginTop: 15 }}>
-					<img
-						style={{ width: 16, height: 16, marginRight: 10, marginLeft: 5 }}
-						src={avt}
-					/>
-					{StakingCST.STK_ADDRESS[locale]}:{' '}
-					<span style={{ color: '#5CA4DE' }}>{address}</span>
+					<a
+						style={{ color: 'rgba(0,0,0,.6)' }}
+						target="_blank"
+						href={
+							'https://etherscan.io/token/0x56e0b2c7694e6e10391e870774daa45cf6583486?a=' +
+							address
+						}
+					>
+						<img
+							style={{ width: 16, height: 16, marginRight: 10, marginLeft: 5 }}
+							src={avt}
+						/>
+						{StakingCST.STK_ADDRESS[locale]}:{' '}
+						<span style={{ color: '#5CA4DE' }}>{address}</span>
+					</a>
 				</div>
 				<img
 					style={{
@@ -133,7 +140,9 @@ export default class StakingPersonalCard extends React.Component<IProps> {
 							paddingBottom: 10
 						}}
 					>
-						<SStakingButtonM onClick={this.handleApprove}>{StakingCST.STK_APPROVE[locale]}</SStakingButtonM>
+						<SStakingButtonM onClick={this.handleApprove}>
+							{StakingCST.STK_APPROVE[locale]}
+						</SStakingButtonM>
 						<SStakingButtonM
 							style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
 							onClick={() =>

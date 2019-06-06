@@ -11,6 +11,11 @@ export const STK_TITLE: ILocaleText = {
 	[LOCALE_EN]: 'DUO Staking Campaign'
 };
 
+export const STK_STATUS: ILocaleText = {
+	[LOCALE_CN]: '系统状态',
+	[LOCALE_EN]: 'Stake/Unstake'
+};
+
 export const STK_STAKE: ILocaleText = {
 	[LOCALE_CN]: '质押',
 	[LOCALE_EN]: 'Stake'

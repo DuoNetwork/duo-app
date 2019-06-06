@@ -680,6 +680,22 @@ export const SStakingInput = styled.input`
 	border: 1px solid rgba(180,180,180,1);
 	border-radius: 3px;
 `;
+export const SStakingInputM = styled.input`
+ 	&::placeholder {
+		font-size: 14px;
+		color: rgba(0,0,0,.3);
+	}
+	&:focus {
+		box-shadow: 0 0 0 2px rgba(125, 196, 252, .8)
+	}
+	font-size: 14px;
+	line-height:24px;
+	padding-left: 5px;
+	height: 24px;
+	outline: none;
+	border: 1px solid rgba(180,180,180,1);
+	border-radius: 3px;
+`;
 
 export interface ICardAssetTagProps {
 	mobile?: boolean;

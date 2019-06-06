@@ -16,7 +16,7 @@ import {
 	SCardTitle,
 	SStakingButtonF,
 	SStakingButtonM,
-	SStakingInput
+	SStakingInputM
 } from './_styled';
 
 interface IProps {
@@ -194,7 +194,7 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 								justifyContent: 'space-between'
 							}}
 						>
-							<SStakingInput
+							<SStakingInputM
 								placeholder={StakingCST.STK_PLACEHODLER[locale]}
 								value={inputText}
 								onChange={e => this.handleInputChange(e.target.value)}
