@@ -9,13 +9,16 @@
 		"test": "jest",
 		"tslint": "tslint -c tslint.json -p tsconfig.json src/**/*.ts{,x} --fix",
 		"start": "webpack-dev-server --config webpack.config.dev.js",
+		"startMobile": "webpack-dev-server --config webpack.config.mobiledev.js",
 		"analyze": "npm run clean && npm run analyze:build && npm run analyze:no:build",
 		"analyze:build": "webpack --config webpack.config.analyze.js",
 		"analyze:no:build": "webpack-bundle-analyzer dist/stats.json",
 		"rebuild": "webpack --config webpack.config.kovan.js",
 		"rebuildLive": "webpack --config webpack.config.prod.js",
+		"rebuildLiveMobile": "webpack --config webpack.config.mobileprod.js",
 		"build": "npm run clean && npm run rebuild",
-		"buildLive": "npm run clean && npm run rebuildLive"
+		"buildLive": "npm run clean && npm run rebuildLive",
+		"buildLiveMobile": "npm run clean && npm run rebuildLiveMobile"
 	},
 	"jest": {
 		"globals": {
