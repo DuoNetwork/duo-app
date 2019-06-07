@@ -51,14 +51,17 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 	private handleStake = async () => {
 		const { myAddr, oracleAddr, myDUO, locale } = this.props;
 		const { inputValue } = this.state;
-		if (inputValue <= myDUO) {
+		if (inputValue <= myDUO && inputValue >= 300) {
 			const txHash = await stakeWrapper.stake(myAddr, oracleAddr, inputValue, {
 				gasLimit: 1000000
 			});
 			this.setState({ inputText: '', inputValue: 0 });
 			console.log('Transaction submit: ' + txHash);
-		} else {
+		} else if (inputValue > myDUO) {
 			window.alert(StakingCST.STK_WARING[locale]);
+			this.setState({ inputText: '', inputValue: 0 });
+		} else {
+			window.alert(StakingCST.STK_WARING2[locale]);
 			this.setState({ inputText: '', inputValue: 0 });
 		}
 	};

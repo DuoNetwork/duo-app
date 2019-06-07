@@ -149,7 +149,7 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 						<SStakingButtonM
 							style={{ cursor: !enabled ? 'not-allowed' : 'default', width: '45%' }}
 							onClick={() =>
-								enabled ||
+								enabled &&
 								stakeWrapper.claimAward(address, {
 									gasLimit: 1000000
 								})

@@ -101,6 +101,11 @@ export const STK_WARING: ILocaleText = {
 	[LOCALE_EN]: 'Not enough DUO balance.'
 };
 
+export const STK_WARING2: ILocaleText = {
+	[LOCALE_CN]: '至少质押300DUO。',
+	[LOCALE_EN]: 'Stake amount should not less than 300DUO.'
+};
+
 export const STK_REMIUNDER: ILocaleText = {
 	[LOCALE_CN]: '提醒',
 	[LOCALE_EN]: 'Reminder'
