@@ -26,6 +26,7 @@ interface IProps {
 interface IState {
 	visible: boolean;
 	showed: boolean;
+	approved: boolean;
 }
 
 export default class Staking extends React.Component<IProps, IState> {
@@ -33,7 +34,8 @@ export default class Staking extends React.Component<IProps, IState> {
 		super(props);
 		this.state = {
 			visible: false,
-			showed: false
+			showed: false,
+			approved: false
 		};
 	}
 	public componentDidMount() {
@@ -46,9 +48,13 @@ export default class Staking extends React.Component<IProps, IState> {
 		if (addresses.priceFeedList.length > 0 && duoAllowance === 0 && !prevState.showed)
 			return {
 				visible: true,
+				approved: false,
 				showed: true
 			};
-
+		else if (addresses.priceFeedList.length > 0 && duoAllowance > 0)
+			return {
+				approved: true
+			};
 		return null;
 	}
 	private handleCancel = () => {
@@ -76,9 +82,9 @@ export default class Staking extends React.Component<IProps, IState> {
 			userStakes,
 			oracleStakes,
 			userAward,
-			locale,
+			locale
 		} = this.props;
-		const { visible } = this.state;
+		const { visible, approved } = this.state;
 		return (
 			<Layout>
 				<Header />
@@ -102,7 +108,7 @@ export default class Staking extends React.Component<IProps, IState> {
 						address={account}
 						duoBalance={duoBalance}
 						award={userAward}
-						enableApprove={visible}
+						enableApprove={!approved}
 					/>
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (
