@@ -82,7 +82,7 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 				myAccStake += Web3Wrapper.fromWei((result as any)['amtInWei']);
 			});
 		const estReturn =
-			(3036 * Math.pow(2, Math.log(oracleStakes[oracleAddr]) / 2.3)) /
+			(4047 * Math.pow(2, Math.log(oracleStakes[oracleAddr]) / 2.3)) /
 				oracleStakes[oracleAddr] || 0;
 		const myReward = myAccStake * estReturn / 52;
 		return (
