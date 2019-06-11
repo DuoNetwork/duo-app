@@ -98,7 +98,7 @@
 	"dependencies": {
 		"@babel/polyfill": "^7.2.5",
 		"@finbook/duo-contract-wrapper": "^1.4.1",
-		"@finbook/duo-market-data": "^1.0.4",
+		"@finbook/duo-market-data": "^1.0.6",
 		"antd": "^3.13.0",
 		"d3": "^5.8.0",
 		"ethereumjs-abi": "^0.6.7",

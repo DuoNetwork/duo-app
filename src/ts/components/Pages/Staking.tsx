@@ -76,7 +76,7 @@ export default class Staking extends React.Component<IProps, IState> {
 			userStakes,
 			oracleStakes,
 			userAward,
-			locale
+			locale,
 		} = this.props;
 		const { visible } = this.state;
 		return (
@@ -102,6 +102,7 @@ export default class Staking extends React.Component<IProps, IState> {
 						address={account}
 						duoBalance={duoBalance}
 						award={userAward}
+						enableApprove={visible}
 					/>
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (

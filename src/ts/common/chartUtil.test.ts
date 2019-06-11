@@ -15,7 +15,7 @@ const hourlyBar1 = {
 	low: 0,
 	close: 2,
 	volume: 123,
-	timestamp: moment.utc('2018-06-06 00:0', 'YYYY-MM-DD HH:m').valueOf()
+	timestamp: moment.utc('2018-06-06 00:0', 'YYYY-MM-DD HH:m').valueOf(),
 };
 
 const hourlyBar2 = {
@@ -93,6 +93,7 @@ test('minutely merged correctly to 5 minute bar', () => {
 
 const acceptedPrice1 = {
 	contractAddress: '0x0',
+	sender: '0x0',
 	price: 123,
 	navA: 1,
 	navB: 1,
@@ -103,6 +104,7 @@ const acceptedPrice1 = {
 
 const acceptedPrice2 = {
 	contractAddress: '0x0',
+	sender: '0x0',
 	price: 123,
 	navA: 1,
 	navB: 2,
@@ -113,6 +115,7 @@ const acceptedPrice2 = {
 
 const acceptedPrice3 = {
 	contractAddress: '0x0',
+	sender: '0x0',
 	price: 123,
 	navA: 1,
 	navB: 0.25,
@@ -123,6 +126,7 @@ const acceptedPrice3 = {
 
 const acceptedPrice4 = {
 	contractAddress: '0x0',
+	sender: '0x0',
 	price: 123,
 	navA: 1.1,
 	navB: 1,
@@ -133,6 +137,7 @@ const acceptedPrice4 = {
 
 const acceptedPriceNow = {
 	contractAddress: '0x0',
+	sender: '0x0',
 	price: 123,
 	navA: 1.1,
 	navB: 1,

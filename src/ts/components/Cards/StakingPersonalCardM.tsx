@@ -21,6 +21,7 @@ interface IProps {
 	address: string;
 	duoBalance: number;
 	award: number;
+	enableApprove: boolean;
 }
 
 export default class StakingPersonalCardM extends React.Component<IProps> {
@@ -37,7 +38,7 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 	};
 
 	public render() {
-		const { enabled, address, duoBalance, award, locale } = this.props;
+		const { enabled, address, duoBalance, award, locale, enableApprove } = this.props;
 		return (
 			<SCard
 				title={
@@ -143,7 +144,14 @@ export default class StakingPersonalCardM extends React.Component<IProps> {
 							paddingBottom: 10
 						}}
 					>
-						<SStakingButtonM style={{ width: '45%' }} onClick={this.handleApprove}>
+						<SStakingButtonM
+							style={{
+								width: '45%',
+								pointerEvents: enableApprove ? 'initial' : 'none',
+								opacity: enableApprove ? 1 : 0.4
+							}}
+							onClick={this.handleApprove}
+						>
 							{StakingCST.STK_APPROVE[locale]}
 						</SStakingButtonM>
 						<SStakingButtonM

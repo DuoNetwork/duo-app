@@ -101,7 +101,7 @@ export default class MagiAdminCard extends React.Component<IProps, IState> {
 		dataSource.sort((a, b) => a.key - b.key);
 
 		return (
-			<div style={{ display: 'flex', flexDirection: 'column', alignItem: 'center', width: 1000 }}>
+			<div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: 1000 }}>
 				<SCard
 					title={<SCardTitle>{CST.TH_CONTRACT_STATES.EN.toUpperCase()}</SCardTitle>}
 					width="1000px"

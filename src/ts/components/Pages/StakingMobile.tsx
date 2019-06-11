@@ -100,6 +100,7 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 						address={account}
 						duoBalance={duoBalance}
 						award={userAward}
+						enableApprove={visible}
 					/>
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (

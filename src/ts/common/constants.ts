@@ -219,6 +219,7 @@ export const TH_UPDATE = 'Update';
 export const TH_UPDATED = 'Updated';
 export const TH_VOLUME = 'Volume';
 export const TH_BLOCK = 'Block';
+export const TH_SENDER = 'Sender(Node)';
 export const TH_ROLE = 'Role';
 export const TH_APP = 'App';
 export const TH_ALLOWANCE: ILocaleText = {
