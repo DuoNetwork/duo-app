@@ -35,6 +35,7 @@ exports[`TimeSeriesCard Test Test Snapshot Test Snapshot 1`] = `
             "navA": 123,
             "navB": 123,
             "price": 123,
+            "sender": "0x0",
             "timestamp": 1539843443,
             "transactionHash": "test",
           },

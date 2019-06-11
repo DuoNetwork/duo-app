@@ -11,6 +11,7 @@ describe('TimeSeriesCard Test', () => {
 		const acceptedPrices = [
 			{
 				contractAddress: '0x0',
+				sender: '0x0',
 				timestamp: 1539843443,
 				transactionHash: 'test',
 				blockNumber: 3,

@@ -79,7 +79,8 @@ class ChartUtil {
 				navB: limitPeriod && p.navA >= limitPeriod ? p.navB : 1,
 				timestamp: p.timestamp + 717,
 				blockNumber: p.blockNumber,
-				transactionHash: p.transactionHash
+				transactionHash: p.transactionHash,
+				sender: p.sender
 			}));
 	}
 
@@ -152,7 +153,8 @@ class ChartUtil {
 					navB: states.navB,
 					timestamp: lastTimestamp,
 					blockNumber: 0,
-					transactionHash: ''
+					transactionHash: '',
+					sender: lastPrice.sender
 				}
 			];
 

@@ -5,9 +5,8 @@ import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
 import { web3Wrapper } from 'ts/common/wrappers';
-import StakingNodeCard from 'ts/components/Cards/StakingNodesCard';
-import StakingPersonalCard from 'ts/components/Cards/StakingPersonalCard';
-import Header from 'ts/containers/HeaderContainer';
+import StakingNodeCardM from 'ts/components/Cards/StakingNodesCardM';
+import StakingPersonalCardM from 'ts/components/Cards/StakingPersonalCardM';
 import { SContent } from '../_styled';
 
 interface IProps {
@@ -28,7 +27,7 @@ interface IState {
 	showed: boolean;
 }
 
-export default class Staking extends React.Component<IProps, IState> {
+export default class StakingMobile extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -76,12 +75,11 @@ export default class Staking extends React.Component<IProps, IState> {
 			userStakes,
 			oracleStakes,
 			userAward,
-			locale,
+			locale
 		} = this.props;
 		const { visible } = this.state;
 		return (
 			<Layout>
-				<Header />
 				<Modal
 					visible={visible}
 					title={StakingCST.STK_REMIUNDER[locale]}
@@ -96,7 +94,7 @@ export default class Staking extends React.Component<IProps, IState> {
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
 				</Modal>
 				<SContent>
-					<StakingPersonalCard
+					<StakingPersonalCardM
 						locale={locale}
 						enabled={contractStates.canStake}
 						address={account}
@@ -106,7 +104,7 @@ export default class Staking extends React.Component<IProps, IState> {
 					/>
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (
-							<StakingNodeCard
+							<StakingNodeCardM
 								locale={locale}
 								enabled={contractStates.canStake}
 								title={
@@ -123,7 +121,7 @@ export default class Staking extends React.Component<IProps, IState> {
 					) : (
 						<div
 							style={{
-								width: 960,
+								width: '95%',
 								height: 150,
 								display: 'flex',
 								justifyContent: 'center',

@@ -9,6 +9,7 @@ import MagiAdmin from 'ts/containers/Pages/MagiAdminContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
 import StakingAdmin from 'ts/containers/Pages/StakingAdminContainer';
 import Staking from 'ts/containers/Pages/StakingContainer';
+import StakingM from 'ts/containers/Pages/StakingMobileContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
 
@@ -73,6 +74,7 @@ export default class Duo extends React.Component {
 					<Route path={'/status'} render={() => <Status />} />
 					<Route path={'/staking'} render={() => <Staking />} />
 					<Route path={'/stakingadmin'} render={() => <StakingAdmin />} />
+					<Route path={'/stakingm'} render={() => <StakingM />} />
 					<Route render={() => <Home />} />
 				</Switch>
 			</div>

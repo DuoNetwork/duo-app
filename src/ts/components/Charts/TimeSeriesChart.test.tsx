@@ -26,7 +26,8 @@ describe('AuthCard Test', () => {
 				contractAddress: 'test',
 				timestamp: 123,
 				transactionHash: 'test',
-				blockNumber: 123
+				blockNumber: 123,
+				sender: '0x0',
 			}
 		];
 		const underlying = 'test';

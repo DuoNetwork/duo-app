@@ -11,6 +11,11 @@ export const STK_TITLE: ILocaleText = {
 	[LOCALE_EN]: 'DUO Staking Campaign'
 };
 
+export const STK_STATUS: ILocaleText = {
+	[LOCALE_CN]: '系统状态',
+	[LOCALE_EN]: 'Stake/Unstake'
+};
+
 export const STK_STAKE: ILocaleText = {
 	[LOCALE_CN]: '质押',
 	[LOCALE_EN]: 'Stake'
@@ -94,6 +99,11 @@ export const STK_JOIN: ILocaleText = {
 export const STK_WARING: ILocaleText = {
 	[LOCALE_CN]: 'DUO余额不足。',
 	[LOCALE_EN]: 'Not enough DUO balance.'
+};
+
+export const STK_WARING2: ILocaleText = {
+	[LOCALE_CN]: '至少质押300DUO。',
+	[LOCALE_EN]: 'Stake amount should not less than 300DUO.'
 };
 
 export const STK_REMIUNDER: ILocaleText = {

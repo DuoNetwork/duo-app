@@ -28,6 +28,7 @@ export default class StatusCard extends React.Component<IProps> {
 							[CST.TH_BLOCK]: ap.blockNumber,
 							[CST.TH_TIME.EN]: moment(ap.timestamp).format('YYYY-MM-DD HH:mm'),
 							[CST.TH_PRICE.EN]: ap.price,
+							[CST.TH_SENDER]: ap.sender,
 							[CST.TH_LINK]:
 								'https://' +
 								(__KOVAN__ ? 'kovan.' : '') +
@@ -39,7 +40,7 @@ export default class StatusCard extends React.Component<IProps> {
 							onClick: () => window.open(record[CST.TH_LINK])
 						})}
 					>
-						{[CST.TH_BLOCK, CST.TH_TIME.EN, CST.TH_PRICE.EN].map(th => (
+						{[CST.TH_BLOCK, CST.TH_TIME.EN, CST.TH_PRICE.EN, CST.TH_SENDER].map(th => (
 							<Column title={th} dataIndex={th} key={th} />
 						))}
 					</Table>
