@@ -61,6 +61,11 @@ export const STK_CLAIM: ILocaleText = {
 	[LOCALE_EN]: 'Claim Award'
 };
 
+export const STK_RLINK: ILocaleText = {
+	[LOCALE_CN]: '推荐链接',
+	[LOCALE_EN]: 'Referral Link'
+};
+
 export const STK_ORACKE: ILocaleText = {
 	[LOCALE_CN]: '报价节点',
 	[LOCALE_EN]: 'Pricing Node'
@@ -119,6 +124,31 @@ export const STK_REMIUNDERTEST: ILocaleText = {
 export const STK_OK: ILocaleText = {
 	[LOCALE_CN]: '授权DUO',
 	[LOCALE_EN]: 'Approve Now'
+};
+
+export const STK_BTNOK: ILocaleText = {
+	[LOCALE_CN]: '好的',
+	[LOCALE_EN]: 'OK'
+};
+
+export const STK_RLDESKTOP: ILocaleText = {
+	[LOCALE_CN]: '桌面用户推荐链接:',
+	[LOCALE_EN]: 'For desktop user:'
+};
+
+export const STK_RLMOBILE: ILocaleText = {
+	[LOCALE_CN]: '手机用户推荐链接',
+	[LOCALE_EN]: 'For mobile user:'
+};
+
+export const STK_COPY: ILocaleText = {
+	[LOCALE_CN]: '复制',
+	[LOCALE_EN]: 'COPY'
+};
+
+export const STK_COPIED: ILocaleText = {
+	[LOCALE_CN]: '已复制',
+	[LOCALE_EN]: 'COPIED'
 };
 
 export const STK_LOADINGNODES: ILocaleText = {

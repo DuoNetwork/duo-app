@@ -261,11 +261,11 @@ export const SCardTag = styled.div`
 	border-color: ${ColorStyles.BorderBlack3};
 	overflow: hidden;
 	padding-top: 10px;
-	transition: all .3s;
+	transition: all 0.3s;
 	pointer-events: ${(props: ICardPriceTagProps) => (props.disabled ? 'none !important' : '')};
 	opacity: ${(props: ICardPriceTagProps) => (props.disabled ? '0.5' : '1')};
 	&:hover {
-		background: ${ColorStyles.LightHoverSolid}
+		background: ${ColorStyles.LightHoverSolid};
 	}
 	.bg-logo {
 		height: 100px;
@@ -324,7 +324,7 @@ export const SCardTag = styled.div`
 		}
 	}
 	.tag-price {
-		color: ${ColorStyles.ThemeText};;
+		color: ${ColorStyles.ThemeText};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -357,7 +357,7 @@ export const SCardTag = styled.div`
 		margin-bottom: 5px;
 	}
 	.tag-price-3 {
-		color: ${ColorStyles.ThemeText};;
+		color: ${ColorStyles.ThemeText};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -394,11 +394,11 @@ export const SCardTag2 = styled.div`
 	border-color: ${ColorStyles.BorderBlack3};
 	overflow: hidden;
 	padding-top: 10px;
-	transition: all .3s;
+	transition: all 0.3s;
 	pointer-events: ${(props: ICardPriceTagProps) => (props.disabled ? 'none !important' : '')};
 	opacity: ${(props: ICardPriceTagProps) => (props.disabled ? '0.5' : '1')};
 	&:hover {
-		background: ${ColorStyles.LightHoverSolid}
+		background: ${ColorStyles.LightHoverSolid};
 	}
 	.bg-logo {
 		height: 100px;
@@ -452,7 +452,7 @@ export const SCardTag2 = styled.div`
 		}
 	}
 	.tag-price {
-		color: ${ColorStyles.ThemeTextAlpha};;
+		color: ${ColorStyles.ThemeTextAlpha};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -485,7 +485,7 @@ export const SCardTag2 = styled.div`
 		margin-bottom: 5px;
 	}
 	.tag-price-3 {
-		color: ${ColorStyles.ThemeText};;
+		color: ${ColorStyles.ThemeText};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -522,11 +522,11 @@ export const SCardTag3 = styled.div`
 	border-color: ${ColorStyles.BorderBlack3};
 	overflow: hidden;
 	padding-top: 10px;
-	transition: all .3s;
+	transition: all 0.3s;
 	pointer-events: ${(props: ICardPriceTagProps) => (props.disabled ? 'none !important' : '')};
 	opacity: ${(props: ICardPriceTagProps) => (props.disabled ? '0.5' : '1')};
 	&:hover {
-		background: ${ColorStyles.LightHoverSolid}
+		background: ${ColorStyles.LightHoverSolid};
 	}
 	.tag-title {
 		width: 90px;
@@ -567,7 +567,7 @@ export const SCardTag3 = styled.div`
 		}
 	}
 	.tag-price {
-		color: ${ColorStyles.ThemeTextAlpha};;
+		color: ${ColorStyles.ThemeTextAlpha};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -600,7 +600,7 @@ export const SCardTag3 = styled.div`
 		margin-bottom: 5px;
 	}
 	.tag-price-3 {
-		color: ${ColorStyles.ThemeText};;
+		color: ${ColorStyles.ThemeText};
 		font-family: 'Roboto', 'Microsoft YaHei';
 		font-weight: 500;
 		letter-spacing: 1px;
@@ -631,72 +631,89 @@ export const SCardTag3 = styled.div`
 
 export const SStakingButtonM = styled.div`
 	&:hover {
-		background: #FF5E5E;
+		background: #ff5e5e;
 	}
 	user-select: none;
-	transition: all .3s;
+	transition: all 0.3s;
+	width: 100%;
+	height: 24px;
+	border-radius: 13px;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 500;
+	color: white;
+	border: 1px solid #ff5e5e;
+	background: #fc7676;
+	text-align: center;
+	cursor: pointer;
+`;
+export const SStakingButtonF = styled.div`
+	&:hover {
+		border: 1px solid #ff5e5e;
+		color: #ff5e5e;
+	}
+	user-select: none;
+	transition: all 0.3s;
 	width: 100%;
 	height: 26px;
 	border-radius: 13px;
 	font-size: 14px;
 	line-height: 26px;
 	font-weight: 500;
-	color: white;
-	border: 1px solid #FF5E5E;
-	background: #FC7676;
+	color: #fc7676;
+	border: 1px solid #fc7676;
+	background: transparent;
 	text-align: center;
 	cursor: pointer;
 `;
-export const SStakingButtonF = styled.div`
-			&:hover {
-				border: 1px solid #ff5e5e;
-				color: #ff5e5e;
-			}
-			user-select: none;
-			transition: all 0.3s;
-			width: 100%;
-			height: 26px;
-			border-radius: 13px;
-			font-size: 14px;
-			line-height: 26px;
-			font-weight: 500;
-			color: #fc7676;
-			border: 1px solid #fc7676;
-			background: transparent;
-			text-align: center;
-			cursor: pointer;
-		`;
 export const SStakingInput = styled.input`
- 	&::placeholder {
+	&::placeholder {
 		font-size: 12px;
-		color: rgba(0,0,0,.3);
+		color: rgba(0, 0, 0, 0.3);
 	}
 	&:focus {
-		box-shadow: 0 0 0 2px rgba(125, 196, 252, .8)
+		box-shadow: 0 0 0 2px rgba(125, 196, 252, 0.8);
 	}
 	font-size: 12px;
 	padding-left: 5px;
 	outline: none;
-	border: 1px solid rgba(180,180,180,1);
+	border: 1px solid rgba(180, 180, 180, 1);
 	border-radius: 3px;
 `;
 export const SStakingInputM = styled.input`
- 	&::placeholder {
+	&::placeholder {
 		font-size: 14px;
-		color: rgba(0,0,0,.3);
+		color: rgba(0, 0, 0, 0.3);
 	}
 	&:focus {
-		box-shadow: 0 0 0 2px rgba(125, 196, 252, .8)
+		box-shadow: 0 0 0 2px rgba(125, 196, 252, 0.8);
 	}
 	font-size: 14px;
-	line-height:24px;
+	line-height: 24px;
 	padding-left: 5px;
 	height: 24px;
 	outline: none;
-	border: 1px solid rgba(180,180,180,1);
+	border: 1px solid rgba(180, 180, 180, 1);
 	border-radius: 3px;
 `;
 
+export const SStakingRlink = styled.div`
+	border: 1px dashed rgba(0, 0, 0, 0.3);
+	color: rgba(0, 0, 0, 0.5);
+	font-size: 14px;
+	padding: 2px 5px;
+	border-radius: 2px;
+	line-height: 26px;
+	width: 320px;
+`;
+export const SStakingRlinkM = styled.div`
+	border: 1px dashed rgba(0, 0, 0, 0.3);
+	color: rgba(0, 0, 0, 0.5);
+	font-size: 14px;
+	padding: 2px 5px;
+	border-radius: 2px;
+	line-height: 26px;
+`;
 export interface ICardAssetTagProps {
 	mobile?: boolean;
 	value?: number;
