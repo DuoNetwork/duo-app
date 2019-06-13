@@ -4,7 +4,7 @@ import 'css/style.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as dualClassActions from './actions/dualClassActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
@@ -34,7 +34,7 @@ if ((window as any).ethereum) (window as any).ethereum.enable();
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
-			<StakingMobile />
+			<Route path="" component={StakingMobile} />
 		</Router>
 	</Provider>,
 	document.getElementById('app')
