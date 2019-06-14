@@ -96,7 +96,6 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		const { account, contractStates, contractDUO, gasPrice } = this.props;
 		const { addr, award, batchArray, x2Check, x3Check } = this.state;
 		const gasPriceEdit = x2Check ? gasPrice * 2 : (x3Check ? gasPrice * 3 : gasPrice);
-		console.log(gasPriceEdit);
 		return (
 			<Layout>
 				<Header />
