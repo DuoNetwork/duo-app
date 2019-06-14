@@ -13,6 +13,7 @@ interface IProps {
 	addresses: IStakeAddress;
 	contractStates: IStakeStates;
 	contractDUO: number;
+	gasPrice: number;
 	subscribe: () => any;
 }
 
@@ -20,6 +21,8 @@ interface IState {
 	addr: string;
 	award: string;
 	batchArray: { address: string[]; award: number[] };
+	x2Check: boolean;
+	x3Check: boolean;
 }
 export default class StakingAdmin extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
@@ -27,7 +30,9 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		this.state = {
 			addr: '',
 			award: '',
-			batchArray: { address: [], award: [] }
+			batchArray: { address: [], award: [] },
+			x2Check: false,
+			x3Check: false
 		};
 	}
 	private inputRef = React.createRef<HTMLInputElement>();
@@ -75,10 +80,23 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		reader.readAsText(file, '');
 	};
 
+	private handleX2 = () => {
+		const { x2Check } = this.state;
+		if (x2Check) this.setState({ x2Check: false });
+		else this.setState({ x2Check: true, x3Check: false });
+	};
+
+	private handleX3 = () => {
+		const { x3Check } = this.state;
+		if (x3Check) this.setState({ x3Check: false });
+		else this.setState({ x2Check: false, x3Check: true });
+	};
+
 	public render() {
-		const { account, contractStates, contractDUO } = this.props;
-		const { addr, award, batchArray } = this.state;
-		console.log(batchArray);
+		const { account, contractStates, contractDUO, gasPrice } = this.props;
+		const { addr, award, batchArray, x2Check, x3Check } = this.state;
+		const gasPriceEdit = x2Check ? gasPrice * 2 : (x3Check ? gasPrice * 3 : gasPrice);
+		console.log(gasPriceEdit);
 		return (
 			<Layout>
 				<Header />
@@ -225,6 +243,16 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							ref={this.inputRef}
 							onChange={e => this.handleFile((e.target.files as any)[0])}
 						/>
+						<div>
+							Current Gas Price: <b>{gasPrice}</b>
+						</div>
+						<div style={{ marginBottom: 5 }}>
+							Gas Price Multiplier:
+							<input style={{ marginLeft: 10 }} type="radio" checked={x2Check} onClick={this.handleX2}/>
+							X2
+							<input type="radio" checked={x3Check} onClick={this.handleX3}/>
+							X3
+						</div>
 						<button
 							onClick={() =>
 								batchArray.address.length > 20
@@ -234,7 +262,8 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 											batchArray.address,
 											batchArray.award,
 											{
-												gasLimit: 1000000
+												gasLimit: 1000000,
+												gasPrice: gasPriceEdit
 											}
 									)
 							}
@@ -255,26 +284,41 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						}}
 					>
 						{batchArray.address.length ? (
-							<table style={{ width: '100%' }}>
-								<thead>
-									<tr>
-										<th style={{ width: 30 }}>Id</th>
-										<th>Address</th>
-										<th style={{ textAlign: 'right' }}>Award</th>
-									</tr>
-								</thead>
-								<tbody>
-									{batchArray.address.map((item, i) => (
-										<tr key={i}>
-											<td style={{ width: 30 }}>{i + 1}</td>
-											<td style={{ fontSize: 11 }}>{item}</td>
-											<td style={{ textAlign: 'right' }}>
-												{batchArray.award[i]}
-											</td>
+							<div
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center'
+								}}
+							>
+								<button
+									onClick={() =>
+										this.setState({ batchArray: { address: [], award: [] } })
+									}
+								>
+									Clear Table
+								</button>
+								<table style={{ width: '100%' }}>
+									<thead>
+										<tr>
+											<th style={{ width: 30 }}>Id</th>
+											<th>Address</th>
+											<th style={{ textAlign: 'right' }}>Award</th>
 										</tr>
-									))}
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										{batchArray.address.map((item, i) => (
+											<tr key={i}>
+												<td style={{ width: 30 }}>{i + 1}</td>
+												<td style={{ fontSize: 11 }}>{item}</td>
+												<td style={{ textAlign: 'right' }}>
+													{batchArray.award[i]}
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
 						) : (
 							'CSV Preview'
 						)}

@@ -34,7 +34,7 @@ if ((window as any).ethereum) (window as any).ethereum.enable();
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
-			<Route path="" component={StakingMobile} />
+			<Route path="" component={StakingMobile}/>
 		</Router>
 	</Provider>,
 	document.getElementById('app')
