@@ -131,7 +131,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						<a
 							style={{ color: 'rgba(92,164,222,1)' }}
 							href={
-								'https://etherscan.io/token/0x56e0b2c7694e6e10391e870774daa45cf6583486?a=' +
+								'https://etherscan.io/address/' +
 								account
 							}
 							target="_blank"
