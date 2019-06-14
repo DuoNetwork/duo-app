@@ -42,10 +42,18 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 	}
 
 	private handleStake = async (operator: boolean) => {
-		const { account } = this.props;
+		const { account, gasPrice } = this.props;
+		const { x2Check, x3Check } = this.state;
+		const gasPriceEdit = x2Check ? gasPrice * 2 : x3Check ? gasPrice * 3 : gasPrice;
 		const txHash = operator
-			? await stakeWrapper.enableStakingAndUnstaking(account, { gasLimit: 100000 })
-			: await stakeWrapper.disableStakingAndUnstaking(account, { gasLimit: 1000000 });
+			? await stakeWrapper.enableStakingAndUnstaking(account, {
+					gasLimit: 100000,
+					gasPrice: gasPriceEdit
+			})
+			: await stakeWrapper.disableStakingAndUnstaking(account, {
+					gasLimit: 1000000,
+					gasPrice: gasPriceEdit
+			});
 		console.log(txHash);
 	};
 
@@ -95,7 +103,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 	public render() {
 		const { account, contractStates, contractDUO, gasPrice } = this.props;
 		const { addr, award, batchArray, x2Check, x3Check } = this.state;
-		const gasPriceEdit = x2Check ? gasPrice * 2 : (x3Check ? gasPrice * 3 : gasPrice);
+		const gasPriceEdit = x2Check ? gasPrice * 2 : x3Check ? gasPrice * 3 : gasPrice;
 		return (
 			<Layout>
 				<Header />
@@ -120,9 +128,16 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						>
 							Contract States
 						</b>
-						<div>
+						<a
+							style={{ color: 'rgba(92,164,222,1)' }}
+							href={
+								'https://etherscan.io/token/0x56e0b2c7694e6e10391e870774daa45cf6583486?a=' +
+								account
+							}
+							target="_blank"
+						>
 							<b>{account}</b>
-						</div>
+						</a>
 						<div>
 							Can Stake: <b>{contractStates.canStake.toString()}</b>
 						</div>
@@ -143,6 +158,26 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						</div>
 						<div>
 							Contract DUO Amount: <b>{contractDUO}</b>
+						</div>
+						<div>
+							Current Gas Price: <b>{gasPrice / 1E9 + 'Gwei'}</b>
+						</div>
+						<div style={{ marginBottom: 5 }}>
+							Gas Price Multiplier:
+							<input
+								style={{ marginLeft: 10, marginRight: 5 }}
+								type="radio"
+								checked={x2Check}
+								onClick={this.handleX2}
+							/>
+							X2
+							<input
+								style={{ marginLeft: 5, marginRight: 5 }}
+								type="radio"
+								checked={x3Check}
+								onClick={this.handleX3}
+							/>
+							X3
 						</div>
 					</div>
 					<div
@@ -205,7 +240,8 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						<button
 							onClick={() =>
 								stakeWrapper.batchAddAward(account, [addr], [parseInt(award, 0)], {
-									gasLimit: 1000000
+									gasLimit: 1000000,
+									gasPrice: gasPriceEdit
 								})
 							}
 						>
@@ -242,16 +278,6 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							ref={this.inputRef}
 							onChange={e => this.handleFile((e.target.files as any)[0])}
 						/>
-						<div>
-							Current Gas Price: <b>{gasPrice}</b>
-						</div>
-						<div style={{ marginBottom: 5 }}>
-							Gas Price Multiplier:
-							<input style={{ marginLeft: 10 }} type="radio" checked={x2Check} onClick={this.handleX2}/>
-							X2
-							<input type="radio" checked={x3Check} onClick={this.handleX3}/>
-							X3
-						</div>
 						<button
 							onClick={() =>
 								batchArray.address.length > 20

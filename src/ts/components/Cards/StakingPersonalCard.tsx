@@ -5,7 +5,7 @@
 // } from '@finbook/duo-contract-wrapper';
 //import { Table } from 'antd';
 //import * as CST from 'ts/common/constants';
-import { Button, Modal } from 'antd';
+//import { Button, Modal } from 'antd';
 import * as d3 from 'd3';
 import avt from 'images/avatar.png';
 import duo3d from 'images/duo-3d.png';
@@ -14,7 +14,9 @@ import * as React from 'react';
 import * as StakingCST from 'ts/common/stakingCST';
 //import { ColorStyles } from 'ts/common/styles';
 import { stakeWrapper, web3Wrapper } from 'ts/common/wrappers';
-import { SCard, SCardTag2, SCardTitle, SStakingButtonM, SStakingRlink } from './_styled';
+import { SCard, SCardTag2, SCardTitle, SStakingButtonM,
+	//SStakingRlink
+	} from './_styled';
 
 interface IProps {
 	locale: string;
@@ -48,27 +50,27 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 		console.log('Transaction submit: ' + txHash);
 	};
 
-	private handleCancel = () => {
-		this.setState({ visible: false });
-	};
+	// private handleCancel = () => {
+	// 	this.setState({ visible: false });
+	// };
 
-	private copyToClipboard = (target: number) => {
-		const { address, locale } = this.props;
-		target === 1
-			? (navigator as any).clipboard
-					.writeText('https://app.duo.network/staking?r=' + address.slice(-6))
-					.then(() => window.alert(StakingCST.STK_COPIED[locale]))
-			: (navigator as any).clipboard
-					.writeText('https://duo.ac?r=' + address.slice(-6))
-					.then(() => window.alert(StakingCST.STK_COPIED[locale]));
-	};
+	// private copyToClipboard = (target: number) => {
+	// 	const { address, locale } = this.props;
+	// 	target === 1
+	// 		? (navigator as any).clipboard
+	// 				.writeText('https://app.duo.network/staking?r=' + address.slice(-6))
+	// 				.then(() => window.alert(StakingCST.STK_COPIED[locale]))
+	// 		: (navigator as any).clipboard
+	// 				.writeText('https://duo.ac?r=' + address.slice(-6))
+	// 				.then(() => window.alert(StakingCST.STK_COPIED[locale]));
+	// };
 
 	public render() {
 		const { enabled, address, duoBalance, award, locale, enableApprove } = this.props;
-		const { visible } = this.state;
+		//const { visible } = this.state;
 		return (
 			<div>
-				<Modal
+				{/* <Modal
 					visible={visible}
 					title={StakingCST.STK_RLINK[locale]}
 					onOk={this.handleCancel}
@@ -99,7 +101,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							{StakingCST.STK_COPY[locale]}
 						</Button>
 					</div>
-				</Modal>
+				</Modal> */}
 				<SCard
 					title={
 						<SCardTitle>
@@ -194,7 +196,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 						<div
 							style={{
 								width: 120,
-								marginTop: 10,
+								marginTop: 30,
 								display: 'flex',
 								flexDirection: 'column',
 								justifyContent: 'space-between'
@@ -220,9 +222,9 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							>
 								{StakingCST.STK_CLAIM[locale]}
 							</SStakingButtonM>
-							<SStakingButtonM onClick={() => this.setState({ visible: true })}>
+							{/* <SStakingButtonM onClick={() => this.setState({ visible: true })}>
 								{StakingCST.STK_RLINK[locale]}
-							</SStakingButtonM>
+							</SStakingButtonM> */}
 						</div>
 					</div>
 				</SCard>
