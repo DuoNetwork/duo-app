@@ -1,7 +1,7 @@
 //import { IStatus } from '@finbook/duo-market-data';
 import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Button, Layout, Modal } from 'antd';
-import queryString from 'query-string';
+//import queryString from 'query-string';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
@@ -40,8 +40,7 @@ export default class Staking extends React.Component<IProps, IState> {
 	}
 	public componentDidMount() {
 		this.props.subscribe();
-		const values = queryString.parse((this.props as any).location.search)
-		console.log('Your referer is:' + values.r)
+		//const values = queryString.parse((this.props as any).location.search)
 		document.title = 'DUO | Staking';
 	}
 

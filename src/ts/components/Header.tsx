@@ -39,6 +39,13 @@ export default class Header extends React.Component<IProps> {
 						)
 					) : null}
 					<SDivFlexCenter horizontal>
+						<a
+							style={{ marginRight: 10, color: 'white', textDecoration: 'none' }}
+							href="https://duonetwork.zendesk.com/hc/en-us"
+							target="_blank"
+						>
+							Help
+						</a>
 						{isBeethovenPage && __KOVAN__ ? (
 							<div className="nav-button-wrapper">
 								<a
