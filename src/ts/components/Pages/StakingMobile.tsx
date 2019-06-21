@@ -6,6 +6,7 @@ import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
 import { web3Wrapper } from 'ts/common/wrappers';
+import StakingInfoCardM from 'ts/components/Cards/StakingInfoCardM';
 import StakingNodeCardM from 'ts/components/Cards/StakingNodesCardM';
 import StakingPersonalCardM from 'ts/components/Cards/StakingPersonalCardM';
 import { SContent } from '../_styled';
@@ -40,8 +41,8 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 	}
 	public componentDidMount() {
 		this.props.subscribe();
-		const values = queryString.parse((this.props as any).location.search)
-		console.log(values)
+		const values = queryString.parse((this.props as any).location.search);
+		console.log(values);
 		document.title = 'DUO | Staking';
 	}
 
@@ -102,6 +103,13 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
 				</Modal>
 				<SContent>
+					<StakingInfoCardM
+						locale={locale}
+						contractStates={contractStates}
+						title={StakingCST.STK_TITLEFLEX[locale]}
+						oracleStakes={oracleStakes}
+						addresses={addresses}
+					/>
 					<StakingPersonalCardM
 						locale={locale}
 						enabled={contractStates.canStake}

@@ -6,9 +6,14 @@ export interface ILocaleText {
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';
 
-export const STK_TITLE: ILocaleText = {
-	[LOCALE_CN]: 'DUO 质押活动',
-	[LOCALE_EN]: 'DUO Staking Campaign'
+export const STK_TITLEFIX: ILocaleText = {
+	[LOCALE_CN]: 'DUO 质押活动 (定期)',
+	[LOCALE_EN]: 'DUO Staking Campaign (Fix)'
+};
+
+export const STK_TITLEFLEX: ILocaleText = {
+	[LOCALE_CN]: 'DUO 质押活动 (活期)',
+	[LOCALE_EN]: 'DUO Staking Campaign (Flex)'
 };
 
 export const STK_STATUS: ILocaleText = {
@@ -154,4 +159,39 @@ export const STK_COPIED: ILocaleText = {
 export const STK_LOADINGNODES: ILocaleText = {
 	[LOCALE_CN]: '载入节点中。。。',
 	[LOCALE_EN]: 'Loading Nodes...'
+};
+
+export const STK_ACCINFO: ILocaleText = {
+	[LOCALE_CN]: '账户信息',
+	[LOCALE_EN]: 'Account Info'
+};
+
+export const STK_CTSTATUS: ILocaleText = {
+	[LOCALE_CN]: '合约状态',
+	[LOCALE_EN]: 'Staking Status'
+};
+
+export const STK_CTRULES: ILocaleText = {
+	[LOCALE_CN]: '合约规则',
+	[LOCALE_EN]: 'Staking Rules'
+};
+
+export const STK_CTMINSTAKE: ILocaleText = {
+	[LOCALE_CN]: '最低质押量',
+	[LOCALE_EN]: 'Min Staking Amount'
+};
+
+export const STK_CTLOCKTIME: ILocaleText = {
+	[LOCALE_CN]: '质押锁定时间',
+	[LOCALE_EN]: 'Staking Lock Time'
+};
+
+export const STK_CTSTAKE: ILocaleText = {
+	[LOCALE_CN]: '合约总质押',
+	[LOCALE_EN]: 'Total Staking Amount'
+};
+
+export const STK_CTRETURN: ILocaleText = {
+	[LOCALE_CN]: '最大回报率',
+	[LOCALE_EN]: 'Max Est Return'
 };

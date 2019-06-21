@@ -6,6 +6,7 @@ import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
 import { web3Wrapper } from 'ts/common/wrappers';
+import StakingInfoCard from 'ts/components/Cards/StakingInfoCard';
 import StakingNodeCard from 'ts/components/Cards/StakingNodesCard';
 import StakingPersonalCard from 'ts/components/Cards/StakingPersonalCard';
 import Header from 'ts/containers/HeaderContainer';
@@ -103,6 +104,13 @@ export default class Staking extends React.Component<IProps, IState> {
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
 				</Modal>
 				<SContent>
+					<StakingInfoCard
+						locale={locale}
+						contractStates={contractStates}
+						title={StakingCST.STK_TITLEFLEX[locale]}
+						oracleStakes={oracleStakes}
+						addresses={addresses}
+					/>
 					<StakingPersonalCard
 						locale={locale}
 						enabled={contractStates.canStake}

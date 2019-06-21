@@ -102,16 +102,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 				<SCard
 					title={
 						<SCardTitle>
-							{StakingCST.STK_TITLE[locale]}
-							<span style={{ fontSize: 14, marginLeft: 10 }}>
-								{'(' +
-									StakingCST.STK_STATUS[locale] +
-									' ' +
-									(enabled
-										? StakingCST.STK_ENABLED[locale]
-										: StakingCST.STK_DISABLED[locale]) +
-									')'}
-							</span>
+							{StakingCST.STK_ACCINFO[locale].toUpperCase()}
 						</SCardTitle>
 					}
 					width="95%"
