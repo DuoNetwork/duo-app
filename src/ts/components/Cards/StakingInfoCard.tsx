@@ -7,11 +7,7 @@ import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import * as d3 from 'd3';
 import * as React from 'react';
 import * as StakingCST from 'ts/common/stakingCST';
-import {
-	SCard,
-	SCardTag3,
-	SCardTitle
-} from './_styled';
+import { SCard, SCardTag3, SCardTitle } from './_styled';
 
 interface IProps {
 	locale: string;

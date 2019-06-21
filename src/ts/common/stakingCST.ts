@@ -71,6 +71,11 @@ export const STK_RLINK: ILocaleText = {
 	[LOCALE_EN]: 'Referral Link'
 };
 
+export const STK_BRLINK: ILocaleText = {
+	[LOCALE_CN]: '绑定推荐人',
+	[LOCALE_EN]: 'Bind Referrer'
+};
+
 export const STK_ORACKE: ILocaleText = {
 	[LOCALE_CN]: '报价节点',
 	[LOCALE_EN]: 'Pricing Node'
