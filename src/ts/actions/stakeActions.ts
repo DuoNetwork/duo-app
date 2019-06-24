@@ -50,7 +50,7 @@ export function getAllowance(): VoidThunkAction {
 		const duoAllowance = await web3Wrapper.getErc20Allowance(
 			web3Wrapper.contractAddresses.DUO.address,
 			account,
-			web3Wrapper.contractAddresses.Stake.address
+			web3Wrapper.contractAddresses.Stakes[0].address
 		);
 		dispatch(allowanceUpdate(duoAllowance));
 	};
@@ -126,7 +126,7 @@ export function gerContractDUO(): VoidThunkAction {
 	return async dispatch => {
 		const duoAmount = await web3Wrapper.getErc20Balance(
 			web3Wrapper.contractAddresses.DUO.address,
-			web3Wrapper.contractAddresses.Stake.address
+			web3Wrapper.contractAddresses.Stakes[0].address
 		);
 		dispatch(contractDUOUpdate(duoAmount));
 	};

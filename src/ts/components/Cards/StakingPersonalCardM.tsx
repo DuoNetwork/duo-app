@@ -41,7 +41,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 		const txHash = await web3Wrapper.erc20Approve(
 			web3Wrapper.contractAddresses.DUO.address,
 			address,
-			web3Wrapper.contractAddresses.Stake.address,
+			web3Wrapper.contractAddresses.Stakes[0].address,
 			0,
 			true
 		);

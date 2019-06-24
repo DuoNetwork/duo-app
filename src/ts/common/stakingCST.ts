@@ -3,6 +3,8 @@ export interface ILocaleText {
 	CN: string;
 	[key: string]: string;
 }
+export const REFERRALABLE = 'duo.live.referral';
+
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';
 
@@ -74,6 +76,21 @@ export const STK_RLINK: ILocaleText = {
 export const STK_BRLINK: ILocaleText = {
 	[LOCALE_CN]: '绑定推荐人',
 	[LOCALE_EN]: 'Bind Referrer'
+};
+
+export const STK_RCODE: ILocaleText = {
+	[LOCALE_CN]: '推荐码:',
+	[LOCALE_EN]: 'Referral Code:'
+};
+
+export const STK_BIND: ILocaleText = {
+	[LOCALE_CN]: '绑 定',
+	[LOCALE_EN]: 'Bind'
+};
+
+export const STK_BINDINPUTPH: ILocaleText = {
+	[LOCALE_CN]: '请输入推荐码',
+	[LOCALE_EN]: 'Please input referral code'
 };
 
 export const STK_ORACKE: ILocaleText = {

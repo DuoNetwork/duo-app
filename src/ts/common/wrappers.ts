@@ -50,7 +50,7 @@ export const esplanadeWrapper = new EsplanadeWrapper(
 
 export const stakeWrapper = new StakeWrapper(
 	web3Wrapper,
-	web3Wrapper.contractAddresses.Stake.address
+	web3Wrapper.contractAddresses.Stakes[0].address
 );
 
 export const calculateNav = DualClassWrapper.calculateNav;

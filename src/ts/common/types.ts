@@ -137,3 +137,9 @@ export enum WsChannelName {
 	Orderbook = 'orderbook',
 	Order = 'order'
 }
+
+export interface IReferral {
+	address: string;
+	referralCode: string;
+	signHash: string;
+}

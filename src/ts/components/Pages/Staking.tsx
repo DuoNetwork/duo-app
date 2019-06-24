@@ -1,7 +1,7 @@
 //import { IStatus } from '@finbook/duo-market-data';
 import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Button, Layout, Modal } from 'antd';
-//import queryString from 'query-string';
+import queryString from 'query-string';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
@@ -28,6 +28,7 @@ interface IState {
 	visible: boolean;
 	showed: boolean;
 	approved: boolean;
+	checkReferral: boolean;
 }
 
 export default class Staking extends React.Component<IProps, IState> {
@@ -36,16 +37,16 @@ export default class Staking extends React.Component<IProps, IState> {
 		this.state = {
 			visible: false,
 			showed: false,
-			approved: false
+			approved: false,
+			checkReferral: false
 		};
 	}
 	public componentDidMount() {
 		this.props.subscribe();
-		//const values = queryString.parse((this.props as any).location.search)
 		document.title = 'DUO | Staking';
 	}
 
-	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+	public static async getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
 		const { duoAllowance, addresses } = nextProps;
 		if (addresses.priceFeedList.length > 0 && duoAllowance === 0 && !prevState.showed)
 			return {
@@ -68,7 +69,7 @@ export default class Staking extends React.Component<IProps, IState> {
 		const txHash = await web3Wrapper.erc20Approve(
 			web3Wrapper.contractAddresses.DUO.address,
 			account,
-			web3Wrapper.contractAddresses.Stake.address,
+			web3Wrapper.contractAddresses.Stakes[0].address,
 			0,
 			true
 		);
@@ -87,6 +88,7 @@ export default class Staking extends React.Component<IProps, IState> {
 			locale
 		} = this.props;
 		const { visible, approved } = this.state;
+		const code = queryString.parse((this.props as any).location.search)
 		return (
 			<Layout>
 				<Header />
@@ -118,6 +120,7 @@ export default class Staking extends React.Component<IProps, IState> {
 						duoBalance={duoBalance}
 						award={userAward}
 						enableApprove={!approved}
+						linkReferralcode={(code as any).r || ''}
 					/>
 					{addresses.priceFeedList.length ? (
 						addresses.priceFeedList.map((addr, i) => (

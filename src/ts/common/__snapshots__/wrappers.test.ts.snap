@@ -91,10 +91,16 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": Object {
-          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
-          "code": "Stake",
-        },
+        "Stakes": Array [
+          Object {
+            "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+            "code": "Stake-0",
+          },
+          Object {
+            "address": "0x0646B77D768a459aA5F84E6A160A5B72b88d76eA",
+            "code": "Stake-60",
+          },
+        ],
       },
     },
     "0x13016f27945f3f7b39A5Daae068D698e34E55491",
@@ -168,10 +174,16 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": Object {
-          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
-          "code": "Stake",
-        },
+        "Stakes": Array [
+          Object {
+            "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+            "code": "Stake-0",
+          },
+          Object {
+            "address": "0x0646B77D768a459aA5F84E6A160A5B72b88d76eA",
+            "code": "Stake-60",
+          },
+        ],
       },
     },
     "0x00be45Fe5903AB1b33a9d3969b05b29552a6d18b",
@@ -245,10 +257,16 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": Object {
-          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
-          "code": "Stake",
-        },
+        "Stakes": Array [
+          Object {
+            "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+            "code": "Stake-0",
+          },
+          Object {
+            "address": "0x0646B77D768a459aA5F84E6A160A5B72b88d76eA",
+            "code": "Stake-60",
+          },
+        ],
       },
     },
     "0x32a42AeDe34Cd0D2D76e02E0d3A3440706A9c619",
@@ -333,10 +351,16 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": Object {
-          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
-          "code": "Stake",
-        },
+        "Stakes": Array [
+          Object {
+            "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+            "code": "Stake-0",
+          },
+          Object {
+            "address": "0x0646B77D768a459aA5F84E6A160A5B72b88d76eA",
+            "code": "Stake-60",
+          },
+        ],
       },
     },
     "0xD728681490d63582047A6Cd2fC80B1343C6AbA20",
@@ -421,10 +445,16 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": Object {
-          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
-          "code": "Stake",
-        },
+        "Stakes": Array [
+          Object {
+            "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+            "code": "Stake-0",
+          },
+          Object {
+            "address": "0x0646B77D768a459aA5F84E6A160A5B72b88d76eA",
+            "code": "Stake-60",
+          },
+        ],
       },
     },
     "0x0d729B3C11b3E6Bf5792d36f640f3Be6f187Dd67",
@@ -509,10 +539,16 @@ Array [
             "code": "Magi",
           },
         ],
-        "Stake": Object {
-          "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
-          "code": "Stake",
-        },
+        "Stakes": Array [
+          Object {
+            "address": "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
+            "code": "Stake-0",
+          },
+          Object {
+            "address": "0x0646B77D768a459aA5F84E6A160A5B72b88d76eA",
+            "code": "Stake-60",
+          },
+        ],
       },
     },
     "0x71E17030E49A1361b8E1902d613C4e5dD2185e8A",
