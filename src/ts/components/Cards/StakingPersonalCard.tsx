@@ -66,7 +66,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 	private personalSign = async () => {
 		const signHash = await web3Wrapper.web3PersonalSign(
 			this.props.address,
-			'Sign Referral Code'
+			'Referral Code:' + this.state.referralCode
 		);
 		return signHash;
 	};
@@ -93,12 +93,12 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 	private handleBind = async () => {
 		// const SignString = await this.personalSign();
 		// console.log(this.state.referralCode, SignString);
-		const { address } = this.props;
+		const { address, locale } = this.props;
 		const { referralCode } = this.state;
 		if (await referralUtil.checkExist(address))
-			window.alert('You already registered a referral code');
+			window.alert(StakingCST.STK_ALRBIND[locale]);
 		else if (referralCode.length !== 6)
-			window.alert('Referral code should be 6 letters/numbers');
+			window.alert(StakingCST.STK_RCWARING[locale]);
 		else {
 			const signHash = await this.personalSign();
 			const data: IReferral = {

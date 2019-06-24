@@ -217,3 +217,13 @@ export const STK_CTRETURN: ILocaleText = {
 	[LOCALE_CN]: '最大回报率',
 	[LOCALE_EN]: 'Max Est Return'
 };
+
+export const STK_ALRBIND: ILocaleText = {
+	[LOCALE_CN]: '已经提交过绑定码，无法再次提交',
+	[LOCALE_EN]: 'You already registered a referral code'
+}
+
+export const STK_RCWARING: ILocaleText = {
+	[LOCALE_CN]: '绑定码需为6位字符串',
+	[LOCALE_EN]: 'Referral code should be 6 letters/numbers'
+}
