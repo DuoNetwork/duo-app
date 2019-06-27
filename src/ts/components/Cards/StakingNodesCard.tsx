@@ -24,7 +24,7 @@ import {
 interface IProps {
 	contractIndex: number;
 	lockTime: number;
-	minStake: number
+	minStake: number;
 	locale: string;
 	enabled: boolean;
 	title: string;
@@ -110,7 +110,7 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 						nowTimestamp / 1000
 					)
 						unstakeLock = true;
-					unlockTime = Number(lockTime) + Number((myStakeList[0] as any)['timestamp'])
+					unlockTime = Number(lockTime) + Number((myStakeList[0] as any)['timestamp']);
 				}
 		}
 		const estReturn =
@@ -240,13 +240,23 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 								onChange={e => this.handleInputChange(e.target.value)}
 							/>
 							<SStakingButtonM
-								style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
+								style={{
+									cursor: !enabled ? 'not-allowed' : 'default',
+									opacity: enabled ? 1 : 0.4
+								}}
 								onClick={() => enabled && this.handleStake()}
 							>
 								{StakingCST.STK_STAKE[locale]}
 							</SStakingButtonM>
 						</div>
-						<Tooltip title={unlockTime ? StakingCST.STK_UNLOCKUNTIL[locale] + moment(unlockTime * 1000).format('MM-DD-YYYY, HH:mm') : StakingCST.STK_NOSTAKE[locale]}>
+						<Tooltip
+							title={
+								unlockTime
+									? StakingCST.STK_UNLOCKUNTIL[locale] +
+									moment(unlockTime * 1000).format('MM-DD-YYYY, HH:mm')
+									: StakingCST.STK_NOSTAKE[locale]
+							}
+						>
 							<SStakingButtonF
 								style={{
 									cursor: enabled && unstakeLock ? 'default' : 'not-allowed',

@@ -99,7 +99,11 @@ export default class Duo extends React.Component {
 						width={'960px'}
 						margin={'0 0 0 0'}
 					>
-						<SDivFlexCenter horizontal padding="0 10px" style={{ display: 'inline-flex' }}>
+						<SDivFlexCenter
+							horizontal
+							padding="0 10px"
+							style={{ display: 'inline-flex' }}
+						>
 							<Link to={'/' + CST.TH_MAGI.toLowerCase()}>
 								<SCardTag style={{ marginRight: '40px' }}>
 									<div className="bg-logo">
@@ -123,14 +127,32 @@ export default class Duo extends React.Component {
 								</SCardTag>
 							</Link>
 							<Link to={'/' + 'staking'}>
+								<SCardTag style={{ marginRight: '40px' }}>
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-content">
+										<div className={'tag-price USD'}>STAKING FLEX</div>
+									</div>
+									<div className="tag-subtext">
+										<div
+											style={{
+												color: ColorStyles.ThemeTextAlpha,
+												marginLeft: 20
+											}}
+										>
+											DUO
+										</div>
+									</div>
+								</SCardTag>
+							</Link>
+							<Link to={'/' + 'stakingterm'}>
 								<SCardTag>
 									<div className="bg-logo">
 										<img src={ethIcon} />
 									</div>
 									<div className="tag-content">
-										<div className={'tag-price USD'}>
-											STAKING
-										</div>
+										<div className={'tag-price USD'}>STAKING TERM</div>
 									</div>
 									<div className="tag-subtext">
 										<div

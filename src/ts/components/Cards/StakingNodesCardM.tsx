@@ -268,7 +268,10 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 								onChange={e => this.handleInputChange(e.target.value)}
 							/>
 							<SStakingButtonM
-								style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
+								style={{
+									cursor: !enabled ? 'not-allowed' : 'default',
+									opacity: enabled ? 1 : 0.4
+								}}
 								onClick={() => enabled && this.handleStake()}
 							>
 								{StakingCST.STK_STAKE[locale]}
