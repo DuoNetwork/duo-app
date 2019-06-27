@@ -39,21 +39,24 @@ describe('stake reducer', () => {
 	test('stakeBalance', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_BALANCE,
-			value: 1000
+			value: 1000,
+			index: 0
 		});
 		expect(state).toMatchSnapshot();
 	});
 	test('stakeAllowance', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_ALLOWANCE,
-			value: 1000
+			value: 1000,
+			index: 0
 		});
 		expect(state).toMatchSnapshot();
 	});
 	test('stakeSub On', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_SUB,
-			value: 123
+			value: 123,
+			index: 0
 		});
 		expect(state).toMatchSnapshot();
 	});
@@ -67,28 +70,32 @@ describe('stake reducer', () => {
 	test('userStake', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_USERSTAKE,
-			value: {}
+			value: {},
+			index: 0
 		});
 		expect(state).toMatchSnapshot();
 	});
 	test('oracleStake', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_ORACLESTAKE,
-			value: {}
+			value: {},
+			index: 0
 		});
 		expect(state).toMatchSnapshot();
 	});
 	test('userAward', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_AWARD,
-			value: 0
+			value: 0,
+			index: 0
 		});
 		expect(state).toMatchSnapshot();
 	});
 	test('contractDUO', () => {
 		state = stakeReducer(state, {
 			type: CST.AC_STK_CONTRACTDUO,
-			value: 0
+			value: 0,
+			index: 0
 		});
 		expect(state).toMatchSnapshot();
 	});

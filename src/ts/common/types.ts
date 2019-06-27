@@ -53,15 +53,15 @@ export interface IDualClassState {
 }
 
 export interface IStakeState {
-	readonly states: IStakeStates;
 	readonly duo: number;
-	readonly allowance: number;
-	readonly subscription: number;
-	readonly addresses: IStakeAddress;
-	readonly userStake: { [key: string]: IStakeLot[] };
-	readonly oracleStake: { [key: string]: number };
-	readonly userAward: number;
-	readonly contractDUO: number;
+	readonly states: IStakeStates[];
+	readonly allowance: number[];
+	readonly subscription: number[];
+	readonly addresses: IStakeAddress[];
+	readonly userStake: Array<{ [key: string]: IStakeLot[] }>;
+	readonly oracleStake: Array<{ [key: string]: number }>;
+	readonly userAward: number[];
+	readonly contractDUO: number[];
 }
 
 export interface IEsplanadeState {

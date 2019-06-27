@@ -6,10 +6,12 @@
 import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import * as d3 from 'd3';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import * as StakingCST from 'ts/common/stakingCST';
-import { SCard, SCardTag3, SCardTitle } from './_styled';
+import { SCard, SCardTag3, SCardTitle, SStakingSwitch } from './_styled';
 
 interface IProps {
+	contractIndex: number;
 	locale: string;
 	contractStates: IStakeStates;
 	title: string;
@@ -18,16 +20,15 @@ interface IProps {
 }
 
 export default class StakingInfoCard extends React.Component<IProps> {
-	// constructor(props: IProps) {
-	// 	super(props);
-	// 	this.state = {
-	// 		inputText: '',
-	// 		inputValue: 0
-	// 	};
-	// }
-
 	public render() {
-		const { title, oracleStakes, addresses, locale, contractStates } = this.props;
+		const {
+			contractIndex,
+			title,
+			oracleStakes,
+			addresses,
+			locale,
+			contractStates
+		} = this.props;
 		const returns: number[] = [];
 		let totalStake = 0;
 		if (addresses.priceFeedList.length)
@@ -38,7 +39,8 @@ export default class StakingInfoCard extends React.Component<IProps> {
 					0;
 				returns.push(estReturn);
 			});
-		const maxReturn = Math.max(Math.max(...returns), 0);
+		const estReturnFix = 2.5;
+		const maxReturn = contractIndex === 0 ? Math.max(Math.max(...returns), 0) : estReturnFix;
 		return (
 			<SCard
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
@@ -58,14 +60,20 @@ export default class StakingInfoCard extends React.Component<IProps> {
 									marginRight: 10,
 									fontSize: 24,
 									fontWeight: 500,
-									color: contractStates.canStake ? '#5CA4DE' : '#FF5E5E',
+									color: addresses.priceFeedList.length
+										? contractStates.canStake
+											? '#5CA4DE'
+											: '#FF5E5E'
+										: '#FF5E5E',
 									textAlign: 'right',
 									paddingTop: 8
 								}}
 							>
-								{contractStates.canStake
-									? StakingCST.STK_ENABLED[locale]
-									: StakingCST.STK_DISABLED[locale]}
+								{addresses.priceFeedList.length
+									? contractStates.canStake
+										? StakingCST.STK_ENABLED[locale]
+										: StakingCST.STK_DISABLED[locale]
+									: StakingCST.STK_LOADING[locale]}
 							</div>
 						</div>
 					</SCardTag3>
@@ -112,7 +120,7 @@ export default class StakingInfoCard extends React.Component<IProps> {
 											color: '#5CA4DE'
 										}}
 									>
-										{contractStates.lockMinTimeInSecond}
+										{contractStates.lockMinTimeInSecond / 86400 + ' days'}
 									</span>
 								</div>
 							</div>
@@ -161,6 +169,15 @@ export default class StakingInfoCard extends React.Component<IProps> {
 							</div>
 						</div>
 					</SCardTag3>
+					<div style={{ marginTop: 10, display: 'flex', alignItems: 'center' }}>
+						<Link to={contractIndex === 0 ? '/stakingterm' : '/staking'}>
+							<SStakingSwitch>
+								{contractIndex === 0
+									? StakingCST.STK_TOFIX[locale]
+									: StakingCST.STK_TOFLEX[locale]}
+							</SStakingSwitch>
+						</Link>
+					</div>
 				</div>
 			</SCard>
 		);

@@ -124,25 +124,59 @@ Object {
     "subscription": 0,
   },
   "stake": Object {
-    "addresses": Object {
-      "operator": "0x0",
-      "priceFeedList": Array [],
-    },
-    "allowance": 0,
-    "contractDUO": 0,
+    "addresses": Array [
+      Object {
+        "operator": "0x0",
+        "priceFeedList": Array [],
+      },
+      Object {
+        "operator": "0x0",
+        "priceFeedList": Array [],
+      },
+    ],
+    "allowance": Array [
+      0,
+      0,
+    ],
+    "contractDUO": Array [
+      0,
+      0,
+    ],
     "duo": 0,
-    "oracleStake": Object {},
-    "states": Object {
-      "canStake": false,
-      "canUnstake": false,
-      "lockMinTimeInSecond": 0,
-      "maxStakePerOracle": 0,
-      "minStakeAmt": 0,
-      "totalAwardsToDistribute": 0,
-    },
-    "subscription": 0,
-    "userAward": 0,
-    "userStake": Object {},
+    "oracleStake": Array [
+      Object {},
+      Object {},
+    ],
+    "states": Array [
+      Object {
+        "canStake": false,
+        "canUnstake": false,
+        "lockMinTimeInSecond": 0,
+        "maxStakePerOracle": 0,
+        "minStakeAmt": 0,
+        "totalAwardsToDistribute": 0,
+      },
+      Object {
+        "canStake": false,
+        "canUnstake": false,
+        "lockMinTimeInSecond": 0,
+        "maxStakePerOracle": 0,
+        "minStakeAmt": 0,
+        "totalAwardsToDistribute": 0,
+      },
+    ],
+    "subscription": Array [
+      0,
+      0,
+    ],
+    "userAward": Array [
+      0,
+      0,
+    ],
+    "userStake": Array [
+      Object {},
+      Object {},
+    ],
   },
   "ui": Object {
     "locale": "EN",

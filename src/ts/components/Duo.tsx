@@ -72,9 +72,11 @@ export default class Duo extends React.Component {
 					<Route path={'/esplanade'} render={() => <Esplanade />} />
 					<Route path={'/magi'} render={() => <Magi />} />
 					<Route path={'/status'} render={() => <Status />} />
-					<Route path={'/staking'} component={Staking}/>
+					<Route path={'/staking'} component={(props: any) => <Staking {...props} contractIndex={0}/>}/>
+					<Route path={'/stakingterm'} component={(props: any) => <Staking {...props} contractIndex={1}/>}/>
 					<Route path={'/stakingadmin'} render={() => <StakingAdmin />} />
-					<Route path={'/stakingm'} component={StakingM} />
+					<Route path={'/stakingm'} component={(props: any) => <StakingM {...props} contractIndex={0}/>} />
+					<Route path={'/stakingmterm'} component={(props: any) => <StakingM {...props} contractIndex={1}/>} />
 					<Route render={() => <Home />} />
 				</Switch>
 			</div>

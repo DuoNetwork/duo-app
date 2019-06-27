@@ -3,18 +3,18 @@ import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import { csvParse } from 'd3';
 import * as React from 'react';
-import { stakeWrapper } from 'ts/common/wrappers';
+import { stakeWrappers} from 'ts/common/wrappers';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 
 interface IProps {
 	account: string;
 	duoBalance: number;
-	addresses: IStakeAddress;
-	contractStates: IStakeStates;
-	contractDUO: number;
+	addresses: IStakeAddress[];
+	contractStates: IStakeStates[];
+	contractDUO: number[];
 	gasPrice: number;
-	subscribe: () => any;
+	subscribe: (index: number) => any;
 }
 
 interface IState {
@@ -23,6 +23,7 @@ interface IState {
 	batchArray: { address: string[]; award: number[] };
 	x2Check: boolean;
 	x3Check: boolean;
+	contractIndex: number;
 }
 export default class StakingAdmin extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
@@ -32,25 +33,27 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 			award: '',
 			batchArray: { address: [], award: [] },
 			x2Check: false,
-			x3Check: false
+			x3Check: false,
+			contractIndex: 0
 		};
 	}
 	private inputRef = React.createRef<HTMLInputElement>();
 	public componentDidMount() {
-		this.props.subscribe();
+		this.props.subscribe(0);
+		this.props.subscribe(1);
 		document.title = 'DUO | Staking Admin';
 	}
 
 	private handleStake = async (operator: boolean) => {
 		const { account, gasPrice } = this.props;
-		const { x2Check, x3Check } = this.state;
+		const { contractIndex, x2Check, x3Check } = this.state;
 		const gasPriceEdit = x2Check ? gasPrice * 2 : x3Check ? gasPrice * 3 : gasPrice;
 		const txHash = operator
-			? await stakeWrapper.enableStakingAndUnstaking(account, {
+			? await stakeWrappers[contractIndex].enableStakingAndUnstaking(account, {
 					gasLimit: 100000,
 					gasPrice: gasPriceEdit
 			})
-			: await stakeWrapper.disableStakingAndUnstaking(account, {
+			: await stakeWrappers[contractIndex].disableStakingAndUnstaking(account, {
 					gasLimit: 1000000,
 					gasPrice: gasPriceEdit
 			});
@@ -100,9 +103,13 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		else this.setState({ x2Check: false, x3Check: true });
 	};
 
+	private contractSwitch = () => {
+		this.state.contractIndex === 0 ? this.setState({contractIndex: 1}) : this.setState({contractIndex: 0})
+	}
+
 	public render() {
 		const { account, contractStates, contractDUO, gasPrice } = this.props;
-		const { addr, award, batchArray, x2Check, x3Check } = this.state;
+		const { contractIndex, addr, award, batchArray, x2Check, x3Check } = this.state;
 		const gasPriceEdit = x2Check ? gasPrice * 2 : x3Check ? gasPrice * 3 : gasPrice;
 		return (
 			<Layout>
@@ -139,25 +146,33 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							<b>{account}</b>
 						</a>
 						<div>
-							Can Stake: <b>{contractStates.canStake.toString()}</b>
+							Stake: <b>{contractIndex === 0 ? 'Stake-0' : 'Stake-60'}</b>
+						</div>
+						<button
+							onClick={this.contractSwitch}
+						>
+							Switch Contract
+						</button>
+						<div>
+							Can Stake: <b>{contractStates[contractIndex].canStake.toString()}</b>
 						</div>
 						<div>
-							Can Unstake: <b>{contractStates.canUnstake.toString()}</b>
+							Can Unstake: <b>{contractStates[contractIndex].canUnstake.toString()}</b>
 						</div>
 						<div>
-							LockMinTimeInSecond: <b>{contractStates.lockMinTimeInSecond}</b>
+							LockMinTimeInSecond: <b>{contractStates[contractIndex].lockMinTimeInSecond}</b>
 						</div>
 						<div>
-							MinStakeAmt: <b>{contractStates.minStakeAmt}</b>
+							MinStakeAmt: <b>{contractStates[contractIndex].minStakeAmt}</b>
 						</div>
 						<div>
-							MaxStakePerPf: <b>{contractStates.maxStakePerOracle}</b>
+							MaxStakePerPf: <b>{contractStates[contractIndex].maxStakePerOracle}</b>
 						</div>
 						<div>
-							TotalAwardsToDistribute: <b>{contractStates.totalAwardsToDistribute}</b>
+							TotalAwardsToDistribute: <b>{contractStates[contractIndex].totalAwardsToDistribute}</b>
 						</div>
 						<div>
-							Contract DUO Amount: <b>{contractDUO}</b>
+							Contract DUO Amount: <b>{contractDUO[contractIndex]}</b>
 						</div>
 						<div>
 							Current Gas Price: <b>{gasPrice / 1E9 + 'Gwei'}</b>
@@ -239,7 +254,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						/>
 						<button
 							onClick={() =>
-								stakeWrapper.batchAddAward(account, [addr], [parseInt(award, 0)], {
+								stakeWrappers[contractIndex].batchAddAward(account, [addr], [parseInt(award, 0)], {
 									gasLimit: 1000000,
 									gasPrice: gasPriceEdit
 								})
@@ -282,7 +297,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							onClick={() =>
 								batchArray.address.length > 20
 									? window.alert('CSV file must not exceed 20 rows')
-									: stakeWrapper.batchAddAward(
+									: stakeWrappers[contractIndex].batchAddAward(
 											account,
 											batchArray.address,
 											batchArray.award,

@@ -10,7 +10,7 @@ export const LOCALE_EN = 'EN';
 
 export const STK_TITLEFIX: ILocaleText = {
 	[LOCALE_CN]: 'DUO 质押活动 (定期)',
-	[LOCALE_EN]: 'DUO Staking Campaign (Fix)'
+	[LOCALE_EN]: 'DUO Staking Campaign (Term)'
 };
 
 export const STK_TITLEFLEX: ILocaleText = {
@@ -134,8 +134,8 @@ export const STK_WARING: ILocaleText = {
 };
 
 export const STK_WARING2: ILocaleText = {
-	[LOCALE_CN]: '至少质押300DUO。',
-	[LOCALE_EN]: 'Stake amount should not less than 300DUO.'
+	[LOCALE_CN]: '质押数量需大于',
+	[LOCALE_EN]: 'Stake amount should not less than'
 };
 
 export const STK_REMIUNDER: ILocaleText = {
@@ -178,6 +178,11 @@ export const STK_COPIED: ILocaleText = {
 	[LOCALE_EN]: 'COPIED'
 };
 
+export const STK_LOADING: ILocaleText = {
+	[LOCALE_CN]: '载入中',
+	[LOCALE_EN]: 'Loading'
+};
+
 export const STK_LOADINGNODES: ILocaleText = {
 	[LOCALE_CN]: '载入节点中。。。',
 	[LOCALE_EN]: 'Loading Nodes...'
@@ -190,7 +195,12 @@ export const STK_ACCINFO: ILocaleText = {
 
 export const STK_CTSTATUS: ILocaleText = {
 	[LOCALE_CN]: '合约状态',
-	[LOCALE_EN]: 'Staking Status'
+	[LOCALE_EN]: 'Contract Status'
+};
+
+export const STK_STAKESTATUS: ILocaleText = {
+	[LOCALE_CN]: '质押状态',
+	[LOCALE_EN]: 'Stake Status'
 };
 
 export const STK_CTRULES: ILocaleText = {
@@ -220,10 +230,30 @@ export const STK_CTRETURN: ILocaleText = {
 
 export const STK_ALRBIND: ILocaleText = {
 	[LOCALE_CN]: '已经提交过绑定码，无法再次提交',
-	[LOCALE_EN]: 'You already registered a referral code'
+	[LOCALE_EN]: 'You have already registered a referral code'
 }
 
 export const STK_RCWARING: ILocaleText = {
 	[LOCALE_CN]: '绑定码需为6位字符串',
-	[LOCALE_EN]: 'Referral code should be 6 letters/numbers'
+	[LOCALE_EN]: 'Referral code should be a length 6 string'
+}
+
+export const STK_TOFLEX: ILocaleText = {
+	[LOCALE_CN]: '前往活期合约',
+	[LOCALE_EN]: 'To Flex Staking'
+}
+
+export const STK_TOFIX: ILocaleText = {
+	[LOCALE_CN]: '前往定期合约',
+	[LOCALE_EN]: 'To Term Staking'
+}
+
+export const STK_UNLOCKUNTIL: ILocaleText = {
+	[LOCALE_CN]: '解锁于 ',
+	[LOCALE_EN]: 'Lock until '
+}
+
+export const STK_NOSTAKE: ILocaleText = {
+	[LOCALE_CN]: '暂未质押DUO',
+	[LOCALE_EN]: 'No Staking amount'
 }

@@ -48,10 +48,17 @@ export const esplanadeWrapper = new EsplanadeWrapper(
 	web3Wrapper.contractAddresses.MultiSigManagers[0].address
 );
 
-export const stakeWrapper = new StakeWrapper(
+export const stakeWrapper0 = new StakeWrapper(
 	web3Wrapper,
 	web3Wrapper.contractAddresses.Stakes[0].address
 );
+
+export const stakeWrapper1 = new StakeWrapper(
+	web3Wrapper,
+	web3Wrapper.contractAddresses.Stakes[1].address
+);
+
+export const stakeWrappers = [stakeWrapper0, stakeWrapper1];
 
 export const calculateNav = DualClassWrapper.calculateNav;
 

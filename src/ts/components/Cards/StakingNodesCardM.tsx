@@ -4,11 +4,13 @@
 // 	IDualClassStates
 // } from '@finbook/duo-contract-wrapper';
 import { IStakeLot, Web3Wrapper } from '@finbook/duo-contract-wrapper';
+import { Tooltip } from 'antd';
 //import { Table } from 'antd';
 import * as d3 from 'd3';
+import moment from 'moment';
 import * as React from 'react';
 import * as StakingCST from 'ts/common/stakingCST';
-import { stakeWrapper } from 'ts/common/wrappers';
+import { stakeWrappers } from 'ts/common/wrappers';
 //import * as CST from 'ts/common/constants';
 import {
 	SCard,
@@ -20,6 +22,9 @@ import {
 } from './_styled';
 
 interface IProps {
+	contractIndex: number;
+	lockTime: number;
+	minStake: number;
 	locale: string;
 	enabled: boolean;
 	title: string;
@@ -49,42 +54,70 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 		this.setState({ inputText: newText, inputValue: parseInt(value, 0) });
 	};
 	private handleStake = async () => {
-		const { myAddr, oracleAddr, myDUO, locale } = this.props;
+		const { contractIndex, myAddr, oracleAddr, myDUO, locale, minStake } = this.props;
 		const { inputValue } = this.state;
-		if (inputValue <= myDUO && inputValue >= 300) {
-			const txHash = await stakeWrapper.stake(myAddr, oracleAddr, inputValue, {
-				gasLimit: 1000000
-			});
+		if (inputValue <= myDUO && inputValue >= minStake) {
+			const txHash = await stakeWrappers[contractIndex].stake(
+				myAddr,
+				oracleAddr,
+				inputValue,
+				{
+					gasLimit: 1000000
+				}
+			);
 			this.setState({ inputText: '', inputValue: 0 });
 			console.log('Transaction submit: ' + txHash);
 		} else if (inputValue > myDUO) {
 			window.alert(StakingCST.STK_WARING[locale]);
 			this.setState({ inputText: '', inputValue: 0 });
 		} else {
-			window.alert(StakingCST.STK_WARING2[locale]);
+			window.alert(StakingCST.STK_WARING2[locale] + minStake + 'duo');
 			this.setState({ inputText: '', inputValue: 0 });
 		}
 	};
 	private handleUnstake = async () => {
-		const { myAddr, oracleAddr } = this.props;
-		const txHash = await stakeWrapper.unstake(myAddr, oracleAddr, {
+		const { contractIndex, myAddr, oracleAddr } = this.props;
+		const txHash = await stakeWrappers[contractIndex].unstake(myAddr, oracleAddr, {
 			gasLimit: 1000000
 		});
 		console.log('Transaction submit: ' + txHash);
 	};
 	public render() {
-		const { enabled, title, myStake, oracleAddr, oracleStakes, locale } = this.props;
+		const {
+			enabled,
+			title,
+			myStake,
+			oracleAddr,
+			oracleStakes,
+			locale,
+			contractIndex,
+			lockTime
+		} = this.props;
 		const { inputText } = this.state;
 		const myStakeList = myStake[oracleAddr];
 		let myAccStake = 0;
-		if (myStakeList)
+		let unstakeLock = false;
+		let unlockTime = 0;
+		if (myStakeList) {
 			myStakeList.forEach(result => {
 				myAccStake += Web3Wrapper.fromWei((result as any)['amtInWei']);
 			});
+			if (myStakeList[0])
+				if ((myStakeList[0] as any)['timestamp'] !== '0') {
+					const nowTimestamp = moment.now().valueOf();
+					if (
+						Number(lockTime) + Number((myStakeList[0] as any)['timestamp']) <
+						nowTimestamp / 1000
+					)
+						unstakeLock = true;
+					unlockTime = Number(lockTime) + Number((myStakeList[0] as any)['timestamp']);
+				}
+		}
 		const estReturn =
 			(4047 * Math.pow(2, Math.log(oracleStakes[oracleAddr]) / 2.3)) /
 				oracleStakes[oracleAddr] || 0;
-		const myReward = myAccStake * estReturn / 52;
+		const estReturnFix = 2.5;
+		const myReward = (myAccStake * (contractIndex === 0 ? estReturn : estReturnFix)) / 52;
 		return (
 			<SCard
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
@@ -92,8 +125,16 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 				margin="0 0 20px 0"
 			>
 				<div>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
-						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
+					<SCardTag3
+						style={{
+							pointerEvents: 'none',
+							marginRight: 15,
+							width: '100%',
+							paddingTop: 0,
+							height: 75
+						}}
+					>
+						<div className="tag-content" style={{ margin: '10px 0 -10px 10px' }}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_POOLSIZE[locale]}
 							</div>
@@ -114,8 +155,16 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
-						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
+					<SCardTag3
+						style={{
+							pointerEvents: 'none',
+							marginRight: 15,
+							width: '100%',
+							paddingTop: 0,
+							height: 75
+						}}
+					>
+						<div className="tag-content" style={{ margin: '10px 0 -10px 10px' }}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_ESTREUTRN[locale]}
 							</div>
@@ -131,13 +180,21 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 									paddingTop: 8
 								}}
 							>
-								{d3.format(',.0%')(estReturn)}
+								{d3.format(',.0%')(contractIndex === 0 ? estReturn : estReturnFix)}
 								<span style={{ fontSize: 10, marginLeft: 5 }}>p.a.</span>
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
-						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
+					<SCardTag3
+						style={{
+							pointerEvents: 'none',
+							marginRight: 15,
+							width: '100%',
+							paddingTop: 0,
+							height: 75
+						}}
+					>
+						<div className="tag-content" style={{ margin: '10px 0 -10px 10px' }}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_MYSTAKE[locale]}
 							</div>
@@ -158,8 +215,16 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: '100%', paddingTop: 0, height: 75  }}>
-						<div className="tag-content" style={{margin: '10px 0 -10px 10px'}}>
+					<SCardTag3
+						style={{
+							pointerEvents: 'none',
+							marginRight: 15,
+							width: '100%',
+							paddingTop: 0,
+							height: 75
+						}}
+					>
+						<div className="tag-content" style={{ margin: '10px 0 -10px 10px' }}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 								{StakingCST.STK_ESTAWARD[locale]}
 							</div>
@@ -209,20 +274,35 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 								{StakingCST.STK_STAKE[locale]}
 							</SStakingButtonM>
 						</div>
-						<SStakingButtonF
-							style={{ cursor: !enabled ? 'not-allowed' : 'default', width: '45%', marginTop: 34 }}
-							onClick={() => enabled && this.handleUnstake()}
+						<Tooltip
+							title={
+								unlockTime
+									? StakingCST.STK_UNLOCKUNTIL[locale] +
+									moment(unlockTime * 1000).format('MM-DD-YYYY, HH:mm')
+									: StakingCST.STK_NOSTAKE[locale]
+							}
+							trigger={'click'}
 						>
-							{StakingCST.STK_UNSTAKE[locale]} (
-							{myStakeList
-								? myStakeList[0]
-									? (myStakeList[0] as any)['amtInWei'] === '0'
-										? 0
-										: myStakeList.length
-									: 0
-								: 0}
-							)
-						</SStakingButtonF>
+							<SStakingButtonF
+								style={{
+									cursor: enabled && unstakeLock ? 'default' : 'not-allowed',
+									opacity: enabled && unstakeLock ? 1 : 0.4,
+									width: '45%',
+									marginTop: 34
+								}}
+								onClick={() => unstakeLock && enabled && this.handleUnstake()}
+							>
+								{StakingCST.STK_UNSTAKE[locale]} (
+								{myStakeList
+									? myStakeList[0]
+										? (myStakeList[0] as any)['amtInWei'] === '0'
+											? 0
+											: myStakeList.length
+										: 0
+									: 0}
+								)
+							</SStakingButtonF>
+						</Tooltip>
 					</div>
 				</div>
 			</SCard>

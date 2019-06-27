@@ -28,7 +28,7 @@ import {
 	dualClassWrappers,
 	esplanadeWrapper,
 	magiWrapper,
-	stakeWrapper,
+	stakeWrappers,
 	web3Wrapper
 } from './wrappers';
 
@@ -53,6 +53,6 @@ test('MagiWrapper', () => {
 });
 
 test('StakeWrapper', () => {
-	expect(stakeWrapper).toMatchSnapshot();
+	expect(stakeWrappers[0]).toMatchSnapshot();
 	expect((StakeWrapper as any).mock.calls).toMatchSnapshot();
 });

@@ -25,7 +25,8 @@ function mapStateToProps(state: IState) {
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () => dispatch(stakeActions.subscribe())
+		subscribe: (index: number) => dispatch(stakeActions.subscribe(index)),
+		refresh: (index: number) => dispatch(stakeActions.refresh(index))
 	};
 }
 

@@ -714,6 +714,27 @@ export const SStakingRlinkM = styled.div`
 	border-radius: 2px;
 	line-height: 26px;
 `;
+
+export const SStakingSwitch = styled.div`
+	cursor: pointer;
+	border: 2px solid rgba(92, 164, 222, 1);
+	border-radius: 23px;
+	background: rgba(92, 164, 222, 0.92);
+	width: 130px;
+	text-align: center;
+	color: rgba(255, 255, 255, 1);
+	font-size: 14px;
+	font-weight: 500;
+	padding: 5px 10px;
+	height: 36px;
+	line-height: 26px;
+	opacity: 0.9;
+	transition: all .2s;
+	&:hover {
+		opacity: 1;
+		box-shadow: 0 0 5px 2px rgba(68, 124, 170, 0.5)
+	}
+`;
 export interface ICardAssetTagProps {
 	mobile?: boolean;
 	value?: number;
