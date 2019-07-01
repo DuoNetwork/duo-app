@@ -156,7 +156,7 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 							</div>
 						}
 					>
-						<SCardTag3 style={{ marginRight: 15 }}>
+						<SCardTag3 style={{ marginRight: 15,  pointerEvents: contractIndex === 0 ? 'none' : 'auto'}}>
 							<div className="tag-content" style={{ pointerEvents: 'none' }}>
 								<div className={'tag-price USD'} style={{ fontSize: 12 }}>
 									{StakingCST.STK_ESTREUTRN[locale]}

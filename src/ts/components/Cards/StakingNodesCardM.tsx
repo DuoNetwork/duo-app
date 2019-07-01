@@ -164,9 +164,11 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 							</div>
 						}
 						trigger={'click'}
+						style={{opacity: contractIndex === 1 ? 1 : 0}}
 					>
 						<SCardTag3
 							style={{
+								pointerEvents: contractIndex === 0 ? 'none' : 'auto',
 								marginRight: 15,
 								width: '100%',
 								paddingTop: 0,
