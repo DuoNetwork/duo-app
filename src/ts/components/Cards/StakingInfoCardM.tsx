@@ -31,15 +31,16 @@ export default class StakingInfoCardM extends React.Component<IProps> {
 		} = this.props;
 		const returns: number[] = [];
 		let totalStake = 0;
+		let estReturnFix = 1.5;
 		if (addresses.priceFeedList.length)
 			addresses.priceFeedList.map(addr => {
 				totalStake += oracleStakes[addr];
+				if (oracleStakes[addr] < 200000) estReturnFix = 2.5;
 				const estReturn =
 					(4047 * Math.pow(2, Math.log(oracleStakes[addr]) / 2.3)) / oracleStakes[addr] ||
 					0;
 				returns.push(estReturn);
 			});
-		const estReturnFix = 2.5;
 		const maxReturn = contractIndex === 0 ? Math.max(Math.max(...returns), 0) : estReturnFix;
 		return (
 			<SCard

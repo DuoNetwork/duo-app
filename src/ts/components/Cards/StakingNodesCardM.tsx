@@ -116,7 +116,7 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 		const estReturn =
 			(4047 * Math.pow(2, Math.log(oracleStakes[oracleAddr]) / 2.3)) /
 				oracleStakes[oracleAddr] || 0;
-		const estReturnFix = 2.5;
+		const estReturnFix = oracleStakes[oracleAddr] > 200000 ? 1.5 : 2.5;
 		const myReward = (myAccStake * (contractIndex === 0 ? estReturn : estReturnFix)) / 52;
 		return (
 			<SCard
@@ -155,36 +155,51 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3
-						style={{
-							pointerEvents: 'none',
-							marginRight: 15,
-							width: '100%',
-							paddingTop: 0,
-							height: 75
-						}}
+					<Tooltip
+						title={
+							<div>
+								<span>0~200,000: 250% p.a.</span>
+								<br />
+								<span>>200,000: 150% p.a.</span>
+							</div>
+						}
+						trigger={'click'}
 					>
-						<div className="tag-content" style={{ margin: '10px 0 -10px 10px' }}>
-							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								{StakingCST.STK_ESTREUTRN[locale]}
-							</div>
-						</div>
-						<div className="tag-subtext">
+						<SCardTag3
+							style={{
+								marginRight: 15,
+								width: '100%',
+								paddingTop: 0,
+								height: 75
+							}}
+						>
 							<div
-								style={{
-									marginRight: 10,
-									fontSize: 28,
-									fontWeight: 500,
-									color: '#FF7A00',
-									textAlign: 'right',
-									paddingTop: 8
-								}}
+								className="tag-content"
+								style={{ margin: '10px 0 -10px 10px', pointerEvents: 'none' }}
 							>
-								{d3.format(',.0%')(contractIndex === 0 ? estReturn : estReturnFix)}
-								<span style={{ fontSize: 10, marginLeft: 5 }}>p.a.</span>
+								<div className={'tag-price USD'} style={{ fontSize: 12 }}>
+									{StakingCST.STK_ESTREUTRN[locale]}
+								</div>
 							</div>
-						</div>
-					</SCardTag3>
+							<div className="tag-subtext">
+								<div
+									style={{
+										marginRight: 10,
+										fontSize: 28,
+										fontWeight: 500,
+										color: '#FF7A00',
+										textAlign: 'right',
+										paddingTop: 8
+									}}
+								>
+									{d3.format(',.0%')(
+										contractIndex === 0 ? estReturn : estReturnFix
+									)}
+									<span style={{ fontSize: 10, marginLeft: 5 }}>p.a.</span>
+								</div>
+							</div>
+						</SCardTag3>
+					</Tooltip>
 					<SCardTag3
 						style={{
 							pointerEvents: 'none',
