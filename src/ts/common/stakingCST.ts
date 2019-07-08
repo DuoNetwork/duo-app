@@ -4,6 +4,7 @@ export interface ILocaleText {
 	[key: string]: string;
 }
 export const REFERRALABLE = 'duo.live.referral';
+export const REFERRALCODE = 'Referral Code: ';
 
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';
@@ -81,6 +82,11 @@ export const STK_BRLINK: ILocaleText = {
 export const STK_RCODE: ILocaleText = {
 	[LOCALE_CN]: '推荐码:',
 	[LOCALE_EN]: 'Referral Code:'
+};
+
+export const STK_RCODEUSED: ILocaleText = {
+	[LOCALE_CN]: '已使用推荐码: ',
+	[LOCALE_EN]: 'Already binded with referral Code: '
 };
 
 export const STK_BIND: ILocaleText = {
@@ -236,6 +242,11 @@ export const STK_ALRBIND: ILocaleText = {
 export const STK_RCWARING: ILocaleText = {
 	[LOCALE_CN]: '绑定码需为6位字符串',
 	[LOCALE_EN]: 'Referral code should be a length 6 string'
+}
+
+export const STK_BINDED: ILocaleText = {
+	[LOCALE_CN]: '绑定成功',
+	[LOCALE_EN]: 'Bind Success'
 }
 
 export const STK_TOFLEX: ILocaleText = {

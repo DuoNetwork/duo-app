@@ -11,9 +11,14 @@ class ReferralUtil {
 	public async checkExist(account: string) {
 		const data = await dynamoUtil.scanData({ TableName: StakingCST.REFERRALABLE });
 		const addressList: string[] = [];
-		if (data.Items) data.Items.map(item => addressList.push((item as any).address.S));
-		if (addressList.includes(account)) return true;
-		return false;
+		if (data.Items) data.Items.map(item => {
+			addressList.push((item as any).address.S)
+		});
+		if (addressList.includes(account)) {
+			const index = addressList.indexOf(account);
+			return (data.Items as any)[index].referralCode.S;
+		}
+		return '';
 	}
 
 	public async insertReferralEntry(item: IReferral) {

@@ -5,21 +5,24 @@
 // } from '@finbook/duo-contract-wrapper';
 //import { Table } from 'antd';
 //import * as CST from 'ts/common/constants';
-// import { Button, Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import * as d3 from 'd3';
 import avt from 'images/avatar.png';
 import duo3d from 'images/duo-3d.png';
 import duoIcon from 'images/Duo_black.png';
 import * as React from 'react';
+import referralUtil from 'ts/common/referralUtil';
 import * as StakingCST from 'ts/common/stakingCST';
+import { IReferral } from 'ts/common/types';
 //import { ColorStyles } from 'ts/common/styles';
 import { stakeWrappers, web3Wrapper } from 'ts/common/wrappers';
 import {
 	SCard,
 	SCardTag2,
 	SCardTitle,
-	SStakingButtonM
-	// SStakingRlinkM
+	SStakingButtonM,
+	SStakingInput,
+	SStakingRlinkM
 } from './_styled';
 
 interface IProps {
@@ -30,17 +33,34 @@ interface IProps {
 	duoBalance: number;
 	award: number;
 	enableApprove: boolean;
+	linkReferralcode: string;
 }
 interface IState {
-	visible: boolean;
+	visibleLink: boolean;
+	visibleAddReferral: boolean;
+	referralCode: string;
+	binded: boolean;
+	bindedCode: string;
 }
 export default class StakingPersonalCardM extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			visible: false
+			visibleLink: false,
+			visibleAddReferral: false,
+			referralCode: this.props.linkReferralcode,
+			binded: false,
+			bindedCode: ''
 		};
 	}
+
+	public componentDidUpdate = async () => {
+		const { address } = this.props;
+		const bindedCode = await referralUtil.checkExist(address);
+		if (!this.state.binded && bindedCode)
+			this.setState({ binded: true, bindedCode: bindedCode });
+	};
+
 	private handleApprove = async () => {
 		const { address, contractIndex } = this.props;
 		const txHash = await web3Wrapper.erc20Approve(
@@ -53,9 +73,9 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 		console.log('Transaction submit: ' + txHash);
 	};
 
-	// private handleCancel = () => {
-	// 	this.setState({ visible: false });
-	// };
+	private handleCancel = () => {
+		this.setState({ visibleLink: false, visibleAddReferral: false });
+	};
 
 	// private copyToClipboard = (target: number) => {
 	// 	const { address, locale } = this.props;
@@ -67,13 +87,46 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 	// 				.writeText('https://duo.ac?r=' + address.slice(-6))
 	// 				.then(() => window.alert(StakingCST.STK_COPIED[locale]));
 	// };
+
+	private handleInputChange = (value: string) => {
+		this.setState({ referralCode: value });
+	};
+
+	private personalSign = async () => {
+		const signHash = await web3Wrapper.web3PersonalSign(
+			this.props.address,
+			StakingCST.REFERRALCODE + this.state.referralCode
+		);
+		return signHash;
+	};
+
+	private handleBind = async () => {
+		const { address, locale } = this.props;
+		const { referralCode } = this.state;
+		if (referralCode.length !== 6) window.alert(StakingCST.STK_RCWARING[locale]);
+		else if (await referralUtil.checkExist(address))
+			window.alert(StakingCST.STK_ALRBIND[locale]);
+		else {
+			const signHash = await this.personalSign();
+			const data: IReferral = {
+				address: address,
+				referralCode: referralCode,
+				signHash: signHash
+			};
+			await referralUtil.insertReferralEntry(data);
+			this.handleCancel();
+			window.alert(StakingCST.STK_BINDED[locale]);
+		}
+		this.setState({ referralCode: '' });
+	};
+
 	public render() {
 		const { enabled, address, duoBalance, award, locale, enableApprove } = this.props;
-		//const { visible } = this.state;
+		const { visibleLink, visibleAddReferral, referralCode, binded, bindedCode } = this.state;
 		return (
 			<div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-				{/* <Modal
-					visible={visible}
+				<Modal
+					visible={visibleLink}
 					title={StakingCST.STK_RLINK[locale]}
 					onOk={this.handleCancel}
 					onCancel={this.handleCancel}
@@ -88,9 +141,14 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 						<SStakingRlinkM id="referral-link-d">
 							{'https://app.duo.network/staking?r=' + address.slice(-6)}
 						</SStakingRlinkM>
-						<Button key="copy" type="ghost"  style={{marginTop: 5}} onClick={() => this.copyToClipboard(1)}>
+						{/* <Button
+							key="copy"
+							type="ghost"
+							style={{ marginTop: 5 }}
+							onClick={() => this.copyToClipboard(1)}
+						>
 							{StakingCST.STK_COPY[locale]}
-						</Button>
+						</Button> */}
 					</div>
 					<p style={{ marginBottom: 5, marginTop: 10 }}>
 						{StakingCST.STK_RLMOBILE[locale]}
@@ -99,11 +157,49 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 						<SStakingRlinkM id="referral-link-m">
 							{'https://duo.ac?r=' + address.slice(-6)}
 						</SStakingRlinkM>
-						<Button key="copy" type="ghost"  style={{marginTop: 5}} onClick={() => this.copyToClipboard(2)}>
+						{/* <Button
+							key="copy"
+							type="ghost"
+							style={{ marginTop: 5 }}
+							onClick={() => this.copyToClipboard(2)}
+						>
 							{StakingCST.STK_COPY[locale]}
-						</Button>
+						</Button> */}
 					</div>
-				</Modal> */}
+				</Modal>
+				<Modal
+					visible={visibleAddReferral}
+					title={StakingCST.STK_BRLINK[locale]}
+					onOk={this.handleCancel}
+					onCancel={this.handleCancel}
+					footer={[
+						binded ? (
+							<Button key="ok" type="primary" onClick={this.handleCancel}>
+								{StakingCST.STK_BTNOK[locale]}
+							</Button>
+						) : (
+							<Button key="ok" type="primary" onClick={this.handleBind}>
+								{StakingCST.STK_BIND[locale]}
+							</Button>
+						)
+					]}
+				>
+					{binded ? (
+						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+							<div>{StakingCST.STK_RCODEUSED[locale] + bindedCode}</div>
+						</div>
+					) : (
+						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+							<div>{StakingCST.STK_RCODE[locale]}</div>
+							<SStakingInput
+								placeholder={StakingCST.STK_BINDINPUTPH[locale]}
+								value={referralCode}
+								onChange={e => this.handleInputChange(e.target.value)}
+								style={{ width: 180 }}
+							/>
+						</div>
+					)}
+				</Modal>
 				<SCard
 					title={<SCardTitle>{StakingCST.STK_ACCINFO[locale].toUpperCase()}</SCardTitle>}
 					width="95%"
@@ -230,7 +326,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 								{StakingCST.STK_CLAIM[locale]}
 							</SStakingButtonM>
 						</div>
-						{/* <div
+						<div
 							style={{
 								width: '100%',
 								marginTop: 10,
@@ -243,11 +339,19 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 								style={{
 									width: '45%'
 								}}
-								onClick={() => this.setState({ visible: true })}
+								onClick={() => this.setState({ visibleLink: true })}
 							>
 								{StakingCST.STK_RLINK[locale]}
 							</SStakingButtonM>
-						</div> */}
+							<SStakingButtonM
+								style={{
+									width: '45%'
+								}}
+								onClick={() => this.setState({ visibleAddReferral: true })}
+							>
+								{StakingCST.STK_BRLINK[locale]}
+							</SStakingButtonM>
+						</div>
 					</div>
 				</SCard>
 			</div>

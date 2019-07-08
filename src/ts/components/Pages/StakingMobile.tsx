@@ -1,7 +1,7 @@
 //import { IStatus } from '@finbook/duo-market-data';
 import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Button, Layout, Modal } from 'antd';
-//import queryString from 'query-string';
+import queryString from 'query-string';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
@@ -100,7 +100,7 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 			locale
 		} = this.props;
 		const { visible, approved } = this.state;
-		//const code = queryString.parse((this.props as any).location.search);
+		const code = queryString.parse((this.props as any).location.search);
 		return (
 			<Layout>
 				<Modal
@@ -137,6 +137,7 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 						duoBalance={duoBalance}
 						award={userAward[contractIndex]}
 						enableApprove={!approved}
+						linkReferralcode={(code as any).r || ''}
 					/>
 					{addresses[contractIndex].priceFeedList.length ? (
 						addresses[contractIndex].priceFeedList.map((addr, i) => (
