@@ -9,7 +9,7 @@ class ReferralUtil {
 	}
 
 	public async checkExist(account: string) {
-		const data = await dynamoUtil.scanData({ TableName: StakingCST.REFERRALABLE });
+		const data = await dynamoUtil.scanData({ TableName: StakingCST.REFERRALTABLE });
 		const addressList: string[] = [];
 		if (data.Items) data.Items.map(item => {
 			addressList.push((item as any).address.S)
@@ -29,11 +29,24 @@ class ReferralUtil {
 			updatedAt: { S: this.getUTCNowTimestamp() + '' }
 		};
 		const params = {
-			TableName: StakingCST.REFERRALABLE,
+			TableName: StakingCST.REFERRALTABLE,
 			Item: data
 		};
 
 		await dynamoUtil.insertData(params);
+	}
+
+	public async getAddressInfo(account: string) {
+		const params = {
+			TableName: StakingCST.STAKINGTABLE,
+			KeyConditionExpression: 'address = :address',
+			ExpressionAttributeValues: {
+				[':address']: { S: account }
+			}
+		}
+		const data = await dynamoUtil.queryData(params);
+		console.log('*******');
+		console.log(data);
 	}
 }
 

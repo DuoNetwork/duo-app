@@ -8,7 +8,7 @@
 import { Button, Modal } from 'antd';
 import * as d3 from 'd3';
 import avt from 'images/avatar.png';
-import duo3d from 'images/duo-3d.png';
+//import duo3d from 'images/duo-3d.png';
 import duoIcon from 'images/Duo_black.png';
 import * as React from 'react';
 //import { ColorStyles } from 'ts/common/styles';
@@ -16,13 +16,17 @@ import referralUtil from 'ts/common/referralUtil';
 import * as StakingCST from 'ts/common/stakingCST';
 import { IReferral } from 'ts/common/types';
 import { stakeWrappers, web3Wrapper } from 'ts/common/wrappers';
+import { SDivFlexCenter } from '../_styled';
 import {
 	SCard,
 	SCardTag2,
+	SCardTag4,
 	SCardTitle,
 	SStakingButtonM,
 	SStakingInput,
-	SStakingRlink
+	SStakingRInfoBTN,
+	SStakingRlink,
+	SStakingSwitch
 } from './_styled';
 
 interface IProps {
@@ -59,6 +63,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 	public componentDidUpdate = async () => {
 		const { address } = this.props;
 		const bindedCode = await referralUtil.checkExist(address);
+		await referralUtil.getAddressInfo(address);
 		if (!this.state.binded && bindedCode)
 			this.setState({ binded: true, bindedCode: bindedCode });
 	};
@@ -186,7 +191,10 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 				>
 					{binded ? (
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-							<div>{StakingCST.STK_RCODEUSED[locale] + bindedCode}</div>
+							<div>
+								{StakingCST.STK_RCODEUSED[locale]}
+								<span style={{ color: '#5CA4DE' }}>{bindedCode}</span>
+							</div>
 						</div>
 					) : (
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -202,131 +210,246 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 				</Modal>
 				<SCard
 					title={<SCardTitle>{StakingCST.STK_ACCINFO[locale].toUpperCase()}</SCardTitle>}
-					width="960px"
+					width="1060px"
 					margin="0 0 20px 0"
+					extra={
+						<SStakingSwitch onClick={() => this.setState({ visibleAddReferral: true })}>
+							{StakingCST.STK_BRLINK[locale]}
+						</SStakingSwitch>
+					}
 				>
-					<div style={{ marginTop: 15 }}>
-						<a
-							style={{ color: 'rgba(0,0,0,.6)' }}
-							target="_blank"
-							href={
-								'https://etherscan.io/token/0x56e0b2c7694e6e10391e870774daa45cf6583486?a=' +
-								address
-							}
-						>
-							<img
-								style={{ width: 16, height: 16, marginRight: 10, marginLeft: 5 }}
-								src={avt}
-							/>
-							{StakingCST.STK_ADDRESS[locale]}:{' '}
-							<span style={{ color: '#5CA4DE' }}>{address}</span>
-						</a>
-					</div>
-					<img
-						style={{
-							position: 'absolute',
-							right: 10,
-							bottom: 10,
-							height: 90,
-							width: 210
-						}}
-						src={duo3d}
-					/>
-					<div style={{ width: 700, display: 'flex', justifyContent: 'space-between' }}>
-						<SCardTag2 style={{ pointerEvents: 'none' }}>
-							<div className="bg-logo">
-								<img src={duoIcon} />
-							</div>
-							<div className="tag-content">
-								<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-									{StakingCST.STK_BALANCE[locale]}
-								</div>
-							</div>
-							<div className="tag-subtext">
-								<div
-									style={{
-										marginLeft: 20,
-										fontSize: 20,
-										fontWeight: 500,
-										color: '#5CA4DE'
-									}}
+					<SDivFlexCenter horizontal>
+						<div>
+							<div style={{ marginTop: 15 }}>
+								<a
+									style={{ color: 'rgba(0,0,0,.6)' }}
+									target="_blank"
+									href={
+										'https://etherscan.io/token/0x56e0b2c7694e6e10391e870774daa45cf6583486?a=' +
+										address
+									}
 								>
-									{d3.format(',.2f')(duoBalance)}
-									<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
-								</div>
+									<img
+										style={{
+											width: 16,
+											height: 16,
+											marginRight: 10,
+											marginLeft: 5
+										}}
+										src={avt}
+									/>
+									{StakingCST.STK_ADDRESS[locale]}:{' '}
+									<span style={{ color: '#5CA4DE' }}>{address}</span>
+								</a>
 							</div>
-						</SCardTag2>
-						<SCardTag2 style={{ pointerEvents: 'none' }}>
-							<div className="bg-logo">
-								<img src={duoIcon} />
-							</div>
-							<div className="tag-content">
-								<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-									{StakingCST.STK_AWARD[locale]}
-								</div>
-							</div>
-							<div className="tag-subtext">
-								<div
-									style={{
-										marginLeft: 20,
-										fontSize: 20,
-										fontWeight: 500,
-										color: '#5CA4DE'
-									}}
-								>
-									{d3.format(',.2f')(award)}
-								</div>
-							</div>
-						</SCardTag2>
-						<div
-							style={{
-								width: 120,
-								marginTop: 30,
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'space-between'
-							}}
-						>
-							<SStakingButtonM
-								onClick={this.handleApprove}
+							<div
 								style={{
-									pointerEvents: enableApprove ? 'initial' : 'none',
-									opacity: enableApprove ? 1 : 0.4
+									width: 480,
+									display: 'flex',
+									justifyContent: 'space-between'
 								}}
 							>
-								{StakingCST.STK_APPROVE[locale]}
-							</SStakingButtonM>
-							<SStakingButtonM
-								style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
-								onClick={() =>
-									enabled &&
-									stakeWrappers[contractIndex].claimAward(address, {
-										gasLimit: 1000000
-									})
-								}
-							>
-								{StakingCST.STK_CLAIM[locale]}
-							</SStakingButtonM>
+								<SCardTag2>
+									<div className="bg-logo">
+										<img src={duoIcon} />
+									</div>
+									<div className="tag-content" style={{ pointerEvents: 'none' }}>
+										<div className={'tag-price USD'} style={{ fontSize: 12 }}>
+											{StakingCST.STK_BALANCE[locale]}
+										</div>
+									</div>
+									<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+										<div
+											style={{
+												marginLeft: 20,
+												fontSize: 20,
+												fontWeight: 500,
+												color: '#5CA4DE'
+											}}
+										>
+											{d3.format(',.2f')(duoBalance)}
+											<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
+										</div>
+									</div>
+									<div
+										style={{
+											position: 'absolute',
+											right: 10,
+											top: 18
+										}}
+									>
+										<SStakingButtonM
+											onClick={this.handleApprove}
+											style={{
+												pointerEvents: enableApprove ? 'initial' : 'none',
+												opacity: enableApprove ? 1 : 0.4
+											}}
+										>
+											{StakingCST.STK_APPROVE[locale]}
+										</SStakingButtonM>
+									</div>
+								</SCardTag2>
+								<SCardTag2>
+									<div className="bg-logo">
+										<img src={duoIcon} />
+									</div>
+									<div className="tag-content" style={{ pointerEvents: 'none' }}>
+										<div className={'tag-price USD'} style={{ fontSize: 12 }}>
+											{StakingCST.STK_AWARD[locale]}
+										</div>
+									</div>
+									<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+										<div
+											style={{
+												marginLeft: 20,
+												fontSize: 20,
+												fontWeight: 500,
+												color: '#5CA4DE'
+											}}
+										>
+											{d3.format(',.2f')(award)}
+										</div>
+									</div>
+									<div
+										style={{
+											position: 'absolute',
+											right: 10,
+											top: 18
+										}}
+									>
+										<SStakingButtonM
+											style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
+											onClick={() =>
+												enabled &&
+												stakeWrappers[contractIndex].claimAward(address, {
+													gasLimit: 1000000
+												})
+											}
+										>
+											{StakingCST.STK_CLAIM[locale]}
+										</SStakingButtonM>
+									</div>
+								</SCardTag2>
+							</div>
 						</div>
-						<div
-							style={{
-								width: 120,
-								marginTop: 30,
-								display: 'flex',
-								flexDirection: 'column',
-								justifyContent: 'space-between'
-							}}
-						>
-							<SStakingButtonM onClick={() => this.setState({ visibleLink: true })}>
-								{StakingCST.STK_RLINK[locale]}
-							</SStakingButtonM>
-							<SStakingButtonM
-								onClick={() => this.setState({ visibleAddReferral: true })}
+						<SCardTag4>
+							<div className="bg-logo">
+								<img src={duoIcon} />
+							</div>
+							<div className="tag-content" style={{ pointerEvents: 'none' }}>
+								<div className={'tag-price'}>{StakingCST.STK_RAWARD[locale]}</div>
+							</div>
+							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+								<div
+									style={{
+										width: 130,
+										marginLeft: 20,
+										paddingRight: 5,
+										fontSize: 13,
+										fontWeight: 500,
+										display: 'flex',
+										justifyContent: 'space-between',
+										alignItems: 'center'
+									}}
+								>
+									<div>{StakingCST.STK_DAILY[locale]}</div>
+									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
+										{d3.format(',.2f')(duoBalance)}
+										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
+									</div>
+								</div>
+							</div>
+							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+								<div
+									style={{
+										width: 130,
+										marginLeft: 20,
+										paddingRight: 5,
+										fontSize: 13,
+										fontWeight: 500,
+										display: 'flex',
+										justifyContent: 'space-between',
+										alignItems: 'center'
+									}}
+								>
+									<div>{StakingCST.STK_SUM[locale]}</div>
+									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
+										{d3.format(',.2f')(duoBalance)}
+										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
+									</div>
+								</div>
+							</div>
+							<div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 5}}>
+								<SStakingRInfoBTN>{StakingCST.STK_RINFO[locale]}</SStakingRInfoBTN>
+							</div>
+							<div
+								style={{
+									position: 'absolute',
+									right: 15,
+									top: 18,
+									display: 'flex',
+									justifyContent: 'space-between'
+								}}
 							>
-								{StakingCST.STK_BRLINK[locale]}
-							</SStakingButtonM>
-						</div>
-					</div>
+								<SStakingButtonM
+									onClick={() => this.setState({ visibleLink: true })}
+								>
+									{StakingCST.STK_RLINK[locale]}
+								</SStakingButtonM>
+							</div>
+						</SCardTag4>
+						<SCardTag4>
+							<div className="bg-logo">
+								<img src={duoIcon} />
+							</div>
+							<div className="tag-content" style={{ pointerEvents: 'none' }}>
+								<div className={'tag-price'}>{StakingCST.STK_SAWARD[locale]}</div>
+							</div>
+							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+								<div
+									style={{
+										width: 130,
+										marginLeft: 20,
+										paddingRight: 5,
+										fontSize: 13,
+										fontWeight: 500,
+										display: 'flex',
+										justifyContent: 'space-between',
+										alignItems: 'center'
+									}}
+								>
+									<div>{StakingCST.STK_DAILY[locale]}</div>
+									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
+										{d3.format(',.2f')(duoBalance)}
+										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
+									</div>
+								</div>
+							</div>
+							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+								<div
+									style={{
+										width: 130,
+										marginLeft: 20,
+										paddingRight: 5,
+										fontSize: 13,
+										fontWeight: 500,
+										display: 'flex',
+										justifyContent: 'space-between',
+										alignItems: 'center'
+									}}
+								>
+									<div>{StakingCST.STK_SUM[locale]}</div>
+									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
+										{d3.format(',.2f')(duoBalance)}
+										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
+									</div>
+								</div>
+							</div>
+							<div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 5}}>
+								<SStakingRInfoBTN>{StakingCST.STK_SINFO[locale]}</SStakingRInfoBTN>
+							</div>
+						</SCardTag4>
+					</SDivFlexCenter>
 				</SCard>
 			</div>
 		);

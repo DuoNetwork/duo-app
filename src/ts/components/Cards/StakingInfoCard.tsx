@@ -45,43 +45,30 @@ export default class StakingInfoCard extends React.Component<IProps> {
 		return (
 			<SCard
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
-				width="960px"
+				width="400px"
 				margin="0 0 20px 0"
+				extra={
+					<Link to={contractIndex === 0 ? '/stakingterm' : '/staking'}>
+						<SStakingSwitch>
+							{contractIndex === 0
+								? StakingCST.STK_TOFIX[locale]
+								: StakingCST.STK_TOFLEX[locale]}
+						</SStakingSwitch>
+					</Link>
+				}
 			>
 				<div style={{ display: 'flex' }}>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
+					<SCardTag3
+						style={{
+							pointerEvents: 'none',
+							width: '100%',
+							marginRight: 15,
+							height: 'auto'
+						}}
+					>
 						<div className="tag-content">
-							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
+							<div className={'tag-price USD'} style={{ fontSize: 14 }}>
 								{StakingCST.STK_CTSTATUS[locale]}
-							</div>
-						</div>
-						<div className="tag-subtext">
-							<div
-								style={{
-									marginRight: 10,
-									fontSize: 24,
-									fontWeight: 500,
-									color: addresses.priceFeedList.length
-										? contractStates.canStake
-											? '#5CA4DE'
-											: '#FF5E5E'
-										: '#FF5E5E',
-									textAlign: 'right',
-									paddingTop: 8
-								}}
-							>
-								{addresses.priceFeedList.length
-									? contractStates.canStake
-										? StakingCST.STK_ENABLED[locale]
-										: StakingCST.STK_DISABLED[locale]
-									: StakingCST.STK_LOADING[locale]}
-							</div>
-						</div>
-					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15, width: 200 }}>
-						<div className="tag-content">
-							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								{StakingCST.STK_CTRULES[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext">
@@ -93,6 +80,30 @@ export default class StakingInfoCard extends React.Component<IProps> {
 									color: 'rgba(0,0,0,.6)'
 								}}
 							>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'space-between',
+										marginBottom: 4
+									}}
+								>
+									{StakingCST.STK_STAKESTATUS[locale]}
+									<span
+										style={{
+											color: addresses.priceFeedList.length
+												? contractStates.canStake
+													? '#5CA4DE'
+													: '#FF5E5E'
+												: '#FF5E5E'
+										}}
+									>
+										{addresses.priceFeedList.length
+											? contractStates.canStake
+												? StakingCST.STK_ENABLED[locale]
+												: StakingCST.STK_DISABLED[locale]
+											: StakingCST.STK_LOADING[locale]}
+									</span>
+								</div>
 								<div
 									style={{
 										display: 'flex',
@@ -112,7 +123,8 @@ export default class StakingInfoCard extends React.Component<IProps> {
 								<div
 									style={{
 										display: 'flex',
-										justifyContent: 'space-between'
+										justifyContent: 'space-between',
+										marginBottom: 4
 									}}
 								>
 									{StakingCST.STK_CTLOCKTIME[locale]}
@@ -124,61 +136,41 @@ export default class StakingInfoCard extends React.Component<IProps> {
 										{contractStates.lockMinTimeInSecond / 86400 + ' days'}
 									</span>
 								</div>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'space-between',
+										marginBottom: 4
+									}}
+								>
+									{StakingCST.STK_CTSTAKE[locale]}
+									<span
+										style={{
+											color: '#5CA4DE'
+										}}
+									>
+										{d3.format(',.0f')(totalStake || 0) + ' DUO'}
+									</span>
+								</div>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'space-between',
+										marginBottom: 14
+									}}
+								>
+									{StakingCST.STK_CTRETURN[locale]}
+									<span
+										style={{
+											color: '#FF7A00'
+										}}
+									>
+										{d3.format(',.0%')(maxReturn)}
+									</span>
+								</div>
 							</div>
 						</div>
 					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
-						<div className="tag-content">
-							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								{StakingCST.STK_CTSTAKE[locale]}
-							</div>
-						</div>
-						<div className="tag-subtext">
-							<div
-								style={{
-									marginRight: 10,
-									fontSize: 24,
-									fontWeight: 500,
-									color: '#5CA4DE',
-									textAlign: 'right',
-									paddingTop: 8
-								}}
-							>
-								{d3.format(',.0f')(totalStake || 0)}
-								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
-							</div>
-						</div>
-					</SCardTag3>
-					<SCardTag3 style={{ pointerEvents: 'none', marginRight: 15 }}>
-						<div className="tag-content">
-							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								{StakingCST.STK_CTRETURN[locale]}
-							</div>
-						</div>
-						<div className="tag-subtext">
-							<div
-								style={{
-									marginRight: 10,
-									marginTop: -5,
-									fontSize: 40,
-									fontWeight: 500,
-									color: '#FF7A00',
-									textAlign: 'right'
-								}}
-							>
-								{d3.format(',.0%')(maxReturn)}
-							</div>
-						</div>
-					</SCardTag3>
-					<div style={{ marginTop: 10, display: 'flex', alignItems: 'center' }}>
-						<Link to={contractIndex === 0 ? '/stakingterm' : '/staking'}>
-							<SStakingSwitch>
-								{contractIndex === 0
-									? StakingCST.STK_TOFIX[locale]
-									: StakingCST.STK_TOFLEX[locale]}
-							</SStakingSwitch>
-						</Link>
-					</div>
 				</div>
 			</SCard>
 		);

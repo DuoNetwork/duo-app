@@ -7,14 +7,16 @@ const RadioGroup = Radio.Group;
 
 export interface ICardProps {
 	width?: string;
+	height?: string;
 	margin?: string;
 	inlinetype?: string;
 }
 
 export const SCard = styled(Card)`
 	overflow: hidden;
-	max-width: 1000px;
+	max-width: 1060px;
 	width: ${(props: ICardProps) => props.width};
+	height: ${(props: ICardProps) => props.height};
 	margin: ${(props: ICardProps) => props.margin};
 	display: ${(props: ICardProps) => (props.inlinetype ? 'inline-table' : '')};
 	background: ${ColorStyles.CardBackground};
@@ -387,7 +389,7 @@ export const SCardTag = styled.div`
 `;
 export const SCardTag2 = styled.div`
 	height: 85px;
-	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '210px')};
+	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '230px')};
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -397,9 +399,6 @@ export const SCardTag2 = styled.div`
 	transition: all 0.3s;
 	pointer-events: ${(props: ICardPriceTagProps) => (props.disabled ? 'none !important' : '')};
 	opacity: ${(props: ICardPriceTagProps) => (props.disabled ? '0.5' : '1')};
-	&:hover {
-		background: ${ColorStyles.LightHoverSolid};
-	}
 	.bg-logo {
 		height: 100px;
 		width: 100px;
@@ -515,7 +514,7 @@ export const SCardTag2 = styled.div`
 `;
 export const SCardTag3 = styled.div`
 	height: 90px;
-	width: 180px;
+	width: 200px;
 	position: relative;
 	margin-top: 10px;
 	border: 1px dashed;
@@ -628,8 +627,113 @@ export const SCardTag3 = styled.div`
 		font-size: 10px;
 	}
 `;
+export const SCardTag4 = styled.div`
+	height: 115px;
+	width: ${(props: ICardPriceTagProps) => (props.mobile ? '100%' : '250px')};
+	position: relative;
+	margin-top: 15px;
+	border: 1px dashed;
+	border-color: ${ColorStyles.BorderBlack3};
+	overflow: hidden;
+	padding-top: 10px;
+	transition: all 0.3s;
+	pointer-events: ${(props: ICardPriceTagProps) => (props.disabled ? 'none !important' : '')};
+	opacity: ${(props: ICardPriceTagProps) => (props.disabled ? '0.5' : '1')};
+	.bg-logo {
+		height: 100px;
+		width: 100px;
+		position: absolute;
+		right: -10px;
+		top: 10px;
+	}
+	.bg-logo > img {
+		height: 100%;
+		width: 100%;
+		opacity: 0.05;
+		pointer-events: none;
+	}
+	.tag-title {
+		width: 90px;
+		margin-left: 20px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		img {
+			width: 10px;
+			height: 10px;
+			margin-left: 6px;
+			opacity: 0.6;
+		}
+	}
+	.tag-title > a {
+		margin: 0;
+	}
+	.tag-title > a,
+	.tag-title > h3 {
+		font-family: 'Roboto', 'Microsoft YaHei';
+		font-weight: 500;
+		letter-spacing: 1px;
+		font-size: 12px;
+		color: ${ColorStyles.ThemeTextAlpha};
+		margin: 0;
+		z-index: 99;
+		text-decoration: none;
+	}
+	.tag-content {
+		width: 220px;
+		margin-left: 20px;
+		margin-top: 6px;
+		.tag-subtext {
+			font-size: 18px;
+			display: flex;
+			flex-direction: row;
+			color: ${ColorStyles.ThemeText};
+		}
+	}
+	.tag-price {
+		color: ${ColorStyles.ThemeTextAlpha};
+		font-size: 14px;
+		font-weight: 500;
+	}
+`;
+export const SStakingRInfoBTN = styled.div`
+	&:hover {
+		color: rgba(0, 0, 0, .6);
+		border-color:rgba(0, 0, 0, 0.4);
+	}
+	user-select: none;
+	transition: all 0.3s;
+	width: 84%;
+	height: 18px;
+	border-radius: 2px;
+	font-size: 12px;
+	line-height: 18px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.4);
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	text-align: center;
+	cursor: pointer !important;
+`;
 
 export const SStakingButtonM = styled.div`
+	&:hover {
+		background: #ff5e5e;
+	}
+	user-select: none;
+	transition: all 0.3s;
+	width: 84px;
+	height: 18px;
+	border-radius: 9px;
+	font-size: 12px;
+	line-height: 18px;
+	font-weight: 500;
+	color: white;
+	border: 1px solid #ff5e5e;
+	background: #fc7676;
+	text-align: center;
+	cursor: pointer !important;
+`;
+export const SStakingButtonM2 = styled.div`
 	&:hover {
 		background: #ff5e5e;
 	}
@@ -645,7 +749,7 @@ export const SStakingButtonM = styled.div`
 	border: 1px solid #ff5e5e;
 	background: #fc7676;
 	text-align: center;
-	cursor: pointer;
+	cursor: pointer !important;
 `;
 export const SStakingButtonF = styled.div`
 	&:hover {
@@ -717,22 +821,24 @@ export const SStakingRlinkM = styled.div`
 
 export const SStakingSwitch = styled.div`
 	cursor: pointer;
-	border: 2px solid rgba(92, 164, 222, 1);
-	border-radius: 23px;
-	background: rgba(92, 164, 222, 0.92);
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	border-radius: 15px;
+	align-items: center;
+	display: flex;
+	justify-content: center;
 	width: 130px;
 	text-align: center;
 	color: rgba(255, 255, 255, 1);
 	font-size: 14px;
 	font-weight: 500;
-	padding: 5px 10px;
-	height: 36px;
-	line-height: 26px;
+	height: 30px;
+	line-height: 30px;
 	opacity: 0.9;
-	transition: all .2s;
+	transition: all 0.2s;
 	&:hover {
 		opacity: 1;
-		box-shadow: 0 0 5px 2px rgba(68, 124, 170, 0.5)
+		box-shadow: 0 0 5px 2px rgba(68, 124, 170, 0.5);
+		background: rgba(200, 200, 200, 0.3);
 	}
 `;
 export interface ICardAssetTagProps {
@@ -830,6 +936,9 @@ injectGlobal([
 			background: ${ColorStyles.CardBackgroundSolid};
 			box-shadow: 0 2px 5px 0 rgba(0,0,0,0.4);
 			color: ${ColorStyles.ThemeText};
+		}
+		.ant-card-extra {
+			padding: 0
 		}
 	}
 `

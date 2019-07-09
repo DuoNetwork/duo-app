@@ -6,11 +6,12 @@ import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
 import { web3Wrapper } from 'ts/common/wrappers';
+import StakingBannerCard from 'ts/components/Cards/StakingBannerCard';
 import StakingInfoCard from 'ts/components/Cards/StakingInfoCard';
 import StakingNodeCard from 'ts/components/Cards/StakingNodesCard';
 import StakingPersonalCard from 'ts/components/Cards/StakingPersonalCard';
 import Header from 'ts/containers/HeaderContainer';
-import { SContent } from '../_styled';
+import { SContent, SDivFlexCenter } from '../_styled';
 interface IProps {
 	contractIndex: number;
 	contractStates: IStakeStates[];
@@ -38,7 +39,7 @@ export default class Staking extends React.Component<IProps, IState> {
 		this.state = {
 			visible: false,
 			showed: false,
-			approved: false,
+			approved: false
 		};
 	}
 	public componentDidMount() {
@@ -48,19 +49,27 @@ export default class Staking extends React.Component<IProps, IState> {
 
 	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
 		const { duoAllowance, addresses, contractIndex } = nextProps;
-		if (addresses[contractIndex].priceFeedList.length > 0 && duoAllowance[contractIndex] === 0 && !prevState.showed)
+		if (
+			addresses[contractIndex].priceFeedList.length > 0 &&
+			duoAllowance[contractIndex] === 0 &&
+			!prevState.showed
+		)
 			return {
 				visible: true,
 				approved: false,
 				showed: true
 			};
-		else if (addresses[contractIndex].priceFeedList.length > 0 && duoAllowance[contractIndex] > 0)
+		else if (
+			addresses[contractIndex].priceFeedList.length > 0 &&
+			duoAllowance[contractIndex] > 0
+		)
 			return {
 				approved: true
 			};
-		else return {
-			approved: false
-		};
+		else
+			return {
+				approved: false
+			};
 	}
 
 	private handleCancel = () => {
@@ -89,7 +98,7 @@ export default class Staking extends React.Component<IProps, IState> {
 			userStakes,
 			oracleStakes,
 			userAward,
-			locale,
+			locale
 		} = this.props;
 		const { visible, approved } = this.state;
 		const code = queryString.parse((this.props as any).location.search);
@@ -110,14 +119,22 @@ export default class Staking extends React.Component<IProps, IState> {
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
 				</Modal>
 				<SContent>
-					<StakingInfoCard
-						contractIndex={contractIndex}
-						locale={locale}
-						contractStates={contractStates[contractIndex]}
-						title={contractIndex === 0 ?  StakingCST.STK_TITLEFLEX[locale] : StakingCST.STK_TITLEFIX[locale]}
-						oracleStakes={oracleStakes[contractIndex]}
-						addresses={addresses[contractIndex]}
-					/>
+					<SDivFlexCenter horizontal width={'1060px'}>
+						<StakingBannerCard />
+						<StakingInfoCard
+							contractIndex={contractIndex}
+							locale={locale}
+							contractStates={contractStates[contractIndex]}
+							title={
+								contractIndex === 0
+									? StakingCST.STK_TITLEFLEX[locale]
+									: StakingCST.STK_TITLEFIX[locale]
+							}
+							oracleStakes={oracleStakes[contractIndex]}
+							addresses={addresses[contractIndex]}
+						/>
+					</SDivFlexCenter>
+
 					<StakingPersonalCard
 						contractIndex={contractIndex}
 						locale={locale}
@@ -150,7 +167,7 @@ export default class Staking extends React.Component<IProps, IState> {
 					) : (
 						<div
 							style={{
-								width: 960,
+								width: 1060,
 								height: 150,
 								display: 'flex',
 								justifyContent: 'center',

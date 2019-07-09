@@ -143,3 +143,20 @@ export interface IReferral {
 	referralCode: string;
 	signHash: string;
 }
+
+export interface IStakingChild {
+	address: string;
+	daily: number;
+	accumulated: number;
+}
+
+export interface IStakingNode {
+	name: string;
+	daily: number;
+	accumulated: number;
+}
+export interface IAddressInfo {
+	children: IStakingChild[],
+	staking0: IStakingNode[],
+	staking60: IStakingNode[]
+}

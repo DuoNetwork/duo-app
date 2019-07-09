@@ -186,7 +186,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 				>
 					{binded ? (
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-							<div>{StakingCST.STK_RCODEUSED[locale] + bindedCode}</div>
+							<div>{StakingCST.STK_RCODEUSED[locale]}<span style={{color: '#5CA4DE'}}>{bindedCode}</span></div>
 						</div>
 					) : (
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>

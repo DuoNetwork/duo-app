@@ -17,7 +17,7 @@ import {
 	SCardTag3,
 	SCardTitle,
 	SStakingButtonF,
-	SStakingButtonM,
+	SStakingButtonM2,
 	SStakingInput
 } from './_styled';
 
@@ -121,7 +121,7 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 		return (
 			<SCard
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
-				width="960px"
+				width="1060px"
 				margin="0 0 20px 0"
 			>
 				<div style={{ display: 'flex' }}>
@@ -251,7 +251,7 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 								value={inputText}
 								onChange={e => this.handleInputChange(e.target.value)}
 							/>
-							<SStakingButtonM
+							<SStakingButtonM2
 								style={{
 									cursor: !enabled ? 'not-allowed' : 'default',
 									opacity: enabled ? 1 : 0.4
@@ -259,7 +259,7 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 								onClick={() => enabled && this.handleStake()}
 							>
 								{StakingCST.STK_STAKE[locale]}
-							</SStakingButtonM>
+							</SStakingButtonM2>
 						</div>
 						<Tooltip
 							title={

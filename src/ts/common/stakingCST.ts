@@ -3,7 +3,8 @@ export interface ILocaleText {
 	CN: string;
 	[key: string]: string;
 }
-export const REFERRALABLE = 'duo.live.referral';
+export const REFERRALTABLE = 'duo.live.referral';
+export const STAKINGTABLE = 'duo.live.staking';
 export const REFERRALCODE = 'Referral Code: ';
 
 export const LOCALE_CN = 'CN';
@@ -11,12 +12,12 @@ export const LOCALE_EN = 'EN';
 
 export const STK_TITLEFIX: ILocaleText = {
 	[LOCALE_CN]: 'DUO 质押活动 (定期)',
-	[LOCALE_EN]: 'DUO Staking Campaign (Term)'
+	[LOCALE_EN]: 'DUO Staking (Term)'
 };
 
 export const STK_TITLEFLEX: ILocaleText = {
 	[LOCALE_CN]: 'DUO 质押活动 (活期)',
-	[LOCALE_EN]: 'DUO Staking Campaign (Flex)'
+	[LOCALE_EN]: 'DUO Staking (Flex)'
 };
 
 export const STK_STATUS: ILocaleText = {
@@ -55,8 +56,28 @@ export const STK_BALANCE: ILocaleText = {
 };
 
 export const STK_AWARD: ILocaleText = {
+	[LOCALE_CN]: '待领奖励',
+	[LOCALE_EN]: 'Award Balance'
+};
+
+export const STK_RAWARD: ILocaleText = {
+	[LOCALE_CN]: '推荐奖励',
+	[LOCALE_EN]: 'Referral Award'
+};
+
+export const STK_SAWARD: ILocaleText = {
 	[LOCALE_CN]: '质押奖励',
 	[LOCALE_EN]: 'Staking Award'
+};
+
+export const STK_DAILY: ILocaleText = {
+	[LOCALE_CN]: '当日',
+	[LOCALE_EN]: 'Daily'
+};
+
+export const STK_SUM: ILocaleText = {
+	[LOCALE_CN]: '累计',
+	[LOCALE_EN]: 'Sum'
 };
 
 export const STK_APPROVE: ILocaleText = {
@@ -72,6 +93,16 @@ export const STK_CLAIM: ILocaleText = {
 export const STK_RLINK: ILocaleText = {
 	[LOCALE_CN]: '推荐链接',
 	[LOCALE_EN]: 'Referral Link'
+};
+
+export const STK_RINFO: ILocaleText = {
+	[LOCALE_CN]: '推荐详情',
+	[LOCALE_EN]: 'Referral Info'
+};
+
+export const STK_SINFO: ILocaleText = {
+	[LOCALE_CN]: '质押详情',
+	[LOCALE_EN]: 'Staking Info'
 };
 
 export const STK_BRLINK: ILocaleText = {
