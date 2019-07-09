@@ -44,6 +44,7 @@ interface IState {
 	visibleLink: boolean;
 	visibleAddReferral: boolean;
 	visibleChildren: boolean;
+	visibleNode: boolean;
 	referralCode: string;
 	binded: boolean;
 	bindedCode: string;
@@ -57,6 +58,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 			visibleLink: false,
 			visibleAddReferral: false,
 			visibleChildren: false,
+			visibleNode: false,
 			referralCode: this.props.linkReferralcode,
 			binded: false,
 			bindedCode: '',
@@ -108,7 +110,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 	};
 
 	private handleCancel = () => {
-		this.setState({ visibleLink: false, visibleAddReferral: false, visibleChildren: false });
+		this.setState({ visibleLink: false, visibleAddReferral: false, visibleChildren: false, visibleNode: false });
 	};
 
 	private handleInputChange = (value: string) => {
@@ -119,11 +121,11 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 		const { address, locale } = this.props;
 		target === 1
 			? (navigator as any).clipboard
-					.writeText('https://app.duo.network/staking?r=' + address.slice(-6))
-					.then(() => window.alert(StakingCST.STK_COPIED[locale]))
+				.writeText('https://app.duo.network/staking?r=' + address.slice(-6))
+				.then(() => window.alert(StakingCST.STK_COPIED[locale]))
 			: (navigator as any).clipboard
-					.writeText('https://duo.ac?r=' + address.slice(-6))
-					.then(() => window.alert(StakingCST.STK_COPIED[locale]));
+				.writeText('https://duo.ac?r=' + address.slice(-6))
+				.then(() => window.alert(StakingCST.STK_COPIED[locale]));
 	};
 
 	private handleBind = async () => {
@@ -160,6 +162,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 			visibleLink,
 			visibleAddReferral,
 			visibleChildren,
+			visibleNode,
 			referralCode,
 			binded,
 			bindedCode,
@@ -188,6 +191,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 						stakingAwardSum += node.accumulated;
 					});
 		}
+		const stakingInfo = contractIndex === 0 ? addressInfo.staking0 : addressInfo.staking60
 		return (
 			<div>
 				<Modal
@@ -233,10 +237,10 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								{StakingCST.STK_BTNOK[locale]}
 							</Button>
 						) : (
-							<Button key="ok" type="primary" onClick={this.handleBind}>
-								{StakingCST.STK_BIND[locale]}
-							</Button>
-						)
+								<Button key="ok" type="primary" onClick={this.handleBind}>
+									{StakingCST.STK_BIND[locale]}
+								</Button>
+							)
 					]}
 				>
 					{binded ? (
@@ -247,16 +251,16 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							</div>
 						</div>
 					) : (
-						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-							<div>{StakingCST.STK_RCODE[locale]}</div>
-							<SStakingInput
-								placeholder={StakingCST.STK_BINDINPUTPH[locale]}
-								value={referralCode}
-								onChange={e => this.handleInputChange(e.target.value)}
-								style={{ width: 300 }}
-							/>
-						</div>
-					)}
+							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+								<div>{StakingCST.STK_RCODE[locale]}</div>
+								<SStakingInput
+									placeholder={StakingCST.STK_BINDINPUTPH[locale]}
+									value={referralCode}
+									onChange={e => this.handleInputChange(e.target.value)}
+									style={{ width: 300 }}
+								/>
+							</div>
+						)}
 				</Modal>
 				<Modal
 					visible={visibleChildren}
@@ -283,7 +287,8 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							>
 								<span
 									style={{
-										width: '68%'
+										width: '68%',
+										paddingLeft: 5
 									}}
 								>
 									{StakingCST.STK_REFEREE[locale]}
@@ -323,7 +328,8 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 											<span
 												style={{
 													width: '68%',
-													fontSize: 12
+													fontSize: 12,
+													paddingLeft: 5
 												}}
 											>
 												{child.address}
@@ -352,8 +358,106 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							</ul>
 						</div>
 					) : (
-						<span>{StakingCST.STK_NOREFEREE[locale]}</span>
-					)}
+							<span>{StakingCST.STK_NOREFEREE[locale]}</span>
+						)}
+				</Modal>
+				<Modal
+					visible={visibleNode}
+					title={StakingCST.STK_SINFO[locale]}
+					onOk={this.handleCancel}
+					onCancel={this.handleCancel}
+					footer={[
+						<Button key="ok" type="primary" onClick={this.handleCancel}>
+							{StakingCST.STK_BTNOK[locale]}
+						</Button>
+					]}
+				>
+					{
+						stakingInfo ? (
+							<div>
+								<div
+									style={{
+										width: '100%',
+										display: 'flex',
+										justifyContent: 'space-between',
+										color: 'rgba(0,0,0,.7)',
+										paddingRight: 5,
+										marginBottom: 5
+									}}
+								>
+									<span
+										style={{
+											width: '40%',
+											paddingLeft: 5
+										}}
+									>
+										{StakingCST.STK_NODE[locale]}
+									</span>
+									<span
+										style={{
+											width: '30%',
+											textAlign: 'right'
+										}}
+									>
+										{StakingCST.STK_DAILY[locale]}
+									</span>
+									<span
+										style={{
+											width: '30%',
+											textAlign: 'right'
+										}}
+									>
+										{StakingCST.STK_SUM[locale]}
+									</span>
+								</div>
+								<ul
+									style={{
+										listStyle: 'none',
+										paddingLeft: 0,
+										width: '100%'
+									}}
+								>
+									{stakingInfo.map((node, index) => {
+										return (
+											<li
+												className='referee-table-li'
+												key={index}
+											>
+												<span
+													style={{
+														width: '40%',
+														fontSize: 12,
+														paddingLeft: 5
+													}}
+												>
+													{node.name.toUpperCase()}
+												</span>
+												<span
+													style={{
+														width: '30%',
+														textAlign: 'right',
+														color: '#5CA4DE'
+													}}
+												>
+													{node.daily}
+												</span>
+												<span
+													style={{
+														width: '30%',
+														textAlign: 'right',
+														color: '#5CA4DE'
+													}}
+												>
+													{node.accumulated}
+												</span>
+											</li>
+										);
+									})}
+								</ul>
+							</div>
+						) : (
+								<span>{StakingCST.STK_NOREFEREE[locale]}</span>
+							)}
 				</Modal>
 				<SCard
 					title={<SCardTitle>{StakingCST.STK_ACCINFO[locale].toUpperCase()}</SCardTitle>}
@@ -611,7 +715,11 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 									marginTop: 5
 								}}
 							>
-								<SStakingRInfoBTN>{StakingCST.STK_SINFO[locale]}</SStakingRInfoBTN>
+								<SStakingRInfoBTN
+									onClick={() => this.setState({ visibleNode: true })}
+								>
+									{StakingCST.STK_SINFO[locale]}
+								</SStakingRInfoBTN>
 							</div>
 						</SCardTag4>
 					</SDivFlexCenter>

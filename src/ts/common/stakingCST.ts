@@ -90,6 +90,11 @@ export const STK_NOREFEREE: ILocaleText = {
 	[LOCALE_EN]: 'Referee Infomation not available'
 };
 
+export const STK_NODE: ILocaleText = {
+	[LOCALE_CN]: '节点名称',
+	[LOCALE_EN]: 'Staking Node'
+};
+
 export const STK_APPROVE: ILocaleText = {
 	[LOCALE_CN]: '授权 DUO',
 	[LOCALE_EN]: 'Approve DUO'
