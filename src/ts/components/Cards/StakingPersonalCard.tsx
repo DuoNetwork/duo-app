@@ -14,7 +14,7 @@ import * as React from 'react';
 //import { ColorStyles } from 'ts/common/styles';
 import referralUtil from 'ts/common/referralUtil';
 import * as StakingCST from 'ts/common/stakingCST';
-import { IReferral } from 'ts/common/types';
+import { IAddressInfo, IReferral } from 'ts/common/types';
 import { stakeWrappers, web3Wrapper } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
 import {
@@ -43,9 +43,11 @@ interface IProps {
 interface IState {
 	visibleLink: boolean;
 	visibleAddReferral: boolean;
+	visibleChildren: boolean;
 	referralCode: string;
 	binded: boolean;
 	bindedCode: string;
+	addressInfo: IAddressInfo;
 }
 
 export default class StakingPersonalCard extends React.Component<IProps, IState> {
@@ -54,18 +56,35 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 		this.state = {
 			visibleLink: false,
 			visibleAddReferral: false,
+			visibleChildren: false,
 			referralCode: this.props.linkReferralcode,
 			binded: false,
-			bindedCode: ''
+			bindedCode: '',
+			addressInfo: {}
 		};
 	}
-
-	public componentDidUpdate = async () => {
+	public componentDidMount = async () => {
 		const { address } = this.props;
+		const addressInfo = await referralUtil.getAddressInfo(address);
 		const bindedCode = await referralUtil.checkExist(address);
-		await referralUtil.getAddressInfo(address);
-		if (!this.state.binded && bindedCode)
-			this.setState({ binded: true, bindedCode: bindedCode });
+		this.setState({
+			binded: bindedCode ? true : false,
+			bindedCode: bindedCode ? bindedCode : '',
+			addressInfo: addressInfo
+		});
+	};
+
+	public componentDidUpdate = async (prevProps: IProps) => {
+		const { address } = this.props;
+		if (address !== prevProps.address) {
+			const addressInfo = await referralUtil.getAddressInfo(address);
+			const bindedCode = await referralUtil.checkExist(address);
+			this.setState({
+				binded: bindedCode ? true : false,
+				bindedCode: bindedCode ? bindedCode : '',
+				addressInfo: addressInfo
+			});
+		}
 	};
 
 	private handleApprove = async () => {
@@ -89,7 +108,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 	};
 
 	private handleCancel = () => {
-		this.setState({ visibleLink: false, visibleAddReferral: false });
+		this.setState({ visibleLink: false, visibleAddReferral: false, visibleChildren: false });
 	};
 
 	private handleInputChange = (value: string) => {
@@ -137,7 +156,38 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 			locale,
 			enableApprove
 		} = this.props;
-		const { visibleLink, visibleAddReferral, referralCode, binded, bindedCode } = this.state;
+		const {
+			visibleLink,
+			visibleAddReferral,
+			visibleChildren,
+			referralCode,
+			binded,
+			bindedCode,
+			addressInfo
+		} = this.state;
+		let referralAwardDaily = 0;
+		let referralAwardSum = 0;
+		let stakingAwardDaily = 0;
+		let stakingAwardSum = 0;
+		if (addressInfo) {
+			if (addressInfo.children)
+				addressInfo.children.forEach(child => {
+					referralAwardDaily += child.daily;
+					referralAwardSum += child.accumulated;
+				});
+			if (contractIndex === 0)
+				if (addressInfo.staking0)
+					addressInfo.staking0.forEach(node => {
+						stakingAwardDaily += node.daily;
+						stakingAwardSum += node.accumulated;
+					});
+			if (contractIndex === 1)
+				if (addressInfo.staking60)
+					addressInfo.staking60.forEach(node => {
+						stakingAwardDaily += node.daily;
+						stakingAwardSum += node.accumulated;
+					});
+		}
 		return (
 			<div>
 				<Modal
@@ -206,6 +256,103 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								style={{ width: 300 }}
 							/>
 						</div>
+					)}
+				</Modal>
+				<Modal
+					visible={visibleChildren}
+					title={StakingCST.STK_RINFO[locale]}
+					onOk={this.handleCancel}
+					onCancel={this.handleCancel}
+					footer={[
+						<Button key="ok" type="primary" onClick={this.handleCancel}>
+							{StakingCST.STK_BTNOK[locale]}
+						</Button>
+					]}
+				>
+					{addressInfo.children ? (
+						<div>
+							<div
+								style={{
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'space-between',
+									color: 'rgba(0,0,0,.7)',
+									paddingRight: 19,
+									marginBottom: 5
+								}}
+							>
+								<span
+									style={{
+										width: '68%'
+									}}
+								>
+									{StakingCST.STK_REFEREE[locale]}
+								</span>
+								<span
+									style={{
+										width: '16%',
+										textAlign: 'right'
+									}}
+								>
+									{StakingCST.STK_DAILY[locale]}
+								</span>
+								<span
+									style={{
+										width: '16%',
+										textAlign: 'right'
+									}}
+								>
+									{StakingCST.STK_SUM[locale]}
+								</span>
+							</div>
+							<ul
+								style={{
+									listStyle: 'none',
+									paddingLeft: 0,
+									width: '100%',
+									maxHeight: 200,
+									overflowY: 'scroll'
+								}}
+							>
+								{addressInfo.children.map((child, index) => {
+									return (
+										<li
+											className='referee-table-li'
+											key={index}
+										>
+											<span
+												style={{
+													width: '68%',
+													fontSize: 12
+												}}
+											>
+												{child.address}
+											</span>
+											<span
+												style={{
+													width: '16%',
+													textAlign: 'right',
+													color: '#5CA4DE'
+												}}
+											>
+												{child.daily}
+											</span>
+											<span
+												style={{
+													width: '16%',
+													textAlign: 'right',
+													color: '#5CA4DE'
+												}}
+											>
+												{child.accumulated}
+											</span>
+										</li>
+									);
+								})}
+							</ul>
+						</div>
+					) : (
+						<span>{StakingCST.STK_NOREFEREE[locale]}</span>
 					)}
 				</Modal>
 				<SCard
@@ -342,7 +489,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 130,
+										width: 210,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 13,
@@ -354,7 +501,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								>
 									<div>{StakingCST.STK_DAILY[locale]}</div>
 									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
-										{d3.format(',.2f')(duoBalance)}
+										{d3.format(',.2f')(referralAwardDaily)}
 										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 									</div>
 								</div>
@@ -362,7 +509,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 130,
+										width: 210,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 13,
@@ -374,19 +521,30 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								>
 									<div>{StakingCST.STK_SUM[locale]}</div>
 									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
-										{d3.format(',.2f')(duoBalance)}
+										{d3.format(',.2f')(referralAwardSum)}
 										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 									</div>
 								</div>
 							</div>
-							<div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 5}}>
-								<SStakingRInfoBTN>{StakingCST.STK_RINFO[locale]}</SStakingRInfoBTN>
+							<div
+								style={{
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'center',
+									marginTop: 5
+								}}
+							>
+								<SStakingRInfoBTN
+									onClick={() => this.setState({ visibleChildren: true })}
+								>
+									{StakingCST.STK_RINFO[locale]}
+								</SStakingRInfoBTN>
 							</div>
 							<div
 								style={{
 									position: 'absolute',
 									right: 15,
-									top: 18,
+									top: 14,
 									display: 'flex',
 									justifyContent: 'space-between'
 								}}
@@ -408,7 +566,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 130,
+										width: 210,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 13,
@@ -420,7 +578,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								>
 									<div>{StakingCST.STK_DAILY[locale]}</div>
 									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
-										{d3.format(',.2f')(duoBalance)}
+										{d3.format(',.2f')(stakingAwardDaily)}
 										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 									</div>
 								</div>
@@ -428,7 +586,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 130,
+										width: 210,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 13,
@@ -440,12 +598,19 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								>
 									<div>{StakingCST.STK_SUM[locale]}</div>
 									<div style={{ color: '#5CA4DE', fontSize: 16 }}>
-										{d3.format(',.2f')(duoBalance)}
+										{d3.format(',.2f')(stakingAwardSum)}
 										<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 									</div>
 								</div>
 							</div>
-							<div style={{width: '100%', display: 'flex', justifyContent: 'center', marginTop: 5}}>
+							<div
+								style={{
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'center',
+									marginTop: 5
+								}}
+							>
 								<SStakingRInfoBTN>{StakingCST.STK_SINFO[locale]}</SStakingRInfoBTN>
 							</div>
 						</SCardTag4>

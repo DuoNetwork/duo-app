@@ -295,8 +295,8 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						/>
 						<button
 							onClick={() =>
-								batchArray.address.length > 20
-									? window.alert('CSV file must not exceed 20 rows')
+								batchArray.address.length > 30
+									? window.alert('CSV file must not exceed 30 rows')
 									: stakeWrappers[contractIndex].batchAddAward(
 											account,
 											batchArray.address,

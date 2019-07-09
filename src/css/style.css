@@ -157,3 +157,16 @@ path.domain {
 	left: 0;
 	overflow: hidden;
 }
+
+.referee-table-li {
+	width: '100%';
+	display: flex;
+	justify-content: space-between;
+	color: rgba(0, 0, 0, 0.7);
+	align-items: center;
+	padding-right: 6px;
+	height: 26px;
+}
+.referee-table-li:nth-child(odd) {
+	background: rgba(0,0,0,.05)
+}

@@ -71,13 +71,23 @@ export const STK_SAWARD: ILocaleText = {
 };
 
 export const STK_DAILY: ILocaleText = {
-	[LOCALE_CN]: '当日',
-	[LOCALE_EN]: 'Daily'
+	[LOCALE_CN]: '当日奖励',
+	[LOCALE_EN]: 'Daily Award'
 };
 
 export const STK_SUM: ILocaleText = {
-	[LOCALE_CN]: '累计',
-	[LOCALE_EN]: 'Sum'
+	[LOCALE_CN]: '累计奖励',
+	[LOCALE_EN]: 'Sum Award'
+};
+
+export const STK_REFEREE: ILocaleText = {
+	[LOCALE_CN]: '被推荐人地址',
+	[LOCALE_EN]: 'Referee Addresses'
+};
+
+export const STK_NOREFEREE: ILocaleText = {
+	[LOCALE_CN]: '暂无被推荐人信息',
+	[LOCALE_EN]: 'Referee Infomation not available'
 };
 
 export const STK_APPROVE: ILocaleText = {

@@ -156,7 +156,7 @@ export interface IStakingNode {
 	accumulated: number;
 }
 export interface IAddressInfo {
-	children: IStakingChild[],
-	staking0: IStakingNode[],
-	staking60: IStakingNode[]
+	children?: IStakingChild[],
+	staking0?: IStakingNode[],
+	staking60?: IStakingNode[]
 }
