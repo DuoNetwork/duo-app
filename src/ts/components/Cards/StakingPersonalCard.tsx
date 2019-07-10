@@ -456,7 +456,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								</ul>
 							</div>
 						) : (
-								<span>{StakingCST.STK_NOREFEREE[locale]}</span>
+								<span>{StakingCST.STK_NONODE[locale]}</span>
 							)}
 				</Modal>
 				<SCard
