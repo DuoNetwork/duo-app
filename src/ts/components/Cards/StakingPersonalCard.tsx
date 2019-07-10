@@ -315,7 +315,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 									listStyle: 'none',
 									paddingLeft: 0,
 									width: '100%',
-									maxHeight: 240,
+									maxHeight: 220,
 									overflowY: 'scroll'
 								}}
 							>
