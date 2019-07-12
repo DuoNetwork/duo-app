@@ -51,20 +51,21 @@ class ReferralUtil {
 			const rawS0 = (data.Items as any)[0].staking0Award;
 			const rawS60 = (data.Items as any)[0].staking60Award;
 			const addressInfo: IAddressInfo = {};
-			if (rawRA) {
-				const rawChildList = rawRA.S.split(';');
-				const childList: IStakingChild[] = [];
-				rawChildList.forEach((child: string) => {
-					const rawData = child.split(',');
-					const childData = {
-						address: rawData[0],
-						daily: Number(rawData[1]),
-						accumulated: Number(rawData[2])
-					};
-					childList.push(childData);
-				});
-				addressInfo.children = childList;
-			}
+			if (rawRA)
+				if ((rawRA as any).S !== 'no referee') {
+					const rawChildList = rawRA.S.split(';');
+					const childList: IStakingChild[] = [];
+					rawChildList.forEach((child: string) => {
+						const rawData = child.split(',');
+						const childData = {
+							address: rawData[0],
+							daily: Number(rawData[1]),
+							accumulated: Number(rawData[2])
+						};
+						childList.push(childData);
+					});
+					addressInfo.children = childList;
+				}
 			if (rawS0) {
 				const rawNodeList = rawS0.S.split(';');
 				const nodeList: IStakingNode[] = [];

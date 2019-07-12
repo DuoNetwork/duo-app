@@ -47,12 +47,20 @@ export default class StakingInfoCardM extends React.Component<IProps> {
 				title={<SCardTitle>{title.toUpperCase()}</SCardTitle>}
 				width="95%"
 				margin="10px 0 20px 0"
+				extra={
+					<Link to={contractIndex === 0 ? '/term' : ''}>
+						<SStakingSwitch style={{ width: 124 }}>
+							{contractIndex === 0
+								? StakingCST.STK_TOFIX[locale]
+								: StakingCST.STK_TOFLEX[locale]}
+						</SStakingSwitch>
+					</Link>
+				}
 			>
 				<SCardTag3
 					style={{
 						pointerEvents: 'none',
 						width: '100%',
-						marginRight: 15,
 						height: 'auto'
 					}}
 				>
@@ -161,23 +169,6 @@ export default class StakingInfoCardM extends React.Component<IProps> {
 						</div>
 					</div>
 				</SCardTag3>
-				<div
-					style={{
-						marginTop: 10,
-						display: 'flex',
-						alignItems: 'center',
-						justifyContent: 'center',
-						width: '100%'
-					}}
-				>
-					<Link to={contractIndex === 0 ? '/term' : ''}>
-						<SStakingSwitch style={{ width: 180 }}>
-							{contractIndex === 0
-								? StakingCST.STK_TOFIX[locale]
-								: StakingCST.STK_TOFLEX[locale]}
-						</SStakingSwitch>
-					</Link>
-				</div>
 			</SCard>
 		);
 	}

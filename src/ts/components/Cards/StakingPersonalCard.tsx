@@ -341,7 +341,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 													color: '#5CA4DE'
 												}}
 											>
-												{child.daily}
+												{d3.format(',.2f')(child.daily)}
 											</span>
 											<span
 												style={{
@@ -350,7 +350,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 													color: '#5CA4DE'
 												}}
 											>
-												{child.accumulated}
+												{d3.format(',.2f')(child.accumulated)}
 											</span>
 										</li>
 									);
@@ -439,7 +439,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 														color: '#5CA4DE'
 													}}
 												>
-													{node.daily}
+													{d3.format(',.2f')(node.daily)}
 												</span>
 												<span
 													style={{
@@ -448,7 +448,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 														color: '#5CA4DE'
 													}}
 												>
-													{node.accumulated}
+													{d3.format(',.2f')(node.accumulated)}
 												</span>
 											</li>
 										);
@@ -600,7 +600,8 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 										fontWeight: 500,
 										display: 'flex',
 										justifyContent: 'space-between',
-										alignItems: 'center'
+										alignItems: 'center',
+										color: 'rgba(64,79,84,.8)'
 									}}
 								>
 									<div>{StakingCST.STK_DAILY[locale]}</div>
@@ -620,7 +621,8 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 										fontWeight: 500,
 										display: 'flex',
 										justifyContent: 'space-between',
-										alignItems: 'center'
+										alignItems: 'center',
+										color: 'rgba(64,79,84,.8)'
 									}}
 								>
 									<div>{StakingCST.STK_SUM[locale]}</div>
@@ -677,7 +679,8 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 										fontWeight: 500,
 										display: 'flex',
 										justifyContent: 'space-between',
-										alignItems: 'center'
+										alignItems: 'center',
+										color: 'rgba(64,79,84,.8)'
 									}}
 								>
 									<div>{StakingCST.STK_DAILY[locale]}</div>
@@ -697,7 +700,8 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 										fontWeight: 500,
 										display: 'flex',
 										justifyContent: 'space-between',
-										alignItems: 'center'
+										alignItems: 'center',
+										color: 'rgba(64,79,84,.8)'
 									}}
 								>
 									<div>{StakingCST.STK_SUM[locale]}</div>

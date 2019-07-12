@@ -120,7 +120,7 @@ export default class Staking extends React.Component<IProps, IState> {
 				</Modal>
 				<SContent>
 					<SDivFlexCenter horizontal width={'1060px'}>
-						<StakingBannerCard />
+						<StakingBannerCard locale={locale}/>
 						<StakingInfoCard
 							contractIndex={contractIndex}
 							locale={locale}

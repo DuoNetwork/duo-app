@@ -19,7 +19,7 @@ function mapStateToProps(state: IState) {
 		userStakes: state.stake.userStake,
 		oracleStakes: state.stake.oracleStake,
 		userAward: state.stake.userAward,
-		locale: state.ui.locale,
+		locale: 'EN',
 	};
 }
 

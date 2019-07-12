@@ -62,7 +62,6 @@ export default class StakingInfoCard extends React.Component<IProps> {
 						style={{
 							pointerEvents: 'none',
 							width: '100%',
-							marginRight: 15,
 							height: 'auto'
 						}}
 					>

@@ -11,13 +11,13 @@ export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';
 
 export const STK_TITLEFIX: ILocaleText = {
-	[LOCALE_CN]: 'DUO 质押活动 (定期)',
-	[LOCALE_EN]: 'DUO Staking (Term)'
+	[LOCALE_CN]: 'DUO质押活动(定期)',
+	[LOCALE_EN]: 'DUO Staking(Term)'
 };
 
 export const STK_TITLEFLEX: ILocaleText = {
-	[LOCALE_CN]: 'DUO 质押活动 (活期)',
-	[LOCALE_EN]: 'DUO Staking (Flex)'
+	[LOCALE_CN]: 'DUO质押活动(活期)',
+	[LOCALE_EN]: 'DUO Staking(Flex)'
 };
 
 export const STK_STATUS: ILocaleText = {
@@ -72,12 +72,12 @@ export const STK_SAWARD: ILocaleText = {
 
 export const STK_DAILY: ILocaleText = {
 	[LOCALE_CN]: '当日奖励',
-	[LOCALE_EN]: 'Daily Award'
+	[LOCALE_EN]: 'Daily'
 };
 
 export const STK_SUM: ILocaleText = {
 	[LOCALE_CN]: '累计奖励',
-	[LOCALE_EN]: 'Sum Award'
+	[LOCALE_EN]: 'Sum'
 };
 
 export const STK_REFEREE: ILocaleText = {

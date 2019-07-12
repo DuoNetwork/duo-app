@@ -227,7 +227,7 @@ export default class StakingNodesCard extends React.Component<IProps, IState> {
 					</SCardTag3>
 					<div
 						style={{
-							width: 145,
+							width: 168,
 							marginTop: 10,
 							height: 90,
 							display: 'flex',

@@ -713,6 +713,9 @@ export const SStakingRInfoBTN = styled.div`
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	text-align: center;
 	cursor: pointer !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 export const SStakingButtonM = styled.div`
@@ -732,6 +735,9 @@ export const SStakingButtonM = styled.div`
 	background: #fc7676;
 	text-align: center;
 	cursor: pointer !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 export const SStakingButtonM2 = styled.div`
 	&:hover {
@@ -750,6 +756,9 @@ export const SStakingButtonM2 = styled.div`
 	background: #fc7676;
 	text-align: center;
 	cursor: pointer !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 export const SStakingButtonF = styled.div`
 	&:hover {
@@ -769,6 +778,9 @@ export const SStakingButtonF = styled.div`
 	background: transparent;
 	text-align: center;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 export const SStakingInput = styled.input`
 	&::placeholder {
