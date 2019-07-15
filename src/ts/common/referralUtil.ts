@@ -3,6 +3,7 @@ import moment from 'moment';
 import dynamoUtil from './dynamoUtil';
 import * as StakingCST from './stakingCST';
 import { IAddressInfo, IReferral, IStakingChild, IStakingNode } from './types';
+
 class ReferralUtil {
 	public getUTCNowTimestamp() {
 		return moment().valueOf();

@@ -110,7 +110,12 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 	};
 
 	private handleCancel = () => {
-		this.setState({ visibleLink: false, visibleAddReferral: false, visibleChildren: false, visibleNode: false });
+		this.setState({
+			visibleLink: false,
+			visibleAddReferral: false,
+			visibleChildren: false,
+			visibleNode: false
+		});
 	};
 
 	private handleInputChange = (value: string) => {
@@ -119,13 +124,22 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 
 	private copyToClipboard = (target: number) => {
 		const { address, locale } = this.props;
-		target === 1
-			? (navigator as any).clipboard
-				.writeText('https://app.duo.network/staking?r=' + address.slice(-6))
-				.then(() => window.alert(StakingCST.STK_COPIED[locale]))
-			: (navigator as any).clipboard
-				.writeText('https://duo.ac?r=' + address.slice(-6))
-				.then(() => window.alert(StakingCST.STK_COPIED[locale]));
+		switch (target) {
+			case 1:
+				(navigator as any).clipboard
+					.writeText('https://app.duo.network/staking?r=' + address.slice(-6))
+					.then(() => window.alert(StakingCST.STK_COPIED[locale]));
+				break;
+			case 2:
+				(navigator as any).clipboard
+					.writeText('https://duo.ac?r=' + address.slice(-6))
+					.then(() => window.alert(StakingCST.STK_COPIED[locale]));
+				break;
+			default:
+				(navigator as any).clipboard
+					.writeText(address.slice(-6))
+					.then(() => window.alert(StakingCST.STK_COPIED[locale]));
+		}
 	};
 
 	private handleBind = async () => {
@@ -191,7 +205,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 						stakingAwardSum += node.accumulated;
 					});
 		}
-		const stakingInfo = contractIndex === 0 ? addressInfo.staking0 : addressInfo.staking60
+		const stakingInfo = contractIndex === 0 ? addressInfo.staking0 : addressInfo.staking60;
 		return (
 			<div>
 				<Modal
@@ -205,7 +219,14 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 						</Button>
 					]}
 				>
-					<p style={{ marginBottom: 5 }}>{StakingCST.STK_RLDESKTOP[locale]}</p>
+					<p style={{ marginBottom: 5 }}>{StakingCST.STK_RLCODE[locale]}</p>
+					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+						<SStakingRlink id="referral-link-d">{address.slice(-6)}</SStakingRlink>
+						<Button key="ok" type="ghost" onClick={() => this.copyToClipboard(0)}>
+							{StakingCST.STK_COPY[locale]}
+						</Button>
+					</div>
+					<p style={{ marginBottom: 5, marginTop: 10 }}>{StakingCST.STK_RLDESKTOP[locale]}</p>
 					<div style={{ display: 'flex', justifyContent: 'space-between' }}>
 						<SStakingRlink id="referral-link-d">
 							{'https://app.duo.network/staking?r=' + address.slice(-6)}
@@ -237,30 +258,34 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 								{StakingCST.STK_BTNOK[locale]}
 							</Button>
 						) : (
-								<Button key="ok" type="primary" onClick={this.handleBind}>
-									{StakingCST.STK_BIND[locale]}
-								</Button>
-							)
+							<Button key="ok" type="primary" onClick={this.handleBind}>
+								{StakingCST.STK_BIND[locale]}
+							</Button>
+						)
 					]}
 				>
 					{binded ? (
 						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-							<div>
-								{StakingCST.STK_RCODEUSED[locale]}
-								<span style={{ color: '#5CA4DE' }}>{bindedCode}</span>
-							</div>
+							{bindedCode === '000000' ? (
+								<div>{StakingCST.STK_RCODE0[locale]}</div>
+							) : (
+								<div>
+									{StakingCST.STK_RCODEUSED[locale]}
+									<span style={{ color: '#5CA4DE' }}>{bindedCode}</span>
+								</div>
+							)}
 						</div>
 					) : (
-							<div style={{ display: 'flex', justifyContent: 'space-between' }}>
-								<div>{StakingCST.STK_RCODE[locale]}</div>
-								<SStakingInput
-									placeholder={StakingCST.STK_BINDINPUTPH[locale]}
-									value={referralCode}
-									onChange={e => this.handleInputChange(e.target.value)}
-									style={{ width: 300 }}
-								/>
-							</div>
-						)}
+						<div style={{ display: 'flex', justifyContent: 'space-between' }}>
+							<div>{StakingCST.STK_RCODE[locale]}</div>
+							<SStakingInput
+								placeholder={StakingCST.STK_BINDINPUTPH[locale]}
+								value={referralCode}
+								onChange={e => this.handleInputChange(e.target.value)}
+								style={{ width: 300 }}
+							/>
+						</div>
+					)}
 				</Modal>
 				<Modal
 					visible={visibleChildren}
@@ -321,10 +346,7 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							>
 								{addressInfo.children.map((child, index) => {
 									return (
-										<li
-											className='referee-table-li'
-											key={index}
-										>
+										<li className="referee-table-li" key={index}>
 											<span
 												style={{
 													width: '68%',
@@ -358,8 +380,8 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 							</ul>
 						</div>
 					) : (
-							<span>{StakingCST.STK_NOREFEREE[locale]}</span>
-						)}
+						<span>{StakingCST.STK_NOREFEREE[locale]}</span>
+					)}
 				</Modal>
 				<Modal
 					visible={visibleNode}
@@ -372,92 +394,88 @@ export default class StakingPersonalCard extends React.Component<IProps, IState>
 						</Button>
 					]}
 				>
-					{
-						stakingInfo ? (
-							<div>
-								<div
+					{stakingInfo ? (
+						<div>
+							<div
+								style={{
+									width: '100%',
+									display: 'flex',
+									justifyContent: 'space-between',
+									color: 'rgba(0,0,0,.7)',
+									paddingRight: 5,
+									marginBottom: 5
+								}}
+							>
+								<span
 									style={{
-										width: '100%',
-										display: 'flex',
-										justifyContent: 'space-between',
-										color: 'rgba(0,0,0,.7)',
-										paddingRight: 5,
-										marginBottom: 5
+										width: '40%',
+										paddingLeft: 5
 									}}
 								>
-									<span
-										style={{
-											width: '40%',
-											paddingLeft: 5
-										}}
-									>
-										{StakingCST.STK_NODE[locale]}
-									</span>
-									<span
-										style={{
-											width: '30%',
-											textAlign: 'right'
-										}}
-									>
-										{StakingCST.STK_DAILY[locale]}
-									</span>
-									<span
-										style={{
-											width: '30%',
-											textAlign: 'right'
-										}}
-									>
-										{StakingCST.STK_SUM[locale]}
-									</span>
-								</div>
-								<ul
+									{StakingCST.STK_NODE[locale]}
+								</span>
+								<span
 									style={{
-										listStyle: 'none',
-										paddingLeft: 0,
-										width: '100%'
+										width: '30%',
+										textAlign: 'right'
 									}}
 								>
-									{stakingInfo.map((node, index) => {
-										return (
-											<li
-												className='referee-table-li'
-												key={index}
-											>
-												<span
-													style={{
-														width: '40%',
-														fontSize: 12,
-														paddingLeft: 5
-													}}
-												>
-													{node.name.toUpperCase()}
-												</span>
-												<span
-													style={{
-														width: '30%',
-														textAlign: 'right',
-														color: '#5CA4DE'
-													}}
-												>
-													{d3.format(',.2f')(node.daily)}
-												</span>
-												<span
-													style={{
-														width: '30%',
-														textAlign: 'right',
-														color: '#5CA4DE'
-													}}
-												>
-													{d3.format(',.2f')(node.accumulated)}
-												</span>
-											</li>
-										);
-									})}
-								</ul>
+									{StakingCST.STK_DAILY[locale]}
+								</span>
+								<span
+									style={{
+										width: '30%',
+										textAlign: 'right'
+									}}
+								>
+									{StakingCST.STK_SUM[locale]}
+								</span>
 							</div>
-						) : (
-								<span>{StakingCST.STK_NONODE[locale]}</span>
-							)}
+							<ul
+								style={{
+									listStyle: 'none',
+									paddingLeft: 0,
+									width: '100%'
+								}}
+							>
+								{stakingInfo.map((node, index) => {
+									return (
+										<li className="referee-table-li" key={index}>
+											<span
+												style={{
+													width: '40%',
+													fontSize: 12,
+													paddingLeft: 5
+												}}
+											>
+												{node.name.toUpperCase()}
+											</span>
+											<span
+												style={{
+													width: '30%',
+													textAlign: 'right',
+													color: '#5CA4DE'
+												}}
+											>
+												{d3.format(',.2f')(node.daily)}
+											</span>
+											<span
+												style={{
+													width: '30%',
+													textAlign: 'right',
+													color: '#5CA4DE'
+												}}
+											>
+												{d3.format(',.2f')(node.accumulated)}
+											</span>
+										</li>
+									);
+								})}
+							</ul>
+						</div>
+					) : (
+						<span>{StakingCST.STK_NONODE[locale]}</span>
+					)}
 				</Modal>
 				<SCard
 					title={<SCardTitle>{StakingCST.STK_ACCINFO[locale].toUpperCase()}</SCardTitle>}

@@ -952,6 +952,9 @@ injectGlobal([
 		.ant-card-extra {
 			padding: 0
 		}
+		.mobile-list-modal > .ant-modal-content > .ant-modal-body {
+			padding: 12px !important;
+		}
 	}
 `
 ] as any);

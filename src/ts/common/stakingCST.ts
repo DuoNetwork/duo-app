@@ -140,6 +140,11 @@ export const STK_RCODEUSED: ILocaleText = {
 	[LOCALE_EN]: 'Already binded with referral Code: '
 };
 
+export const STK_RCODE0: ILocaleText = {
+	[LOCALE_CN]: '此账号不符合被推荐规则',
+	[LOCALE_EN]: 'This account cannot be referee.'
+};
+
 export const STK_BIND: ILocaleText = {
 	[LOCALE_CN]: '绑 定',
 	[LOCALE_EN]: 'Bind'
@@ -205,6 +210,11 @@ export const STK_REMIUNDERTEST: ILocaleText = {
 	[LOCALE_EN]: 'Please apporve DUO before staking.'
 };
 
+export const STK_REMIUNDERBIND: ILocaleText = {
+	[LOCALE_CN]: '新账号可绑定推荐人。',
+	[LOCALE_EN]: 'New account can bind referer.'
+};
+
 export const STK_OK: ILocaleText = {
 	[LOCALE_CN]: '授权DUO',
 	[LOCALE_EN]: 'Approve Now'
@@ -213,6 +223,10 @@ export const STK_OK: ILocaleText = {
 export const STK_BTNOK: ILocaleText = {
 	[LOCALE_CN]: '好的',
 	[LOCALE_EN]: 'OK'
+};
+export const STK_RLCODE: ILocaleText = {
+	[LOCALE_CN]: '推荐码:',
+	[LOCALE_EN]: 'Referral code:'
 };
 
 export const STK_RLDESKTOP: ILocaleText = {

@@ -117,6 +117,7 @@ export default class Staking extends React.Component<IProps, IState> {
 					]}
 				>
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
+					<p>{StakingCST.STK_REMIUNDERBIND[locale]}</p>
 				</Modal>
 				<SContent>
 					<SDivFlexCenter horizontal width={'1060px'}>

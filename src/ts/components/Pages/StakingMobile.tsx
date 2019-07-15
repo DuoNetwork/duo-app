@@ -115,6 +115,7 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 					]}
 				>
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
+					<p>{StakingCST.STK_REMIUNDERBIND[locale]}</p>
 				</Modal>
 				<SContent>
 					<StakingInfoCardM
