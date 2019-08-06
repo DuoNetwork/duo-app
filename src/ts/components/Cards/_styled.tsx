@@ -94,6 +94,23 @@ export const SCardTitleSelector = styled(Select as any)`
 	}
 `;
 
+export const SCardTitleSwitch = styled.div`
+	span {
+		cursor: pointer;
+		transition: all, 0.2s;
+	}
+	span:hover {
+		text-shadow: 0 0 1px rgba(255, 255, 255, .5);
+		opacity: 0.9 !important;
+	}
+	span:first-child {
+		margin-right: 10px;
+	}
+	span:last-child {
+		margin-left: 10px;
+	}
+`;
+
 injectGlobal([
 	`
 	body {

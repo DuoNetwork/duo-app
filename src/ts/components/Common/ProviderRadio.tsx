@@ -63,7 +63,7 @@ export default class ProviderRadio extends React.Component<IProps, IState> {
 		this.setState({ msg: 'Connecting to Leger', loading: true });
 		const timer = setTimeout(() => {
 			this.setState({ msg: 'Failed to connect.', loading: false });
-		}, 15000);
+		}, 30000);
 		web3Wrapper.switchToLedger().then(accounts => {
 			clearTimeout(timer);
 			this.setState({

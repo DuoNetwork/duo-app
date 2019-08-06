@@ -28,6 +28,7 @@ export interface IState {
 	readonly dynamo: IDynamoState;
 	readonly ui: IUIState;
 	readonly stake: IStakeState;
+	readonly inlineWarrent: any;
 }
 
 export interface IWeb3State {

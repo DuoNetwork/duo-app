@@ -5,6 +5,8 @@ export interface ILocaleText {
 }
 export const REFERRALTABLE = 'duo.live.referral';
 export const STAKINGTABLE = 'duo.live.staking';
+export const UIEVENTTABLE = 'duo.live.uiEvents';
+export const WARRENTTABLE = 'duo.live.warrant';
 export const REFERRALCODE = 'Referral Code: ';
 
 export const LOCALE_CN = 'CN';

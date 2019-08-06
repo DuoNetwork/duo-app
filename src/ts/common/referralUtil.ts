@@ -25,8 +25,8 @@ class ReferralUtil {
 
 	public async insertReferralEntry(item: IReferral) {
 		const data: AttributeMap = {
-			address: { S: item.address },
-			referralCode: { S: item.referralCode },
+			address: { S: item.address.toLowerCase() },
+			referralCode: { S: item.referralCode.toLowerCase() },
 			signHash: { S: item.signHash },
 			updatedAt: { S: this.getUTCNowTimestamp() + '' }
 		};

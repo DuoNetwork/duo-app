@@ -1,11 +1,11 @@
-import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
+//import { Constants as WrapperConstants } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import ethIcon from 'images/ethIconB.png';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import * as CST from 'ts/common/constants';
 import { ColorStyles } from 'ts/common/styles';
-import { dualClassWrappers } from 'ts/common/wrappers';
+//import { dualClassWrappers } from 'ts/common/wrappers';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent, SDivFlexCenter } from '../_styled';
 import { SCard, SCardTag, SCardTitle } from '../Cards/_styled';
@@ -16,13 +16,13 @@ export default class Duo extends React.Component {
 	}
 
 	public render() {
-		const beethovenTenors = Object.keys(dualClassWrappers[WrapperConstants.BEETHOVEN]);
-		const mozartTenors = Object.keys(dualClassWrappers[WrapperConstants.MOZART]);
+		// const beethovenTenors = Object.keys(dualClassWrappers[WrapperConstants.BEETHOVEN]);
+		// const mozartTenors = Object.keys(dualClassWrappers[WrapperConstants.MOZART]);
 		return (
 			<Layout>
 				<Header />
 				<SContent>
-					<SCard
+					{/* <SCard
 						title={<SCardTitle>{CST.TH_CUSTODIANS.toUpperCase()}</SCardTitle>}
 						width={'960px'}
 						margin={'0 0 20px 0'}
@@ -93,11 +93,11 @@ export default class Duo extends React.Component {
 								</Link>
 							))}
 						</SDivFlexCenter>
-					</SCard>
+					</SCard> */}
 					<SCard
 						title={<SCardTitle>{CST.TH_ORACLES.toUpperCase()}</SCardTitle>}
 						width={'960px'}
-						margin={'0 0 0 0'}
+						margin={'0 0 20px 0'}
 					>
 						<SDivFlexCenter
 							horizontal
@@ -126,6 +126,18 @@ export default class Duo extends React.Component {
 									</div>
 								</SCardTag>
 							</Link>
+						</SDivFlexCenter>
+					</SCard>
+					<SCard
+						title={<SCardTitle>{CST.TH_CONTRACTS.toUpperCase()}</SCardTitle>}
+						width={'960px'}
+						margin={'0 0 0 0'}
+					>
+						<SDivFlexCenter
+							horizontal
+							padding="0 10px"
+							style={{ display: 'inline-flex' }}
+						>
 							<Link to={'/' + 'staking'}>
 								<SCardTag style={{ marginRight: '40px' }}>
 									<div className="bg-logo">
@@ -147,12 +159,32 @@ export default class Duo extends React.Component {
 								</SCardTag>
 							</Link>
 							<Link to={'/' + 'stakingterm'}>
-								<SCardTag>
+								<SCardTag style={{ marginRight: '40px' }}>
 									<div className="bg-logo">
 										<img src={ethIcon} />
 									</div>
 									<div className="tag-content">
 										<div className={'tag-price USD'}>STAKING TERM</div>
+									</div>
+									<div className="tag-subtext">
+										<div
+											style={{
+												color: ColorStyles.ThemeTextAlpha,
+												marginLeft: 20
+											}}
+										>
+											DUO
+										</div>
+									</div>
+								</SCardTag>
+							</Link>
+							<Link to={'/' + 'inlinewarrant'}>
+								<SCardTag>
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-content">
+										<div className={'tag-price USD'}>INLINE WARRANTS</div>
 									</div>
 									<div className="tag-subtext">
 										<div

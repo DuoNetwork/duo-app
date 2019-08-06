@@ -5,6 +5,7 @@ import { dualClassWrappers } from 'ts/common/wrappers';
 import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
 import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
 import Esplanade from 'ts/containers/Pages/EsplanadeCointainer';
+import InlineWarrant from 'ts/containers/Pages/InlineWarrantsContainer';
 import MagiAdmin from 'ts/containers/Pages/MagiAdminContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
 import StakingAdmin from 'ts/containers/Pages/StakingAdminContainer';
@@ -77,6 +78,7 @@ export default class Duo extends React.Component {
 					<Route path={'/stakingadmin'} render={() => <StakingAdmin />} />
 					<Route path={'/stakingm'} component={(props: any) => <StakingM {...props} contractIndex={0}/>}/>
 					<Route path={'/stakingmterm'} component={(props: any) => <StakingM {...props} contractIndex={1}/>}/>
+					<Route path={'/inlinewarrant'} component={(props: any) => <InlineWarrant {...props}/>}/>
 					<Route render={() => <Home />} />
 				</Switch>
 			</div>

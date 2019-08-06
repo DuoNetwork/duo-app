@@ -90,6 +90,12 @@ Object {
       "votedFor": 0,
     },
   },
+  "inlineWarrent": Object {
+    "addressInfo": Object {},
+    "currentRoundInfo": Array [],
+    "duo": 0,
+    "exchangePrices": Array [],
+  },
   "magi": Object {
     "acceptedPrices": Array [],
     "operator": Object {

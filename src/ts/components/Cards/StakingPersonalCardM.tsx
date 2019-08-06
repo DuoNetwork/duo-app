@@ -533,7 +533,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 								<SStakingButtonM2
 									onClick={this.handleApprove}
 									style={{
-										width: 120,
+										width: 108,
 										pointerEvents: enableApprove ? 'initial' : 'none',
 										opacity: enableApprove ? 1 : 0.4
 									}}
@@ -580,7 +580,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 							>
 								<SStakingButtonM2
 									style={{
-										width: 120,
+										width: 108,
 										cursor: !enabled ? 'not-allowed' : 'default'
 									}}
 									onClick={() =>
@@ -612,7 +612,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 180,
+										width: 170,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 12,
@@ -633,7 +633,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 180,
+										width: 170,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 12,
@@ -667,7 +667,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 							</div>
 							<div
 								style={{
-									width: 120,
+									width: 108,
 									position: 'absolute',
 									right: 10,
 									top: 15,
@@ -700,7 +700,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 180,
+										width: 170,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 12,
@@ -721,7 +721,7 @@ export default class StakingPersonalCardM extends React.Component<IProps, IState
 							<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
 								<div
 									style={{
-										width: 180,
+										width: 170,
 										marginLeft: 20,
 										paddingRight: 5,
 										fontSize: 12,
