@@ -45,7 +45,8 @@ function drawLines(
 	const zoomFormat = (date: number) => moment(date).format(formatString(date));
 	const today = moment.utc().format('YYYY-MM-DD');
 	const tommorow = moment.utc(today, 'YYYY-MM-DD').add(1, 'days');
-	let startTime, endTime;
+	let startTime = 0,
+		endTime = 0;
 	if (phase === 1 || phase === 3) {
 		startTime = moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - timeStep * 2;
 		endTime = moment.utc(`${today} 13:30:00`, 'YYYY-MM-DD HH:mm:ss').valueOf();
@@ -63,8 +64,8 @@ function drawLines(
 		.domain([xStart, xEnd])
 		.range([0, width]);
 	const showingSet = prices.filter(price => {
-		return price.timestamp > (moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - 60000 * 30)
-	})
+		return price.timestamp > startTime - 60000 * 30;
+	});
 	//Data Range (ETH price)
 	const maxPrice = d3.max(showingSet.map(d => d.high)) || 0;
 
@@ -319,7 +320,8 @@ function drawLines(
 		.attr('class', 'last-point-legend-text')
 		.attr(
 			'transform',
-			`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(showingSet[0].close) + 3})`
+			`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(showingSet[0].close) +
+				3})`
 		)
 		.attr('fill', ColorStyles.MainColor)
 		.attr('font-size', 13)

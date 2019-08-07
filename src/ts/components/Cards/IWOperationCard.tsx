@@ -10,7 +10,7 @@ import * as StakingCST from 'ts/common/stakingCST';
 //import { Link } from 'react-router-dom';
 import warrentUtil from 'ts/common/warrantUtil';
 import { stakeWrappers } from 'ts/common/wrappers';
-import { SCard, SCardTitle, SStakingButtonF, SStakingButtonM2, SStakingInput } from './_styled';
+import { SCard, SCardTitle, SStakingButtonM2, SStakingInput } from './_styled';
 
 interface IProps {
 	address: string;
@@ -70,17 +70,6 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 			this.setState({ inputText: '', inputValue: 0 });
 		}
 	};
-	private handleUnstake = async () => {
-		const { address } = this.props;
-		const txHash = await stakeWrappers[0].unstake(
-			address,
-			'0x8cff57292ab098728f26f7d2e2bdfc6b1729dddb',
-			{
-				gasLimit: 1000000
-			}
-		);
-		console.log('Transaction submit: ' + txHash);
-	};
 
 	public render() {
 		const { address, locale, duoBalance } = this.props;
@@ -120,10 +109,6 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 							{StakingCST.STK_STAKE[locale]}
 						</SStakingButtonM2>
 					</div>
-
-					<SStakingButtonF onClick={() => this.handleUnstake()}>
-						{StakingCST.STK_UNSTAKE[locale]}
-					</SStakingButtonF>
 				</div>
 			</SCard>
 		);

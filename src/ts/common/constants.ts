@@ -78,7 +78,31 @@ export interface ILocaleText {
 	JP: string;
 	[key: string]: string;
 }
+export const TH_AMOUNT: ILocaleText = {
+	[LOCALE_CN]: '数量',
+	[LOCALE_EN]: 'Amount',
+	[LOCALE_JP]: 'Amount',
+	[LOCALE_RU]: 'Amount'
+};
+export const TH_TXHASH: ILocaleText = {
+	[LOCALE_CN]: '交易哈希值',
+	[LOCALE_EN]: 'Transaction Hash',
+	[LOCALE_JP]: 'Transaction Hash',
+	[LOCALE_RU]: 'Transaction Hash'
+};
 
+export const TH_SUM: ILocaleText = {
+	[LOCALE_CN]: '总条目',
+	[LOCALE_EN]: 'Total Entries',
+	[LOCALE_JP]: 'Total Entries',
+	[LOCALE_RU]: 'Total Entries'
+};
+export const TH_TIMEOUT: ILocaleText = {
+	[LOCALE_CN]: '超时',
+	[LOCALE_EN]: 'Time out',
+	[LOCALE_JP]: 'Time out',
+	[LOCALE_RU]: 'Time out'
+};
 export const TH_CREATE: ILocaleText = {
 	[LOCALE_CN]: '拆分',
 	[LOCALE_EN]: 'Create',
