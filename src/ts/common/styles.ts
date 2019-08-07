@@ -2,6 +2,10 @@ export const ColorStyles = {
 	//Theme Colors
 	MainColor: 'rgba(0,114,206,1)',
 	MainColorAlpha: 'rgba(0,114,206,.8)',
+	MainColorAlphaL: 'rgba(0,114,206,.6)',
+	MainColorAlphaLL: 'rgba(0,114,206,.4)',
+	MainColorAlphaLLL: 'rgba(0,114,206,.2)',
+	MainColorAlphaLLLL: 'rgba(0,114,206,.1)',
 	MainColorShadow: 'rgba(0,114,206,.2)',
 	MainErrorColor: 'rgba(256,56,79,1)',
 	MainErrorColorAplha: 'rgba(256,56,79,.8)',

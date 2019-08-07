@@ -9,7 +9,6 @@ import { IState } from 'ts/common/types';
 import TimeSeriesCard from 'ts/components/Cards/TimeSeriesCardIW';
 
 function mapStateToProps(state: IState) {
-	console.log(state.inlineWarrent);
 	const prices = state.inlineWarrent.exchangePrices
 	//const period = state.ui.period;
 	return {

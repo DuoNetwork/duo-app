@@ -15,7 +15,9 @@ function mapStateToProps(state: IState) {
 		address: state.web3.account,
 		duoBalance: state.stake.duo,
 		addressInfo: state.inlineWarrent.addressInfo,
-		currentRoundInfo: state.inlineWarrent.currentRoundInfo
+		currentRoundInfo: state.inlineWarrent.currentRoundInfo,
+		boundaries: state.inlineWarrent.boundaries,
+		lastPrice: state.inlineWarrent.exchangePrices[0] ? state.inlineWarrent.exchangePrices[0].close : 0
 	};
 }
 

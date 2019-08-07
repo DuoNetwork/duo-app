@@ -3,16 +3,22 @@ import * as d3 from 'd3';
 import loadingImg from 'images/loadingDUO.png';
 import moment from 'moment';
 import * as React from 'react';
+import * as StakingCST from 'ts/common/stakingCST';
 import { ColorStyles } from 'ts/common/styles';
 
-const margin = { top: 40, right: 34, bottom: 23, left: 32 };
+const margin = { top: 24, right: 12, bottom: 23, left: 26 };
 const width = 728 - margin.left - margin.right;
 const height = 380 - margin.top - margin.bottom;
 
-function drawLines(el: Element, prices: IPrice[]) {
-	console.log(prices);
+function drawLines(
+	el: Element,
+	prices: IPrice[],
+	phase: number,
+	locale: string,
+	boundaries: number[]
+) {
 	const dataLoaded = prices.length;
-	if (!dataLoaded) {
+	if (!dataLoaded || phase === 0) {
 		d3.selectAll('.loading').remove();
 		d3.select(el)
 			.append('div')
@@ -21,8 +27,8 @@ function drawLines(el: Element, prices: IPrice[]) {
 		return;
 	}
 	const timeStep = prices[0].period * 60000;
-	console.log(moment(prices[0].timestamp).format('MM/DD/YYYY hh:ss'));
-	console.log(moment(prices[prices.length - 1].timestamp).format('MM/DD/YYYY hh:ss'));
+	console.log(phase);
+	console.log(prices);
 	//Establish SVG Playground
 	d3.selectAll('.loading').remove();
 	d3.selectAll('#timeserieschart').remove();
@@ -33,32 +39,39 @@ function drawLines(el: Element, prices: IPrice[]) {
 		.attr('height', height + margin.top + margin.bottom);
 
 	//Date Range
-	const formatString = (step: number, date: number) => {
-		switch (step) {
-			case 300000:
-				return 'HH:mm';
-			default:
-				return moment(date).format('HH') === '00' ? 'MM-DD' : 'hh a';
-		}
+	const formatString = (date: number) => {
+		return moment(date).format('HH') === '00' ? 'MM-DD' : 'HH:mm';
 	};
-	const zoomFormat = (date: number) => moment(date).format(formatString(timeStep, date));
-	const maxDate = d3.max([prices[0].timestamp]) || 0;
-	const minDate = d3.min([prices[prices.length - 1].timestamp]) || 0;
+	const zoomFormat = (date: number) => moment(date).format(formatString(date));
+	const today = moment.utc().format('YYYY-MM-DD');
+	const tommorow = moment.utc(today, 'YYYY-MM-DD').add(1, 'days');
+	let startTime, endTime;
+	if (phase === 1 || phase === 3) {
+		startTime = moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - timeStep * 2;
+		endTime = moment.utc(`${today} 13:30:00`, 'YYYY-MM-DD HH:mm:ss').valueOf();
+	} else {
+		startTime = moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - timeStep * 2;
+		endTime =
+			moment.utc(`${tommorow} 01:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() + timeStep * 5;
+	}
 
 	//Time Scale
-	const xStart = minDate;
-	const xEnd = maxDate + 2 * timeStep;
+	const xStart = startTime;
+	const xEnd = endTime;
 	const xScale = d3
 		.scaleTime()
 		.domain([xStart, xEnd])
 		.range([0, width]);
+	const showingSet = prices.filter(price => {
+		return price.timestamp > (moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - 60000 * 30)
+	})
 	//Data Range (ETH price)
-	const maxPrice = d3.max(prices.map(d => d.high)) || 0;
+	const maxPrice = d3.max(showingSet.map(d => d.high)) || 0;
 
-	const minPrice = d3.min(prices.map(d => d.low)) || 0;
+	const minPrice = d3.min(showingSet.map(d => d.low)) || 0;
 
-	const rangeTop = maxPrice + 0.1 * (maxPrice - minPrice);
-	const rangeBottom = d3.max([0, minPrice - 0.2 * (maxPrice - minPrice)]) || 0;
+	const rangeTop = maxPrice * (1 + boundaries[0]) * 1.02;
+	const rangeBottom = d3.max([0, minPrice * (1 - boundaries[1]) * 0.98]) || 0;
 
 	//ETH Linear YScale
 	const ethYScale = d3
@@ -69,7 +82,7 @@ function drawLines(el: Element, prices: IPrice[]) {
 	//Axis
 	const xAxis = d3
 		.axisBottom(xScale)
-		.ticks(6)
+		.ticks(12)
 		.tickFormat(zoomFormat as any);
 	const lyAxis = d3.axisLeft(ethYScale).ticks(5);
 	//Grid
@@ -88,6 +101,15 @@ function drawLines(el: Element, prices: IPrice[]) {
 		.line<any>()
 		.x(d => xScale(d.timestamp))
 		.y(d => ethYScale(d.close));
+	const line = d3
+		.line<any>()
+		.x(d => {
+			return d.x;
+		})
+		.y(d => {
+			return d.y;
+		});
+
 	//Chart
 	const chart = d3
 		.select(el)
@@ -123,268 +145,264 @@ function drawLines(el: Element, prices: IPrice[]) {
 		.append('g')
 		.attr('class', 'grid')
 		.call(yGrid as any);
+	//Draw Phase Line
+	if (phase === 1 || phase === 3) {
+		const phaseLines = chart.append('g').attr('class', 'phase1-lines');
+		phaseLines
+			.append('path')
+			.attr('class', 'phase1-line-settlestart dashed')
+			.attr('d', () => {
+				return line([
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: height
+					},
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: 0
+					}
+				]);
+			})
+			.attr('stroke', ColorStyles.MainColorAlphaL)
+			.attr('stroke-width', 1);
+		phaseLines
+			.append('path')
+			.attr('class', 'phase1-line-settlestart dashed')
+			.attr('d', () => {
+				return line([
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 04:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: height
+					},
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 04:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: 0
+					}
+				]);
+			})
+			.attr('stroke', ColorStyles.MainColorAlphaL)
+			.attr('stroke-width', 1);
+		phaseLines
+			.append('path')
+			.attr('class', 'phase1-line-settlestart dashed')
+			.attr('d', () => {
+				return line([
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: height
+					},
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: 0
+					}
+				]);
+			})
+			.attr('stroke', ColorStyles.MainColorAlphaL)
+			.attr('stroke-width', 1);
+		phaseLines
+			.append('rect')
+			.attr('class', 'phase1-line-bgrect')
+			.attr('x', xScale(moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) + 2)
+			.attr('y', 1)
+			.attr(
+				'width',
+				xScale(moment.utc(`${today} 13:30:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) -
+					xScale(moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) -
+					2
+			)
+			.attr('height', height - 2)
+			.style('fill', ColorStyles.MainColorAlphaLLLL)
+			.style('opacity', 0.2);
+		phaseLines
+			.append('rect')
+			.attr('class', 'phase1-line-bgrect')
+			.attr('x', xScale(moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) + 2)
+			.attr('y', 1)
+			.attr(
+				'width',
+				xScale(moment.utc(`${today} 04:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) -
+					xScale(moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()) -
+					2
+			)
+			.attr('height', height - 2)
+			.style('fill', ColorStyles.TextRedAlphaLLLL)
+			.style('opacity', 0.2);
+		phaseLines
+			.append('text')
+			.attr('class', 'last-point-legend-text')
+			.attr(
+				'transform',
+				`translate(${xScale(
+					moment.utc(`${today} 02:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+				)},${-8})`
+			)
+			.attr('fill', ColorStyles.ThemeTextAlpha)
+			.attr('font-size', 11)
+			.attr('font-family', 'Roboto')
+			.text(StakingCST.PHASE[3][locale]);
+		phaseLines
+			.append('text')
+			.attr('class', 'last-point-legend-text')
+			.attr(
+				'transform',
+				`translate(${xScale(
+					moment.utc(`${today} 08:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+				)},${-8})`
+			)
+			.attr('fill', ColorStyles.ThemeTextAlpha)
+			.attr('font-size', 11)
+			.attr('font-family', 'Roboto')
+			.text(StakingCST.PHASE[1][locale]);
+		phaseLines
+			.append('text')
+			.attr('class', 'last-point-legend-text')
+			.attr(
+				'transform',
+				`translate(${xScale(
+					moment.utc(`${today} 12:45:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+				)},${-8})`
+			)
+			.attr('fill', ColorStyles.ThemeTextAlpha)
+			.attr('font-size', 11)
+			.attr('font-family', 'Roboto')
+			.text(StakingCST.PHASE[2][locale]);
+		phaseLines.selectAll('text').style('text-anchor', 'middle');
+	}
+
 	// Chart Data
 	const chartdata = chart
 		.append('g')
 		.attr('class', 'chart-data')
 		.attr('clip-path', 'url(#clip)');
+
 	//Draw ETH Line
 	chartdata
 		.append('path')
 		.attr('class', 'line-custodian-eth ')
-		.datum(prices)
+		.datum(showingSet)
 		.attr('d', lineETH)
 		.attr('fill', 'none')
 		.attr('stroke-linejoin', 'round')
 		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.ThemeText)
+		.attr('stroke', ColorStyles.MainColor)
 		.attr('stroke-width', 1.5);
-	// //Overlay layer
-	// const overlay = svg
-	// 	.append('rect')
-	// 	.attr('class', 'overlay')
-	// 	.attr('width', width)
-	// 	.attr('height', height)
-	// 	.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
-	// 	.attr('fill', 'transparent')
-	// 	.on('mouseover', drawAssisLine)
-	// 	.on('mouseout', deleteAssisLine)
-	// 	.on('mousemove', mousemove);
-	// //Legend bar
-	// const legendBar = svg.append('g').attr('class', 'legend-bar');
-	// legendBar
-	// 	.append('text')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(37, 27.5)')
-	// 	.text('O:');
-	// legendBar
-	// 	.append('text')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(82, 27.5)')
-	// 	.text('H:');
-	// legendBar
-	// 	.append('text')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(127, 27.5)')
-	// 	.text('L:');
-	// legendBar
-	// 	.append('text')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(169, 27.5)')
-	// 	.text('C:');
-	// legendBar
-	// 	.append('text')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(211, 27.5)')
-	// 	.text('Vol:');
-
-	// const sourceLegend = legendBar.append('g').attr('class', 'source-legend');
-	// sourceLegend
-	// 	.append('text')
-	// 	.attr('class', 'source-legend-text-open')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(48, 27.5)')
-	// 	.text('');
-	// sourceLegend
-	// 	.append('text')
-	// 	.attr('class', 'source-legend-text-high')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(93, 27.5)')
-	// 	.text('');
-	// sourceLegend
-	// 	.append('text')
-	// 	.attr('class', 'source-legend-text-low')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(137, 27.5)')
-	// 	.text('');
-	// sourceLegend
-	// 	.append('text')
-	// 	.attr('class', 'source-legend-text-close')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(179, 27.5)')
-	// 	.text('');
-	// sourceLegend
-	// 	.append('text')
-	// 	.attr('class', 'source-legend-text-vol')
-	// 	.attr('fill', ColorStyles.ThemeText)
-	// 	.attr('font-size', 10)
-	// 	.attr('font-family', 'Roboto')
-	// 	.attr('transform', 'translate(228, 27.5)')
-	// 	.text('');
-
-	// function drawAssisLine() {
-	// 	const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
-	// 	const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
-	// 	svg.append('path')
-	// 		.attr('class', 'assist-line-x')
-	// 		.attr('d', () => {
-	// 			return line([
-	// 				{ x: margin.left, y: ethYScale(yPosL) + margin.top },
-	// 				{
-	// 					x: width + margin.left,
-	// 					y: ethYScale(yPosL) + margin.top
-	// 				}
-	// 			]);
-	// 		})
-	// 		.attr('stroke', ColorStyles.BorderBlack4)
-	// 		.attr('stroke-width', 1);
-	// 	svg.append('path')
-	// 		.attr('class', 'assist-line-y')
-	// 		.attr('d', () => {
-	// 			return line([
-	// 				{ x: xScale(xPos) + margin.left, y: margin.top },
-	// 				{
-	// 					x: xScale(xPos) + margin.left,
-	// 					y: height + margin.top
-	// 				}
-	// 			]);
-	// 		})
-	// 		.attr('stroke', ColorStyles.BorderBlack4)
-	// 		.attr('stroke-width', 1);
-	// 	const lyAxisBox = svg.append('g').attr('class', 'ly-axis-box');
-	// 	const xAxisBox = svg.append('g').attr('class', 'x-axis-box');
-	// 	lyAxisBox
-	// 		.append('rect')
-	// 		.attr('class', 'ly-axis-box-rect')
-	// 		.attr('x', margin.left)
-	// 		.attr('y', ethYScale(yPosL) + margin.top)
-	// 		.attr('width', 28)
-	// 		.attr('height', 18)
-	// 		.attr('transform', 'translate(-31, -9)')
-	// 		.style('fill', ColorStyles.CardBackgroundSolid)
-	// 		.style('stroke', ColorStyles.ThemeText);
-	// 	lyAxisBox
-	// 		.append('text')
-	// 		.attr('class', 'ly-axis-box-text')
-	// 		.attr('transform', 'translate(6,' + (ethYScale(yPosL) + margin.top + 4) + ')')
-	// 		.attr('fill', ColorStyles.ThemeText)
-	// 		.attr('font-size', 10)
-	// 		.attr('font-family', 'Roboto')
-	// 		.text(d3.format(',.0f')(yPosL));
-	// 	xAxisBox
-	// 		.append('rect')
-	// 		.attr('class', 'x-axis-box-rect')
-	// 		.attr('x', xScale(xPos) + margin.left)
-	// 		.attr('y', height + margin.top)
-	// 		.attr('width', 40)
-	// 		.attr('height', 16)
-	// 		.attr('transform', 'translate(-20, 3)')
-	// 		.style('fill', ColorStyles.CardBackgroundSolid)
-	// 		.style('stroke', ColorStyles.ThemeText);
-	// 	xAxisBox
-	// 		.append('text')
-	// 		.attr('class', 'x-axis-box-text')
-	// 		.attr(
-	// 			'transform',
-	// 			'translate(' +
-	// 				(xScale(xPos) + margin.left - 13) +
-	// 				', ' +
-	// 				(height + margin.top + 14.5) +
-	// 				')'
-	// 		)
-	// 		.attr('fill', ColorStyles.ThemeText)
-	// 		.attr('font-size', 10)
-	// 		.attr('font-family', 'Roboto')
-	// 		.text(moment(xPos).format('HH:mm'));
-	// }
-	// function deleteAssisLine() {
-	// 	d3.selectAll('.assist-line-x').remove();
-	// 	d3.selectAll('.assist-line-y').remove();
-	// 	d3.selectAll('.x-axis-box').remove();
-	// 	d3.selectAll('.ly-axis-box').remove();
-	// 	d3.selectAll('.source-legend-text-open').text('');
-	// 	d3.selectAll('.source-legend-text-high').text('');
-	// 	d3.selectAll('.source-legend-text-low').text('');
-	// 	d3.selectAll('.source-legend-text-close').text('');
-	// 	d3.selectAll('.source-legend-text-vol').text('');
-	// }
-	// function moveAssisLine() {
-	// 	const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
-	// 	const yPosL = ethYScale.invert(d3.mouse(overlay.node() as any)[1]);
-	// 	d3.selectAll('.assist-line-x').attr('d', () => {
-	// 		return line([
-	// 			{ x: 0 + margin.left, y: ethYScale(yPosL) + margin.top },
-	// 			{
-	// 				x: width + margin.left,
-	// 				y: ethYScale(yPosL) + margin.top
-	// 			}
-	// 		]);
-	// 	});
-	// 	d3.selectAll('.assist-line-y').attr('d', () => {
-	// 		return line([
-	// 			{ x: xScale(xPos) + margin.left, y: margin.top },
-	// 			{
-	// 				x: xScale(xPos) + margin.left,
-	// 				y: height + margin.top
-	// 			}
-	// 		]);
-	// 	});
-	// 	d3.selectAll('.x-axis-box-rect')
-	// 		.attr('x', xScale(xPos) + margin.left)
-	// 		.attr('y', height + margin.top);
-	// 	d3.selectAll('.x-axis-box-text')
-	// 		.attr(
-	// 			'transform',
-	// 			'translate(' +
-	// 				(xScale(xPos) + margin.left - 13) +
-	// 				', ' +
-	// 				(height + margin.top + 14.5) +
-	// 				')'
-	// 		)
-	// 		.text(moment(xPos).format('HH:mm'));
-	// 	d3.selectAll('.ly-axis-box-rect')
-	// 		.attr('x', margin.left)
-	// 		.attr('y', ethYScale(yPosL) + margin.top);
-	// 	d3.selectAll('.ly-axis-box-text')
-	// 		.attr('transform', 'translate(6,' + (ethYScale(yPosL) + margin.top + 4) + ')')
-	// 		.text(d3.format(',.0f')(yPosL));
-	// }
-	// function mousemove() {
-	// 	const xPos = moment(xScale.invert(d3.mouse(overlay.node() as any)[0])).valueOf();
-	// 	findBar(xPos);
-	// 	moveAssisLine();
-	// }
-	// function findBar(x: number) {
-	// 	d3.selectAll('.source-legend-text-open').text('');
-	// 	d3.selectAll('.source-legend-text-high').text('');
-	// 	d3.selectAll('.source-legend-text-low').text('');
-	// 	d3.selectAll('.source-legend-text-close').text('');
-	// 	d3.selectAll('.source-legend-text-vol').text('');
-	// 	prices.forEach(item => {
-	// 		if (item.timestamp < x && x < item.timestamp + timeStep) {
-	// 			d3.selectAll('.source-legend-text-open').text(d3.format(',.1f')(item.open));
-	// 			d3.selectAll('.source-legend-text-high').text(d3.format(',.1f')(item.high));
-	// 			d3.selectAll('.source-legend-text-low').text(d3.format(',.1f')(item.low));
-	// 			d3.selectAll('.source-legend-text-close').text(d3.format(',.1f')(item.close));
-	// 			d3.selectAll('.source-legend-text-vol').text(d3.format(',.1f')(item.volume));
-	// 		}
-	// 	});
-	// 	d3.selectAll('.custodian-eth-legend-text').text('');
-	// 	d3.selectAll('.custodian-tokenA-legend-text').text('');
-	// 	d3.selectAll('.custodian-tokenB-legend-text').text('');
-	// }
+	//Draw Last ETH Price
+	const lastPoint = chartdata.append('g').attr('class', 'last-point-group');
+	lastPoint
+		.append('circle')
+		.attr('class', 'last-point-dot')
+		.attr('cx', xScale(showingSet[0].timestamp))
+		.attr('cy', ethYScale(showingSet[0].close))
+		.attr('r', 2)
+		.style('fill', ColorStyles.MainColor);
+	const lastPointLegend = lastPoint.append('g').attr('class', 'last-point-legend');
+	lastPointLegend
+		.append('text')
+		.attr('class', 'last-point-legend-text')
+		.attr(
+			'transform',
+			`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(showingSet[0].close) + 3})`
+		)
+		.attr('fill', ColorStyles.MainColor)
+		.attr('font-size', 13)
+		.attr('font-weight', 500)
+		.attr('font-family', 'Roboto')
+		.text(d3.format(',.2f')(showingSet[0].close));
+	lastPointLegend.selectAll('text').style('text-anchor', 'start');
+	//Draw BoundRange
+	const boundLines = chartdata.append('g').attr('class', 'bound-lines');
+	boundLines
+		.append('path')
+		.attr('class', 'line-custodian-eth')
+		.attr('d', () => {
+			return line([
+				{
+					x: 0,
+					y: ethYScale(showingSet[0].close * (1 + boundaries[0]))
+				},
+				{
+					x: width,
+					y: ethYScale(showingSet[0].close * (1 + boundaries[0]))
+				}
+			]);
+		})
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', ColorStyles.MainColorAlphaLL)
+		.attr('stroke-width', 1.5);
+	boundLines
+		.append('path')
+		.attr('class', 'line-custodian-eth')
+		.attr('d', () => {
+			return line([
+				{
+					x: 0,
+					y: ethYScale(showingSet[0].close * (1 - boundaries[1]))
+				},
+				{
+					x: width,
+					y: ethYScale(showingSet[0].close * (1 - boundaries[1]))
+				}
+			]);
+		})
+		.attr('fill', 'none')
+		.attr('stroke-linejoin', 'round')
+		.attr('stroke-linecap', 'round')
+		.attr('stroke', ColorStyles.MainColorAlphaLL)
+		.attr('stroke-width', 1.5);
+	boundLines
+		.append('text')
+		.attr('class', 'last-point-legend-text')
+		.attr(
+			'transform',
+			`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(
+				showingSet[0].close * (1 + boundaries[0])
+			) + 15})`
+		)
+		.attr('fill', ColorStyles.TextGreen)
+		.attr('font-size', 12)
+		.attr('font-family', 'Roboto')
+		.text('+ ' + d3.format(',.2%')(boundaries[0]));
+	boundLines
+		.append('text')
+		.attr('class', 'last-point-legend-text')
+		.attr(
+			'transform',
+			`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(
+				showingSet[0].close * (1 - boundaries[1])
+			) - 7})`
+		)
+		.attr('fill', ColorStyles.TextRed)
+		.attr('font-size', 12)
+		.attr('font-family', 'Roboto')
+		.text('- ' + d3.format(',.2%')(boundaries[1]));
+	boundLines.selectAll('text').style('text-anchor', 'start');
 }
 
 interface IProps {
+	locale: string;
 	prices: IPrice[];
+	phase: number;
+	boundaries: number[];
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
@@ -395,14 +413,18 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { prices } = this.props;
-		drawLines(this.chartRef.current as Element, prices);
+		const { prices, phase, locale, boundaries } = this.props;
+		drawLines(this.chartRef.current as Element, prices, phase, locale, boundaries);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		const { prices } = nextProps;
-		if (JSON.stringify(prices) !== JSON.stringify(this.props.prices))
-			drawLines(this.chartRef.current as Element, prices);
+		const { prices, phase, locale, boundaries } = nextProps;
+		if (
+			JSON.stringify(prices) !== JSON.stringify(this.props.prices) ||
+			phase !== this.props.phase ||
+			locale !== this.props.locale
+		)
+			drawLines(this.chartRef.current as Element, prices, phase, locale, boundaries);
 
 		return false;
 	}

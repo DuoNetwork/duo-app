@@ -92,6 +92,7 @@ Object {
   },
   "inlineWarrent": Object {
     "addressInfo": Object {},
+    "boundaries": Array [],
     "currentRoundInfo": Array [],
     "duo": 0,
     "exchangePrices": Array [],

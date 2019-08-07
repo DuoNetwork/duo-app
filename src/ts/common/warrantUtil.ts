@@ -92,6 +92,7 @@ class WarrantUtil {
 			return records;
 		} else return [];
 	}
+
 	public async insetStakingEntry(item: any) {
 		const data: AttributeMap = {
 			eventKey: { S: item.address.toLowerCase() },
@@ -105,6 +106,24 @@ class WarrantUtil {
 		};
 
 		await dynamoUtil.insertData(params);
+	}
+
+	public async getBoundaries() {
+		const params = {
+			TableName: StakingCST.BOUNDARIESTABLE,
+			KeyConditionExpression: 'quoteBase = :quoteBase',
+			ExpressionAttributeValues: {
+				[':quoteBase']: { S: 'ETH|USD' }
+			}
+		};
+		const data = await dynamoUtil.queryData(params);
+		let boundaries = [0, 0];
+		if (data.Count) {
+			(data.Items as any).forEach((item: any) => {
+				if (item.date.S === moment().format('YYYY-MM-DD')) boundaries = [Number(item.ub.S), Number(item.lb.S)];
+			});
+		}
+		return boundaries;
 	}
 	//public async getStakings(account: string) {}
 }

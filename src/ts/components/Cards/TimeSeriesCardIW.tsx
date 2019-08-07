@@ -10,18 +10,22 @@ import { SCard, SCardTitle } from './_styled';
 interface IProps {
 	locale: string;
 	prices: IPrice[];
+	phase: number;
+	boundaries: number[];
 }
 
 export default class TimeSeriesCard extends React.Component<IProps> {
 	public render() {
 		const {
-			//locale,
-			prices
+			locale,
+			prices,
+			phase,
+			boundaries
 		} = this.props;
 		return (
 			<SCard title={<SCardTitle>Graph</SCardTitle>} width="760px" margin="0 20px 0 0">
 				<SDivFlexCenter horizontal>
-					<TimeSeriesChart prices={prices} />
+					<TimeSeriesChart prices={prices} phase={phase} locale={locale} boundaries={boundaries}/>
 				</SDivFlexCenter>
 			</SCard>
 		);

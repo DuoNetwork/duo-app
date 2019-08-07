@@ -8,9 +8,34 @@ export const STAKINGTABLE = 'duo.live.staking';
 export const UIEVENTTABLE = 'duo.live.uiEvents';
 export const WARRENTTABLE = 'duo.live.warrant';
 export const REFERRALCODE = 'Referral Code: ';
+export const BOUNDARIESTABLE = 'duo.live.boundaries';
 
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';
+
+export const LOADING: ILocaleText = {
+	[LOCALE_CN]: '载入阶段',
+	[LOCALE_EN]: 'Loading Phase'
+}
+export const OPS: ILocaleText = {
+	[LOCALE_CN]: '质押阶段',
+	[LOCALE_EN]: 'Open for Sale'
+}
+export const OB: ILocaleText = {
+	[LOCALE_CN]: '观察阶段',
+	[LOCALE_EN]: 'Observation'
+}
+export const SETTLE: ILocaleText = {
+	[LOCALE_CN]: '结算阶段',
+	[LOCALE_EN]: 'Settle Phase'
+}
+
+export const PHASE = [
+	LOADING,
+	OPS,
+	OB,
+	SETTLE
+]
 
 export const STK_TITLEFIX: ILocaleText = {
 	[LOCALE_CN]: 'DUO质押活动(定期)',

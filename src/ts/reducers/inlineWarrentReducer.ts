@@ -7,7 +7,8 @@ export const initialState = {
 	exchangePrices: [],
 	duo: 0,
 	currentRoundInfo: [],
-	addressInfo: {}
+	addressInfo: {},
+	boundaries: []
 };
 
 export function inlineWarrentReducer(state = initialState, action: AnyAction) {
@@ -27,6 +28,10 @@ export function inlineWarrentReducer(state = initialState, action: AnyAction) {
 		case CST.AC_IW_ADDRESSINFO:
 			return Object.assign({}, state, {
 				addressInfo: action.value
+			});
+		case CST.AC_IW_BOUNDARIES:
+			return Object.assign({}, state, {
+				boundaries: action.value
 			});
 		default:
 			return state;

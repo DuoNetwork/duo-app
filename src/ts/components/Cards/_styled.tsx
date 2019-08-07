@@ -1718,11 +1718,11 @@ export const SChartWrapper = styled.div`
 `;
 
 export const SRefreshButton = styled(Button as any)`
-	color: ${ColorStyles.TextWhiteAlphaLL};
+	color: ${ColorStyles.TextWhiteAlphaL};
 	border: none !important;
 	background: transparent !important;
 	&:hover {
-		color: ${ColorStyles.TextWhiteAlpha};
+		color: ${ColorStyles.TextWhite};
 	}
 	&:focus {
 		color: ${ColorStyles.TextWhiteAlphaL};

@@ -1,4 +1,3 @@
-// import { IStakeStates } from '@finbook/duo-contract-wrapper';
 import { IPrice } from '@finbook/duo-market-data';
 //import moment from 'moment';
 import * as CST from 'ts/common/constants';
@@ -36,10 +35,24 @@ export function exchangePricesUpdate(prices: IPrice[]) {
 }
 
 export function fetchExchangePrices(): VoidThunkAction {
-	return async (dispatch, state) => {
-		const source = state().ui.source;
-		const start = util.getUTCNowTimestamp() - 400 * 60000;
+	return async (dispatch) => {
+		const source = 'kraken';
+		const start = util.getUTCNowTimestamp() - 24 * 60 * 60000;
 		dispatch(exchangePricesUpdate(await dynamoUtil.getPrices(source, 1, start, 0, 'ETH|USD')));
+	};
+}
+
+export function boundariesUpdate(boundaries: number[]) {
+	return {
+		type: CST.AC_IW_BOUNDARIES,
+		value: boundaries
+	};
+}
+
+export function fetchBoundaries(): VoidThunkAction {
+	return async (dispatch) => {
+		const boundaries = await warrantUtil.getBoundaries();
+		dispatch(boundariesUpdate(boundaries));
 	};
 }
 
@@ -51,13 +64,9 @@ export function currentRoundUpdate(currentRoundInfo: object[]) {
 }
 
 export function fetchCurrentRoundInfo(): VoidThunkAction {
-	console.log("fetch current round info")
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		console.log(account)
 		const currentRoundInfo = await warrantUtil.getCurrentRoundInfo(account);
-		console.log('currentRoundInfo')
-		console.log(currentRoundInfo)
 		dispatch(currentRoundUpdate(currentRoundInfo));
 	};
 }
@@ -70,13 +79,9 @@ export function addressInfoUpdate(addressInfo: any) {
 }
 
 export function fetchAddressInfo(): VoidThunkAction {
-	console.log("fetch address info")
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		console.log(account)
 		const addressInfo = await warrantUtil.getAddressInfo(account);
-		console.log('addressInfo')
-		console.log(addressInfo)
 		dispatch(addressInfoUpdate(addressInfo));
 	};
 }
@@ -92,6 +97,7 @@ export function refresh(): VoidThunkAction {
 		dispatch(getBalances());
 		dispatch(fetchCurrentRoundInfo());
 		dispatch(fetchAddressInfo())
+		dispatch(fetchBoundaries())
 		dispatch(fetchExchangePrices());
 	};
 }

@@ -12,7 +12,7 @@ import * as React from 'react';
 //import * as CST from 'ts/common/constants';
 //import warrantUtil from 'ts/common/warrantUtil';
 //import { web3Wrapper } from 'ts/common/wrappers';
-import { SCard, SCardTitle, SCardTitleSwitch } from './_styled';
+import { SCard, SCardTitle, SCardTitleSwitch, SRefreshButton } from './_styled';
 
 interface IProps {
 	address: string;
@@ -22,72 +22,52 @@ interface IProps {
 	refresh: () => any;
 }
 
-interface IState {
-	tagIndex: number;
-}
+// interface IState {
+// 	tagIndex: number;
+// }
 
-export default class IWRecordsCard extends React.Component<IProps, IState> {
+export default class IWRecordsCard extends React.Component<IProps> {
 	constructor(props: IProps) {
 		super(props);
-		this.state = {
-			tagIndex: 0
-		};
+		// this.state = {
+		// 	tagIndex: 0
+		// };
 	}
 
-	// public componentDidMount = async () => {
-	// 	this.checkTx();
-	// };
+	private intervalID: number = 0;
 
-	// public componentDidUpdate = async (prevProps: IProps) => {
-	// 	if (
-	// 		JSON.stringify(
-	// 			this.props.currentRoundInfo !== JSON.stringify(prevProps.currentRoundInfo)
-	// 		)
-	// 	) {
-	// 		this.checkTx();
-	// 	}
-	// };
+	private fetchData = () => {
+		console.log('fetching');
+		this.props.refresh();
+	};
+
+	public componentDidMount() {
+		this.fetchData();
+		this.intervalID = window.setTimeout(() => this.fetchData(), 2000);
+		console.log(this.props.refresh);
+	}
+
+	public componentWillUnmount() {
+		window.clearInterval(this.intervalID);
+	}
 
 	public render() {
-		console.log('rerendered');
-		const { addressInfo, currentRoundInfo } = this.props;
-		const { tagIndex } = this.state;
+		const { addressInfo, currentRoundInfo, refresh } = this.props;
 		return (
 			<SCard
 				title={
 					<SCardTitle>
-						<SCardTitleSwitch>
-							<span
-								style={{
-									opacity: tagIndex ? 0.75 : 1,
-									pointerEvents: tagIndex ? 'auto' : 'none'
-								}}
-								onClick={() => this.setState({ tagIndex: 0 })}
-							>
-								Current Round
-							</span>
-							|
-							<span
-								style={{
-									opacity: tagIndex ? 1 : 0.75,
-									pointerEvents: tagIndex ? 'none' : 'auto'
-								}}
-								onClick={() => this.setState({ tagIndex: 1 })}
-							>
-								{' '}
-								Last Round
-							</span>
-						</SCardTitleSwitch>
+						<SCardTitleSwitch>Records</SCardTitleSwitch>
 					</SCardTitle>
 				}
 				width="700px"
 				margin="0 20px 0 0"
+				extra={
+					<SRefreshButton icon="reload" onClick={refresh} />
+				}
 			>
-				{!tagIndex ? (
-					<div>{JSON.stringify(currentRoundInfo, null, '\t')}</div>
-				) : (
-					<div>{JSON.stringify(addressInfo, null, '\t')}</div>
-				)}
+				<div>{JSON.stringify(currentRoundInfo, null, '\t')}</div>
+				<div>{JSON.stringify(addressInfo, null, '\t')}</div>
 			</SCard>
 		);
 	}
