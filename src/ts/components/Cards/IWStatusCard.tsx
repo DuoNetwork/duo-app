@@ -25,7 +25,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
-			countdown: '',
+			countdown: ''
 		};
 	}
 	private timerID: number = 0;
@@ -33,7 +33,10 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 	private updateCountdown = () => {
 		const { phase } = this.props;
 		const today = moment.utc().format('YYYY-MM-DD');
-		const tommorow = moment.utc(today, 'YYYY-MM-DD').add(1, 'days');
+		const tommorow = moment
+			.utc(today, 'YYYY-MM-DD')
+			.add(1, 'days')
+			.format('YYYY-MM-DD');
 		const checkPoints = [
 			0,
 			moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf(),
@@ -43,7 +46,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 		const now = moment.utc();
 		if (phase) {
 			const diff = now.diff(checkPoints[phase]);
-			this.setState({ countdown: moment.utc(Math.abs(diff)).format('hh:mm:ss') });
+			this.setState({ countdown: moment.utc(Math.abs(diff)).format('HH:mm:ss') });
 		}
 	};
 
@@ -95,23 +98,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 											color: '#5CA4DE'
 										}}
 									>
-										{lastPrice ? d3.format(".2f")(lastPrice) : 'Loading'}
-									</span>
-								</div>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'space-between',
-										marginBottom: 4
-									}}
-								>
-									Timer
-									<span
-										style={{
-											color: '#5CA4DE'
-										}}
-									>
-										{countdown ? countdown : 'Loading'}
+										{lastPrice ? d3.format('.2f')(lastPrice) : 'Loading'}
 									</span>
 								</div>
 								<div
@@ -128,6 +115,22 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 										}}
 									>
 										{StakingCST.PHASE[phase][locale]}
+									</span>
+								</div>
+								<div
+									style={{
+										display: 'flex',
+										justifyContent: 'space-between',
+										marginBottom: 4
+									}}
+								>
+									Timer
+									<span
+										style={{
+											color: '#5CA4DE'
+										}}
+									>
+										{countdown ? countdown : 'Loading'}
 									</span>
 								</div>
 								<div

@@ -360,3 +360,48 @@ export const STK_NOSTAKE: ILocaleText = {
 	[LOCALE_CN]: '暂未质押DUO',
 	[LOCALE_EN]: 'No Staking amount'
 }
+
+export const STK_CURRENTROUND: ILocaleText = {
+	[LOCALE_CN]: '本轮质押',
+	[LOCALE_EN]: 'Current Round'
+}
+
+export const STK_LASTROUND: ILocaleText = {
+	[LOCALE_CN]: '上轮质押',
+	[LOCALE_EN]: 'Last Round'
+}
+
+export const STK_STAKEAMOUNT: ILocaleText = {
+	[LOCALE_CN]: '质押量',
+	[LOCALE_EN]: 'Stake Amount'
+}
+
+export const STK_STAKERETURN: ILocaleText = {
+	[LOCALE_CN]: '质押收益',
+	[LOCALE_EN]: 'Stake Return'
+}
+
+export const STK_PASTROUND: ILocaleText = {
+	[LOCALE_CN]: '历史质押',
+	[LOCALE_EN]: 'Past Rounds'
+}
+
+export const STK_ETHRANGE: ILocaleText = {
+	[LOCALE_CN]: 'ETH范围',
+	[LOCALE_EN]: 'ETH Range'
+}
+
+export const STK_ETHSETTLE: ILocaleText = {
+	[LOCALE_CN]: 'ETH结算价',
+	[LOCALE_EN]: 'Settled ETH Price'
+}
+
+export const STK_TOTALSTAKE: ILocaleText = {
+	[LOCALE_CN]: '总质押',
+	[LOCALE_EN]: 'Total Stake'
+}
+
+export const STK_TOTALRETURN: ILocaleText = {
+	[LOCALE_CN]: '总收益',
+	[LOCALE_EN]: 'Total Return'
+}

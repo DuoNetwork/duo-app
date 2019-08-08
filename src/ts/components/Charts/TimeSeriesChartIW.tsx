@@ -27,8 +27,6 @@ function drawLines(
 		return;
 	}
 	const timeStep = prices[0].period * 60000;
-	console.log(phase);
-	console.log(prices);
 	//Establish SVG Playground
 	d3.selectAll('.loading').remove();
 	d3.selectAll('#timeserieschart').remove();

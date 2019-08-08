@@ -4,16 +4,25 @@
 // 	IDualClassStates
 // } from '@finbook/duo-contract-wrapper';
 //import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
-import { Table } from 'antd';
+import { Divider, Table } from 'antd';
 import * as d3 from 'd3';
+import duoIcon from 'images/Duo_black.png';
 import moment from 'moment';
 import * as React from 'react';
-//import { Link } from 'react-router-dom';
-//import * as StakingCST from 'ts/common/stakingCST';
 import * as CST from 'ts/common/constants';
+//import { Link } from 'react-router-dom';
+import * as StakingCST from 'ts/common/stakingCST';
 //import warrantUtil from 'ts/common/warrantUtil';
 //import { web3Wrapper } from 'ts/common/wrappers';
-import { SCard, SCardTitle, SCardTitleSwitch, SRefreshButton, STableWrapper } from './_styled';
+import { SDivFlexCenter } from '../_styled';
+import {
+	SCard,
+	SCardTag2,
+	SCardTitle,
+	SCardTitleSwitch,
+	SRefreshButton,
+	STableWrapper
+} from './_styled';
 const { Column } = Table;
 interface IProps {
 	address: string;
@@ -38,14 +47,12 @@ export default class IWRecordsCard extends React.Component<IProps> {
 	private intervalID: number = 0;
 
 	private fetchData = () => {
-		console.log('fetching');
 		this.props.refresh();
 	};
 
 	public componentDidMount() {
 		this.fetchData();
 		this.intervalID = window.setTimeout(() => this.fetchData(), 2000);
-		console.log(this.props.refresh);
 	}
 
 	public componentWillUnmount() {
@@ -61,11 +68,141 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						<SCardTitleSwitch>Records</SCardTitleSwitch>
 					</SCardTitle>
 				}
-				width="700px"
+				width="680px"
 				margin="0 20px 0 0"
 				extra={<SRefreshButton icon="reload" onClick={refresh} />}
 			>
-				<div>{JSON.stringify(addressInfo, null, '\t')}</div>
+				<SDivFlexCenter horizontal noJust>
+					<SCardTag2 style={{ marginRight: 20 }}>
+						<div className="bg-logo">
+							<img src={duoIcon} />
+						</div>
+						<div className="tag-content" style={{ pointerEvents: 'none' }}>
+							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
+								{StakingCST.STK_TOTALSTAKE[locale]}
+							</div>
+						</div>
+						<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+							<div
+								style={{
+									marginLeft: 20,
+									fontSize: 20,
+									fontWeight: 500,
+									color: '#5CA4DE'
+								}}
+							>
+								{addressInfo.roundStakingAmount
+									? d3.format(',.2f')(addressInfo.roundStakingAmount[1])
+									: '0.00'}
+								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
+							</div>
+						</div>
+					</SCardTag2>
+					<SCardTag2>
+						<div className="bg-logo">
+							<img src={duoIcon} />
+						</div>
+						<div className="tag-content" style={{ pointerEvents: 'none' }}>
+							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
+								{StakingCST.STK_TOTALRETURN[locale]}
+							</div>
+						</div>
+						<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
+							<div
+								style={{
+									marginLeft: 20,
+									fontSize: 20,
+									fontWeight: 500,
+									color: '#5CA4DE'
+								}}
+							>
+								{addressInfo.roundStakingAmount
+									? d3.format(',.2f')(
+											addressInfo.roundReturn[1] -
+												addressInfo.roundStakingAmount[1]
+									)
+									: '0.00'}
+								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
+							</div>
+						</div>
+					</SCardTag2>
+				</SDivFlexCenter>
+				<div
+					style={{
+						paddingLeft: 10,
+						color: 'rgba(64,79,84,.8)',
+						fontWeight: 500,
+						marginTop: 10,
+						marginBottom: -5
+					}}
+				>
+					{StakingCST.STK_LASTROUND[locale]}
+				</div>
+				<STableWrapper>
+					<Table
+						dataSource={[
+							{
+								key: 'lastRound',
+								[CST.TH_TIME.EN]: addressInfo.date ? addressInfo.date : ' - ',
+								[StakingCST.STK_STAKEAMOUNT.EN]: addressInfo.roundStakingAmount
+									? d3.format(',.2f')(addressInfo.roundStakingAmount[0])
+									: ' - ',
+								[StakingCST.STK_STAKERETURN.EN]: addressInfo.roundReturn
+									? d3.format(',.2f')(
+											addressInfo.roundReturn[0] -
+												addressInfo.roundStakingAmount[0]
+									)
+									: ' - ',
+								[StakingCST.STK_ETHRANGE.EN]: addressInfo.boundETH
+									? `${addressInfo.boundETH[0]} ~ ${addressInfo.boundETH[1]}`
+									: ' - ',
+								[StakingCST.STK_ETHSETTLE.EN]: addressInfo.settleETH
+									? addressInfo.settleETH
+									: ' - '
+							}
+						]}
+						rowClassName={() => 'lastRoundRow'}
+						pagination={false}
+					>
+						<Column
+							title={CST.TH_TIME[locale]}
+							dataIndex={CST.TH_TIME.EN}
+							width={100}
+						/>
+						<Column
+							title={StakingCST.STK_STAKEAMOUNT[locale]}
+							dataIndex={StakingCST.STK_STAKEAMOUNT.EN}
+							width={90}
+						/>
+						<Column
+							title={StakingCST.STK_STAKERETURN[locale]}
+							dataIndex={StakingCST.STK_STAKERETURN.EN}
+							width={90}
+						/>
+						<Column
+							title={StakingCST.STK_ETHRANGE[locale]}
+							dataIndex={StakingCST.STK_ETHRANGE.EN}
+							width={130}
+						/>
+						<Column
+							title={StakingCST.STK_ETHSETTLE[locale]}
+							dataIndex={StakingCST.STK_ETHSETTLE.EN}
+							width={120}
+						/>
+					</Table>
+				</STableWrapper>
+				<Divider dashed />
+				<div
+					style={{
+						paddingLeft: 10,
+						color: 'rgba(64,79,84,.8)',
+						fontWeight: 500,
+						marginBottom: -5,
+						marginTop: 10
+					}}
+				>
+					{StakingCST.STK_CURRENTROUND[locale]}
+				</div>
 				<STableWrapper>
 					<Table
 						dataSource={currentRoundInfo.map((c: any) => ({
@@ -79,10 +216,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						pagination={{
 							showSizeChanger: true,
 							showQuickJumper: true,
-							showTotal: (total: number) =>
-								CST.TH_SUM[locale] +
-								' ' +
-								total,
+							showTotal: (total: number) => CST.TH_SUM[locale] + ' ' + total,
 							pageSize: 10,
 							pageSizeOptions: ['10', '20', '50'],
 							size: 'small'
