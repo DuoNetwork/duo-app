@@ -69,8 +69,8 @@ function drawLines(
 
 	const minPrice = d3.min(showingSet.map(d => d.low)) || 0;
 
-	const rangeTop = maxPrice * (1 + boundaries[0]) * 1.02;
-	const rangeBottom = d3.max([0, minPrice * (1 - boundaries[1]) * 0.98]) || 0;
+	const rangeTop = maxPrice * (1 + boundaries[0]) + (maxPrice - minPrice) * 0.07;
+	const rangeBottom = d3.max([0, (minPrice * (1 - boundaries[1]) - (maxPrice - minPrice) * 0.07)]) || 0;
 
 	//ETH Linear YScale
 	const ethYScale = d3

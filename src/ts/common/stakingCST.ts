@@ -405,3 +405,13 @@ export const STK_TOTALRETURN: ILocaleText = {
 	[LOCALE_CN]: '总收益',
 	[LOCALE_EN]: 'Total Return'
 }
+
+export const STK_VOLATILITY: ILocaleText = {
+	[LOCALE_CN]: '波动率',
+	[LOCALE_EN]: 'Volatility'
+}
+
+export const STK_TIMELEFT: ILocaleText = {
+	[LOCALE_CN]: '剩余时间',
+	[LOCALE_EN]: 'Time Left'
+}

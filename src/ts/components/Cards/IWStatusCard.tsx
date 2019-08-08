@@ -4,12 +4,15 @@
 // 	IDualClassStates
 // } from '@finbook/duo-contract-wrapper';
 //import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
+import { Divider } from 'antd';
 import * as d3 from 'd3';
+import ethIcon from 'images/ethIconBg.png';
 import moment from 'moment';
 import * as React from 'react';
 //import { Link } from 'react-router-dom';
 import * as StakingCST from 'ts/common/stakingCST';
-import { SCard, SCardTag3, SCardTitle } from './_styled';
+import { SDivFlexCenter } from '../_styled';
+import { SCard, SCardTitle } from './_styled';
 
 interface IProps {
 	locale: string;
@@ -63,112 +66,119 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 		const { countdown } = this.state;
 		return (
 			<SCard title={<SCardTitle>Inline Warrant</SCardTitle>} width="420px" margin="0 0 0 0">
-				<div style={{ display: 'flex' }}>
-					<SCardTag3
+				<img
+					src={ethIcon}
+					style={{
+						position: 'absolute',
+						width: 124,
+						height: 62,
+						top: 52,
+						right: 126,
+						opacity: 0.07
+					}}
+				/>
+				<div
+					style={{
+						width: '100%',
+						textAlign: 'center',
+						marginTop: 20,
+						fontSize: 22,
+						fontWeight: 500,
+						color: 'rgba(64,79,84,.8)'
+					}}
+				>
+					ETH/USD
+				</div>
+				<Divider dashed />
+				<SDivFlexCenter
+					horizontal
+					padding={'0 30px'}
+					marginTop="-12px"
+					marginBottom="-12px"
+					style={{
+						alignItems: 'center'
+					}}
+				>
+					<div
 						style={{
-							pointerEvents: 'none',
-							width: '100%',
-							height: 'auto'
+							padding: '5px 10px',
+							fontSize: 40,
+							fontWeight: 500,
+							color: '#5CA4DE',
+							display: 'flex',
+							alignItems: 'center'
 						}}
 					>
-						<div className="tag-content">
-							<div className={'tag-price USD'} style={{ fontSize: 14 }}>
-								{StakingCST.STK_CTSTATUS[locale]}
-							</div>
+						{lastPrice ? d3.format('.2f')(lastPrice) : '-'}
+					</div>
+					<div
+						style={{
+							padding: '5px 10px'
+						}}
+					>
+						<div
+							style={{
+								fontSize: 12,
+								color: 'rgba(64,79,84,.8)'
+							}}
+						>
+							{StakingCST.STK_VOLATILITY[locale] + ' ≤'}
 						</div>
-						<div className="tag-subtext">
-							<div
-								style={{
-									fontSize: 13,
-									fontWeight: 500,
-									padding: '0 10px 0 10px',
-									color: 'rgba(0,0,0,.6)'
-								}}
-							>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'space-between',
-										marginBottom: 4
-									}}
-								>
-									ETH Price
-									<span
-										style={{
-											color: '#5CA4DE'
-										}}
-									>
-										{lastPrice ? d3.format('.2f')(lastPrice) : 'Loading'}
-									</span>
-								</div>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'space-between',
-										marginBottom: 4
-									}}
-								>
-									Status
-									<span
-										style={{
-											color: '#5CA4DE'
-										}}
-									>
-										{StakingCST.PHASE[phase][locale]}
-									</span>
-								</div>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'space-between',
-										marginBottom: 4
-									}}
-								>
-									Timer
-									<span
-										style={{
-											color: '#5CA4DE'
-										}}
-									>
-										{countdown ? countdown : 'Loading'}
-									</span>
-								</div>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'space-between',
-										marginBottom: 4
-									}}
-								>
-									Upper Bound
-									<span
-										style={{
-											color: '#5CA4DE'
-										}}
-									>
-										{'+ ' + d3.format(',.2%')(boundaries[0])}
-									</span>
-								</div>
-								<div
-									style={{
-										display: 'flex',
-										justifyContent: 'space-between',
-										marginBottom: 4
-									}}
-								>
-									Lower Bound
-									<span
-										style={{
-											color: '#5CA4DE'
-										}}
-									>
-										{'- ' + d3.format(',.2%')(boundaries[1])}
-									</span>
-								</div>
-							</div>
+						<div
+							style={{
+								fontSize: 20,
+								fontWeight: 500,
+								color: '#5CA4DE'
+							}}
+						>
+							{`± ${d3.format(',.2%')(boundaries[0])}`}
 						</div>
-					</SCardTag3>
-				</div>
+					</div>
+				</SDivFlexCenter>
+				<Divider dashed />
+				<SDivFlexCenter
+					horizontal
+					padding={'0 30px'}
+					marginTop="-12px"
+					marginBottom="-12px"
+				>
+					<div
+						style={{
+							padding: '5px 10px',
+							fontSize: 16,
+							fontWeight: 500,
+							color: '#5CA4DE',
+							display: 'flex',
+							alignItems: 'center'
+						}}
+					>
+						{StakingCST.PHASE[phase][locale]}
+					</div>
+					<div
+						style={{
+							padding: '5px 5px',
+							display: 'flex',
+							alignItems: 'center'
+						}}
+					>
+						<span style={{ fontSize: 10, color: 'rgba(64,79,84,.8)' }}>
+							{StakingCST.STK_TIMELEFT[locale]}
+						</span>
+						<span
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								marginLeft: 10,
+								fontWeight: 500,
+								fontSize: 16,
+								color: '#5CA4DE'
+							}}
+						>
+							{countdown ? countdown : 'Loading'}
+						</span>
+					</div>
+				</SDivFlexCenter>
+				<Divider dashed />
 			</SCard>
 		);
 	}
