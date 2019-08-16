@@ -29,7 +29,7 @@ class WarrantUtil {
 
 	public async getAddressInfo(account: string) {
 		const params = {
-			TableName: StakingCST.WARRENTTABLE,
+			TableName: __KOVAN__ ? StakingCST.WARRENTTABLEKOVAN : StakingCST.WARRENTTABLE,
 			KeyConditionExpression: 'address = :address',
 			ExpressionAttributeValues: {
 				[':address']: { S: account }
@@ -61,7 +61,7 @@ class WarrantUtil {
 
 	public async getCurrentRoundInfo(account: string) {
 		const params = {
-			TableName: StakingCST.UIEVENTTABLE,
+			TableName: __KOVAN__ ? StakingCST.UIEVENTTABLEKOVAN : StakingCST.UIEVENTTABLE,
 			KeyConditionExpression: 'eventKey = :eventKey',
 			ExpressionAttributeValues: {
 				[':eventKey']: { S: account.toLowerCase() }
@@ -86,7 +86,11 @@ class WarrantUtil {
 						? 'timeout'
 						: 'pending'
 				};
-				records.push(entry);
+				if (
+					moment.utc(Number(item.updateAt.S)).format('YYYY-MM-DD') ===
+					moment.utc().format('YYYY-MM-DD')
+				)
+					records.push(entry);
 			}
 			records.sort((a, b) => a.date - b.date);
 			return records;
@@ -101,7 +105,7 @@ class WarrantUtil {
 			updateAt: { S: this.getUTCNowTimestamp() + '' }
 		};
 		const params = {
-			TableName: StakingCST.UIEVENTTABLE,
+			TableName: __KOVAN__ ? StakingCST.UIEVENTTABLEKOVAN : StakingCST.UIEVENTTABLE,
 			Item: data
 		};
 
@@ -110,7 +114,7 @@ class WarrantUtil {
 
 	public async getBoundaries() {
 		const params = {
-			TableName: StakingCST.BOUNDARIESTABLE,
+			TableName: __KOVAN__ ? StakingCST.BOUNDARIESTABLEKOVAN : StakingCST.BOUNDARIESTABLE,
 			KeyConditionExpression: 'quoteBase = :quoteBase',
 			ExpressionAttributeValues: {
 				[':quoteBase']: { S: 'ETH|USD' }
@@ -120,7 +124,8 @@ class WarrantUtil {
 		let boundaries = [0, 0];
 		if (data.Count) {
 			(data.Items as any).forEach((item: any) => {
-				if (item.date.S === moment().format('YYYY-MM-DD')) boundaries = [Number(item.ub.S), Number(item.lb.S)];
+				if (item.date.S === moment().format('YYYY-MM-DD'))
+					boundaries = [Number(item.ub.S), Number(item.lb.S)];
 			});
 		}
 		return boundaries;

@@ -24,6 +24,7 @@ exports[`ProviderRadio Test User Login test Snapshot 1`] = `
         <Button
           block={false}
           ghost={false}
+          htmlType="button"
           loading={false}
           onClick={[Function]}
           type="ghost"
@@ -83,6 +84,7 @@ exports[`ProviderRadio Test User Login test Snapshot 2`] = `
         <Button
           block={false}
           ghost={false}
+          htmlType="button"
           loading={false}
           onClick={[Function]}
           type="ghost"
@@ -142,6 +144,7 @@ exports[`ProviderRadio Test User Login test Snapshot 3`] = `
         <Button
           block={false}
           ghost={false}
+          htmlType="button"
           loading={false}
           onClick={[Function]}
           type="ghost"

@@ -42,18 +42,19 @@ function drawLines(
 	};
 	const zoomFormat = (date: number) => moment(date).format(formatString(date));
 	const today = moment.utc().format('YYYY-MM-DD');
-	const tommorow = moment.utc(today, 'YYYY-MM-DD').add(1, 'days');
+	const tommorow = moment.utc(today, 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD');
 	let startTime = 0,
 		endTime = 0;
 	if (phase === 1 || phase === 3) {
 		startTime = moment.utc(`${today} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - timeStep * 2;
 		endTime = moment.utc(`${today} 13:30:00`, 'YYYY-MM-DD HH:mm:ss').valueOf();
 	} else {
-		startTime = moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - timeStep * 2;
+		startTime = moment.utc(`${today} 11:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() - timeStep * 2;
 		endTime =
-			moment.utc(`${tommorow} 01:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() + timeStep * 5;
+			moment.utc(`${tommorow} 01:30:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() + timeStep * 5;
 	}
-
+	console.log(moment.utc(startTime).format('YYYY-MM-DD HH:mm:ss'))
+	console.log(moment.utc(endTime).format('YYYY-MM-DD HH:mm:ss'))
 	//Time Scale
 	const xStart = startTime;
 	const xEnd = endTime;
@@ -284,6 +285,54 @@ function drawLines(
 			.attr('font-family', 'Roboto')
 			.text(StakingCST.PHASE[2][locale]);
 		phaseLines.selectAll('text').style('text-anchor', 'middle');
+	} else {
+		const phaseLines = chart.append('g').attr('class', 'phase1-lines');
+		phaseLines
+			.append('path')
+			.attr('class', 'phase1-line-settlestart dashed')
+			.attr('d', () => {
+				return line([
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: height
+					},
+					{
+						x:
+							xScale(
+								moment.utc(`${today} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: 0
+					}
+				]);
+			})
+			.attr('stroke', ColorStyles.MainColorAlphaL)
+			.attr('stroke-width', 1);
+		phaseLines
+			.append('path')
+			.attr('class', 'phase1-line-settlestart dashed')
+			.attr('d', () => {
+				return line([
+					{
+						x:
+							xScale(
+								moment.utc(`${tommorow} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: height
+					},
+					{
+						x:
+							xScale(
+								moment.utc(`${tommorow} 00:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf()
+							) + 1,
+						y: 0
+					}
+				]);
+			})
+			.attr('stroke', ColorStyles.MainColorAlphaL)
+			.attr('stroke-width', 1);
 	}
 
 	// Chart Data

@@ -154,7 +154,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 									)
 									: ' - ',
 								[StakingCST.STK_ETHRANGE.EN]: addressInfo.boundETH
-									? `${addressInfo.boundETH[0]} ~ ${addressInfo.boundETH[1]}`
+									? `${addressInfo.boundETH[1]} ~ ${addressInfo.boundETH[0]}`
 									: ' - ',
 								[StakingCST.STK_ETHSETTLE.EN]: addressInfo.settleETH
 									? addressInfo.settleETH

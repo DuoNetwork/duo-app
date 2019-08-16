@@ -5,10 +5,16 @@ export interface ILocaleText {
 }
 export const REFERRALTABLE = 'duo.live.referral';
 export const STAKINGTABLE = 'duo.live.staking';
+
 export const UIEVENTTABLE = 'duo.live.uiEvents';
+export const UIEVENTTABLEKOVAN = 'duo.uiEvents.dev';
+
 export const WARRENTTABLE = 'duo.live.warrant';
-export const REFERRALCODE = 'Referral Code: ';
+export const WARRENTTABLEKOVAN = 'duo.dev.warrant';
 export const BOUNDARIESTABLE = 'duo.live.boundaries';
+export const BOUNDARIESTABLEKOVAN = 'duo.dev.boundaries';
+
+export const REFERRALCODE = 'Referral Code: ';
 
 export const LOCALE_CN = 'CN';
 export const LOCALE_EN = 'EN';

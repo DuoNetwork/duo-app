@@ -102,6 +102,7 @@ export default class Staking extends React.Component<IProps, IState> {
 		} = this.props;
 		const { visible, approved } = this.state;
 		const code = queryString.parse((this.props as any).location.search);
+		console.log(addresses[contractIndex].priceFeedList)
 		return (
 			<Layout>
 				<Header />
@@ -121,7 +122,7 @@ export default class Staking extends React.Component<IProps, IState> {
 				</Modal>
 				<SContent>
 					<SDivFlexCenter horizontal width={'1060px'}>
-						<StakingBannerCard locale={locale}/>
+						<StakingBannerCard locale={locale} />
 						<StakingInfoCard
 							contractIndex={contractIndex}
 							locale={locale}

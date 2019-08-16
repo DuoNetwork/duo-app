@@ -6,6 +6,7 @@ import {
 	IStakeAddress,
 	IStakeLot,
 	IStakeStates,
+	IStakeV2States,
 	IVotingData
 } from '@finbook/duo-contract-wrapper';
 import { IAcceptedPrice, IConversion, IPrice, IStatus } from '@finbook/duo-market-data';
@@ -28,6 +29,7 @@ export interface IState {
 	readonly dynamo: IDynamoState;
 	readonly ui: IUIState;
 	readonly stake: IStakeState;
+	readonly stakeV2: IStakeV2State;
 	readonly inlineWarrent: any;
 }
 
@@ -63,6 +65,19 @@ export interface IStakeState {
 	readonly oracleStake: Array<{ [key: string]: number }>;
 	readonly userAward: number[];
 	readonly contractDUO: number[];
+}
+
+export interface IStakeV2State {
+	readonly duo: number;
+	readonly states: IStakeV2States;
+	readonly allowance: number;
+	readonly subscription: number;
+	readonly addresses: IStakeAddress;
+	readonly userStake: { [key: string]: IStakeLot[] };
+	readonly oracleStake: { [key: string]: number };
+	readonly userAward: number;
+	readonly contractDUO: number;
+	readonly stagingAdd: object;
 }
 
 export interface IEsplanadeState {

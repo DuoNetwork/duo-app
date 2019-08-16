@@ -490,7 +490,6 @@ exports[`Styled Test CSS 10`] = `
 <RadioGroup
   buttonStyle="outline"
   className="c0"
-  disabled={false}
 />
 `;
 
@@ -1107,6 +1106,7 @@ exports[`Styled Test CSS 17`] = `
   block={false}
   className="c0"
   ghost={false}
+  htmlType="button"
   loading={false}
 />
 `;

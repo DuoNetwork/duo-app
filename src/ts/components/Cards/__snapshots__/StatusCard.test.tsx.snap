@@ -14,6 +14,7 @@ exports[`StatusCard Test Test Snapshot Test Snapshot 1`] = `
   <styled.div>
     <Table
       bordered={false}
+      childrenColumnName="children"
       className=""
       dataSource={
         Array [

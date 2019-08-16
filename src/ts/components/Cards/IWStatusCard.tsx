@@ -6,6 +6,7 @@
 //import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Divider } from 'antd';
 import * as d3 from 'd3';
+import duo3d from 'images/duo-3d.png';
 import ethIcon from 'images/ethIconBg.png';
 import moment from 'moment';
 import * as React from 'react';
@@ -75,6 +76,17 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 						top: 52,
 						right: 126,
 						opacity: 0.07
+					}}
+				/>
+				<img
+					src={duo3d}
+					style={{
+						position: 'absolute',
+						width: 180,
+						height: 77,
+						bottom: 30,
+						right: 110,
+						opacity: 1
 					}}
 				/>
 				<div

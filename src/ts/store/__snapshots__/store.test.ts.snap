@@ -185,6 +185,27 @@ Object {
       Object {},
     ],
   },
+  "stakeV2": Object {
+    "addresses": Object {
+      "operator": "0x0",
+      "priceFeedList": Array [],
+    },
+    "allowance": 0,
+    "contractDUO": 0,
+    "duo": 0,
+    "oracleStake": Object {},
+    "stagingAdd": Object {},
+    "states": Object {
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+    },
+    "subscription": 0,
+    "userAward": 0,
+    "userStake": Object {},
+  },
   "ui": Object {
     "locale": "EN",
     "period": 60,

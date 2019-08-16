@@ -8,6 +8,8 @@ import {
 	Web3Wrapper
 } from '@finbook/duo-contract-wrapper';
 
+import {StakeV2Wrapper} from '@finbook/duo-contract-wrapper/dist/StakeV2Wrapper';
+
 export const web3Wrapper = new Web3Wrapper(
 	window,
 	(__KOVAN__ ? WrapperConstants.PROVIDER_INFURA_KOVAN : WrapperConstants.PROVIDER_INFURA_MAIN).replace('/v3', ''),
@@ -59,6 +61,11 @@ export const stakeWrapper1 = new StakeWrapper(
 );
 
 export const stakeWrappers = [stakeWrapper0, stakeWrapper1];
+
+export const stakeV2Wrapper = new StakeV2Wrapper(
+	web3Wrapper,
+	web3Wrapper.contractAddresses.StakesV2[0].address
+);
 
 export const calculateNav = DualClassWrapper.calculateNav;
 

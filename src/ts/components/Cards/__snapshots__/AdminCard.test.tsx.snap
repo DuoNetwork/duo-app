@@ -14,6 +14,7 @@ exports[`AuthCard Test User Login Test Snapshot 1`] = `
   <styled.div>
     <Table
       bordered={false}
+      childrenColumnName="children"
       className=""
       dataSource={
         Array [
@@ -153,6 +154,7 @@ exports[`AuthCard Test User Login Test Snapshot 2`] = `
   <styled.div>
     <Table
       bordered={false}
+      childrenColumnName="children"
       className=""
       dataSource={
         Array [
