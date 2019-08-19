@@ -24,6 +24,7 @@ interface IProps {
 interface IState {
 	addr: string;
 	award: string;
+	oracle: string;
 	batchArray: { address: string[]; award: number[] };
 	x2Check: boolean;
 	x3Check: boolean;
@@ -36,6 +37,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		this.state = {
 			addr: '',
 			award: '',
+			oracle: '',
 			batchArray: { address: [], award: [] },
 			x2Check: false,
 			x3Check: false,
@@ -78,6 +80,11 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 	private handleAward = (award: string) => {
 		this.setState({
 			award: award
+		});
+	};
+	private handleOracle = (oracle: string) => {
+		this.setState({
+			oracle: oracle
 		});
 	};
 
@@ -143,8 +150,16 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 	};
 
 	public render() {
-		const { account, contractStates, contractDUO, gasPrice, refresh, stagingAdd } = this.props;
-		const { addr, award, batchArray, x2Check, x3Check, stagingStart, stagingEnd } = this.state;
+		const {
+			account,
+			addresses,
+			contractStates,
+			contractDUO,
+			gasPrice,
+			refresh,
+			stagingAdd
+		} = this.props;
+		const { addr, award, batchArray, x2Check, x3Check, stagingStart, stagingEnd, oracle } = this.state;
 		const gasPriceEdit = x2Check ? gasPrice * 2 : x3Check ? gasPrice * 3 : gasPrice;
 		let stagingAddArray = [];
 		if (!!stagingStart && !!stagingEnd) {
@@ -160,6 +175,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		} else {
 			stagingAddArray = [];
 		}
+		console.log(addresses);
 		return (
 			<Layout>
 				<Header />
@@ -524,6 +540,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 										gasPrice: gasPriceEdit
 									})
 								}
+								disabled={contractStates.stakingEnabled}
 							>
 								Commit Staging Queue
 							</Button>
@@ -538,6 +555,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 										gasPrice: gasPriceEdit
 									})
 								}
+								disabled={contractStates.stakingEnabled}
 							>
 								Reset Staging Queue
 							</Button>
@@ -576,6 +594,62 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 									<Column title="Reward" dataIndex="Reward" width={60} />
 								</Table>
 							</STableWrapper>
+						</div>
+					</SDivFlexCenter>
+					<SDivFlexCenter horizontal marginBottom="20px">
+						<div
+							style={{
+								width: 400,
+								padding: 10,
+								border: '1px dashed rgba(0,0,0,.3)',
+								borderRadius: 4,
+								display: 'flex',
+								flexDirection: 'column',
+								alignItems: 'center'
+							}}
+						>
+							<div
+								style={{
+									width: 360,
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center',
+									marginTop: 30
+								}}
+							>
+								<b
+									style={{
+										fontSize: 18,
+										marginBottom: 15
+									}}
+								>
+									Add Oracle
+								</b>
+								<input
+									placeholder="oracle address"
+									style={{
+										width: '100%',
+										marginBottom: 10,
+										paddingLeft: 5
+									}}
+									value={oracle}
+									onChange={e => this.handleOracle(e.target.value)}
+								/>
+								<Button
+									onClick={() =>
+										stakeV2Wrapper.addOracle(
+											account,
+											oracle,
+											{
+												gasLimit: 1000000,
+												gasPrice: gasPriceEdit
+											}
+										)
+									}
+								>
+									Add Oracle
+								</Button>
+							</div>
 						</div>
 					</SDivFlexCenter>
 				</SContent>

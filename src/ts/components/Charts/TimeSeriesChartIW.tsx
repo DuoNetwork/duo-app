@@ -53,8 +53,6 @@ function drawLines(
 		endTime =
 			moment.utc(`${tommorow} 01:30:00`, 'YYYY-MM-DD HH:mm:ss').valueOf() + timeStep * 5;
 	}
-	console.log(moment.utc(startTime).format('YYYY-MM-DD HH:mm:ss'))
-	console.log(moment.utc(endTime).format('YYYY-MM-DD HH:mm:ss'))
 	//Time Scale
 	const xStart = startTime;
 	const xEnd = endTime;

@@ -30,7 +30,7 @@ export interface IState {
 	readonly ui: IUIState;
 	readonly stake: IStakeState;
 	readonly stakeV2: IStakeV2State;
-	readonly inlineWarrent: any;
+	readonly inlineWarrent: IInlineWarrantState;
 }
 
 export interface IWeb3State {
@@ -78,6 +78,19 @@ export interface IStakeV2State {
 	readonly userAward: number;
 	readonly contractDUO: number;
 	readonly stagingAdd: object;
+}
+
+export interface IInlineWarrantState {
+	readonly duo: number;
+	readonly states: IStakeV2States;
+	readonly allowance: number;
+	readonly subscription: number;
+	readonly userAward: number;
+	readonly contractDUO: number;
+	readonly exchangePrices: IPrice[];
+	readonly currentRoundInfo: object[];
+	readonly addressInfo: object;
+	readonly boundaries: number[];
 }
 
 export interface IEsplanadeState {

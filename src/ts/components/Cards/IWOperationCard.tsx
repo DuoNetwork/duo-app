@@ -11,13 +11,23 @@ import * as React from 'react';
 import * as StakingCST from 'ts/common/stakingCST';
 //import { Link } from 'react-router-dom';
 import warrentUtil from 'ts/common/warrantUtil';
-import { stakeWrappers } from 'ts/common/wrappers';
-import { SCard, SCardTag2, SCardTitle, SStakingButtonM, SStakingButtonM2, SStakingInput } from './_styled';
+import { stakeV2Wrapper, web3Wrapper } from 'ts/common/wrappers';
+import {
+	SCard,
+	SCardTag2,
+	SCardTitle,
+	SStakingButtonM,
+	SStakingButtonM2,
+	SStakingInput
+} from './_styled';
 
 interface IProps {
 	address: string;
 	locale: string;
 	duoBalance: number;
+	award: number;
+	enableApprove: boolean;
+	enabled: boolean;
 	refresh: () => any;
 }
 
@@ -41,47 +51,64 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 			parseInt(value, 0).toString() === 'NaN' ? '' : parseInt(value, 0).toString();
 		this.setState({ inputText: newText, inputValue: parseInt(value, 0) });
 	};
-	private insertStake = async (txHash: string) => {
+	private insertStake = async (txHash: string, amount: number) => {
 		const item = {
 			address: this.props.address,
-			amount: this.state.inputValue.toString(),
+			amount: amount.toString(),
 			txHash: txHash
 		};
 		warrentUtil.insetStakingEntry(item);
 	};
+
+	private handleApprove = async () => {
+		const { address } = this.props;
+		const txHash = await web3Wrapper.erc20Approve(
+			web3Wrapper.contractAddresses.DUO.address,
+			address,
+			web3Wrapper.contractAddresses.StakesV2[0].address,
+			0,
+			true
+		);
+		console.log('Transaction submit: ' + txHash);
+	};
 	private handleStake = async () => {
 		const { address, locale, refresh } = this.props;
-		const contractIndex = 0;
-		const oracleAddr = '0x8cff57292ab098728f26f7d2e2bdfc6b1729dddb';
+		const oracleAddr = web3Wrapper.contractAddresses.Oracles[0].address;
 		const { inputValue } = this.state;
-		if (inputValue >= 300) {
-			const txHash = await stakeWrappers[contractIndex].stake(
-				address,
-				oracleAddr,
-				inputValue,
-				{
-					gasLimit: 1000000
-				}
-			);
-			this.insertStake(txHash);
+		if (inputValue >= 200) {
+			const txHash = await stakeV2Wrapper.stake(address, oracleAddr, inputValue);
+			this.insertStake(txHash, inputValue);
 			this.setState({ inputText: '', inputValue: 0 });
 			refresh();
 			console.log('Transaction submit: ' + txHash);
 		} else {
-			window.alert(StakingCST.STK_WARING2[locale] + '300 duo');
+			window.alert(StakingCST.STK_WARING2[locale] + '200 duo');
 			this.setState({ inputText: '', inputValue: 0 });
 		}
 	};
 
+	private handleAutoroll = async () => {
+		const { address, refresh, award } = this.props;
+		const oracleAddr = web3Wrapper.contractAddresses.Oracles[0].address;
+		if (award >= 200) {
+			const txHash = await stakeV2Wrapper.autoRoll(address, oracleAddr, award, {gasLimit: 200000});
+			this.insertStake(txHash, award);
+			this.setState({ inputText: '', inputValue: 0 });
+			refresh();
+		} else {
+			window.alert('Reward not enough for auto roll');
+		}
+	};
+
 	public render() {
-		const { address, locale, duoBalance } = this.props;
+		const { address, locale, duoBalance, enableApprove, enabled, award } = this.props;
 		const { inputText } = this.state;
 		return (
 			<SCard
 				title={<SCardTitle>Operation</SCardTitle>}
 				width="500px"
 				margin="0 0 0 0"
-				height="300px"
+				height="320px"
 			>
 				<div style={{ marginTop: 15 }}>
 					<a
@@ -112,7 +139,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 						justifyContent: 'space-between'
 					}}
 				>
-					<SCardTag2 style={{width: 220}}>
+					<SCardTag2 style={{ width: 220 }}>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -142,17 +169,17 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 							}}
 						>
 							<SStakingButtonM
-								// onClick={this.handleApprove}
-								// style={{
-								// 	pointerEvents: enableApprove ? 'initial' : 'none',
-								// 	opacity: enableApprove ? 1 : 0.4
-								// }}
+								onClick={this.handleApprove}
+								style={{
+									pointerEvents: enableApprove ? 'initial' : 'none',
+									opacity: enableApprove ? 1 : 0.4
+								}}
 							>
 								{StakingCST.STK_APPROVE[locale]}
 							</SStakingButtonM>
 						</div>
 					</SCardTag2>
-					<SCardTag2 style={{width: 220}}>
+					<SCardTag2 style={{ width: 220 }}>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -170,7 +197,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 									color: '#5CA4DE'
 								}}
 							>
-								{d3.format(',.2f')(0.00)}
+								{d3.format(',.2f')(award)}
 							</div>
 						</div>
 						<div
@@ -181,13 +208,11 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 							}}
 						>
 							<SStakingButtonM
-								// style={{ cursor: !enabled ? 'not-allowed' : 'default' }}
-								// onClick={() =>
-								// 	enabled &&
-								// 	stakeWrappers[contractIndex].claimAward(address, {
-								// 		gasLimit: 1000000
-								// 	})
-								// }
+								style={{
+									pointerEvents: enabled ? 'initial' : 'none',
+									opacity: enabled ? 1 : 0.4
+								}}
+								onClick={() => enabled && stakeV2Wrapper.claimReward(address)}
 							>
 								{StakingCST.STK_CLAIM[locale]}
 							</SStakingButtonM>
@@ -198,7 +223,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 					style={{
 						width: 168,
 						marginTop: 10,
-						height: 90,
+						height: 60,
 						display: 'flex',
 						flexDirection: 'column',
 						justifyContent: 'space-between'
@@ -220,10 +245,36 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 							value={inputText}
 							onChange={e => this.handleInputChange(e.target.value)}
 						/>
-						<SStakingButtonM2 onClick={() => this.handleStake()}>
+						<SStakingButtonM2
+							onClick={() => this.handleStake()}
+							style={{
+								pointerEvents: enabled ? 'initial' : 'none',
+								opacity: enabled ? 1 : 0.4
+							}}
+						>
 							{StakingCST.STK_STAKE[locale]}
 						</SStakingButtonM2>
 					</div>
+				</div>
+				<div
+					style={{
+						width: 168,
+						marginTop: 10,
+						height: 60,
+						display: 'flex',
+						flexDirection: 'column',
+						justifyContent: 'space-between'
+					}}
+				>
+					<SStakingButtonM2
+						onClick={() => this.handleAutoroll()}
+						style={{
+							pointerEvents: enabled ? 'initial' : 'none',
+							opacity: enabled ? 1 : 0.4
+						}}
+					>
+						Auto Roll
+					</SStakingButtonM2>
 				</div>
 			</SCard>
 		);

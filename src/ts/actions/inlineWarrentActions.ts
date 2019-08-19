@@ -1,3 +1,4 @@
+import { IStakeV2States } from '@finbook/duo-contract-wrapper';
 import { IPrice } from '@finbook/duo-market-data';
 //import moment from 'moment';
 import * as CST from 'ts/common/constants';
@@ -5,10 +6,23 @@ import dynamoUtil from 'ts/common/dynamoUtil';
 import { VoidThunkAction } from 'ts/common/types';
 import util from 'ts/common/util';
 import warrantUtil from 'ts/common/warrantUtil';
-import {
-	// 	stakeWrappers
-	web3Wrapper
-} from 'ts/common/wrappers';
+import { stakeV2Wrapper, web3Wrapper } from 'ts/common/wrappers';
+
+export function statesUpdate(states: IStakeV2States) {
+	return {
+		type: CST.AC_STK_STATES,
+		value: states
+	};
+}
+
+export function getStates(): VoidThunkAction {
+	console.log('Get States');
+	return async dispatch => {
+		const states = await stakeV2Wrapper.getStates();
+		dispatch(statesUpdate(states));
+	};
+}
+
 export function balancesUpdate(duo: number) {
 	return {
 		type: CST.AC_STK_BALANCE,
@@ -27,6 +41,40 @@ export function getBalances(): VoidThunkAction {
 	};
 }
 
+export function allowanceUpdate(duo: number) {
+	return {
+		type: CST.AC_STK_ALLOWANCE,
+		value: duo
+	};
+}
+
+export function getAllowance(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		const account = getState().web3.account;
+		const duoAllowance = await web3Wrapper.getErc20Allowance(
+			web3Wrapper.contractAddresses.DUO.address,
+			account,
+			web3Wrapper.contractAddresses.StakesV2[0].address
+		);
+		dispatch(allowanceUpdate(duoAllowance));
+	};
+}
+
+export function userAwardUpdate(userAward: number) {
+	return {
+		type: CST.AC_STK_AWARD,
+		value: userAward
+	};
+}
+
+export function getUserAward(): VoidThunkAction {
+	return async (dispatch, getState) => {
+		const account = getState().web3.account;
+		const userAward = await stakeV2Wrapper.getUserReward(account);
+		dispatch(userAwardUpdate(userAward));
+	};
+}
+
 export function exchangePricesUpdate(prices: IPrice[]) {
 	return {
 		type: CST.AC_DCC_EX_PX,
@@ -35,7 +83,7 @@ export function exchangePricesUpdate(prices: IPrice[]) {
 }
 
 export function fetchExchangePrices(): VoidThunkAction {
-	return async (dispatch) => {
+	return async dispatch => {
 		const source = 'kraken';
 		const start = util.getUTCNowTimestamp() - 24 * 60 * 60000;
 		dispatch(exchangePricesUpdate(await dynamoUtil.getPrices(source, 1, start, 0, 'ETH|USD')));
@@ -50,7 +98,7 @@ export function boundariesUpdate(boundaries: number[]) {
 }
 
 export function fetchBoundaries(): VoidThunkAction {
-	return async (dispatch) => {
+	return async dispatch => {
 		const boundaries = await warrantUtil.getBoundaries();
 		dispatch(boundariesUpdate(boundaries));
 	};
@@ -94,10 +142,13 @@ export function subscriptionUpdate(intervalId: number) {
 
 export function refresh(): VoidThunkAction {
 	return async dispatch => {
+		await dispatch(getStates());
 		dispatch(getBalances());
+		dispatch(getAllowance());
+		dispatch(getUserAward());
 		dispatch(fetchCurrentRoundInfo());
-		dispatch(fetchAddressInfo())
-		dispatch(fetchBoundaries())
+		dispatch(fetchAddressInfo());
+		dispatch(fetchBoundaries());
 		dispatch(fetchExchangePrices());
 	};
 }

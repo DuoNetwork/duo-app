@@ -14,8 +14,11 @@ function mapStateToProps(state: IState) {
 	const prices = state.inlineWarrent.exchangePrices;
 	return {
 		locale: state.ui.locale,
+		contractStates: state.inlineWarrent.states,
+		duoBalance: state.inlineWarrent.duo,
+		allowance: state.inlineWarrent.allowance,
+		userAward: state.inlineWarrent.userAward,
 		address: state.web3.account,
-		duoBalance: state.stake.duo,
 		addressInfo: state.inlineWarrent.addressInfo,
 		currentRoundInfo: state.inlineWarrent.currentRoundInfo,
 		boundaries: state.inlineWarrent.boundaries,

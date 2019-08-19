@@ -32,7 +32,7 @@ class WarrantUtil {
 			TableName: __KOVAN__ ? StakingCST.WARRENTTABLEKOVAN : StakingCST.WARRENTTABLE,
 			KeyConditionExpression: 'address = :address',
 			ExpressionAttributeValues: {
-				[':address']: { S: account }
+				[':address']: { S: account.toLowerCase() }
 			}
 		};
 		const data = await dynamoUtil.queryData(params);

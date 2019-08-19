@@ -92,10 +92,19 @@ Object {
   },
   "inlineWarrent": Object {
     "addressInfo": Object {},
+    "allowance": 0,
     "boundaries": Array [],
     "currentRoundInfo": Array [],
     "duo": 0,
     "exchangePrices": Array [],
+    "states": Object {
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+    },
+    "userAward": 0,
   },
   "magi": Object {
     "acceptedPrices": Array [],

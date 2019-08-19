@@ -116,6 +116,7 @@ export function getUserAward(): VoidThunkAction {
 		dispatch(userAwardUpdate(userAward));
 	};
 }
+
 export function contractDUOUpdate(duoAmount: number) {
 	return {
 		type: CST.AC_STK_CONTRACTDUO,
