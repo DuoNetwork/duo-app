@@ -10,7 +10,7 @@ export const initialState: IStakeV2State = {
 		lockMinTimeInSecond: 0,
 		minStakeAmt: 0,
 		maxStakePerOracle: 0,
-		totalAwardsToDistribute: 0
+		totalRewardsToDistribute: 0
 	},
 	allowance: 0,
 	addresses: {

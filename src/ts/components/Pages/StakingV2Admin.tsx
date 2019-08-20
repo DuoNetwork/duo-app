@@ -250,7 +250,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 							</div>
 							<div>
 								TotalAwardsToDistribute:{' '}
-								<b>{contractStates.totalAwardsToDistribute}</b>
+								<b>{contractStates.totalRewardsToDistribute}</b>
 							</div>
 							<div>
 								Contract DUO Amount: <b>{contractDUO}</b>

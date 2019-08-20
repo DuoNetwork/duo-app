@@ -91,7 +91,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 		const { address, refresh, award } = this.props;
 		const oracleAddr = web3Wrapper.contractAddresses.Oracles[0].address;
 		if (award >= 200) {
-			const txHash = await stakeV2Wrapper.autoRoll(address, oracleAddr, award, {gasLimit: 200000});
+			const txHash = await stakeV2Wrapper.autoRoll(address, oracleAddr, award, { gasLimit: 200000 });
 			this.insertStake(txHash, award);
 			this.setState({ inputText: '', inputValue: 0 });
 			refresh();

@@ -145,7 +145,7 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 		} = this.props;
 		const settleTime = moment.utc('00:00:00', 'HH:mm:ss').valueOf();
 		const settltPrice = acceptedPrices.filter(px => px.timestamp <= settleTime);
-		console.log(settltPrice.length ? settltPrice[0].price : '-');
+		console.log(settltPrice.length ? settltPrice[0].price : 'Loading');
 		const { phase, visible, approved } = this.state;
 		return (
 			<Layout>

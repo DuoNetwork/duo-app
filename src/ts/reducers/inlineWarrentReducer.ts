@@ -9,7 +9,7 @@ export const initialState = {
 		lockMinTimeInSecond: 0,
 		minStakeAmt: 0,
 		maxStakePerOracle: 0,
-		totalAwardsToDistribute: 0
+		totalRewardsToDistribute: 0
 	},
 	duo: 0,
 	allowance: 0,
