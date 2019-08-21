@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExtendExtraDiv Test Test Snapshot Test Snapshot 1`] = `
+exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
 <Styled(Card)
   extra={
     <Styled(Button)

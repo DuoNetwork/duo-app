@@ -1,3 +1,6 @@
+jest.mock('@finbook/duo-market-data', () => ({
+	DynamoUtil: jest.fn().mockImplementation()
+}));
 // fix for @ledgerhq/hw-transport-u2f 4.28.0
 import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
@@ -141,6 +144,7 @@ describe('actions', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
+		dynamoUtil.queryData = jest.fn(() => Promise.resolve({}));
 		warrantUtil.getCurrentRoundInfo = jest.fn((account: string) =>
 			Promise.resolve([{ date: 1234567890, amount: 0, txHash: account, status: 'mined' }])
 		);
@@ -161,6 +165,7 @@ describe('actions', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
+		dynamoUtil.queryData = jest.fn(() => Promise.resolve({}));
 		warrantUtil.getAddressInfo = jest.fn((account: string) =>
 			Promise.resolve({
 				roundStakingAmount: [100, 100],

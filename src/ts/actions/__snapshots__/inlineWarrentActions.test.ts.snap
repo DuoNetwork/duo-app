@@ -180,6 +180,13 @@ Array [
       "ETH|USD",
     ],
   },
+  Object {
+    "type": "iwboundaries",
+    "value": Array [
+      0,
+      0,
+    ],
+  },
 ]
 `;
 
@@ -256,6 +263,13 @@ Array [
       1148167890,
       0,
       "ETH|USD",
+    ],
+  },
+  Object {
+    "type": "iwboundaries",
+    "value": Array [
+      0,
+      0,
     ],
   },
 ]
@@ -336,6 +350,13 @@ Array [
       1148167890,
       0,
       "ETH|USD",
+    ],
+  },
+  Object {
+    "type": "iwboundaries",
+    "value": Array [
+      0,
+      0,
     ],
   },
 ]

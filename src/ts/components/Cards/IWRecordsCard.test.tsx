@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import IWRecordsCard from './IWRecordsCard';
 
-describe('ExtendExtraDiv Test', () => {
+describe('IWRecordsCard Test', () => {
 	describe('Test Snapshot', () => {
 		const locale = 'EN';
 		const address = '0x00';

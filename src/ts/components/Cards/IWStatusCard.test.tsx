@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import IWStatusCard from './IWStatusCard';
 
-describe('ExtendExtraDiv Test', () => {
+describe('IWStatusCard Test', () => {
 	describe('Test Snapshot', () => {
 		const locale = 'EN';
 		const boundaries = [0.1, 0.1];

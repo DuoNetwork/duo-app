@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExtendExtraDiv Test Test Snapshot Test Snapshot 1`] = `
+exports[`IWStatusCard Test Test Snapshot Test Snapshot 1`] = `
 <Styled(Card)
   margin="0 0 0 0"
   title={
