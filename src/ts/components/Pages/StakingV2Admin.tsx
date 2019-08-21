@@ -99,7 +99,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 			const awardList: number[] = [];
 			csvData.forEach(item => {
 				addrList.push((item as any).Address);
-				awardList.push((item as any).Award);
+				awardList.push((item as any).Reward);
 			});
 			this.setState({
 				batchArray: { address: addrList, award: awardList }
@@ -459,7 +459,7 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 												<tr>
 													<th style={{ width: 30 }}>Id</th>
 													<th>Address</th>
-													<th style={{ textAlign: 'right' }}>Award</th>
+													<th style={{ textAlign: 'right' }}>Reward</th>
 												</tr>
 											</thead>
 											<tbody>

@@ -1,0 +1,504 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions addressesUpdate 1`] = `
+Object {
+  "type": "stakeAddresses",
+  "value": Object {
+    "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+    "priceFeedList": Array [
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+      "0x002002812b42601Ae5026344F0395E68527bb0F8",
+      "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+    ],
+    "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+  },
+}
+`;
+
+exports[`actions allowanceUpdate 1`] = `
+Object {
+  "type": "stakeAllowance",
+  "value": 123,
+}
+`;
+
+exports[`actions balancesUpdate 1`] = `
+Object {
+  "type": "stakeBalance",
+  "value": 123,
+}
+`;
+
+exports[`actions contractDUOUpdate 1`] = `
+Object {
+  "type": "contractDUO",
+  "value": Object {},
+}
+`;
+
+exports[`actions getAddresses 1`] = `
+Array [
+  Object {
+    "type": "stakeAddresses",
+    "value": Object {
+      "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "priceFeedList": Array [
+        "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+        "0x002002812b42601Ae5026344F0395E68527bb0F8",
+        "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+      ],
+      "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    },
+  },
+]
+`;
+
+exports[`actions getAllowance 1`] = `
+Array [
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+]
+`;
+
+exports[`actions getBalances 1`] = `
+Array [
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+]
+`;
+
+exports[`actions getContractDUO 1`] = `
+Array [
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+]
+`;
+
+exports[`actions getOracleStake 1`] = `
+Array [
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
+    },
+  },
+]
+`;
+
+exports[`actions getUserAward 1`] = `
+Array [
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+]
+`;
+
+exports[`actions getUserStake 1`] = `
+Array [
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+]
+`;
+
+exports[`actions oracleStakeUpdate 1`] = `
+Object {
+  "type": "orcaleStake",
+  "value": Object {},
+}
+`;
+
+exports[`actions refresh 1`] = `
+Array [
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAddresses",
+    "value": Object {
+      "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "priceFeedList": Array [
+        "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+        "0x002002812b42601Ae5026344F0395E68527bb0F8",
+        "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+      ],
+      "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    },
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
+    },
+  },
+]
+`;
+
+exports[`actions refreshAdmin 1`] = `
+Array [
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeAddresses",
+    "value": Object {
+      "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "priceFeedList": Array [
+        "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+        "0x002002812b42601Ae5026344F0395E68527bb0F8",
+        "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+      ],
+      "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    },
+  },
+]
+`;
+
+exports[`actions subscribe 1`] = `
+Array [
+  Object {
+    "id": 0,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "id": 123,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAddresses",
+    "value": Object {
+      "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "priceFeedList": Array [
+        "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+        "0x002002812b42601Ae5026344F0395E68527bb0F8",
+        "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+      ],
+      "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    },
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
+    },
+  },
+]
+`;
+
+exports[`actions subscribe 2`] = `30000`;
+
+exports[`actions subscribe 3`] = `
+Array [
+  Object {
+    "id": 0,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "id": 123,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAddresses",
+    "value": Object {
+      "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "priceFeedList": Array [
+        "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+        "0x002002812b42601Ae5026344F0395E68527bb0F8",
+        "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+      ],
+      "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    },
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "contractDUO",
+    "value": 100,
+  },
+  Object {
+    "type": "userStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": Array [
+        Object {
+          "amount": 123,
+          "timestamp": 1234567890,
+        },
+      ],
+    },
+  },
+  Object {
+    "type": "orcaleStake",
+    "value": Object {
+      "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
+      "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a": 123,
+    },
+  },
+]
+`;
+
+exports[`actions subscribeAdmin 1`] = `
+Array [
+  Object {
+    "id": 0,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "id": 123,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeAddresses",
+    "value": Object {
+      "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "priceFeedList": Array [
+        "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+        "0x002002812b42601Ae5026344F0395E68527bb0F8",
+        "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+      ],
+      "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    },
+  },
+]
+`;
+
+exports[`actions subscribeAdmin 2`] = `30000`;
+
+exports[`actions subscribeAdmin 3`] = `
+Array [
+  Object {
+    "id": 0,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "id": 123,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeAddresses",
+    "value": Object {
+      "burnAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "duoTokenAddress": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+      "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "priceFeedList": Array [
+        "0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a",
+        "0x002002812b42601Ae5026344F0395E68527bb0F8",
+        "0x00476E55e02673B0E4D2B474071014D5a366Ed4E",
+      ],
+      "uploader": "0x61cA89CfC5E8099702e64e97D9b5FC457cf1d355",
+    },
+  },
+]
+`;
+
+exports[`actions subscriptionUpdate 1`] = `
+Object {
+  "id": 123,
+  "type": "stakeSubscription",
+}
+`;
+
+exports[`actions userAwardUpdate 1`] = `
+Object {
+  "type": "userAward",
+  "value": Object {},
+}
+`;
+
+exports[`actions userStakeUpdate 1`] = `
+Object {
+  "type": "userStake",
+  "value": Object {},
+}
+`;

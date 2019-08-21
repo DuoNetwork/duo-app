@@ -1,4 +1,4 @@
-import { IRewardList, IStakeAddress, IStakeLot, IStakeV2States } from '@finbook/duo-contract-wrapper';
+import { IRewardList, IStakeLot, IStakeV2Address, IStakeV2States } from '@finbook/duo-contract-wrapper';
 //import moment from 'moment';
 import * as CST from 'ts/common/constants';
 import { VoidThunkAction } from 'ts/common/types';
@@ -13,7 +13,6 @@ export function statesUpdate(states: IStakeV2States) {
 }
 
 export function getStates(): VoidThunkAction {
-	console.log('Get States');
 	return async dispatch => {
 		const states = await stakeV2Wrapper.getStates();
 		dispatch(statesUpdate(states));
@@ -57,7 +56,7 @@ export function getAllowance(): VoidThunkAction {
 	};
 }
 
-export function addressesUpdate(addr: IStakeAddress) {
+export function addressesUpdate(addr: IStakeV2Address) {
 	return {
 		type: CST.AC_STK_ADDRESSES,
 		value: addr
@@ -157,7 +156,6 @@ export function subscriptionUpdate(intervalId: number) {
 }
 
 export function refresh(): VoidThunkAction {
-	console.log('Refresh');
 	return async dispatch => {
 		await dispatch(getStates());
 		dispatch(getBalances());

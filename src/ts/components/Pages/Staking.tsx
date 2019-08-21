@@ -102,7 +102,6 @@ export default class Staking extends React.Component<IProps, IState> {
 		} = this.props;
 		const { visible, approved } = this.state;
 		const code = queryString.parse((this.props as any).location.search);
-		console.log(addresses[contractIndex].priceFeedList)
 		return (
 			<Layout>
 				<Header />

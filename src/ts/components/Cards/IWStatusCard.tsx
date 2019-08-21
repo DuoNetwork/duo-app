@@ -20,6 +20,7 @@ interface IProps {
 	boundaries: number[];
 	phase: number;
 	lastPrice: number;
+	settlePrice: number;
 }
 interface IState {
 	countdown: string;
@@ -63,7 +64,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 	}
 
 	public render() {
-		const { locale, boundaries, phase, lastPrice } = this.props;
+		const { locale, boundaries, phase, lastPrice, settlePrice } = this.props;
 		const { countdown } = this.state;
 		return (
 			<SCard title={<SCardTitle>Inline Warrant</SCardTitle>} width="420px" margin="0 0 0 0">
@@ -134,7 +135,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 								color: 'rgba(64,79,84,.8)'
 							}}
 						>
-							{StakingCST.STK_VOLATILITY[locale] + ' ≤'}
+							{phase === 1 || phase === 2 ? `${StakingCST.STK_VOLATILITY[locale]} ≤` : StakingCST.STK_SETTLE[locale]}
 						</div>
 						<div
 							style={{
@@ -143,7 +144,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 								color: '#5CA4DE'
 							}}
 						>
-							{`± ${d3.format(',.2%')(boundaries[0])}`}
+							{phase === 1 || phase === 2 ? `± ${d3.format(',.2%')(boundaries[0])}` : settlePrice === 0 ? 'Loading' : d3.format('.2f')(settlePrice)}
 						</div>
 					</div>
 				</SDivFlexCenter>

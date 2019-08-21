@@ -176,6 +176,7 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 							boundaries={boundaries}
 							phase={phase}
 							lastPrice={lastPrice}
+							settlePrice={settltPrice.length ? settltPrice[0].price : 0}
 						/>
 					</SDivFlexCenter>
 					<SDivFlexCenter horizontal width={'1200px'} marginBottom={'20px'}>

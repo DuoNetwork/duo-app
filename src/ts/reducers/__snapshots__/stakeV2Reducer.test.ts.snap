@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`stake reducer contractDUO 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 1000,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": undefined,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer default 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 0,
+  "contractDUO": 0,
+  "duo": 0,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "lockMinTimeInSecond": 0,
+    "maxStakePerOracle": 0,
+    "minStakeAmt": 0,
+    "stakingEnabled": false,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": 0,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer oracleStake 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 1000,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": undefined,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer stakeAddress 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 0,
+  "contractDUO": 0,
+  "duo": 0,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": 0,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer stakeAllowance 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 1000,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": 0,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer stakeBalance 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 0,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": 0,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer stakeStates 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 0,
+  "contractDUO": 0,
+  "duo": 0,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": 0,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer stakeSub Off 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 1000,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": undefined,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer stakeSub On 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 1000,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": undefined,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer userAward 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 1000,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": undefined,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;
+
+exports[`stake reducer userStake 1`] = `
+Object {
+  "addresses": Object {
+    "operator": "0x0",
+    "priceFeedList": Array [],
+  },
+  "allowance": 1000,
+  "contractDUO": 0,
+  "duo": 1000,
+  "oracleStake": Object {},
+  "stagingAdd": Object {},
+  "states": Object {
+    "canStake": false,
+    "canUnstake": false,
+    "lockMinTimeInSecond": 300,
+    "maxStakePerOracle": 100000,
+    "minStakeAmt": 500,
+    "stakingEnabled": false,
+    "totalAwardsToDistribute": 0,
+    "totalRewardsToDistribute": 0,
+  },
+  "subscription": undefined,
+  "userAward": 0,
+  "userStake": Object {},
+}
+`;

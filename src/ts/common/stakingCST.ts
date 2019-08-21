@@ -402,6 +402,11 @@ export const STK_ETHSETTLE: ILocaleText = {
 	[LOCALE_EN]: 'Settled ETH Price'
 }
 
+export const STK_SETTLE: ILocaleText = {
+	[LOCALE_CN]: '结算价',
+	[LOCALE_EN]: 'Settled Price'
+}
+
 export const STK_TOTALSTAKE: ILocaleText = {
 	[LOCALE_CN]: '总质押',
 	[LOCALE_EN]: 'Total Stake'

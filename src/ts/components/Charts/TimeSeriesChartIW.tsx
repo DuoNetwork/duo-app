@@ -42,7 +42,10 @@ function drawLines(
 	};
 	const zoomFormat = (date: number) => moment(date).format(formatString(date));
 	const today = moment.utc().format('YYYY-MM-DD');
-	const tommorow = moment.utc(today, 'YYYY-MM-DD').add(1, 'days').format('YYYY-MM-DD');
+	const tommorow = moment
+		.utc(today, 'YYYY-MM-DD')
+		.add(1, 'days')
+		.format('YYYY-MM-DD');
 	let startTime = 0,
 		endTime = 0;
 	if (phase === 1 || phase === 3) {
@@ -69,7 +72,8 @@ function drawLines(
 	const minPrice = d3.min(showingSet.map(d => d.low)) || 0;
 
 	const rangeTop = maxPrice * (1 + boundaries[0]) + (maxPrice - minPrice) * 0.07;
-	const rangeBottom = d3.max([0, (minPrice * (1 - boundaries[1]) - (maxPrice - minPrice) * 0.07)]) || 0;
+	const rangeBottom =
+		d3.max([0, minPrice * (1 - boundaries[1]) - (maxPrice - minPrice) * 0.07]) || 0;
 
 	//ETH Linear YScale
 	const ethYScale = d3
@@ -375,74 +379,76 @@ function drawLines(
 		.text(d3.format(',.2f')(showingSet[0].close));
 	lastPointLegend.selectAll('text').style('text-anchor', 'start');
 	//Draw BoundRange
-	const boundLines = chartdata.append('g').attr('class', 'bound-lines');
-	boundLines
-		.append('path')
-		.attr('class', 'line-custodian-eth')
-		.attr('d', () => {
-			return line([
-				{
-					x: 0,
-					y: ethYScale(showingSet[0].close * (1 + boundaries[0]))
-				},
-				{
-					x: width,
-					y: ethYScale(showingSet[0].close * (1 + boundaries[0]))
-				}
-			]);
-		})
-		.attr('fill', 'none')
-		.attr('stroke-linejoin', 'round')
-		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.MainColorAlphaLL)
-		.attr('stroke-width', 1.5);
-	boundLines
-		.append('path')
-		.attr('class', 'line-custodian-eth')
-		.attr('d', () => {
-			return line([
-				{
-					x: 0,
-					y: ethYScale(showingSet[0].close * (1 - boundaries[1]))
-				},
-				{
-					x: width,
-					y: ethYScale(showingSet[0].close * (1 - boundaries[1]))
-				}
-			]);
-		})
-		.attr('fill', 'none')
-		.attr('stroke-linejoin', 'round')
-		.attr('stroke-linecap', 'round')
-		.attr('stroke', ColorStyles.MainColorAlphaLL)
-		.attr('stroke-width', 1.5);
-	boundLines
-		.append('text')
-		.attr('class', 'last-point-legend-text')
-		.attr(
-			'transform',
-			`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(
-				showingSet[0].close * (1 + boundaries[0])
-			) + 15})`
-		)
-		.attr('fill', ColorStyles.TextGreen)
-		.attr('font-size', 12)
-		.attr('font-family', 'Roboto')
-		.text('+ ' + d3.format(',.2%')(boundaries[0]));
-	boundLines
-		.append('text')
-		.attr('class', 'last-point-legend-text')
-		.attr(
-			'transform',
-			`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(
-				showingSet[0].close * (1 - boundaries[1])
-			) - 7})`
-		)
-		.attr('fill', ColorStyles.TextRed)
-		.attr('font-size', 12)
-		.attr('font-family', 'Roboto')
-		.text('- ' + d3.format(',.2%')(boundaries[1]));
-	boundLines.selectAll('text').style('text-anchor', 'start');
+	if (phase === 1) {
+		const boundLines = chartdata.append('g').attr('class', 'bound-lines');
+		boundLines
+			.append('path')
+			.attr('class', 'line-custodian-eth')
+			.attr('d', () => {
+				return line([
+					{
+						x: 0,
+						y: ethYScale(showingSet[0].close * (1 + boundaries[0]))
+					},
+					{
+						x: width,
+						y: ethYScale(showingSet[0].close * (1 + boundaries[0]))
+					}
+				]);
+			})
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', ColorStyles.MainColorAlphaLL)
+			.attr('stroke-width', 1.5);
+		boundLines
+			.append('path')
+			.attr('class', 'line-custodian-eth')
+			.attr('d', () => {
+				return line([
+					{
+						x: 0,
+						y: ethYScale(showingSet[0].close * (1 - boundaries[1]))
+					},
+					{
+						x: width,
+						y: ethYScale(showingSet[0].close * (1 - boundaries[1]))
+					}
+				]);
+			})
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', ColorStyles.MainColorAlphaLL)
+			.attr('stroke-width', 1.5);
+		boundLines
+			.append('text')
+			.attr('class', 'last-point-legend-text')
+			.attr(
+				'transform',
+				`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(
+					showingSet[0].close * (1 + boundaries[0])
+				) + 15})`
+			)
+			.attr('fill', ColorStyles.TextGreen)
+			.attr('font-size', 12)
+			.attr('font-family', 'Roboto')
+			.text('+ ' + d3.format(',.2%')(boundaries[0]));
+		boundLines
+			.append('text')
+			.attr('class', 'last-point-legend-text')
+			.attr(
+				'transform',
+				`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(
+					showingSet[0].close * (1 - boundaries[1])
+				) - 7})`
+			)
+			.attr('fill', ColorStyles.TextRed)
+			.attr('font-size', 12)
+			.attr('font-family', 'Roboto')
+			.text('- ' + d3.format(',.2%')(boundaries[1]));
+		boundLines.selectAll('text').style('text-anchor', 'start');
+	}
 }
 
 interface IProps {

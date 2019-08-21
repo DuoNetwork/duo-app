@@ -1,0 +1,356 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions addressInfoUpdate 1`] = `
+Object {
+  "type": "iwaddressinfo",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions allowanceUpdate 1`] = `
+Object {
+  "type": "stakeAllowance",
+  "value": 123,
+}
+`;
+
+exports[`actions balancesUpdate 1`] = `
+Object {
+  "type": "stakeBalance",
+  "value": 123,
+}
+`;
+
+exports[`actions currentRoundUpdate 1`] = `
+Object {
+  "type": "iwcurrentround",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions exchangePricesUpdate 1`] = `
+Object {
+  "type": "dualClassExchangePrices",
+  "value": Array [
+    "test",
+  ],
+}
+`;
+
+exports[`actions fetchAddressInfo 1`] = `
+Array [
+  Object {
+    "type": "dualClassExchangePrices",
+    "value": Array [
+      "kraken",
+      1,
+      1148167890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions fetchCurrentRoundInfo 1`] = `
+Array [
+  Object {
+    "type": "dualClassExchangePrices",
+    "value": Array [
+      "kraken",
+      1,
+      1148167890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions fetchExchangePrices 1`] = `
+Array [
+  Object {
+    "type": "dualClassExchangePrices",
+    "value": Array [
+      "kraken",
+      1,
+      1148167890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions getAllowance 1`] = `
+Array [
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+]
+`;
+
+exports[`actions getBalances 1`] = `
+Array [
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+]
+`;
+
+exports[`actions getUserAward 1`] = `
+Array [
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+]
+`;
+
+exports[`actions refresh 1`] = `
+Array [
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "iwcurrentround",
+    "value": Array [
+      Object {
+        "amount": 0,
+        "date": 1234567890,
+        "status": "mined",
+        "txHash": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      },
+    ],
+  },
+  Object {
+    "type": "iwaddressinfo",
+    "value": Object {
+      "boundETH": Array [
+        200,
+        200,
+      ],
+      "date": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "roundReturn": Array [
+        100,
+        100,
+      ],
+      "roundStakingAmount": Array [
+        100,
+        100,
+      ],
+      "settleETH": 200,
+    },
+  },
+  Object {
+    "type": "dualClassExchangePrices",
+    "value": Array [
+      "kraken",
+      1,
+      1148167890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions subscribe 1`] = `
+Array [
+  Object {
+    "id": 0,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "id": 123,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "iwcurrentround",
+    "value": Array [
+      Object {
+        "amount": 0,
+        "date": 1234567890,
+        "status": "mined",
+        "txHash": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      },
+    ],
+  },
+  Object {
+    "type": "iwaddressinfo",
+    "value": Object {
+      "boundETH": Array [
+        200,
+        200,
+      ],
+      "date": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "roundReturn": Array [
+        100,
+        100,
+      ],
+      "roundStakingAmount": Array [
+        100,
+        100,
+      ],
+      "settleETH": 200,
+    },
+  },
+  Object {
+    "type": "dualClassExchangePrices",
+    "value": Array [
+      "kraken",
+      1,
+      1148167890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions subscribe 2`] = `10000`;
+
+exports[`actions subscribe 3`] = `
+Array [
+  Object {
+    "id": 0,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "id": 123,
+    "type": "stakeSubscription",
+  },
+  Object {
+    "type": "stakeStates",
+    "value": Object {
+      "canStake": false,
+      "canUnstake": false,
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalAwardsToDistribute": 0,
+      "totalRewardsToDistribute": 0,
+    },
+  },
+  Object {
+    "type": "stakeBalance",
+    "value": 100,
+  },
+  Object {
+    "type": "stakeAllowance",
+    "value": 100,
+  },
+  Object {
+    "type": "userAward",
+    "value": 500,
+  },
+  Object {
+    "type": "iwcurrentround",
+    "value": Array [
+      Object {
+        "amount": 0,
+        "date": 1234567890,
+        "status": "mined",
+        "txHash": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      },
+    ],
+  },
+  Object {
+    "type": "iwaddressinfo",
+    "value": Object {
+      "boundETH": Array [
+        200,
+        200,
+      ],
+      "date": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
+      "roundReturn": Array [
+        100,
+        100,
+      ],
+      "roundStakingAmount": Array [
+        100,
+        100,
+      ],
+      "settleETH": 200,
+    },
+  },
+  Object {
+    "type": "dualClassExchangePrices",
+    "value": Array [
+      "kraken",
+      1,
+      1148167890,
+      0,
+      "ETH|USD",
+    ],
+  },
+]
+`;
+
+exports[`actions subscriptionUpdate 1`] = `
+Object {
+  "id": 123,
+  "type": "stakeSubscription",
+}
+`;
+
+exports[`actions userAwardUpdate 1`] = `
+Object {
+  "type": "userAward",
+  "value": Object {},
+}
+`;

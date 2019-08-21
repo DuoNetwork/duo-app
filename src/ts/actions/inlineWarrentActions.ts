@@ -16,7 +16,6 @@ export function statesUpdate(states: IStakeV2States) {
 }
 
 export function getStates(): VoidThunkAction {
-	console.log('Get States');
 	return async dispatch => {
 		const states = await stakeV2Wrapper.getStates();
 		dispatch(statesUpdate(states));
@@ -160,18 +159,3 @@ export function subscribe(): VoidThunkAction {
 		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 10000)));
 	};
 }
-
-// export function refreshAdmin(): VoidThunkAction {
-// 	return async dispatch => {
-// 		await dispatch(getStates());
-// 		dispatch(getAddresses());
-// 	};
-// }
-
-// export function subscribeAdmin(): VoidThunkAction {
-// 	return async dispatch => {
-// 		dispatch(subscriptionUpdate());
-// 		dispatch(refreshAdmin());
-// 		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 30000)));
-// 	};
-// }
