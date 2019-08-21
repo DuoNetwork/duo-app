@@ -33,6 +33,8 @@ export const AC_STK_USERSTAKE = 'userStake';
 export const AC_STK_ORACLESTAKE = 'orcaleStake';
 export const AC_STK_AWARD = 'userAward';
 export const AC_STK_CONTRACTDUO = 'contractDUO';
+export const AC_STK_STAGINGADD = 'stagingAdd';
+export const AC_STK_STAGINGREDUCE = 'stagingReduce';
 export const AC_WEB3_ACCOUNT = 'web3Account';
 export const AC_WEB3_NETWORK = 'web3Network';
 export const AC_WEB3_BALACE = 'web3Balance';
@@ -41,6 +43,9 @@ export const AC_DNM_STATUS = 'dynamoStatus';
 export const AC_UI_LOCALE = 'uiLocale';
 export const AC_UI_PERIOD = 'uiPeriod';
 export const AC_UI_SOURCE = 'uiSource';
+export const AC_IW_CURRENTROUND = 'iwcurrentround';
+export const AC_IW_ADDRESSINFO = 'iwaddressinfo';
+export const AC_IW_BOUNDARIES = 'iwboundaries';
 
 export const AC_STK_NODES = ['Azure', 'AWS', 'GCP'];
 
@@ -75,7 +80,31 @@ export interface ILocaleText {
 	JP: string;
 	[key: string]: string;
 }
+export const TH_AMOUNT: ILocaleText = {
+	[LOCALE_CN]: '数量',
+	[LOCALE_EN]: 'Amount',
+	[LOCALE_JP]: 'Amount',
+	[LOCALE_RU]: 'Amount'
+};
+export const TH_TXHASH: ILocaleText = {
+	[LOCALE_CN]: '交易哈希值',
+	[LOCALE_EN]: 'Transaction Hash',
+	[LOCALE_JP]: 'Transaction Hash',
+	[LOCALE_RU]: 'Transaction Hash'
+};
 
+export const TH_SUM: ILocaleText = {
+	[LOCALE_CN]: '总条目',
+	[LOCALE_EN]: 'Total Entries',
+	[LOCALE_JP]: 'Total Entries',
+	[LOCALE_RU]: 'Total Entries'
+};
+export const TH_TIMEOUT: ILocaleText = {
+	[LOCALE_CN]: '超时',
+	[LOCALE_EN]: 'Time out',
+	[LOCALE_JP]: 'Time out',
+	[LOCALE_RU]: 'Time out'
+};
 export const TH_CREATE: ILocaleText = {
 	[LOCALE_CN]: '拆分',
 	[LOCALE_EN]: 'Create',
@@ -202,6 +231,7 @@ export const TH_FEE: ILocaleText = {
 export const TH_LINK = 'Link';
 export const TH_TOOLTIP = 'Tooltip';
 export const TH_ORACLES = 'Oracles';
+export const TH_CONTRACTS = 'Contracts';
 export const TH_CUSTODIANS = 'Custodians';
 export const TH_OTHER_CONTRACTS = 'Other Contracts';
 export const TH_MAGI = 'Magi';

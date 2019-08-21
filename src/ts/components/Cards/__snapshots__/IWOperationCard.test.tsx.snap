@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
+<Styled(Card)
+  height="320px"
+  margin="0 0 0 0"
+  title={
+    <styled.div>
+      Operation
+    </styled.div>
+  }
+  width="500px"
+>
+  <div
+    style={
+      Object {
+        "marginTop": 15,
+      }
+    }
+  >
+    <a
+      href="https://etherscan.io/token/0x56e0b2c7694e6e10391e870774daa45cf6583486?a=0x00"
+      style={
+        Object {
+          "color": "rgba(0,0,0,.6)",
+        }
+      }
+      target="_blank"
+    >
+      <img
+        src={null}
+        style={
+          Object {
+            "height": 16,
+            "marginLeft": 5,
+            "marginRight": 10,
+            "width": 16,
+          }
+        }
+      />
+      My Address
+      :
+       
+      <span
+        style={
+          Object {
+            "color": "#5CA4DE",
+          }
+        }
+      >
+        0x00
+      </span>
+    </a>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "justifyContent": "space-between",
+        "width": 455,
+      }
+    }
+  >
+    <styled.div
+      style={
+        Object {
+          "width": 220,
+        }
+      }
+    >
+      <div
+        className="bg-logo"
+      >
+        <img
+          src={null}
+        />
+      </div>
+      <div
+        className="tag-content"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          className="tag-price USD"
+          style={
+            Object {
+              "fontSize": 12,
+            }
+          }
+        >
+          Wallet Balance
+        </div>
+      </div>
+      <div
+        className="tag-subtext"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "color": "#5CA4DE",
+              "fontSize": 20,
+              "fontWeight": 500,
+              "marginLeft": 20,
+            }
+          }
+        >
+          0.00
+          <span
+            style={
+              Object {
+                "fontSize": 10,
+                "marginLeft": 5,
+              }
+            }
+          >
+            DUO
+          </span>
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "position": "absolute",
+            "right": 10,
+            "top": 18,
+          }
+        }
+      >
+        <styled.div
+          onClick={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+              "pointerEvents": "initial",
+            }
+          }
+        >
+          Approve DUO
+        </styled.div>
+      </div>
+    </styled.div>
+    <styled.div
+      style={
+        Object {
+          "width": 220,
+        }
+      }
+    >
+      <div
+        className="bg-logo"
+      >
+        <img
+          src={null}
+        />
+      </div>
+      <div
+        className="tag-content"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          className="tag-price USD"
+          style={
+            Object {
+              "fontSize": 12,
+            }
+          }
+        >
+          Award Balance
+        </div>
+      </div>
+      <div
+        className="tag-subtext"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "color": "#5CA4DE",
+              "fontSize": 20,
+              "fontWeight": 500,
+              "marginLeft": 20,
+            }
+          }
+        >
+          0.00
+        </div>
+      </div>
+      <div
+        style={
+          Object {
+            "position": "absolute",
+            "right": 10,
+            "top": 18,
+          }
+        }
+      >
+        <styled.div
+          onClick={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+              "pointerEvents": "initial",
+            }
+          }
+        >
+          Claim Award
+        </styled.div>
+      </div>
+    </styled.div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 60,
+        "justifyContent": "space-between",
+        "marginTop": 10,
+        "width": 168,
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "border": "1px dashed rgba(0,0,0,.2)",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 60,
+          "justifyContent": "space-between",
+          "padding": 2,
+          "width": "100%",
+        }
+      }
+    >
+      <styled.input
+        onChange={[Function]}
+        placeholder="Input Stake Amount"
+        value=""
+      />
+      <styled.div
+        onClick={[Function]}
+        style={
+          Object {
+            "opacity": 1,
+            "pointerEvents": "initial",
+          }
+        }
+      >
+        Stake
+      </styled.div>
+    </div>
+  </div>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+        "height": 60,
+        "justifyContent": "space-between",
+        "marginTop": 10,
+        "width": 168,
+      }
+    }
+  >
+    <styled.div
+      onClick={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+          "pointerEvents": "initial",
+        }
+      }
+    >
+      Auto Roll
+    </styled.div>
+  </div>
+</Styled(Card)>
+`;

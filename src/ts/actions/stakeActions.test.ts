@@ -3,13 +3,13 @@ import '@babel/polyfill';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import util from 'ts/common/util';
-import { stakeWrapper, web3Wrapper } from 'ts/common/wrappers';
+import { stakeWrappers, web3Wrapper } from 'ts/common/wrappers';
 import * as stakeActions from './stakeActions';
 
 const stakeStore = configureMockStore([thunk]);
 
 describe('actions', () => {
-	stakeWrapper.getStates = jest.fn(() =>
+	stakeWrappers[0].getStates = jest.fn(() =>
 		Promise.resolve({
 			canStake: false,
 			canUnstake: false,
@@ -19,7 +19,7 @@ describe('actions', () => {
 			totalAwardsToDistribute: 0
 		})
 	);
-	stakeWrapper.getAddresses = jest.fn(() =>
+	stakeWrappers[0].getAddresses = jest.fn(() =>
 		Promise.resolve({
 			operator: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0',
 			priceFeedList: [
@@ -29,26 +29,26 @@ describe('actions', () => {
 			]
 		})
 	);
-	stakeWrapper.getOracleList = jest.fn(() =>
+	stakeWrappers[0].getOracleList = jest.fn(() =>
 		Promise.resolve([
 			'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a',
 			'0x002002812b42601Ae5026344F0395E68527bb0F8',
 			'0x00476E55e02673B0E4D2B474071014D5a366Ed4E'
 		])
 	);
-	stakeWrapper.getUserStakes = jest.fn(() =>
+	stakeWrappers[0].getUserStakes = jest.fn(() =>
 		Promise.resolve({
 			'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a': [{timestamp: 1234567890, amount: 123}],
 			'0x002002812b42601Ae5026344F0395E68527bb0F8': [{timestamp: 1234567890, amount: 123}],
 		})
 	);
-	stakeWrapper.getOracleStakes = jest.fn(() =>
+	stakeWrappers[0].getOracleStakes = jest.fn(() =>
 		Promise.resolve({
 			'0x0022BFd6AFaD3408A1714fa8F9371ad5Ce8A0F1a': 123,
 			'0x002002812b42601Ae5026344F0395E68527bb0F8': 234
 		})
 	);
-	stakeWrapper.getUserAward = jest.fn(() =>
+	stakeWrappers[0].getUserAward = jest.fn(() =>
 		Promise.resolve(500)
 	);
 	web3Wrapper.getErc20Balance = jest.fn(() => Promise.resolve(100));
@@ -71,14 +71,14 @@ describe('actions', () => {
 		);
 	});
 	test('allowanceUpdate', () => {
-		expect(stakeActions.allowanceUpdate(123)).toMatchSnapshot();
+		expect(stakeActions.allowanceUpdate(123, 0)).toMatchSnapshot();
 	});
 
 	test('getAllowance', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.getAllowance());
+		store.dispatch(stakeActions.getAllowance(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -95,14 +95,14 @@ describe('actions', () => {
 					'0x002002812b42601Ae5026344F0395E68527bb0F8',
 					'0x00476E55e02673B0E4D2B474071014D5a366Ed4E'
 				]
-			})
+			}, 0)
 		).toMatchSnapshot();
 	});
 	test('getAddresses', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.getAddresses());
+		store.dispatch(stakeActions.getAddresses(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -111,14 +111,14 @@ describe('actions', () => {
 		);
 	});
 	test('userStakeUpdate', () => {
-		expect(stakeActions.userStakeUpdate({} as any)).toMatchSnapshot();
+		expect(stakeActions.userStakeUpdate({} as any, 0)).toMatchSnapshot();
 	});
 
 	test('getUserStake', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.getUserStake());
+		store.dispatch(stakeActions.getUserStake(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -127,14 +127,14 @@ describe('actions', () => {
 		);
 	});
 	test('userAwardUpdate', () => {
-		expect(stakeActions.userAwardUpdate({} as any)).toMatchSnapshot();
+		expect(stakeActions.userAwardUpdate({} as any, 0)).toMatchSnapshot();
 	});
 
 	test('getUserAward', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.getUserAward());
+		store.dispatch(stakeActions.getUserAward(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -143,14 +143,14 @@ describe('actions', () => {
 		);
 	});
 	test('oracleStakeUpdate', () => {
-		expect(stakeActions.oracleStakeUpdate({} as any)).toMatchSnapshot();
+		expect(stakeActions.oracleStakeUpdate({} as any, 0)).toMatchSnapshot();
 	});
 
 	test('getOracleStake', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.getOracleStake());
+		store.dispatch(stakeActions.getOracleStake(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -159,14 +159,14 @@ describe('actions', () => {
 		);
 	});
 	test('contractDUOUpdate', () => {
-		expect(stakeActions.contractDUOUpdate({} as any)).toMatchSnapshot();
+		expect(stakeActions.contractDUOUpdate({} as any, 0)).toMatchSnapshot();
 	});
 
 	test('gerContractDUO', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.gerContractDUO());
+		store.dispatch(stakeActions.gerContractDUO(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -184,7 +184,7 @@ describe('actions', () => {
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
 
-		store.dispatch(stakeActions.refresh());
+		store.dispatch(stakeActions.refresh(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -202,7 +202,7 @@ describe('actions', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.subscribe());
+		store.dispatch(stakeActions.subscribe(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -224,7 +224,7 @@ describe('actions', () => {
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
 
-		store.dispatch(stakeActions.refreshAdmin());
+		store.dispatch(stakeActions.refreshAdmin(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();
@@ -237,7 +237,7 @@ describe('actions', () => {
 		const store: any = stakeStore({
 			web3: { account: '0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0' }
 		});
-		store.dispatch(stakeActions.subscribeAdmin());
+		store.dispatch(stakeActions.subscribeAdmin(0));
 		return new Promise(resolve =>
 			setTimeout(() => {
 				expect(store.getActions()).toMatchSnapshot();

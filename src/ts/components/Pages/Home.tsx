@@ -17,50 +17,51 @@ export default class Duo extends React.Component {
 
 	public render() {
 		const beethovenTenors = Object.keys(dualClassWrappers[WrapperConstants.BEETHOVEN]);
-		const mozartTenors = Object.keys(dualClassWrappers[WrapperConstants.MOZART]);
+		//const mozartTenors = Object.keys(dualClassWrappers[WrapperConstants.MOZART]);
 		return (
 			<Layout>
 				<Header />
 				<SContent>
-					<SCard
-						title={<SCardTitle>{CST.TH_CUSTODIANS.toUpperCase()}</SCardTitle>}
-						width={'960px'}
-						margin={'0 0 20px 0'}
-					>
-						<SDivFlexCenter
-							horizontal
-							padding="0 10px"
-							style={{ display: 'inline-flex' }}
+					{__KOVAN__ ? (
+						<SCard
+							title={<SCardTitle>{CST.TH_CUSTODIANS.toUpperCase()}</SCardTitle>}
+							width={'960px'}
+							margin={'0 0 20px 0'}
 						>
-							{beethovenTenors.map(tenor => (
-								<Link
-									key={tenor}
-									to={`/${WrapperConstants.BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}
-								>
-									<SCardTag style={{ marginRight: '20px' }}>
-										<div className="bg-logo">
-											<img src={ethIcon} />
-										</div>
-										<div className="tag-content">
-											<div className={'tag-price USD'}>
-												{WrapperConstants.BEETHOVEN.toUpperCase()}
+							<SDivFlexCenter
+								horizontal
+								padding="0 10px"
+								style={{ display: 'inline-flex' }}
+							>
+								{beethovenTenors.map(tenor => (
+									<Link
+										key={tenor}
+										to={`/${WrapperConstants.BEETHOVEN.toLowerCase()}/${tenor.toLowerCase()}`}
+									>
+										<SCardTag style={{ marginRight: '20px' }}>
+											<div className="bg-logo">
+												<img src={ethIcon} />
 											</div>
-										</div>
-										<div className="tag-subtext">
-											<div
-												style={{
-													color: ColorStyles.ThemeTextAlpha,
-													marginLeft: 20
-												}}
-											>
-												{tenor.toUpperCase()}
+											<div className="tag-content">
+												<div className={'tag-price USD'}>
+													{WrapperConstants.BEETHOVEN.toUpperCase()}
+												</div>
 											</div>
-										</div>
-									</SCardTag>
-								</Link>
-							))}
-						</SDivFlexCenter>
-						<SDivFlexCenter
+											<div className="tag-subtext">
+												<div
+													style={{
+														color: ColorStyles.ThemeTextAlpha,
+														marginLeft: 20
+													}}
+												>
+													{tenor.toUpperCase()}
+												</div>
+											</div>
+										</SCardTag>
+									</Link>
+								))}
+							</SDivFlexCenter>
+							{/* <SDivFlexCenter
 							horizontal
 							padding="0 10px"
 							style={{ display: 'inline-flex' }}
@@ -92,14 +93,19 @@ export default class Duo extends React.Component {
 									</SCardTag>
 								</Link>
 							))}
-						</SDivFlexCenter>
-					</SCard>
+						</SDivFlexCenter> */}
+						</SCard>
+					) : null}
 					<SCard
 						title={<SCardTitle>{CST.TH_ORACLES.toUpperCase()}</SCardTitle>}
 						width={'960px'}
-						margin={'0 0 0 0'}
+						margin={'0 0 20px 0'}
 					>
-						<SDivFlexCenter horizontal padding="0 10px" style={{ display: 'inline-flex' }}>
+						<SDivFlexCenter
+							horizontal
+							padding="0 10px"
+							style={{ display: 'inline-flex' }}
+						>
 							<Link to={'/' + CST.TH_MAGI.toLowerCase()}>
 								<SCardTag style={{ marginRight: '40px' }}>
 									<div className="bg-logo">
@@ -122,15 +128,65 @@ export default class Duo extends React.Component {
 									</div>
 								</SCardTag>
 							</Link>
+						</SDivFlexCenter>
+					</SCard>
+					<SCard
+						title={<SCardTitle>{CST.TH_CONTRACTS.toUpperCase()}</SCardTitle>}
+						width={'960px'}
+						margin={'0 0 0 0'}
+					>
+						<SDivFlexCenter
+							horizontal
+							padding="0 10px"
+							style={{ display: 'inline-flex' }}
+						>
 							<Link to={'/' + 'staking'}>
+								<SCardTag style={{ marginRight: '40px' }}>
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-content">
+										<div className={'tag-price USD'}>STAKING FLEX</div>
+									</div>
+									<div className="tag-subtext">
+										<div
+											style={{
+												color: ColorStyles.ThemeTextAlpha,
+												marginLeft: 20
+											}}
+										>
+											DUO
+										</div>
+									</div>
+								</SCardTag>
+							</Link>
+							<Link to={'/' + 'stakingterm'}>
+								<SCardTag style={{ marginRight: '40px' }}>
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-content">
+										<div className={'tag-price USD'}>STAKING TERM</div>
+									</div>
+									<div className="tag-subtext">
+										<div
+											style={{
+												color: ColorStyles.ThemeTextAlpha,
+												marginLeft: 20
+											}}
+										>
+											DUO
+										</div>
+									</div>
+								</SCardTag>
+							</Link>
+							<Link to={'/' + 'inlinewarrant'}>
 								<SCardTag>
 									<div className="bg-logo">
 										<img src={ethIcon} />
 									</div>
 									<div className="tag-content">
-										<div className={'tag-price USD'}>
-											STAKING
-										</div>
+										<div className={'tag-price USD'}>INLINE WARRANTS</div>
 									</div>
 									<div className="tag-subtext">
 										<div

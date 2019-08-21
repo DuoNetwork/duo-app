@@ -19,13 +19,14 @@ function mapStateToProps(state: IState) {
 		userStakes: state.stake.userStake,
 		oracleStakes: state.stake.oracleStake,
 		userAward: state.stake.userAward,
-		locale: state.ui.locale,
+		locale: state.ui.locale
 	};
 }
 
 function mapDispatchToProps(dispatch: ThunkDispatch<IState, undefined, AnyAction>) {
 	return {
-		subscribe: () => dispatch(stakeActions.subscribe())
+		subscribe: (index: number) => dispatch(stakeActions.subscribe(index)),
+		refresh: (index: number) => dispatch(stakeActions.refresh(index))
 	};
 }
 

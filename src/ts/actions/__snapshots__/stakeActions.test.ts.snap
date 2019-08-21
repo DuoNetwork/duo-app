@@ -2,6 +2,7 @@
 
 exports[`actions addressesUpdate 1`] = `
 Object {
+  "index": 0,
   "type": "stakeAddresses",
   "value": Object {
     "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -16,6 +17,7 @@ Object {
 
 exports[`actions allowanceUpdate 1`] = `
 Object {
+  "index": 0,
   "type": "stakeAllowance",
   "value": 123,
 }
@@ -30,6 +32,7 @@ Object {
 
 exports[`actions contractDUOUpdate 1`] = `
 Object {
+  "index": 0,
   "type": "contractDUO",
   "value": Object {},
 }
@@ -38,6 +41,7 @@ Object {
 exports[`actions gerContractDUO 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "contractDUO",
     "value": 100,
   },
@@ -47,6 +51,7 @@ Array [
 exports[`actions getAddresses 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -63,6 +68,7 @@ Array [
 exports[`actions getAllowance 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "stakeAllowance",
     "value": 100,
   },
@@ -81,6 +87,7 @@ Array [
 exports[`actions getOracleStake 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "orcaleStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
@@ -93,6 +100,7 @@ Array [
 exports[`actions getUserAward 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "userAward",
     "value": 500,
   },
@@ -102,6 +110,7 @@ Array [
 exports[`actions getUserStake 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "userStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
@@ -123,6 +132,7 @@ Array [
 
 exports[`actions oracleStakeUpdate 1`] = `
 Object {
+  "index": 0,
   "type": "orcaleStake",
   "value": Object {},
 }
@@ -131,6 +141,7 @@ Object {
 exports[`actions refresh 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "stakeStates",
     "value": Object {
       "canStake": false,
@@ -146,10 +157,12 @@ Array [
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "stakeAllowance",
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -161,14 +174,17 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "userAward",
     "value": 500,
   },
   Object {
+    "index": 0,
     "type": "contractDUO",
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "userStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
@@ -186,6 +202,7 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "orcaleStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
@@ -198,6 +215,7 @@ Array [
 exports[`actions refreshAdmin 1`] = `
 Array [
   Object {
+    "index": 0,
     "type": "stakeStates",
     "value": Object {
       "canStake": false,
@@ -209,6 +227,7 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -233,6 +252,7 @@ Array [
     "type": "stakeSubscription",
   },
   Object {
+    "index": 0,
     "type": "stakeStates",
     "value": Object {
       "canStake": false,
@@ -248,10 +268,12 @@ Array [
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "stakeAllowance",
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -263,14 +285,17 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "userAward",
     "value": 500,
   },
   Object {
+    "index": 0,
     "type": "contractDUO",
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "userStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
@@ -288,6 +313,7 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "orcaleStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
@@ -310,6 +336,7 @@ Array [
     "type": "stakeSubscription",
   },
   Object {
+    "index": 0,
     "type": "stakeStates",
     "value": Object {
       "canStake": false,
@@ -325,10 +352,12 @@ Array [
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "stakeAllowance",
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -340,14 +369,17 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "userAward",
     "value": 500,
   },
   Object {
+    "index": 0,
     "type": "contractDUO",
     "value": 100,
   },
   Object {
+    "index": 0,
     "type": "userStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": Array [
@@ -365,6 +397,7 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "orcaleStake",
     "value": Object {
       "0x002002812b42601Ae5026344F0395E68527bb0F8": 234,
@@ -385,6 +418,7 @@ Array [
     "type": "stakeSubscription",
   },
   Object {
+    "index": 0,
     "type": "stakeStates",
     "value": Object {
       "canStake": false,
@@ -396,6 +430,7 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -422,6 +457,7 @@ Array [
     "type": "stakeSubscription",
   },
   Object {
+    "index": 0,
     "type": "stakeStates",
     "value": Object {
       "canStake": false,
@@ -433,6 +469,7 @@ Array [
     },
   },
   Object {
+    "index": 0,
     "type": "stakeAddresses",
     "value": Object {
       "operator": "0x415DE7Edfe2c9bBF8449e33Ff88c9be698483CC0",
@@ -455,6 +492,7 @@ Object {
 
 exports[`actions userAwardUpdate 1`] = `
 Object {
+  "index": 0,
   "type": "userAward",
   "value": Object {},
 }
@@ -462,6 +500,7 @@ Object {
 
 exports[`actions userStakeUpdate 1`] = `
 Object {
+  "index": 0,
   "type": "userStake",
   "value": Object {},
 }

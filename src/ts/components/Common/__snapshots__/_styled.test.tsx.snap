@@ -9,8 +9,6 @@ exports[`Styled Test CSS 1`] = `
 
 <Menu
   className="c0"
-  focusable={false}
-  theme="light"
 />
 `;
 
@@ -87,11 +85,9 @@ exports[`Styled Test CSS 3`] = `
 }
 
 <Modal
-  cancelButtonDisabled={false}
   className="c0"
   confirmLoading={false}
   maskTransitionName="fade"
-  okButtonDisabled={false}
   okType="primary"
   transitionName="zoom"
   visible={false}

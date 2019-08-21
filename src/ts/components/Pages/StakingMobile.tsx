@@ -1,30 +1,35 @@
 //import { IStatus } from '@finbook/duo-market-data';
 import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Button, Layout, Modal } from 'antd';
+import queryString from 'query-string';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
 import { web3Wrapper } from 'ts/common/wrappers';
+import StakingInfoCardM from 'ts/components/Cards/StakingInfoCardM';
 import StakingNodeCardM from 'ts/components/Cards/StakingNodesCardM';
 import StakingPersonalCardM from 'ts/components/Cards/StakingPersonalCardM';
 import { SContent } from '../_styled';
 
 interface IProps {
-	contractStates: IStakeStates;
+	contractIndex: number;
+	contractStates: IStakeStates[];
 	account: string;
 	duoBalance: number;
-	duoAllowance: number;
-	addresses: IStakeAddress;
-	userStakes: { [key: string]: IStakeLot[] };
-	oracleStakes: { [key: string]: number };
-	userAward: number;
-	subscribe: () => any;
+	duoAllowance: number[];
+	addresses: IStakeAddress[];
+	userStakes: Array<{ [key: string]: IStakeLot[] }>;
+	oracleStakes: Array<{ [key: string]: number }>;
+	userAward: number[];
 	locale: string;
+	subscribe: (index: number) => any;
+	refresh: (index: number) => any;
 }
 
 interface IState {
 	visible: boolean;
 	showed: boolean;
+	approved: boolean;
 }
 
 export default class StakingMobile extends React.Component<IProps, IState> {
@@ -32,24 +37,40 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 		super(props);
 		this.state = {
 			visible: false,
-			showed: false
+			showed: false,
+			approved: false
 		};
 	}
 	public componentDidMount() {
-		this.props.subscribe();
+		this.props.subscribe(this.props.contractIndex);
 		document.title = 'DUO | Staking';
 	}
 
 	public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-		const { duoAllowance, addresses } = nextProps;
-		if (addresses.priceFeedList.length > 0 && duoAllowance === 0 && !prevState.showed)
+		const { duoAllowance, addresses, contractIndex } = nextProps;
+		if (
+			addresses[contractIndex].priceFeedList.length > 0 &&
+			duoAllowance[contractIndex] === 0 &&
+			!prevState.showed
+		)
 			return {
 				visible: true,
+				approved: false,
 				showed: true
 			};
-
-		return null;
+		else if (
+			addresses[contractIndex].priceFeedList.length > 0 &&
+			duoAllowance[contractIndex] > 0
+		)
+			return {
+				approved: true
+			};
+		else
+			return {
+				approved: false
+			};
 	}
+
 	private handleCancel = () => {
 		this.setState({ visible: false });
 	};
@@ -59,7 +80,7 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 		const txHash = await web3Wrapper.erc20Approve(
 			web3Wrapper.contractAddresses.DUO.address,
 			account,
-			web3Wrapper.contractAddresses.Stake.address,
+			web3Wrapper.contractAddresses.Stakes[this.props.contractIndex].address,
 			0,
 			true
 		);
@@ -68,6 +89,7 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 	};
 	public render() {
 		const {
+			contractIndex,
 			contractStates,
 			account,
 			duoBalance,
@@ -77,7 +99,8 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 			userAward,
 			locale
 		} = this.props;
-		const { visible } = this.state;
+		const { visible, approved } = this.state;
+		const code = queryString.parse((this.props as any).location.search);
 		return (
 			<Layout>
 				<Modal
@@ -92,30 +115,48 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 					]}
 				>
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
+					<p>{StakingCST.STK_REMIUNDERBIND[locale]}</p>
 				</Modal>
 				<SContent>
-					<StakingPersonalCardM
+					<StakingInfoCardM
+						contractIndex={contractIndex}
 						locale={locale}
-						enabled={contractStates.canStake}
+						contractStates={contractStates[contractIndex]}
+						title={
+							contractIndex === 0
+								? StakingCST.STK_TITLEFLEX[locale]
+								: StakingCST.STK_TITLEFIX[locale]
+						}
+						oracleStakes={oracleStakes[contractIndex]}
+						addresses={addresses[contractIndex]}
+					/>
+					<StakingPersonalCardM
+						contractIndex={contractIndex}
+						locale={locale}
+						enabled={contractStates[contractIndex].canStake}
 						address={account}
 						duoBalance={duoBalance}
-						award={userAward}
-						enableApprove={visible}
+						award={userAward[contractIndex]}
+						enableApprove={!approved}
+						linkReferralcode={(code as any).r || ''}
 					/>
-					{addresses.priceFeedList.length ? (
-						addresses.priceFeedList.map((addr, i) => (
+					{addresses[contractIndex].priceFeedList.length ? (
+						addresses[contractIndex].priceFeedList.map((addr, i) => (
 							<StakingNodeCardM
+								contractIndex={contractIndex}
+								lockTime={contractStates[contractIndex].lockMinTimeInSecond}
+								minStake={contractStates[contractIndex].minStakeAmt}
 								locale={locale}
-								enabled={contractStates.canStake}
+								enabled={contractStates[contractIndex].canStake}
 								title={
 									StakingCST.STK_ORACKE[locale] + ' (' + CST.AC_STK_NODES[i] + ')'
 								}
 								key={i}
 								myDUO={duoBalance}
-								myStake={userStakes}
+								myStake={userStakes[contractIndex]}
 								myAddr={account}
 								oracleAddr={addr}
-								oracleStakes={oracleStakes}
+								oracleStakes={oracleStakes[contractIndex]}
 							/>
 						))
 					) : (

@@ -3,7 +3,7 @@
 exports[`Styled Test CSS 1`] = `
 .c0 {
   overflow: hidden;
-  max-width: 1000px;
+  max-width: 1060px;
   background: rgba(255,255,255,1);
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.2);
   border-radius: 4px;
@@ -490,7 +490,6 @@ exports[`Styled Test CSS 10`] = `
 <RadioGroup
   buttonStyle="outline"
   className="c0"
-  disabled={false}
 />
 `;
 
@@ -1082,13 +1081,13 @@ exports[`Styled Test CSS 16`] = `
 
 exports[`Styled Test CSS 17`] = `
 .c0 {
-  color: rgba(255,255,255,.4);
+  color: rgba(255,255,255,.6);
   border: none !important;
   background: transparent !important;
 }
 
 .c0:hover {
-  color: rgba(255,255,255,.8);
+  color: rgba(255,255,255,1);
 }
 
 .c0:focus {
@@ -1107,6 +1106,7 @@ exports[`Styled Test CSS 17`] = `
   block={false}
   className="c0"
   ghost={false}
+  htmlType="button"
   loading={false}
 />
 `;

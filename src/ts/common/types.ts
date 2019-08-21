@@ -6,6 +6,7 @@ import {
 	IStakeAddress,
 	IStakeLot,
 	IStakeStates,
+	IStakeV2States,
 	IVotingData
 } from '@finbook/duo-contract-wrapper';
 import { IAcceptedPrice, IConversion, IPrice, IStatus } from '@finbook/duo-market-data';
@@ -28,6 +29,8 @@ export interface IState {
 	readonly dynamo: IDynamoState;
 	readonly ui: IUIState;
 	readonly stake: IStakeState;
+	readonly stakeV2: IStakeV2State;
+	readonly inlineWarrent: IInlineWarrantState;
 }
 
 export interface IWeb3State {
@@ -53,8 +56,20 @@ export interface IDualClassState {
 }
 
 export interface IStakeState {
-	readonly states: IStakeStates;
 	readonly duo: number;
+	readonly states: IStakeStates[];
+	readonly allowance: number[];
+	readonly subscription: number[];
+	readonly addresses: IStakeAddress[];
+	readonly userStake: Array<{ [key: string]: IStakeLot[] }>;
+	readonly oracleStake: Array<{ [key: string]: number }>;
+	readonly userAward: number[];
+	readonly contractDUO: number[];
+}
+
+export interface IStakeV2State {
+	readonly duo: number;
+	readonly states: IStakeV2States;
 	readonly allowance: number;
 	readonly subscription: number;
 	readonly addresses: IStakeAddress;
@@ -62,6 +77,20 @@ export interface IStakeState {
 	readonly oracleStake: { [key: string]: number };
 	readonly userAward: number;
 	readonly contractDUO: number;
+	readonly stagingAdd: object;
+}
+
+export interface IInlineWarrantState {
+	readonly duo: number;
+	readonly states: IStakeV2States;
+	readonly allowance: number;
+	readonly subscription: number;
+	readonly userAward: number;
+	readonly contractDUO: number;
+	readonly exchangePrices: IPrice[];
+	readonly currentRoundInfo: object[];
+	readonly addressInfo: object;
+	readonly boundaries: number[];
 }
 
 export interface IEsplanadeState {
@@ -136,4 +165,27 @@ export enum WsChannelMessageTypes {
 export enum WsChannelName {
 	Orderbook = 'orderbook',
 	Order = 'order'
+}
+
+export interface IReferral {
+	address: string;
+	referralCode: string;
+	signHash: string;
+}
+
+export interface IStakingChild {
+	address: string;
+	daily: number;
+	accumulated: number;
+}
+
+export interface IStakingNode {
+	name: string;
+	daily: number;
+	accumulated: number;
+}
+export interface IAddressInfo {
+	children?: IStakingChild[],
+	staking0?: IStakingNode[],
+	staking60?: IStakingNode[]
 }

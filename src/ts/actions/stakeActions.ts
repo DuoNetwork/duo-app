@@ -3,19 +3,20 @@ import { IStakeAddress, IStakeLot, IStakeStates } from '@finbook/duo-contract-wr
 import * as CST from 'ts/common/constants';
 import { VoidThunkAction } from 'ts/common/types';
 //import util from 'ts/common/util';
-import { stakeWrapper, web3Wrapper } from 'ts/common/wrappers';
+import { stakeWrappers, web3Wrapper } from 'ts/common/wrappers';
 
-export function statesUpdate(states: IStakeStates) {
+export function statesUpdate(states: IStakeStates, index: number) {
 	return {
 		type: CST.AC_STK_STATES,
-		value: states
+		value: states,
+		index: index
 	};
 }
 
-export function getStates(): VoidThunkAction {
+export function getStates(index: number): VoidThunkAction {
 	return async dispatch => {
-		const states = await stakeWrapper.getStates();
-		dispatch(statesUpdate(states));
+		const states = await stakeWrappers[index].getStates();
+		dispatch(statesUpdate(states, index));
 	};
 }
 
@@ -37,98 +38,104 @@ export function getBalances(): VoidThunkAction {
 	};
 }
 
-export function allowanceUpdate(duo: number) {
+export function allowanceUpdate(duo: number, index: number) {
 	return {
 		type: CST.AC_STK_ALLOWANCE,
-		value: duo
+		value: duo,
+		index: index
 	};
 }
 
-export function getAllowance(): VoidThunkAction {
+export function getAllowance(index: number): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
 		const duoAllowance = await web3Wrapper.getErc20Allowance(
 			web3Wrapper.contractAddresses.DUO.address,
 			account,
-			web3Wrapper.contractAddresses.Stake.address
+			web3Wrapper.contractAddresses.Stakes[index].address
 		);
-		dispatch(allowanceUpdate(duoAllowance));
+		dispatch(allowanceUpdate(duoAllowance, index));
 	};
 }
 
-export function addressesUpdate(addr: IStakeAddress) {
+export function addressesUpdate(addr: IStakeAddress, index: number) {
 	return {
 		type: CST.AC_STK_ADDRESSES,
-		value: addr
+		value: addr,
+		index: index
 	};
 }
 
-export function getAddresses(): VoidThunkAction {
+export function getAddresses(index: number): VoidThunkAction {
 	return async dispatch => {
-		const addr = await stakeWrapper.getAddresses();
-		dispatch(addressesUpdate(addr));
+		const addr = await stakeWrappers[index].getAddresses();
+		dispatch(addressesUpdate(addr, index));
 	};
 }
 
-export function userStakeUpdate(userStake: { [key: string]: IStakeLot[] }) {
+export function userStakeUpdate(userStake: { [key: string]: IStakeLot[] }, index: number) {
 	return {
 		type: CST.AC_STK_USERSTAKE,
-		value: userStake
+		value: userStake,
+		index: index
 	};
 }
 
-export function getUserStake(): VoidThunkAction {
+export function getUserStake(index: number): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		const pfList = await stakeWrapper.getOracleList();
-		const userStake = await stakeWrapper.getUserStakes(account, pfList);
-		dispatch(userStakeUpdate(userStake));
+		const pfList = await stakeWrappers[index].getOracleList();
+		const userStake = await stakeWrappers[index].getUserStakes(account, pfList);
+		dispatch(userStakeUpdate(userStake, index));
 	};
 }
 
-export function oracleStakeUpdate(oracleStake: { [key: string]: number }) {
+export function oracleStakeUpdate(oracleStake: { [key: string]: number }, index: number) {
 	return {
 		type: CST.AC_STK_ORACLESTAKE,
-		value: oracleStake
+		value: oracleStake,
+		index: index
 	};
 }
 
-export function getOracleStake(): VoidThunkAction {
+export function getOracleStake(index: number): VoidThunkAction {
 	return async dispatch => {
-		const addr = await stakeWrapper.getAddresses();
-		const oracleStake = await stakeWrapper.getOracleStakes(addr.priceFeedList);
-		dispatch(oracleStakeUpdate(oracleStake));
+		const addr = await stakeWrappers[index].getAddresses();
+		const oracleStake = await stakeWrappers[index].getOracleStakes(addr.priceFeedList);
+		dispatch(oracleStakeUpdate(oracleStake, index));
 	};
 }
 
-export function userAwardUpdate(userAward: number) {
+export function userAwardUpdate(userAward: number, index: number) {
 	return {
 		type: CST.AC_STK_AWARD,
-		value: userAward
+		value: userAward,
+		index: index
 	};
 }
 
-export function getUserAward(): VoidThunkAction {
+export function getUserAward(index: number): VoidThunkAction {
 	return async (dispatch, getState) => {
 		const account = getState().web3.account;
-		const userAward = await stakeWrapper.getUserAward(account);
-		dispatch(userAwardUpdate(userAward));
+		const userAward = await stakeWrappers[index].getUserAward(account);
+		dispatch(userAwardUpdate(userAward, index));
 	};
 }
-export function contractDUOUpdate(duoAmount: number) {
+export function contractDUOUpdate(duoAmount: number, index: number) {
 	return {
 		type: CST.AC_STK_CONTRACTDUO,
-		value: duoAmount
+		value: duoAmount,
+		index: index
 	};
 }
 
-export function gerContractDUO(): VoidThunkAction {
+export function gerContractDUO(index: number): VoidThunkAction {
 	return async dispatch => {
 		const duoAmount = await web3Wrapper.getErc20Balance(
 			web3Wrapper.contractAddresses.DUO.address,
-			web3Wrapper.contractAddresses.Stake.address
+			web3Wrapper.contractAddresses.Stakes[index].address
 		);
-		dispatch(contractDUOUpdate(duoAmount));
+		dispatch(contractDUOUpdate(duoAmount, index));
 	};
 }
 
@@ -139,38 +146,38 @@ export function subscriptionUpdate(intervalId: number) {
 	};
 }
 
-export function refresh(): VoidThunkAction {
+export function refresh(index: number): VoidThunkAction {
 	return async dispatch => {
-		await dispatch(getStates());
+		await dispatch(getStates(index));
 		dispatch(getBalances());
-		dispatch(getAllowance());
-		dispatch(getAddresses());
-		dispatch(getUserStake());
-		dispatch(getOracleStake());
-		dispatch(getUserAward());
-		dispatch(gerContractDUO());
+		dispatch(getAllowance(index));
+		dispatch(getAddresses(index));
+		dispatch(getUserStake(index));
+		dispatch(getOracleStake(index));
+		dispatch(getUserAward(index));
+		dispatch(gerContractDUO(index));
 	};
 }
 
-export function subscribe(): VoidThunkAction {
+export function subscribe(index: number): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(0));
-		dispatch(refresh());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh()), 30000)));
+		dispatch(subscriptionUpdate(index));
+		dispatch(refresh(index));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refresh(index)), 30000)));
 	};
 }
 
-export function refreshAdmin(): VoidThunkAction {
+export function refreshAdmin(index: number): VoidThunkAction {
 	return async dispatch => {
-		await dispatch(getStates());
-		dispatch(getAddresses());
+		await dispatch(getStates(index));
+		dispatch(getAddresses(index));
 	};
 }
 
-export function subscribeAdmin(): VoidThunkAction {
+export function subscribeAdmin(index: number): VoidThunkAction {
 	return async dispatch => {
-		dispatch(subscriptionUpdate(0));
-		dispatch(refreshAdmin());
-		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin()), 30000)));
+		dispatch(subscriptionUpdate(index));
+		dispatch(refreshAdmin(index));
+		dispatch(subscriptionUpdate(window.setInterval(() => dispatch(refreshAdmin(index)), 30000)));
 	};
 }

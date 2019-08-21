@@ -5,11 +5,13 @@ import { dualClassWrappers } from 'ts/common/wrappers';
 import DualClassCustodianAdminCointainer from 'ts/containers/Pages/DualClassCustodianAdminCointainer';
 import DualClassCustodianContainer from 'ts/containers/Pages/DualClassCustodianContainer';
 import Esplanade from 'ts/containers/Pages/EsplanadeCointainer';
+import InlineWarrant from 'ts/containers/Pages/InlineWarrantsContainer';
 import MagiAdmin from 'ts/containers/Pages/MagiAdminContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
 import StakingAdmin from 'ts/containers/Pages/StakingAdminContainer';
 import Staking from 'ts/containers/Pages/StakingContainer';
 import StakingM from 'ts/containers/Pages/StakingMobileContainer';
+import StakingV2Admin from 'ts/containers/Pages/StakingV2AdminContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
 
@@ -72,9 +74,31 @@ export default class Duo extends React.Component {
 					<Route path={'/esplanade'} render={() => <Esplanade />} />
 					<Route path={'/magi'} render={() => <Magi />} />
 					<Route path={'/status'} render={() => <Status />} />
-					<Route path={'/staking'} render={() => <Staking />} />
+					<Route
+						path={'/staking'}
+						component={(props: any) => <Staking {...props} contractIndex={0} />}
+					/>
+					<Route
+						path={'/stakingterm'}
+						component={(props: any) => <Staking {...props} contractIndex={1} />}
+					/>
 					<Route path={'/stakingadmin'} render={() => <StakingAdmin />} />
-					<Route path={'/stakingm'} render={() => <StakingM />} />
+					<Route
+						path={'/stakingm'}
+						component={(props: any) => <StakingM {...props} contractIndex={0} />}
+					/>
+					<Route
+						path={'/stakingmterm'}
+						component={(props: any) => <StakingM {...props} contractIndex={1} />}
+					/>
+					<Route
+						path={'/inlinewarrant'}
+						component={(props: any) => <InlineWarrant {...props} />}
+					/>
+					<Route
+						path={'/stakingv2admin'}
+						component={(props: any) => <StakingV2Admin {...props} />}
+					/>
 					<Route render={() => <Home />} />
 				</Switch>
 			</div>

@@ -21,7 +21,7 @@
         "semicolon":false,
         "jsx-no-lambda": false,
         "member-ordering": false,
-        "curly": [true, "as-needed"],
+        "curly": false,
         "jsx-boolean-value": false,
         "prefer-for-of": false,
         "jsx-curly-spacing": false,

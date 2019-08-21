@@ -4,12 +4,12 @@ import 'css/style.css';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import * as dualClassActions from './actions/dualClassActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
 import { web3Wrapper } from './common/wrappers';
-import StakingMobile from './containers/Pages/StakingMobileContainer';
+import StakingM from './containers/Pages/StakingMobileContainer';
 import store from './store/store';
 
 store.dispatch(web3Actions.refresh());
@@ -34,7 +34,15 @@ if ((window as any).ethereum) (window as any).ethereum.enable();
 ReactDOM.render(
 	<Provider store={store}>
 		<Router>
-			<StakingMobile />
+			<Switch>
+				<Route
+					path={"/term"}
+					component={(props: any) => <StakingM {...props} contractIndex={1} />}
+				/>
+				<Route
+					component={(props: any) => <StakingM {...props} contractIndex={0} />}
+				/>
+			</Switch>
 		</Router>
 	</Provider>,
 	document.getElementById('app')

@@ -90,6 +90,22 @@ Object {
       "votedFor": 0,
     },
   },
+  "inlineWarrent": Object {
+    "addressInfo": Object {},
+    "allowance": 0,
+    "boundaries": Array [],
+    "currentRoundInfo": Array [],
+    "duo": 0,
+    "exchangePrices": Array [],
+    "states": Object {
+      "lockMinTimeInSecond": 0,
+      "maxStakePerOracle": 0,
+      "minStakeAmt": 0,
+      "stakingEnabled": false,
+      "totalRewardsToDistribute": 0,
+    },
+    "userAward": 0,
+  },
   "magi": Object {
     "acceptedPrices": Array [],
     "operator": Object {
@@ -124,6 +140,61 @@ Object {
     "subscription": 0,
   },
   "stake": Object {
+    "addresses": Array [
+      Object {
+        "operator": "0x0",
+        "priceFeedList": Array [],
+      },
+      Object {
+        "operator": "0x0",
+        "priceFeedList": Array [],
+      },
+    ],
+    "allowance": Array [
+      0,
+      0,
+    ],
+    "contractDUO": Array [
+      0,
+      0,
+    ],
+    "duo": 0,
+    "oracleStake": Array [
+      Object {},
+      Object {},
+    ],
+    "states": Array [
+      Object {
+        "canStake": false,
+        "canUnstake": false,
+        "lockMinTimeInSecond": 0,
+        "maxStakePerOracle": 0,
+        "minStakeAmt": 0,
+        "totalAwardsToDistribute": 0,
+      },
+      Object {
+        "canStake": false,
+        "canUnstake": false,
+        "lockMinTimeInSecond": 0,
+        "maxStakePerOracle": 0,
+        "minStakeAmt": 0,
+        "totalAwardsToDistribute": 0,
+      },
+    ],
+    "subscription": Array [
+      0,
+      0,
+    ],
+    "userAward": Array [
+      0,
+      0,
+    ],
+    "userStake": Array [
+      Object {},
+      Object {},
+    ],
+  },
+  "stakeV2": Object {
     "addresses": Object {
       "operator": "0x0",
       "priceFeedList": Array [],
@@ -132,13 +203,13 @@ Object {
     "contractDUO": 0,
     "duo": 0,
     "oracleStake": Object {},
+    "stagingAdd": Object {},
     "states": Object {
-      "canStake": false,
-      "canUnstake": false,
       "lockMinTimeInSecond": 0,
       "maxStakePerOracle": 0,
       "minStakeAmt": 0,
-      "totalAwardsToDistribute": 0,
+      "stakingEnabled": false,
+      "totalRewardsToDistribute": 0,
     },
     "subscription": 0,
     "userAward": 0,

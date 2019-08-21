@@ -1,0 +1,323 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
+<Styled(Card)
+  extra={
+    <Styled(Button)
+      icon="reload"
+      onClick={
+        [MockFunction] {
+          "calls": Array [
+            Array [],
+          ],
+          "results": Array [
+            Object {
+              "isThrow": false,
+              "value": 123,
+            },
+          ],
+        }
+      }
+    />
+  }
+  margin="0 20px 0 0"
+  title={
+    <styled.div>
+      <styled.div>
+        Records
+      </styled.div>
+    </styled.div>
+  }
+  width="680px"
+>
+  <styled.div
+    horizontal={true}
+    noJust={true}
+  >
+    <styled.div
+      style={
+        Object {
+          "marginRight": 20,
+        }
+      }
+    >
+      <div
+        className="bg-logo"
+      >
+        <img
+          src={null}
+        />
+      </div>
+      <div
+        className="tag-content"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          className="tag-price USD"
+          style={
+            Object {
+              "fontSize": 12,
+            }
+          }
+        >
+          Total Stake
+        </div>
+      </div>
+      <div
+        className="tag-subtext"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "color": "#5CA4DE",
+              "fontSize": 20,
+              "fontWeight": 500,
+              "marginLeft": 20,
+            }
+          }
+        >
+          100.00
+          <span
+            style={
+              Object {
+                "fontSize": 10,
+                "marginLeft": 5,
+              }
+            }
+          >
+            DUO
+          </span>
+        </div>
+      </div>
+    </styled.div>
+    <styled.div>
+      <div
+        className="bg-logo"
+      >
+        <img
+          src={null}
+        />
+      </div>
+      <div
+        className="tag-content"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          className="tag-price USD"
+          style={
+            Object {
+              "fontSize": 12,
+            }
+          }
+        >
+          Total Return
+        </div>
+      </div>
+      <div
+        className="tag-subtext"
+        style={
+          Object {
+            "pointerEvents": "none",
+          }
+        }
+      >
+        <div
+          style={
+            Object {
+              "color": "#5CA4DE",
+              "fontSize": 20,
+              "fontWeight": 500,
+              "marginLeft": 20,
+            }
+          }
+        >
+          0.00
+          <span
+            style={
+              Object {
+                "fontSize": 10,
+                "marginLeft": 5,
+              }
+            }
+          >
+            DUO
+          </span>
+        </div>
+      </div>
+    </styled.div>
+  </styled.div>
+  <div
+    style={
+      Object {
+        "color": "rgba(64,79,84,.8)",
+        "fontWeight": 500,
+        "marginBottom": -5,
+        "marginTop": 10,
+        "paddingLeft": 10,
+      }
+    }
+  >
+    Last Round
+  </div>
+  <styled.div>
+    <Table
+      bordered={false}
+      childrenColumnName="children"
+      className=""
+      dataSource={
+        Array [
+          Object {
+            "ETH Range": "200 ~ 200",
+            "Settled ETH Price": 200,
+            "Stake Amount": "100.00",
+            "Stake Return": "0.00",
+            "Time": "2019-01-01",
+            "key": "lastRound",
+          },
+        ]
+      }
+      indentSize={20}
+      loading={false}
+      locale={Object {}}
+      pagination={false}
+      rowClassName={[Function]}
+      rowKey="key"
+      showHeader={true}
+      size="default"
+      sortDirections={
+        Array [
+          "ascend",
+          "descend",
+        ]
+      }
+      useFixedHeader={false}
+    >
+      <Column
+        dataIndex="Time"
+        title="Time"
+        width={100}
+      />
+      <Column
+        dataIndex="Stake Amount"
+        title="Stake Amount"
+        width={90}
+      />
+      <Column
+        dataIndex="Stake Return"
+        title="Stake Return"
+        width={90}
+      />
+      <Column
+        dataIndex="ETH Range"
+        title="ETH Range"
+        width={130}
+      />
+      <Column
+        dataIndex="Settled ETH Price"
+        title="Settled ETH Price"
+        width={120}
+      />
+    </Table>
+  </styled.div>
+  <Divider
+    dashed={true}
+  />
+  <div
+    style={
+      Object {
+        "color": "rgba(64,79,84,.8)",
+        "fontWeight": 500,
+        "marginBottom": -5,
+        "marginTop": 10,
+        "paddingLeft": 10,
+      }
+    }
+  >
+    Current Round
+  </div>
+  <styled.div>
+    <Table
+      bordered={false}
+      childrenColumnName="children"
+      className=""
+      dataSource={
+        Array [
+          Object {
+            "Amount": "500.0",
+            "Link": "https://etherscan.io/tx/\\"0x5bc480b5d001b3cc72b39a631ff5d99aa0e8b2028baafca2fb08c39cacc51dd0\\"",
+            "Status": "mined",
+            "Time": "2019-01-01 00:00:00",
+            "key": undefined,
+            "txHash": "\\"0x5bc480b5d001b3cc72b39a631ff5d99aa0e8b2028baafca2fb08c39cacc51dd0\\"",
+          },
+        ]
+      }
+      indentSize={20}
+      loading={false}
+      locale={Object {}}
+      onRow={[Function]}
+      pagination={
+        Object {
+          "pageSize": 10,
+          "pageSizeOptions": Array [
+            "10",
+            "20",
+            "50",
+          ],
+          "showQuickJumper": true,
+          "showSizeChanger": true,
+          "showTotal": [Function],
+          "size": "small",
+        }
+      }
+      rowKey="key"
+      showHeader={true}
+      size="default"
+      sortDirections={
+        Array [
+          "ascend",
+          "descend",
+        ]
+      }
+      useFixedHeader={false}
+    >
+      <Column
+        dataIndex="Time"
+        title="Time"
+        width={140}
+      />
+      <Column
+        dataIndex="Amount"
+        title="Amount"
+        width={90}
+      />
+      <Column
+        className="txHash"
+        dataIndex="txHash"
+        render={[Function]}
+        title="Transaction Hash"
+        width={200}
+      />
+      <Column
+        dataIndex="Status"
+        render={[Function]}
+        title="Status"
+        width={95}
+      />
+    </Table>
+  </styled.div>
+</Styled(Card)>
+`;

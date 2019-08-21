@@ -3,23 +3,27 @@ import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Layout } from 'antd';
 import { csvParse } from 'd3';
 import * as React from 'react';
-import { stakeWrapper } from 'ts/common/wrappers';
+import { stakeWrappers} from 'ts/common/wrappers';
 import Header from 'ts/containers/HeaderContainer';
 import { SContent } from '../_styled';
 
 interface IProps {
 	account: string;
 	duoBalance: number;
-	addresses: IStakeAddress;
-	contractStates: IStakeStates;
-	contractDUO: number;
-	subscribe: () => any;
+	addresses: IStakeAddress[];
+	contractStates: IStakeStates[];
+	contractDUO: number[];
+	gasPrice: number;
+	subscribe: (index: number) => any;
 }
 
 interface IState {
 	addr: string;
 	award: string;
 	batchArray: { address: string[]; award: number[] };
+	x2Check: boolean;
+	x3Check: boolean;
+	contractIndex: number;
 }
 export default class StakingAdmin extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
@@ -27,20 +31,32 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		this.state = {
 			addr: '',
 			award: '',
-			batchArray: { address: [], award: [] }
+			batchArray: { address: [], award: [] },
+			x2Check: false,
+			x3Check: false,
+			contractIndex: 0
 		};
 	}
 	private inputRef = React.createRef<HTMLInputElement>();
 	public componentDidMount() {
-		this.props.subscribe();
+		this.props.subscribe(0);
+		this.props.subscribe(1);
 		document.title = 'DUO | Staking Admin';
 	}
 
 	private handleStake = async (operator: boolean) => {
-		const { account } = this.props;
+		const { account, gasPrice } = this.props;
+		const { contractIndex, x2Check, x3Check } = this.state;
+		const gasPriceEdit = x2Check ? gasPrice * 2 : x3Check ? gasPrice * 3 : gasPrice;
 		const txHash = operator
-			? await stakeWrapper.enableStakingAndUnstaking(account, { gasLimit: 100000 })
-			: await stakeWrapper.disableStakingAndUnstaking(account, { gasLimit: 1000000 });
+			? await stakeWrappers[contractIndex].enableStakingAndUnstaking(account, {
+					gasLimit: 100000,
+					gasPrice: gasPriceEdit
+			})
+			: await stakeWrappers[contractIndex].disableStakingAndUnstaking(account, {
+					gasLimit: 1000000,
+					gasPrice: gasPriceEdit
+			});
 		console.log(txHash);
 	};
 
@@ -75,10 +91,26 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		reader.readAsText(file, '');
 	};
 
+	private handleX2 = () => {
+		const { x2Check } = this.state;
+		if (x2Check) this.setState({ x2Check: false });
+		else this.setState({ x2Check: true, x3Check: false });
+	};
+
+	private handleX3 = () => {
+		const { x3Check } = this.state;
+		if (x3Check) this.setState({ x3Check: false });
+		else this.setState({ x2Check: false, x3Check: true });
+	};
+
+	private contractSwitch = () => {
+		this.state.contractIndex === 0 ? this.setState({contractIndex: 1}) : this.setState({contractIndex: 0})
+	}
+
 	public render() {
-		const { account, contractStates, contractDUO } = this.props;
-		const { addr, award, batchArray } = this.state;
-		console.log(batchArray);
+		const { account, contractStates, contractDUO, gasPrice } = this.props;
+		const { contractIndex, addr, award, batchArray, x2Check, x3Check } = this.state;
+		const gasPriceEdit = x2Check ? gasPrice * 2 : x3Check ? gasPrice * 3 : gasPrice;
 		return (
 			<Layout>
 				<Header />
@@ -103,29 +135,64 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						>
 							Contract States
 						</b>
-						<div>
+						<a
+							style={{ color: 'rgba(92,164,222,1)' }}
+							href={
+								'https://etherscan.io/address/' +
+								account
+							}
+							target="_blank"
+						>
 							<b>{account}</b>
+						</a>
+						<div>
+							Stake: <b>{contractIndex === 0 ? 'Stake-0' : 'Stake-60'}</b>
+						</div>
+						<button
+							onClick={this.contractSwitch}
+						>
+							Switch Contract
+						</button>
+						<div>
+							Can Stake: <b>{contractStates[contractIndex].canStake.toString()}</b>
 						</div>
 						<div>
-							Can Stake: <b>{contractStates.canStake.toString()}</b>
+							Can Unstake: <b>{contractStates[contractIndex].canUnstake.toString()}</b>
 						</div>
 						<div>
-							Can Unstake: <b>{contractStates.canUnstake.toString()}</b>
+							LockMinTimeInSecond: <b>{contractStates[contractIndex].lockMinTimeInSecond}</b>
 						</div>
 						<div>
-							LockMinTimeInSecond: <b>{contractStates.lockMinTimeInSecond}</b>
+							MinStakeAmt: <b>{contractStates[contractIndex].minStakeAmt}</b>
 						</div>
 						<div>
-							MinStakeAmt: <b>{contractStates.minStakeAmt}</b>
+							MaxStakePerPf: <b>{contractStates[contractIndex].maxStakePerOracle}</b>
 						</div>
 						<div>
-							MaxStakePerPf: <b>{contractStates.maxStakePerOracle}</b>
+							TotalAwardsToDistribute: <b>{contractStates[contractIndex].totalAwardsToDistribute}</b>
 						</div>
 						<div>
-							TotalAwardsToDistribute: <b>{contractStates.totalAwardsToDistribute}</b>
+							Contract DUO Amount: <b>{contractDUO[contractIndex]}</b>
 						</div>
 						<div>
-							Contract DUO Amount: <b>{contractDUO}</b>
+							Current Gas Price: <b>{gasPrice / 1E9 + 'Gwei'}</b>
+						</div>
+						<div style={{ marginBottom: 5 }}>
+							Gas Price Multiplier:
+							<input
+								style={{ marginLeft: 10, marginRight: 5 }}
+								type="radio"
+								checked={x2Check}
+								onClick={this.handleX2}
+							/>
+							X2
+							<input
+								style={{ marginLeft: 5, marginRight: 5 }}
+								type="radio"
+								checked={x3Check}
+								onClick={this.handleX3}
+							/>
+							X3
 						</div>
 					</div>
 					<div
@@ -187,8 +254,9 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						/>
 						<button
 							onClick={() =>
-								stakeWrapper.batchAddAward(account, [addr], [parseInt(award, 0)], {
-									gasLimit: 1000000
+								stakeWrappers[contractIndex].batchAddAward(account, [addr], [parseInt(award, 0)], {
+									gasLimit: 1000000,
+									gasPrice: gasPriceEdit
 								})
 							}
 						>
@@ -227,14 +295,15 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						/>
 						<button
 							onClick={() =>
-								batchArray.address.length > 20
-									? window.alert('CSV file must not exceed 20 rows')
-									: stakeWrapper.batchAddAward(
+								batchArray.address.length > 30
+									? window.alert('CSV file must not exceed 30 rows')
+									: stakeWrappers[contractIndex].batchAddAward(
 											account,
 											batchArray.address,
 											batchArray.award,
 											{
-												gasLimit: 1000000
+												gasLimit: 1000000,
+												gasPrice: gasPriceEdit
 											}
 									)
 							}
@@ -255,26 +324,41 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 						}}
 					>
 						{batchArray.address.length ? (
-							<table style={{ width: '100%' }}>
-								<thead>
-									<tr>
-										<th style={{ width: 30 }}>Id</th>
-										<th>Address</th>
-										<th style={{ textAlign: 'right' }}>Award</th>
-									</tr>
-								</thead>
-								<tbody>
-									{batchArray.address.map((item, i) => (
-										<tr key={i}>
-											<td style={{ width: 30 }}>{i + 1}</td>
-											<td style={{ fontSize: 11 }}>{item}</td>
-											<td style={{ textAlign: 'right' }}>
-												{batchArray.award[i]}
-											</td>
+							<div
+								style={{
+									display: 'flex',
+									flexDirection: 'column',
+									alignItems: 'center'
+								}}
+							>
+								<button
+									onClick={() =>
+										this.setState({ batchArray: { address: [], award: [] } })
+									}
+								>
+									Clear Table
+								</button>
+								<table style={{ width: '100%' }}>
+									<thead>
+										<tr>
+											<th style={{ width: 30 }}>Id</th>
+											<th>Address</th>
+											<th style={{ textAlign: 'right' }}>Award</th>
 										</tr>
-									))}
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										{batchArray.address.map((item, i) => (
+											<tr key={i}>
+												<td style={{ width: 30 }}>{i + 1}</td>
+												<td style={{ fontSize: 11 }}>{item}</td>
+												<td style={{ textAlign: 'right' }}>
+													{batchArray.award[i]}
+												</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
 						) : (
 							'CSV Preview'
 						)}
