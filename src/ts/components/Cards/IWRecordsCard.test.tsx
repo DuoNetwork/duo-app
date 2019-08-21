@@ -2,6 +2,7 @@
 import '@babel/polyfill';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import util from 'ts/common/util';
 import IWRecordsCard from './IWRecordsCard';
 
 describe('IWRecordsCard Test', () => {
@@ -22,7 +23,7 @@ describe('IWRecordsCard Test', () => {
 			boundETH: [200, 200]
 		}
 		const refresh = jest.fn(() => 123);
-
+		util.formatTime = jest.fn(() => '2019-01-01 00:00:00')
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
 				<IWRecordsCard

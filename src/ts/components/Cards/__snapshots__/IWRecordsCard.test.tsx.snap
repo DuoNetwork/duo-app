@@ -259,7 +259,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
             "Amount": "500.0",
             "Link": "https://etherscan.io/tx/\\"0x5bc480b5d001b3cc72b39a631ff5d99aa0e8b2028baafca2fb08c39cacc51dd0\\"",
             "Status": "mined",
-            "Time": "2017-07-14 10:40:00",
+            "Time": "2019-01-01 00:00:00",
             "key": undefined,
             "txHash": "\\"0x5bc480b5d001b3cc72b39a631ff5d99aa0e8b2028baafca2fb08c39cacc51dd0\\"",
           },
