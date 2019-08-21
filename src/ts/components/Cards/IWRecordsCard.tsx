@@ -7,11 +7,12 @@
 import { Divider, Table } from 'antd';
 import * as d3 from 'd3';
 import duoIcon from 'images/Duo_black.png';
-import moment from 'moment';
+//import moment from 'moment';
 import * as React from 'react';
 import * as CST from 'ts/common/constants';
 //import { Link } from 'react-router-dom';
 import * as StakingCST from 'ts/common/stakingCST';
+import util from 'ts/common/util';
 //import warrantUtil from 'ts/common/warrantUtil';
 //import { web3Wrapper } from 'ts/common/wrappers';
 import { SDivFlexCenter } from '../_styled';
@@ -207,7 +208,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 					<Table
 						dataSource={currentRoundInfo.map((c: any) => ({
 							key: c.transactionHash,
-							[CST.TH_TIME.EN]: moment(c.date).format('YYYY-MM-DD HH:mm:ss'),
+							[CST.TH_TIME.EN]: util.formatTime(c.date),
 							[CST.TH_STATUS.EN]: c.status,
 							[CST.TH_AMOUNT.EN]: d3.format(',.1f')(c.amount),
 							txHash: c.txHash,
