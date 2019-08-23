@@ -180,7 +180,7 @@ export default class Duo extends React.Component {
 									</div>
 								</SCardTag>
 							</Link>
-							<Link to={'/' + 'inlinewarrant'}>
+							{/* <Link to={'/' + 'inlinewarrant'}>
 								<SCardTag>
 									<div className="bg-logo">
 										<img src={ethIcon} />
@@ -199,7 +199,7 @@ export default class Duo extends React.Component {
 										</div>
 									</div>
 								</SCardTag>
-							</Link>
+							</Link> */}
 						</SDivFlexCenter>
 					</SCard>
 				</SContent>

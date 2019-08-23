@@ -8,11 +8,20 @@ import {
 	Web3Wrapper
 } from '@finbook/duo-contract-wrapper';
 
-import {StakeV2Wrapper} from '@finbook/duo-contract-wrapper/dist/StakeV2Wrapper';
+import { StakeV2Wrapper } from '@finbook/duo-contract-wrapper/dist/StakeV2Wrapper';
+
+let token = { token: '' };
+try {
+	token = require(`../keys/infura.json`);
+} catch (error) {
+	console.log(error);
+}
 
 export const web3Wrapper = new Web3Wrapper(
 	window,
-	(__KOVAN__ ? WrapperConstants.PROVIDER_INFURA_KOVAN : WrapperConstants.PROVIDER_INFURA_MAIN).replace('/v3', ''),
+	(__KOVAN__ ? WrapperConstants.PROVIDER_INFURA_KOVAN : WrapperConstants.PROVIDER_INFURA_MAIN) +
+		'/' +
+		token.token,
 	'',
 	!__KOVAN__
 );
