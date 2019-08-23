@@ -1,15 +1,8 @@
-// import {
-// 	Constants as WrapperConstants,
-// 	ICustodianAddresses,
-// 	IDualClassStates
-// } from '@finbook/duo-contract-wrapper';
-//import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import * as d3 from 'd3';
 import avt from 'images/avatar.png';
 import duoIcon from 'images/Duo_black.png';
 import * as React from 'react';
 import * as StakingCST from 'ts/common/stakingCST';
-//import { Link } from 'react-router-dom';
 import warrentUtil from 'ts/common/warrantUtil';
 import { stakeV2Wrapper, web3Wrapper } from 'ts/common/wrappers';
 import {
@@ -75,14 +68,14 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 		const { address, locale, refresh } = this.props;
 		const oracleAddr = web3Wrapper.contractAddresses.Oracles[0].address;
 		const { inputValue } = this.state;
-		if (inputValue >= 200) {
+		if (inputValue >= 1) {
 			const txHash = await stakeV2Wrapper.stake(address, oracleAddr, inputValue);
 			this.insertStake(txHash, inputValue);
 			this.setState({ inputText: '', inputValue: 0 });
 			refresh();
 			console.log('Transaction submit: ' + txHash);
 		} else {
-			window.alert(StakingCST.STK_WARING2[locale] + '200 duo');
+			window.alert(StakingCST.STK_WARING2[locale] + '1 duo');
 			this.setState({ inputText: '', inputValue: 0 });
 		}
 	};
