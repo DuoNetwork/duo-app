@@ -13,6 +13,7 @@ describe('IWOperationCard Test', () => {
 		const enableApprove = true;
 		const enabled = true;
 		const refresh = jest.fn(() => 123);
+		const phase = 1
 
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
@@ -24,6 +25,7 @@ describe('IWOperationCard Test', () => {
 					enableApprove={enableApprove}
 					enabled={enabled}
 					refresh={refresh}
+					phase={phase}
 				/>
 			);
 			expect(wrapper).toMatchSnapshot();

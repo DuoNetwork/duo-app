@@ -4,16 +4,16 @@
 			"path": "."
 		},
 		{
-			"path": "..\\duo-admin"
+			"path": "../duo-admin"
 		},
 		{
-			"path": "..\\duo-market-data"
+			"path": "../duo-market-data"
 		},
 		{
-			"path": "..\\duo-contract-wrapper"
+			"path": "../duo-contract-wrapper"
 		},
 		{
-			"path": "..\\duo-contract"
+			"path": "../duo-contract"
 		}
 	],
 	"settings": {

@@ -2,7 +2,7 @@
 
 exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
 <Styled(Card)
-  height="320px"
+  height="270px"
   margin="0 0 0 0"
   title={
     <styled.div>
@@ -222,6 +222,27 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
           Claim Award
         </styled.div>
       </div>
+      <div
+        style={
+          Object {
+            "position": "absolute",
+            "right": 10,
+            "top": 46,
+          }
+        }
+      >
+        <styled.div
+          onClick={[Function]}
+          style={
+            Object {
+              "opacity": 1,
+              "pointerEvents": "initial",
+            }
+          }
+        >
+          Auto Roll
+        </styled.div>
+      </div>
     </styled.div>
   </div>
   <div
@@ -231,20 +252,19 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
         "flexDirection": "column",
         "height": 60,
         "justifyContent": "space-between",
-        "marginTop": 10,
-        "width": 168,
+        "marginTop": 15,
+        "width": 455,
       }
     }
   >
     <div
       style={
         Object {
-          "border": "1px dashed rgba(0,0,0,.2)",
           "display": "flex",
           "flexDirection": "column",
           "height": 60,
           "justifyContent": "space-between",
-          "padding": 2,
+          "padding": 4,
           "width": "100%",
         }
       }
@@ -266,30 +286,6 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
         Stake
       </styled.div>
     </div>
-  </div>
-  <div
-    style={
-      Object {
-        "display": "flex",
-        "flexDirection": "column",
-        "height": 60,
-        "justifyContent": "space-between",
-        "marginTop": 10,
-        "width": 168,
-      }
-    }
-  >
-    <styled.div
-      onClick={[Function]}
-      style={
-        Object {
-          "opacity": 1,
-          "pointerEvents": "initial",
-        }
-      }
-    >
-      Auto Roll
-    </styled.div>
   </div>
 </Styled(Card)>
 `;

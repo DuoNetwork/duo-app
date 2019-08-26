@@ -80,7 +80,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						</div>
 						<div className="tag-content" style={{ pointerEvents: 'none' }}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								{StakingCST.STK_TOTALSTAKE[locale]}
+								{StakingCST.STK_TOTALCOMMIT[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
@@ -105,7 +105,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						</div>
 						<div className="tag-content" style={{ pointerEvents: 'none' }}>
 							<div className={'tag-price USD'} style={{ fontSize: 12 }}>
-								{StakingCST.STK_TOTALRETURN[locale]}
+								{StakingCST.STK_TOTALREWARD[locale]}
 							</div>
 						</div>
 						<div className="tag-subtext" style={{ pointerEvents: 'none' }}>
@@ -118,10 +118,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 								}}
 							>
 								{addressInfo.roundStakingAmount
-									? d3.format(',.2f')(
-											addressInfo.roundReturn[1] -
-												addressInfo.roundStakingAmount[1]
-									)
+									? d3.format(',.2f')(addressInfo.roundReturn[1])
 									: '0.00'}
 								<span style={{ fontSize: 10, marginLeft: 5 }}>DUO</span>
 							</div>
@@ -149,10 +146,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 									? d3.format(',.2f')(addressInfo.roundStakingAmount[0])
 									: ' - ',
 								[StakingCST.STK_STAKERETURN.EN]: addressInfo.roundReturn
-									? d3.format(',.2f')(
-											addressInfo.roundReturn[0] -
-												addressInfo.roundStakingAmount[0]
-									)
+									? d3.format(',.2f')(addressInfo.roundReturn[0])
 									: ' - ',
 								[StakingCST.STK_ETHRANGE.EN]: addressInfo.boundETH
 									? `${addressInfo.boundETH[1]} ~ ${addressInfo.boundETH[0]}`
@@ -171,12 +165,12 @@ export default class IWRecordsCard extends React.Component<IProps> {
 							width={100}
 						/>
 						<Column
-							title={StakingCST.STK_STAKEAMOUNT[locale]}
+							title={StakingCST.STK_COMMIT[locale]}
 							dataIndex={StakingCST.STK_STAKEAMOUNT.EN}
 							width={90}
 						/>
 						<Column
-							title={StakingCST.STK_STAKERETURN[locale]}
+							title={StakingCST.STK_REWARD[locale]}
 							dataIndex={StakingCST.STK_STAKERETURN.EN}
 							width={90}
 						/>

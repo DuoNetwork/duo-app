@@ -21,6 +21,7 @@ interface IProps {
 	award: number;
 	enableApprove: boolean;
 	enabled: boolean;
+	phase: number;
 	refresh: () => any;
 }
 
@@ -83,7 +84,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 	private handleAutoroll = async () => {
 		const { address, refresh, award } = this.props;
 		const oracleAddr = web3Wrapper.contractAddresses.Oracles[0].address;
-		if (award >= 200) {
+		if (award >= 1) {
 			const txHash = await stakeV2Wrapper.autoRoll(address, oracleAddr, award, { gasLimit: 200000 });
 			this.insertStake(txHash, award);
 			this.setState({ inputText: '', inputValue: 0 });
@@ -94,14 +95,14 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 	};
 
 	public render() {
-		const { address, locale, duoBalance, enableApprove, enabled, award } = this.props;
+		const { address, locale, duoBalance, enableApprove, enabled, award, phase } = this.props;
 		const { inputText } = this.state;
 		return (
 			<SCard
 				title={<SCardTitle>Operation</SCardTitle>}
 				width="500px"
 				margin="0 0 0 0"
-				height="320px"
+				height="270px"
 			>
 				<div style={{ marginTop: 15 }}>
 					<a
@@ -210,12 +211,29 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 								{StakingCST.STK_CLAIM[locale]}
 							</SStakingButtonM>
 						</div>
+						<div
+							style={{
+								position: 'absolute',
+								right: 10,
+								top: 46
+							}}
+						>
+							<SStakingButtonM
+								onClick={() => this.handleAutoroll()}
+								style={{
+									pointerEvents: enabled && phase === 1 ? 'initial' : 'none',
+									opacity: enabled && phase === 1 ? 1 : 0.4
+								}}
+							>
+								{StakingCST.STK_AUTOROLL[locale]}
+							</SStakingButtonM>
+						</div>
 					</SCardTag2>
 				</div>
 				<div
 					style={{
-						width: 168,
-						marginTop: 10,
+						width: 455,
+						marginTop: 15,
 						height: 60,
 						display: 'flex',
 						flexDirection: 'column',
@@ -229,8 +247,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 							display: 'flex',
 							flexDirection: 'column',
 							justifyContent: 'space-between',
-							border: '1px dashed rgba(0,0,0,.2)',
-							padding: 2
+							padding: 4
 						}}
 					>
 						<SStakingInput
@@ -241,33 +258,13 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 						<SStakingButtonM2
 							onClick={() => this.handleStake()}
 							style={{
-								pointerEvents: enabled ? 'initial' : 'none',
-								opacity: enabled ? 1 : 0.4
+								pointerEvents: enabled && phase === 1 ? 'initial' : 'none',
+								opacity: enabled && phase === 1 ? 1 : 0.4
 							}}
 						>
 							{StakingCST.STK_STAKE[locale]}
 						</SStakingButtonM2>
 					</div>
-				</div>
-				<div
-					style={{
-						width: 168,
-						marginTop: 10,
-						height: 60,
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'space-between'
-					}}
-				>
-					<SStakingButtonM2
-						onClick={() => this.handleAutoroll()}
-						style={{
-							pointerEvents: enabled ? 'initial' : 'none',
-							opacity: enabled ? 1 : 0.4
-						}}
-					>
-						Auto Roll
-					</SStakingButtonM2>
 				</div>
 			</SCard>
 		);

@@ -368,12 +368,12 @@ export const STK_NOSTAKE: ILocaleText = {
 }
 
 export const STK_CURRENTROUND: ILocaleText = {
-	[LOCALE_CN]: '本轮质押',
+	[LOCALE_CN]: '本轮投入',
 	[LOCALE_EN]: 'Current Round'
 }
 
 export const STK_LASTROUND: ILocaleText = {
-	[LOCALE_CN]: '上轮质押',
+	[LOCALE_CN]: '上轮投入',
 	[LOCALE_EN]: 'Last Round'
 }
 
@@ -425,4 +425,29 @@ export const STK_VOLATILITY: ILocaleText = {
 export const STK_TIMELEFT: ILocaleText = {
 	[LOCALE_CN]: '剩余时间',
 	[LOCALE_EN]: 'Time Left'
+}
+
+export const STK_AUTOROLL: ILocaleText = {
+	[LOCALE_CN]: '复投',
+	[LOCALE_EN]: 'Auto Roll'
+}
+
+export const STK_COMMIT: ILocaleText = {
+	[LOCALE_CN]: '投入',
+	[LOCALE_EN]: 'Commit'
+}
+
+export const STK_TOTALCOMMIT: ILocaleText = {
+	[LOCALE_CN]: '总投入',
+	[LOCALE_EN]: 'Total Commit'
+}
+
+export const STK_TOTALREWARD: ILocaleText = {
+	[LOCALE_CN]: '总奖励',
+	[LOCALE_EN]: 'Total Rewards'
+}
+
+export const STK_REWARD: ILocaleText = {
+	[LOCALE_CN]: '奖励',
+	[LOCALE_EN]: 'Reward'
 }

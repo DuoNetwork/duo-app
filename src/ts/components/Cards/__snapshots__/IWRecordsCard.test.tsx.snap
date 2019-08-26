@@ -64,7 +64,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
             }
           }
         >
-          Total Stake
+          Total Commit
         </div>
       </div>
       <div
@@ -123,7 +123,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
             }
           }
         >
-          Total Return
+          Total Rewards
         </div>
       </div>
       <div
@@ -144,7 +144,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
             }
           }
         >
-          0.00
+          100.00
           <span
             style={
               Object {
@@ -183,7 +183,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
             "ETH Range": "200 ~ 200",
             "Settled ETH Price": 200,
             "Stake Amount": "100.00",
-            "Stake Return": "0.00",
+            "Stake Return": "100.00",
             "Time": "2019-01-01",
             "key": "lastRound",
           },
@@ -212,12 +212,12 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
       />
       <Column
         dataIndex="Stake Amount"
-        title="Stake Amount"
+        title="Commit"
         width={90}
       />
       <Column
         dataIndex="Stake Return"
-        title="Stake Return"
+        title="Reward"
         width={90}
       />
       <Column
