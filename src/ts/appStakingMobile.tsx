@@ -40,6 +40,10 @@ ReactDOM.render(
 					path={'/flex'}
 					component={(props: any) => <StakingM {...props} contractIndex={0} />}
 				/>
+				<Route
+					path={'/term'}
+					component={(props: any) => <StakingM {...props} contractIndex={1} />}
+				/>
 				<Route component={() => <InlineWarrantM />} />
 			</Switch>
 		</Router>

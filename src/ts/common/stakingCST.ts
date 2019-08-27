@@ -481,3 +481,8 @@ export const STK_OPERATION: ILocaleText = {
 	[LOCALE_CN]: '操作',
 	[LOCALE_EN]: 'Operation'
 }
+
+export const STK_STAKINGEND: ILocaleText = {
+	[LOCALE_CN]: '质押已结束',
+	[LOCALE_EN]: 'Staking Stopped'
+}
