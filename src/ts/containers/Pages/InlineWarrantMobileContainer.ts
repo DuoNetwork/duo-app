@@ -12,7 +12,7 @@ import InlineWarrentM from 'ts/components/Pages/InlineWarrantM';
 
 function mapStateToProps(state: IState) {
 	return {
-		locale: 'EN',
+		locale: state.ui.locale,
 		contractStates: state.inlineWarrent.states,
 		duoBalance: state.inlineWarrent.duo,
 		allowance: state.inlineWarrent.allowance,
