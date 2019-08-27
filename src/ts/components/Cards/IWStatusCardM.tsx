@@ -6,14 +6,14 @@
 //import { IStakeAddress, IStakeStates } from '@finbook/duo-contract-wrapper';
 import { Divider } from 'antd';
 import * as d3 from 'd3';
-import duo3d from 'images/duo-3d.png';
 import ethIcon from 'images/ethIconBg.png';
 import moment from 'moment';
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 //import { Link } from 'react-router-dom';
 import * as StakingCST from 'ts/common/stakingCST';
 import { SDivFlexCenter } from '../_styled';
-import { SCard, SCardTitle } from './_styled';
+import { SCard, SCardTitle, SStakingSwitch } from './_styled';
 
 interface IProps {
 	locale: string;
@@ -21,12 +21,13 @@ interface IProps {
 	phase: number;
 	lastPrice: number;
 	settlePrice: number;
+	obPrice: number;
 }
 interface IState {
 	countdown: string;
 }
 
-export default class IWStatusCard extends React.Component<IProps, IState> {
+export default class IWStatusCardM extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -64,38 +65,39 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 	}
 
 	public render() {
-		const { locale, boundaries, phase, lastPrice, settlePrice } = this.props;
+		const { locale, boundaries, phase, lastPrice, settlePrice, obPrice } = this.props;
 		const { countdown } = this.state;
 		return (
-			<SCard title={<SCardTitle>Inline Warrant</SCardTitle>} width="420px" margin="0 0 0 0">
+			<SCard
+				title={<SCardTitle>{StakingCST.STK_IW[locale]}</SCardTitle>}
+				width="95%"
+				margin="10px 0 20px 0"
+				extra={
+					<Link to={'/flex'}>
+						<SStakingSwitch style={{ width: 124 }}>
+							{StakingCST.STK_TOFLEX[locale]}
+						</SStakingSwitch>
+					</Link>
+				}
+			>
 				<img
 					src={ethIcon}
 					style={{
 						position: 'absolute',
-						width: 124,
-						height: 62,
-						top: 52,
-						right: 126,
+						width: 100,
+						height: 51,
+						top: 48,
+						right: 136,
 						opacity: 0.07
-					}}
-				/>
-				<img
-					src={duo3d}
-					style={{
-						position: 'absolute',
-						width: 180,
-						height: 77,
-						bottom: 30,
-						right: 110,
-						opacity: 1
 					}}
 				/>
 				<div
 					style={{
 						width: '100%',
 						textAlign: 'center',
-						marginTop: 20,
-						fontSize: 22,
+						marginTop: 12,
+						marginBottom: -10,
+						fontSize: 18,
 						fontWeight: 500,
 						color: 'rgba(64,79,84,.8)'
 					}}
@@ -105,7 +107,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 				<Divider dashed />
 				<SDivFlexCenter
 					horizontal
-					padding={'0 30px'}
+					padding={'0 14px'}
 					marginTop="-12px"
 					marginBottom="-12px"
 					style={{
@@ -135,7 +137,11 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 								color: 'rgba(64,79,84,.8)'
 							}}
 						>
-							{phase === 1 || phase === 2 ? `${StakingCST.STK_VOLATILITY[locale]} ≤` : StakingCST.STK_SETTLE[locale]}
+							{phase === 1
+								? `${StakingCST.STK_VOLATILITY[locale]} ≤`
+								: phase === 2
+								? StakingCST.STK_ETHRANGE[locale]
+								: StakingCST.STK_SETTLE[locale]}
 						</div>
 						<div
 							style={{
@@ -144,16 +150,26 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 								color: '#5CA4DE'
 							}}
 						>
-							{phase === 1 || phase === 2 ? `± ${d3.format(',.2%')(boundaries[0])}` : settlePrice === 0 ? 'Loading' : d3.format('.2f')(settlePrice)}
+							{phase === 1
+								? `± ${d3.format(',.2%')(boundaries[0])}`
+								: phase === 2
+								? obPrice === 0
+									? 'Loading'
+									: `${d3.format('.2f')(
+											obPrice * (1 - boundaries[0])
+									)} ~ ${d3.format('.2f')(obPrice * (1 + boundaries[0]))}`
+								: settlePrice === 0
+								? 'Loading'
+								: d3.format('.2f')(settlePrice)}
 						</div>
 					</div>
 				</SDivFlexCenter>
 				<Divider dashed />
 				<SDivFlexCenter
 					horizontal
-					padding={'0 30px'}
+					padding={'0 18px'}
 					marginTop="-12px"
-					marginBottom="-12px"
+					marginBottom="12px"
 				>
 					<div
 						style={{
@@ -191,7 +207,6 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 						</span>
 					</div>
 				</SDivFlexCenter>
-				<Divider dashed />
 			</SCard>
 		);
 	}

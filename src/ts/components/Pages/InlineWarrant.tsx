@@ -144,8 +144,9 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 			acceptedPrices
 		} = this.props;
 		const settleTime = moment.utc('00:00:00', 'HH:mm:ss').valueOf();
-		const settltPrice = acceptedPrices.filter(px => px.timestamp <= settleTime);
-		console.log(settltPrice.length ? settltPrice[0].price : 'Loading');
+		const obTime = moment.utc('12:00:00', 'HH:mm:ss').valueOf();
+		const settlePrice = acceptedPrices.filter(px => px.timestamp <= settleTime);
+		const obPrice = acceptedPrices.filter(px => px.timestamp <= obTime);
 		const { phase, visible, approved } = this.state;
 		return (
 			<Layout>
@@ -170,13 +171,15 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 							boundaries={boundaries}
 							locale={locale}
 							prices={chartUtil.mergePrices(prices, 5)}
+							obPrice={obPrice.length ? obPrice[0].price : 0}
 						/>
 						<IWStatusCard
 							locale={locale}
 							boundaries={boundaries}
 							phase={phase}
 							lastPrice={lastPrice}
-							settlePrice={settltPrice.length ? settltPrice[0].price : 0}
+							settlePrice={settlePrice.length ? settlePrice[0].price : 0}
+							obPrice={obPrice.length ? obPrice[0].price : 0}
 						/>
 					</SDivFlexCenter>
 					<SDivFlexCenter horizontal width={'1200px'} marginBottom={'20px'}>

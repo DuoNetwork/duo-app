@@ -24,7 +24,7 @@ export const LOADING: ILocaleText = {
 	[LOCALE_EN]: 'Loading Phase'
 }
 export const OPS: ILocaleText = {
-	[LOCALE_CN]: '质押阶段',
+	[LOCALE_CN]: '投入阶段',
 	[LOCALE_EN]: 'Open for Sale'
 }
 export const OB: ILocaleText = {
@@ -218,6 +218,11 @@ export const STK_PLACEHODLER: ILocaleText = {
 	[LOCALE_EN]: 'Input Stake Amount'
 };
 
+export const STK_PLACEHODLER2: ILocaleText = {
+	[LOCALE_CN]: '输入投入数量',
+	[LOCALE_EN]: 'Input Commit Amount'
+};
+
 export const STK_JOIN: ILocaleText = {
 	[LOCALE_CN]: '参与质押',
 	[LOCALE_EN]: 'Stake'
@@ -357,6 +362,11 @@ export const STK_TOFIX: ILocaleText = {
 	[LOCALE_EN]: 'To Term Staking'
 }
 
+export const STK_TOIW: ILocaleText = {
+	[LOCALE_CN]: '前往界内证',
+	[LOCALE_EN]: 'To Inline Warrant'
+}
+
 export const STK_UNLOCKUNTIL: ILocaleText = {
 	[LOCALE_CN]: '解锁于 ',
 	[LOCALE_EN]: 'Lock until '
@@ -450,4 +460,24 @@ export const STK_TOTALREWARD: ILocaleText = {
 export const STK_REWARD: ILocaleText = {
 	[LOCALE_CN]: '奖励',
 	[LOCALE_EN]: 'Reward'
+}
+
+export const STK_GRAPH: ILocaleText = {
+	[LOCALE_CN]: '图表',
+	[LOCALE_EN]: 'Graph'
+}
+
+export const STK_IW: ILocaleText = {
+	[LOCALE_CN]: '界内证',
+	[LOCALE_EN]: 'Inline Warrant'
+}
+
+export const STK_RECORDS: ILocaleText = {
+	[LOCALE_CN]: '记录',
+	[LOCALE_EN]: 'Records'
+}
+
+export const STK_OPERATION: ILocaleText = {
+	[LOCALE_CN]: '操作',
+	[LOCALE_EN]: 'Operation'
 }

@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import avt from 'images/avatar.png';
+import duo3d from 'images/duo-3d.png';
 import duoIcon from 'images/Duo_black.png';
 import * as React from 'react';
 import * as StakingCST from 'ts/common/stakingCST';
@@ -31,7 +32,7 @@ interface IState {
 	inputValue: number;
 }
 
-export default class IWOperationCard extends React.Component<IProps, IState> {
+export default class IWOperationCardM extends React.Component<IProps, IState> {
 	constructor(props: IProps) {
 		super(props);
 		this.state = {
@@ -85,7 +86,9 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 		const { address, refresh, award } = this.props;
 		const oracleAddr = web3Wrapper.contractAddresses.Oracles[0].address;
 		if (award >= 1) {
-			const txHash = await stakeV2Wrapper.autoRoll(address, oracleAddr, award, { gasLimit: 200000 });
+			const txHash = await stakeV2Wrapper.autoRoll(address, oracleAddr, award, {
+				gasLimit: 200000
+			});
 			this.insertStake(txHash, award);
 			this.setState({ inputText: '', inputValue: 0 });
 			refresh();
@@ -100,9 +103,8 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 		return (
 			<SCard
 				title={<SCardTitle>{StakingCST.STK_OPERATION[locale]}</SCardTitle>}
-				width="500px"
-				margin="0 0 0 0"
-				height="270px"
+				width="95%"
+				margin="0 0 20px 0"
 			>
 				<div style={{ marginTop: 15 }}>
 					<a
@@ -113,27 +115,29 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 							address
 						}
 					>
-						<img
-							style={{
-								width: 16,
-								height: 16,
-								marginRight: 10,
-								marginLeft: 5
-							}}
-							src={avt}
-						/>
+						<img style={{ width: 16, height: 16, marginRight: 10 }} src={avt} />
 						{StakingCST.STK_ADDRESS[locale]}:{' '}
-						<span style={{ color: '#5CA4DE' }}>{address}</span>
+						<div style={{ color: '#5CA4DE', marginTop: 10 }}>{address}</div>
 					</a>
 				</div>
-				<div
+				<img
 					style={{
-						width: 455,
-						display: 'flex',
-						justifyContent: 'space-between'
+						position: 'absolute',
+						right: 10,
+						top: 55,
+						height: 30,
+						width: 65
 					}}
-				>
-					<SCardTag2 style={{ width: 220 }}>
+					src={duo3d}
+				/>
+				<div>
+					<SCardTag2
+						style={{
+							width: '100%',
+							paddingTop: 0,
+							height: 75
+						}}
+					>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -173,7 +177,13 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 							</SStakingButtonM>
 						</div>
 					</SCardTag2>
-					<SCardTag2 style={{ width: 220 }}>
+					<SCardTag2
+						style={{
+							width: '100%',
+							paddingTop: 0,
+							height: 75
+						}}
+					>
 						<div className="bg-logo">
 							<img src={duoIcon} />
 						</div>
@@ -232,7 +242,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 				</div>
 				<div
 					style={{
-						width: 455,
+						width: '100%',
 						marginTop: 15,
 						height: 60,
 						display: 'flex',

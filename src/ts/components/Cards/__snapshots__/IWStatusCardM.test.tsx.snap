@@ -1,0 +1,174 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IWStatusCard Test Test Snapshot Test Snapshot 1`] = `
+<Styled(Card)
+  extra={
+    <Link
+      replace={false}
+      to="/flex"
+    >
+      <styled.div
+        style={
+          Object {
+            "width": 124,
+          }
+        }
+      >
+        To Flex Staking
+      </styled.div>
+    </Link>
+  }
+  margin="10px 0 20px 0"
+  title={
+    <styled.div>
+      Inline Warrant
+    </styled.div>
+  }
+  width="95%"
+>
+  <img
+    src={null}
+    style={
+      Object {
+        "height": 51,
+        "opacity": 0.07,
+        "position": "absolute",
+        "right": 136,
+        "top": 48,
+        "width": 100,
+      }
+    }
+  />
+  <div
+    style={
+      Object {
+        "color": "rgba(64,79,84,.8)",
+        "fontSize": 18,
+        "fontWeight": 500,
+        "marginBottom": -10,
+        "marginTop": 12,
+        "textAlign": "center",
+        "width": "100%",
+      }
+    }
+  >
+    ETH/USD
+  </div>
+  <Divider
+    dashed={true}
+  />
+  <styled.div
+    horizontal={true}
+    marginBottom="-12px"
+    marginTop="-12px"
+    padding="0 14px"
+    style={
+      Object {
+        "alignItems": "center",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "alignItems": "center",
+          "color": "#5CA4DE",
+          "display": "flex",
+          "fontSize": 40,
+          "fontWeight": 500,
+          "padding": "5px 10px",
+        }
+      }
+    >
+      200.00
+    </div>
+    <div
+      style={
+        Object {
+          "padding": "5px 10px",
+        }
+      }
+    >
+      <div
+        style={
+          Object {
+            "color": "rgba(64,79,84,.8)",
+            "fontSize": 12,
+          }
+        }
+      >
+        Volatility ≤
+      </div>
+      <div
+        style={
+          Object {
+            "color": "#5CA4DE",
+            "fontSize": 20,
+            "fontWeight": 500,
+          }
+        }
+      >
+        ± 10.00%
+      </div>
+    </div>
+  </styled.div>
+  <Divider
+    dashed={true}
+  />
+  <styled.div
+    horizontal={true}
+    marginBottom="12px"
+    marginTop="-12px"
+    padding="0 18px"
+  >
+    <div
+      style={
+        Object {
+          "alignItems": "center",
+          "color": "#5CA4DE",
+          "display": "flex",
+          "fontSize": 16,
+          "fontWeight": 500,
+          "padding": "5px 10px",
+        }
+      }
+    >
+      Open for Sale
+    </div>
+    <div
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+          "padding": "5px 5px",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "color": "rgba(64,79,84,.8)",
+            "fontSize": 10,
+          }
+        }
+      >
+        Time Left
+      </span>
+      <span
+        style={
+          Object {
+            "alignItems": "center",
+            "color": "#5CA4DE",
+            "display": "flex",
+            "fontSize": 16,
+            "fontWeight": 500,
+            "marginLeft": 10,
+          }
+        }
+      >
+        Loading
+      </span>
+    </div>
+  </styled.div>
+</Styled(Card)>
+`;

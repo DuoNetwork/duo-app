@@ -48,10 +48,10 @@ export default class StakingInfoCardM extends React.Component<IProps> {
 				width="95%"
 				margin="10px 0 20px 0"
 				extra={
-					<Link to={contractIndex === 0 ? '/term' : ''}>
+					<Link to={contractIndex === 0 ? '' : '/flex'}>
 						<SStakingSwitch style={{ width: 124 }}>
 							{contractIndex === 0
-								? StakingCST.STK_TOFIX[locale]
+								? StakingCST.STK_TOIW[locale]
 								: StakingCST.STK_TOFLEX[locale]}
 						</SStakingSwitch>
 					</Link>

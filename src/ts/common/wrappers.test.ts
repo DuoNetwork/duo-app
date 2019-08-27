@@ -14,12 +14,7 @@ jest.mock('@finbook/duo-contract-wrapper', () => ({
 	})),
 	StakeWrapper: jest.fn(() => ({
 		contract: 'StakeWrapper'
-	}))
-}));
-
-jest.mock('@finbook/duo-contract-wrapper/dist/StakeV2Wrapper', () => ({
-	Constants: Constants,
-	Web3Wrapper: jest.fn(() => ({ contractAddresses: kovan })),
+	})),
 	StakeV2Wrapper: jest.fn(() => ({
 		contract: 'StakeV2Wrapper'
 	}))
@@ -29,10 +24,10 @@ import {
 	DualClassWrapper,
 	EsplanadeWrapper,
 	MagiWrapper,
+	StakeV2Wrapper,
 	StakeWrapper,
 	Web3Wrapper
 } from '@finbook/duo-contract-wrapper';
-import {StakeV2Wrapper} from '@finbook/duo-contract-wrapper/dist/StakeV2Wrapper'
 import {
 	dualClassWrappers,
 	esplanadeWrapper,

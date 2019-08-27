@@ -4,11 +4,10 @@ import {
 	EsplanadeWrapper,
 	ICustodianWrappers,
 	MagiWrapper,
+	StakeV2Wrapper,
 	StakeWrapper,
 	Web3Wrapper
 } from '@finbook/duo-contract-wrapper';
-
-import { StakeV2Wrapper } from '@finbook/duo-contract-wrapper/dist/StakeV2Wrapper';
 
 let token = { token: '' };
 try {

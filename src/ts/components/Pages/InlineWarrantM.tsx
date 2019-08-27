@@ -6,20 +6,13 @@ import { Button, Layout, Modal } from 'antd';
 import moment from 'moment';
 // import queryString from 'query-string';
 import * as React from 'react';
-import chartUtil from 'ts/common/chartUtil';
 // import * as CST from 'ts/common/constants';
 import * as StakingCST from 'ts/common/stakingCST';
 import { web3Wrapper } from 'ts/common/wrappers';
-import IWOperationCard from 'ts/components/Cards/IWOperationCard';
-import IWRecordCard from 'ts/components/Cards/IWRecordsCard';
-import IWStatusCard from 'ts/components/Cards/IWStatusCard';
-// import StakingBannerCard from 'ts/components/Cards/StakingBannerCard';
-// import StakingInfoCard from 'ts/components/Cards/StakingInfoCard';
-// import StakingNodeCard from 'ts/components/Cards/StakingNodesCard';
-// import StakingPersonalCard from 'ts/components/Cards/StakingPersonalCard';
-import TimeSeriesCardIW from 'ts/components/Cards/TimeSeriesCardIW';
-import Header from 'ts/containers/HeaderContainer';
-import { SContent, SDivFlexCenter } from '../_styled';
+import IWOperationCardM from 'ts/components/Cards/IWOperationCardM';
+import IWRecordCardM from 'ts/components/Cards/IWRecordsCardM';
+import IWStatusCardM from 'ts/components/Cards/IWStatusCardM';
+import { SContent } from '../_styled';
 interface IProps {
 	locale: string;
 	contractStates: IStakeV2States;
@@ -132,7 +125,6 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 		const {
 			locale,
 			contractStates,
-			prices,
 			address,
 			duoBalance,
 			userAward,
@@ -144,12 +136,13 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 			acceptedPrices
 		} = this.props;
 		const settleTime = moment.utc('00:00:00', 'HH:mm:ss').valueOf();
+		const obTime = moment.utc('12:00:00', 'HH:mm:ss').valueOf();
 		const settltPrice = acceptedPrices.filter(px => px.timestamp <= settleTime);
+		const obPrice = acceptedPrices.filter(px => px.timestamp <= obTime);
 		console.log(settltPrice.length ? settltPrice[0].price : 'Loading');
 		const { phase, visible, approved } = this.state;
 		return (
 			<Layout>
-				<Header />
 				<Modal
 					visible={visible}
 					title={StakingCST.STK_REMIUNDER[locale]}
@@ -164,40 +157,31 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
 				</Modal>
 				<SContent>
-					<SDivFlexCenter horizontal width={'1200px'} marginBottom={'20px'}>
-						<TimeSeriesCardIW
-							phase={phase}
-							boundaries={boundaries}
-							locale={locale}
-							prices={chartUtil.mergePrices(prices, 5)}
-						/>
-						<IWStatusCard
-							locale={locale}
-							boundaries={boundaries}
-							phase={phase}
-							lastPrice={lastPrice}
-							settlePrice={settltPrice.length ? settltPrice[0].price : 0}
-						/>
-					</SDivFlexCenter>
-					<SDivFlexCenter horizontal width={'1200px'} marginBottom={'20px'}>
-						<IWRecordCard
-							address={address}
-							locale={locale}
-							currentRoundInfo={currentRoundInfo}
-							addressInfo={addressInfo}
-							refresh={refresh}
-						/>
-						<IWOperationCard
-							address={address}
-							locale={locale}
-							duoBalance={duoBalance}
-							award={userAward}
-							enableApprove={!approved}
-							enabled={contractStates.stakingEnabled}
-							refresh={refresh}
-							phase={phase}
-						/>
-					</SDivFlexCenter>
+					<IWStatusCardM
+						locale={locale}
+						boundaries={boundaries}
+						phase={phase}
+						lastPrice={lastPrice}
+						settlePrice={settltPrice.length ? settltPrice[0].price : 0}
+						obPrice={obPrice.length ? obPrice[0].price : 0}
+					/>
+					<IWOperationCardM
+						address={address}
+						locale={locale}
+						duoBalance={duoBalance}
+						award={userAward}
+						enableApprove={!approved}
+						enabled={contractStates.stakingEnabled}
+						refresh={refresh}
+						phase={phase}
+					/>
+					<IWRecordCardM
+						address={address}
+						locale={locale}
+						currentRoundInfo={currentRoundInfo}
+						addressInfo={addressInfo}
+						refresh={refresh}
+					/>
 				</SContent>
 			</Layout>
 		);

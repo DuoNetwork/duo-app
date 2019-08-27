@@ -11,9 +11,8 @@ import { IState } from 'ts/common/types';
 import InlineWarrentM from 'ts/components/Pages/InlineWarrantM';
 
 function mapStateToProps(state: IState) {
-	const prices = state.inlineWarrent.exchangePrices;
 	return {
-		locale: state.ui.locale,
+		locale: 'EN',
 		contractStates: state.inlineWarrent.states,
 		duoBalance: state.inlineWarrent.duo,
 		allowance: state.inlineWarrent.allowance,
@@ -25,7 +24,6 @@ function mapStateToProps(state: IState) {
 		lastPrice: state.inlineWarrent.exchangePrices[0]
 			? state.inlineWarrent.exchangePrices[0].close
 			: 0,
-		prices: prices,
 		acceptedPrices: state.magi.acceptedPrices
 	};
 }
