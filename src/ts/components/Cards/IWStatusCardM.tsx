@@ -107,7 +107,7 @@ export default class IWStatusCardM extends React.Component<IProps, IState> {
 				<Divider dashed />
 				<SDivFlexCenter
 					horizontal
-					padding={'0 14px'}
+					padding={'0 10px'}
 					marginTop="-12px"
 					marginBottom="-12px"
 					style={{
@@ -145,7 +145,7 @@ export default class IWStatusCardM extends React.Component<IProps, IState> {
 						</div>
 						<div
 							style={{
-								fontSize: 20,
+								fontSize: 18,
 								fontWeight: 500,
 								color: '#5CA4DE'
 							}}
@@ -167,7 +167,7 @@ export default class IWStatusCardM extends React.Component<IProps, IState> {
 				<Divider dashed />
 				<SDivFlexCenter
 					horizontal
-					padding={'0 18px'}
+					padding={'0 14px'}
 					marginTop="-12px"
 					marginBottom="12px"
 				>

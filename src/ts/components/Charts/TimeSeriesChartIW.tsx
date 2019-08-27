@@ -504,7 +504,7 @@ function drawLines(
 			.attr('fill', ColorStyles.TextGreen)
 			.attr('font-size', 12)
 			.attr('font-family', 'Roboto')
-			.text('+ ' + d3.format(',.2%')(ethub));
+			.text(d3.format(',.2f')(ethub));
 		boundLines
 			.append('text')
 			.attr('class', 'last-point-legend-text')
@@ -515,7 +515,7 @@ function drawLines(
 			.attr('fill', ColorStyles.TextRed)
 			.attr('font-size', 12)
 			.attr('font-family', 'Roboto')
-			.text('- ' + d3.format(',.2%')(ethlb));
+			.text(d3.format(',.2f')(ethlb));
 		boundLines.selectAll('text').style('text-anchor', 'start');
 	}
 }
@@ -545,7 +545,8 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 		if (
 			JSON.stringify(prices) !== JSON.stringify(this.props.prices) ||
 			phase !== this.props.phase ||
-			locale !== this.props.locale
+			locale !== this.props.locale ||
+			obPrice !== this.props.obPrice
 		)
 			drawLines(this.chartRef.current as Element, prices, phase, locale, boundaries, obPrice);
 
