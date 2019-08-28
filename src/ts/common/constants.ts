@@ -46,6 +46,7 @@ export const AC_UI_SOURCE = 'uiSource';
 export const AC_IW_CURRENTROUND = 'iwcurrentround';
 export const AC_IW_ADDRESSINFO = 'iwaddressinfo';
 export const AC_IW_BOUNDARIES = 'iwboundaries';
+export const AC_IW_TIMECHECK = 'iwtimecheck';
 
 export const AC_STK_NODES = ['Azure', 'AWS', 'GCP'];
 

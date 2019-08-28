@@ -38,6 +38,7 @@ interface IState {
 	visible: boolean;
 	showed: boolean;
 	approved: boolean;
+	timecheck: boolean;
 }
 
 export default class InlineWarrant extends React.Component<IProps, IState> {
@@ -47,7 +48,8 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 			phase: 0,
 			visible: false,
 			showed: false,
-			approved: false
+			approved: false,
+			timecheck: true
 		};
 	}
 
@@ -139,7 +141,8 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 		const obTime = moment.utc('12:00:00', 'HH:mm:ss').valueOf();
 		const settltPrice = acceptedPrices.filter(px => px.timestamp <= settleTime);
 		const obPrice = acceptedPrices.filter(px => px.timestamp <= obTime);
-		const { phase, visible, approved } = this.state;
+		const { phase, visible, approved, timecheck } = this.state;
+		if (timecheck && boundaries[0] === -102 && boundaries[1] === -103) this.setState({timecheck: false})
 		return (
 			<Layout>
 				<Modal
@@ -154,6 +157,13 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 					]}
 				>
 					<p>{StakingCST.STK_REMIUNDERTEST[locale]}</p>
+				</Modal>
+				<Modal
+					visible={!timecheck}
+					title={StakingCST.STK_REMIUNDER[locale]}
+					footer={[]}
+				>
+					<p>{StakingCST.STK_SYSTIMEERROR[locale]}</p>
 				</Modal>
 				<SContent>
 					<IWStatusCardM

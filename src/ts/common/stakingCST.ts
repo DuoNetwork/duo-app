@@ -486,3 +486,8 @@ export const STK_STAKINGEND: ILocaleText = {
 	[LOCALE_CN]: '质押已结束',
 	[LOCALE_EN]: 'Staking Stopped'
 }
+
+export const STK_SYSTIMEERROR: ILocaleText = {
+	[LOCALE_CN]: '系统时间误差过大，请检查系统时间设置',
+	[LOCALE_EN]: 'System time error, please check your time setting.'
+}

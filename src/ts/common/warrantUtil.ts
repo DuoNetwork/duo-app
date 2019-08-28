@@ -1,3 +1,4 @@
+import { DynamoDB } from 'aws-sdk/clients/all';
 import { AttributeMap } from 'aws-sdk/clients/dynamodb';
 import * as d3 from 'd3';
 import moment from 'moment';
@@ -35,7 +36,14 @@ class WarrantUtil {
 				[':address']: { S: account.toLowerCase() }
 			}
 		};
-		const data = await dynamoUtil.queryData(params);
+		let data: DynamoDB.QueryOutput = {};
+		try {
+			data = await dynamoUtil.queryData(params);
+		} catch (error) {
+			if (error.message.includes('Signature not yet current')) {
+				console.log(error)
+			}
+		}
 		if (data.Count) {
 			const roundStakingAmount = (data.Items as any)[0].roundStakingAmount.S.split(',').map(
 				(d: any) => Number(d)
@@ -67,7 +75,12 @@ class WarrantUtil {
 				[':eventKey']: { S: account.toLowerCase() }
 			}
 		};
-		const data = await dynamoUtil.queryData(params);
+		let data: DynamoDB.QueryOutput = {};
+		try {
+			data = await dynamoUtil.queryData(params);
+		} catch (error) {
+			console.log(error)
+		}
 		if (data.Count) {
 			const records = [];
 			for (const item of data.Items as any) {
@@ -120,7 +133,14 @@ class WarrantUtil {
 				[':quoteBase']: { S: 'ETH|USD' }
 			}
 		};
-		const data = await dynamoUtil.queryData(params);
+		let data: DynamoDB.QueryOutput = {};
+		try {
+			data = await dynamoUtil.queryData(params);
+		} catch (error) {
+			if (error.message.includes('Signature not yet current')) {
+				return [-102, -103]
+			}
+		}
 		let boundaries = [0, 0];
 		if (data.Count) {
 			(data.Items as any).forEach((item: any) => {

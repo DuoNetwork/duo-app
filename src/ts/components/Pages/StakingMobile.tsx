@@ -63,7 +63,8 @@ export default class StakingMobile extends React.Component<IProps, IState> {
 			duoAllowance[contractIndex] > 0
 		)
 			return {
-				approved: true
+				approved: true,
+				visible: false
 			};
 		else
 			return {
