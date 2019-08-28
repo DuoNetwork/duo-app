@@ -128,7 +128,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 				</div>
 				<div
 					style={{
-						width: 455,
+						width: 474,
 						display: 'flex',
 						justifyContent: 'space-between'
 					}}
@@ -232,7 +232,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 				</div>
 				<div
 					style={{
-						width: 455,
+						width: 474,
 						marginTop: 15,
 						height: 60,
 						display: 'flex',

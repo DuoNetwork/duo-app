@@ -10,7 +10,6 @@ import MagiAdmin from 'ts/containers/Pages/MagiAdminContainer';
 import Magi from 'ts/containers/Pages/MagiContainer';
 import StakingAdmin from 'ts/containers/Pages/StakingAdminContainer';
 import Staking from 'ts/containers/Pages/StakingContainer';
-import StakingM from 'ts/containers/Pages/StakingMobileContainer';
 import StakingV2Admin from 'ts/containers/Pages/StakingV2AdminContainer';
 import Status from 'ts/containers/Pages/StatusContainer';
 import Home from './Pages/Home';
@@ -84,15 +83,7 @@ export default class Duo extends React.Component {
 					/>
 					<Route path={'/stakingadmin'} render={() => <StakingAdmin />} />
 					<Route
-						path={'/stakingm'}
-						component={(props: any) => <StakingM {...props} contractIndex={0} />}
-					/>
-					<Route
-						path={'/stakingmterm'}
-						component={(props: any) => <StakingM {...props} contractIndex={1} />}
-					/>
-					<Route
-						path={'/inlinewarrant'}
+						path={'/inlinewarranttest'}
 						component={(props: any) => <InlineWarrant {...props} />}
 					/>
 					<Route

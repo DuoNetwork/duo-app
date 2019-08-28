@@ -57,7 +57,7 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
       Object {
         "display": "flex",
         "justifyContent": "space-between",
-        "width": 455,
+        "width": 474,
       }
     }
   >
@@ -253,7 +253,7 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
         "height": 60,
         "justifyContent": "space-between",
         "marginTop": 15,
-        "width": 455,
+        "width": 474,
       }
     }
   >
