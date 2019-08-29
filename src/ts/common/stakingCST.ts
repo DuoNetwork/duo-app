@@ -491,3 +491,13 @@ export const STK_SYSTIMEERROR: ILocaleText = {
 	[LOCALE_CN]: '系统时间误差过大，请检查系统时间设置',
 	[LOCALE_EN]: 'System time error, please check your time setting.'
 }
+
+export const STK_IN: ILocaleText = {
+	[LOCALE_CN]: '(界内)',
+	[LOCALE_EN]: '(In)'
+}
+
+export const STK_OUT: ILocaleText = {
+	[LOCALE_CN]: '(界外)',
+	[LOCALE_EN]: '(Out)'
+}

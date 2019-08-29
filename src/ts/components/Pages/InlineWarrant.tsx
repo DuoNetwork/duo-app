@@ -145,11 +145,16 @@ export default class InlineWarrant extends React.Component<IProps, IState> {
 			lastPrice,
 			acceptedPrices
 		} = this.props;
+		const { phase, visible, approved, timecheck } = this.state;
+		const today = moment.utc().format('YYYY-MM-DD');
+		const yesterday = moment
+			.utc(today, 'YYYY-MM-DD')
+			.subtract(1, 'days')
+			.format('YYYY-MM-DD');
 		const settleTime = moment.utc('00:00:00', 'HH:mm:ss').valueOf();
-		const obTime = moment.utc('12:00:00', 'HH:mm:ss').valueOf();
+		const obTime = phase === 2 ? moment.utc('12:00:00', 'HH:mm:ss').valueOf() : moment.utc(`${yesterday} 12:00:00`, 'YYYY-MM-DD HH:mm:ss').valueOf();
 		const settlePrice = acceptedPrices.filter(px => px.timestamp <= settleTime);
 		const obPrice = acceptedPrices.filter(px => px.timestamp <= obTime);
-		const { phase, visible, approved, timecheck } = this.state;
 		if (timecheck && boundaries[0] === -102 && boundaries[1] === -103) this.setState({timecheck: false})
 		return (
 			<Layout>

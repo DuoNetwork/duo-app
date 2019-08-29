@@ -67,6 +67,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 	public render() {
 		const { locale, boundaries, phase, lastPrice, settlePrice, obPrice } = this.props;
 		const { countdown } = this.state;
+		const result = settlePrice > obPrice * (1 - boundaries[0]) && settlePrice < obPrice * (1 + boundaries[0]) ? StakingCST.STK_IN[locale] : StakingCST.STK_OUT[locale]
 		return (
 			<SCard
 				title={<SCardTitle>{StakingCST.STK_IW[locale]}</SCardTitle>}
@@ -163,7 +164,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 									)} ~ ${d3.format('.2f')(obPrice * (1 + boundaries[0]))}`
 								: settlePrice === 0
 								? 'Loading'
-								: d3.format('.2f')(settlePrice)}
+								: `${d3.format('.2f')(settlePrice)} ${result}`}
 						</div>
 					</div>
 				</SDivFlexCenter>
