@@ -9,7 +9,7 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
       Operation
     </styled.div>
   }
-  width="500px"
+  width="480px"
 >
   <div
     style={
@@ -57,7 +57,7 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
       Object {
         "display": "flex",
         "justifyContent": "space-between",
-        "width": 474,
+        "width": 454,
       }
     }
   >
@@ -253,7 +253,7 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
         "height": 60,
         "justifyContent": "space-between",
         "marginTop": 15,
-        "width": 474,
+        "width": 454,
       }
     }
   >

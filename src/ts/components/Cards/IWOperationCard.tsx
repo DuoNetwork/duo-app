@@ -100,7 +100,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 		return (
 			<SCard
 				title={<SCardTitle>{StakingCST.STK_OPERATION[locale]}</SCardTitle>}
-				width="500px"
+				width="480px"
 				margin="0 0 0 0"
 				height="270px"
 			>
@@ -128,7 +128,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 				</div>
 				<div
 					style={{
-						width: 474,
+						width: 454,
 						display: 'flex',
 						justifyContent: 'space-between'
 					}}
@@ -232,7 +232,7 @@ export default class IWOperationCard extends React.Component<IProps, IState> {
 				</div>
 				<div
 					style={{
-						width: 474,
+						width: 454,
 						marginTop: 15,
 						height: 60,
 						display: 'flex',

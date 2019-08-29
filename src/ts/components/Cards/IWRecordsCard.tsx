@@ -69,7 +69,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						<SCardTitleSwitch>{StakingCST.STK_RECORDS[locale]}</SCardTitleSwitch>
 					</SCardTitle>
 				}
-				width="680px"
+				width="700px"
 				margin="0 20px 0 0"
 				extra={<SRefreshButton icon="reload" onClick={refresh} />}
 			>

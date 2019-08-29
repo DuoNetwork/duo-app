@@ -22,7 +22,7 @@ export default class TimeSeriesCard extends React.Component<IProps> {
 		return (
 			<SCard
 				title={<SCardTitle>{StakingCST.STK_GRAPH[locale]}</SCardTitle>}
-				width="760px"
+				width="700px"
 				margin="0 20px 0 0"
 			>
 				<SDivFlexCenter horizontal>

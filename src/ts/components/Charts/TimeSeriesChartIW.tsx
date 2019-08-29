@@ -7,7 +7,7 @@ import * as StakingCST from 'ts/common/stakingCST';
 import { ColorStyles } from 'ts/common/styles';
 
 const margin = { top: 24, right: 12, bottom: 23, left: 26 };
-const width = 728 - margin.left - margin.right;
+const width = 678 - margin.left - margin.right;
 const height = 380 - margin.top - margin.bottom;
 
 function drawLines(
@@ -232,7 +232,7 @@ function drawLines(
 					2
 			)
 			.attr('height', height - 2)
-			.style('fill', ColorStyles.MainColorAlphaLLLL)
+			.style('fill', ColorStyles.MainColorAlphaLLL)
 			.style('opacity', 0.2);
 		phaseLines
 			.append('rect')
@@ -246,7 +246,7 @@ function drawLines(
 					2
 			)
 			.attr('height', height - 2)
-			.style('fill', ColorStyles.TextRedAlphaLLLL)
+			.style('fill', ColorStyles.TextRedAlphaLLL)
 			.style('opacity', 0.2);
 		phaseLines
 			.append('text')

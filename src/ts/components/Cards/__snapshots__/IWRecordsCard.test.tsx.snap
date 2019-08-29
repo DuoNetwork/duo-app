@@ -28,7 +28,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
       </styled.div>
     </styled.div>
   }
-  width="680px"
+  width="700px"
 >
   <styled.div
     horizontal={true}

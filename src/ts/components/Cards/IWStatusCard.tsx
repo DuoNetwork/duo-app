@@ -71,7 +71,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 		return (
 			<SCard
 				title={<SCardTitle>{StakingCST.STK_IW[locale]}</SCardTitle>}
-				width="420px"
+				width="480px"
 				margin="0 0 0 0"
 			>
 				<img
@@ -81,7 +81,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 						width: 124,
 						height: 62,
 						top: 52,
-						right: 126,
+						right: 148,
 						opacity: 0.07
 					}}
 				/>
@@ -92,7 +92,7 @@ export default class IWStatusCard extends React.Component<IProps, IState> {
 						width: 180,
 						height: 77,
 						bottom: 30,
-						right: 110,
+						right: 138,
 						opacity: 1
 					}}
 				/>
