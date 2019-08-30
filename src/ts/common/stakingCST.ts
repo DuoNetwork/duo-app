@@ -484,7 +484,7 @@ export const STK_OPERATION: ILocaleText = {
 
 export const STK_STAKINGEND: ILocaleText = {
 	[LOCALE_CN]: '质押已结束',
-	[LOCALE_EN]: 'Staking Stopped'
+	[LOCALE_EN]: 'Staking Suspended'
 }
 
 export const STK_SYSTIMEERROR: ILocaleText = {

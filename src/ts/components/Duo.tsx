@@ -83,7 +83,7 @@ export default class Duo extends React.Component {
 					/>
 					<Route path={'/stakingadmin'} render={() => <StakingAdmin />} />
 					<Route
-						path={'/inlinewarranttest'}
+						path={'/inlinewarrant'}
 						component={(props: any) => <InlineWarrant {...props} />}
 					/>
 					<Route

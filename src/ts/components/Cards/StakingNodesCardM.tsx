@@ -286,12 +286,12 @@ export default class StakingNodesCardM extends React.Component<IProps, IState> {
 							/>
 							<SStakingButtonM2
 								style={{
-									cursor: !enabled ? 'not-allowed' : 'default',
-									opacity: enabled ? 1 : 0.4
+									cursor: contractIndex === 1 ? 'not-allowed' : !enabled ? 'not-allowed' : 'default',
+									opacity:  contractIndex === 1 ? 0.4 : enabled ? 1 : 0.4
 								}}
-								onClick={() => enabled && this.handleStake()}
+								onClick={() => contractIndex === 0 && enabled && this.handleStake()}
 							>
-								{StakingCST.STK_STAKE[locale]}
+								{contractIndex === 0 ? StakingCST.STK_STAKE[locale] : StakingCST.STK_STAKINGEND[locale]}
 							</SStakingButtonM2>
 						</div>
 						<Tooltip
