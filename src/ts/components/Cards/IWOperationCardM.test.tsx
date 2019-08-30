@@ -2,7 +2,7 @@
 import '@babel/polyfill';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import IWOperationCard from './IWOperationCard';
+import IWOperationCardM from './IWOperationCardM';
 
 describe('IWOperationCard Test', () => {
 	describe('Test Snapshot', () => {
@@ -17,7 +17,7 @@ describe('IWOperationCard Test', () => {
 
 		it('Test Snapshot', () => {
 			const wrapper = shallow(
-				<IWOperationCard
+				<IWOperationCardM
 					locale={locale}
 					address={address}
 					duoBalance={duoBalance}

@@ -37,7 +37,7 @@ interface IProps {
 // 	tagIndex: number;
 // }
 
-export default class IWRecordsCard extends React.Component<IProps> {
+export default class IWRecordsCardM extends React.Component<IProps> {
 	constructor(props: IProps) {
 		super(props);
 		// this.state = {
@@ -69,8 +69,8 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						<SCardTitleSwitch>{StakingCST.STK_RECORDS[locale]}</SCardTitleSwitch>
 					</SCardTitle>
 				}
-				width="700px"
-				margin="0 20px 0 0"
+				width="95%"
+				margin="0 0 20px 0"
 				extra={<SRefreshButton icon="reload" onClick={refresh} />}
 			>
 				<SDivFlexCenter horizontal noJust>
@@ -158,6 +158,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						]}
 						rowClassName={() => 'lastRoundRow'}
 						pagination={false}
+						style={{fontSize: 12, marginBottom: -5}}
 					>
 						<Column
 							title={CST.TH_TIME[locale]}
@@ -193,7 +194,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						color: 'rgba(64,79,84,.8)',
 						fontWeight: 500,
 						marginBottom: -5,
-						marginTop: 10
+						marginTop: -5
 					}}
 				>
 					{StakingCST.STK_CURRENTROUND[locale]}
@@ -219,6 +220,7 @@ export default class IWRecordsCard extends React.Component<IProps> {
 						onRow={record => ({
 							onClick: () => window.open((record as any)[CST.TH_LINK])
 						})}
+						style={{fontSize: 12}}
 					>
 						<Column
 							title={CST.TH_TIME[locale]}

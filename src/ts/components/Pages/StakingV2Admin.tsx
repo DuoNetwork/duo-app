@@ -90,11 +90,9 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 
 	private handleFile = (file: any) => {
 		const reader = new FileReader();
-		console.log(file.name);
 		reader.onload = e => {
 			const rawData = (e.target as any).result;
 			const csvData = csvParse(rawData);
-			console.log(csvData);
 			const addrList: string[] = [];
 			const awardList: number[] = [];
 			csvData.forEach(item => {
@@ -152,7 +150,6 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 	public render() {
 		const {
 			account,
-			addresses,
 			contractStates,
 			contractDUO,
 			gasPrice,
@@ -175,7 +172,6 @@ export default class StakingAdmin extends React.Component<IProps, IState> {
 		} else {
 			stagingAddArray = [];
 		}
-		console.log(addresses);
 		return (
 			<Layout>
 				<Header />

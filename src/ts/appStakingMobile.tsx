@@ -9,6 +9,7 @@ import * as dualClassActions from './actions/dualClassActions';
 import * as dynamoActions from './actions/dynamoActions';
 import * as web3Actions from './actions/web3Actions';
 import { web3Wrapper } from './common/wrappers';
+import InlineWarrantM from './containers/Pages/InlineWarrantMobileContainer';
 import StakingM from './containers/Pages/StakingMobileContainer';
 import store from './store/store';
 
@@ -36,14 +37,16 @@ ReactDOM.render(
 		<Router>
 			<Switch>
 				<Route
-					path={"/term"}
-					component={(props: any) => <StakingM {...props} contractIndex={1} />}
-				/>
-				<Route
+					path={'/flex'}
 					component={(props: any) => <StakingM {...props} contractIndex={0} />}
 				/>
+				<Route
+					path={'/term'}
+					component={(props: any) => <StakingM {...props} contractIndex={1} />}
+				/>
+				<Route component={() => <InlineWarrantM />} />
 			</Switch>
 		</Router>
 	</Provider>,
 	document.getElementById('app')
-);
+)

@@ -140,6 +140,26 @@ export default class Duo extends React.Component {
 							padding="0 10px"
 							style={{ display: 'inline-flex' }}
 						>
+							<Link to={'/' + 'inlinewarrant'}>
+								<SCardTag style={{ marginRight: '40px' }}>
+									<div className="bg-logo">
+										<img src={ethIcon} />
+									</div>
+									<div className="tag-content">
+										<div className={'tag-price USD'}>INLINE WARRANTS</div>
+									</div>
+									<div className="tag-subtext">
+										<div
+											style={{
+												color: ColorStyles.ThemeTextAlpha,
+												marginLeft: 20
+											}}
+										>
+											DUO
+										</div>
+									</div>
+								</SCardTag>
+							</Link>
 							<Link to={'/' + 'staking'}>
 								<SCardTag style={{ marginRight: '40px' }}>
 									<div className="bg-logo">
@@ -180,26 +200,6 @@ export default class Duo extends React.Component {
 									</div>
 								</SCardTag>
 							</Link>
-							{/* <Link to={'/' + 'inlinewarrant'}>
-								<SCardTag>
-									<div className="bg-logo">
-										<img src={ethIcon} />
-									</div>
-									<div className="tag-content">
-										<div className={'tag-price USD'}>INLINE WARRANTS</div>
-									</div>
-									<div className="tag-subtext">
-										<div
-											style={{
-												color: ColorStyles.ThemeTextAlpha,
-												marginLeft: 20
-											}}
-										>
-											DUO
-										</div>
-									</div>
-								</SCardTag>
-							</Link> */}
 						</SDivFlexCenter>
 					</SCard>
 				</SContent>

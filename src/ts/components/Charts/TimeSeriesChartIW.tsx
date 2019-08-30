@@ -7,7 +7,7 @@ import * as StakingCST from 'ts/common/stakingCST';
 import { ColorStyles } from 'ts/common/styles';
 
 const margin = { top: 24, right: 12, bottom: 23, left: 26 };
-const width = 728 - margin.left - margin.right;
+const width = 678 - margin.left - margin.right;
 const height = 380 - margin.top - margin.bottom;
 
 function drawLines(
@@ -15,7 +15,8 @@ function drawLines(
 	prices: IPrice[],
 	phase: number,
 	locale: string,
-	boundaries: number[]
+	boundaries: number[],
+	obPrice: number
 ) {
 	const dataLoaded = prices.length;
 	if (!dataLoaded || phase === 0) {
@@ -231,7 +232,7 @@ function drawLines(
 					2
 			)
 			.attr('height', height - 2)
-			.style('fill', ColorStyles.MainColorAlphaLLLL)
+			.style('fill', ColorStyles.MainColorAlphaLLL)
 			.style('opacity', 0.2);
 		phaseLines
 			.append('rect')
@@ -245,7 +246,7 @@ function drawLines(
 					2
 			)
 			.attr('height', height - 2)
-			.style('fill', ColorStyles.TextRedAlphaLLLL)
+			.style('fill', ColorStyles.TextRedAlphaLLL)
 			.style('opacity', 0.2);
 		phaseLines
 			.append('text')
@@ -449,6 +450,74 @@ function drawLines(
 			.text('- ' + d3.format(',.2%')(boundaries[1]));
 		boundLines.selectAll('text').style('text-anchor', 'start');
 	}
+	if (phase === 2) {
+		const ethlb = obPrice * (1 - boundaries[0]);
+		const ethub = obPrice * (1 + boundaries[0]);
+		const boundLines = chartdata.append('g').attr('class', 'bound-lines');
+		boundLines
+			.append('path')
+			.attr('class', 'line-custodian-eth')
+			.attr('d', () => {
+				return line([
+					{
+						x: 0,
+						y: ethYScale(ethub)
+					},
+					{
+						x: width,
+						y: ethYScale(ethub)
+					}
+				]);
+			})
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', ColorStyles.MainColorAlphaLL)
+			.attr('stroke-width', 1.5);
+		boundLines
+			.append('path')
+			.attr('class', 'line-custodian-eth')
+			.attr('d', () => {
+				return line([
+					{
+						x: 0,
+						y: ethYScale(ethlb)
+					},
+					{
+						x: width,
+						y: ethYScale(ethlb)
+					}
+				]);
+			})
+			.attr('fill', 'none')
+			.attr('stroke-linejoin', 'round')
+			.attr('stroke-linecap', 'round')
+			.attr('stroke', ColorStyles.MainColorAlphaLL)
+			.attr('stroke-width', 1.5);
+		boundLines
+			.append('text')
+			.attr('class', 'last-point-legend-text')
+			.attr(
+				'transform',
+				`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(ethub) + 15})`
+			)
+			.attr('fill', ColorStyles.TextGreen)
+			.attr('font-size', 12)
+			.attr('font-family', 'Roboto')
+			.text(d3.format(',.2f')(ethub));
+		boundLines
+			.append('text')
+			.attr('class', 'last-point-legend-text')
+			.attr(
+				'transform',
+				`translate(${xScale(showingSet[0].timestamp) + 5},${ethYScale(ethlb) - 7})`
+			)
+			.attr('fill', ColorStyles.TextRed)
+			.attr('font-size', 12)
+			.attr('font-family', 'Roboto')
+			.text(d3.format(',.2f')(ethlb));
+		boundLines.selectAll('text').style('text-anchor', 'start');
+	}
 }
 
 interface IProps {
@@ -456,6 +525,7 @@ interface IProps {
 	prices: IPrice[];
 	phase: number;
 	boundaries: number[];
+	obPrice: number;
 }
 
 export default class TimeSeriesChart extends React.Component<IProps> {
@@ -466,18 +536,19 @@ export default class TimeSeriesChart extends React.Component<IProps> {
 	}
 
 	public componentDidMount() {
-		const { prices, phase, locale, boundaries } = this.props;
-		drawLines(this.chartRef.current as Element, prices, phase, locale, boundaries);
+		const { prices, phase, locale, boundaries, obPrice } = this.props;
+		drawLines(this.chartRef.current as Element, prices, phase, locale, boundaries, obPrice);
 	}
 
 	public shouldComponentUpdate(nextProps: IProps) {
-		const { prices, phase, locale, boundaries } = nextProps;
+		const { prices, phase, locale, boundaries, obPrice } = nextProps;
 		if (
 			JSON.stringify(prices) !== JSON.stringify(this.props.prices) ||
 			phase !== this.props.phase ||
-			locale !== this.props.locale
+			locale !== this.props.locale ||
+			obPrice !== this.props.obPrice
 		)
-			drawLines(this.chartRef.current as Element, prices, phase, locale, boundaries);
+			drawLines(this.chartRef.current as Element, prices, phase, locale, boundaries, obPrice);
 
 		return false;
 	}

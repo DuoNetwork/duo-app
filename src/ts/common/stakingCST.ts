@@ -24,7 +24,7 @@ export const LOADING: ILocaleText = {
 	[LOCALE_EN]: 'Loading Phase'
 }
 export const OPS: ILocaleText = {
-	[LOCALE_CN]: '质押阶段',
+	[LOCALE_CN]: '投入阶段',
 	[LOCALE_EN]: 'Open for Sale'
 }
 export const OB: ILocaleText = {
@@ -218,6 +218,11 @@ export const STK_PLACEHODLER: ILocaleText = {
 	[LOCALE_EN]: 'Input Stake Amount'
 };
 
+export const STK_PLACEHODLER2: ILocaleText = {
+	[LOCALE_CN]: '输入投入数量',
+	[LOCALE_EN]: 'Input Commit Amount'
+};
+
 export const STK_JOIN: ILocaleText = {
 	[LOCALE_CN]: '参与质押',
 	[LOCALE_EN]: 'Stake'
@@ -357,6 +362,11 @@ export const STK_TOFIX: ILocaleText = {
 	[LOCALE_EN]: 'To Term Staking'
 }
 
+export const STK_TOIW: ILocaleText = {
+	[LOCALE_CN]: '前往界内证',
+	[LOCALE_EN]: 'To Inline Warrant'
+}
+
 export const STK_UNLOCKUNTIL: ILocaleText = {
 	[LOCALE_CN]: '解锁于 ',
 	[LOCALE_EN]: 'Lock until '
@@ -368,12 +378,12 @@ export const STK_NOSTAKE: ILocaleText = {
 }
 
 export const STK_CURRENTROUND: ILocaleText = {
-	[LOCALE_CN]: '本轮质押',
+	[LOCALE_CN]: '本轮投入',
 	[LOCALE_EN]: 'Current Round'
 }
 
 export const STK_LASTROUND: ILocaleText = {
-	[LOCALE_CN]: '上轮质押',
+	[LOCALE_CN]: '上轮投入',
 	[LOCALE_EN]: 'Last Round'
 }
 
@@ -425,4 +435,69 @@ export const STK_VOLATILITY: ILocaleText = {
 export const STK_TIMELEFT: ILocaleText = {
 	[LOCALE_CN]: '剩余时间',
 	[LOCALE_EN]: 'Time Left'
+}
+
+export const STK_AUTOROLL: ILocaleText = {
+	[LOCALE_CN]: '复投',
+	[LOCALE_EN]: 'Auto Roll'
+}
+
+export const STK_COMMIT: ILocaleText = {
+	[LOCALE_CN]: '投入',
+	[LOCALE_EN]: 'Commit'
+}
+
+export const STK_TOTALCOMMIT: ILocaleText = {
+	[LOCALE_CN]: '总投入',
+	[LOCALE_EN]: 'Total Commit'
+}
+
+export const STK_TOTALREWARD: ILocaleText = {
+	[LOCALE_CN]: '总奖励',
+	[LOCALE_EN]: 'Total Rewards'
+}
+
+export const STK_REWARD: ILocaleText = {
+	[LOCALE_CN]: '奖励',
+	[LOCALE_EN]: 'Reward'
+}
+
+export const STK_GRAPH: ILocaleText = {
+	[LOCALE_CN]: '图表',
+	[LOCALE_EN]: 'Graph'
+}
+
+export const STK_IW: ILocaleText = {
+	[LOCALE_CN]: '界内证',
+	[LOCALE_EN]: 'Inline Warrant'
+}
+
+export const STK_RECORDS: ILocaleText = {
+	[LOCALE_CN]: '记录',
+	[LOCALE_EN]: 'Records'
+}
+
+export const STK_OPERATION: ILocaleText = {
+	[LOCALE_CN]: '操作',
+	[LOCALE_EN]: 'Operation'
+}
+
+export const STK_STAKINGEND: ILocaleText = {
+	[LOCALE_CN]: '质押已结束',
+	[LOCALE_EN]: 'Staking Suspended'
+}
+
+export const STK_SYSTIMEERROR: ILocaleText = {
+	[LOCALE_CN]: '系统时间误差过大，请检查系统时间设置',
+	[LOCALE_EN]: 'System time error, please check your time setting.'
+}
+
+export const STK_IN: ILocaleText = {
+	[LOCALE_CN]: '(界内)',
+	[LOCALE_EN]: '(In)'
+}
+
+export const STK_OUT: ILocaleText = {
+	[LOCALE_CN]: '(界外)',
+	[LOCALE_EN]: '(Out)'
 }

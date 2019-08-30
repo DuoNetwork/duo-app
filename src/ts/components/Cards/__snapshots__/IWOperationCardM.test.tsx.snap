@@ -2,14 +2,13 @@
 
 exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
 <Styled(Card)
-  height="270px"
-  margin="0 0 0 0"
+  margin="0 0 20px 0"
   title={
     <styled.div>
       Operation
     </styled.div>
   }
-  width="480px"
+  width="95%"
 >
   <div
     style={
@@ -32,7 +31,6 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
         style={
           Object {
             "height": 16,
-            "marginLeft": 5,
             "marginRight": 10,
             "width": 16,
           }
@@ -41,30 +39,37 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
       My Address
       :
        
-      <span
+      <div
         style={
           Object {
             "color": "#5CA4DE",
+            "marginTop": 10,
           }
         }
       >
         0x00
-      </span>
+      </div>
     </a>
   </div>
-  <div
+  <img
+    src={null}
     style={
       Object {
-        "display": "flex",
-        "justifyContent": "space-between",
-        "width": 454,
+        "height": 30,
+        "position": "absolute",
+        "right": 10,
+        "top": 55,
+        "width": 65,
       }
     }
-  >
+  />
+  <div>
     <styled.div
       style={
         Object {
-          "width": 220,
+          "height": 75,
+          "paddingTop": 0,
+          "width": "100%",
         }
       }
     >
@@ -150,7 +155,9 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
     <styled.div
       style={
         Object {
-          "width": 220,
+          "height": 75,
+          "paddingTop": 0,
+          "width": "100%",
         }
       }
     >
@@ -253,7 +260,7 @@ exports[`IWOperationCard Test Test Snapshot Test Snapshot 1`] = `
         "height": 60,
         "justifyContent": "space-between",
         "marginTop": 15,
-        "width": 454,
+        "width": "100%",
       }
     }
   >

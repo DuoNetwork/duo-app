@@ -20,7 +20,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
       }
     />
   }
-  margin="0 20px 0 0"
+  margin="0 0 20px 0"
   title={
     <styled.div>
       <styled.div>
@@ -28,7 +28,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
       </styled.div>
     </styled.div>
   }
-  width="700px"
+  width="95%"
 >
   <styled.div
     horizontal={true}
@@ -203,6 +203,12 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
           "descend",
         ]
       }
+      style={
+        Object {
+          "fontSize": 12,
+          "marginBottom": -5,
+        }
+      }
       useFixedHeader={false}
     >
       <Column
@@ -241,7 +247,7 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
         "color": "rgba(64,79,84,.8)",
         "fontWeight": 500,
         "marginBottom": -5,
-        "marginTop": 10,
+        "marginTop": -5,
         "paddingLeft": 10,
       }
     }
@@ -291,6 +297,11 @@ exports[`IWRecordsCard Test Test Snapshot Test Snapshot 1`] = `
           "ascend",
           "descend",
         ]
+      }
+      style={
+        Object {
+          "fontSize": 12,
+        }
       }
       useFixedHeader={false}
     >

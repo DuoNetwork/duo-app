@@ -52,7 +52,7 @@ export default class StakingInfoCardM extends React.Component<IProps> {
 						<SStakingSwitch style={{ width: 124 }}>
 							{contractIndex === 0
 								? StakingCST.STK_TOFIX[locale]
-								: StakingCST.STK_TOFLEX[locale]}
+								: StakingCST.STK_TOIW[locale]}
 						</SStakingSwitch>
 					</Link>
 				}

@@ -31,7 +31,7 @@ export const SCard = styled(Card)`
 		padding: 0 16px;
 	}
 	& > .ant-card-body {
-		padding: 0px 16px 16px 16px;
+		padding: 0px 12px 12px 12px;
 	}
 `;
 
