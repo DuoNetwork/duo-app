@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": true,
 	"description": "DUO App",
-	"author": "FinBook Pte Ltd",
+	"author": "Duo Network",
 	"scripts": {
 		"clean": "rimraf dist",
 		"test": "jest",
